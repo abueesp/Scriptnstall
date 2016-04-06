@@ -176,6 +176,9 @@ echo "ssh bashcr vimcr portability installed"
 
 ##Browsers
 sudo apt-get install firefox -y
+cd Downloads
+sudo mkdir extensions
+cd extensions
 wget https://addons.mozilla.org/firefox/downloads/latest/722/addon-722-latest.xpi 
 wget https://addons.mozilla.org/firefox/downloads/latest/363974/addon-363974-latest.xpi 
 wget https://addons.mozilla.org/firefox/downloads/latest/409964/addon-409964-latest.xpi 
@@ -197,7 +200,34 @@ wget https://addons.mozilla.org/firefox/downloads/latest/60/addon-60-latest.xpi
 wget https://addons.mozilla.org/firefox/downloads/latest/1843/addon-1843-latest.xpi 
 wget https://addons.mozilla.org/firefox/downloads/latest/355192/addon-355192-latest.xpi 
 wget https://addons.mozilla.org/firefox/downloads/file/229626/sql_inject_me-0.4.7-fx.xpi 
-wget https://addons.mozilla.org/firefox/downloads/latest/2324/addon-2324-latest.xpi https://addons.mozilla.org/firefox/downloads/latest/532/addon-532-latest.xpi https://addons.mozilla.org/firefox/downloads/latest/5523/addon-5523-latest.xpi https://addons.mozilla.org/firefox/downloads/file/413865/mutetab-0.0.2-fx.xpi https://addons.mozilla.org/firefox/downloads/latest/387051/addon-387051-latest.xpi https://addons.mozilla.org/firefox/downloads/latest/10586/addon-10586-latest.xpi https://addons.mozilla.org/firefox/downloads/latest/607454/addon-607454-latest.xpi https://addons.mozilla.org/firefox/downloads/latest/521554/addon-521554-latest.xpi https://addons.mozilla.org/firefox/downloads/file/262658/cryptocat-2.2.2-fx.xpi https://addons.mozilla.org/firefox/downloads/latest/383235/addon-383235-latest.xpi https://addons.mozilla.org/firefox/downloads/file/387220/text_to_voice-1.15-fx.xpi https://addons.mozilla.org/firefox/downloads/latest/161670/addon-161670-latest.xpi https://addons.mozilla.org/firefox/downloads/latest/3899/addon-3899-latest.xpi https://addons.mozilla.org/firefox/downloads/file/281702/google_privacy-0.2.4-sm+fx.xpi https://addons.mozilla.org/firefox/downloads/latest/329784/addon-329784-latest.xpi https://addons.mozilla.org/firefox/downloads/latest/509336/addon-509336-latest.xpi https://addons.mozilla.org/firefox/downloads/latest/496120/addon-496120-latest.xpi https://addons.mozilla.org/firefox/downloads/latest/8661/addon-8661-latest.xpi https://addons.mozilla.org/firefox/downloads/latest/599152/addon-599152-latest.xpi https://addons.mozilla.org/firefox/downloads/latest/473878/addon-473878-latest.xpi https://addons.mozilla.org/firefox/downloads/latest/45281/addon-45281-latest.xpi https://addons.mozilla.org/firefox/downloads/latest/3829/addon-3829-latest.xpi https://addons.mozilla.org/firefox/downloads/latest/229918/addon-229918-latest.xpi https://addons.mozilla.org/firefox/downloads/file/373868/soundcloud_downloader_soundgrab-0.98-fx.xpi https://addons.mozilla.org/firefox/downloads/latest/415846/addon-415846-latest.xpi https://addons.mozilla.org/firefox/downloads/latest/387429/addon-387429-latest.xpi https://addons.mozilla.org/firefox/downloads/latest/292320/addon-292320-latest.xpi?src=dp-btn-primary
+wget https://addons.mozilla.org/firefox/downloads/latest/2324/addon-2324-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/532/addon-532-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/5523/addon-5523-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/file/413865/mutetab-0.0.2-fx.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/387051/addon-387051-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/10586/addon-10586-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/607454/addon-607454-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/521554/addon-521554-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/file/262658/cryptocat-2.2.2-fx.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/383235/addon-383235-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/file/387220/text_to_voice-1.15-fx.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/161670/addon-161670-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/3899/addon-3899-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/file/281702/google_privacy-0.2.4-sm+fx.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/329784/addon-329784-latest.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/509336/addon-509336-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/496120/addon-496120-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/8661/addon-8661-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/599152/addon-599152-latest.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/473878/addon-473878-latest.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/45281/addon-45281-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/3829/addon-3829-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/229918/addon-229918-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/file/373868/soundcloud_downloader_soundgrab-0.98-fx.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/415846/addon-415846-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/387429/addon-387429-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/292320/addon-292320-latest.xpi
+cd
 sudo cp /home/$USER/.mozilla/firefox/9s2t1l00.default/extensions/keefox@chris.tomlinson/deps/KeePassRPC.plgx /usr/lib/keepass2
 
 #thunderbird extensions
