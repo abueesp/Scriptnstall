@@ -132,7 +132,7 @@ sudo tar xvf emacs-"$version".tar.xz
 ##plugins
 cd ~/.emacs.d
 wget https://github.com/ethereum/emacs-solidity/blob/master/solidity-mode.el ##solidity
-(add-to-list 'load-path "~/.emacs.d/") 
+(add-to-list load-path "~/.emacs.d/") 
 (load "myplugin.el")
 
 
@@ -227,11 +227,10 @@ wget https://addons.mozilla.org/firefox/downloads/file/373868/soundcloud_downloa
 wget https://addons.mozilla.org/firefox/downloads/latest/415846/addon-415846-latest.xpi 
 wget https://addons.mozilla.org/firefox/downloads/latest/387429/addon-387429-latest.xpi 
 wget https://addons.mozilla.org/firefox/downloads/latest/292320/addon-292320-latest.xpi
-cd
-sudo cp /home/$USER/.mozilla/firefox/**.default/extensions/keefox@chris.tomlinson/deps/KeePassRPC.plgx /usr/lib/keepass2
+cp /home/$USER/.mozilla/firefox/**.default/extensions/keefox@chris.tomlinson/deps/KeePassRPC.plgx /usr/lib/keepass2
 
 #thunderbird extensions
-thunderbird https://addons.mozilla.org/thunderbird/downloads/latest/611/addon-611-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/1339/addon-1339-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/556/addon-556-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/4003/addon-4003-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/1556/addon-1556-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/550/addon-550-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/2313/platform:2/addon-2313-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/4631/addon-4631-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/2199/addon-2199-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/550/addon-550-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/71/addon-71-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/210/addon-210-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/875/addon-875-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/1003/addon-1003-latest.xpi 
+sudo thunderbird https://addons.mozilla.org/thunderbird/downloads/latest/611/addon-611-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/1339/addon-1339-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/556/addon-556-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/4003/addon-4003-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/1556/addon-1556-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/550/addon-550-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/2313/platform:2/addon-2313-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/4631/addon-4631-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/2199/addon-2199-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/550/addon-550-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/71/addon-71-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/210/addon-210-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/875/addon-875-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/1003/addon-1003-latest.xpi 
 
 sudo apt-get autoremove -y
 
