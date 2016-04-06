@@ -4,6 +4,7 @@
 sudo sed -i 's/InitiallyPowered = true/InitiallyPowered = false/g' /etc/bluetooth/main.conf
 rfkill block bluetooth
 #SSH
+sudo apt-get install ssh
 sudo sed "s/NoDisplay=true/NoDisplay=false/g" /etc/xdg/autostart/gnome-keyring-ssh.desktop
 sudo sed -ir 's/^(PermitRootLogin) .+/\1 no/' /etc/ssh/sshd_config #noroot
 sudo sed -ir 's/^(Port) .+/\1 1022/' /etc/ssh/sshd_config #SSH PORT OTHER THAN 22, SET 1022
