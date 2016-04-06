@@ -132,14 +132,6 @@ bash <(sed -n '5,$W p' $filon)
 }
 
 #Aliases
-alias verify="gpg --keyid-format long --import **.key && gpg --keyid-format long --verify **.iso.sig **.iso && echo 'If you see the following warning is OK: gpg: WARNING: This key is not certified with a trusted signature!
-gpg: There is no indication that the signature belongs to the owner.
-Primary key fingerprint: A490 D0F4 D311 A415 3E2B B7CA DBB8 02B2 58AC D84F
-Then the ISO image is still correct, and valid according to the Tails signing key that you downloaded. This warning is related to the trust that you put in the Tails signing key. See, Trusting Tails signing key. To remove this warning you would have to personally sign the Tails signing key with your own key.
-
-If the ISO image is not correct the output will tell you that the signature is bad that is BAD: gpg: Signature made Sat 30 Apr 2015 10:53:23 AM CEST
-gpg: using RSA key DBB802B258ACD84F
-gpg: BAD signature from "Tails developers (offline long-term identity key) tails@boum.org"'"
 alias process="sudo ps ax | grep"
 alias superkill="sudo kill -9"
 alias appmon="sudo lsof -i -n -P | grep"
