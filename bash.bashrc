@@ -244,16 +244,18 @@ fi
 
 
 newsshkey(){
+$emai = emai
+sudo mkdir ~/.ssh
 echo 'those are your keys up to now'
 sudo ls -al -R ~/.ssh # Lists the files in your .ssh directory, if they exist
-"Please, introduce 'youremail@server.com'"
-read $1
-sudo ssh-keygen -t rsa -b 4096 -C $1
+echo "Please, introduce 'youremail@server.com'"
+read emai
+sudo ssh-keygen -t rsa -b 4096 -C $emai
 eval "$(ssh-agent -s)"
 sudo ssh-add ~/.ssh/id_rsa
 sudo chown -R $USER:$USER .ssh
 sudo chmod -R 600 .ssh
-sudo chmod +x .ssh
+sudo chmod +x .ssh 
 }
 
 # mkmv - creates a new directory and moves the file into it, in 1 step
