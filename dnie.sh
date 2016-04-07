@@ -17,7 +17,7 @@ sudo chown -R $USER:$USER .ssh
 sudo chmod -R 600 .ssh
 sudo chmod +x .ssh
 #UFW
-sudo apt-get install gufw
+sudo apt-get install gufw -y
 sudo ufw enable
 #sudo ufw allow 1022/tcp
 sudo iptables -F
