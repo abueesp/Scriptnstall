@@ -3,11 +3,25 @@
 #Bluetooth
 sudo sed -i 's/InitiallyPowered = true/InitiallyPowered = false/g' /etc/bluetooth/main.conf
 rfkill block bluetooth
+#mirror
+sudo sed -i 's|http://us.archive.ubuntu.com/ubuntu|http://mirrors.mit.edu/ubuntu|g' /etc/apt/sources.list
+sudo apt-get upgrade && update
 #SSH
 sudo apt-get install ssh
-sudo sed "s/NoDisplay=true/NoDisplay=false/g" /etc/xdg/autostart/gnome-keyring-ssh.desktop
-sudo sed 's/PermitRootLogin without password/PermitRootLogin no/' /etc/ssh/sshd_config #noroot
-sudo sed 's/Port **/Port 1022/' /etc/ssh/sshd_config #SSH PORT OTHER THAN 22, SET 1022
+sudo sed -i "s/NoDisplay=true/NoDisplay=false/g" /etc/xdg/autostart/gnome-keyring-ssh.desktop
+sudo sed -i 's/PermitRootLogin without password/PermitRootLogin no/' /etc/ssh/sshd_config #noroot
+sudo sed -i 's/Port 22/Port 1022/' /etc/ssh/sshd_config #SSH PORT OTHER THAN 22, SET 1022
+sudo /etc/init.d/ssh restart
+sudo chown -R $USER:$USER .ssh
+sudo chmod -R 600 .ssh
+sudo chmod +x .ssh
+#mirror
+sudo sed -i 's|http://us.archive.ubuntu.com/ubuntu|http://mirrors.mit.edu/ubuntu|g' /etc/apt/sources.list
+#SSH
+sudo apt-get install ssh
+sudo sed -i "s/NoDisplay=true/NoDisplay=false/g" /etc/xdg/autostart/gnome-keyring-ssh.desktop
+sudo sed -i 's/PermitRootLogin without password/PermitRootLogin no/' /etc/ssh/sshd_config #noroot
+sudo sed -i 's/Port **/Port 1022/' /etc/ssh/sshd_config #SSH PORT OTHER THAN 22, SET 1022
 sudo /etc/init.d/ssh restart
 sudo chown -R $USER:$USER .ssh
 sudo chmod -R 600 .ssh
