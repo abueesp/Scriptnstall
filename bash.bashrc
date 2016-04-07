@@ -185,8 +185,8 @@ alias rename='mv'
 alias gitlist='git remote -v'
 
 ### Some cheatsheets###
-alias gpgsheet="http://irtfweb.ifa.hawaii.edu/~lockhart/gpg/gpg-cs.html"
-alias bitcoinsheet="https://en.bitcoin.it/wiki/Script#Words"
+alias gpgsheet="firefox http://irtfweb.ifa.hawaii.edu/~lockhart/gpg/gpg-cs.html"
+alias bitcoinsheet="firefox https://en.bitcoin.it/wiki/Script#Words"
 alias dockersheet="firefox https://www.cheatography.com/storage/thumb/aabs_docker-and-friends.600.jpg && firefox http://container-solutions.com/content/uploads/2015/06/15.06.15_DockerCheatSheet_A2.pdf"
 alias nmapsheet="firefox https://4.bp.blogspot.com/-lCguW2iNKi4/UgmjCu1UNfI/AAAAAAAABuI/35Px0VIOuIg/s1600/Screen+Shot+2556-08-13+at+10.06.38+AM.png"
 alias gitsheet="firefox http://developer.exoplatform.org/docs/scm/git/cheatsheet/ && firefox https://github.com/tiimgreen/github-cheat-sheet && echo 'Warning: Never git add, commit, or push sensitive information to a remote repository. Sensitive information can include, but is not limited to:
