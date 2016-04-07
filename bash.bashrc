@@ -245,18 +245,12 @@ fi
 
 newsshkey(){
 echo 'those are your keys up to now'
-ls -al -R ~/.ssh
-# Lists the files in your .ssh directory, if they exist
-if [ $1 ]
-then
-    ssh-keygen -t rsa -b 4096 -C $1
-else
-    echo "Please, introduce 'youremail@server.com'"
-    return
-fi
-
+sudo ls -al -R ~/.ssh # Lists the files in your .ssh directory, if they exist
+"Please, introduce 'youremail@server.com'"
+read $1
+sudo ssh-keygen -t rsa -b 4096 -C $1
 eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_rsa
+sudo ssh-add ~/.ssh/id_rsa
 sudo chown -R $USER:$USER .ssh
 sudo chmod -R 600 .ssh
 sudo chmod +x .ssh
