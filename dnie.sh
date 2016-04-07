@@ -4,6 +4,18 @@ sudo apt-get autoremove -y
 #Bluetooth
 sudo sed -i 's/InitiallyPowered = true/InitiallyPowered = false/g' /etc/bluetooth/main.conf
 rfkill block bluetooth
+
+#mirror
+sudo sed -i 's|http://us.archive.ubuntu.com/ubuntu|http://mirrors.mit.edu/ubuntu|g' /etc/apt/sources.list
+sudo apt-get upgrade && update
+#SSH
+sudo sed -i "s/NoDisplay=true/NoDisplay=false/g" /etc/xdg/autostart/gnome-keyring-ssh.desktop
+sudo sed -i 's/PermitRootLogin without password/PermitRootLogin no/' /etc/ssh/sshd_config #noroot
+sudo sed -i 's/Port 22/Port 1022/' /etc/ssh/sshd_config #SSH PORT OTHER THAN 22, SET 1022
+sudo /etc/init.d/ssh stop
+sudo chown -R $USER:$USER .ssh
+sudo chmod -R 600 .ssh
+sudo chmod +x .ssh
 #UFW
 sudo apt-get install gufw
 sudo ufw enable
@@ -20,17 +32,6 @@ sudo service avahi-daemon stop ##This is for when DHCP does not work. Otherwise 
 sudo cupsctl -E --no-remote-any
 sudo service cups-browsed stop
 
-#SSH
-sudo sed "s/NoDisplay=true/NoDisplay=false/g" /etc/xdg/autostart/gnome-keyring-ssh.desktop
-sudo sed -ir 's/^(PermitRootLogin) .+/\1 no/' /etc/ssh/sshd_config #noroot
-sudo sed -ir 's/^(Port) .+/\1 1022/' /etc/ssh/sshd_config #SSH PORT OTHER THAN 22, SET 1022
-sudo /etc/init.d/ssh restart
-sudo /etc/init.d/ssh stop
-sudo service ssh stop
-ssh-agent -k
-sudo chown -R $USER:$USER .ssh
-sudo chmod -R 600 .ssh
-sudo chmod +x .ssh
 #Some tools
 sudo apt-get install iotop -y
 sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
