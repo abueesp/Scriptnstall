@@ -3,6 +3,19 @@
 # To enable the settings / commands in this file for login shells as well,
 # this file has to be sourced in /etc/profile.
 
+verify() {
+echo "FIRST. IMPORT THE SERVER KEY. COPY AND PASTE SOMETHING LIKE gpg --keyserver pool.sks-keyservers.net --recv-keys 0x427F11FD0FAA4B080123F01CDDFA1A3E36879494"
+read command
+$command
+gpg --import ./**.asc
+echo "introduce un valor 0x para gpg --edit-key 0x36879494 and then, in order to ultimately trust it, introduce: fpr / trust / 5 / y / q "
+read masterkey
+gpg --edit-key $masterkey -c "fpr && trust && 5 && y && q"
+gpg -v --verify **.asc **.iso
+gpg -v --verify **.DIGESTS
+
+}
+
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
