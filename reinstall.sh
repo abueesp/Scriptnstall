@@ -95,7 +95,7 @@ sudo apt-get install apt-get install amarok -y
 sudo apt-get install thunderbird -y
 thunderbird https://addons.mozilla.org/thunderbird/downloads/latest/775/addon-775-latest.xpi
 sudo apt-get install firefox -y
-firefox https://addons.mozilla.org/firefox/downloads/file/271802/no_more_install_delay-3.0-fx+sm+fn+tb.xpi https://addons.mozilla.org/firefox/downloads/file/417058/febe-8.9.2-fx.xpi
+firefox https://addons.mozilla.org/firefox/downloads/file/271802/no_more_install_delay-3.0-fx+sm+fn+tb.xpi
 #Text Edition Tools
 sudo add-apt-repository ppa:webupd8team/sublime-text-3 -y 
 sudo apt-get update -y
