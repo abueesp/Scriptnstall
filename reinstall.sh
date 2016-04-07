@@ -6,8 +6,8 @@ rfkill block bluetooth
 #SSH
 sudo apt-get install ssh
 sudo sed "s/NoDisplay=true/NoDisplay=false/g" /etc/xdg/autostart/gnome-keyring-ssh.desktop
-sudo sed -ir 's/^(PermitRootLogin) .+/\1 no/' /etc/ssh/sshd_config #noroot
-sudo sed -ir 's/^(Port) .+/\1 1022/' /etc/ssh/sshd_config #SSH PORT OTHER THAN 22, SET 1022
+sudo sed 's/PermitRootLogin without password/PermitRootLogin no/' /etc/ssh/sshd_config #noroot
+sudo sed 's/Port **/Port 1022/' /etc/ssh/sshd_config #SSH PORT OTHER THAN 22, SET 1022
 sudo /etc/init.d/ssh restart
 sudo chown -R $USER:$USER .ssh
 sudo chmod -R 600 .ssh
