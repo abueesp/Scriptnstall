@@ -126,10 +126,10 @@ tar xvf emacs-"$version".tar.xz
 # build and install
 sudo mkdir -p /usr/local/stow
 cd emacs-"$version"
-./configure \
+sudo ./configure \
     --with-xft \
     --with-x-toolkit=lucid
-make
+sudo make
 sudo make install prefix=/usr/local/stow/emacs-"$version"
 cd /usr/local/stow
 sudo stow emacs-"$version"
