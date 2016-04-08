@@ -248,6 +248,7 @@ wget https://addons.mozilla.org/firefox/downloads/file/373868/soundcloud_downloa
 wget https://addons.mozilla.org/firefox/downloads/latest/415846/addon-415846-latest.xpi 
 wget https://addons.mozilla.org/firefox/downloads/latest/387429/addon-387429-latest.xpi 
 wget https://addons.mozilla.org/firefox/downloads/latest/292320/addon-292320-latest.xpi
+sudo keepass2
 cp /home/$USER/.mozilla/firefox/**.default/extensions/keefox@chris.tomlinson/deps/KeePassRPC.plgx /usr/lib/keepass2
 
 #thunderbird extensions
