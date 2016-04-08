@@ -145,12 +145,12 @@ cd
 sudo rm emacs-"$version".tar.xz
 sudo rm -r emacs-"$version"
 #spacemacs
-sudo git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+sudo git clone http://github.com/syl20bnr/spacemacs ~/.emacs.d
 sudo mv $(sudo find / -name .emacs.d) .emacs.d.bak
 sudo mv $(sudo find -name .emacs) .emacs.bak 
 ##plugins
 cd ~/.emacs.d
-wget https://github.com/ethereum/emacs-solidity/blob/master/solidity-mode.el ##solidity
+wget http://github.com/ethereum/emacs-solidity/blob/master/solidity-mode.el ##solidity
 (add-to-list load-path "~/.emacs.d/") 
 (load "myplugin.el")
 cd
