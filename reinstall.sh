@@ -143,7 +143,8 @@ cd ~/.emacs.d
 wget https://github.com/ethereum/emacs-solidity/blob/master/solidity-mode.el ##solidity
 (add-to-list load-path "~/.emacs.d/") 
 (load "myplugin.el")
-
+cd
+sudo rm emacs-"$version".tar.xz
 
 ##Github
 sudo apt-get install git -y 
