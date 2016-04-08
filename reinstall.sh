@@ -38,15 +38,18 @@ sudo unzip GoogleSync**.zip
 sudo rm GoogleSync**.zip
 sudo wget https://bitbucket.org/schalpat/keepasstruecryptmount/downloads/KeepassTrueCryptMount_v2.3.plgx.7z
 sudo 7z x -so KeepassTrueCrypt**.7z | tar xf - -C
+sudo 7z x -so KeepassTrueCrypt**.7z | tar xf - -C
 sudo rm KeepassTrueCrypt**.7z
 sudo wget https://sourceforge.net/projects/tcad-kp2/files/TrueCrypt%20AutoDismount%20v.%201.0.0.1/TrueCryptAutoDismount.plgx
 sudo wget https://github.com/islog/keepassrfid/releases/download/1.0.0/keepassrfid.plgx
 sudo wget https://raw.github.com/pfn/keepasshttp/master/KeePassHttp.plgx
 sudo git clone git://github.com/dlech/KeeAgent --recursive
 cd KeeAgent
-wget https://nuget.org/nuget.exe
-mono nuget.exe restore
-xbuild /property:Configuration=ReleasePlgx KeeAgent.sln
+sudo rm nuget.exe*
+sudo wget https://nuget.org/nuget.exe
+sudo mono nuget.exe restore
+sudo rm nuget.exe*
+sudo xbuild /property:Configuration=ReleasePlgx KeeAgent.sln
 cd
 sudo cp bin/ReleasePlgx/KeeAgent.plgx /usr/lib/keepass2/
 sudo chown -R $USER:$USER /usr/lib/keepass2/
@@ -72,6 +75,7 @@ sudo service cups-browsed stop
 
 #Some tools
 sudo apt-get install traceroute
+sudo apt-get install zsh
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 sudo sed -ir 's/ZSH_THEME="robbyrussell"/ZSH_THEME="norm"/g' ~/.oh-my-zsh #noroot
 sudo apt-get install iotop
