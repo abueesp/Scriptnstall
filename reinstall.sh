@@ -23,6 +23,10 @@ sudo apt-get purge apparmor -y
 sudo rm -rf /etc/apparmor.d/
 sudo rm -rf /etc/apparmor
 #KeePass (see KeeFox in Browsers)
+rm KeePassHttp.plgx
+rm keepassrfid.plgx
+rm -r KeeAgent
+rm TrueCryptAutoDismount.plgx
 sudo apt-get install mono-complete mono-dmcs libmono-system-management4.0-cil libmono-system-xml-linq4.0-cil libmono-system-data-datasetextensions4.0-cil libmono-system-runtime-serialization4.0-cil mono-mcs -y
 sudo apt-get install keepass2 -y
 sudo add-apt-repository ppa:dlech/keepass2-plugins
@@ -52,8 +56,6 @@ sudo rm nuget.exe*
 sudo xbuild /property:Configuration=ReleasePlgx KeeAgent.sln
 cd
 sudo cp bin/ReleasePlgx/KeeAgent.plgx /usr/lib/keepass2/
-sudo chown -R $USER:$USER /usr/lib/keepass2/
-sudo chmod -R 600 /usr/lib/keepass2/
 sudo chmod +x /usr/lib/keepass2/
 
 #UFW
@@ -111,6 +113,7 @@ sh ~/.vim_runtime/install_awesome_vimrc.sh
 sudo apt-get install gedit -y
 sudo apt-get install sublime-text-installer -y
 
+
 ##Emacs
 set -e
 readonly version="24.5"
@@ -121,23 +124,30 @@ sudo apt-get install -y stow build-essential libx11-dev xaw3dg-dev \
      libxml2-dev libgpm-dev libghc-gconf-dev libotf-dev libm17n-dev \
      libgnutls-dev
 # download source package
-wget http://ftp.gnu.org/gnu/emacs/emacs-"$version".tar.xz
-tar xvf emacs-"$version".tar.xz
+if [ ! -d emacs-"$version" ]
+then
+   wget http://ftp.gnu.org/gnu/emacs/emacs-"$version".tar.xz
+   tar xvf emacs-"$version".tar.xz
+fi
+
 # build and install
-sudo mkdir -p /usr/local/stow
+sudo rm -r /usr/local/stow
+sudo mkdir /usr/local/stow
 cd emacs-"$version"
-sudo ./configure \
+./configure \
     --with-xft \
     --with-x-toolkit=lucid
-sudo make
+make
 sudo make install prefix=/usr/local/stow/emacs-"$version"
 cd /usr/local/stow
 sudo stow emacs-"$version"
+cd
+sudo rm emacs-"$version".tar.xz
+sudo rm -r emacs-"$version"
 #spacemacs
-sudo mv $(sudo find -name .emacs.d) .emacs.d.bak
-sudo mv $(sudo find -name .emacs) .emacs.bak 
 sudo git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
-sudo tar xvf emacs-"$version".tar.xz
+sudo mv $(sudo find / -name .emacs.d) .emacs.d.bak
+sudo mv $(sudo find -name .emacs) .emacs.bak 
 ##plugins
 cd ~/.emacs.d
 wget https://github.com/ethereum/emacs-solidity/blob/master/solidity-mode.el ##solidity
@@ -145,6 +155,7 @@ wget https://github.com/ethereum/emacs-solidity/blob/master/solidity-mode.el ##s
 (load "myplugin.el")
 cd
 sudo rm emacs-"$version".tar.xz
+
 
 ##Github
 sudo apt-get install git -y 
