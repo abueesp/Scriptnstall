@@ -215,47 +215,61 @@ uninstall(){
 }
 
 mysshkey(){
+sudo chown -R $USER:$USER ~/.ssh
+sudo chmod -R 600 ~/.ssh
+sudo chmod +x ~/.ssh 
 sudo apt-get install xclip
-xclip -sel clip < ~/.ssh/id_rsa.pub
+sudo xclip -sel clip ~/.ssh/id_rsa/id_rsa.pub
 echo 'those are your keys up to now, id_rsa.pub is the default. If you want to change it, type switchmyssh'
-ls -al -R ~/.ssh
+sudo ls -al -R ~/.ssh/id_rsa
 echo "Now you may have your ssh key on your clipboard. If you have already set your app global configuration, now you should go to Settings -> New SSH key and paste it there"
+sudo chmod -R 600 ~/.ssh
 }
 
 mylastsshkey(){
+sudo chown -R $USER:$USER ~/.ssh
+sudo chmod -R 600 ~/.ssh
+sudo chmod +x ~/.ssh  
 sudo apt-get install xclip
 xclip -sel clip < ~/.ssh/lastid_rsa.pub
 echo 'this is your last key, lastid_rsa.pub is the default.'
 ls -al -R ~/.ssh
 echo "Now you may have your last ssh key on your clipboard. If you have already set your app global configuration, now you should go to Settings -> New SSH key and paste it there"
+sudo chmod -R 600 ~/.ssh
 }
 
 switchsshkey(){
+sudo chown -R $USER:$USER ~/.ssh
+sudo chmod -R 600 ~/.ssh
+sudo chmod +x ~/.ssh
 if [ $1 ]
 then
     sudo mv ~/.ssh/$1 ~/.ssh/id_rsa.pub ~/.ssh/lastid_rsa.pub
     sudo mv ~/.ssh/$1 ~/.ssh/id_rsa.pub
     echo "Your last key is now lastid_rsa.pub. If you want to copy the new one type mysshkey. If you want to copy the last one type mylastsshkey"
 else
-    echo "Please, introduce the key you want to switch by the default id_rsa.pub. Those are your current keys: "
     ls -al -R ~/.ssh
+    echo "Please, introduce the key you want to switch by the default id_rsa.pub. Those are your current keys: "
 fi
+sudo chmod -R 600 ~/.ssh
 }
 
 
 newsshkey(){
+sudo chown -R $USER:$USER ~/.ssh
+sudo chmod -R 600 ~/.ssh
+sudo chmod +x ~/.ssh 
 $emai = emai
 sudo mkdir ~/.ssh
+sudo mkdir ~/.ssh/id_rsa
 echo 'those are your keys up to now'
 sudo ls -al -R ~/.ssh # Lists the files in your .ssh directory, if they exist
 echo "Please, introduce 'youremail@server.com'"
 read emai
+echo "please choose a file like this /home/node/.ssh/id_rsa/id_rsa.pub and a password longer or equal to 5 caractheres"
 sudo ssh-keygen -t rsa -b 4096 -C $emai
-eval "$(ssh-agent -s)"
-sudo ssh-add ~/.ssh/id_rsa
-sudo chown -R $USER:$USER .ssh
-sudo chmod -R 600 .ssh
-sudo chmod +x .ssh 
+eval "$(ssh-agent -s)" 
+ssh-add ~/.ssh/id_rsa
 }
 
 # mkmv - creates a new directory and moves the file into it, in 1 step
