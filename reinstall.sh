@@ -112,7 +112,7 @@ git clone https://github.com/amix/vimrc.git ~/.vim_runtime
 sh ~/.vim_runtime/install_awesome_vimrc.sh
 sudo apt-get install gedit -y
 sudo apt-get install sublime-text-installer -y
-
+sudo apt-get install libreoffice -y
 
 ##Emacs
 set -e
