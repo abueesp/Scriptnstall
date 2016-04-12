@@ -24,7 +24,7 @@ sudo rm -rf /etc/apparmor.d/
 sudo rm -rf /etc/apparmor
 #KeePass (see KeeFox in Browsers)
 rm KeePassHttp.plgx
-rm keepassrfid.plgx
+rm keepassrfid.plgx 
 rm -r KeeAgent
 rm TrueCryptAutoDismount.plgx
 sudo apt-get install mono-complete mono-dmcs libmono-system-management4.0-cil libmono-system-xml-linq4.0-cil libmono-system-data-datasetextensions4.0-cil libmono-system-runtime-serialization4.0-cil mono-mcs -y
@@ -203,6 +203,7 @@ cd extensions
 wget https://addons.mozilla.org/firefox/downloads/latest/722/addon-722-latest.xpi 
 wget https://addons.mozilla.org/firefox/downloads/latest/363974/addon-363974-latest.xpi 
 wget https://addons.mozilla.org/firefox/downloads/latest/409964/addon-409964-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/261959/addon-261959-latest.xpi 
 wget https://addons.mozilla.org/firefox/downloads/latest/261959/addon-261959-latest.xpi 
 wget https://addons.mozilla.org/firefox/downloads/latest/1865/addon-1865-latest.xpi  
 wget https://addons.mozilla.org/firefox/downloads/latest/748/addon-748-latest.xpi 
