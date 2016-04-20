@@ -211,7 +211,7 @@ if [ -f /etc/bash_preexec ]; then
 fi
 
 ## Create a repo on Github (not git)
-gcreate() {
+gitnew() {
  repo_name=$1
 
  dir_name=`basename $(pwd)`
@@ -246,17 +246,23 @@ gcreate() {
  echo " done."
 }
 
-gitnew() {
-repo_name=$1
-username=$2
-git init 
-git add . 
-git commit -m 'Initial commit' 
-gcreate $1 
-git remote add origin git@github.com:abueesp/$1.git 
-echo "if gcreate didn't work, create the github repo on   https://github.com/new   and push the code using   git push -u origin master"
-git push -u origin master
+
+gitupload () {
+  echo "introduce tu email"
+  read email
+  git config --global user.email $email
+  echo "introduce tu username"
+  read username
+  git config --global user.name $username
+  git commit -m "First commit"
+  echo "introduce la url del repositorio"
+  read url
+  git remote add origin $url
+  git remote -v
+  git pull origin master
+  git push origin master
 }
+
 
 she() {
 echo "Please introduce a word start: "
