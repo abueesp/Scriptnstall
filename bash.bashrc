@@ -464,3 +464,13 @@ mountiso () {
   sudo mount -o loop "$1" "/tmp/$name"
   echo "mounted iso on /tmp/$name"
 }
+
+
+# search inside pdf
+searchpdf () {
+  echo "introduce text to search"
+  read text
+  echo "introduce pdf filename"
+  read pdf
+  pdftotext $pdf - | grep '$text'
+}
