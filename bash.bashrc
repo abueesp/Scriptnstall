@@ -287,6 +287,7 @@ alias verifyfile="gpg --keyid-format long --verify"
 alias secfirefox="firejail --dns=8.8.8.8 --dns=8.8.4.4 firefox"
 alias lsssh="ls -al ~/.ssh"
 alias dt='date "+%F %T"'
+alias pdf2txt='ls * | sudo xargs -n1 pdftotext'
 alias bashrc='/etc/bash.bashrc'
 alias geditbash='sudo gedit /etc/bash.bashrc'
 alias vimbash='sudo vim /etc/bash.bashrc'
