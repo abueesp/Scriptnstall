@@ -57,6 +57,7 @@ echo "You entered: $email"
 sed "s/destemail = your_email@domain.com/destemail = $email/g" /etc/fail2ban/jail.local
 sed "s/action = %(action_)s/action = %(action_mw)s/g" /etc/fail2ban/jail.local
 sed -e "s/enabled  = false/enabled  = true/g" /etc/fail2ban/jail.local
+sudo apt-get install gnupg gpgv2 pbuilder ubuntu-dev-tools bzr-builddeb
 sudo apt-get install zenmap -y
 sudo apt-get install virtualbox -y
 sudo apt-get install gparted -y
@@ -138,10 +139,25 @@ sudo make
 sudo make install
 bash <(curl -L https://install-geth.ethereum.org)
 #geth --rpc --rpccorsdomain localhost --autodag console 2>>/dev/tty
+cd
+sudo wget http://www.mpfr.org/mpfr-current/mpfr-3.1.4.zip
+sudo wget http://www.mpfr.org/mpfr-current/mpfr-3.1.4.tar.xz.asc
+gpg --recv-keys 98C3739D
+gpg --verify mpfr**.asc
+sudo unzip mpfr**
+sudo rm -r -f mpfr**.zip
+sudo rm -r -f mpfr**.asc
+cd mpfr**
+sudo ./configure
+sudo make
+sudo make install
+
 sudo R
-install.packages("EthR", repos = "https://github.com/BSDStudios/ethr", type="source")
-install.packages("plyr") -21
-install.packages("dplyr") -21
+install.packages("Rmpfr")
+install.packages("devtools")
+devtools::install_github("BSDStudios/ethr")
+install.packages("plyr")
+install.packages("dplyr")
 install.packages("httr")
 install.packages("igraph")
 install.packages("gmp")
