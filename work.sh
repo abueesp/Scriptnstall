@@ -155,7 +155,7 @@ sudo make install
 sudo R
 install.packages("Rmpfr")
 install.packages("devtools")
-devtools::install_github("BSDStudios/ethr")
+devtools::install_github("ethr")
 install.packages("plyr")
 install.packages("dplyr")
 install.packages("httr")
