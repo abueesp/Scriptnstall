@@ -312,8 +312,16 @@ alias fgrepp='fgrep --color=auto'
 alias aptclean='sudo apt-get autoremove'
 alias rename='mv'
 alias gitlist='git remote -v'
+alias gethlocal  geth console --rpc --rpccorsdomain localhost --etherbase '0x9B366b5493a545f070E4a0F16c81182670fEE6' --solc
+alias gethmine=  geth console --etherbase '0x9B366b5493a545f070E4a0F16c81182670fEE6' --mine --minergpus --autodag --minerthreads "8"
+alias gethtest= geth console --testnet
+alias gethnew= geth init upgradedb console --fast
+alias geth=
+
+
 
 ### Some cheatsheets###
+alias gethsheet="https://github.com/ethereum/go-ethereum/wiki/Command-Line-Options"
 alias gpgsheet="firefox http://irtfweb.ifa.hawaii.edu/~lockhart/gpg/gpg-cs.html"
 alias bitcoinsheet="firefox https://en.bitcoin.it/wiki/Script#Words"
 alias dockersheet="firefox https://www.cheatography.com/storage/thumb/aabs_docker-and-friends.600.jpg && firefox http://container-solutions.com/content/uploads/2015/06/15.06.15_DockerCheatSheet_A2.pdf"
