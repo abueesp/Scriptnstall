@@ -59,6 +59,7 @@ sed "s/action = %(action_)s/action = %(action_mw)s/g" /etc/fail2ban/jail.local
 sed -e "s/enabled  = false/enabled  = true/g" /etc/fail2ban/jail.local
 sudo apt-get install gnupg gpgv2 pbuilder ubuntu-dev-tools bzr-builddeb
 sudo apt-get install zenmap -y
+sudo apt-get install pandoc -y
 sudo apt-get install virtualbox -y
 sudo apt-get install gparted -y
 sudo apt-get install nemo -y
