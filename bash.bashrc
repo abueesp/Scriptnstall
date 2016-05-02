@@ -274,6 +274,20 @@ docsthemagic () {
   sudo unoconv --format=html $docs
   sudo pandoc -f html -t markdown -o $docs+".md" $docs
   sudo detox -r **
+  for file in *.html.pdf; do
+    sudo mv "$file" "`basename $file .html.pdf`.pdf"
+  for file in *.html.epub; do
+    sudo mv "$file" "`basename $file .html.pdf`.epub"
+  for file in *.html.wiki; do
+    sudo mv "$file" "`basename $file .html.wiki`.wiki"
+  for file in *.html.txt; do
+    sudo mv "$file" "`basename $file .html.txt`.txt"
+ for file in *.html.md; do
+    sudo mv "$file" "`basename $file .html.md`.md"
+  for file in *.html.odt; do
+    sudo mv "$file" "`basename $file .html.odt`.odt"
+done
+}
   sudo mat -c **
   sudo mat **
 }
@@ -497,6 +511,17 @@ mountiso () {
   mkdir "/tmp/$name" 2>/dev/null
   sudo mount -o loop "$1" "/tmp/$name"
   echo "mounted iso on /tmp/$name"
+}
+
+#rename multiple files
+rname () {
+echo introduce from .extension
+read iext
+echo introduce to .extension
+read text
+for file in *$iext; do
+    sudo mv "$file" "`basename $file $iext`$text"
+done
 }
 
 
