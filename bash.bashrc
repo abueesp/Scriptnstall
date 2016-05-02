@@ -268,9 +268,9 @@ docsthemagic () {
   read docs
   sudo unoconv --format=txt $docs
   sudo unoconv --format=pdf $docs
+  sudo unoconv --format=doc $docs
   sudo unoconv --format=docx $docs
   sudo unoconv --format=odt $docs
-  sudo unoconv --format=pdb $docs
   sudo unoconv --format=html $docs
   sudo pandoc -f html -t markdown -o $docs+".md" $docs
   sudo detox -r **
