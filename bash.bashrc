@@ -273,7 +273,7 @@ docsthemagic () {
   sudo unoconv --format=odt docs
   sudo unoconv --format=pdb docs
   sudo unoconv --format=html docs
-  sudo pandoc -f html -t markdown -o docs".md" docs
+  sudo pandoc -f html -t markdown -o "$docs"+".md" docs
   sudo detox -r **
   sudo mat -c **
   sudo mat **
