@@ -286,7 +286,7 @@ sudo rm /etc/bash.bashrc~
 sudo mv bash.bashrc /etc/bash.bashrc
 }
 
-getsh {
+getsh() {
 sudo wget https://github.com/abueesp/Scriptnstall/edit/master/reinstall.sh
 sudo wget https://github.com/abueesp/Scriptnstall/edit/master/work.sh
 sudo wget https://github.com/abueesp/Scriptnstall/blob/master/dnie.sh
