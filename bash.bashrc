@@ -276,16 +276,22 @@ docsthemagic () {
   sudo detox -r **
   for file in *.html.pdf; do
     sudo mv "$file" "`basename $file .html.pdf`.pdf"
+    done
   for file in *.html.epub; do
     sudo mv "$file" "`basename $file .html.pdf`.epub"
+    done
   for file in *.html.wiki; do
     sudo mv "$file" "`basename $file .html.wiki`.wiki"
+    done
   for file in *.html.txt; do
     sudo mv "$file" "`basename $file .html.txt`.txt"
+    done
  for file in *.html.md; do
     sudo mv "$file" "`basename $file .html.md`.md"
+    done
   for file in *.html.odt; do
     sudo mv "$file" "`basename $file .html.odt`.odt"
+    done
   sudo mat -c **
   sudo mat **
 }
