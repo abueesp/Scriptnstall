@@ -268,7 +268,6 @@ docsthemagic () {
   read docs
   sudo unoconv --format=txt $docs
   sudo unoconv --format=pdf $docs
-  sudo unoconv --format=svg $docs
   sudo unoconv --format=docx $docs
   sudo unoconv --format=odt $docs
   sudo unoconv --format=pdb $docs
