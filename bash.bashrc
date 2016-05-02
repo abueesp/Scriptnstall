@@ -277,6 +277,19 @@ docsthemagic () {
   sudo mat **
 }
 
+rbash() {
+sudo wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/bash.bashrc
+sudo rm ~/etc/bash.bashrc
+sudo rm ~/etc/bash.bashrc~
+sudo cp bash.bashrc ~/etc/bash.bashrc
+}
+
+getsh {
+sudo wget https://github.com/abueesp/Scriptnstall/edit/master/reinstall.sh
+sudo wget https://github.com/abueesp/Scriptnstall/edit/master/work.sh
+sudo wget https://github.com/abueesp/Scriptnstall/blob/master/dnie.sh
+
+}
 
 she() {
 echo "Please introduce a word start: "
@@ -329,7 +342,8 @@ alias gitlist='git remote -v'
 alias gethlocal="geth --rpc --rpccorsdomain localhost --etherbase '0x9B366b5493a545f070E4a0F16c81182670fEE6' --solc console"
 alias gethmine='geth --etherbase '0x9B366b5493a545f070E4a0F16c81182670fEE6' --mine --minergpus --autodag --minerthreads "8" console'
 alias gethtest="geth --testnet console"
-alias gethnew= "geth init upgradedb console --fast"
+alias gethnew= "geth init --fast console" 
+alias gethupgrade="geth upgradedb --fast console"
 
 
 ### Some cheatsheets###
