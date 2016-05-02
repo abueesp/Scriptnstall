@@ -266,12 +266,14 @@ gitupload () {
 docsthemagic () {
   echo "vas a crear las copias, luego armonizar los nombres y finalmente limpiar los metadatos de todos los archivos ubicados en esta carpeta. Introduce los documentos. recuerda que si quieres hacer un backup puedes usar mat -b"
   read docs
-  sudo pandoc docs -o **.md
-  sudo pandoc docs -o **.pdf
-  sudo pandoc docs -o **.doc
-  sudo pandoc docs -o **.docx
-  sudo pandoc docs -o **.txt
-  sudo pandoc docs -o **.odt
+  sudo unoconv --format=txt docs
+  sudo unoconv --format=pdf docs
+  sudo unoconv --format=svg docs
+  sudo unoconv --format=docx docs
+  sudo unoconv --format=odt docs
+  sudo unoconv --format=pdb docs
+  sudo unoconv --format=html docs
+  sudo pandoc -f html -t markdown -o docs".md" docs
   sudo detox -r **
   sudo mat -c **
   sudo mat **
