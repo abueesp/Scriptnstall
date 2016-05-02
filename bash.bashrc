@@ -263,6 +263,20 @@ gitupload () {
   git push origin master
 }
 
+docsthemagic () {
+  echo "vas a crear las copias, luego armonizar los nombres y finalmente limpiar los metadatos de todos los archivos ubicados en esta carpeta. Introduce los documentos. recuerda que si quieres hacer un backup puedes usar mat -b"
+  read docs
+  sudo pandoc docs -o **.md
+  sudo pandoc docs -o **.pdf
+  sudo pandoc docs -o **.doc
+  sudo pandoc docs -o **.docx
+  sudo pandoc docs -o **.txt
+  sudo pandoc docs -o **.odt
+  sudo detox -r **
+  sudo mat -c **
+  sudo mat **
+}
+
 
 she() {
 echo "Please introduce a word start: "
@@ -316,7 +330,6 @@ alias gethlocal="geth --rpc --rpccorsdomain localhost --etherbase '0x9B366b5493a
 alias gethmine='geth --etherbase '0x9B366b5493a545f070E4a0F16c81182670fEE6' --mine --minergpus --autodag --minerthreads "8" console'
 alias gethtest="geth --testnet console"
 alias gethnew= "geth init upgradedb console --fast"
-
 
 
 ### Some cheatsheets###
