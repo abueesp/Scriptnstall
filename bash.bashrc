@@ -343,7 +343,6 @@ alias gitlist='git remote -v'
 alias gethlocal="geth --rpc --rpccorsdomain localhost --etherbase '0x9B366b5493a545f070E4a0F16c81182670fEE6' --solc console"
 alias gethmine='geth --etherbase '0x9B366b5493a545f070E4a0F16c81182670fEE6' --mine --minergpus --autodag --minerthreads "8" console'
 alias gethtest="geth --testnet console"
-alias gethnew= "geth init --fast console" 
 alias gethupgrade="geth upgradedb --fast console"
 
 
