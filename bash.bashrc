@@ -287,7 +287,6 @@ docsthemagic () {
   for file in *.html.odt; do
     sudo mv "$file" "`basename $file .html.odt`.odt"
 done
-}
   sudo mat -c **
   sudo mat **
 }
