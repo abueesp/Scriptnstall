@@ -122,7 +122,7 @@ readonly version="24.5"
 sudo apt-get install -y stow build-essential libx11-dev xaw3dg-dev \
      libjpeg-dev libpng12-dev libgif-dev libtiff5-dev libncurses5-dev \
      libxft-dev librsvg2-dev libmagickcore-dev libmagick++-dev \
-     libxml2-dev libgpm-dev libghc-gtk3-dev libotf-dev libm17n-dev \
+     libxml2-dev libgpm-dev libghc-gtk-dev libotf-dev libm17n-dev \
      libgnutls-dev
 # download source package
 if [ ! -d emacs-"$version" ]
