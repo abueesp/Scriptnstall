@@ -55,8 +55,6 @@ usage()
 {
 cat <<'EOF'
 
-NODE TERMINAL 
-
 usage: debug 
 - help|usage: print this screen
 - verbose: sets -xv flags
@@ -72,8 +70,6 @@ ${red}red, ${lightred}light red, ${green}green, ${lightgreen}light green,
 ${yellow}yellow, ${blue}blue, ${lightblue}light blue, ${purple}purple,
 ${pink}pink, ${cyan}cyan, ${lightcyan}light cyan$nc.
 
-GOOD CODING 
-
 
 EOF
  
@@ -85,6 +81,9 @@ ${script_color}- script name: yellow$nc
 ${linenum_color}- line number: red$nc
 ${funcname_color}- function name: green$nc
 ${command_color}- command executed: white'$nc
+
+${script_color} NODE TERMINAL
+${command_color} GOOD CODING! :) 
 EOF
 }
  
