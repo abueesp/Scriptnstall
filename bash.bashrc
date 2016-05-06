@@ -82,8 +82,11 @@ ${linenum_color}- line number: red$nc
 ${funcname_color}- function name: green$nc
 ${command_color}- command executed: white'$nc
 
-${script_color} NODE TERMINAL
-${command_color} GOOD CODING! :) 
+
+${script_color} coding for good - node command line 
+${command_color} Ƀe ℋuman, be κinđ, be ωise
+
+
 EOF
 }
  
