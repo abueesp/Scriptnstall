@@ -54,10 +54,10 @@ reset_screen
 usage()
 {
 cat <<'EOF'
- 
-usage: debug [option] script arguments
- 
-possilbe options are:
+
+NODE TERMINAL 
+
+usage: debug 
 - help|usage: print this screen
 - verbose: sets -xv flags
 - noexec: sets -xvn flags
@@ -65,20 +65,16 @@ possilbe options are:
  
 EOF
 fmt <<EOF
-if the script takes arguments remember to enclose the script and arugments
-in ""
-EOF
- 
-fmt <<EOF
- 
-The script prints the script name, script line number and function name as it
-executes the script. The various parts of the script prompt are printed in
-color. If the default colors are not suitable than you can set the environment
-varialbes script_color linenum_color funcname_color to any of the following
-colors: ${darkgrey}darkgrey$nc, ${lightgrey}light grey$nc, ${white}white,
+Color Variables:
+script_color linenum_color funcname_color: 
+${darkgrey}darkgrey$nc, ${lightgrey}light grey$nc, ${white}white,
 ${red}red, ${lightred}light red, ${green}green, ${lightgreen}light green,
 ${yellow}yellow, ${blue}blue, ${lightblue}light blue, ${purple}purple,
 ${pink}pink, ${cyan}cyan, ${lightcyan}light cyan$nc.
+
+GOOD CODING 
+
+
 EOF
  
 cat <<EOF
