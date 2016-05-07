@@ -23,12 +23,8 @@ sudo apt-get purge apparmor -y
 sudo rm -rf /etc/apparmor.d/
 sudo rm -rf /etc/apparmor
 #KeePass (see KeeFox in Browsers)
-rm KeePassHttp.plgx
-rm keepassrfid.plgx 
-rm -r KeeAgent
-rm TrueCryptAutoDismount.plgx
 sudo apt-get install mono-complete mono-dmcs libmono-system-management4.0-cil libmono-system-xml-linq4.0-cil libmono-system-data-datasetextensions4.0-cil libmono-system-runtime-serialization4.0-cil mono-mcs -y
-sudo mkdir /usr/lib/keepass2/
+sudo apt-get install keepass2
 cd /usr/lib/keepass2/
 sudo wget http://downloads.sourceforge.net/project/keepass/KeePass%202.x/2.32/KeePass-2.32.zip
 sudo unzip KeePass**.zip
@@ -61,7 +57,10 @@ sudo xbuild /property:Configuration=ReleasePlgx KeeAgent.sln
 cd
 sudo cp bin/ReleasePlgx/KeeAgent.plgx /usr/lib/keepass2/
 sudo chmod +x /usr/lib/keepass2/
-
+rm KeePassHttp.plgx
+rm keepassrfid.plgx 
+rm -r KeeAgent
+rm TrueCryptAutoDismount.plgx
 #UFW
 sudo apt-get install gufw -y
 sudo ufw enable
