@@ -264,9 +264,10 @@ sudo rm -r Downloads/extensions/cryptocat-legacy
 #thunderbird extensions
 sudo thunderbird https://addons.mozilla.org/thunderbird/downloads/latest/611/addon-611-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/1339/addon-1339-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/556/addon-556-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/4003/addon-4003-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/1556/addon-1556-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/550/addon-550-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/2313/platform:2/addon-2313-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/4631/addon-4631-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/2199/addon-2199-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/550/addon-550-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/71/addon-71-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/210/addon-210-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/875/addon-875-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/1003/addon-1003-latest.xpi 
 
-sudo apt-get autoremove -y
-
 sudo su
 cp /home/node/.mozilla/firefox/**.default/extensions/keefox@chris.tomlinson/deps/KeePassRPC.plgx /usr/lib/keepass2
+
+
+sudo apt-get autoremove -y
 
 EOF
