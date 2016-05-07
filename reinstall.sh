@@ -28,7 +28,11 @@ rm keepassrfid.plgx
 rm -r KeeAgent
 rm TrueCryptAutoDismount.plgx
 sudo apt-get install mono-complete mono-dmcs libmono-system-management4.0-cil libmono-system-xml-linq4.0-cil libmono-system-data-datasetextensions4.0-cil libmono-system-runtime-serialization4.0-cil mono-mcs -y
-sudo apt-get install keepass2 -y
+sudo mkdir /usr/lib/keepass2/
+cd /usr/lib/keepass2/
+sudo wget http://downloads.sourceforge.net/project/keepass/KeePass%202.x/2.32/KeePass-2.32.zip
+sudo unzip KeePass**.zip
+cd
 sudo add-apt-repository ppa:dlech/keepass2-plugins
 sudo apt-get update 
 sudo apt-get install keepass2-plugin-keeagent keepass2-plugin-application-indicator keepass2-plugin-tray-icon keepass2-plugin-launcher keepass2-plugin-keeagent -y
@@ -250,8 +254,13 @@ wget https://addons.mozilla.org/firefox/downloads/file/373868/soundcloud_downloa
 wget https://addons.mozilla.org/firefox/downloads/latest/415846/addon-415846-latest.xpi 
 wget https://addons.mozilla.org/firefox/downloads/latest/387429/addon-387429-latest.xpi 
 wget https://addons.mozilla.org/firefox/downloads/latest/292320/addon-292320-latest.xpi
-wget https://addons.mozilla.org/firefox/downloads/latest/695840/addon-695840-latest.xpi?src=dp-btn-primary
-
+wget https://addons.mozilla.org/firefox/downloads/latest/695840/addon-695840-latest.xpi
+sudo git clone https://github.com/cryptocat/cryptocat-legacy
+cd cryptocat-legacy
+sudo make firefox
+cd
+sudo cp Downloads/extensions/cryptocat-legacy/release/**.xpi Downloads/extensions
+sudo rm -r Downloads/extensions/cryptocat-legacy
 
 #thunderbird extensions
 sudo thunderbird https://addons.mozilla.org/thunderbird/downloads/latest/611/addon-611-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/1339/addon-1339-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/556/addon-556-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/4003/addon-4003-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/1556/addon-1556-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/550/addon-550-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/2313/platform:2/addon-2313-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/4631/addon-4631-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/2199/addon-2199-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/550/addon-550-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/71/addon-71-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/210/addon-210-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/875/addon-875-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/1003/addon-1003-latest.xpi 
