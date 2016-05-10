@@ -86,6 +86,8 @@ sudo sed -ir 's/ZSH_THEME="robbyrussell"/ZSH_THEME="norm"/g' ~/.oh-my-zsh #noroo
 sudo apt-get install iotop
 sudo apt-get install fish -y
 sudo apt-get install byobu -y
+sudo apt-get install unoconv -y
+sudo apt-get install detox -y
 sudo apt-get install autojump -y
 sudo apt-get install nmap -y
 sudo apt-get install tmux -y
