@@ -5,6 +5,7 @@ sudo sed -i 's/InitiallyPowered = true/InitiallyPowered = false/g' /etc/bluetoot
 rfkill block bluetooth
 #mirror
 sudo sed -i 's|http://us.archive.ubuntu.com/ubuntu|http://mirrors.mit.edu/ubuntu|g' /etc/apt/sources.list
+sudo wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/bash.bashrc
 sudo cp bash.bashrc /etc/bash.bashrc
 #SSH
 sudo apt-get install ssh -y
