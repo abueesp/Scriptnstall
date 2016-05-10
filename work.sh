@@ -165,6 +165,8 @@ install.packages("gmp")
 exit() -n
 
 #Text Edition Tools
+sudo apt-get install unoconv -y
+sudo apt-get install detox -y
 sudo add-apt-repository ppa:webupd8team/sublime-text-3 -y 
 sudo apt-get update -y
 sudo apt-get install vim -y
