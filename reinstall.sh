@@ -26,7 +26,7 @@ sudo rm -rf /etc/apparmor
 sudo apt-get install mono-complete mono-dmcs libmono-system-management4.0-cil libmono-system-xml-linq4.0-cil libmono-system-data-datasetextensions4.0-cil libmono-system-runtime-serialization4.0-cil mono-mcs -y
 sudo apt-get install keepass2 -y
 cd /usr/lib/keepass2/
-sudo wget http://downloads.sourceforge.net/project/keepass/KeePass%202.x/2.32/KeePass-2.32.zip
+sudo wget http://downloads.sourceforge.net/project/keepass/KeePass%202.x/2.33/KeePass-2.33.zip
 sudo unzip KeePass**.zip
 cd
 sudo add-apt-repository ppa:dlech/keepass2-plugins
