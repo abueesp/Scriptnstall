@@ -205,7 +205,7 @@ echo "ssh bashcr vimcr portability installed"
 ##Browsers
 sudo apt-get install firefox -y
 cd Downloads
-sudo mkdir extensions
+mkdir extensions
 cd extensions
 wget https://addons.mozilla.org/firefox/downloads/latest/722/addon-722-latest.xpi 
 wget https://addons.mozilla.org/firefox/downloads/latest/363974/addon-363974-latest.xpi 
