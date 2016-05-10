@@ -24,7 +24,7 @@ sudo rm -rf /etc/apparmor.d/
 sudo rm -rf /etc/apparmor
 #KeePass (see KeeFox in Browsers)
 sudo apt-get install mono-complete mono-dmcs libmono-system-management4.0-cil libmono-system-xml-linq4.0-cil libmono-system-data-datasetextensions4.0-cil libmono-system-runtime-serialization4.0-cil mono-mcs -y
-sudo apt-get install keepass2
+sudo apt-get install keepass2 -y
 cd /usr/lib/keepass2/
 sudo wget http://downloads.sourceforge.net/project/keepass/KeePass%202.x/2.32/KeePass-2.32.zip
 sudo unzip KeePass**.zip
@@ -79,11 +79,11 @@ sudo service cups-browsed stop
 
 
 #Some tools
-sudo apt-get install traceroute
-sudo apt-get install zsh
+sudo apt-get install traceroute -y
+sudo apt-get install zsh -y 
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 sudo sed -ir 's/ZSH_THEME="robbyrussell"/ZSH_THEME="norm"/g' ~/.oh-my-zsh #noroot
-sudo apt-get install iotop
+sudo apt-get install iotop -y 
 sudo apt-get install fish -y
 sudo apt-get install byobu -y
 sudo apt-get install unoconv -y
