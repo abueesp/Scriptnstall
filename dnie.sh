@@ -6,7 +6,7 @@ sudo sed -i 's/InitiallyPowered = true/InitiallyPowered = false/g' /etc/bluetoot
 rfkill block bluetooth
 
 #mirror
-sudo sed -i 's|http://us.archive.ubuntu.com/ubuntu|http://mirrors.mit.edu/ubuntu|g' /etc/apt/sources.list
+sudo sed -i 's|http://us.archive.ubuntu.com/ubuntu|http://ubuntu.uc3m.es/ubuntu|g' /etc/apt/sources.list
 sudo apt-get upgrade && update
 #SSH
 sudo sed -i "s/NoDisplay=true/NoDisplay=false/g" /etc/xdg/autostart/gnome-keyring-ssh.desktop
@@ -90,3 +90,64 @@ sudo update-ca-certificates
 sudo modutil -add module -libfile /usr/lib/opensc-pkcs11.so
 sudo apt-get autoremove -y
 echo "HEY! CHECK IF YOU HAVE CORRECTED INSTALLED THE 2 CERTIFICATES!! If so, your 2 CA Certicates from Spanish Admin and DNIe tools have been installed. Write *** lsusb *** to check which usb is dnie connected and *** pcsc_scan *** to check its data. You can also validate your certificates here https://valide.redsara.es/valide/ejecutarValidarCertificado/ejecutar.html and https://av-dnie.cert.fnmt.es/compruebacert/compruebacert"
+
+
+##CC
+echo descargando Lector SCR 3310 ICAS
+sudo apt-get install libccid libpcsclite1 pcscd pcsc-tools pcsc-lite -y
+sudo apt-get install libusb-dev -y
+sudo /etc/init.d/pcscd restart
+sudo lsusb
+sudo pcsc_scan
+http://www.abogacia.es/repositorio/acadescarga/SCR_3310_Linux.zip
+#Old drivers
+#wget http://www.abogacia.es/wp-content/uploads/2012/09/scmccid_linux_32bit_driver_V5.0.21.tar.gz
+#tar -xzvf scmccid**
+wget -qO- -O tmp.zip http://www.abogacia.es/repositorio/acadescarga/SCR_3310_Linux.zip && unzip tmp.zip && rm tmp.zip
+cd scmccid**
+sudo  ./install
+cd ..
+rm scmccid**
+
+echo descargando MiniLector ACA EU
+sudo apt-get install libccid libpcsclite1 pcscd pcsc-tools pcsc-lite -y
+wget -qO- -O tmp.zip https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-4902898/Kit_Bit4id_Linux_1.2.16.1.zip && unzip tmp.zip && rm tmp.zip
+rm 32
+cd 64
+cd pkcs11
+
+cd ..
+cd ..
+https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-4902898/Kit_Bit4id_Linux_1.2.16.1.zip
+wget -qO- -O tmp.zip http://www.abogacia.es/wp-content/uploads/2012/09/ACR38_PKG_Lnx_1.0.4_P.zip && unzip tmp.zip && rm tmp.zip
+sudo dpkg -i /ACR38_PKG_Lnx_104_P/acsccid_linux_bin-1.0.4/ubuntu/quantal/libacsccid1_1.0.4-1_amd64.deb
+rm ACR38**
+/etc/init.d/pcscd restart
+sudo lsusb
+sudo pcsc_scan
+
+echo descargando todos los certificados ACA
+wget -qO- -O tmp.zip http://www.abogacia.es/repositorio/acadescarga/ACA_certs_todos.zip && unzip tmp.zip && rm tmp.zip
+sudo cp **.crt /usr/share/ca-certificates/**
+sudo cp -rvf **.crt /usr/share/ca-certificates/mozilla/**
+sudo rm **.crt
+sudo dpkg-reconfigure ca-certificates
+sudo cp /home/$USER/.mozilla/firefox/**.default/cert8.db /etc/firefox-3.0/profile
+sudo update-ca-certificates
+
+echo descargando cosas de ACA
+http://www.abogacia.es/wp-content/uploads/2012/09/Kit_Bit4id_Linux_4.0.0.4.zip
+wget https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-26158529/ACA_setup_5.0.zip
+wget http://www.abogacia.es/repositorio/acadescarga/Kit_ACA.zip
+wget https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-28008980/CPS_ACA_014.0.pdf
+
+
+echo abriendo simulador de uso 
+firefox https://formacion.lexnetabogacia.es/lexnetabogacia/v1/security/start?idParameter=formacion
+
+echo abriendo siga
+firefox https://www.redabogacia.org/praseg/privada/Identificacion.jsp?urlDirecto=XX
+
+echo abriendo troubleshoot
+firefox http://wiki.redabogacia.org/index.php/Tarjeta_ACA_en_Linux_2048#Certificados_Ra.C3.ADz
+firefox https://documentacion.redabogacia.org/docushare/dsweb/View/Collection-851
