@@ -115,16 +115,18 @@ wget -qO- -O tmp.zip https://documentacion.redabogacia.org/docushare/dsweb/Get/D
 rm 32
 cd 64
 cd pkcs11
-
+sudo cp * /usr/lib
+sudo ldconfig
 cd ..
 cd ..
-https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-4902898/Kit_Bit4id_Linux_1.2.16.1.zip
+rm 64
 wget -qO- -O tmp.zip http://www.abogacia.es/wp-content/uploads/2012/09/ACR38_PKG_Lnx_1.0.4_P.zip && unzip tmp.zip && rm tmp.zip
 sudo dpkg -i /ACR38_PKG_Lnx_104_P/acsccid_linux_bin-1.0.4/ubuntu/quantal/libacsccid1_1.0.4-1_amd64.deb
 rm ACR38**
 /etc/init.d/pcscd restart
 sudo lsusb
 sudo pcsc_scan
+wget -qO- -O tmp.zip https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-4902917/safesign_3.0.zip && unzip tmp.zip && rm tmp.zip
 
 echo descargando todos los certificados ACA
 wget -qO- -O tmp.zip http://www.abogacia.es/repositorio/acadescarga/ACA_certs_todos.zip && unzip tmp.zip && rm tmp.zip
