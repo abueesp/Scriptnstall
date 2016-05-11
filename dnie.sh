@@ -145,21 +145,10 @@ sudo dpkg-reconfigure ca-certificates
 sudo cp /home/$USER/.mozilla/firefox/**.default/cert8.db /etc/firefox-3.0/profile
 sudo update-ca-certificates
 wget https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-28008980/CPS_ACA_014.0.pdf
-firefox https://valide.redsara.es/valide/
-
-
-echo "alias youralias='yourcmd'" >> /home/user/.bashrc
-echo abriendo servicios admon
-firefox https://administracion.gob.es/ && https://administracionelectronica.gob.es/pae_Home/pae_Estrategias/Racionaliza_y_Comparte/catalogo-servicios-admon-digital.html && https://cambiodomicilio.redsara.es/pcd/
-echo abriendo servicios abogado
-firefox http://www.abogacia.es/servicios-abogacia/ && https://www.redabogacia.org/praseg/privada/Identificacion.jsp && https://mail.icasevilla.org/pronto/
-echo abriendo servicios JA 
-https://transparencia.dipusevilla.es/es/busqueda/index.html && https://ws024.juntadeandalucia.es/ae/
-echo abriendo servicios UE
-firefox https://www.apertium.org/index.eng.html?dir=eng-spa#translation
-https://eugo.es/portalEugo/verAsociacionesAsistencia.htm
-https://eugo.es/portalEugo/buscarConsultaGuias.htm
-https://ssweb.seap.minhap.es/tramitesEE3/es
-
-echo abriendo troubleshoot
-firefox https://formacion.lexnetabogacia.es/lexnetabogacia/v1/security/start?idParameter=formacion && http://wiki.redabogacia.org/index.php/Tarjeta_ACA_en_Linux_2048#Certificados_Ra.C3.ADz && firefox https://documentacion.redabogacia.org/docushare/dsweb/View/Collection-851 && 
+echo "alias validacert='firefox -new-tab -url https://valide.redsara.es/valide/ -new-tab -url https://formacion.lexnetabogacia.es/lexnetabogacia/v1/security/start?idParameter=formacion -new-tab -url http://wiki.redabogacia.org/index.php/Tarjeta_ACA_en_Linux_2048#Certificados_Ra.C3.ADz -new-tab -url https://documentacion.redabogacia.org/docushare/dsweb/View/Collection-851'" >> /etc/bash.bashrc
+echo "alias AGE='firefox -new-tab -url https://administracion.gob.es/ new-tab -url https://administracionelectronica.gob.es/pae_Home/pae_Estrategias/Racionaliza_y_Comparte/catalogo-servicios-admon-digital.html new-tab -url https://cambiodomicilio.redsara.es/pcd/
+'" >> /etc/bash.bashrc
+echo "alias abogado='firefox -new-tab -url http://www.abogacia.es/servicios-abogacia/ new-tab -url https://www.redabogacia.org/praseg/privada/Identificacion.jsp new-tab -url https://mail.icasevilla.org/pronto/'" >> /etc/bash.bashrc
+echo "alias JA='firefox -new-tab -url https://transparencia.dipusevilla.es/es/busqueda/index.html new-tab -url https://ws024.juntadeandalucia.es/ae/ '" >> /etc/bash.bashrc
+echo "alias EU='firefox -new-tab -url https://www.apertium.org/index.eng.html?dir=eng-spa#translation'" >> /etc/bash.bashrc
+echo "alias Empresa='firefox -new-tab -url https://ssweb.seap.minhap.es/tramitesEE3/es new-tab -url https://eugo.es/portalEugo/buscarConsultaGuias.htm new-tab -url https://eugo.es/portalEugo/verAsociacionesAsistencia.htm'" >> /etc/bash.bashrc
