@@ -89,8 +89,14 @@ sudo cp /home/$USER/.mozilla/firefox/**.default/cert8.db /etc/firefox-3.0/profil
 sudo update-ca-certificates
 sudo modutil -add module -libfile /usr/lib/opensc-pkcs11.so
 sudo apt-get autoremove -y
-echo "HEY! CHECK IF YOU HAVE CORRECTED INSTALLED THE 2 CERTIFICATES!! If so, your 2 CA Certicates from Spanish Admin and DNIe tools have been installed. Write *** lsusb *** to check which usb is dnie connected and *** pcsc_scan *** to check its data. You can also validate your certificates here https://valide.redsara.es/valide/ejecutarValidarCertificado/ejecutar.html and https://av-dnie.cert.fnmt.es/compruebacert/compruebacert"
-
+echo "HEY! CHECK IF YOU HAVE CORRECTED INSTALLED THE 2 CERTIFICATES!! If so, your 2 CA Certicates from Spanish Admin and DNIe tools have been installed. Write *** lsusb *** to check which usb is dnie connected and *** pcsc_scan *** to check its data. Pulse ENTER TO DO IT." 
+read $ENTER 
+sudo lsusb
+sudo pcscb
+echo validar
+firefox https://valide.redsara.es/valide/ejecutarValidarCertificado/ejecutar.html && https://av-dnie.cert.fnmt.es/compruebacert/compruebacert
+echo troubleshoot
+firefox https://www.sede.fnmt.gob.es/certificados/persona-fisica/obtener-certificado-software
 
 ##CC
 echo descargando Lector SCR 3310 ICAS
@@ -127,29 +133,30 @@ rm ACR38**
 sudo lsusb
 sudo pcsc_scan
 wget -qO- -O tmp.zip https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-4902917/safesign_3.0.zip && unzip tmp.zip && rm tmp.zip
+sudo dpkg -i safesign_3.0.deb
+rm safesign_3.0.deb
 
 echo descargando todos los certificados ACA
-wget -qO- -O tmp.zip http://www.abogacia.es/repositorio/acadescarga/ACA_certs_todos.zip && unzip tmp.zip && rm tmp.zip
+wget -qO- -O tmp.zip https://www.abogacia.es/repositorio/acadescarga/ACA_certs_todos.zip && unzip tmp.zip && rm tmp.zip
 sudo cp **.crt /usr/share/ca-certificates/**
 sudo cp -rvf **.crt /usr/share/ca-certificates/mozilla/**
 sudo rm **.crt
 sudo dpkg-reconfigure ca-certificates
 sudo cp /home/$USER/.mozilla/firefox/**.default/cert8.db /etc/firefox-3.0/profile
 sudo update-ca-certificates
-
-echo descargando cosas de ACA
-http://www.abogacia.es/wp-content/uploads/2012/09/Kit_Bit4id_Linux_4.0.0.4.zip
-wget https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-26158529/ACA_setup_5.0.zip
-wget http://www.abogacia.es/repositorio/acadescarga/Kit_ACA.zip
 wget https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-28008980/CPS_ACA_014.0.pdf
+firefox https://valide.redsara.es/valide/
 
-
-echo abriendo simulador de uso 
-firefox https://formacion.lexnetabogacia.es/lexnetabogacia/v1/security/start?idParameter=formacion
-
-echo abriendo siga
-firefox https://www.redabogacia.org/praseg/privada/Identificacion.jsp?urlDirecto=XX
+echo abriendo servicios admon
+firefox https://administracion.gob.es/ && https://administracionelectronica.gob.es/pae_Home/pae_Estrategias/Racionaliza_y_Comparte/catalogo-servicios-admon-digital.html && https://cambiodomicilio.redsara.es/pcd/
+echo abriendo servicios abogado
+firefox http://www.abogacia.es/servicios-abogacia/ && https://www.redabogacia.org/praseg/privada/Identificacion.jsp && https://mail.icasevilla.org/pronto/
+echo abriendo servicios JA 
+https://transparencia.dipusevilla.es/es/busqueda/index.html && https://ws024.juntadeandalucia.es/ae/
+echo abriendo servicios UE
+https://eugo.es/portalEugo/verAsociacionesAsistencia.htm
+https://eugo.es/portalEugo/buscarConsultaGuias.htm
+https://ssweb.seap.minhap.es/tramitesEE3/es
 
 echo abriendo troubleshoot
-firefox http://wiki.redabogacia.org/index.php/Tarjeta_ACA_en_Linux_2048#Certificados_Ra.C3.ADz
-firefox https://documentacion.redabogacia.org/docushare/dsweb/View/Collection-851
+firefox https://formacion.lexnetabogacia.es/lexnetabogacia/v1/security/start?idParameter=formacion && http://wiki.redabogacia.org/index.php/Tarjeta_ACA_en_Linux_2048#Certificados_Ra.C3.ADz && firefox https://documentacion.redabogacia.org/docushare/dsweb/View/Collection-851 && 
