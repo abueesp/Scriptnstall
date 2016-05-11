@@ -147,6 +147,8 @@ sudo update-ca-certificates
 wget https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-28008980/CPS_ACA_014.0.pdf
 firefox https://valide.redsara.es/valide/
 
+
+echo "alias youralias='yourcmd'" >> /home/user/.bashrc
 echo abriendo servicios admon
 firefox https://administracion.gob.es/ && https://administracionelectronica.gob.es/pae_Home/pae_Estrategias/Racionaliza_y_Comparte/catalogo-servicios-admon-digital.html && https://cambiodomicilio.redsara.es/pcd/
 echo abriendo servicios abogado
@@ -154,6 +156,7 @@ firefox http://www.abogacia.es/servicios-abogacia/ && https://www.redabogacia.or
 echo abriendo servicios JA 
 https://transparencia.dipusevilla.es/es/busqueda/index.html && https://ws024.juntadeandalucia.es/ae/
 echo abriendo servicios UE
+firefox https://www.apertium.org/index.eng.html?dir=eng-spa#translation
 https://eugo.es/portalEugo/verAsociacionesAsistencia.htm
 https://eugo.es/portalEugo/buscarConsultaGuias.htm
 https://ssweb.seap.minhap.es/tramitesEE3/es
