@@ -148,9 +148,10 @@ sudo cp /home/$USER/.mozilla/firefox/**.default/cert8.db /etc/firefox-3.0/profil
 sudo update-ca-certificates
 wget --no-check-certificate https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-28008980/CPS_ACA_014.0.pdf
 sudo echo "\nalias validacert='firefox -new-tab -url https://valide.redsara.es/valide/ -new-tab -url https://formacion.lexnetabogacia.es/lexnetabogacia/v1/security/start?idParameter=formacion -new-tab -url http://wiki.redabogacia.org/index.php/Tarjeta_ACA_en_Linux_2048#Certificados_Ra.C3.ADz -new-tab -url https://documentacion.redabogacia.org/docushare/dsweb/View/Collection-851'" >> /etc/bash.bashrc
+sudo echo "\nalias abogado='firefox -new-tab -url http://www.abogacia.es/servicios-abogacia/ new-tab -url https://www.redabogacia.org/praseg/privada/Identificacion.jsp new-tab -url https://mail.icasevilla.org/pronto/'" >> /etc/bash.bashrc
 sudo echo "\nalias AGE='firefox -new-tab -url https://administracion.gob.es/ new-tab -url https://administracionelectronica.gob.es/pae_Home/pae_Estrategias/Racionaliza_y_Comparte/catalogo-servicios-admon-digital.html new-tab -url https://cambiodomicilio.redsara.es/pcd/
  new-tab -url http://administracionelectronica.gob.es/ctt/buscadorSoluciones.htm'" >> /etc/bash.bashrc
-sudo echo "\nalias abogado='firefox -new-tab -url http://www.abogacia.es/servicios-abogacia/ new-tab -url https://www.redabogacia.org/praseg/privada/Identificacion.jsp new-tab -url https://mail.icasevilla.org/pronto/'" >> /etc/bash.bashrc
 sudo echo "\nalias JA='firefox -new-tab -url https://transparencia.dipusevilla.es/es/busqueda/index.html new-tab -url https://ws024.juntadeandalucia.es/ae/ new-tab -url http://administracionelectronica.gob.es/ctt/buscadorSoluciones.htm'" >> /etc/bash.bashrc
+sudo echo "\nalias EELL='firefox -new-tab -url https://ssweb.seap.minhap.es/portalEELL/ new-tab -url http://administracionelectronica.gob.es/ctt/buscadorSoluciones.htm'" >> /etc/bash.bashrc
 sudo echo "\nalias EU='firefox -new-tab -url https://www.apertium.org/index.eng.html?dir=eng-spa#translation'" >> /etc/bash.bashrc
 sudo echo "\nalias Empresa='firefox -new-tab -url https://ssweb.seap.minhap.es/tramitesEE3/es new-tab -url https://eugo.es/portalEugo/buscarConsultaGuias.htm new-tab -url https://eugo.es/portalEugo/verAsociacionesAsistencia.htm'" >> /etc/bash.bashrc
