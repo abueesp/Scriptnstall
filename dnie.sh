@@ -137,7 +137,8 @@ sudo dpkg -i safesign_3.0.deb
 rm safesign_3.0.deb
 
 echo descargando todos los certificados ACA
-wget -qO- -O tmp.zip https://www.abogacia.es/repositorio/acadescarga/ACA_certs_todos.zip && unzip tmp.zip && rm tmp.zip
+firefox https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-28008980/CPS_ACA_014.0.pdf
+unzip **.zip && rm **.zip
 sudo cp **.crt /usr/share/ca-certificates/**
 sudo cp -rvf **.crt /usr/share/ca-certificates/mozilla/**
 sudo rm **.crt
