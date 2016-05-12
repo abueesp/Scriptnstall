@@ -103,7 +103,25 @@ sed "s/destemail = your_email@domain.com/destemail = $email/g" /etc/fail2ban/jai
 sed "s/action = %(action_)s/action = %(action_mw)s/g" /etc/fail2ban/jail.local
 sed -e "s/enabled  = false/enabled  = true/g" /etc/fail2ban/jail.local
 sudo apt-get install zenmap -y
-sudo apt-get install virtualbox -y
+
+version=$(vboxmanage -v)
+echo $version
+var1=$(echo $version | cut -d 'r' -f 1)
+echo $var1
+var2=$(echo $version | cut -d 'r' -f 2)
+echo $var2
+file="Oracle_VM_VirtualBox_Extension_Pack-$var1-$var2.vbox-extpack"
+echo $file
+echo "introduce OS Ubuntu 16.04 ('xenial_amd64') Ubuntu 15.10 ('wily_amd64') or Ubuntu 14.04 ('trusty_amd64') / 14.10 Utopic/ 15.04 Vivid"
+read $OS
+sudo wget http://download.virtualbox.org/virtualbox/5.0.20/virtualbox-5.0_5.0.20-106931~Ubuntu~$OS.deb
+sudo wget http://download.virtualbox.org/virtualbox/$var1/$file -O $file
+http://download.virtualbox.org/virtualbox/5.0.20/Oracle_VM_VirtualBox_Extension_Pack-5.0.20-106931.vbox-extpack
+sudo dpkg -i virtualbox**.deb
+sudo rm virtualbox**.deb
+#sudo VBoxManage extpack uninstall "Oracle VM VirtualBox Extension Pack"
+sudo VBoxManage extpack install $file --replace
+sudo rm $file
 sudo apt-get install gparted -y
 sudo apt-get install nemo -y
 sudo apt-get install apt-get install amarok -y
