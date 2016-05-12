@@ -7,7 +7,8 @@ rfkill block bluetooth
 
 #mirror
 sudo sed -i 's|http://us.archive.ubuntu.com/ubuntu|http://ubuntu.uc3m.es/ubuntu|g' /etc/apt/sources.list
-sudo apt-get upgrade && update
+sudo apt-get update -y
+sudo apt-get upgrade -y
 #SSH
 sudo sed -i "s/NoDisplay=true/NoDisplay=false/g" /etc/xdg/autostart/gnome-keyring-ssh.desktop
 sudo sed -i 's/PermitRootLogin without password/PermitRootLogin no/' /etc/ssh/sshd_config #noroot
@@ -41,8 +42,8 @@ echo "You entered: $email"
 sed "s/destemail = your_email@domain.com/destemail = $email/g" /etc/fail2ban/jail.local
 sed "s/action = %(action_)s/action = %(action_mw)s/g" /etc/fail2ban/jail.local
 sed -e "s/enabled  = false/enabled  = true/g" /etc/fail2ban/jail.local
-##Browsers
 sudo apt-get install firefox -y
+sudo apt-get install subversion -y
 
 ##DNIe (at last)
 sudo apt-get install opensc libccid pcscd libacr38u pinentry-gtk2 pcsc-tools libpcsclite1 libpcsclite-dev libreadline6 libreadline-dev coolkey libnss3-tools -y
