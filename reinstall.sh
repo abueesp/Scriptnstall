@@ -108,6 +108,8 @@ read $OS
 sudo wget http://download.virtualbox.org/virtualbox/5.0.20/virtualbox-5.0_5.0.20-106931~Ubuntu~$OS.deb
 sudo dpkg -i virtualbox**.deb
 sudo rm virtualbox**.deb
+sudo apt-get install vagrant -y
+vagrant box add precise64 http://files.vagrantup.com/precise64.box
 version=$(vboxmanage -v)
 echo $version
 var1=$(echo $version | cut -d 'r' -f 1)
@@ -120,6 +122,7 @@ sudo wget http://download.virtualbox.org/virtualbox/$var1/$file -O $file
 #sudo VBoxManage extpack uninstall "Oracle VM VirtualBox Extension Pack"
 sudo VBoxManage extpack install $file --replace
 sudo rm $file
+sudo adduser node vboxusers
 sudo apt-get install gparted -y
 sudo apt-get install nemo -y
 sudo apt-get install apt-get install amarok -y
