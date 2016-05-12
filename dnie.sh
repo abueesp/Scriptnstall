@@ -93,10 +93,6 @@ echo "HEY! CHECK IF YOU HAVE CORRECTED INSTALLED THE 2 CERTIFICATES!! If so, you
 read $ENTER 
 sudo lsusb
 sudo pcscb
-echo validar
-firefox https://valide.redsara.es/valide/ejecutarValidarCertificado/ejecutar.html && https://av-dnie.cert.fnmt.es/compruebacert/compruebacert
-echo troubleshoot
-firefox https://www.sede.fnmt.gob.es/certificados/persona-fisica/obtener-certificado-software
 
 ##CC
 echo descargando Lector SCR 3310 ICAS
@@ -161,13 +157,15 @@ rm SpontaniaUpdater**
 
 ##bash
 sudo echo "\nalias troubleshoot='firefox -new-tab -url https://valide.redsara.es/valide/ 
+-new-tab -url https://av-dnie.cert.fnmt.es/compruebacert/compruebacert
 -new-tab -url https://formacion.lexnetabogacia.es/lexnetabogacia/v1/security/start?idParameter=formacion
 -new-tab -url https://wiki.redabogacia.org/index.php/Tarjeta_ACA_en_Linux_2048#Certificados_Ra.C3.ADz 
 -new-tab -url https://documentacion.redabogacia.org/docushare/dsweb/View/Collection-851 
 -new-tab -url https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-13900/Comprobador_Certificado.htm
 -new-tab -url https://administracionelectronica.gob.es/pae_Home/pae_Estrategias/pae_Identidad_y_firmaelectronica.html
 -new-tab -url https://www.administraciondejusticia.gob.es/verificadorInfolexnet/compruebaNavegador.html
--new-tab -url https://www.administraciondejusticia.gob.es/paj/publico/ciudadano/informacion_institucional/modernizacion/modernizacion_tecnologica/infolexnet/faqs/tecnicas/'" >> /etc/bash.bashrc
+-new-tab -url https://www.administraciondejusticia.gob.es/paj/publico/ciudadano/informacion_institucional/modernizacion/modernizacion_tecnologica/infolexnet/faqs/tecnicas/
+-new-tab -url https://www.sede.fnmt.gob.es/certificados/persona-fisica/obtener-certificado-software'" >> /etc/bash.bashrc
 
 sudo echo "\nalias AGE='firefox -new-tab -url https://administracion.gob.es/ 
 new-tab -url https://administracionelectronica.gob.es/pae_Home/pae_Estrategias/Racionaliza_y_Comparte/catalogo-servicios-admon-digital.html 
