@@ -147,11 +147,48 @@ sudo dpkg-reconfigure ca-certificates
 sudo cp /home/$USER/.mozilla/firefox/**.default/cert8.db /etc/firefox-3.0/profile
 sudo update-ca-certificates
 wget --no-check-certificate https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-28008980/CPS_ACA_014.0.pdf
-sudo echo "\nalias validacert='firefox -new-tab -url https://valide.redsara.es/valide/ -new-tab -url https://formacion.lexnetabogacia.es/lexnetabogacia/v1/security/start?idParameter=formacion -new-tab -url http://wiki.redabogacia.org/index.php/Tarjeta_ACA_en_Linux_2048#Certificados_Ra.C3.ADz -new-tab -url https://documentacion.redabogacia.org/docushare/dsweb/View/Collection-851'" >> /etc/bash.bashrc
-sudo echo "\nalias abogado='firefox -new-tab -url http://www.abogacia.es/servicios-abogacia/ new-tab -url https://www.redabogacia.org/praseg/privada/Identificacion.jsp new-tab -url https://mail.icasevilla.org/pronto/'" >> /etc/bash.bashrc
-sudo echo "\nalias AGE='firefox -new-tab -url https://administracion.gob.es/ new-tab -url https://administracionelectronica.gob.es/pae_Home/pae_Estrategias/Racionaliza_y_Comparte/catalogo-servicios-admon-digital.html new-tab -url https://cambiodomicilio.redsara.es/pcd/
- new-tab -url http://administracionelectronica.gob.es/ctt/buscadorSoluciones.htm'" >> /etc/bash.bashrc
-sudo echo "\nalias JA='firefox -new-tab -url https://transparencia.dipusevilla.es/es/busqueda/index.html new-tab -url https://ws024.juntadeandalucia.es/ae/ new-tab -url http://administracionelectronica.gob.es/ctt/buscadorSoluciones.htm'" >> /etc/bash.bashrc
-sudo echo "\nalias EELL='firefox -new-tab -url https://ssweb.seap.minhap.es/portalEELL/ new-tab -url http://administracionelectronica.gob.es/ctt/buscadorSoluciones.htm'" >> /etc/bash.bashrc
+wget https://administracionelectronica.gob.es/ctt/resources/Soluciones/201/Area%20descargas/TSA--Firma-Guia-de-Uso-del-Sello-de-Tiempo-y-Marca-de-Tiempo.pdf
+wget https://administracionelectronica.gob.es/ctt/resources/Soluciones/201/descargas/TSA--Firma-Servicios.pdf
+wget https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-3343898/Manual%20-BURO%20MAIL-V_4_1.pdf
+wget https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-3348303/Tarifas%20Mi%20cuenta_2.pdf
+wget https://administracionelectronica.gob.es/ctt/resources/Soluciones/190/Area%20descargas/TSA--Firma-Guia-de-Uso-del-Sello-de-Tiempo-y-Marca-de-Tiempo.pdf
+wget https://documentacion.redab ogacia.org/docushare/dsweb/Get/Document-4448750/Manual de Usuario LexnetAbogado v2..pdf
+echo descargando Reunete
+wget https://login-reunete.redsara.es//comun/download/SpontaniaUpdater_1.0.1.11.dmg
+sudo dpkg -i SpontaniaUpdater**
+rm SpontaniaUpdater**
+
+
+##bash
+sudo echo "\nalias troubleshoot='firefox -new-tab -url https://valide.redsara.es/valide/ 
+-new-tab -url https://formacion.lexnetabogacia.es/lexnetabogacia/v1/security/start?idParameter=formacion
+-new-tab -url https://wiki.redabogacia.org/index.php/Tarjeta_ACA_en_Linux_2048#Certificados_Ra.C3.ADz 
+-new-tab -url https://documentacion.redabogacia.org/docushare/dsweb/View/Collection-851 
+-new-tab -url https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-13900/Comprobador_Certificado.htm
+-new-tab -url https://administracionelectronica.gob.es/pae_Home/pae_Estrategias/pae_Identidad_y_firmaelectronica.html
+-new-tab -url https://www.administraciondejusticia.gob.es/verificadorInfolexnet/compruebaNavegador.html
+-new-tab -url https://www.administraciondejusticia.gob.es/paj/publico/ciudadano/informacion_institucional/modernizacion/modernizacion_tecnologica/infolexnet/faqs/tecnicas/'" >> /etc/bash.bashrc
+
+sudo echo "\nalias AGE='firefox -new-tab -url https://administracion.gob.es/ 
+new-tab -url https://administracionelectronica.gob.es/pae_Home/pae_Estrategias/Racionaliza_y_Comparte/catalogo-servicios-admon-digital.html 
+new-tab -url https://cambiodomicilio.redsara.es/pcd/ 
+new-tab -url http://administracionelectronica.gob.es/ctt/buscadorSoluciones.htm 
+new-tab -url https://contrataciondelestado.es/wps/portal/plataforma 
+new-tab -url https://www.agenciatributaria.gob.es/AEAT.sede/Inicio/Inicio.shtml
+new-tab -url https://www.abogacia.es/servicios-abogacia/'" >> /etc/bash.bashrc
+
+sudo echo "\nalias abogado='firefox -new-tab -url http://www.abogacia.es/
+new-tab -url https://www.redabogacia.org/
+new-tab -url https://mail.icasevilla.org/pronto/
+new-tab -url https://lexnet.justicia.es
+new-tab -url https://www.icas.es/'" >> /etc/bash.bashrc
+
+sudo echo "\nalias JA='firefox -new-tab -url https://transparencia.dipusevilla.es/es/busqueda/index.html 
+new-tab -url https://ws024.juntadeandalucia.es/ae/ 
+new-tab -url https://administracionelectronica.gob.es/ctt/buscadorSoluciones.htm
+new-tab -url https://www.juntadeandalucia.es/haciendayadministracionpublica/ciudadania/
+new-tab -url http://www.abogacia.es/servicios-abogacia/" >> /etc/bash.bashrc
+
 sudo echo "\nalias EU='firefox -new-tab -url https://www.apertium.org/index.eng.html?dir=eng-spa#translation'" >> /etc/bash.bashrc
-sudo echo "\nalias Empresa='firefox -new-tab -url https://ssweb.seap.minhap.es/tramitesEE3/es new-tab -url http://eugo.es/portalEugo/areaDescargas.htm new-tab -url https://eugo.es/portalEugo/buscarConsultaGuias.htm new-tab -url https://eugo.es/portalEugo/verAsociacionesAsistencia.htm'" >> /etc/bash.bashrc
+
+sudo echo "\nalias Empresa='firefox -new-tab -url https://ssweb.seap.minhap.es/tramitesEE3/es new-tab -url https://eugo.es/portalEugo/buscarConsultaGuias.htm new-tab -url https://eugo.es/portalEugo/verAsociacionesAsistencia.htm'" >> /etc/bash.bashrc
