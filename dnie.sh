@@ -156,6 +156,8 @@ rm SpontaniaUpdater**
 
 
 ##bash
+sudo echo "\nalias gpgcard='gpg --card-status'" >> /etc/bash.bashrc
+
 sudo echo "\nalias troubleshoot='firefox -new-tab -url https://valide.redsara.es/valide/ 
 -new-tab -url https://av-dnie.cert.fnmt.es/compruebacert/compruebacert
 -new-tab -url https://formacion.lexnetabogacia.es/lexnetabogacia/v1/security/start?idParameter=formacion
@@ -165,7 +167,7 @@ sudo echo "\nalias troubleshoot='firefox -new-tab -url https://valide.redsara.es
 -new-tab -url https://administracionelectronica.gob.es/pae_Home/pae_Estrategias/pae_Identidad_y_firmaelectronica.html
 -new-tab -url https://www.administraciondejusticia.gob.es/verificadorInfolexnet/compruebaNavegador.html
 -new-tab -url https://www.administraciondejusticia.gob.es/paj/publico/ciudadano/informacion_institucional/modernizacion/modernizacion_tecnologica/infolexnet/faqs/tecnicas/
--new-tab -url https://www.sede.fnmt.gob.es/certificados/persona-fisica/obtener-certificado-software'" && sudo lsusb && sudo pcsc_scan >> /etc/bash.bashrc
+-new-tab -url https://www.sede.fnmt.gob.es/certificados/persona-fisica/obtener-certificado-software' && sudo lsusb && sudo pcsc_scan" >> /etc/bash.bashrc
 
 sudo echo "\nalias AGE='firefox -new-tab -url https://administracion.gob.es/ 
 new-tab -url https://administracionelectronica.gob.es/pae_Home/pae_Estrategias/Racionaliza_y_Comparte/catalogo-servicios-admon-digital.html 
