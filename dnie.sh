@@ -179,6 +179,7 @@ new-tab -url https://www.abogacia.es/servicios-abogacia/'" >> /etc/bash.bashrc
 
 sudo echo "\nalias abogado='firefox -new-tab -url http://www.abogacia.es/
 new-tab -url https://www.redabogacia.org/
+new-tab -url https://mail.icasevilla.org/
 new-tab -url https://mail.icasevilla.org/pronto/
 new-tab -url https://lexnet.justicia.es
 new-tab -url https://www.icas.es/'" >> /etc/bash.bashrc
