@@ -69,7 +69,7 @@ sudo find / -samefile /home/node/.mozilla/firefox/**.default/prefs.js
 wget http://www.dnielectronico.es/descargas/certificados/OCSP_VA_DNIE_FNMT_SHA2.zip
 sudo unzip OCSP**
 sudo rm OCSP**.zip
-sudo mv ACRAIZ**.cer ACRAIZ**.crt
+sudo mv OCSP**.cer OCSP**.crt
 sudo cp OCSP**.crt /usr/share/ca-certificates/OCSP**.crt
 sudo cp -rvf OCSP**.crt /usr/share/ca-certificates/mozilla/OCSP**.crt
 sudo rm OCSP**.crt
