@@ -93,7 +93,6 @@ sudo apt-get autoremove -y
 echo "HEY! CHECK IF YOU HAVE CORRECTED INSTALLED THE 2 CERTIFICATES!! If so, your 2 CA Certicates from Spanish Admin and DNIe tools have been installed. Write *** lsusb *** to check which usb is dnie connected and *** pcsc_scan *** to check its data. Pulse ENTER TO DO IT." 
 read $ENTER 
 sudo lsusb
-sudo pcscb
 
 ##CC
 echo descargando Lector SCR 3310 ICAS
@@ -101,7 +100,6 @@ sudo apt-get install libccid libpcsclite1 pcscd pcsc-tools pcsc-lite -y
 sudo apt-get install libusb-dev -y
 sudo /etc/init.d/pcscd restart
 sudo lsusb
-sudo pcsc_scan
 http://www.abogacia.es/repositorio/acadescarga/SCR_3310_Linux.zip
 #Old drivers
 #wget http://www.abogacia.es/wp-content/uploads/2012/09/scmccid_linux_32bit_driver_V5.0.21.tar.gz
@@ -111,6 +109,7 @@ cd scmccid**
 sudo  ./install
 cd ..
 rm scmccid**
+echo "write 'sudo pcsc_scan' to check usb reader"
 
 echo descargando MiniLector ACA EU
 sudo apt-get install libccid libpcsclite1 pcscd pcsc-tools pcsc-lite -y
@@ -128,10 +127,10 @@ sudo dpkg -i /ACR38_PKG_Lnx_104_P/acsccid_linux_bin-1.0.4/ubuntu/quantal/libacsc
 rm ACR38**
 /etc/init.d/pcscd restart
 sudo lsusb
-sudo pcsc_scan
 wget -qO- -O tmp.zip https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-4902917/safesign_3.0.zip && unzip tmp.zip && rm tmp.zip
 sudo dpkg -i safesign_3.0.deb
 rm safesign_3.0.deb
+echo "write 'sudo pcsc_scan' to check usb reader"
 
 echo descargando todos los certificados ACA
 firefox http://www.abogacia.es/repositorio/acadescarga/ACA_certs_todos.zip
@@ -166,7 +165,7 @@ sudo echo "\nalias troubleshoot='firefox -new-tab -url https://valide.redsara.es
 -new-tab -url https://administracionelectronica.gob.es/pae_Home/pae_Estrategias/pae_Identidad_y_firmaelectronica.html
 -new-tab -url https://www.administraciondejusticia.gob.es/verificadorInfolexnet/compruebaNavegador.html
 -new-tab -url https://www.administraciondejusticia.gob.es/paj/publico/ciudadano/informacion_institucional/modernizacion/modernizacion_tecnologica/infolexnet/faqs/tecnicas/
--new-tab -url https://www.sede.fnmt.gob.es/certificados/persona-fisica/obtener-certificado-software'" >> /etc/bash.bashrc
+-new-tab -url https://www.sede.fnmt.gob.es/certificados/persona-fisica/obtener-certificado-software'" && sudo lsusb && sudo pcsc_scan >> /etc/bash.bashrc
 
 sudo echo "\nalias AGE='firefox -new-tab -url https://administracion.gob.es/ 
 new-tab -url https://administracionelectronica.gob.es/pae_Home/pae_Estrategias/Racionaliza_y_Comparte/catalogo-servicios-admon-digital.html 
