@@ -4,7 +4,10 @@ sudo sed -i 's/InitiallyPowered = true/InitiallyPowered = false/g' /etc/bluetoot
 rfkill block bluetooth
 #mirror
 sudo sed -i 's|http://us.archive.ubuntu.com/ubuntu|http://mirrors.mit.edu/ubuntu|g' /etc/apt/sources.list
-sudo cp bash.bashrc /etc/bash.bashrc
+wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/bash.bashrc
+sudo mv bash.bashrc /etc/bash.bashrc
+sudo apt-get update
+sudo apt-get upgrade
 #SSH
 sudo apt-get install ssh -y
 newsshkey
@@ -163,6 +166,26 @@ install.packages("httr")
 install.packages("igraph")
 install.packages("gmp")
 exit() -n
+
+##Frameworks
+sudo apt-get install npm
+sudo npm -g install embark-framework
+sudo npm install -g truffle
+sudo echo "\nalias ethertweet='firefox -new-tab -url https://github.com/yep/eth-tweet && geth --rpc --rpccorsdomain='http://ethertweet.net' && firefox -new-tab -url http://ethertweet.net/ui" >> /etc/bash.bashrc 
+
+
+##Mist
+sudo curl https://install.meteor.com/ | sudo sh 
+wget https://github.com/ethereum/mist/releases/download/0.7.3/Ethereum-Wallet-linux64-0-7-3.zip
+unzip Ethereum**.zip
+git clone https://github.com/ethereum/mist.git
+cd mist
+sudo git submodule update --init
+sudo npm install
+sudo git pull && git submodule update
+sudo echo "\nalias mist='cd mist && electron . --mode wallet && electron && cd interface && meteor" >> /etc/bash.bashrc 
+sudo echo "\nalias privchain='geth --networkid 1 --ipcpath route/geth.ipc --datadir'"
+sudo echo "\nalias daosheet='firefox -new-tab -url https://github.com/slockit/DAO/wiki/Watching-the-DAO-contract-in-Mist'"
 
 #Text Edition Tools
 sudo apt-get install unoconv -y
