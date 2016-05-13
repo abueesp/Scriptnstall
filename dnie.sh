@@ -156,9 +156,9 @@ rm SpontaniaUpdater**
 
 
 ##bash
-sudo echo "\nalias gpgcard='gpg --card-status'" >> /etc/bash.bashrc
+sudo echo "alias gpgcard='gpg --card-status'" >> /etc/bash.bashrc
 
-sudo echo "\nalias troubleshoot='firefox -new-tab -url https://valide.redsara.es/valide/ 
+sudo echo "alias troubleshoot='firefox -new-tab -url https://valide.redsara.es/valide/ 
 -new-tab -url https://av-dnie.cert.fnmt.es/compruebacert/compruebacert
 -new-tab -url https://formacion.lexnetabogacia.es/lexnetabogacia/v1/security/start?idParameter=formacion
 -new-tab -url https://wiki.redabogacia.org/index.php/Tarjeta_ACA_en_Linux_2048#Certificados_Ra.C3.ADz 
@@ -169,7 +169,7 @@ sudo echo "\nalias troubleshoot='firefox -new-tab -url https://valide.redsara.es
 -new-tab -url https://www.administraciondejusticia.gob.es/paj/publico/ciudadano/informacion_institucional/modernizacion/modernizacion_tecnologica/infolexnet/faqs/tecnicas/
 -new-tab -url https://www.sede.fnmt.gob.es/certificados/persona-fisica/obtener-certificado-software' && sudo lsusb && sudo pcsc_scan" >> /etc/bash.bashrc
 
-sudo echo "\nalias AGE='firefox -new-tab -url https://administracion.gob.es/ 
+sudo echo "alias AGE='firefox -new-tab -url https://administracion.gob.es/ 
 new-tab -url https://administracionelectronica.gob.es/pae_Home/pae_Estrategias/Racionaliza_y_Comparte/catalogo-servicios-admon-digital.html 
 new-tab -url https://cambiodomicilio.redsara.es/pcd/ 
 new-tab -url http://administracionelectronica.gob.es/ctt/buscadorSoluciones.htm 
@@ -178,7 +178,7 @@ new-tab -url https://www.agenciatributaria.gob.es/AEAT.sede/Inicio/Inicio.shtml
 new-tab -url https://www.abogacia.es/servicios-abogacia/
 new-tab -url https://www.https://www.ventanillaunicaabogados.org/vup/index.jsp'" >> /etc/bash.bashrc
 
-sudo echo "\nalias abogado='firefox -new-tab -url http://www.abogacia.es/
+sudo echo "alias abogado='firefox -new-tab -url http://www.abogacia.es/
 new-tab -url https://www.redabogacia.org/
 new-tab -url https://mail.icasevilla.org/
 new-tab -url https://mail.icasevilla.org/pronto/
@@ -186,12 +186,12 @@ new-tab -url https://lexnet.justicia.es
 new-tab -url https://www.icas.es/ 
 new-tab -url https://www.ventanillaunicaabogados.org/vup/index.jsp'">> /etc/bash.bashrc
 
-sudo echo "\nalias JA='firefox -new-tab -url https://transparencia.dipusevilla.es/es/busqueda/index.html 
+sudo echo "alias JA='firefox -new-tab -url https://transparencia.dipusevilla.es/es/busqueda/index.html 
 new-tab -url https://ws024.juntadeandalucia.es/ae/ 
 new-tab -url https://administracionelectronica.gob.es/ctt/buscadorSoluciones.htm
 new-tab -url https://www.juntadeandalucia.es/haciendayadministracionpublica/ciudadania/
 new-tab -url http://www.abogacia.es/servicios-abogacia/" >> /etc/bash.bashrc
 
-sudo echo "\nalias EU='firefox -new-tab -url https://www.apertium.org/index.eng.html?dir=eng-spa#translation'" >> /etc/bash.bashrc
+sudo echo "alias EU='firefox -new-tab -url https://www.apertium.org/index.eng.html?dir=eng-spa#translation'" >> /etc/bash.bashrc
 
-sudo echo "\nalias Empresa='firefox -new-tab -url https://ssweb.seap.minhap.es/tramitesEE3/es new-tab -url https://eugo.es/portalEugo/buscarConsultaGuias.htm new-tab -url https://eugo.es/portalEugo/verAsociacionesAsistencia.htm'" >> /etc/bash.bashrc
+sudo echo "alias Empresa='firefox -new-tab -url https://ssweb.seap.minhap.es/tramitesEE3/es new-tab -url https://eugo.es/portalEugo/buscarConsultaGuias.htm new-tab -url https://eugo.es/portalEugo/verAsociacionesAsistencia.htm'" >> /etc/bash.bashrc
