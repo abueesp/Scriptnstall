@@ -175,14 +175,16 @@ new-tab -url https://cambiodomicilio.redsara.es/pcd/
 new-tab -url http://administracionelectronica.gob.es/ctt/buscadorSoluciones.htm 
 new-tab -url https://contrataciondelestado.es/wps/portal/plataforma 
 new-tab -url https://www.agenciatributaria.gob.es/AEAT.sede/Inicio/Inicio.shtml
-new-tab -url https://www.abogacia.es/servicios-abogacia/'" >> /etc/bash.bashrc
+new-tab -url https://www.abogacia.es/servicios-abogacia/
+new-tab -url https://www.https://www.ventanillaunicaabogados.org/vup/index.jsp'" >> /etc/bash.bashrc
 
 sudo echo "\nalias abogado='firefox -new-tab -url http://www.abogacia.es/
 new-tab -url https://www.redabogacia.org/
 new-tab -url https://mail.icasevilla.org/
 new-tab -url https://mail.icasevilla.org/pronto/
 new-tab -url https://lexnet.justicia.es
-new-tab -url https://www.icas.es/'" >> /etc/bash.bashrc
+new-tab -url https://www.icas.es/ 
+new-tab -url https://www.ventanillaunicaabogados.org/vup/index.jsp'">> /etc/bash.bashrc
 
 sudo echo "\nalias JA='firefox -new-tab -url https://transparencia.dipusevilla.es/es/busqueda/index.html 
 new-tab -url https://ws024.juntadeandalucia.es/ae/ 
