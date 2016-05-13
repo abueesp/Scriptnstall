@@ -184,8 +184,8 @@ sudo git submodule update --init
 sudo npm install
 sudo git pull && git submodule update
 sudo echo "\nalias mist='cd mist && electron . --mode wallet && electron && cd interface && meteor" >> /etc/bash.bashrc 
-sudo echo "\nalias privchain='geth --networkid 1 --ipcpath route/geth.ipc --datadir'"
-sudo echo "\nalias daosheet='firefox -new-tab -url https://github.com/slockit/DAO/wiki/Watching-the-DAO-contract-in-Mist'"
+sudo echo "\nalias privchain='geth --networkid 1 --ipcpath route/geth.ipc --datadir'" >> /etc/bash.bashrc
+sudo echo "\nalias daosheet='firefox -new-tab -url https://github.com/slockit/DAO/wiki/ && firefox -newtab- -url https://daohub.org'" >> /etc/bash.bashrc
 
 #Text Edition Tools
 sudo apt-get install unoconv -y
@@ -198,6 +198,8 @@ sh ~/.vim_runtime/install_awesome_vimrc.sh
 sudo apt-get install gedit -y
 sudo apt-get install sublime-text-installer -y
 sudo apt-get install libreoffice -y
+
+##readthedocs
 sudo apt-get install build-essential python-dev python-pip python-setuptools libxml2-dev libxslt1-dev zlib1g-dev -y
 pip install --upgrade pip
 virtualenv rtd
@@ -214,5 +216,18 @@ sudo ./manage.py createsuperuser
 sudo ./manage.py collectstatic
 #sudo ./manage.py loaddata test_data
 #sudo ./manage.py update_repos pip
-sudo ./manage.py runserver
-firefox  http://127.0.0.1:8000
+echo "\nalias readthedocs='sudo ./manage.py runserver && firefox -new-tab -url http://127.0.0.1:8000" >> /etc/bash.bashrc
+
+##Icecold
+git clone https://github.com/ryepdx/ethaddress.org
+cd ethaddress.org
+gpg --verify ryep**.asc
+cd ..
+echo "\n alias coldstorage = 'cd /home/$USER/ethaddress.org && firefox -new-tab -url index.html'"
+
+##Web3js library
+sudo apt-get install nodejs
+sudo apt-get install npm
+sudo apt-get install nodejs-legacy
+npm install web3
+meteor add ethereum:web3
