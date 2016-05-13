@@ -188,8 +188,8 @@ sudo R
 sudo apt-get install npm
 sudo npm -g install embark-framework
 sudo npm install -g truffle
-sudo echo "\nalias meteor='firefox -new-tab -url http://localhost:3000 && geth --rpc --rpccorsdomain='http://localhost:3000'" >> /etc/bash.bashrc
-sudo echo "\nalias ethertweet='firefox -new-tab -url https://github.com/yep/eth-tweet -new-tab -url https://ethertweet.net/ui && geth --rpc --rpccorsdomain='http://ethertweet.net" >> /etc/bash.bashrc 
+sudo echo 'alias meteor="firefox -new-tab -url http://localhost:3000 && geth --rpc --rpccorsdomain='http://localhost:3000'"' >> /etc/bash.bashrc
+sudo echo 'alias ethertweet="firefox -new-tab -url https://github.com/yep/eth-tweet -new-tab -url https://ethertweet.net/ui && geth --rpc --rpccorsdomain='http://ethertweet.net'"' >> /etc/bash.bashrc 
 
 ##Mist
 sudo curl https://install.meteor.com/ | sudo sh 
@@ -200,9 +200,9 @@ cd mist
 sudo git submodule update --init
 sudo npm install
 sudo git pull && git submodule update
-sudo echo "\nalias mist='cd mist && electron . --mode wallet && electron && cd interface && meteor" >> /etc/bash.bashrc 
-sudo echo "\nalias privchain='geth --networkid 1 --ipcpath route/geth.ipc --datadir'" >> /etc/bash.bashrc
-sudo echo "\nalias daosheet='firefox -new-tab -url https://github.com/slockit/DAO/wiki/ && firefox -newtab- -url https://daohub.org'" >> /etc/bash.bashrc
+sudo echo "alias mist='cd mist && electron . --mode wallet && electron && cd interface && meteor'" >> /etc/bash.bashrc 
+sudo echo "alias privchain='geth --networkid 1 --ipcpath route/geth.ipc --datadir'" >> /etc/bash.bashrc
+sudo echo "alias daosheet='firefox -new-tab -url https://github.com/slockit/DAO/wiki/ && firefox -newtab- -url https://daohub.org'" >> /etc/bash.bashrc
 
 #Text Edition Tools
 sudo apt-get install unoconv -y
@@ -233,14 +233,14 @@ sudo ./manage.py createsuperuser
 sudo ./manage.py collectstatic
 #sudo ./manage.py loaddata test_data
 #sudo ./manage.py update_repos pip
-echo "\nalias readthedocs='sudo ./manage.py runserver && firefox -new-tab -url http://127.0.0.1:8000" >> /etc/bash.bashrc
+echo "alias readthedocs='sudo ./manage.py runserver && firefox -new-tab -url http://127.0.0.1:8000'" >> /etc/bash.bashrc
 
 ##Icecold
 git clone https://github.com/ryepdx/ethaddress.org
 cd ethaddress.org
 gpg --verify ryep**.asc
 cd ..
-echo "\n alias coldstorage = 'cd /home/$USER/ethaddress.org && firefox -new-tab -url index.html'"
+echo "alias coldstorage = 'cd /home/$USER/ethaddress.org && firefox -new-tab -url index.html'"
 
 ##Web3js library
 sudo apt-get install nodejs -y
