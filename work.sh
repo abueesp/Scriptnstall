@@ -170,17 +170,20 @@ sudo ./configure
 sudo make
 sudo make install
 
-sudo R
-install.packages("Rmpfr")
+echo ' *****************
+Install those packages in R. To exit type quit()
+
+install.packages("Rmpfr") 
 install.packages("devtools")
-devtools::install_github("ethr")
+devtools::install_github("BSDStudios/ethr")
 install.packages("plyr")
 install.packages("dplyr")
 install.packages("httr")
 install.packages("igraph")
 install.packages("gmp")
-exit() -n
 
+Install those packages in R. To exit type quit()' 
+sudo R
 ##Frameworks
 sudo apt-get install npm
 sudo npm -g install embark-framework
