@@ -171,8 +171,8 @@ exit() -n
 sudo apt-get install npm
 sudo npm -g install embark-framework
 sudo npm install -g truffle
-sudo echo "\nalias meteor='firefox -new-tab -url http://localhost:3000 && geth --rpc --rpccorsdomain='http://localhost:3000' && firefox -new-tab -url http://ethertweet.net/ui" >> /etc/bash.bashrc
-sudo echo "\nalias ethertweet='firefox -new-tab -url https://github.com/yep/eth-tweet && geth --rpc --rpccorsdomain='http://ethertweet.net' && firefox -new-tab -url http://ethertweet.net/ui" >> /etc/bash.bashrc 
+sudo echo "\nalias meteor='firefox -new-tab -url http://localhost:3000 && geth --rpc --rpccorsdomain='http://localhost:3000'" >> /etc/bash.bashrc
+sudo echo "\nalias ethertweet='firefox -new-tab -url https://github.com/yep/eth-tweet -new-tab -url https://ethertweet.net/ui && geth --rpc --rpccorsdomain='http://ethertweet.net" >> /etc/bash.bashrc 
 
 ##Mist
 sudo curl https://install.meteor.com/ | sudo sh 
