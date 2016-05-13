@@ -243,8 +243,8 @@ cd ..
 echo "\n alias coldstorage = 'cd /home/$USER/ethaddress.org && firefox -new-tab -url index.html'"
 
 ##Web3js library
-sudo apt-get install nodejs
-sudo apt-get install npm
-sudo apt-get install nodejs-legacy
-npm install web3
-meteor add ethereum:web3
+sudo apt-get install nodejs -y
+sudo apt-get install npm -y 
+sudo apt-get install nodejs-legacy -y 
+sudo npm install web3
+sudo meteor add ethereum:web3
