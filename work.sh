@@ -130,7 +130,7 @@ echo "ssh bashcr vimcr portability installed"
 
 
 #Ethr
-sudo apt-get install gfortran aptitude libghc-curl-dev -y 
+sudo apt-get install gfortran aptitude libghc-curl-dev liblzma-dev -y 
 sudo aptitude install r-base -y
 sudo aptitude install openjdk-7-source -y
 sudo updatedb
