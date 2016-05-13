@@ -189,7 +189,8 @@ echo "alias JA='firefox -new-tab -url https://transparencia.dipusevilla.es/es/bu
 new-tab -url https://ws024.juntadeandalucia.es/ae/ 
 new-tab -url https://administracionelectronica.gob.es/ctt/buscadorSoluciones.htm
 new-tab -url https://www.juntadeandalucia.es/haciendayadministracionpublica/ciudadania/
-new-tab -url http://www.abogacia.es/servicios-abogacia/" >> sudo /etc/bash.bashrc
+new-tab -url http://www.abogacia.es/servicios-abogacia/
+new-tab -url http://www.juntadeandalucia.es/repositorio/usuario/listado/fichacompleta.jsf'" >> sudo /etc/bash.bashrc
 
 echo "alias EU='firefox -new-tab -url https://www.apertium.org/index.eng.html?dir=eng-spa#translation'" >> sudo /etc/bash.bashrc
 
