@@ -138,12 +138,15 @@ sudo wget https://cran.r-project.org/src/base-prerelease/R-latest.tar.gz
 tar -xvzf R-latest.tar.gz
 sudo rm -r -f R-latest.tar.gz
 cd R-**
+sudo mkdir prce
+cd prce
 sudo wget  ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.38.tar.gz
 tar xzvf pcre-8.38.tar.gz
 sudo rm pcre**.tar.gz
  ./configure --prefix=$HOME/R-**
  make -j3
  make install
+cd ..
 ./configure --prefix=$HOME/R-** '--with-cairo' \
  '--with-jpeglib' '--with-readline' '--with-tcltk' \
  '--with-blas' '--with-lapack' '--enable-R-profiling' \
@@ -151,7 +154,8 @@ sudo rm pcre**.tar.gz
  '--enable-memory-profiling'
 sudo make
 sudo make install
-bash <(curl -L https://install-geth.ethereum.org)
+echo "copy and paste this command bash <(curl -L https://install-geth.ethereum.org) then pulse ENTER**"
+read $pause
 #geth --rpc --rpccorsdomain localhost --autodag console 2>>/dev/tty
 cd
 sudo wget http://www.mpfr.org/mpfr-current/mpfr-3.1.4.zip
