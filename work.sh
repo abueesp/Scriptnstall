@@ -137,8 +137,8 @@ sudo updatedb
 sudo wget https://cran.r-project.org/src/base-prerelease/R-latest.tar.gz
 tar -xvzf R-latest.tar.gz
 sudo rm -r -f R-latest.tar.gz
-cd R-beta
-sudo ./configure
+cd R-**
+./configure
 sudo make
 sudo make install
 bash <(curl -L https://install-geth.ethereum.org)
