@@ -136,8 +136,8 @@ echo descargando todos los certificados ACA
 firefox http://www.abogacia.es/repositorio/acadescarga/ACA_certs_todos.zip
 mv Downloads/ACA_certs_todos.zip /home/$USER/
 unzip **todos.zip && rm **todos.zip
-sudo cp **.crt /usr/share/ca-certificates/**
-sudo cp -rvf **.crt /usr/share/ca-certificates/mozilla/**
+sudo cp **.crt /usr/share/ca-certificates/
+sudo cp -rvf **.crt /usr/share/ca-certificates/mozilla/
 sudo rm **.crt
 sudo dpkg-reconfigure ca-certificates
 sudo cp /home/$USER/.mozilla/firefox/**.default/cert8.db /etc/firefox-3.0/profile
@@ -156,9 +156,8 @@ rm SpontaniaUpdater**
 
 
 ##bash
-sudo echo "alias gpgcard='gpg --card-status'" >> /etc/bash.bashrc
-
-sudo echo "alias troubleshoot='firefox -new-tab -url https://valide.redsara.es/valide/ 
+echo "alias gpgcard='gpg --card-status'" >> sudo /etc/bash.bashrc
+echo "alias troubleshoot='firefox -new-tab -url https://valide.redsara.es/valide/ 
 -new-tab -url https://av-dnie.cert.fnmt.es/compruebacert/compruebacert
 -new-tab -url https://formacion.lexnetabogacia.es/lexnetabogacia/v1/security/start?idParameter=formacion
 -new-tab -url https://wiki.redabogacia.org/index.php/Tarjeta_ACA_en_Linux_2048#Certificados_Ra.C3.ADz 
@@ -167,31 +166,31 @@ sudo echo "alias troubleshoot='firefox -new-tab -url https://valide.redsara.es/v
 -new-tab -url https://administracionelectronica.gob.es/pae_Home/pae_Estrategias/pae_Identidad_y_firmaelectronica.html
 -new-tab -url https://www.administraciondejusticia.gob.es/verificadorInfolexnet/compruebaNavegador.html
 -new-tab -url https://www.administraciondejusticia.gob.es/paj/publico/ciudadano/informacion_institucional/modernizacion/modernizacion_tecnologica/infolexnet/faqs/tecnicas/
--new-tab -url https://www.sede.fnmt.gob.es/certificados/persona-fisica/obtener-certificado-software' && sudo lsusb && sudo pcsc_scan" >> /etc/bash.bashrc
+-new-tab -url https://www.sede.fnmt.gob.es/certificados/persona-fisica/obtener-certificado-software' && sudo lsusb && sudo pcsc_scan" >> sudo /etc/bash.bashrc
 
-sudo echo "alias AGE='firefox -new-tab -url https://administracion.gob.es/ 
+echo "alias AGE='firefox -new-tab -url https://administracion.gob.es/ 
 new-tab -url https://administracionelectronica.gob.es/pae_Home/pae_Estrategias/Racionaliza_y_Comparte/catalogo-servicios-admon-digital.html 
 new-tab -url https://cambiodomicilio.redsara.es/pcd/ 
 new-tab -url http://administracionelectronica.gob.es/ctt/buscadorSoluciones.htm 
 new-tab -url https://contrataciondelestado.es/wps/portal/plataforma 
 new-tab -url https://www.agenciatributaria.gob.es/AEAT.sede/Inicio/Inicio.shtml
 new-tab -url https://www.abogacia.es/servicios-abogacia/
-new-tab -url https://www.https://www.ventanillaunicaabogados.org/vup/index.jsp'" >> /etc/bash.bashrc
+new-tab -url https://www.https://www.ventanillaunicaabogados.org/vup/index.jsp'" >> sudo /etc/bash.bashrc
 
-sudo echo "alias abogado='firefox -new-tab -url http://www.abogacia.es/
+echo "alias abogado='firefox -new-tab -url http://www.abogacia.es/
 new-tab -url https://www.redabogacia.org/
 new-tab -url https://mail.icasevilla.org/
 new-tab -url https://mail.icasevilla.org/pronto/
 new-tab -url https://lexnet.justicia.es
 new-tab -url https://www.icas.es/ 
-new-tab -url https://www.ventanillaunicaabogados.org/vup/index.jsp'">> /etc/bash.bashrc
+new-tab -url https://www.ventanillaunicaabogados.org/vup/index.jsp'">> sudo /etc/bash.bashrc
 
-sudo echo "alias JA='firefox -new-tab -url https://transparencia.dipusevilla.es/es/busqueda/index.html 
+echo "alias JA='firefox -new-tab -url https://transparencia.dipusevilla.es/es/busqueda/index.html 
 new-tab -url https://ws024.juntadeandalucia.es/ae/ 
 new-tab -url https://administracionelectronica.gob.es/ctt/buscadorSoluciones.htm
 new-tab -url https://www.juntadeandalucia.es/haciendayadministracionpublica/ciudadania/
-new-tab -url http://www.abogacia.es/servicios-abogacia/" >> /etc/bash.bashrc
+new-tab -url http://www.abogacia.es/servicios-abogacia/" >> sudo /etc/bash.bashrc
 
-sudo echo "alias EU='firefox -new-tab -url https://www.apertium.org/index.eng.html?dir=eng-spa#translation'" >> /etc/bash.bashrc
+echo "alias EU='firefox -new-tab -url https://www.apertium.org/index.eng.html?dir=eng-spa#translation'" >> sudo /etc/bash.bashrc
 
-sudo echo "alias Empresa='firefox -new-tab -url https://ssweb.seap.minhap.es/tramitesEE3/es new-tab -url https://eugo.es/portalEugo/buscarConsultaGuias.htm new-tab -url https://eugo.es/portalEugo/verAsociacionesAsistencia.htm'" >> /etc/bash.bashrc
+echo "alias Empresa='firefox -new-tab -url https://ssweb.seap.minhap.es/tramitesEE3/es new-tab -url https://eugo.es/portalEugo/buscarConsultaGuias.htm new-tab -url https://eugo.es/portalEugo/verAsociacionesAsistencia.htm'" >> sudo /etc/bash.bashrc
