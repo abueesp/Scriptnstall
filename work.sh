@@ -41,11 +41,11 @@ sudo service avahi-daemon stop
 sudo cupsctl -E --no-remote-any
 sudo service cups-browsed stop
 #Some tools
-sudo apt-get install traceroute
-sudo apt-get install zsh
+sudo apt-get install traceroute -y
+sudo apt-get install zsh -y
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 sudo sed -ir 's/ZSH_THEME="robbyrussell"/ZSH_THEME="norm"/g' ~/.oh-my-zsh #noroot
-sudo apt-get install iotop
+sudo apt-get install iotop -y
 sudo apt-get install fish -y
 sudo apt-get install byobu -y
 sudo apt-get install autojump -y
@@ -60,7 +60,7 @@ echo "You entered: $email"
 sed "s/destemail = your_email@domain.com/destemail = $email/g" /etc/fail2ban/jail.local
 sed "s/action = %(action_)s/action = %(action_mw)s/g" /etc/fail2ban/jail.local
 sed -e "s/enabled  = false/enabled  = true/g" /etc/fail2ban/jail.local
-sudo apt-get install gnupg gpgv2 pbuilder ubuntu-dev-tools bzr-builddeb
+sudo apt-get install gnupg gpgv2 pbuilder ubuntu-dev-tools bzr-builddeb -y
 sudo apt-get install zenmap -y
 sudo apt-get install pandoc -y
 sudo apt-get install virtualbox -y
