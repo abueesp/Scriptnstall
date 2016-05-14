@@ -203,6 +203,8 @@ sudo git pull && git submodule update
 sudo echo "alias mist='cd mist && electron . --mode wallet && electron && cd interface && meteor'" >> /etc/bash.bashrc 
 sudo echo "alias privchain='geth --networkid 1 --ipcpath route/geth.ipc --datadir'" >> /etc/bash.bashrc
 sudo echo "alias daosheet='firefox -new-tab -url https://github.com/slockit/DAO/wiki/ && firefox -newtab- -url https://daohub.org'" >> /etc/bash.bashrc
+cd ..
+rm Ethereum**.zip
 
 #Text Edition Tools
 sudo apt-get install unoconv -y
@@ -217,8 +219,8 @@ sudo apt-get install sublime-text-installer -y
 sudo apt-get install libreoffice -y
 
 ##readthedocs
-sudo apt-get install build-essential python-dev python-pip python-setuptools libxml2-dev libxslt1-dev zlib1g-dev -y
-pip install --upgrade pip
+sudo apt-get install build-essential python-dev python-pip python-setuptools python-virtualenv libxml2-dev libxslt1-dev zlib1g-dev -y
+sudo pip install --upgrade pip
 virtualenv rtd
 cd rtd
 source bin/activate
