@@ -217,6 +217,27 @@ sudo rm **.bz2 && sudo rm **.sig
 cd ..
 sudo rm -r gpu
 
+
+mkdir tomb
+cd tomb
+wget https://files.dyne.org/tomb/tomb-2.2.tar.gz
+wget https://files.dyne.org/tomb/tomb-2.2.tar.gz.asc
+wget https://files.dyne.org/tomb/tomb-2.2.tar.gz.sha
+sha1 = $(sha1sum **tar.gz)
+gpg --verify **.asc **.bz2
+sudo apt-get gnupg pinentry cryptsetup -y
+tar zxvf **.tar.gz
+cd **
+sudo ./configure
+sudo make
+sudo make install
+cd ..
+sudo rm **.bz2 && sudo rm **.sig
+cd ..
+sudo rm -r tomb
+
+##Emacs
+
 readonly version="24.5"
 sudo rm emacs-"$version".tar.xz
 sudo rm -r emacs-"$version"
