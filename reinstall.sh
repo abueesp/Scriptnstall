@@ -287,33 +287,20 @@ sudo apt-get install gedit -y
 sudo apt-get install sublime-text-installer -y
 sudo apt-get install libreoffice -y
 
-#!/bin/bash
-
-# Build latest version of Emacs, version management with stow
-# OS: Ubuntu 14.04 LTS
-# version: 24.5
-# Toolkit: lucid
-
-# Warning, use updated version of this script in: https://github.com/favadi/build-emacs
+##Emacs
 sudo rm -r /usr/local/stow
 set -e
 
 readonly version="24.5"
 
 # install dependencies
-sudo apt-get install -y stow build-essential libx11-dev xaw3dg-dev \
-     libjpeg-dev libpng12-dev libgif-dev libtiff5-dev libncurses5-dev \
-     libxft-dev librsvg2-dev libmagickcore-dev libmagick++-dev \
-     libxml2-dev libgpm-dev libghc-gconf-dev libotf-dev libm17n-dev \
-     libgnutls-dev
+sudo apt-get install -y stow build-essential libx11-dev xaw3dg-dev libjpeg-dev libpng12-dev libgif-dev libtiff5-dev libncurses5-dev libxft-dev librsvg2-dev libmagickcore-dev libmagick++-dev libxml2-dev libgpm-dev libghc-gconf-dev libotf-dev libm17n-dev  libgnutls-dev -y
 
 # download source package
-if [[ ! -d emacs-"$version" ]]; then
-   wget http://ftp.gnu.org/gnu/emacs/emacs-"$version".tar.xz
-   tar xvf emacs-"$version".tar.xz
-fi
+wget http://ftp.gnu.org/gnu/emacs/emacs-"$version".tar.xz
+tar xvf emacs-"$version".tar.xz
 
-# buil and install
+# build and install
 sudo mkdir -p /usr/local/stow
 cd emacs-"$version"
 ./configure \
