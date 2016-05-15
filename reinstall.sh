@@ -96,10 +96,10 @@ sudo apt-get install htop -y
 sudo apt-get install pandoc -y
 sudo apt-get install duplicity deja-dup -y
 
-##GPU
+##GPG
 
-mkdir gpu
-cd gpu
+mkdir gpg
+cd gpg
 wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.22.tar.bz2
 wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.22.tar.bz2.sig
 sha1 = $(sha1sum **tar.bz2)
@@ -235,7 +235,7 @@ cd ..
 sudo rm **.bz2 && sudo rm **.sig
 
 cd ..
-sudo rm -r gpu
+sudo rm -r gpg
 
 
 ##Fail2ban
@@ -251,7 +251,7 @@ sudo apt-get install zenmap -y
 
 ##Virtualbox
 while true; do
-    read -p "Please introduce introduce OS Ubuntu 16.04 ('xenial_amd64') Ubuntu 15.10 ('wily_amd64') or Ubuntu 14.04 ('trusty_amd64') / 14.10 Utopic/ 15.04 Vivid: " trusty_amd64 $OS
+    read -p "Please introduce introduce OS Ubuntu 16.04 ('xenial_amd64') Ubuntu 15.10 ('wily_amd64') or Ubuntu 14.04 ('trusty_amd64') / 14.10 Utopic/ 15.04 Vivid: " OS $OS
     sudo wget http://download.virtualbox.org/virtualbox/5.0.20/virtualbox-5.0_5.0.20-106931~Ubuntu~$OS.deb
     break
 done
@@ -333,23 +333,23 @@ git config --global credential.helper cache
 git config --global credential.helper 'cache --timeout=3600'
 # Set the cache to timeout after 1 hour (setting is in seconds)
 while true; do
-    read -p "Please set your username: " myusername $1
+    read -p "Please set your username: " 1 $1
     git config --global user.name $1
     break
 done
 while true; do
-    read -p "Please set your email: " myemailATserverDOTcom $2
+    read -p "Please set your email: " 2 $2
     git config --global user.email $2
     break
 done
 
 while true; do
-    read -p "Please set your core editor: " vim $3
+    read -p "Please set your core editor: " 3 $3
     git config --global core.editor $1
     break
 done
 while true; do
-    read -p "Please set your diff app: " vimdiff $4
+    read -p "Please set your diff app: " 4 $4
     git config --global merge.tool $4
     break
 done
