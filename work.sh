@@ -249,7 +249,7 @@ wget http://github.com/ethereum/emacs-solidity/blob/master/solidity-mode.el ##so
 (load "myplugin.el")
 cd
 sudo rm emacs-"$version".tar.xz
-
+sudo rm -r emacs-**
 
 ##Github
 sudo apt-get install git -y 
