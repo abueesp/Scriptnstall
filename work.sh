@@ -68,7 +68,10 @@ sudo apt-get install gparted -y
 sudo apt-get install nemo -y
 sudo apt-get install apt-get install amarok -y
 sudo apt-get install thunderbird -y
-thunderbird https://addons.mozilla.org/thunderbird/downloads/latest/775/addon-775-latest.xpi
+mkdir thunderbird
+cd
+wget https://addons.mozilla.org/thunderbird/downloads/latest/775/addon-775-latest.xpi
+cd ..
 sudo apt-get install firefox -y
 firefox https://addons.mozilla.org/firefox/downloads/file/271802/no_more_install_delay-3.0-fx+sm+fn+tb.xpi
 
