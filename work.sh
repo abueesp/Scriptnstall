@@ -242,8 +242,6 @@ sudo rm /usr/local/share/info/dir
 sudo stow emacs-"$version" 
 #spacemacs
 sudo git clone http://github.com/syl20bnr/spacemacs ~/.emacs.d
-sudo mv $(sudo find / -name .emacs.d) .emacs.d.bak
-sudo mv $(sudo find -name .emacs) .emacs.bak 
 ##plugins
 cd ~/.emacs.d
 wget http://github.com/ethereum/emacs-solidity/blob/master/solidity-mode.el ##solidity
