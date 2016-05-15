@@ -187,6 +187,24 @@ sudo rm **.bz2 && sudo rm **.sig
 cd ..
 sudo rm -r gpu
 
+mkdir tomb
+cd tomb
+wget https://files.dyne.org/tomb/tomb-2.2.tar.gz
+wget https://files.dyne.org/tomb/tomb-2.2.tar.gz.asc
+wget https://files.dyne.org/tomb/tomb-2.2.tar.gz.sha
+sha1 = $(sha1sum **tar.gz)
+gpg --verify **.asc **.bz2
+sudo apt-get gnupg pinentry cryptsetup -y
+tar zxvf **.tar.gz
+cd **
+sudo ./configure
+sudo make
+sudo make install
+cd ..
+sudo rm **.bz2 && sudo rm **.sig
+cd ..
+sudo rm -r tomb
+
 ##DNIe (at last)
 sudo apt-get install opensc libccid pcscd libacr38u pinentry-gtk2 pcsc-tools libpcsclite1 libpcsclite-dev libreadline6 libreadline-dev coolkey libnss3-tools -y
 sudo apt-get install autoconf subversion libpcsclite-dev libreadline6 libreadline-dev openssl libssl-dev libtool libltdl-dev libccid pinentry-gtk2 build-essential autoconf subversion openssl libssl-dev libtool libltdl-dev pkg-config -y
