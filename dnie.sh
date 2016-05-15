@@ -34,6 +34,7 @@ sudo cupsctl -E --no-remote-any
 sudo service cups-browsed stop
 
 #Some tools
+sudo apt-get install duplicity deja-dup -y
 sudo apt-get install iotop -y
 sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 echo "Please write down an email to send you notifications when someone is attacking your ports: "
