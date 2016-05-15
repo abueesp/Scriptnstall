@@ -67,6 +67,7 @@ sudo apt-get install virtualbox -y
 sudo apt-get install gparted -y
 sudo apt-get install nemo -y
 sudo apt-get install apt-get install amarok -y
+sudo apt-get install duplicity deja-dup -y
 sudo apt-get install thunderbird -y
 mkdir thunderbird
 cd
