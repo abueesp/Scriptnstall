@@ -318,8 +318,11 @@ cd ..
  '--enable-memory-profiling'
 sudo make
 sudo make install
-echo "copy and paste this command bash <(curl -L https://install-geth.ethereum.org) then pulse ENTER**"
-read $pause
+while true; do
+    read -p "copy and paste this command bash <(curl -L https://install-geth.ethereum.org) then pulse ENTER" bash <(curl -L https://install-geth.ethereum.org) $command
+    sudo $command
+    break
+done
 #geth --rpc --rpccorsdomain localhost --autodag console 2>>/dev/tty
 cd
 sudo wget http://www.mpfr.org/mpfr-current/mpfr-3.1.4.zip
