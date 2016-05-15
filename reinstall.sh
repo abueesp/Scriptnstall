@@ -279,7 +279,7 @@ firefox https://addons.mozilla.org/firefox/downloads/file/271802/no_more_install
 #Text Edition Tools
 sudo add-apt-repository ppa:webupd8team/sublime-text-3 -y 
 sudo apt-get update -y
-sudo apt-get install vim -y
+sudo apt-get install vim vim-scripts -y
 git clone https://github.com/amix/vimrc.git ~/.vim_runtime
 sh ~/.vim_runtime/install_awesome_vimrc.sh
 sudo apt-get install gedit -y
