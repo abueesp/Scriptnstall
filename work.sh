@@ -75,7 +75,146 @@ cd ..
 sudo apt-get install firefox -y
 firefox https://addons.mozilla.org/firefox/downloads/file/271802/no_more_install_delay-3.0-fx+sm+fn+tb.xpi
 
+##GPU
 
+mkdir gpu
+cd gpu
+wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.22.tar.bz2
+wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.22.tar.bz2.sig
+sha1 = $(sha1sum **tar.bz2)
+if [ $sha1 "c40015ed88bf5f50fa58d02252d75cf20b858951" ]
+then
+    echo "PACKAGE VERIFIED"
+else
+    echo "PACKAGE NOT VERIFIED"
+    break
+fi
+gpg --verify **.sig **.bz2
+tar xvjf **.tar.bz2
+cd **
+sudo ./configure
+sudo make
+sudo make install
+cd ..
+sudo rm **.bz2 && sudo rm **.sig
+
+wget https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.7.0.tar.bz2
+wget https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.7.0.tar.bz2.sig
+sha1 = $(sha1sum **tar.bz2)
+if [ $sha1 "f840b737faafded451a084ae143285ad68bbfb01" ]
+then
+    echo "PACKAGE VERIFIED"
+else
+    echo "PACKAGE NOT VERIFIED"
+    break
+fi
+gpg --verify **.sig **.bz2
+tar xvjf **.tar.bz2
+cd **
+sudo ./configure
+sudo make
+sudo make install
+cd ..
+sudo rm **.bz2 && sudo rm **.sig
+
+
+wget https://www.gnupg.org/ftp/gcrypt/libksba/libksba-1.3.4.tar.bz2
+wget https://www.gnupg.org/ftp/gcrypt/libksba/libksba-1.3.4.tar.bz2.sig
+sha1 = $(sha1sum **tar.bz2)
+if [ $sha1 "bc84945400bd1cabfd7b8ba4e20e71082f32bcc9" ]
+then
+    echo "PACKAGE VERIFIED"
+else
+    echo "PACKAGE NOT VERIFIED"
+    break
+fi
+gpg --verify **.sig **.bz2
+tar xvjf **.tar.bz2
+cd **
+sudo ./configure
+sudo make
+sudo make install
+cd ..
+sudo rm **.bz2 && sudo rm **.sig
+
+wget https://www.gnupg.org/ftp/gcrypt/libassuan/libassuan-2.4.2.tar.bz2
+wget https://www.gnupg.org/ftp/gcrypt/libassuan/libassuan-2.4.2.tar.bz2.sig
+sha1 = $(sha1sum **tar.bz2)
+if [ $sha1 "ac1047f9764fd4a4db7dafe47640643164394db9" ]
+then
+    echo "PACKAGE VERIFIED"
+else
+    echo "PACKAGE NOT VERIFIED"
+    break
+fi
+gpg --verify **.sig **.bz2
+tar xvjf **.tar.bz2
+cd **
+sudo ./configure
+sudo make
+sudo make install
+cd ..
+sudo rm **.bz2 && sudo rm **.sig
+
+wget https://www.gnupg.org/ftp/gcrypt/npth/npth-1.2.tar.bz2
+wget https://www.gnupg.org/ftp/gcrypt/npth/npth-1.2.tar.bz2.sig
+sha1 = $(sha1sum **tar.bz2)
+if [ $sha1 "3bfa2a2d7521d6481850e8a611efe5bf5ed75200" ]
+then
+    echo "PACKAGE VERIFIED"
+else
+    echo "PACKAGE NOT VERIFIED"
+    break
+fi
+gpg --verify **.sig **.bz2
+tar xvjf **.tar.bz2
+cd **
+sudo ./configure
+sudo make
+sudo make install
+cd ..
+sudo rm **.bz2 && sudo rm **.sig
+
+wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.12.tar.bz2
+wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.12.tar.bz2.sig
+sha1 = $(sha1sum **tar.bz2)
+if [ $sha1 "3b01a35ac04277ea31cc01b4ac4e230e54b5480c" ]
+then
+    echo "PACKAGE VERIFIED"
+else
+    echo "PACKAGE NOT VERIFIED"
+    break
+fi
+gpg --verify **.sig **.bz2
+tar xvjf **.tar.bz2
+cd **
+sudo ./configure
+sudo make
+sudo make install
+cd ..
+sudo rm **.bz2 && sudo rm **.sig
+
+wget https://www.gnupg.org/ftp/gcrypt/gpa/gpa-0.9.9.tar.bz2
+wget https://www.gnupg.org/ftp/gcrypt/gpa/gpa-0.9.9.tar.bz2.sig
+sha1 = $(sha1sum **tar.bz2)
+if [ $sha1 "1cf86c9e38aa553fdb880c55cbc6755901ad21a4" ]
+then
+    echo "PACKAGE VERIFIED"
+else
+    echo "PACKAGE NOT VERIFIED"
+    break
+fi
+gpg --verify **.sig **.bz2
+tar xvjf **.tar.bz2
+cd **
+sudo ./configure
+sudo make
+sudo make install
+cd ..
+sudo rm **.bz2 && sudo rm **.sig
+
+cd ..
+sudo rm -r gpu
 
 readonly version="24.5"
 sudo rm emacs-"$version".tar.xz
@@ -214,7 +353,7 @@ sudo apt-get install unoconv -y
 sudo apt-get install detox -y
 sudo add-apt-repository ppa:webupd8team/sublime-text-3 -y 
 sudo apt-get update -y
-sudo apt-get install vim -y
+sudo apt-get install vim vim-scripts -y
 git clone https://github.com/amix/vimrc.git ~/.vim_runtime
 sh ~/.vim_runtime/install_awesome_vimrc.sh
 sudo apt-get install gedit -y
