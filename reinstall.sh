@@ -94,6 +94,7 @@ sudo apt-get install nmap -y
 sudo apt-get install tmux -y
 sudo apt-get install htop -y
 sudo apt-get install pandoc -y
+sudo apt-get install duplicity deja-dup -y
 
 ##GPU
 
