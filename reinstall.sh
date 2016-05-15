@@ -93,8 +93,10 @@ sudo apt-get install autojump -y
 sudo apt-get install nmap -y
 sudo apt-get install tmux -y
 sudo apt-get install htop -y
-sudo apt-get install fail2ban -y
 sudo apt-get install pandoc -y
+
+##Fail2ban
+sudo apt-get install fail2ban -y
 sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 echo "Please write down an email to send you notifications when someone is attacking your ports: "
 read email
@@ -103,6 +105,8 @@ sed "s/destemail = your_email@domain.com/destemail = $email/g" /etc/fail2ban/jai
 sed "s/action = %(action_)s/action = %(action_mw)s/g" /etc/fail2ban/jail.local
 sed -e "s/enabled  = false/enabled  = true/g" /etc/fail2ban/jail.local
 sudo apt-get install zenmap -y
+
+##Virtualbox
 echo "introduce OS Ubuntu 16.04 ('xenial_amd64') Ubuntu 15.10 ('wily_amd64') or Ubuntu 14.04 ('trusty_amd64') / 14.10 Utopic/ 15.04 Vivid"
 read $OS
 sudo wget http://download.virtualbox.org/virtualbox/5.0.20/virtualbox-5.0_5.0.20-106931~Ubuntu~$OS.deb
@@ -284,10 +288,25 @@ sudo cp Downloads/extensions/cryptocat-legacy/release/**.xpi Downloads/extension
 sudo rm -r Downloads/extensions/cryptocat-legacy
 
 #thunderbird extensions
-sudo thunderbird https://addons.mozilla.org/thunderbird/downloads/latest/611/addon-611-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/1339/addon-1339-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/556/addon-556-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/4003/addon-4003-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/1556/addon-1556-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/550/addon-550-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/2313/platform:2/addon-2313-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/4631/addon-4631-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/2199/addon-2199-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/550/addon-550-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/71/addon-71-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/210/addon-210-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/875/addon-875-latest.xpi https://addons.mozilla.org/thunderbird/downloads/latest/1003/addon-1003-latest.xpi 
-
-sudo su
-cp /home/node/.mozilla/firefox/**.default/extensions/keefox@chris.tomlinson/deps/KeePassRPC.plgx /usr/lib/keepass2
+mkdir thunderbird
+cd thunderbird
+wget https://addons.mozilla.org/thunderbird/downloads/latest/611/addon-611-latest.xpi 
+wget https://addons.mozilla.org/thunderbird/downloads/latest/1339/addon-1339-latest.xpi
+wget https://addons.mozilla.org/thunderbird/downloads/latest/556/addon-556-latest.xpi 
+wget https://addons.mozilla.org/thunderbird/downloads/latest/4003/addon-4003-latest.xpi
+wget https://addons.mozilla.org/thunderbird/downloads/latest/1556/addon-1556-latest.xpi 
+wget https://addons.mozilla.org/thunderbird/downloads/latest/550/addon-550-latest.xpi 
+wget https://addons.mozilla.org/thunderbird/downloads/latest/2313/platform:2/addon-2313-latest.xpi 
+wget https://addons.mozilla.org/thunderbird/downloads/latest/4631/addon-4631-latest.xpi 
+wget https://addons.mozilla.org/thunderbird/downloads/latest/2199/addon-2199-latest.xpi 
+wget https://addons.mozilla.org/thunderbird/downloads/latest/550/addon-550-latest.xpi 
+wget https://addons.mozilla.org/thunderbird/downloads/latest/71/addon-71-latest.xpi 
+wget https://addons.mozilla.org/thunderbird/downloads/latest/210/addon-210-latest.xpi 
+wget https://addons.mozilla.org/thunderbird/downloads/latest/875/addon-875-latest.xpi 
+wget https://addons.mozilla.org/thunderbird/downloads/latest/1003/addon-1003-latest.xpi 
+cd ..
+keepass2
+sudo su && cp /home/node/.mozilla/firefox/**.default/extensions/keefox@chris.tomlinson/deps/KeePassRPC.plgx /usr/lib/keepass2
 
 
 sudo apt-get autoremove -y
