@@ -76,10 +76,10 @@ cd ..
 sudo apt-get install firefox -y
 firefox https://addons.mozilla.org/firefox/downloads/file/271802/no_more_install_delay-3.0-fx+sm+fn+tb.xpi
 
-##GPU
+##GPG
 
-mkdir gpu
-cd gpu
+mkdir gpg
+cd gpg
 wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.22.tar.bz2
 wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.22.tar.bz2.sig
 sha1 = $(sha1sum **tar.bz2)
@@ -215,12 +215,11 @@ cd ..
 sudo rm **.bz2 && sudo rm **.sig
 
 cd ..
-sudo rm -r gpu
+sudo rm -r gpg
 
-
+##Emacs
 sudo rm -r /usr/local/stow
 set -e
-
 readonly version="24.5"
 
 # install dependencies
@@ -261,23 +260,23 @@ git config --global credential.helper cache
 git config --global credential.helper 'cache --timeout=3600'
 # Set the cache to timeout after 1 hour (setting is in seconds)
 while true; do
-    read -p "Please set your username: " myusername $1
+    read -p "Please set your username: " 1 $1
     git config --global user.name $1
     break
 done
 while true; do
-    read -p "Please set your email: " myemailATserverDOTcom $2
+    read -p "Please set your email: " 2 $2
     git config --global user.email $2
     break
 done
 
 while true; do
-    read -p "Please set your core editor: " vim $3
+    read -p "Please set your core editor: " 3 $3
     git config --global core.editor $1
     break
 done
 while true; do
-    read -p "Please set your diff app: " vimdiff $4
+    read -p "Please set your diff app: " 4 $4
     git config --global merge.tool $4
     break
 done
@@ -319,7 +318,7 @@ cd ..
 sudo make
 sudo make install
 while true; do
-    read -p "copy and paste this command bash <(curl -L https://install-geth.ethereum.org) then pulse ENTER" bash <(curl -L https://install-geth.ethereum.org) $command
+    read -p "copy and paste this command bash <(curl -L https://install-geth.ethereum.org) then pulse ENTER" command $command
     sudo $command
     break
 done
