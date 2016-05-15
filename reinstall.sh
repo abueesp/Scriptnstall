@@ -95,6 +95,17 @@ sudo apt-get install tmux -y
 sudo apt-get install htop -y
 sudo apt-get install pandoc -y
 
+##GPG
+wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.12.tar.bz2
+wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.12.tar.bz2.sig
+sha1sum gnupg**tar.bz2
+echo verifica el último número fue igual a y pulsa ENTER
+$pausee
+tar xvjf gnupg**.tar.bz2
+gpg --verify gnupg**.sig gnupg**.bz2
+cd gnupg**
+
+rm gnupg**
 ##Fail2ban
 sudo apt-get install fail2ban -y
 sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
