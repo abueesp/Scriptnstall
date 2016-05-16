@@ -34,6 +34,8 @@ sudo add-apt-repository ppa:dlech/keepass2-plugins
 sudo apt-get update 
 sudo apt-get install keepass2-plugin-keeagent keepass2-plugin-application-indicator keepass2-plugin-tray-icon keepass2-plugin-launcher keepass2-plugin-keeagent xul-ext-keefox xul-ext-keebird keepass2-plugin-keepasshttp -y
 cd /usr/lib/keepass2
+sudo wget https://raw.github.com/pfn/keepasshttp/master/KeePassHttp.plgx
+sudo chmod 644 KeePassHttp.plgx
 sudo wget https://keepass.info/extensions/v2/kpscript/KPScript-2.32.zip
 wget -r --no-parent -A 'KPScript*.zip' https://keepass.info/extensions/v2/kpscript/
 sudo unzip KPScript**.zip
@@ -59,6 +61,7 @@ sudo chmod +x /usr/lib/keepass2/
 rm keepassrfid.plgx 
 rm -r KeeAgent
 sudo apt-get purge keepass2-plugin-rpc
+
 #UFW
 sudo apt-get install gufw -y
 sudo ufw enable
@@ -445,7 +448,7 @@ wget https://addons.mozilla.org/thunderbird/downloads/latest/875/addon-875-lates
 wget https://addons.mozilla.org/thunderbird/downloads/latest/1003/addon-1003-latest.xpi 
 cd ..
 keepass2
-sudo su && cp /home/node/.mozilla/firefox/**.default/extensions/keefox@chris.tomlinson/deps/KeePassRPC.plgx /usr/lib/keepass2
+sudo cp /home/node/.mozilla/firefox/**.default/extensions/keefox@chris.tomlinson/deps/KeePassRPC.plgx /usr/lib/keepass2
 
 
 sudo apt-get autoremove -y
