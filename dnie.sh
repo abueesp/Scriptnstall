@@ -40,9 +40,9 @@ sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 echo "Please write down an email to send you notifications when someone is attacking your ports: "
 read email
 echo "You entered: $email"
-sed "s/destemail = your_email@domain.com/destemail = $email/g" /etc/fail2ban/jail.local
-sed "s/action = %(action_)s/action = %(action_mw)s/g" /etc/fail2ban/jail.local
-sed -e "s/enabled  = false/enabled  = true/g" /etc/fail2ban/jail.local
+sudo sed "s/destemail = your_email@domain.com/destemail = $email/g" /etc/fail2ban/jail.local
+sudo sed "s/action = %(action_)s/action = %(action_mw)s/g" /etc/fail2ban/jail.local
+sudo sed -e "s/enabled  = false/enabled  = true/g" /etc/fail2ban/jail.local
 sudo apt-get install firefox -y
 sudo apt-get install subversion -y
 
@@ -237,41 +237,41 @@ read $ENTER
 sudo lsusb
 
 ##CC
-echo descargando Lector SCR 3310 ICAS
+echo "descargando Lector SCR 3310 ICAS"
 sudo apt-get install libccid libpcsclite1 pcscd pcsc-tools pcsc-lite -y
 sudo apt-get install libusb-dev -y
 sudo /etc/init.d/pcscd restart
 sudo lsusb
-http://www.abogacia.es/repositorio/acadescarga/SCR_3310_Linux.zip
+sudo wget http://www.abogacia.es/repositorio/acadescarga/SCR_3310_Linux.zip
 #Old drivers
 #wget http://www.abogacia.es/wp-content/uploads/2012/09/scmccid_linux_32bit_driver_V5.0.21.tar.gz
 #tar -xzvf scmccid**
-wget -qO- -O tmp.zip http://www.abogacia.es/repositorio/acadescarga/SCR_3310_Linux.zip && unzip tmp.zip && rm tmp.zip
+sudo wget -qO- -O tmp.zip http://www.abogacia.es/repositorio/acadescarga/SCR_3310_Linux.zip && sudo unzip tmp.zip && sudo rm tmp.zip
 cd scmccid**
 sudo  ./install
 cd ..
-rm scmccid**
+sudo rm scmccid**
 echo "write 'sudo pcsc_scan' to check usb reader"
 
 echo descargando MiniLector ACA EU
 sudo apt-get install libccid libpcsclite1 pcscd pcsc-tools pcsc-lite -y
-wget -qO- -O tmp.zip https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-4902898/Kit_Bit4id_Linux_1.2.16.1.zip && unzip tmp.zip && rm tmp.zip
-rm 32
+sudo wget -qO- -O tmp.zip https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-4902898/Kit_Bit4id_Linux_1.2.16.1.zip && sudo unzip tmp.zip && sudo rm tmp.zip
+sudo rm 32
 cd 64
 cd pkcs11
 sudo cp * /usr/lib
 sudo ldconfig
 cd ..
 cd ..
-rm 64
-wget -qO- -O tmp.zip http://www.abogacia.es/wp-content/uploads/2012/09/ACR38_PKG_Lnx_1.0.4_P.zip && unzip tmp.zip && rm tmp.zip
+sudo rm 64
+sudo wget -qO- -O tmp.zip http://www.abogacia.es/wp-content/uploads/2012/09/ACR38_PKG_Lnx_1.0.4_P.zip && sudo unzip tmp.zip && sudo rm tmp.zip
 sudo dpkg -i /ACR38_PKG_Lnx_104_P/acsccid_linux_bin-1.0.4/ubuntu/quantal/libacsccid1_1.0.4-1_amd64.deb
-rm ACR38**
-/etc/init.d/pcscd restart
+sudo rm ACR38**
+sudo /etc/init.d/pcscd restart
 sudo lsusb
-wget -qO- -O tmp.zip https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-4902917/safesign_3.0.zip && unzip tmp.zip && rm tmp.zip
+sudo wget -qO- -O tmp.zip https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-4902917/safesign_3.0.zip && sudo unzip tmp.zip && sudo rm tmp.zip
 sudo dpkg -i safesign_3.0.deb
-rm safesign_3.0.deb
+sudo rm safesign_3.0.deb
 echo "write 'sudo pcsc_scan' to check usb reader"
 
 echo descargando todos los certificados ACA
