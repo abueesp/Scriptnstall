@@ -316,6 +316,7 @@ bash <(sed -n '5,$W p' $filon)
 }
 
 #Aliases
+alias keepass="mono /home/$USER/KeePass/KeePass.exe"
 alias process="sudo ps ax | grep"
 alias superkill="sudo kill -9"
 alias appmon="sudo lsof -i -n -P | grep"
