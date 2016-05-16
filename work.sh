@@ -319,8 +319,8 @@ while true; do
 done
 #geth --rpc --rpccorsdomain localhost --autodag console 2>>/dev/tty
 cd
-sudo wget http://www.mpfr.org/mpfr-current/mpfr-3.1.4.zip
-sudo wget http://www.mpfr.org/mpfr-current/mpfr-3.1.4.tar.xz.asc
+sudo wget https://www.mpfr.org/mpfr-current/mpfr-3.1.4.zip
+sudo wget https://www.mpfr.org/mpfr-current/mpfr-3.1.4.tar.xz.asc
 gpg --recv-keys 98C3739D
 gpg --verify mpfr**.asc
 sudo unzip mpfr**
