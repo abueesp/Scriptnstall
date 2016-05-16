@@ -112,7 +112,7 @@ fi
 gpg --verify **.sig **.bz2
 tar xvjf **.tar.bz2
 cd **
-sudo ./configure
+./configure
 sudo make
 sudo make install
 cd ..
@@ -130,7 +130,7 @@ fi
 gpg --verify **.sig **.bz2
 tar xvjf **.tar.bz2
 cd **
-sudo ./configure
+./configure
 sudo make
 sudo make install
 cd ..
@@ -148,7 +148,7 @@ fi
 gpg --verify **.sig **.bz2
 tar xvjf **.tar.bz2
 cd **
-sudo ./configure
+./configure
 sudo make
 sudo make install
 cd ..
@@ -167,7 +167,7 @@ fi
 gpg --verify **.sig **.bz2
 tar xvjf **.tar.bz2
 cd **
-sudo ./configure
+./configure
 sudo make
 sudo make install
 cd ..
@@ -186,7 +186,7 @@ fi
 gpg --verify **.sig **.bz2
 tar xvjf **.tar.bz2
 cd **
-sudo ./configure
+./configure
 sudo make
 sudo make install
 cd ..
@@ -205,7 +205,7 @@ fi
 gpg --verify **.sig **.bz2
 tar xvjf **.tar.bz2
 cd **
-sudo ./configure
+./configure
 sudo make
 sudo make install
 cd ..
@@ -224,7 +224,7 @@ fi
 gpg --verify **.sig **.bz2
 tar xvjf **.tar.bz2
 cd **
-sudo ./configure
+./configure
 sudo make
 sudo make install
 cd ..
