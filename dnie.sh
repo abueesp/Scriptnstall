@@ -47,8 +47,8 @@ sudo sed -e "s/enabled  = false/enabled  = true/g" /etc/fail2ban/jail.local
 sudo apt-get install firefox -y
 sudo apt-get install subversion -y
 
-##GPG
-sudo apt-get install libgtk2.0-dev
+##GNUPG
+sudo apt-get install libgtk2.0-dev -y
 mkdir gpg
 cd gpg
 sudo wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.22.tar.bz2
