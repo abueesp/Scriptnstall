@@ -93,7 +93,7 @@ fi
 gpg --verify **.sig **.bz2
 tar xvjf **.tar.bz2
 cd **
-sudo ./configure
+./configure
 sudo make
 sudo make install
 cd ..
@@ -112,7 +112,7 @@ fi
 gpg --verify **.sig **.bz2
 tar xvjf **.tar.bz2
 cd **
-sudo ./configure
+./configure
 sudo make
 sudo make install
 cd ..
@@ -132,7 +132,7 @@ fi
 gpg --verify **.sig **.bz2
 tar xvjf **.tar.bz2
 cd **
-sudo ./configure
+./configure
 sudo make
 sudo make install
 cd ..
@@ -151,7 +151,7 @@ fi
 gpg --verify **.sig **.bz2
 tar xvjf **.tar.bz2
 cd **
-sudo ./configure
+./configure
 sudo make
 sudo make install
 cd ..
@@ -170,7 +170,7 @@ fi
 gpg --verify **.sig **.bz2
 tar xvjf **.tar.bz2
 cd **
-sudo ./configure
+./configure
 sudo make
 sudo make install
 cd ..
@@ -189,7 +189,7 @@ fi
 gpg --verify **.sig **.bz2
 tar xvjf **.tar.bz2
 cd **
-sudo ./configure
+./configure
 sudo make
 sudo make install
 cd ..
@@ -208,7 +208,7 @@ fi
 gpg --verify **.sig **.bz2
 tar xvjf **.tar.bz2
 cd **
-sudo ./configure
+./configure
 sudo make
 sudo make install
 cd ..
@@ -232,7 +232,7 @@ cd emacs-"$version"
 ./configure \
     --with-xft \
     --with-x-toolkit=lucid
-make
+sudo make
 sudo rm -r /usr/local/stow
 sudo make install prefix=/usr/local/stow/emacs-"$version" && cd /usr/local/stow
 sudo rm /usr/local/share/info/dir
@@ -299,11 +299,11 @@ cd R-**
 sudo mkdir prce
 cd prce
 sudo wget  ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.38.tar.gz
-tar xzvf pcre-8.38.tar.gz
+sudo tar xzvf pcre-8.38.tar.gz
 sudo rm pcre**.tar.gz
- ./configure --prefix=$HOME/R-**
- make -j3
- make install
+./configure --prefix=$HOME/R-**
+sudo make -j3
+sudo make install
 cd ..
 ./configure --prefix=$HOME/R-** '--with-cairo' \
  '--with-jpeglib' '--with-readline' '--with-tcltk' \
@@ -327,7 +327,7 @@ sudo unzip mpfr**
 sudo rm -r -f mpfr**.zip
 sudo rm -r -f mpfr**.asc
 cd mpfr**
-sudo ./configure
+./configure
 sudo make
 sudo make install
 
@@ -345,6 +345,19 @@ install.packages("gmp")
 
 Install those packages in R. To exit type quit()' 
 sudo R
+
+##Web3js library
+cd /usr/local
+sudo wget --no-check-certificate https://nodejs.org/dist/v6.1.0/node-v6.1.0-linux-x64.tar.xz
+sudo tar --strip-components 1 -xzf /usr/save/node-v4.2.1-linux-x64.tar.gz
+cd
+sudo npm install npm -g
+sudo npm install web3
+sudo meteor add ethereum:web3
+
+##MongoDB
+sudo npm install mongodb
+
 ##Frameworks
 sudo apt-get install npm
 sudo npm -g install embark-framework
@@ -404,10 +417,3 @@ cd ethaddress.org
 gpg --verify ryep**.asc
 cd ..
 echo "alias coldstorage = 'cd /home/$USER/ethaddress.org && firefox -new-tab -url index.html'"
-
-##Web3js library
-sudo apt-get install nodejs -y
-sudo apt-get install npm -y 
-sudo apt-get install nodejs-legacy -y 
-sudo npm install web3
-sudo meteor add ethereum:web3
