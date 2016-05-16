@@ -316,7 +316,6 @@ bash <(sed -n '5,$W p' $filon)
 }
 
 #Aliases
-alias keepass="mono /home/$USER/KeePass/KeePass.exe"
 alias process="sudo ps ax | grep"
 alias superkill="sudo kill -9"
 alias appmon="sudo lsof -i -n -P | grep"
@@ -343,6 +342,8 @@ alias mvm='mv -i -u'
 alias rmr='sudo rm -irv -rf'
 alias delete=rmr
 alias remove=rmr
+alias keepasss="sudo mono /home/$USER/KeePass/KeePass.exe
+alias keepass="mono /home/$USER/KeePass/KeePass.exe"
 alias df='df -h'
 alias aptup='sudo apt-get update && sudo apt-get upgrade && sudo apt-get clean'
 alias mkdirr='mkdir -p -v'
