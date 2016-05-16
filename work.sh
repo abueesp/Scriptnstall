@@ -244,6 +244,7 @@ sudo stow emacs-"$version"
 sudo git clone http://github.com/syl20bnr/spacemacs ~/.emacs.d
 ##plugins
 cd ~/.emacs.d
+sudo rm solidity-mode.el
 wget http://github.com/ethereum/emacs-solidity/blob/master/solidity-mode.el ##solidity
 (add-to-list load-path "~/.emacs.d/") 
 (load "myplugin.el")
@@ -258,24 +259,24 @@ git config --global credential.helper cache
 git config --global credential.helper 'cache --timeout=3600'
 # Set the cache to timeout after 1 hour (setting is in seconds)
 while true; do
-    read -p "Please set your username: " 1 $1
-    git config --global user.name $1
+    read -p "Please set your username: " username $username
+    git config --global user.name $username
     break
 done
 while true; do
-    read -p "Please set your email: " 2 $2
-    git config --global user.email $2
+    read -p "Please set your email: " mail $mail
+    git config --global user.email $mail
     break
 done
 
 while true; do
-    read -p "Please set your core editor: " 3 $3
-    git config --global core.editor $1
+    read -p "Please set your core editor: " editor $editor
+    git config --global core.editor $editor
     break
 done
 while true; do
-    read -p "Please set your diff app: " 4 $4
-    git config --global merge.tool $4
+    read -p "Please set your diff app: " diff $diff
+    git config --global merge.tool $diff
     break
 done
 git config --list
