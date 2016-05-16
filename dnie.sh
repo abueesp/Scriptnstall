@@ -247,7 +247,7 @@ sudo wget http://www.abogacia.es/repositorio/acadescarga/SCR_3310_Linux.zip
 #Old drivers
 #wget http://www.abogacia.es/wp-content/uploads/2012/09/scmccid_linux_32bit_driver_V5.0.21.tar.gz
 #tar -xzvf scmccid**
-sudo wget -qO- -O tmp.zip http://www.abogacia.es/repositorio/acadescarga/SCR_3310_Linux.zip && sudo unzip tmp.zip && sudo rm tmp.zip
+sudo wget -qO- -O tmp.zip http://www.abogacia.es/repositorio/acadescarga/SCR_3310_Linux.zip && sudo unzip SCR**.zip && sudo rm SCR**.zip
 cd scmccid**
 sudo  ./install
 cd ..
@@ -256,7 +256,7 @@ echo "write 'sudo pcsc_scan' to check usb reader"
 
 echo descargando MiniLector ACA EU
 sudo apt-get install libccid libpcsclite1 pcscd pcsc-tools pcsc-lite -y
-sudo wget -qO- -O tmp.zip https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-4902898/Kit_Bit4id_Linux_1.2.16.1.zip && sudo unzip tmp.zip && sudo rm tmp.zip
+sudo wget -qO- -O tmp.zip https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-4902898/Kit_Bit4id_Linux_1.2.16.1.zip && sudo unzip Kit**.zip && sudo rm Kit**.zip
 sudo rm 32
 cd 64
 cd pkcs11
@@ -265,38 +265,33 @@ sudo ldconfig
 cd ..
 cd ..
 sudo rm 64
-sudo wget -qO- -O tmp.zip http://www.abogacia.es/wp-content/uploads/2012/09/ACR38_PKG_Lnx_1.0.4_P.zip && sudo unzip tmp.zip && sudo rm tmp.zip
+sudo wget -qO- -O tmp.zip http://www.abogacia.es/wp-content/uploads/2012/09/ACR38_PKG_Lnx_1.0.4_P.zip && sudo unzip ACR**.zip && sudo rm ACR**.zip
 sudo dpkg -i /ACR38_PKG_Lnx_104_P/acsccid_linux_bin-1.0.4/ubuntu/quantal/libacsccid1_1.0.4-1_amd64.deb
 sudo rm ACR38**
 sudo /etc/init.d/pcscd restart
 sudo lsusb
-sudo wget -qO- -O tmp.zip https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-4902917/safesign_3.0.zip && sudo unzip tmp.zip && sudo rm tmp.zip
+sudo wget -qO- -O tmp.zip https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-4902917/safesign_3.0.zip && sudo unzip safesign.zip && sudo rm safesign.zip
 sudo dpkg -i safesign_3.0.deb
 sudo rm safesign_3.0.deb
 echo "write 'sudo pcsc_scan' to check usb reader"
 
 echo descargando todos los certificados ACA
 firefox http://www.abogacia.es/repositorio/acadescarga/ACA_certs_todos.zip
-mv Downloads/ACA_certs_todos.zip /home/$USER/
-unzip **todos.zip && rm **todos.zip
+sudo mv Downloads/**todos.zip /home/$USER/
+sudo unzip **todos.zip && rm **todos.zip
 sudo cp **.crt /usr/share/ca-certificates/
 sudo cp -rvf **.crt /usr/share/ca-certificates/mozilla/
 sudo rm **.crt
 sudo dpkg-reconfigure ca-certificates
 sudo cp /home/$USER/.mozilla/firefox/**.default/cert8.db /etc/firefox-3.0/profile
 sudo update-ca-certificates
-wget --no-check-certificate https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-28008980/CPS_ACA_014.0.pdf
-wget https://administracionelectronica.gob.es/ctt/resources/Soluciones/201/Area%20descargas/TSA--Firma-Guia-de-Uso-del-Sello-de-Tiempo-y-Marca-de-Tiempo.pdf
-wget https://administracionelectronica.gob.es/ctt/resources/Soluciones/201/descargas/TSA--Firma-Servicios.pdf
-wget https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-3343898/Manual%20-BURO%20MAIL-V_4_1.pdf
-wget https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-3348303/Tarifas%20Mi%20cuenta_2.pdf
-wget https://administracionelectronica.gob.es/ctt/resources/Soluciones/190/Area%20descargas/TSA--Firma-Guia-de-Uso-del-Sello-de-Tiempo-y-Marca-de-Tiempo.pdf
-wget https://documentacion.redab ogacia.org/docushare/dsweb/Get/Document-4448750/Manual de Usuario LexnetAbogado v2..pdf
-echo descargando Reunete
-wget https://login-reunete.redsara.es//comun/download/SpontaniaUpdater_1.0.1.11.dmg
-sudo dpkg -i SpontaniaUpdater**
-rm SpontaniaUpdater**
-
+sudo wget --no-check-certificate https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-28008980/CPS_ACA_014.0.pdf
+sudo wget https://administracionelectronica.gob.es/ctt/resources/Soluciones/201/Area%20descargas/TSA--Firma-Guia-de-Uso-del-Sello-de-Tiempo-y-Marca-de-Tiempo.pdf
+sudo wget https://administracionelectronica.gob.es/ctt/resources/Soluciones/201/descargas/TSA--Firma-Servicios.pdf
+sudo wget https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-3343898/Manual%20-BURO%20MAIL-V_4_1.pdf
+sudo wget https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-3348303/Tarifas%20Mi%20cuenta_2.pdf
+sudo wget https://administracionelectronica.gob.es/ctt/resources/Soluciones/190/Area%20descargas/TSA--Firma-Guia-de-Uso-del-Sello-de-Tiempo-y-Marca-de-Tiempo.pdf
+sudo wget https://documentacion.redab ogacia.org/docushare/dsweb/Get/Document-4448750/Manual de Usuario LexnetAbogado v2..pdf
 
 ##bash
 echo "alias gpgcard='gpg --card-status'" >> sudo /etc/bash.bashrc
