@@ -264,18 +264,18 @@ sudo lsusb
 sudo wget http://www.abogacia.es/repositorio/acadescarga/SCR_3310_Linux.zip
 #Old drivers
 #wget http://www.abogacia.es/wp-content/uploads/2012/09/scmccid_linux_32bit_driver_V5.0.21.tar.gz
-#tar -xzvf scmccid**
+sudo tar -xzvf scmccid**
 sudo wget -qO- -O tmp.zip http://www.abogacia.es/repositorio/acadescarga/SCR_3310_Linux.zip && sudo unzip SCR**.zip && sudo rm SCR**.zip
 cd scmccid**
 sudo  ./install
 cd ..
-sudo rm scmccid**
+sudo rm -r scmccid**
 echo "write 'sudo pcsc_scan' to check usb reader"
 
 echo descargando MiniLector ACA EU
 sudo apt-get install libccid libpcsclite1 pcscd pcsc-tools pcsc-lite -y
 sudo wget -qO- -O tmp.zip https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-4902898/Kit_Bit4id_Linux_1.2.16.1.zip && sudo unzip Kit**.zip && sudo rm Kit**.zip
-sudo rm 32
+sudo rm -r 32
 cd 64
 cd pkcs11
 sudo cp * /usr/lib
