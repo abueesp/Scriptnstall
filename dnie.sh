@@ -287,7 +287,9 @@ sudo ldconfig
 cd ..
 cd ..
 sudo rm -r 64
-sudo wget -qO- -O tmp.zip http://www.abogacia.es/wp-content/uploads/2012/09/ACR38_PKG_Lnx_1.0.4_P.zip && sudo unzip ACR**.zip && sudo rm ACR**.zip
+sudo wget --no-check-certificate http://www.abogacia.es/wp-content/uploads/2012/09/ACR38_PKG_Lnx_1.0.4_P.zip
+sudo unzip ACR**.zip 
+sudo rm ACR**.zip
 sudo dpkg -i /ACR38_PKG_Lnx_104_P/acsccid_linux_bin-1.0.4/ubuntu/quantal/libacsccid1_1.0.4-1_amd64.deb
 sudo rm ACR38**
 sudo /etc/init.d/pcscd restart
