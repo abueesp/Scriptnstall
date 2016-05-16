@@ -221,14 +221,11 @@ sudo rm -r gpg
 sudo rm -r /usr/local/stow
 set -e
 readonly version="24.5"
-
 # install dependencies
 sudo apt-get install -y stow build-essential libx11-dev xaw3dg-dev libjpeg-dev libpng12-dev libgif-dev libtiff5-dev libncurses5-dev libxft-dev librsvg2-dev libmagickcore-dev libmagick++-dev libxml2-dev libgpm-dev libghc-gconf-dev libotf-dev libm17n-dev  libgnutls-dev -y
-
 # download source package
-wget http://ftp.gnu.org/gnu/emacs/emacs-"$version".tar.xz
-tar xvf emacs-"$version".tar.xz
-
+sudo wget http://ftp.gnu.org/gnu/emacs/emacs-"$version".tar.xz
+sudo tar xvf emacs-"$version".tar.xz
 # build and install
 sudo mkdir -p /usr/local/stow
 cd emacs-"$version"
