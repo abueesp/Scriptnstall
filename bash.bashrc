@@ -3,6 +3,8 @@
 # To enable the settings / commands in this file for login shells as well,
 # this file has to be sourced in /etc/profile.
 
+shopt -s cdspell
+
 color_def="~/.colorrc"
  
 if [[ -f $color_def ]]; then
