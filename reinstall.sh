@@ -96,6 +96,7 @@ sudo apt-get install pandoc -y
 sudo apt-get install duplicity deja-dup -y
 
 ##GPG
+sudo apt-get install libgtk2.0-dev
 mkdir gpg
 cd gpg
 wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.22.tar.bz2
@@ -110,12 +111,13 @@ else
 fi
 gpg --verify **.sig **.bz2
 tar xvjf **.tar.bz2
-cd **
+cd libgp**
 ./configure
 sudo make
 sudo make install
 cd ..
-sudo rm **.bz2 && sudo rm **.sig
+sudo rm **.bz2 && sudo rm **.sig && sudo rm -r libgp**
+
 wget https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.7.0.tar.bz2
 wget https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.7.0.tar.bz2.sig
 sha1 = $(sha1sum **tar.bz2)
@@ -128,12 +130,13 @@ else
 fi
 gpg --verify **.sig **.bz2
 tar xvjf **.tar.bz2
-cd **
+cd libgcr**
 ./configure
 sudo make
 sudo make install
 cd ..
-sudo rm **.bz2 && sudo rm **.sig
+sudo rm **.bz2 && sudo rm **.sig && sudo rm -r libgcr**
+
 wget https://www.gnupg.org/ftp/gcrypt/libksba/libksba-1.3.4.tar.bz2
 wget https://www.gnupg.org/ftp/gcrypt/libksba/libksba-1.3.4.tar.bz2.sig
 sha1 = $(sha1sum **tar.bz2)
@@ -146,12 +149,12 @@ else
 fi
 gpg --verify **.sig **.bz2
 tar xvjf **.tar.bz2
-cd **
+cd libks**
 ./configure
 sudo make
 sudo make install
 cd ..
-sudo rm **.bz2 && sudo rm **.sig
+sudo rm **.bz2 && sudo rm **.sig && sudo rm -r libks**
 
 wget https://www.gnupg.org/ftp/gcrypt/libassuan/libassuan-2.4.2.tar.bz2
 wget https://www.gnupg.org/ftp/gcrypt/libassuan/libassuan-2.4.2.tar.bz2.sig
@@ -165,12 +168,12 @@ else
 fi
 gpg --verify **.sig **.bz2
 tar xvjf **.tar.bz2
-cd **
+cd libas**
 ./configure
 sudo make
 sudo make install
 cd ..
-sudo rm **.bz2 && sudo rm **.sig
+sudo rm **.bz2 && sudo rm **.sig && sudo rm -r libas**
 
 wget https://www.gnupg.org/ftp/gcrypt/npth/npth-1.2.tar.bz2
 wget https://www.gnupg.org/ftp/gcrypt/npth/npth-1.2.tar.bz2.sig
@@ -184,12 +187,12 @@ else
 fi
 gpg --verify **.sig **.bz2
 tar xvjf **.tar.bz2
-cd **
+cd npth**
 ./configure
 sudo make
 sudo make install
 cd ..
-sudo rm **.bz2 && sudo rm **.sig
+sudo rm **.bz2 && sudo rm **.sig && sudo npth**
 
 wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.12.tar.bz2
 wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.12.tar.bz2.sig
@@ -203,12 +206,31 @@ else
 fi
 gpg --verify **.sig **.bz2
 tar xvjf **.tar.bz2
-cd **
+cd gnupg**
 ./configure
 sudo make
 sudo make install
 cd ..
-sudo rm **.bz2 && sudo rm **.sig
+sudo rm **.bz2 && sudo rm **.sig && sudo rm -r gnupg**
+
+wget https://www.gnupg.org/ftp/gcrypt/gpgme/gpgme-1.6.0.tar.bz2
+wget https://www.gnupg.org/ftp/gcrypt/gpgme/gpgme-1.6.0.tar.bz2.sig
+sha1 = $(sha1sum **tar.bz2)
+if [ $sha1 "f840b737faafded451a084ae143285ad68bbfb01" ]
+then
+    echo "PACKAGE VERIFIED"
+else
+    echo "PACKAGE NOT VERIFIED"
+    break
+fi
+gpg --verify **.sig **.bz2
+tar xvjf **.tar.bz2
+cd gpgm**
+./configure
+sudo make
+sudo make install
+cd ..
+sudo rm **.bz2 && sudo rm **.sig && sudo rm -r gpgm**
 
 wget https://www.gnupg.org/ftp/gcrypt/gpa/gpa-0.9.9.tar.bz2
 wget https://www.gnupg.org/ftp/gcrypt/gpa/gpa-0.9.9.tar.bz2.sig
@@ -222,16 +244,15 @@ else
 fi
 gpg --verify **.sig **.bz2
 tar xvjf **.tar.bz2
-cd **
+cd gpa**
 ./configure
 sudo make
 sudo make install
 cd ..
-sudo rm **.bz2 && sudo rm **.sig
+sudo rm **.bz2 && sudo rm **.sig && sudo rm -r gpa**
 
 cd ..
 sudo rm -r gpg
-
 
 ##Fail2ban
 sudo apt-get install fail2ban -y
