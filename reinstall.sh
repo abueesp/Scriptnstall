@@ -96,7 +96,7 @@ sudo apt-get install pandoc -y
 sudo apt-get install duplicity deja-dup -y
 
 ##GPG
-
+sudo apt-get purge gpg
 mkdir gpg
 cd gpg
 wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.22.tar.bz2
@@ -117,7 +117,6 @@ sudo make
 sudo make install
 cd ..
 sudo rm **.bz2 && sudo rm **.sig
-
 wget https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.7.0.tar.bz2
 wget https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.7.0.tar.bz2.sig
 sha1 = $(sha1sum **tar.bz2)
@@ -136,8 +135,6 @@ sudo make
 sudo make install
 cd ..
 sudo rm **.bz2 && sudo rm **.sig
-
-
 wget https://www.gnupg.org/ftp/gcrypt/libksba/libksba-1.3.4.tar.bz2
 wget https://www.gnupg.org/ftp/gcrypt/libksba/libksba-1.3.4.tar.bz2.sig
 sha1 = $(sha1sum **tar.bz2)
