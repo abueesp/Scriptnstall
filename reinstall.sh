@@ -23,17 +23,16 @@ sudo usermod -aG docker $USER
 sudo apt-get purge apparmor -y
 sudo rm -rf /etc/apparmor.d/
 sudo rm -rf /etc/apparmor
+
 #KeePass (see KeeFox in Browsers)
 sudo apt-get install mono-complete mono-dmcs libmono-system-management4.0-cil libmono-system-xml-linq4.0-cil libmono-system-data-datasetextensions4.0-cil libmono-system-runtime-serialization4.0-cil mono-mcs -y
-sudo apt-get install keepass2
-cd /usr/lib/keepass2
+mkdir KeePass
+cd KeePass
 sudo wget http://downloads.sourceforge.net/project/keepass/KeePass%202.x/2.33/KeePass-2.33.zip
 sudo unzip KeePass**.zip
-cd
+sudo rm **.zip
 sudo add-apt-repository ppa:dlech/keepass2-plugins
 sudo apt-get update 
-sudo apt-get install keepass2-plugin-keeagent keepass2-plugin-application-indicator keepass2-plugin-tray-icon keepass2-plugin-launcher keepass2-plugin-keeagent xul-ext-keefox xul-ext-keebird keepass2-plugin-keepasshttp -y
-cd /usr/lib/keepass2
 sudo wget https://raw.github.com/pfn/keepasshttp/master/KeePassHttp.plgx
 sudo chmod 644 KeePassHttp.plgx
 sudo wget https://keepass.info/extensions/v2/kpscript/KPScript-2.32.zip
@@ -56,8 +55,8 @@ sudo mono nuget.exe restore
 sudo rm nuget.exe*
 sudo xbuild /property:Configuration=ReleasePlgx KeeAgent.sln
 cd
-sudo cp bin/ReleasePlgx/KeeAgent.plgx /usr/lib/keepass2/
-sudo chmod +x /usr/lib/keepass2/
+sudo cp bin/ReleasePlgx/KeeAgent.plgx /KeePass
+sudo chmod +x /KeePass
 rm keepassrfid.plgx 
 rm -r KeeAgent
 sudo apt-get purge keepass2-plugin-rpc
