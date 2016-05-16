@@ -317,12 +317,14 @@ sudo rm **.crt
 sudo dpkg-reconfigure ca-certificates
 sudo cp /home/$USER/.mozilla/firefox/**.default/cert8.db /etc/firefox-3.0/profile
 sudo update-ca-certificates
+
 sudo wget --no-check-certificate https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-28008980/CPS_ACA_014.0.pdf
-sudo wget https://administracionelectronica.gob.es/ctt/resources/Soluciones/201/Area%20descargas/TSA--Firma-Guia-de-Uso-del-Sello-de-Tiempo-y-Marca-de-Tiempo.pdf
+sudo wget --no-check-certificate https://administracionelectronica.gob.es/ctt/resources/Soluciones/201/Area%20descargas/TSA--Firma-Guia-de-Uso-del-Sello-de-Tiempo-y-Marca-de-Tiempo.pdf
 sudo wget https://administracionelectronica.gob.es/ctt/resources/Soluciones/201/descargas/TSA--Firma-Servicios.pdf
-sudo wget https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-3343898/Manual%20-BURO%20MAIL-V_4_1.pdf
-sudo wget https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-3348303/Tarifas%20Mi%20cuenta_2.pdf
-sudo wget https://administracionelectronica.gob.es/ctt/resources/Soluciones/190/Area%20descargas/TSA--Firma-Guia-de-Uso-del-S
+sudo wget --no-check-certificate https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-3343898/Manual%20-BURO%20MAIL-V_4_1.pdf
+sudo wget --no-check-certificate https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-3348303/Tarifas%20Mi%20cuenta_2.pdf
+sudo wget --no-check-certificate https://administracionelectronica.gob.es/ctt/resources/Soluciones/190/Area%20descargas/TSA--Firma-Guia-de-Uso-del-Sello-de-Tiempo-y-Marca-de-Tiempo.pdf
+sudo wget --no-check-certificate https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-4448750/Manual%20de%20Usuario%20LexnetAbogado%20v2..pdf
 
 
 ##bash
