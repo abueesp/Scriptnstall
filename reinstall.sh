@@ -25,7 +25,7 @@ sudo rm -rf /etc/apparmor.d/
 sudo rm -rf /etc/apparmor
 #KeePass (see KeeFox in Browsers)
 sudo apt-get install mono-complete mono-dmcs libmono-system-management4.0-cil libmono-system-xml-linq4.0-cil libmono-system-data-datasetextensions4.0-cil libmono-system-runtime-serialization4.0-cil mono-mcs -y
-mkdir /usr/lib/keepass2
+sudo apt-get install keepass2
 cd /usr/lib/keepass2
 sudo wget http://downloads.sourceforge.net/project/keepass/KeePass%202.x/2.33/KeePass-2.33.zip
 sudo unzip KeePass**.zip
