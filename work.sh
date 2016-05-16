@@ -76,8 +76,8 @@ cd ..
 sudo apt-get install firefox -y
 firefox https://addons.mozilla.org/firefox/downloads/file/271802/no_more_install_delay-3.0-fx+sm+fn+tb.xpi
 
-##GPG
-sudo apt-get install libgtk2.0-dev
+##GNUPG
+sudo apt-get install libgtk2.0-dev -y
 mkdir gpg
 cd gpg
 sudo wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.22.tar.bz2
