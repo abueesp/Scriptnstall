@@ -50,6 +50,10 @@ sudo wget https://github.com/islog/keepassrfid/releases/download/1.0.0/keepassrf
 sudo wget https://raw.github.com/pfn/keepasshttp/master/KeePassHttp.plgx
 sudo git clone git://github.com/dlech/KeeAgent --recursive
 cd KeeAgent
+sudo mozroots --import --machine --sync
+sudo certmgr -ssl -m https://go.microsoft.com
+sudo certmgr -ssl -m https://nugetgallery.blob.core.windows.net
+sudo certmgr -ssl -m https://nuget.org
 sudo rm nuget.exe*
 sudo wget https://nuget.org/nuget.exe
 sudo mono nuget.exe restore
