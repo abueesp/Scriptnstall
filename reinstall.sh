@@ -42,7 +42,6 @@ sudo wget https://downloads.sourceforge.net/project/kp-googlesync/GoogleSyncPlug
 sudo unzip GoogleSync**.zip
 sudo rm GoogleSync**.zip
 sudo wget https://github.com/islog/keepassrfid/releases/download/1.0.0/keepassrfid.plgx
-sudo wget https://raw.github.com/pfn/keepasshttp/master/KeePassHttp.plgx
 sudo git clone git://github.com/dlech/KeeAgent --recursive
 cd KeeAgent
 sudo mozroots --import --machine --sync
@@ -57,9 +56,9 @@ sudo xbuild /property:Configuration=ReleasePlgx KeeAgent.sln
 cd
 sudo cp bin/ReleasePlgx/KeeAgent.plgx /usr/lib/keepass2/
 sudo chmod +x /usr/lib/keepass2/
-rm KeePassHttp.plgx
 rm keepassrfid.plgx 
 rm -r KeeAgent
+sudo apt-get purge keepass2-plugin-rpc
 #UFW
 sudo apt-get install gufw -y
 sudo ufw enable
