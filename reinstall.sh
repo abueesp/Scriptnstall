@@ -25,15 +25,15 @@ sudo rm -rf /etc/apparmor.d/
 sudo rm -rf /etc/apparmor
 #KeePass (see KeeFox in Browsers)
 sudo apt-get install mono-complete mono-dmcs libmono-system-management4.0-cil libmono-system-xml-linq4.0-cil libmono-system-data-datasetextensions4.0-cil libmono-system-runtime-serialization4.0-cil mono-mcs -y
-sudo apt-get install keepass2 -y
-cd /usr/lib/keepass2/
+mkdir /usr/lib/keepass2
+cd /usr/lib/keepass2
 sudo wget http://downloads.sourceforge.net/project/keepass/KeePass%202.x/2.33/KeePass-2.33.zip
 sudo unzip KeePass**.zip
 cd
 sudo add-apt-repository ppa:dlech/keepass2-plugins
 sudo apt-get update 
 sudo apt-get install keepass2-plugin-keeagent keepass2-plugin-application-indicator keepass2-plugin-tray-icon keepass2-plugin-launcher keepass2-plugin-keeagent -y
-cd /usr/lib/keepass2/
+cd /usr/lib/keepass2
 sudo wget https://keepass.info/extensions/v2/kpscript/KPScript-2.32.zip
 wget -r --no-parent -A 'KPScript*.zip' https://keepass.info/extensions/v2/kpscript/
 sudo unzip KPScript**.zip
@@ -41,11 +41,6 @@ sudo rm KPScript**.zip
 sudo wget https://downloads.sourceforge.net/project/kp-googlesync/GoogleSyncPlugin-2.x/GoogleSyncPlugin-2.1.2.zip
 sudo unzip GoogleSync**.zip
 sudo rm GoogleSync**.zip
-sudo wget https://bitbucket.org/schalpat/keepasstruecryptmount/downloads/KeepassTrueCryptMount_v2.3.plgx.7z
-sudo 7z x -so KeepassTrueCrypt**.7z | tar xf - -C
-sudo 7z x -so KeepassTrueCrypt**.7z | tar xf - -C
-sudo rm KeepassTrueCrypt**.7z
-sudo wget https://sourceforge.net/projects/tcad-kp2/files/TrueCrypt%20AutoDismount%20v.%201.0.0.1/TrueCryptAutoDismount.plgx
 sudo wget https://github.com/islog/keepassrfid/releases/download/1.0.0/keepassrfid.plgx
 sudo wget https://raw.github.com/pfn/keepasshttp/master/KeePassHttp.plgx
 sudo git clone git://github.com/dlech/KeeAgent --recursive
@@ -65,7 +60,6 @@ sudo chmod +x /usr/lib/keepass2/
 rm KeePassHttp.plgx
 rm keepassrfid.plgx 
 rm -r KeeAgent
-rm TrueCryptAutoDismount.plgx
 #UFW
 sudo apt-get install gufw -y
 sudo ufw enable
