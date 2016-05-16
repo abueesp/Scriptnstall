@@ -96,7 +96,6 @@ sudo apt-get install pandoc -y
 sudo apt-get install duplicity deja-dup -y
 
 ##GPG
-sudo apt-get purge gpg
 mkdir gpg
 cd gpg
 wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.22.tar.bz2
