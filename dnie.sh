@@ -288,15 +288,23 @@ cd ..
 cd ..
 sudo rm -r 64
 sudo wget --no-check-certificate http://www.abogacia.es/wp-content/uploads/2012/09/ACR38_PKG_Lnx_1.0.4_P.zip
-sudo unzip ACR**.zip 
-sudo rm ACR**.zip
-sudo dpkg -i /ACR38_PKG_Lnx_104_P/acsccid_linux_bin-1.0.4/ubuntu/quantal/libacsccid1_1.0.4-1_amd64.deb
-sudo rm ACR38**
+sudo unzip ACR**.zip
+cd ACR**
+cd acs**
+cd ubuntu
+cd quantal
+sudo dpkg -i **amd64.deb
+cd ..
+cd ..
+cd ..
+cd ..
+sudo rm -r ACR38**
 sudo /etc/init.d/pcscd restart
 sudo lsusb
-sudo wget -qO- -O tmp.zip https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-4902917/safesign_3.0.zip && sudo unzip safesign.zip && sudo rm safesign.zip
-sudo dpkg -i safesign_3.0.deb
-sudo rm safesign_3.0.deb
+sudo wget --no-check-certificate https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-4902917/safesign_3.0.zip
+sudo unzip safesign**.zip
+sudo dpkg -i safesign**.deb
+sudo rm -r safesign**
 echo "write 'sudo pcsc_scan' to check usb reader"
 
 echo descargando todos los certificados ACA
