@@ -250,7 +250,6 @@ sed -e "s/enabled  = false/enabled  = true/g" /etc/fail2ban/jail.local
 sudo apt-get install zenmap -y
 
 ##Virtualbox
-sudo apt-get build-dep virtualbox
 while true; do
     read -p "Please introduce introduce OS Ubuntu 16.04 ('xenial_amd64') Ubuntu 15.10 ('wily_amd64') or Ubuntu 14.04 ('trusty_amd64') / 14.10 Utopic/ 15.04 Vivid: " OS $OS
     sudo wget http://download.virtualbox.org/virtualbox/5.0.20/virtualbox-5.0_5.0.20-106931~Ubuntu~$OS.deb
@@ -272,7 +271,10 @@ sudo wget http://download.virtualbox.org/virtualbox/$var1/$file -O $file
 #sudo VBoxManage extpack uninstall "Oracle VM VirtualBox Extension Pack"
 sudo VBoxManage extpack install $file --replace
 sudo rm $file
-sudo adduser node vboxusers
+read -p "Introduce un usuario de vbox" user1 $user1
+sudo usermod -G vboxusers -a $user1
+read -p "Introduce otro usuario de vbox" user2 $user2
+sudo usermod -G vboxusers -a $user2
 sudo apt-get install gparted -y
 sudo apt-get install nemo -y
 sudo apt-get install apt-get install amarok -y
