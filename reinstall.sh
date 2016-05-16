@@ -32,7 +32,7 @@ sudo unzip KeePass**.zip
 cd
 sudo add-apt-repository ppa:dlech/keepass2-plugins
 sudo apt-get update 
-sudo apt-get install keepass2-plugin-keeagent keepass2-plugin-application-indicator keepass2-plugin-tray-icon keepass2-plugin-launcher keepass2-plugin-keeagent -y
+sudo apt-get install keepass2-plugin-keeagent keepass2-plugin-application-indicator keepass2-plugin-tray-icon keepass2-plugin-launcher keepass2-plugin-keeagent xul-ext-keefox xul-ext-keebird keepass2-plugin-keepasshttp -y
 cd /usr/lib/keepass2
 sudo wget https://keepass.info/extensions/v2/kpscript/KPScript-2.32.zip
 wget -r --no-parent -A 'KPScript*.zip' https://keepass.info/extensions/v2/kpscript/
