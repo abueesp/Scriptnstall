@@ -236,38 +236,6 @@ sudo rm **.bz2 && sudo rm **.sig && sudo rm -r gpa**
 cd ..
 sudo rm -r gpg
 
-##Emacs
-sudo rm -r /usr/local/stow
-set -e
-readonly version="24.5"
-# install dependencies
-sudo apt-get install -y stow build-essential libx11-dev xaw3dg-dev libjpeg-dev libpng12-dev libgif-dev libtiff5-dev libncurses5-dev libxft-dev librsvg2-dev libmagickcore-dev libmagick++-dev libxml2-dev libgpm-dev libghc-gconf-dev libotf-dev libm17n-dev  libgnutls-dev -y
-# download source package
-sudo wget http://ftp.gnu.org/gnu/emacs/emacs-"$version".tar.xz
-sudo tar xvf emacs-"$version".tar.xz
-# build and install
-sudo mkdir -p /usr/local/stow
-cd emacs-"$version"
-./configure \
-    --with-xft \
-    --with-x-toolkit=lucid
-sudo make
-sudo rm -r /usr/local/stow
-sudo make install prefix=/usr/local/stow/emacs-"$version" && cd /usr/local/stow
-sudo rm /usr/local/share/info/dir
-sudo stow emacs-"$version" 
-#spacemacs & plugins
-sudo rm -r .emacs.d
-sudo rm -r .emacs
-sudo mkdir .emacs.d
-sudo mkdir .emacs
-cd ~/.emacs.d
-sudo git clone http://github.com/syl20bnr/spacemacs 
-sudo wget https://github.com/ethereum/emacs-solidity/blob/master/solidity-mode.el ##solidity
-sudo emacs --insecure
-cd
-sudo rm -r emacs-**
-
 ##Github
 sudo apt-get install git -y 
 git config --global credential.helper cache
@@ -299,12 +267,44 @@ git config --list
 echo "Here you are an excellent Github cheatsheet https://raw.githubusercontent.com/hbons/git-cheat-sheet/master/preview.png You can also access as gitsheet"
 echo "If you get stuck, run ‘git branch -a’ and it will show you exactly what’s going on with your branches. You can see which are remotes and which are local."
 echo "Do not forget to add a newsshkey or clipboard your mysshkey or mylastsshkey (if you switchsshkey before) and paste it on Settings -> New SSH key and paste it there." 
-
+read $pause
 
 sh -c "curl -fsSL https://raw.githubusercontent.com/skwp/dotfiles/master/install.sh"
 echo "installed vimcr"
 wget https://raw.githubusercontent.com/Russell91/sshrc/master/sshrc && sudo chmod -R 600 sshrc && chmod +x sshrc && sudo mv sshrc /usr/local/bin
 echo "ssh bashcr vimcr portability installed"
+
+##Emacs
+sudo rm -r /usr/local/stow
+set -e
+readonly version="24.5"
+# install dependencies
+sudo apt-get install -y stow build-essential libx11-dev xaw3dg-dev libjpeg-dev libpng12-dev libgif-dev libtiff5-dev libncurses5-dev libxft-dev librsvg2-dev libmagickcore-dev libmagick++-dev libxml2-dev libgpm-dev libghc-gconf-dev libotf-dev libm17n-dev  libgnutls-dev -y
+# download source package
+sudo wget http://ftp.gnu.org/gnu/emacs/emacs-"$version".tar.xz
+sudo tar xvf emacs-"$version".tar.xz
+# build and install
+sudo mkdir -p /usr/local/stow
+cd emacs-"$version"
+./configure \
+    --with-xft \
+    --with-x-toolkit=lucid
+sudo make
+sudo rm -r /usr/local/stow
+sudo make install prefix=/usr/local/stow/emacs-"$version" && cd /usr/local/stow
+sudo rm /usr/local/share/info/dir
+sudo stow emacs-"$version" 
+#spacemacs & plugins
+sudo rm -r .emacs.d
+sudo rm -r .emacs
+sudo mkdir .emacs.d
+sudo mkdir .emacs
+cd ~/.emacs.d
+sudo git clone http://github.com/syl20bnr/spacemacs 
+sudo wget https://github.com/ethereum/emacs-solidity/blob/master/solidity-mode.el ##solidity
+sudo emacs --insecure
+cd
+sudo rm -r emacs-**
 
 
 #Ethr
