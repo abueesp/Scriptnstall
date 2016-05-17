@@ -1,9 +1,9 @@
+
+
 # System-wide .bashrc file for interactive bash(1) shells.
 . /usr/share/autojump/autojump.sh #autojump
 # To enable the settings / commands in this file for login shells as well,
 # this file has to be sourced in /etc/profile.
-
-shopt -s cdspell
 
 color_def="~/.colorrc"
  
@@ -317,11 +317,20 @@ read filon
 bash <(sed -n '5,$W p' $filon)
 }
 
+mysqlconnect{
+echo "introduce usuario"
+$sqlu
+echo "introduce IP del host o pulsa ENTER si es localhost"
+$sqlh
+firefox -new-tab https://www.thegeekstuff.com/2010/01/awk-introduction-tutorial-7-awk-print-examples/ && mysql -u $sqlu -p -h $sqlh
+}
+
 #Aliases
+alias calc="let calc"
 alias process="sudo ps ax | grep"
 alias superkill="sudo kill -9"
 alias appmon="sudo lsof -i -n -P | grep"
-alias systemmon="sudo htop; sudo w -i"
+alias systemmon="sudo df -h; sudo service --status-all; sudo htop; sudo w -i; sudo lshw; sudo dmidecode; sudo ps -efH | more"
 alias netmon="sudo iptables -S; sudo w -i; sudo tcpdump -i wlan0; sudo iotop; sudo ps; netstat -avnp -ef; echo 'En router ir a Básica -> Estado -> Listado de equipos'"
 alias portmon="nc -l -6 -4 -u"
 alias nmaproute="sudo nmap -v -A --reason -O -sV -PO -sU -sX -f -PN --spoof-mac 0"
@@ -366,6 +375,7 @@ alias gethupgrade="geth upgradedb --fast console"
 
 
 ### Some cheatsheets###
+alias shsheet="http://www.tldp.org/LDP/abs/html/index.html" 
 alias gethsheet="https://github.com/ethereum/go-ethereum/wiki/Command-Line-Options"
 alias gpgsheet="firefox http://irtfweb.ifa.hawaii.edu/~lockhart/gpg/gpg-cs.html"
 alias bitcoinsheet="firefox https://en.bitcoin.it/wiki/Script#Words"
