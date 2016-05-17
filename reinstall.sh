@@ -439,6 +439,7 @@ wget https://addons.mozilla.org/firefox/downloads/latest/415846/addon-415846-lat
 wget https://addons.mozilla.org/firefox/downloads/latest/387429/addon-387429-latest.xpi 
 wget https://addons.mozilla.org/firefox/downloads/latest/292320/addon-292320-latest.xpi
 wget https://addons.mozilla.org/firefox/downloads/latest/695840/addon-695840-latest.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/3456/addon-3456-latest.xpi
 sudo git clone https://github.com/cryptocat/cryptocat-legacy
 cd cryptocat-legacy
 sudo make firefox
