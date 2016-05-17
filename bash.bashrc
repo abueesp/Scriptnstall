@@ -338,12 +338,31 @@ sed -i '1i-set' $file
 sed -b "\$a-set" $file
 }
 
+music(){
+read -p "(1) Musicovery (2) Soundcloud (3) EveryNoise (4) Freemp3 (5) Spotify (6) Discogs " music $music
+if [ $music = "1" ]; then
+  firefox -new-tab https://musicovery.com
+elif [ $music = "2" ]; then
+  firefox -new-tab https://soundcloud.com/realdoesntmeanroyal
+elif [ $music = "3" ]; then
+  firefox -new-tab https://everynoise.com
+elif [ $music = "4" ]; then
+  firefox -new-tab https://my-free-mp3.com
+elif [ $music = "5" ]; then
+  firefox -new-tab https://play.spotify.com/
+elif [ $music = "6" ]; then
+  firefox -new-tab https://www.discogs.com/
+else
+  echo "¡ music & naranjas !"
+fi
+}
+
+
 ##Monitoring
 appmon(){
 read -p "introduce el nombre del proceso" $app
 sudo lsof -i -n -P | grep $app && sudo ps ax
 }
-
 alias usermon="sudo users; sudo w; sudo who -a; sudo ipcs -m -c"
 alias systemmon="sudo df -h; ipcs -u; sudo ipcs -m -c; sudo service --status-all; sudo htop; sudo w -i; sudo lshw; sudo dmidecode; sudo ps -efH | more; sudo lsof | wc -l; sudo lsof"
 alias netmon="sudo vnstat; sudo netstat -ie; sudo netstat -s; sudo sudo netstat -pt; sudo iptables -S; sudo w -i; sudo ipcs -u; sudo tcpdump -i wlan0; sudo iotop; sudo ps; sudo netstat -r; echo 'En router ir a Básica -> Estado -> Listado de equipos'"
@@ -359,7 +378,7 @@ alias nmapp="sudo nmap -v -A --reason -O -sV -PO -sU -sX -f -PN --spoof-mac 0"
 alias nmap100="sudo nmap -F -v -A --reason -O -sV -PO -sU -sX -f -PN --spoof-mac 0"
 alias lss="ls -ld && sudo du -sh && ls -i1 -latr -lSr -FGAhp --color=auto -t -a -al"  # lSr sort by size ltr sort by date
 alias lk='ls -lSr --color=auto -FGAhp'        # lSr sort by size ltr sort by date
-alias ls -r='ls -ld && sudo du -sh && ls -i1 -latr -lSr -FGAhp --color=auto -t -a -al -lR'        # recursive ls
+alias lsall='ls -ld && sudo du -sh && ls -i1 -latr -lSr -FGAhp --color=auto -t -a -al -lR'        # recursive ls
 alias verifykey="gpg --keyid-format long --import"
 alias verifyfile="gpg --keyid-format long --verify"
 alias secfirefox="firejail --dns=8.8.8.8 --dns=8.8.4.4 firefox"
