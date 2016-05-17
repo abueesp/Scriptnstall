@@ -33,6 +33,45 @@ sudo service avahi-daemon stop ##This is for when DHCP does not work. Otherwise 
 sudo cupsctl -E --no-remote-any
 sudo service cups-browsed stop
 
+##psad
+service psad stop
+sudo apt-get -y install libcarp-clan-perl libdate-calc-perl libiptables-chainmgr-perl libiptables-parse-perl libnetwork-ipv4addr-perl libunix-syslog-perl libbit-vector-perl gcc wget -y
+wget https://cipherdyne.org/psad/download/psad-2.4.3.tar.gz
+wget https://cipherdyne.org/psad/download/psad-2.4.3.tar.gz.asc
+gpg --verify psad**.asc
+md5 = $(md5sum **tar.gz)
+if [ $md5 "5aa0d22f0bea3ba32e3b9730f78157cf" ]
+then
+    echo "PACKAGE VERIFIED"
+else
+    echo "PACKAGE NOT VERIFIED"
+    break
+fi
+tar xvf psad**.gz
+cd psad**
+sudo ./install.pl
+sudo rm -r psad**
+service psad start
+
+#fwsnort
+wget http://cipherdyne.org/fwsnort/download/fwsnort-1.6.5.tar.gz
+wget https://cipherdyne.org/fwsnort/download/fwsnort-1.6.5.tar.gz.asc
+gpg --verify fwsnort**.asc
+md5 = $(md5sum **tar.gz)
+if [ $md5 "76552f820e125e97e4dfdd1ce6e3ead6" ]
+then
+    echo "PACKAGE VERIFIED"
+else
+    echo "PACKAGE NOT VERIFIED"
+    break
+fi
+tar xvf fwsnort**.gz
+cd fwsnort**
+./configure
+sudo make
+sudo make install
+sudo rm -r fwsnort**
+
 #Some tools
 sudo apt-get install duplicity deja-dup -y
 sudo apt-get install iotop htop -y
