@@ -52,6 +52,7 @@ sudo apt-get install autojump -y
 sudo apt-get install nmap -y
 sudo apt-get install tmux -y
 sudo apt-get install htop -y
+sudo apt-get install vnstat -y
 sudo apt-get install fail2ban -y
 sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 echo "Please write down an email to send you notifications when someone is attacking your ports: "
