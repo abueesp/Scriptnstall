@@ -341,8 +341,9 @@ sed -b "\$a-set" $file
 ##Monitoring
 appmon(){
 read -p "introduce el nombre del proceso" $app
-sudo lsof -i -n -P | grep $app && sudo ps ax | grep $app && 
+sudo lsof -i -n -P | grep $app && sudo ps ax
 }
+
 alias usermon="sudo users; sudo w; sudo who -a; sudo ipcs -m -c"
 alias systemmon="sudo df -h; ipcs -u; sudo ipcs -m -c; sudo service --status-all; sudo htop; sudo w -i; sudo lshw; sudo dmidecode; sudo ps -efH | more; sudo lsof | wc -l; sudo lsof"
 alias netmon="sudo vnstat; sudo netstat -ie; sudo netstat -s; sudo sudo netstat -pt; sudo iptables -S; sudo w -i; sudo ipcs -u; sudo tcpdump -i wlan0; sudo iotop; sudo ps; sudo netstat -r; echo 'En router ir a Básica -> Estado -> Listado de equipos'"
