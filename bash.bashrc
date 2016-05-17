@@ -1,5 +1,3 @@
-
-
 # System-wide .bashrc file for interactive bash(1) shells.
 . /usr/share/autojump/autojump.sh #autojump
 # To enable the settings / commands in this file for login shells as well,
@@ -317,7 +315,7 @@ read filon
 bash <(sed -n '5,$W p' $filon)
 }
 
-mysqlconnect{
+mysqlconnect(){
 echo "introduce usuario"
 $sqlu
 echo "introduce IP del host o pulsa ENTER si es localhost"
@@ -325,17 +323,30 @@ $sqlh
 firefox -new-tab https://www.thegeekstuff.com/2010/01/awk-introduction-tutorial-7-awk-print-examples/ && mysql -u $sqlu -p -h $sqlh
 }
 
+debugg(){
+read -p "insert the name of the file \n" $file
+sed -i '1i-set' $file
+sed -b "\$a-set" $file
+}
+
+appmon(){
+read -p "introduce el nombre del proceso" $app
+sudo lsof -i -n -P | grep $app
+sudo ps ax | grep $app
+}
+
 #Aliases
+alias whoneedssudo="sudo find . -xdev -user root -perm -u+w && echo 'maybe you wanted to add -type and -exec to specify f or d or to execute a command such as chmod, lss or cpc or -name or -size to specify the name or +100 mb'"
 alias calc="let calc"
-alias process="sudo ps ax | grep"
-alias superkill="sudo kill -9"
-alias appmon="sudo lsof -i -n -P | grep"
-alias systemmon="sudo df -h; sudo service --status-all; sudo htop; sudo w -i; sudo lshw; sudo dmidecode; sudo ps -efH | more"
+alias skill="sudo kill -9"
+alias wline="sudo grep -n"
+alias usermon="sudo users; sudo w; sudo who -a"
+alias systemmon="sudo df -h; sudo service --status-all; sudo htop; sudo w -i; sudo lshw; sudo dmidecode; sudo ps -efH | more; sudo lsof | wc -l; sudo lsof"
 alias netmon="sudo iptables -S; sudo w -i; sudo tcpdump -i wlan0; sudo iotop; sudo ps; netstat -avnp -ef; echo 'En router ir a Básica -> Estado -> Listado de equipos'"
 alias portmon="nc -l -6 -4 -u"
 alias nmaproute="sudo nmap -v -A --reason -O -sV -PO -sU -sX -f -PN --spoof-mac 0"
 alias nmap100="sudo nmap -F -v -A --reason -O -sV -PO -sU -sX -f -PN --spoof-mac 0"
-alias lss="ls -ld && ls -latr -FGAhp --color=auto -t -a -al"
+alias lss="ls -ld && sudo du -sh && ls -i1 -latr -FGAhp --color=auto -t -a -al"
 alias verifykey="gpg --keyid-format long --import"
 alias verifyfile="gpg --keyid-format long --verify"
 alias secfirefox="firejail --dns=8.8.8.8 --dns=8.8.4.4 firefox"
@@ -372,7 +383,6 @@ alias gethlocal="geth --rpc --rpccorsdomain localhost --etherbase '0x9B366b5493a
 alias gethmine='geth --etherbase '0x9B366b5493a545f070E4a0F16c81182670fEE6' --mine --minergpus --autodag --minerthreads "8" console'
 alias gethtest="geth --testnet console"
 alias gethupgrade="geth upgradedb --fast console"
-
 
 ### Some cheatsheets###
 alias shsheet="http://www.tldp.org/LDP/abs/html/index.html" 
