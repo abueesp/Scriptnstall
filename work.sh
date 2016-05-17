@@ -298,8 +298,7 @@ sudo stow emacs-"$version"
 sudo rm -r .emacs**
 sudo mkdir .emacs.d
 sudo mkdir .emacs
-cd ~/.emacs.d
-sudo git clone http://github.com/syl20bnr/spacemacs 
+sudo git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 sudo wget https://github.com/ethereum/emacs-solidity/blob/master/solidity-mode.el ##solidity
 sudo emacs --insecure
 cd
