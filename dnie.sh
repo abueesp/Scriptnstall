@@ -49,7 +49,7 @@ sudo apt-get install subversion -y
 
 ##GNUPG
 sudo apt-get install libgtk2.0-dev -y
-mkdir gpg
+sudo mkdir gpg
 cd gpg
 sudo wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.22.tar.bz2
 sudo wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.22.tar.bz2.sig
