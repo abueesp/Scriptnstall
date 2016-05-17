@@ -261,11 +261,11 @@ sudo apt-get install libccid libpcsclite1 pcscd pcsc-tools pcsc-lite -y
 sudo apt-get install libusb-dev -y
 sudo /etc/init.d/pcscd restart
 sudo lsusb
-sudo wget http://www.abogacia.es/repositorio/acadescarga/SCR_3310_Linux.zip
+sudo wget --user-agent="Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.3) Gecko/2008092416 Firefox/3.0.3" http://www.abogacia.es/repositorio/acadescarga/SCR_3310_Linux.zip
 #Old drivers
 #wget http://www.abogacia.es/wp-content/uploads/2012/09/scmccid_linux_32bit_driver_V5.0.21.tar.gz
 sudo tar -xzvf scmccid**
-sudo wget --no-check-certificate http://www.abogacia.es/repositorio/acadescarga/SCR_3310_Linux.zip
+sudo wget --user-agent="Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.3) Gecko/2008092416 Firefox/3.0.3" http://www.abogacia.es/repositorio/acadescarga/SCR_3310_Linux.zip
 sudo unzip SCR**.zip 
 sudo rm SCR**.zip
 cd scmccid**
@@ -276,7 +276,7 @@ echo "write 'sudo pcsc_scan' to check usb reader"
 
 echo descargando MiniLector ACA EU
 sudo apt-get install libccid libpcsclite1 pcscd pcsc-tools pcsc-lite -y
-sudo wget --no-check-certificate https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-4902898/Kit_Bit4id_Linux_1.2.16.1.zip
+sudo wget --no-check-certificate --user-agent="Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.3) Gecko/2008092416 Firefox/3.0.3" https://documentacion.redabogacia.org/docushare/dsweb/Get/Document-4902898/Kit_Bit4id_Linux_1.2.16.1.zip
 sudo unzip Kit**.zip
 sudo rm Kit**.zip
 sudo rm -r 32
@@ -287,7 +287,7 @@ sudo ldconfig
 cd ..
 cd ..
 sudo rm -r 64
-sudo wget --no-check-certificate http://www.abogacia.es/wp-content/uploads/2012/09/ACR38_PKG_Lnx_1.0.4_P.zip
+sudo wget --user-agent="Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.3) Gecko/2008092416 Firefox/3.0.3" http://www.abogacia.es/wp-content/uploads/2012/09/ACR38_PKG_Lnx_1.0.4_P.zip
 sudo unzip ACR**.zip
 cd ACR**
 cd acs**
@@ -347,7 +347,7 @@ new-tab -url http://administracionelectronica.gob.es/ctt/buscadorSoluciones.htm
 new-tab -url https://contrataciondelestado.es/wps/portal/plataforma 
 new-tab -url https://www.agenciatributaria.gob.es/AEAT.sede/Inicio/Inicio.shtml
 new-tab -url https://www.abogacia.es/servicios-abogacia/
-new-tab -url https://www.https://www.ventanillaunicaabogados.org/vup/index.jsp'" >> sudo /etc/bash.bashrc
+new-tab -url https://www.ventanillaunicaabogados.org/vup/index.jsp'" >> sudo /etc/bash.bashrc
 
 echo "alias abogado='firefox -new-tab -url http://www.abogacia.es/
 new-tab -url https://www.redabogacia.org/
