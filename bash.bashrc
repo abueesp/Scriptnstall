@@ -3,6 +3,15 @@
 # To enable the settings / commands in this file for login shells as well,
 # this file has to be sourced in /etc/profile.
 
+##History
+export HISTTIMEFORMAT='%F %T '
+export HISTCONTROL=ignoredups
+export HISTCONTROL=ignorespace
+alias rmhist="history -c"
+alias anonhist="export HISTSIZE=0"
+alias hist="export HISTSIZE=1"
+
+##Colors
 color_def="~/.colorrc"
  
 if [[ -f $color_def ]]; then
@@ -329,21 +338,23 @@ sed -i '1i-set' $file
 sed -b "\$a-set" $file
 }
 
+##Monitoring
 appmon(){
 read -p "introduce el nombre del proceso" $app
 sudo lsof -i -n -P | grep $app
 sudo ps ax | grep $app
 }
-
-#Aliases
-alias whoneedssudo="sudo find . -xdev -user root -perm -u+w && echo 'maybe you wanted to add -type and -exec to specify f or d or to execute a command such as chmod, lss or cpc or -name or -size to specify the name or +100 mb'"
-alias calc="let calc"
-alias skill="sudo kill -9"
-alias wline="sudo grep -n"
 alias usermon="sudo users; sudo w; sudo who -a"
 alias systemmon="sudo df -h; sudo service --status-all; sudo htop; sudo w -i; sudo lshw; sudo dmidecode; sudo ps -efH | more; sudo lsof | wc -l; sudo lsof"
 alias netmon="sudo iptables -S; sudo w -i; sudo tcpdump -i wlan0; sudo iotop; sudo ps; netstat -avnp -ef; echo 'En router ir a Básica -> Estado -> Listado de equipos'"
 alias portmon="nc -l -6 -4 -u"
+
+
+#Aliases
+alias whoneedssudo="sudo find . -xdev -user root -perm -u+w && echo 'maybe you wanted to add -type and -exec to specify f or d or to execute a command such as chmod, lss or cpc. You can also use -name or -size to specify the name or +100 mb; or -mmin -60 and -atime -1 for modified last hour or accessed last day. You can also use -cmin -60 for files changed last hour or -newer FILE for those modified after FILE or -anewer/-cnewer FILE if accessed/changed'"
+alias calc="let calc"
+alias skill="sudo kill -9"
+alias wline="sudo grep -n"
 alias nmaproute="sudo nmap -v -A --reason -O -sV -PO -sU -sX -f -PN --spoof-mac 0"
 alias nmap100="sudo nmap -F -v -A --reason -O -sV -PO -sU -sX -f -PN --spoof-mac 0"
 alias lss="ls -ld && sudo du -sh && ls -i1 -latr -FGAhp --color=auto -t -a -al"
