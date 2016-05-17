@@ -292,9 +292,10 @@ read -p "Introduce un usuario de vbox " user1 $user1
 sudo usermod -G vboxusers -a $user1
 read -p "Introduce otro usuario de vbox " user2 $user2
 sudo usermod -G vboxusers -a $user2
+
+##Utils
 sudo apt-get install gparted -y
 sudo apt-get install nemo -y
-sudo apt-get install apt-get install amarok -y
 sudo apt-get install thunderbird -y
 thunderbird https://addons.mozilla.org/thunderbird/downloads/latest/775/addon-775-latest.xpi
 sudo apt-get install firefox -y
