@@ -463,6 +463,7 @@ wget https://addons.mozilla.org/thunderbird/downloads/latest/71/addon-71-latest.
 wget https://addons.mozilla.org/thunderbird/downloads/latest/210/addon-210-latest.xpi 
 wget https://addons.mozilla.org/thunderbird/downloads/latest/875/addon-875-latest.xpi 
 wget https://addons.mozilla.org/thunderbird/downloads/latest/1003/addon-1003-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/390151/addon-390151-latest.xpi
 cd ..
 keepass2
 sudo cp /home/node/.mozilla/firefox/**.default/extensions/keefox@chris.tomlinson/deps/KeePassRPC.plgx /usr/lib/keepass2
