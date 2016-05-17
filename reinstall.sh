@@ -1,549 +1,471 @@
-# System-wide .bashrc file for interactive bash(1) shells.
-. /usr/share/autojump/autojump.sh #autojump
-# To enable the settings / commands in this file for login shells as well,
-# this file has to be sourced in /etc/profile.
-
-color_def="~/.colorrc"
- 
-if [[ -f $color_def ]]; then
-   . $color_def
-else
-   # color definitions
-   black="$(tput setaf 0)"
-   darkgrey="$(tput bold ; tput setaf 0)"
-   lightgrey="$(tput setaf 7)"
-   white="$(tput bold ; tput setaf 7)"
-   red="$(tput setaf 1)"
-   lightred="$(tput bold ; tput setaf 1)"
-   green="$(tput setaf 2)"
-   lightgreen="$(tput bold ; tput setaf 2)"
-   yellow="$(tput setaf 3)"
-   blue="$(tput setaf 4)"
-   lightblue="$(tput bold ; tput setaf 4)"
-   purple="$(tput setaf 5)"
-   pink="$(tput bold ; tput setaf 5)"
-   cyan="$(tput setaf 6)"
-   lightcyan="$(tput bold ; tput setaf 6)"
-   nc="$(tput sgr0)" # no color
-fi
-export darkgrey lightgreywhite red lightred green lightgreen yellow blue
-export lightblue purple pink cyan lightcyan nc
-if [[ ! $level_color ]]; then
-   level_color=$cyan
-fi
-if [[ ! $script_color ]]; then
-   script_color=$yellow
-fi
-if [[ ! $linenum_color ]]; then
-   linenum_color=$red
-fi
-if [[ ! $funcname_color ]]; then
-   funcname_color=$green
-fi
-if [[ ! $command_color ]]; then
-   command_color=$white
-fi
-export script_color linenum_color funcname_color
- 
-reset_screen() {
- 
-   echo $nc
-}
-reset_screen
- 
-usage()
-{
-cat <<'EOF'
-
-usage: debug 
-- help|usage: print this screen
-- verbose: sets -xv flags
-- noexec: sets -xvn flags
-- no parameter sets -x flags
- 
-EOF
-fmt <<EOF
-Color Variables:
-script_color linenum_color funcname_color: 
-${darkgrey}darkgrey$nc, ${lightgrey}light grey$nc, ${white}white,
-${red}red, ${lightred}light red, ${green}green, ${lightgreen}light green,
-${yellow}yellow, ${blue}blue, ${lightblue}light blue, ${purple}purple,
-${pink}pink, ${cyan}cyan, ${lightcyan}light cyan$nc.
-
-
-EOF
- 
-cat <<EOF
- 
-default colors are:
-${level_color}- shell level color:cyan$nc
-${script_color}- script name: yellow$nc
-${linenum_color}- line number: red$nc
-${funcname_color}- function name: green$nc
-${command_color}- command executed: white'$nc
-
-
-${script_color} coding for good - node command line 
-${command_color} Ƀe ℋuman, be κinđ, be ωise
-
-
-EOF
-}
- 
- 
-debug_cmd()
-{
-   trap reset_screen INT
-   /bin/bash $FLAGS $SCRIPT
-}
- 
-if [ $# -gt 0 ]; then
-   case "$1" in
-         "verbose")
-            FLAGS=-xv
-            SCRIPT=$2
-         ;;
-         "noexec")
-            FLAGS=-xvn
-            SCRIPT=$2
-         ;;
-         "help"|"usage")
-            usage
-            exit 3
-         ;;
-         *)
-            FLAGS=-x
-            PS4="${level_color}+${script_color}"'(${BASH_SOURCE##*/}:${linenum_color}${LINENO}${script_color}):'" ${funcname_color}"
-            export PS4
-            SCRIPT=$1
-         ;;
-   esac
-   debug_cmd
-else
-   usage
-fi
-
-verify() {
-echo "FIRST. IMPORT THE SERVER KEY. COPY AND PASTE SOMETHING LIKE gpg --keyserver pool.sks-keyservers.net --recv-keys 0x427F11FD0FAA4B080123F01CDDFA1A3E36879494"
-read command
-$command
-gpg --import ./**.asc
-echo "introduce un valor 0x para gpg --edit-key 0x36879494 and then, in order to ultimately trust it, introduce: fpr / trust / 5 / y / q "
-read masterkey
-gpg --edit-key $masterkey -c "fpr && trust && 5 && y && q"
-gpg -v --verify **.asc **.iso
-gpg -v --verify **.DIGESTS
-
-}
-
-# If not running interactively, don't do anything
-[ -z "$PS1" ] && return
-
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
-
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
- force_color_prompt=yes
-# set a fancy prompt (non-color, overwrite the one in /etc/profile)
-PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-
-# Commented out, don't overwrite xterm -T "title" -n "icontitle" by default.
-# If this is an xterm set the title to user@host:dir
-#case "$TERM" in
-#xterm*|rxvt*)
-#    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
-#    ;;
-#*)
-#    ;;
-#esac
-
-# enable bash completion in interactive shells
-#if ! shopt -oq posix; then
-#  if [ -f /usr/share/bash-completion/bash_completion ]; then
-#    . /usr/share/bash-completion/bash_completion
-#  elif [ -f /etc/bash_completion ]; then
-#    . /etc/bash_completion
-#  fi
-#fi
-
-# sudo hint
-if [ ! -e "$HOME/.sudo_as_admin_successful" ] && [ ! -e "$HOME/.hushlogin" ] ; then
-    case " $(groups) " in *\ admin\ *)
-    if [ -x /usr/bin/sudo ]; then
-	cat <<-EOF
-	To run a command as administrator (user "root"), use "sudo <command>".
-	See "man sudo_root" for details.
-
-	EOF
-    fi
-    esac
-fi
-
-# if the command-not-found package is installed, use it
-if [ -x /usr/lib/command-not-found -o -x /usr/share/command-not-found/command-not-found ]; then
-	function command_not_found_handle {
-	        # check because c-n-f could've been removed in the meantime
-                if [ -x /usr/lib/command-not-found ]; then
-		   /usr/lib/command-not-found -- "$1"
-                   return $?
-                elif [ -x /usr/share/command-not-found/command-not-found ]; then
-		   /usr/share/command-not-found/command-not-found -- "$1"
-                   return $?
-		else
-		   printf "%s: command not found\n" "$1" >&2
-		   return 127
-		fi
-	}
-fi
-
-if [ -f /etc/bash_preexec ]; then
-    # source preexec and precmd hook functions for Bash
-	# If you have anything that's using the Debug Trap or PROMPT_COMMAND
-	# change it to use preexec or precmd
-	# See also https://github.com/rcaloras/bash-preexec
-    . /etc/bash_preexec
-fi
-
-## Create a repo on Github (not git)
-gitnew() {
- repo_name=$1
-
- dir_name=`basename $(pwd)`
-
- if [ "$repo_name" = "" ]; then
- echo "Repo name (hit enter to use '$dir_name')?"
- read repo_name
- fi
-
- if [ "$repo_name" = "" ]; then
- repo_name=$dir_name
- fi
-
- username=`git config github.user`
- if [ "$username" = "" ]; then
- echo "Could not find username, run 'git config --global github.user <username>'"
- invalid_credentials=1
- fi
-
- token=`git config github.token`
- if [ "$token" = "" ]; then
- echo "Could not find token, run 'git config --global github.token <token>'"
- invalid_credentials=1
- fi
-
- if [ "$invalid_credentials" == "1" ]; then
- return 1
- fi
-
- echo -n "Creating Github repository '$repo_name' ..."
- curl -u "$username:$token" https://api.github.com/user/repos -d '{"name":"'$repo_name'"}' > /dev/null 2>&1
- echo " done."
-}
-
-
-gitupload () {
-  echo "introduce tu email"
-  read email
-  git config --global user.email $email
-  echo "introduce tu username"
-  read username
-  git config --global user.name $username
-  git commit -m "First commit"
-  echo "introduce la url del repositorio"
-  read url
-  git remote add origin $url
-  git remote -v
-  git pull origin master
-  git push origin master
-}
-
-docsthemagic () {
-  echo "vas a crear las copias, luego armonizar los nombres y finalmente limpiar los metadatos de todos los archivos ubicados en esta carpeta. Introduce los documentos. recuerda que si quieres hacer un backup puedes usar mat -b"
-  read docs
-  sudo unoconv --format=txt $docs
-  sudo unoconv --format=pdf $docs
-  sudo unoconv --format=doc $docs
-  sudo unoconv --format=docx $docs
-  sudo unoconv --format=odt $docs
-  sudo unoconv --format=html $docs
-  sudo pandoc -f html -t markdown -o $docs+".md" $docs
-  sudo detox -r **
-  for file in *.html.pdf; do
-    sudo mv "$file" "`basename $file .html.pdf`.pdf"
-    done
-  for file in *.html.epub; do
-    sudo mv "$file" "`basename $file .html.pdf`.epub"
-    done
-  for file in *.html.wiki; do
-    sudo mv "$file" "`basename $file .html.wiki`.wiki"
-    done
-  for file in *.html.txt; do
-    sudo mv "$file" "`basename $file .html.txt`.txt"
-    done
- for file in *.html.md; do
-    sudo mv "$file" "`basename $file .html.md`.md"
-    done
-  for file in *.html.odt; do
-    sudo mv "$file" "`basename $file .html.odt`.odt"
-    done
-  sudo mat -c **
-  sudo mat **
-}
-
-rbash() {
+#!/bin/bash
+# My first script to reinstall
+#Bluetooth
+sudo sed -i 's/InitiallyPowered = true/InitiallyPowered = false/g' /etc/bluetooth/main.conf
+rfkill block bluetooth
+#mirror
+sudo sed -i 's|http://us.archive.ubuntu.com/ubuntu|http://mirrors.mit.edu/ubuntu|g' /etc/apt/sources.list
 sudo wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/bash.bashrc
-sudo rm /etc/bash.bashrc
-sudo rm /etc/bash.bashrc~
-sudo mv bash.bashrc /etc/bash.bashrc
-}
+sudo cp bash.bashrc /etc/bash.bashrc
+#SSH
+sudo apt-get install ssh -y
+newsshkey
+sudo sed -i "s/NoDisplay=true/NoDisplay=false/g" /etc/xdg/autostart/gnome-keyring-ssh.desktop
+sudo sed -i 's/PermitRootLogin without password/PermitRootLogin no/' /etc/ssh/sshd_config #noroot
+sudo sed -i 's/Port **/Port 1022/' /etc/ssh/sshd_config #SSH PORT OTHER THAN 22, SET 1022
+sudo /etc/init.d/ssh restart
+sudo chown -R $USER:$USER .ssh
+sudo chmod -R 600 .ssh
+sudo chmod +x .ssh
+#Docker 
+sudo wget -qO- https://get.docker.com/ | sh
+sudo usermod -aG docker $USER
+sudo apt-get purge apparmor -y
+sudo rm -rf /etc/apparmor.d/
+sudo rm -rf /etc/apparmor
 
-getsh() {
-sudo wget https://github.com/abueesp/Scriptnstall/edit/master/reinstall.sh
-sudo wget https://github.com/abueesp/Scriptnstall/edit/master/work.sh
-sudo wget https://github.com/abueesp/Scriptnstall/blob/master/dnie.sh
-}
+#KeePass (see KeeFox in Browsers)
+sudo apt-get install mono-complete mono-dmcs libmono-system-management4.0-cil libmono-system-xml-linq4.0-cil libmono-system-data-datasetextensions4.0-cil libmono-system-runtime-serialization4.0-cil mono-mcs -y
+mkdir KeePass
+cd KeePass
+sudo wget http://downloads.sourceforge.net/project/keepass/KeePass%202.x/2.33/KeePass-2.33.zip
+sudo unzip KeePass**.zip
+sudo rm **.zip
+sudo add-apt-repository ppa:dlech/keepass2-plugins
+sudo apt-get update 
+sudo wget https://raw.github.com/pfn/keepasshttp/master/KeePassHttp.plgx
+sudo chmod 644 KeePassHttp.plgx
+sudo wget https://keepass.info/extensions/v2/kpscript/KPScript-2.32.zip
+wget -r --no-parent -A 'KPScript*.zip' https://keepass.info/extensions/v2/kpscript/
+sudo unzip KPScript**.zip
+sudo rm KPScript**.zip
+sudo wget https://downloads.sourceforge.net/project/kp-googlesync/GoogleSyncPlugin-2.x/GoogleSyncPlugin-2.1.2.zip
+sudo unzip GoogleSync**.zip
+sudo rm GoogleSync**.zip
+sudo wget https://github.com/islog/keepassrfid/releases/download/1.0.0/keepassrfid.plgx
+sudo git clone git://github.com/dlech/KeeAgent --recursive
+cd KeeAgent
+sudo mozroots --import --machine --sync
+sudo certmgr -ssl -m https://go.microsoft.com
+sudo certmgr -ssl -m https://nugetgallery.blob.core.windows.net
+sudo certmgr -ssl -m https://nuget.org
+sudo rm nuget.exe*
+sudo wget https://nuget.org/nuget.exe
+sudo mono nuget.exe restore
+sudo rm nuget.exe*
+sudo xbuild /property:Configuration=ReleasePlgx KeeAgent.sln
+cd
+sudo cp bin/ReleasePlgx/KeeAgent.plgx /KeePass
+sudo chmod +x /KeePass
+rm keepassrfid.plgx 
+rm -r KeeAgent
+sudo apt-get purge keepass2-plugin-rpc
 
-she() {
-echo "Please introduce a word start: "
-read W
-echo "Please enter the file route: "
-read filon
-bash <(sed -n '5,$W p' $filon)
-}
-
-mysqlconnect{
-echo "introduce usuario"
-$sqlu
-echo "introduce IP del host o pulsa ENTER si es localhost"
-$sqlh
-firefox -new-tab https://www.thegeekstuff.com/2010/01/awk-introduction-tutorial-7-awk-print-examples/ && mysql -u $sqlu -p -h $sqlh
-}
-
-#Aliases
-alias calc="let calc"
-alias process="sudo ps ax | grep"
-alias superkill="sudo kill -9"
-alias appmon="sudo lsof -i -n -P | grep"
-alias systemmon="sudo df -h; sudo service --status-all; sudo htop; sudo w -i; sudo lshw; sudo dmidecode; sudo ps -efH | more"
-alias netmon="sudo iptables -S; sudo w -i; sudo tcpdump -i wlan0; sudo iotop; sudo ps; netstat -avnp -ef; echo 'En router ir a Básica -> Estado -> Listado de equipos'"
-alias portmon="nc -l -6 -4 -u"
-alias nmaproute="sudo nmap -v -A --reason -O -sV -PO -sU -sX -f -PN --spoof-mac 0"
-alias nmap100="sudo nmap -F -v -A --reason -O -sV -PO -sU -sX -f -PN --spoof-mac 0"
-alias lss="ls -ld && ls -latr -FGAhp --color=auto -t -a -al"
-alias verifykey="gpg --keyid-format long --import"
-alias verifyfile="gpg --keyid-format long --verify"
-alias secfirefox="firejail --dns=8.8.8.8 --dns=8.8.4.4 firefox"
-alias lsssh="ls -al ~/.ssh"
-alias dt='date "+%F %T"'
-alias pdf2txt='ls * | sudo xargs -n1 pdftotext'
-alias bashrc='/etc/bash.bashrc'
-alias geditbash='sudo gedit /etc/bash.bashrc'
-alias vimbash='sudo vim /etc/bash.bashrc'
-alias atombash='sudo atom /etc/bash.bashrc'
-alias nanobash='sudo nano /etc/bash.bashrc'
-alias myip="dig +short http://myip.opendns.com @http://resolver1.opendns.com"
-alias cpc='cp -i -r'
-alias mvm='mv -i -u'
-alias rmr='sudo rm -irv -rf'
-alias delete=rmr
-alias remove=rmr
-alias keepasss="sudo mono /home/$USER/KeePass/KeePass.exe"
-alias keepass="mono /home/$USER/KeePass/KeePass.exe"
-alias df='df -h'
-alias aptup='sudo apt-get update && sudo apt-get upgrade && sudo apt-get clean'
-alias mkdirr='mkdir -p -v'
-alias lk='ls -lSr --color=auto -FGAhp'        # sort by siz
-alias lr='ls -lR --color=auto -FGAhp'        # recursice ls
-alias lt='ls -ltr --color=auto -FGAhp'        # sort by date
-alias lvim="vim -c \"normal '0\"" # open vim editor with last edited file
-alias grepp='grep --color=auto -r -H'
-alias egrepp='egrep --color=auto -r -w'
-alias fgrepp='fgrep --color=auto'
-alias aptclean='sudo apt-get autoremove'
-alias rename='mv'
-alias gitlist='git remote -v'
-alias gethlocal="geth --rpc --rpccorsdomain localhost --etherbase '0x9B366b5493a545f070E4a0F16c81182670fEE6' --solc console"
-alias gethmine='geth --etherbase '0x9B366b5493a545f070E4a0F16c81182670fEE6' --mine --minergpus --autodag --minerthreads "8" console'
-alias gethtest="geth --testnet console"
-alias gethupgrade="geth upgradedb --fast console"
+#UFW
+sudo apt-get install gufw -y
+sudo ufw enable
+sudo ufw allow 1022/tcp
+sudo iptables -F
+sudo iptables -A INPUT -i lo -j ACCEPT
+sudo iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 1022 -j ACCEPT
+sudo iptables -P INPUT DROP
+sudo iptables -P OUTPUT ACCEPT ##If you are a server change this to DROP OUTPUT connections by default too
+sudo iptables -P FORWARD DROP
+sudo iptables restart
+sudo service avahi-daemon stop
+sudo cupsctl -E --no-remote-any
+sudo service cups-browsed stop
 
 
-### Some cheatsheets###
-alias shsheet="http://www.tldp.org/LDP/abs/html/index.html" 
-alias gethsheet="https://github.com/ethereum/go-ethereum/wiki/Command-Line-Options"
-alias gpgsheet="firefox http://irtfweb.ifa.hawaii.edu/~lockhart/gpg/gpg-cs.html"
-alias bitcoinsheet="firefox https://en.bitcoin.it/wiki/Script#Words"
-alias dockersheet="firefox https://www.cheatography.com/storage/thumb/aabs_docker-and-friends.600.jpg && firefox http://container-solutions.com/content/uploads/2015/06/15.06.15_DockerCheatSheet_A2.pdf"
-alias nmapsheet="firefox https://4.bp.blogspot.com/-lCguW2iNKi4/UgmjCu1UNfI/AAAAAAAABuI/35Px0VIOuIg/s1600/Screen+Shot+2556-08-13+at+10.06.38+AM.png"
-alias gitsheet="firefox http://developer.exoplatform.org/docs/scm/git/cheatsheet/ && firefox https://github.com/tiimgreen/github-cheat-sheet && echo 'Warning: Never git add, commit, or push sensitive information to a remote repository. Sensitive information can include, but is not limited to:
-    Passwords
-    SSH keys
-    AWS access keys
-    API keys
-    Credit card numbers
-    PIN numbers'"
-alias ubuntusheet="firefox http://slashbox.org/index.php/Ubuntu#Cheat_Sheet && firefox 'http://slashbox.org/index.php/Ubuntu#Cheat_Sheet'" 
-alias vimsheet="firefox http://michael.peopleofhonoronly.com/vim/vim_cheat_sheet_for_programmers_screen.png && firefox https://cdn.shopify.com/s/files/1/0165/4168/files/digital-preview-letter.png && firefox http://michael.peopleofhonoronly.com/vim/vim_cheat_sheet_for_programmers_screen.png && firefox https://cdn.shopify.com/s/files/1/0165/4168/files/digital-preview-letter.png'"
+#Some tools
+sudo apt-get install traceroute -y
+sudo apt-get install zsh -y 
+sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+sudo sed -ir 's/ZSH_THEME="robbyrussell"/ZSH_THEME="norm"/g' ~/.oh-my-zsh #noroot
+sudo apt-get install iotop -y 
+sudo apt-get install fish -y
+sudo apt-get install byobu -y
+sudo apt-get install unoconv -y
+sudo apt-get install detox -y
+sudo apt-get install autojump -y
+sudo apt-get install nmap -y
+sudo apt-get install tmux -y
+sudo apt-get install htop -y
+sudo apt-get install pandoc -y
+sudo apt-get install duplicity deja-dup -y
 
-
-### Functions ###
-
-free(){
-  sudo chmod 777 $1 $2
-}
-
-install(){
-  sudo apt-get install -y $1
-}
-
-uninstall(){
-  sudo apt-get remove --purge -y $1
-}
-
-mysshkey(){
-sudo chown -R $USER:$USER ~/.ssh
-sudo chmod -R 600 ~/.ssh
-sudo chmod +x ~/.ssh 
-sudo apt-get install xclip
-sudo xclip -sel clip ~/.ssh/id_rsa/id_rsa.pub
-echo 'those are your keys up to now, id_rsa.pub is the default. If you want to change it, type switchmyssh'
-sudo ls -al -R ~/.ssh/id_rsa
-echo "Now you may have your ssh key on your clipboard. If you have already set your app global configuration, now you should go to Settings -> New SSH key and paste it there"
-sudo chmod -R 600 ~/.ssh
-}
-
-mylastsshkey(){
-sudo chown -R $USER:$USER ~/.ssh
-sudo chmod -R 600 ~/.ssh
-sudo chmod +x ~/.ssh  
-sudo apt-get install xclip
-xclip -sel clip < ~/.ssh/lastid_rsa.pub
-echo 'this is your last key, lastid_rsa.pub is the default.'
-ls -al -R ~/.ssh
-echo "Now you may have your last ssh key on your clipboard. If you have already set your app global configuration, now you should go to Settings -> New SSH key and paste it there"
-sudo chmod -R 600 ~/.ssh
-}
-
-switchsshkey(){
-sudo chown -R $USER:$USER ~/.ssh
-sudo chmod -R 600 ~/.ssh
-sudo chmod +x ~/.ssh
-if [ $1 ]
+##GNUPG
+sudo apt-get install libgtk2.0-dev -y
+mkdir gpg
+cd gpg
+sudo wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.22.tar.bz2
+sudo wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.22.tar.bz2.sig
+sha1 = $(sha1sum **tar.bz2)
+if [ $sha1 "c40015ed88bf5f50fa58d02252d75cf20b858951" ]
 then
-    sudo mv ~/.ssh/$1 ~/.ssh/id_rsa.pub ~/.ssh/lastid_rsa.pub
-    sudo mv ~/.ssh/$1 ~/.ssh/id_rsa.pub
-    echo "Your last key is now lastid_rsa.pub. If you want to copy the new one type mysshkey. If you want to copy the last one type mylastsshkey"
+    echo "PACKAGE VERIFIED"
 else
-    ls -al -R ~/.ssh
-    echo "Please, introduce the key you want to switch by the default id_rsa.pub. Those are your current keys: "
+    echo "PACKAGE NOT VERIFIED"
+    break
 fi
-sudo chmod -R 600 ~/.ssh
-}
+gpg --verify **.sig **.bz2
+sudo tar xvjf **.tar.bz2
+cd libgp**
+./configure
+sudo make
+sudo make install
+cd ..
+sudo rm **.bz2 && sudo rm **.sig && sudo rm -r libgp**
 
-
-newsshkey(){
-sudo chown -R $USER:$USER ~/.ssh
-sudo chmod -R 600 ~/.ssh
-sudo chmod +x ~/.ssh 
-$emai = emai
-sudo mkdir ~/.ssh
-sudo mkdir ~/.ssh/id_rsa
-echo 'those are your keys up to now'
-sudo ls -al -R ~/.ssh # Lists the files in your .ssh directory, if they exist
-echo "Please, introduce 'youremail@server.com'"
-read emai
-echo "please choose a file like this /home/node/.ssh/id_rsa/id_rsa.pub and a password longer or equal to 5 caractheres"
-sudo ssh-keygen -t rsa -b 4096 -C $emai
-eval "$(ssh-agent -s)" 
-ssh-add ~/.ssh/id_rsa
-}
-
-# mkmv - creates a new directory and moves the file into it, in 1 step
-# Usage: mkmv <file> <directory>
-mkmv() {
-  mkdir "$2"
-  mv "$1" "$2"
-}
-
-### Bash Completion ###
-if [ -f /etc/bash_completion ]; then
-  . /etc/bash_completion
+sudo wget https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.7.0.tar.bz2
+sudo wget https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.7.0.tar.bz2.sig
+sha1 = $(sha1sum **tar.bz2)
+if [ $sha1 "f840b737faafded451a084ae143285ad68bbfb01" ]
+then
+    echo "PACKAGE VERIFIED"
+else
+    echo "PACKAGE NOT VERIFIED"
+    break
 fi
+gpg --verify **.sig **.bz2
+sudo tar xvjf **.tar.bz2
+cd libgcr**
+./configure
+sudo make
+sudo make install
+cd ..
+sudo rm **.bz2 && sudo rm **.sig && sudo rm -r libgcr**
 
-commit() {
-  git add $1 && git commit -m $2 && git push origin $3
-}
+sudo wget https://www.gnupg.org/ftp/gcrypt/libksba/libksba-1.3.4.tar.bz2
+sudo wget https://www.gnupg.org/ftp/gcrypt/libksba/libksba-1.3.4.tar.bz2.sig
+sha1 = $(sha1sum **tar.bz2)
+if [ $sha1 "bc84945400bd1cabfd7b8ba4e20e71082f32bcc9" ]
+then
+    echo "PACKAGE VERIFIED"
+else
+    echo "PACKAGE NOT VERIFIED"
+    break
+fi
+gpg --verify **.sig **.bz2
+sudo tar xvjf **.tar.bz2
+cd libks**
+./configure
+sudo make
+sudo make install
+cd ..
+sudo rm **.bz2 && sudo rm **.sig && sudo rm -r libks**
 
-#la is the new cd + ls
-alias la='ls -lah $LS_COLOR'
-function cl(){ cd "$@" && la; }
-alias back="cd .."
-function cdn(){ for i in `seq $1`; do cd ..; done;}
+sudo wget https://www.gnupg.org/ftp/gcrypt/libassuan/libassuan-2.4.2.tar.bz2
+sudo wget https://www.gnupg.org/ftp/gcrypt/libassuan/libassuan-2.4.2.tar.bz2.sig
+sha1 = $(sha1sum **tar.bz2)
+if [ $sha1 "ac1047f9764fd4a4db7dafe47640643164394db9" ]
+then
+    echo "PACKAGE VERIFIED"
+else
+    echo "PACKAGE NOT VERIFIED"
+    break
+fi
+gpg --verify **.sig **.bz2
+sudo tar xvjf **.tar.bz2
+cd libas**
+./configure
+sudo make
+sudo make install
+cd ..
+sudo rm **.bz2 && sudo rm **.sig && sudo rm -r libas**
 
+sudo wget https://www.gnupg.org/ftp/gcrypt/npth/npth-1.2.tar.bz2
+sudo wget https://www.gnupg.org/ftp/gcrypt/npth/npth-1.2.tar.bz2.sig
+sha1 = $(sha1sum **tar.bz2)
+if [ $sha1 "3bfa2a2d7521d6481850e8a611efe5bf5ed75200" ]
+then
+    echo "PACKAGE VERIFIED"
+else
+    echo "PACKAGE NOT VERIFIED"
+    break
+fi
+gpg --verify **.sig **.bz2
+sudo tar xvjf **.tar.bz2
+cd npth**
+./configure
+sudo make
+sudo make install
+cd ..
+sudo rm **.bz2 && sudo rm **.sig && sudo npth**
 
-### Extract Archives ###
-extract () {
-  if [ -f $1 ] ; then
-    case $1 in
-      *.tar.bz2)   tar xjvf $1    ;;
-      *.tar.gz)    tar xzvf $1    ;;
-      *.bz2)       bzip2 -d $1    ;;
-      *.rar)       unrar2dir $1    ;;
-      *.gz)        gunzip $1    ;;
-      *.tar)       tar xf $1    ;;
-      *.tbz2)      tar xjf $1    ;;
-      *.tgz)       tar xzf $1    ;;
-      *.zip)       unzip2dir $1     ;;
-      *.Z)         uncompress $1    ;;
-      *.7z)        7z x $1    ;;
-      *.ace)       unace x $1    ;;
-      *)           echo "'$1' cannot be extracted via extract()"   ;;
-    esac
-  else
-    echo "'$1' is not a valid file"
-  fi
-}
+sudo wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.12.tar.bz2
+sudo wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.12.tar.bz2.sig
+sha1 = $(sha1sum **tar.bz2)
+if [ $sha1 "3b01a35ac04277ea31cc01b4ac4e230e54b5480c" ]
+then
+    echo "PACKAGE VERIFIED"
+else
+    echo "PACKAGE NOT VERIFIED"
+    break
+fi
+gpg --verify **.sig **.bz2
+sudo tar xvjf **.tar.bz2
+cd gnupg**
+./configure
+sudo make
+sudo make install
+cd ..
+sudo rm **.bz2 && sudo rm **.sig && sudo rm -r gnupg**
 
-#bu - Back Up a file. Usage "bu filename.txt"
-bu () {
-  cp $1 ${1}-`date +%Y%m%d%H%M`.backup;
-}
+sudo wget https://www.gnupg.org/ftp/gcrypt/gpgme/gpgme-1.6.0.tar.bz2
+sudo wget https://www.gnupg.org/ftp/gcrypt/gpgme/gpgme-1.6.0.tar.bz2.sig
+sha1 = $(sha1sum **tar.bz2)
+if [ $sha1 "f840b737faafded451a084ae143285ad68bbfb01" ]
+then
+    echo "PACKAGE VERIFIED"
+else
+    echo "PACKAGE NOT VERIFIED"
+    break
+fi
+gpg --verify **.sig **.bz2
+sudo tar xvjf **.tar.bz2
+cd gpgm**
+./configure
+sudo make
+sudo make install
+cd ..
+sudo rm **.bz2 && sudo rm **.sig && sudo rm -r gpgm**
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+sudo wget https://www.gnupg.org/ftp/gcrypt/gpa/gpa-0.9.9.tar.bz2
+sudo wget https://www.gnupg.org/ftp/gcrypt/gpa/gpa-0.9.9.tar.bz2.sig
+sha1 = $(sha1sum **tar.bz2)
+if [ $sha1 "1cf86c9e38aa553fdb880c55cbc6755901ad21a4" ]
+then
+    echo "PACKAGE VERIFIED"
+else
+    echo "PACKAGE NOT VERIFIED"
+    break
+fi
+gpg --verify **.sig **.bz2
+sudo tar xvjf **.tar.bz2
+cd gpa**
+./configure
+sudo make
+sudo make install
+cd ..
+sudo rm **.bz2 && sudo rm **.sig && sudo rm -r gpa**
 
+cd ..
+sudo rm -r gpg
+##Fail2ban
+sudo apt-get install fail2ban -y
+sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+echo "Please write down an email to send you notifications when someone is attacking your ports: "
+read email
+echo "You entered: $email"
+sed "s/destemail = your_email@domain.com/destemail = $email/g" /etc/fail2ban/jail.local
+sed "s/action = %(action_)s/action = %(action_mw)s/g" /etc/fail2ban/jail.local
+sed -e "s/enabled  = false/enabled  = true/g" /etc/fail2ban/jail.local
+sudo apt-get install zenmap -y
 
-# use DNS to query wikipedia (wiki QUERY)
-wiki () { dig +short txt $1.wp.dg.cx; }
-
-# mount an ISO file. (mountiso FILE)
-mountiso () {
-  name=`basename "$1" .iso`
-  mkdir "/tmp/$name" 2>/dev/null
-  sudo mount -o loop "$1" "/tmp/$name"
-  echo "mounted iso on /tmp/$name"
-}
-
-#rename multiple files
-rname () {
-echo introduce from .extension
-read iext
-echo introduce to .extension
-read text
-for file in *$iext; do
-    sudo mv "$file" "`basename $file $iext`$text"
+##Virtualbox
+sudo apt-get purge virtualbox
+while true; do
+    read -p "Please introduce introduce OS Ubuntu 16.04 ('xenial_amd64') Ubuntu 15.10 ('wily_amd64') or Ubuntu 14.04 ('trusty_amd64') / 14.10 Utopic/ 15.04 Vivid: " OS $OS
+    sudo wget http://download.virtualbox.org/virtualbox/5.0.20/virtualbox-5.0_5.0.20-106931~Ubuntu~$OS.deb
+    break
 done
-}
+sudo dpkg -i virtualbox**.deb
+sudo rm virtualbox**.deb
+sudo apt-get install vagrant -y
+vagrant box add precise64 http://files.vagrantup.com/precise64.box
+version=$(vboxmanage -v)
+echo $version
+var1=$(echo $version | cut -d 'r' -f 1)
+echo $var1
+var2=$(echo $version | cut -d 'r' -f 2)
+echo $var2
+file="Oracle_VM_VirtualBox_Extension_Pack-$var1-$var2.vbox-extpack"
+echo $file
+sudo wget http://download.virtualbox.org/virtualbox/$var1/$file -O $file
+#sudo VBoxManage extpack uninstall "Oracle VM VirtualBox Extension Pack"
+sudo VBoxManage extpack install $file --replace
+sudo rm $file
+read -p "Introduce un usuario de vbox " user1 $user1
+sudo usermod -G vboxusers -a $user1
+read -p "Introduce otro usuario de vbox " user2 $user2
+sudo usermod -G vboxusers -a $user2
+sudo apt-get install gparted -y
+sudo apt-get install nemo -y
+sudo apt-get install apt-get install amarok -y
+sudo apt-get install thunderbird -y
+thunderbird https://addons.mozilla.org/thunderbird/downloads/latest/775/addon-775-latest.xpi
+sudo apt-get install firefox -y
+firefox https://addons.mozilla.org/firefox/downloads/file/271802/no_more_install_delay-3.0-fx+sm+fn+tb.xpi
+#Text Edition Tools
+sudo add-apt-repository ppa:webupd8team/sublime-text-3 -y 
+sudo apt-get update -y
+sudo apt-get install vim vim-scripts -y
+git clone https://github.com/amix/vimrc.git ~/.vim_runtime
+sh ~/.vim_runtime/install_awesome_vimrc.sh
+sudo apt-get install gedit -y
+sudo apt-get install sublime-text-installer -y
+sudo apt-get install libreoffice -y
+
+##Emacs
+sudo rm -r /usr/local/stow
+set -e
+
+readonly version="24.5"
+
+# install dependencies
+sudo apt-get install -y stow build-essential libx11-dev xaw3dg-dev libjpeg-dev libpng12-dev libgif-dev libtiff5-dev libncurses5-dev libxft-dev librsvg2-dev libmagickcore-dev libmagick++-dev libxml2-dev libgpm-dev libghc-gconf-dev libotf-dev libm17n-dev  libgnutls-dev -y
+
+# download source package
+wget http://ftp.gnu.org/gnu/emacs/emacs-"$version".tar.xz
+tar xvf emacs-"$version".tar.xz
+
+# build and install
+sudo mkdir -p /usr/local/stow
+cd emacs-"$version"
+./configure \
+    --with-xft \
+    --with-x-toolkit=lucid
+make
+sudo rm -r /usr/local/stow
+sudo make install prefix=/usr/local/stow/emacs-"$version" && cd /usr/local/stow
+sudo rm /usr/local/share/info/dir
+sudo stow emacs-"$version" 
+#spacemacs
+sudo git clone http://github.com/syl20bnr/spacemacs ~/.emacs.d
+##plugins
+cd ~/.emacs.d
+wget http://github.com/ethereum/emacs-solidity/blob/master/solidity-mode.el ##solidity
+(add-to-list load-path "~/.emacs.d/") 
+(load "myplugin.el")
+cd
+sudo rm emacs-"$version".tar.xz
+sudo rm -r emacs-**
 
 
-# search inside pdf
-searchpdf () {
-  echo "introduce text to search"
-  read text
-  echo "introduce pdf filename"
-  read pdf
-  pdftotext $pdf - | grep '$text'
-}
+##Github
+sudo apt-get install git -y 
+git config --global credential.helper cache
+# Set git to use the credential memory cache
+git config --global credential.helper 'cache --timeout=3600'
+# Set the cache to timeout after 1 hour (setting is in seconds)
+while true; do
+    read -p "Please set your username: " username $username
+    git config --global user.name $username
+    break
+done
+while true; do
+    read -p "Please set your email: " mail $mail
+    git config --global user.email $mail
+    break
+done
+
+while true; do
+    read -p "Please set your core editor: " editor $editor
+    git config --global core.editor $editor
+    break
+done
+while true; do
+    read -p "Please set your diff app: " diff $diff
+    git config --global merge.tool $diff
+    break
+done
+git config --list
+echo "Here you are an excellent Github cheatsheet https://raw.githubusercontent.com/hbons/git-cheat-sheet/master/preview.png You can also access as gitsheet"
+echo "If you get stuck, run ‘git branch -a’ and it will show you exactly what’s going on with your branches. You can see which are remotes and which are local."
+echo "Do not forget to add a newsshkey or clipboard your mysshkey or mylastsshkey (if you switchsshkey before) and paste it on Settings -> New SSH key and paste it there." 
+
+
+sh -c "curl -fsSL https://raw.githubusercontent.com/skwp/dotfiles/master/install.sh"
+echo "installed vimcr"
+wget https://raw.githubusercontent.com/Russell91/sshrc/master/sshrc && sudo chmod -R 600 sshrc && chmod +x sshrc && sudo mv sshrc /usr/local/bin
+echo "ssh bashcr vimcr portability installed"
+
+##Browsers
+sudo apt-get install firefox -y
+cd Downloads
+mkdir extensions
+cd extensions
+wget https://addons.mozilla.org/firefox/downloads/latest/722/addon-722-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/363974/addon-363974-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/409964/addon-409964-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/261959/addon-261959-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/261959/addon-261959-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/1865/addon-1865-latest.xpi  
+wget https://addons.mozilla.org/firefox/downloads/latest/748/addon-748-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/7447/addon-7447-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/1122/addon-1122-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/1237/addon-1237-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/3497/addon-3497-latest.xpi t 
+wget https://addons.mozilla.org/firefox/downloads/latest/10900/addon-10900-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/306880/platform:2/addon-306880-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/193270/addon-193270-latest.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/5791/addon-5791-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/4775/addon-4775-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/file/342774/tineye_reverse_image_search-1.2.1-fx.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/1117/addon-1117-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/60/addon-60-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/1843/addon-1843-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/355192/addon-355192-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/file/229626/sql_inject_me-0.4.7-fx.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/2324/addon-2324-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/532/addon-532-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/5523/addon-5523-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/file/413865/mutetab-0.0.2-fx.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/387051/addon-387051-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/10586/addon-10586-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/607454/addon-607454-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/521554/addon-521554-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/file/262658/cryptocat-2.2.2-fx.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/383235/addon-383235-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/file/387220/text_to_voice-1.15-fx.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/161670/addon-161670-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/3899/addon-3899-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/file/281702/google_privacy-0.2.4-sm+fx.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/329784/addon-329784-latest.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/509336/addon-509336-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/496120/addon-496120-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/8661/addon-8661-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/599152/addon-599152-latest.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/473878/addon-473878-latest.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/45281/addon-45281-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/3829/addon-3829-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/229918/addon-229918-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/file/373868/soundcloud_downloader_soundgrab-0.98-fx.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/415846/addon-415846-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/387429/addon-387429-latest.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/292320/addon-292320-latest.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/695840/addon-695840-latest.xpi
+sudo git clone https://github.com/cryptocat/cryptocat-legacy
+cd cryptocat-legacy
+sudo make firefox
+cd
+sudo cp Downloads/extensions/cryptocat-legacy/release/**.xpi Downloads/extensions
+sudo rm -r Downloads/extensions/cryptocat-legacy
+
+#thunderbird extensions
+mkdir thunderbird
+cd thunderbird
+wget https://addons.mozilla.org/thunderbird/downloads/latest/611/addon-611-latest.xpi 
+wget https://addons.mozilla.org/thunderbird/downloads/latest/1339/addon-1339-latest.xpi
+wget https://addons.mozilla.org/thunderbird/downloads/latest/556/addon-556-latest.xpi 
+wget https://addons.mozilla.org/thunderbird/downloads/latest/4003/addon-4003-latest.xpi
+wget https://addons.mozilla.org/thunderbird/downloads/latest/1556/addon-1556-latest.xpi 
+wget https://addons.mozilla.org/thunderbird/downloads/latest/550/addon-550-latest.xpi 
+wget https://addons.mozilla.org/thunderbird/downloads/latest/2313/platform:2/addon-2313-latest.xpi 
+wget https://addons.mozilla.org/thunderbird/downloads/latest/4631/addon-4631-latest.xpi 
+wget https://addons.mozilla.org/thunderbird/downloads/latest/2199/addon-2199-latest.xpi 
+wget https://addons.mozilla.org/thunderbird/downloads/latest/550/addon-550-latest.xpi 
+wget https://addons.mozilla.org/thunderbird/downloads/latest/71/addon-71-latest.xpi 
+wget https://addons.mozilla.org/thunderbird/downloads/latest/210/addon-210-latest.xpi 
+wget https://addons.mozilla.org/thunderbird/downloads/latest/875/addon-875-latest.xpi 
+wget https://addons.mozilla.org/thunderbird/downloads/latest/1003/addon-1003-latest.xpi 
+cd ..
+keepass2
+sudo cp /home/node/.mozilla/firefox/**.default/extensions/keefox@chris.tomlinson/deps/KeePassRPC.plgx /usr/lib/keepass2
+
+
+sudo apt-get autoremove -y
+
+EOF
