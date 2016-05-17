@@ -341,13 +341,12 @@ sed -b "\$a-set" $file
 ##Monitoring
 appmon(){
 read -p "introduce el nombre del proceso" $app
-sudo lsof -i -n -P | grep $app
-sudo ps ax | grep $app
+sudo lsof -i -n -P | grep $app && sudo ps ax | grep $app && 
 }
-alias usermon="sudo users; sudo w; sudo who -a"
-alias systemmon="sudo df -h; sudo service --status-all; sudo htop; sudo w -i; sudo lshw; sudo dmidecode; sudo ps -efH | more; sudo lsof | wc -l; sudo lsof"
-alias netmon="sudo iptables -S; sudo w -i; sudo tcpdump -i wlan0; sudo iotop; sudo ps; netstat -avnp -ef; echo 'En router ir a Básica -> Estado -> Listado de equipos'"
-alias portmon="nc -l -6 -4 -u"
+alias usermon="sudo users; sudo w; sudo who -a; sudo ipcs -m -c"
+alias systemmon="sudo df -h; ipcs -u; sudo ipcs -m -c; sudo service --status-all; sudo htop; sudo w -i; sudo lshw; sudo dmidecode; sudo ps -efH | more; sudo lsof | wc -l; sudo lsof"
+alias netmon="sudo vnstat; sudo netstat -ie; sudo netstat -s; sudo sudo netstat -pt; sudo iptables -S; sudo w -i; sudo ipcs -u; sudo tcpdump -i wlan0; sudo iotop; sudo ps; sudo netstat -r; echo 'En router ir a Básica -> Estado -> Listado de equipos'"
+alias portmon="sudo nc -l -6 -4 -u; sudo ss -o state established; sudo ss -l; sudo netstat -avnp -ef"
 
 
 #Aliases
@@ -355,13 +354,15 @@ alias whoneedssudo="sudo find . -xdev -user root -perm -u+w && echo 'maybe you w
 alias calc="let calc"
 alias skill="sudo kill -9"
 alias wline="sudo grep -n"
-alias nmaproute="sudo nmap -v -A --reason -O -sV -PO -sU -sX -f -PN --spoof-mac 0"
+alias nmapp="sudo nmap -v -A --reason -O -sV -PO -sU -sX -f -PN --spoof-mac 0"
 alias nmap100="sudo nmap -F -v -A --reason -O -sV -PO -sU -sX -f -PN --spoof-mac 0"
-alias lss="ls -ld && sudo du -sh && ls -i1 -latr -FGAhp --color=auto -t -a -al"
+alias lss="ls -ld && sudo du -sh && ls -i1 -latr -lSr -FGAhp --color=auto -t -a -al"  # lSr sort by size ltr sort by date
+alias lk='ls -lSr --color=auto -FGAhp'        # lSr sort by size ltr sort by date
+alias ls -r='ls -ld && sudo du -sh && ls -i1 -latr -lSr -FGAhp --color=auto -t -a -al -lR'        # recursive ls
 alias verifykey="gpg --keyid-format long --import"
 alias verifyfile="gpg --keyid-format long --verify"
 alias secfirefox="firejail --dns=8.8.8.8 --dns=8.8.4.4 firefox"
-alias lsssh="ls -al ~/.ssh"
+alias lssh="ls -al ~/.ssh"
 alias dt='date "+%F %T"'
 alias pdf2txt='ls * | sudo xargs -n1 pdftotext'
 alias bashrc='/etc/bash.bashrc'
@@ -380,9 +381,7 @@ alias keepass="mono /home/$USER/KeePass/KeePass.exe"
 alias df='df -h'
 alias aptup='sudo apt-get update && sudo apt-get upgrade && sudo apt-get clean'
 alias mkdirr='mkdir -p -v'
-alias lk='ls -lSr --color=auto -FGAhp'        # sort by siz
-alias lr='ls -lR --color=auto -FGAhp'        # recursice ls
-alias lt='ls -ltr --color=auto -FGAhp'        # sort by date
+alias downweb='wget --mirror -p --convert-links -P .'
 alias lvim="vim -c \"normal '0\"" # open vim editor with last edited file
 alias grepp='grep --color=auto -r -H'
 alias egrepp='egrep --color=auto -r -w'
@@ -396,22 +395,22 @@ alias gethtest="geth --testnet console"
 alias gethupgrade="geth upgradedb --fast console"
 
 ### Some cheatsheets###
-alias shsheet="http://www.tldp.org/LDP/abs/html/index.html" 
+alias shsheet="firefox -new-tab http://www.tldp.org/LDP/abs/html/index.html" 
 alias gethsheet="https://github.com/ethereum/go-ethereum/wiki/Command-Line-Options"
-alias gpgsheet="firefox http://irtfweb.ifa.hawaii.edu/~lockhart/gpg/gpg-cs.html"
-alias bitcoinsheet="firefox https://en.bitcoin.it/wiki/Script#Words"
-alias dockersheet="firefox https://www.cheatography.com/storage/thumb/aabs_docker-and-friends.600.jpg && firefox http://container-solutions.com/content/uploads/2015/06/15.06.15_DockerCheatSheet_A2.pdf"
-alias nmapsheet="firefox https://4.bp.blogspot.com/-lCguW2iNKi4/UgmjCu1UNfI/AAAAAAAABuI/35Px0VIOuIg/s1600/Screen+Shot+2556-08-13+at+10.06.38+AM.png"
-alias gitsheet="firefox http://developer.exoplatform.org/docs/scm/git/cheatsheet/ && firefox https://github.com/tiimgreen/github-cheat-sheet && echo 'Warning: Never git add, commit, or push sensitive information to a remote repository. Sensitive information can include, but is not limited to:
+alias gpgsheet="firefox -new-tab http://irtfweb.ifa.hawaii.edu/~lockhart/gpg/gpg-cs.html"
+alias bitcoinsheet="firefox -new-tab  https://en.bitcoin.it/wiki/Script#Words"
+alias dockersheet="firefox -new-tab  https://www.cheatography.com/storage/thumb/aabs_docker-and-friends.600.jpg && firefox http://container-solutions.com/content/uploads/2015/06/15.06.15_DockerCheatSheet_A2.pdf"
+alias nmapsheet="firefox -new-tab  https://4.bp.blogspot.com/-lCguW2iNKi4/UgmjCu1UNfI/AAAAAAAABuI/35Px0VIOuIg/s1600/Screen+Shot+2556-08-13+at+10.06.38+AM.png"
+alias gitsheet="firefox -new-tab  http://developer.exoplatform.org/docs/scm/git/cheatsheet/ && firefox https://github.com/tiimgreen/github-cheat-sheet && echo 'Warning: Never git add, commit, or push sensitive information to a remote repository. Sensitive information can include, but is not limited to:
     Passwords
     SSH keys
     AWS access keys
     API keys
     Credit card numbers
     PIN numbers'"
-alias ubuntusheet="firefox http://slashbox.org/index.php/Ubuntu#Cheat_Sheet && firefox 'http://slashbox.org/index.php/Ubuntu#Cheat_Sheet'" 
-alias vimsheet="firefox http://michael.peopleofhonoronly.com/vim/vim_cheat_sheet_for_programmers_screen.png && firefox https://cdn.shopify.com/s/files/1/0165/4168/files/digital-preview-letter.png && firefox http://michael.peopleofhonoronly.com/vim/vim_cheat_sheet_for_programmers_screen.png && firefox https://cdn.shopify.com/s/files/1/0165/4168/files/digital-preview-letter.png'"
-
+alias ubuntusheet="firefox -new-tab  http://slashbox.org/index.php/Ubuntu#Cheat_Sheet && firefox 'http://slashbox.org/index.php/Ubuntu#Cheat_Sheet'" 
+alias vimsheet="firefox -new-tab  http://michael.peopleofhonoronly.com/vim/vim_cheat_sheet_for_programmers_screen.png && firefox https://cdn.shopify.com/s/files/1/0165/4168/files/digital-preview-letter.png && firefox http://michael.peopleofhonoronly.com/vim/vim_cheat_sheet_for_programmers_screen.png && firefox https://cdn.shopify.com/s/files/1/0165/4168/files/digital-preview-letter.png'"
+alias wgetsheet="firefox -new-tab http://www.thegeekstuff.com/2009/09/the-ultimate-wget-download-guide-with-15-awesome-examples/"
 
 ### Functions ###
 
