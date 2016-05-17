@@ -295,8 +295,7 @@ sudo make install prefix=/usr/local/stow/emacs-"$version" && cd /usr/local/stow
 sudo rm /usr/local/share/info/dir
 sudo stow emacs-"$version" 
 #spacemacs & plugins
-sudo rm -r .emacs.d
-sudo rm -r .emacs
+sudo rm -r .emacs**
 sudo mkdir .emacs.d
 sudo mkdir .emacs
 cd ~/.emacs.d
