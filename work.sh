@@ -256,15 +256,16 @@ sudo rm -r /usr/local/stow
 sudo make install prefix=/usr/local/stow/emacs-"$version" && cd /usr/local/stow
 sudo rm /usr/local/share/info/dir
 sudo stow emacs-"$version" 
-#spacemacs
-sudo git clone http://github.com/syl20bnr/spacemacs ~/.emacs.d
-##plugins
+#spacemacs & plugins
+sudo rm -r .emacs.d
+sudo rm -r .emacs
+sudo mkdir .emacs.d
+sudo mkdir .emacs
 cd ~/.emacs.d
-wget http://github.com/ethereum/emacs-solidity/blob/master/solidity-mode.el ##solidity
-(add-to-list load-path "~/.emacs.d/") 
-(load "myplugin.el")
+sudo git clone http://github.com/syl20bnr/spacemacs 
+sudo wget https://github.com/ethereum/emacs-solidity/blob/master/solidity-mode.el ##solidity
+sudo emacs --insecure
 cd
-sudo rm emacs-"$version".tar.xz
 sudo rm -r emacs-**
 
 ##Github
