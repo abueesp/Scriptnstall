@@ -447,3 +447,7 @@ cd ethaddress.org
 gpg --verify ryep**.asc
 cd ..
 echo "alias coldstorage = 'cd /home/$USER/ethaddress.org && firefox -new-tab -url index.html'"
+
+##Electrum
+sudo apt-get install python-qt4 python-pip
+sudo pip install https://download.electrum.org/2.6.4/Electrum-2.6.4.tar.gz
