@@ -364,14 +364,26 @@ install.packages("gmp")
 Install those packages in R. To exit type quit()' 
 sudo R
 
-##Web3js library
+##Nodejs & NPM
 cd /usr/local
-sudo wget --no-check-certificate https://nodejs.org/dist/v6.1.0/node-v6.1.0-linux-x64.tar.xz
-sudo tar --strip-components 1 -xzf /usr/save/node-v4.2.1-linux-x64.tar.gz
-cd
+versionnpm=v4.4.4
+sudo wget $(echo "https://nodejs.org/dist/"$versionnpm"/node-$versionnpm-linux-x64.tar.xz")
+gpg --keyserver pool.sks-keyservers.net \
+  --recv-keys DD8F2338BAE7501E3DD5AC78C273792F7D83545D
+curl -O https://nodejs.org/dist/$versionnpm/SHASUMS256.txt
+gpg --verify SHASUMS256.txt.asc
+sudo rm SHASUM**
+sudo tar --strip-components 1 -xf /usr/save/node**.tar.xz
+cd node**
+./configure
+sudo make
+sudo make install
 sudo npm install npm -g
+
+##Web3 Library
 sudo npm install web3
 sudo meteor add ethereum:web3
+
 
 ##MongoDB
 sudo npm install mongodb
