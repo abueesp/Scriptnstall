@@ -384,6 +384,10 @@ sudo npm install npm -g
 sudo npm install web3
 sudo meteor add ethereum:web3
 
+##Other npm
+npm install -g jshint
+npm install -g coffeescript-compiler
+npm install -g coffee-script
 
 ##MongoDB
 sudo npm install mongodb
