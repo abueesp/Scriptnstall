@@ -326,6 +326,11 @@ sudo wget http://download.virtualbox.org/virtualbox/$var1/$file -O $file
 #sudo VBoxManage extpack uninstall "Oracle VM VirtualBox Extension Pack"
 sudo VBoxManage extpack install $file --replace
 sudo rm $file
+sudo apt-get install dkms
+wget http://download.virtualbox.org/virtualbox/5.0.16/VBoxGuestAdditions_5.0.16.iso
+sudo mv VBoxGuestAdditions**.iso /usr/share/Virtualbox/VBoxGuestAdditions.iso
+echo "insert iso additions"
+VBoxManage.exe storageattach work --storagectl IDE --port 0 --device 0 --type dvddrive --medium "/home/$USER/VBox**.iso"
 read -p "Introduce un usuario de vbox " user1 $user1
 sudo usermod -G vboxusers -a $user1
 read -p "Introduce otro usuario de vbox " user2 $user2
