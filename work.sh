@@ -389,7 +389,6 @@ sudo meteor add ethereum:web3
 sudo npm install mongodb
 
 ##Frameworks
-sudo apt-get install npm
 sudo npm -g install embark-framework
 sudo npm install -g truffle
 sudo echo 'alias meteor="firefox -new-tab -url http://localhost:3000 && geth --rpc --rpccorsdomain='http://localhost:3000'"' >> /etc/bash.bashrc
