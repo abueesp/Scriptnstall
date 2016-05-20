@@ -415,7 +415,7 @@ alias gethtest="geth --testnet console"
 alias gethupgrade="geth upgradedb --fast console"
 
 ### Some cheatsheets###
-alias emacssheet="firefox -new-tab https://www.emacswiki.org/ && firefox -new-tab http://www.ling.ohio-state.edu/~kyoon/tts/unix-help/LaTeX/emacs-cheatsheet-2-of-2.jpg && firefox -new-tab http://www.muylinux.com/wp-content/uploads/2010/11/Emacs-Cheatsheet-wallpaper.jpg && firefox -new-tab http://es.tldp.org/Tutoriales/doc-tutorial-emacs/intro_emacs.pdf"
+alias emacssheet="firefox -new-tab https://www.emacswiki.org/ && firefox -new-tab http://www.ling.ohio-state.edu/~kyoon/tts/unix-help/LaTeX/emacs-cheatsheet-2-of-2.jpg && firefox -new-tab http://www.muylinux.com/wp-content/uploads/2010/11/Emacs-Cheatsheet-wallpaper.jpg && firefox -new-tab https://github.com/emacs-tw/awesome-emacs#markdown && firefox -new-tab http://es.tldp.org/Tutoriales/doc-tutorial-emacs/intro_emacs.pdf"
 alias electrumsheet="firefox -new-tab https://docs.electrum.org/en/latest/"
 alias shsheet="firefox -new-tab https://www.tldp.org/LDP/abs/html/index.html" 
 alias gethsheet="https://github.com/ethereum/go-ethereum/wiki/Command-Line-Options"
