@@ -415,22 +415,23 @@ alias gethtest="geth --testnet console"
 alias gethupgrade="geth upgradedb --fast console"
 
 ### Some cheatsheets###
+alias emacssheet="firefox -new-tab https://www.emacswiki.org/ && firefox -new-tab http://www.ling.ohio-state.edu/~kyoon/tts/unix-help/LaTeX/emacs-cheatsheet-2-of-2.jpg && firefox -new-tab http://www.muylinux.com/wp-content/uploads/2010/11/Emacs-Cheatsheet-wallpaper.jpg && firefox -new-tab http://es.tldp.org/Tutoriales/doc-tutorial-emacs/intro_emacs.pdf"
 alias electrumsheet="firefox -new-tab https://docs.electrum.org/en/latest/"
 alias shsheet="firefox -new-tab https://www.tldp.org/LDP/abs/html/index.html" 
 alias gethsheet="https://github.com/ethereum/go-ethereum/wiki/Command-Line-Options"
 alias gpgsheet="firefox -new-tab https://irtfweb.ifa.hawaii.edu/~lockhart/gpg/gpg-cs.html"
 alias bitcoinsheet="firefox -new-tab  https://en.bitcoin.it/wiki/Script#Words"
-alias dockersheet="firefox -new-tab  https://www.cheatography.com/storage/thumb/aabs_docker-and-friends.600.jpg && firefox https://container-solutions.com/content/uploads/2015/06/15.06.15_DockerCheatSheet_A2.pdf"
+alias dockersheet="firefox -new-tab  https://www.cheatography.com/storage/thumb/aabs_docker-and-friends.600.jpg && firefox -new-tab https://container-solutions.com/content/uploads/2015/06/15.06.15_DockerCheatSheet_A2.pdf"
 alias nmapsheet="firefox -new-tab  https://4.bp.blogspot.com/-lCguW2iNKi4/UgmjCu1UNfI/AAAAAAAABuI/35Px0VIOuIg/s1600/Screen+Shot+2556-08-13+at+10.06.38+AM.png"
-alias gitsheet="firefox -new-tab  https://developer.exoplatform.org/docs/scm/git/cheatsheet/ && firefox https://github.com/tiimgreen/github-cheat-sheet && echo 'Warning: Never git add, commit, or push sensitive information to a remote repository. Sensitive information can include, but is not limited to:
+alias gitsheet="firefox -new-tab  https://developer.exoplatform.org/docs/scm/git/cheatsheet/ && firefox -new-tab https://github.com/tiimgreen/github-cheat-sheet && echo 'Warning: Never git add, commit, or push sensitive information to a remote repository. Sensitive information can include, but is not limited to:
     Passwords
     SSH keys
     AWS access keys
     API keys
     Credit card numbers
     PIN numbers'"
-alias ubuntusheet="firefox -new-tab  https://slashbox.org/index.php/Ubuntu#Cheat_Sheet && firefox 'https://slashbox.org/index.php/Ubuntu#Cheat_Sheet'" 
-alias vimsheet="firefox -new-tab  https://michael.peopleofhonoronly.com/vim/vim_cheat_sheet_for_programmers_screen.png && firefox https://cdn.shopify.com/s/files/1/0165/4168/files/digital-preview-letter.png && firefox https://michael.peopleofhonoronly.com/vim/vim_cheat_sheet_for_programmers_screen.png && firefox https://cdn.shopify.com/s/files/1/0165/4168/files/digital-preview-letter.png'"
+alias ubuntusheet="firefox -new-tab  https://slashbox.org/index.php/Ubuntu#Cheat_Sheet && firefox -new-tab https://slashbox.org/index.php/Ubuntu#Cheat_Sheet" 
+alias vimsheet="firefox -new-tab  https://michael.peopleofhonoronly.com/vim/vim_cheat_sheet_for_programmers_screen.png && firefox -new-tab https://cdn.shopify.com/s/files/1/0165/4168/files/digital-preview-letter.png && firefox -new-tab https://michael.peopleofhonoronly.com/vim/vim_cheat_sheet_for_programmers_screen.png && firefox -new-tab https://cdn.shopify.com/s/files/1/0165/4168/files/digital-preview-letter.png'"
 alias wgetsheet="firefox -new-tab https://www.thegeekstuff.com/2009/09/the-ultimate-wget-download-guide-with-15-awesome-examples/"
 
 ### Functions ###
