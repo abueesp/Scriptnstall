@@ -36,8 +36,8 @@
 
 ##INSTALL
 sudo apt-get install android-tools-adb android-tools-fastboot
-echo "backup"
-adb backup -apk -all -f backup($NOW).ab
+NOW = date
+adb backup -apk -all -f backup$NOW.ab
 echo "insert *#06# on the phone and take note of the IMEI"
 read $pause
 echo "put the device into fastboot mode. With the device powered down, hold Volume Up and connect the USB cable. The notification light should turn blue to indicate you are in fastboot mode. If you receive the message waiting for device fastboot is not configured properly"
@@ -46,8 +46,9 @@ sudo fastboot getvar version
 wget https://download.cyanogenmod.org/get/jenkins/161009/cm-12.1-20160509-NIGHTLY-z3-recovery.img
 wget https://download.cyanogenmod.org/get/jenkins/161009/cm-12.1-20160509-NIGHTLY-z3.zip
 wget https://github.com/opengapps/arm64/releases/download/20160511/open_gapps-arm64-6.0-super-20160511.zip
+firefox https://wiki.cyanogenmod.org/w/Build_for_z3c --new-tab -url https://wiki.cyanogenmod.org/w/Install_CM_for_z3c --new-tab -url http://forum.xda-developers.com/z3-compact --new-tab -url http://developer.sonymobile.com/unlockbootloader/ --new-tab -url https://wiki.cyanogenmod.org/w/Google_Apps
 echo "Unlocking the bootloader on a Sony device may automatically wipe internal storage; a backup of the sdcard is suggested. It will also irreversibly erase the DRM keys stored in the TA partition of some devices, which will result in the loss of certain proprietary features that may have been included."
-fastboot flash boot boot.img 
+fastboot flash boot /Downloads/**z3**.img 
 fastboot reboot 
 echo "Once the device boots into CyanogenMod Recovery, use the physical volume buttons to move up and down. Select wipe data/factory reset."
 adb sideload update.zip
@@ -56,6 +57,3 @@ read $folder
 adb push update.zip $folder
 echo "Select reboot the system. When it is rooted press ENTER. Then you can use adb install example.apk to install in internal memory and adb install -s example.apk to install in sd card"
 read $pause
-
-firefox https://wiki.cyanogenmod.org/w/Build_for_z3c --new-tab -url https://wiki.cyanogenmod.org/w/Install_CM_for_z3c --new-tab -url http://forum.xda-developers.com/z3-compact --new-tab -url http://developer.sonymobile.com/unlockbootloader/ --new-tab -url https://wiki.cyanogenmod.org/w/Google_Apps
-
