@@ -36,6 +36,7 @@
 
 ##INSTALL
 sudo apt-get install android-tools-adb android-tools-fastboot mtp-tools mtpfs
+sudo lsusb
 sudo mtp-detect | grep idVendor
 sudo mtp-detect | grep idProduct
 echo 'write this string into the file: SUBSYSTEM=="usb", ATTR{idVendor}=="VENDORID", ATTR{idProduct}=="PRODUCTID", MODE="0666" and save. Replace VENDORID with the idVendor you had noted down earlier. Similarly, replace PRODUCTID with the idProduct you had noted down. In my case, they were 04e8 and 685c respectively, but they might have been different for you.'
@@ -47,6 +48,8 @@ sudo service udev restart
 sudo mkdir /mnt/mobile
 sudo chmod a+rwx /mnt/mobile
 sudo adduser $USER fuse
+
+mtpfs -o allow_other /mnt/mobile/
 
 adb backup -apk -all -f backup$NOW.ab
 echo "insert *#06# on the phone and take note of the IMEI"
@@ -68,3 +71,5 @@ read $folder
 adb push update.zip $folder
 echo "Select reboot the system. When it is rooted press ENTER. Then you can use adb install example.apk to install in internal memory and adb install -s example.apk to install in sd card"
 read $pause
+
+android-disconnect
