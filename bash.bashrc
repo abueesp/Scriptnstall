@@ -413,6 +413,8 @@ alias gethlocal="geth --rpc --rpccorsdomain localhost --etherbase '0x9B366b5493a
 alias gethmine='geth --etherbase '0x9B366b5493a545f070E4a0F16c81182670fEE6' --mine --minergpus --autodag --minerthreads "8" console'
 alias gethtest="geth --testnet console"
 alias gethupgrade="geth upgradedb --fast console"
+alias adbconnect="mtpfs -o allow_other /mnt/mobile"
+alias android-disconnect="fusermount -u /mnt/mobile"
 
 ### Some cheatsheets###
 alias emacssheet="firefox -new-tab https://www.emacswiki.org/ && firefox -new-tab http://www.ling.ohio-state.edu/~kyoon/tts/unix-help/LaTeX/emacs-cheatsheet-2-of-2.jpg && firefox -new-tab http://www.muylinux.com/wp-content/uploads/2010/11/Emacs-Cheatsheet-wallpaper.jpg && firefox -new-tab https://github.com/emacs-tw/awesome-emacs#markdown && firefox -new-tab http://es.tldp.org/Tutoriales/doc-tutorial-emacs/intro_emacs.pdf"
