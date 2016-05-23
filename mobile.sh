@@ -71,5 +71,5 @@ read $folder
 adb push update.zip $folder
 echo "Select reboot the system. When it is rooted press ENTER. Then you can use adb install example.apk to install in internal memory and adb install -s example.apk to install in sd card"
 read $pause
-
-android-disconnect
+fusermount -u /mnt/mobile
+sudo rm -r /mnt/mobile
