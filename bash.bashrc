@@ -417,6 +417,7 @@ alias adbconnect="mtpfs -o allow_other /mnt/mobile"
 alias adbdisconnect="fusermount -u /mnt/mobile"
 
 ### Some cheatsheets###
+alias mobilesheet = "firefox -new-tab https://www.movilzona.es/tutoriales/android/root/principales-comandos-para-adb-y-fastboot-guia-basica/"
 alias emacssheet="firefox -new-tab https://www.emacswiki.org/ && firefox -new-tab http://www.ling.ohio-state.edu/~kyoon/tts/unix-help/LaTeX/emacs-cheatsheet-2-of-2.jpg && firefox -new-tab http://www.muylinux.com/wp-content/uploads/2010/11/Emacs-Cheatsheet-wallpaper.jpg && firefox -new-tab https://github.com/emacs-tw/awesome-emacs#markdown && firefox -new-tab http://es.tldp.org/Tutoriales/doc-tutorial-emacs/intro_emacs.pdf"
 alias electrumsheet="firefox -new-tab https://docs.electrum.org/en/latest/"
 alias shsheet="firefox -new-tab https://www.tldp.org/LDP/abs/html/index.html" 
@@ -554,12 +555,13 @@ extract () {
   fi
 }
 
-#bu - Back Up a file. Usage "bu filename.txt"
+#buf - Back Up a file. Usage "bu filename.txt"
 bu () {
   cp $1 ${1}-`date +%Y%m%d%H%M`.backup;
 }
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
 
 
 # use DNS to query wikipedia (wiki QUERY)
