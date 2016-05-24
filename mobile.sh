@@ -35,70 +35,35 @@
 #cd $OUT
 
 ##INSTALL
-##Build
-#sudo apt-get install android-tools-adb android-tools-fastboot bison build-essential curl flex git gnupg gperf libesd0-dev liblz4-tool libncurses5-dev libsdl1.2-dev libwxgtk2.8-dev libxml2 libxml2-utils lzop maven openjdk-7-jdk openjdk-7-jre pngcrush schedtool squashfs-tools xsltproc zip zlib1g-dev g++-multilib gcc-multilib lib32ncurses5-dev lib32readline-gplv2-dev lib32z1-dev -y
-#mkdir -p ~/bin
-#mkdir -p ~/android/system/vendor/cm
-#curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
-#chmod a+x ~/bin/repo
-#echo '\n# set PATH so it includes user private bin if it exists
-#\nif [ -d "$HOME/bin" ] ; then
-#\n    PATH="$HOME/bin:$PATH"
-#\nfi' >> ~/bin/.profile
-#cd ~/android/system/
-#repo init -u https://github.com/CyanogenMod/android.git -b cm-13.0
-#repo sync
-#source build/envsetup.sh
-#breakfast z3c
-#cd ..
-#cd ..
-#cd ~/android/system/vendor/cm
-#./get-prebuilts
-#cd ..
-#cd ..
-#cd ..
-#cd ..
-#cd ~/android/system/device/sony/z3c
-#./extract-files.sh
-#cd ..
-#cd ..
-#cd ..
-#cd ..
-#cd ..
-#echo "\nexport USE_CCACHE=1" >> sudo /etc/bash.bashrc
-
-#chroot 
-#brunch z3c
-#cd $OUT
-
-##INSTALL
 sudo apt-get install android-tools-adb android-tools-fastboot mtp-tools mtpfs libusb-dev gmtp -y
 sudo lsusb
-ls -lah /usr/lib/libmtp*
-wget http://downloads.sourceforge.net/project/libmtp/libmtp/1.1.11/libmtp-1.1.11.tar.gz
-wget http://downloads.sourceforge.net/project/libmtp/libmtp/1.1.11/libmtp-1.1.11.tar.gz.asc
-gpg --verify libmtp**.asc
-tar xvf libmtp**.tar.gz
-cd libmtp**/
-./configure --prefix=/usr
-make
-sudo make install
-sudo cp 69-libmtp.rules /etc/udev/rules.d
-sudo mtp-detect | grep idVendor
-sudo mtp-detect | grep idProduct
-echo 'write this string into the file: SUBSYSTEM=="usb", ATTR{idVendor}=="VENDORID", ATTR{idProduct}=="PRODUCTID", MODE="0666" and save. Replace VENDORID with the idVendor you had noted down earlier. Similarly, replace PRODUCTID with the idProduct you had noted down. In my case, they were 0fce and 01bb respectively, but they might have been different for you.'
-sudo gedit /etc/udev/rules.d/51-android.rules
-sudo sed -i 's/#user_allow_other/user_allow_other/g' /etc/fuse.conf
-NOW = date
-
-sudo service udev restart
 sudo mkdir /mnt/mobile
 sudo chmod a+rwx /mnt/mobile
+ls -lah /usr/lib/libmtp*
+#wget http://downloads.sourceforge.net/project/libmtp/libmtp/1.1.11/libmtp-1.1.11.tar.gz
+#wget http://downloads.sourceforge.net/project/libmtp/libmtp/1.1.11/libmtp-1.1.11.tar.gz.asc
+#gpg --verify libmtp**.asc
+#tar xvf libmtp**.tar.gz
+#cd libmtp**/
+#./configure --prefix=/usr
+#make
+#sudo make install
+#sudo cp 69-libmtp.rules /etc/udev/rules.d
+#sudo mtp-detect | grep idVendor
+#sudo mtp-detect | grep idProduct
+#echo 'write this string into the file: SUBSYSTEM=="usb", ATTR{idVendor}=="VENDORID", ATTR{idProduct}=="PRODUCTID", MODE="0666" and save. Replace VENDORID with the idVendor you had noted down earlier. Similarly, replace PRODUCTID with the idProduct you had noted down. In my case, they were 0fce and 01bb respectively, but they might have been different for you.'
+#sudo gedit /etc/udev/rules.d/51-android.rules
+
+sudo chmod +x /etc/udev/rules.d/99-android.rules
+sudo service udev restart
+sudo sed -i 's/#user_allow_other/user_allow_other/g' /etc/fuse.conf
+sudo chmod a+rwx /etc/fuse.conf
 sudo adduser $USER fuse
 
+NOW = date
 mtpfs -o allow_other /mnt/mobile/
 
-adb backup -apk -all -f backup$NOW.ab
+adb backup -apk -shared -f backup$NOW.ab
 echo "insert *#06# on the phone and take note of the IMEI"
 read $pause
 echo "put the device into fastboot mode. With the device powered down, hold Volume Up and connect the USB cable. The notification light should turn blue to indicate you are in fastboot mode. If you receive the message waiting for device fastboot is not configured properly"
@@ -120,3 +85,4 @@ echo "Select reboot the system. When it is rooted press ENTER. Then you can use 
 read $pause
 fusermount -u /mnt/mobile
 sudo rm -r /mnt/mobile
+sudo sed -i 's/user_allow_other/#user_allow_other/g' /etc/fuse.conf
