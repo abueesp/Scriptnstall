@@ -105,6 +105,9 @@ git clone https://github.com/DevShaft/Backup-TA
 read -p "If you dont see the bluelight, shut down the device, start it while you are holding Volume Up and then connect the USB cable. The notification light should turn blue to indicate you are in fastboot mode. If you receive the message waiting for device fastboot is not configured properly. If you see the blue light then now you must know you are going to UNLOCK THE BOOTLOADER of your phone. If you have a Z3C DO NOT FORGET TO MAKE FIRST A BACKUP OF YOUR TA PARTITION FOR DRM FILES. YOU CAN DOWNLOAD https://github.com/DevShaft/Backup-TA FROM WINDOWS AND THEN BACKUP IF YOU ARE ROOTED. IT DOES NOT WORK WITH WINE. LINUX VERSION ON GITHUB DOES NOT WORK EITHER. BACKUP TA FIRST!!!"
 read -p "Unlocking the bootloader on a Sony device may automatically wipe internal storage; a backup of the sdcard is suggested. It will also irreversibly erase the DRM keys stored in the TA partition of some devices, which will result in the loss of certain proprietary features that may have been included. LAST WARNING"
 sudo fastboot devices
+firefox http://developer.sonymobile.com/unlockbootloader/unlock-yourboot-loader/
+read -p "Introduce 0x oem to unlock. You can get it using your IMEI on the http://developer.sonymobile.com/unlockbootloader/unlock-yourboot-loader/ Warranty is not lost by default only when you unlock properly, but you can lock again" $0xnumber
+fastboot -i 0x0fce oem unlock $0xnumber
 sudo fastboot flash boot /Downloads/**z3**.img
 fastboot reboot 
 echo "Once the device boots into CyanogenMod Recovery, use the physical volume buttons to move up and down. Select wipe data/factory reset."
@@ -123,5 +126,3 @@ adb reboot recovery
 fusermount -u /mnt/mobile
 sudo rm -r /mnt/mobile
 sudo sed -i 's/user_allow_other/#user_allow_other/g' /etc/fuse.conf
-
-
