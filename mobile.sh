@@ -72,28 +72,38 @@ mono XperiFirm.exe
 sudo rm -r XperiFirm**
 cd..
 
-#Flashtool to up/downgrade
-wget http://spflashtool.com/download/SP_Flash_Tool_exe_Linux_64Bit_v5.1520.00.100.zip
-unzip SP**.zip
-sudo rm SP**.zip
-cd SP
-sudo sh flash_tool.sh
-cd ..
-sudo rm -r SP**
-
-#Root 
-mv Downloads/giefroot**.zip /home/$USER/downm/
-mv /home/$USER/giefroot**.zip /home/$USER/downm/
-unzip giefroot**.zip
-sh install.sh
+##ROOT
+##METHOD1
+wget http://d.kingoapp.com/default/KingoRoot.apk
+adb install KingRoot.apk
+read -p "search kingoroot on your phone and root it. Then check root with root checker on play storage"
+sudo rm KingRoot.apl
+##METHOD2
+###Flashtool to up/downgrade
+#wget http://dl-developer.sonymobile.com/code/copylefts/23.0.A.2.93.tar.bz2
+#wget http://spflashtool.com/download/SP_Flash_Tool_exe_Linux_64Bit_v5.1520.00.100.zip
+#unzip SP**.zip
+#sudo rm SP**.zip
+#cd SP
+#sudo sh flash_tool.sh
+#cd ..
+#sudo rm -r SP**
+###Root 
+#mv Downloads/giefroot**.zip /home/$USER/downm/
+#mv /home/$USER/giefroot**.zip /home/$USER/downm/
+#unzip giefroot**.zip
+#cd files 
+#sh install.sh
+#cd ..
+#sudo rm -r giefroot**.zip files
 
 ##Fastboot
-echo "now device is on fastboot mode. can you see the blue light of the corner?"
+read -p "now device is on fastboot mode. can you see the blue light of the corner?"
 adb reboot bootloader
-read $pause
 sudo fastboot getvar version
-echo "If you dont see the bluelight, shut down the device, start it while you are holding Volume Up and then connect the USB cable. The notification light should turn blue to indicate you are in fastboot mode. If you receive the message waiting for device fastboot is not configured properly"
-echo "Unlocking the bootloader on a Sony device may automatically wipe internal storage; a backup of the sdcard is suggested. It will also irreversibly erase the DRM keys stored in the TA partition of some devices, which will result in the loss of certain proprietary features that may have been included."
+git clone https://github.com/DevShaft/Backup-TA
+read -p "If you dont see the bluelight, shut down the device, start it while you are holding Volume Up and then connect the USB cable. The notification light should turn blue to indicate you are in fastboot mode. If you receive the message waiting for device fastboot is not configured properly. If you see the blue light then now you must know you are going to UNLOCK THE BOOTLOADER of your phone. If you have a Z3C DO NOT FORGET TO MAKE FIRST A BACKUP OF YOUR TA PARTITION FOR DRM FILES. YOU CAN DOWNLOAD https://github.com/DevShaft/Backup-TA FROM WINDOWS AND THEN BACKUP IF YOU ARE ROOTED. IT DOES NOT WORK WITH WINE. LINUX VERSION ON GITHUB DOES NOT WORK EITHER. BACKUP TA FIRST!!!"
+read -p "Unlocking the bootloader on a Sony device may automatically wipe internal storage; a backup of the sdcard is suggested. It will also irreversibly erase the DRM keys stored in the TA partition of some devices, which will result in the loss of certain proprietary features that may have been included. LAST WARNING"
 sudo fastboot devices
 sudo fastboot flash boot /Downloads/**z3**.img
 fastboot reboot 
