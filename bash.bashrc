@@ -370,6 +370,7 @@ alias portmon="sudo nc -l -6 -4 -u; sudo ss -o state established; sudo ss -l; su
 
 
 #Aliases
+alias Trash="sudo su && cd .local/share/Trash/files"
 alias whoneedssudo="sudo find . -xdev -user root -perm -u+w && echo 'maybe you wanted to add -type and -exec to specify f or d or to execute a command such as chmod, lss or cpc. You can also use -name or -size to specify the name or +100 mb; or -mmin -60 and -atime -1 for modified last hour or accessed last day. You can also use -cmin -60 for files changed last hour or -newer FILE for those modified after FILE or -anewer/-cnewer FILE if accessed/changed'"
 alias calc="let calc"
 alias skill="sudo kill -9"
