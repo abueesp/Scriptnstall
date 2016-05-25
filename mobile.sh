@@ -57,7 +57,7 @@ read $read
 firefox https://forum.xda-developers.com/z3-compact/general/how-to-root-backup-drm-keys-t3013343 && --new-tab -url https://encrypted.google.com/search?q=$read+ftf+spanish && --newtab -url https://forum.xda-developers.com/crossdevice-dev/sony/giefroot-rooting-tool-cve-2014-4322-t3011598 && --new-tab -url https://wiki.cyanogenmod.org/w/Install_CM_for_z3c --new-tab -url http://developer.sonymobile.com/unlockbootloader/ --new-tab -url https://wiki.cyanogenmod.org/w/Google_Apps && --new-tab -url https://www.movilzona.es/tutoriales/android/root/principales-comandos-para-adb-y-fastboot-guia-basica/
 mkdir downm
 cd downm
-wget https://download.cyanogenmod.org/get/jenkins/161009/cm-12.1-20160509-NIGHTLY-z3-recovery.img
+wget https://download.cyanogenmod.org/get/jenkins/162724/cm-12.1-20160523-NIGHTLY-z3c-recovery.img
 wget https://download.cyanogenmod.org/get/jenkins/161009/cm-12.1-20160509-NIGHTLY-z3.zip
 unzip cm**.zip
 cd ..
@@ -73,12 +73,17 @@ mono XperiFirm.exe
 sudo rm -r XperiFirm**
 cd..
 
+##TWRP
+read -p "check your TWRP img model"
+wget https://dl.twrp.me/z3c/twrp-3.0.2-0-z3c.img
+sudo dd if=/sdcard/twrp**.img of=/dev/block/platform/msm_sdcc.1/by-name/FOTAKernel
+
 ##ROOT
 ##METHOD1
 wget http://d.kingoapp.com/default/KingoRoot.apk
 adb install KingRoot.apk
 read -p "search kingoroot on your phone and root it. Then check root with root checker on play storage"
-sudo rm KingRoot.apl
+sudo rm KingRoot.apk
 ##METHOD2
 ###Flashtool to up/downgrade
 #wget http://dl-developer.sonymobile.com/code/copylefts/23.0.A.2.93.tar.bz2
@@ -111,7 +116,7 @@ sudo fastboot devices
 firefox http://developer.sonymobile.com/unlockbootloader/unlock-yourboot-loader/
 read -p "Introduce 0x oem to unlock. You can get it using your IMEI on the http://developer.sonymobile.com/unlockbootloader/unlock-yourboot-loader/ Warranty is not lost by default only when you unlock properly, but you can lock again" $0xnumber
 fastboot -i 0x0fce oem unlock $0xnumber
-sudo fastboot flash boot boot.img 
+sudo fastboot flash boot cm**z3c-recovery.img
 sudo fastboot reboot 
 echo "Once the device boots into CyanogenMod Recovery, use the physical volume buttons to move up and down. Select wipe data/factory reset."
 adb sideload update.zip
