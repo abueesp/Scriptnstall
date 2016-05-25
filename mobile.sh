@@ -59,8 +59,27 @@ mkdir downm
 cd downm
 wget https://download.cyanogenmod.org/get/jenkins/161009/cm-12.1-20160509-NIGHTLY-z3-recovery.img
 wget https://download.cyanogenmod.org/get/jenkins/161009/cm-12.1-20160509-NIGHTLY-z3.zip
-wget https://github.com/opengapps/arm64/releases/download/20160511/open_gapps-arm64-6.0-super-20160511.zip
 cd ..
+
+#Official versions
+firefox http://forum.xda-developers.com/attachment.php?attachmentid=3752944&d=1463432738
+sudo apt-get install mono-complete
+cd Downloads
+unzip XperiFirm**.zip
+sudo mozroots --import --machine --sync
+sudo certmgr -ssl -m https://software.sonymobile.com
+mono XperiFirm.exe
+sudo rm -r XperiFirm**
+cd..
+
+#Flashtool to up/downgrade
+wget http://spflashtool.com/download/SP_Flash_Tool_exe_Linux_64Bit_v5.1520.00.100.zip
+unzip SP**.zip
+sudo rm SP**.zip
+cd SP
+sudo sh flash_tool.sh
+cd ..
+sudo rm -r SP**
 
 #Root 
 mv Downloads/giefroot**.zip /home/$USER/downm/
@@ -88,6 +107,7 @@ read $pause
 
 ##Gapps
 echo "installing opengapps"
+wget https://github.com/opengapps/arm64/releases/download/20160511/open_gapps-arm64-6.0-super-20160511.zip
 adb push open_gapps**.zip /sdcard/
 adb reboot recovery
 fusermount -u /mnt/mobile
