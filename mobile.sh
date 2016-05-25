@@ -59,6 +59,7 @@ mkdir downm
 cd downm
 wget https://download.cyanogenmod.org/get/jenkins/161009/cm-12.1-20160509-NIGHTLY-z3-recovery.img
 wget https://download.cyanogenmod.org/get/jenkins/161009/cm-12.1-20160509-NIGHTLY-z3.zip
+unzip cm**.zip
 cd ..
 
 #Official versions
@@ -108,8 +109,8 @@ sudo fastboot devices
 firefox http://developer.sonymobile.com/unlockbootloader/unlock-yourboot-loader/
 read -p "Introduce 0x oem to unlock. You can get it using your IMEI on the http://developer.sonymobile.com/unlockbootloader/unlock-yourboot-loader/ Warranty is not lost by default only when you unlock properly, but you can lock again" $0xnumber
 fastboot -i 0x0fce oem unlock $0xnumber
-sudo fastboot flash boot /Downloads/**z3**.img
-fastboot reboot 
+sudo fastboot flash boot boot.img 
+sudo fastboot reboot 
 echo "Once the device boots into CyanogenMod Recovery, use the physical volume buttons to move up and down. Select wipe data/factory reset."
 adb sideload update.zip
 echo "On the device, navigate to the mounts and storage menu. If you see /storage/sdcard0 as a mountable volume, go ahead and mount it. If you do not see this directory, then instead mount the /data directory. Take note of which volume you mounted to write it now one or the other and push the package(s) to your device"
