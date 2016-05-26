@@ -24,7 +24,8 @@ sudo usermod -aG docker $USER
 sudo apt-get purge apparmor -y
 sudo rm -rf /etc/apparmor.d/
 sudo rm -rf /etc/apparmor
-
+#Minus
+sudo apt-get purge imagemagick -y
 #UFW
 sudo apt-get install gufw -y
 sudo ufw enable
