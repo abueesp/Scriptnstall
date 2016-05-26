@@ -51,9 +51,8 @@ tar -xvf backup-all-$NOW.tar
 sudo cd ..
 
 ##Second preparation
-echo "HEEEEEEEYYYYYYYY  !!!! insert *#06# on the phone and take note of the IMEI while this is downloading. Also USB debugging enabled,  
-Settings => About phone => Click 7 times on Android Build (Numero de Compilacion) and Model Number (en mi caso D5803) to unlock developer options and check it for later, and Settings => Developer Settings Allow mock locations (ubicaciones simuladas). DOWNLOAD giefroot and TAKE INTO ACCOUNT YOU MAY ALSO BACKUP TA PARTITION WITH DMR KEYS FOR Z3C ON WINDOWS WITH https://github.com/DevShaft/Backup-TA and http://forum.xda-developers.com/showthread.php?t=2292598  !!!!!! HEEEEEEEYYYYYYY"
-read $read
+read -p "insert *#06# on the phone and take note of the IMEI while this is downloading. Also USB debugging enabled,  
+Settings => About phone => Click 7 times on Android Build (Numero de Compilacion) and Model Number (en mi caso D5803) to unlock developer options and check it for later, and Settings => Developer Settings Allow mock locations (ubicaciones simuladas). IF YOU HAVE A SONY DEVICE INTO ACCOUNT YOU MAY ALSO BACKUP TA PARTITION WITH DMR KEYS FOR Z3C ON WINDOWS WITH git clone https://github.com/DevShaft/Backup-TA and http://forum.xda-developers.com/showthread.php?t=2292598"
 firefox https://forum.xda-developers.com/z3-compact/general/how-to-root-backup-drm-keys-t3013343 && --new-tab -url https://encrypted.google.com/search?q=$read+ftf+spanish && --newtab -url https://forum.xda-developers.com/crossdevice-dev/sony/giefroot-rooting-tool-cve-2014-4322-t3011598 && --new-tab -url https://wiki.cyanogenmod.org/w/Install_CM_for_z3c --new-tab -url http://developer.sonymobile.com/unlockbootloader/ --new-tab -url https://wiki.cyanogenmod.org/w/Google_Apps && --new-tab -url https://www.movilzona.es/tutoriales/android/root/principales-comandos-para-adb-y-fastboot-guia-basica/
 mkdir downm
 cd downm
@@ -61,7 +60,7 @@ wget https://fl1.androidfilehost.com/dl/yvV8h0FJb7DLdE8mQ4Upyg/1464454504/244592
 wget https://download.cyanogenmod.org/get/jenkins/162724/cm-12.1-20160523-NIGHTLY-z3c-recovery.img
 wget https://download.cyanogenmod.org/get/jenkins/161009/cm-12.1-20160509-NIGHTLY-z3.zip
 ##TWRP
-read -p "check your TWRP img model. Then copy all downm and the files you also want to add to sdcard1, included opengapps and TA partition backup."
+read -p "check your TWRP img model. Then copy all downm and the files you also want to add to sdcard1, included opengapps, and if your device is Sony consider also TA partition."
 wget https://dl.twrp.me/z3c/twrp-3.0.2-0-z3c.img
 ##Gapps
 read -p "installing opengapps. Please select the correct version according to your model arch and cm base ROM version"
@@ -111,9 +110,8 @@ cd downm
 read -p "now device will be on fastboot mode. can you see the blue light of the corner?"
 adb reboot bootloader
 sudo fastboot getvar version
-git clone https://github.com/DevShaft/Backup-TA
 read -p " SONY Xperia Z To enter  into  Fastboot : (while turned off) Press and hold the  Volume Up button, at the same time plug in the micro USB cable which is already connected to PC. To enter  into  Flash Mode : (while turned off) Press and hold the  Volume Down button, at the same time plug in the micro USB cable which is already connected to PC. To enter  into Recovery: (while turned off) Power on or plug into charger and keep pressing Volume Up repeatedly. More on : http://www.droidviews.com/how-to-boot-android-devices-in-fastboot-download-bootloader-or-recovery-mode/
-If you dont see the bluelight, shut down the device, start it while you are holding Volume Up and then connect the USB cable. The notification light should turn blue to indicate you are in fastboot mode. If you receive the message waiting for device fastboot is not configured properly. If you see the blue light then now you must know you are going to UNLOCK THE BOOTLOADER of your phone. If you have a Z3C DO NOT FORGET TO MAKE FIRST A BACKUP OF YOUR TA PARTITION FOR DRM FILES. YOU CAN DOWNLOAD https://github.com/DevShaft/Backup-TA FROM WINDOWS AND THEN BACKUP IF YOU ARE ROOTED. IT DOES NOT WORK WITH WINE. LINUX VERSION ON GITHUB DOES NOT WORK EITHER. BACKUP TA FIRST!!!"
+If you dont see the bluelight, shut down the device, start it while you are holding Volume Up and then connect the USB cable. The notification light should turn blue to indicate you are in fastboot mode. If you receive the message waiting for device fastboot is not configured properly. If you see the blue light then now you must know you are going to UNLOCK THE BOOTLOADER of your phone. If you have a Z3C iF YOU ARE A SONY DO NOT FORGET TO MAKE FIRST A BACKUP OF YOUR TA PARTITION FOR DRM FILES. YOU CAN DOWNLOAD git clone https://github.com/DevShaft/Backup-TA FROM WINDOWS AND THEN BACKUP IF YOU ARE ROOTED. IT DOES NOT WORK WITH WINE. LINUX VERSION ON GITHUB DOES NOT WORK EITHER. BACKUP TA FIRST!!!"
 read -p "Unlocking the bootloader on a Sony device may automatically wipe internal storage; a backup of the sdcard is suggested. It will also irreversibly erase the DRM keys stored in the TA partition of some devices, which will result in the loss of certain proprietary features that may have been included. LAST WARNING"
 sudo fastboot devices
 firefox http://developer.sonymobile.com/unlockbootloader/unlock-yourboot-loader/
