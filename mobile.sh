@@ -63,6 +63,9 @@ wget https://download.cyanogenmod.org/get/jenkins/161009/cm-12.1-20160509-NIGHTL
 ##TWRP
 read -p "check your TWRP img model. Then copy all downm to sdcard1."
 wget https://dl.twrp.me/z3c/twrp-3.0.2-0-z3c.img
+##Gapps
+read -p "installing opengapps. Please select the correct version according to your model arch and cm base ROM version"
+wget https://github.com/opengapps/arm64/releases/download/20160525/open_gapps-arm64-5.0-aroma-20160525.zip
 cd ..
 
 #Official versions and twrp
@@ -119,20 +122,16 @@ fastboot -i 0x0fce oem unlock $0xnumber
 sudo fastboot flash recovery twrp**.img
 sudo fastboot flash boot cm**z3c-recovery.img
 sudo fastboot reboot 
-echo "Once the device boots into CyanogenMod Recovery, use the physical volume buttons to move up and down. Select wipe data/factory reset. Then Apply Update from sdcard1 (I suppose you already copied imgs to SD card)."
+echo "Once the device boots into CyanogenMod Recovery, use the physical volume buttons to move up and down. Select wipe data/factory reset. Then Apply Update from sdcard1 (I suppose you already copied imgs and zips from /downm to SD card)."
 #adb sideload update.zip #this options is to load directly from adb
 #adb push update.zip $folder #this options allows to load from phone or sdcard from terminal
 echo "If Cyanogenmod recovery does not start, or happens a soft brick, push POWER and VOLUME UP at the same time till it starts to get blue bulb of fastboot (red is nothing, green correct, pink CM). Then repeat $ sudo fastboot getvar version $ sudo fastboot devices sudo fastboot reboot"
 echo "On the device, navigate to the mounts and storage menu. If you see /storage/sdcard0 as a mountable volume, go ahead and mount it. If you do not see this directory, then instead mount the /data directory. Take note of which volume you mounted to write it now one or the other and push the package(s) to your device"
 echo "Select reboot the system. When it is rooted press ENTER. Then you can use adb install example.apk to install in internal memory and adb install -s example.apk to install in sd card. Configure you phone and push INTRO when you are ready to install OpenGapps"
-read $pause
+read -p "When you see your OS working correctly then push ENTER"
 cd ..
-
-##Gapps
-echo "installing opengapps"
-wget https://github.com/opengapps/arm64/releases/download/20160511/open_gapps-arm64-6.0-super-20160511.zip
-adb push open_gapps**.zip /sdcard/0/
 adb reboot recovery
 fusermount -u /mnt/mobile
 sudo rm -r /mnt/mobile
 sudo sed -i 's/user_allow_other/#user_allow_other/g' /etc/fuse.conf
+sudo rm -r /downm
