@@ -61,7 +61,7 @@ wget https://fl1.androidfilehost.com/dl/yvV8h0FJb7DLdE8mQ4Upyg/1464454504/244592
 wget https://download.cyanogenmod.org/get/jenkins/162724/cm-12.1-20160523-NIGHTLY-z3c-recovery.img
 wget https://download.cyanogenmod.org/get/jenkins/161009/cm-12.1-20160509-NIGHTLY-z3.zip
 ##TWRP
-read -p "check your TWRP img model. Then copy all downm and the files you also want to add to sdcard1."
+read -p "check your TWRP img model. Then copy all downm and the files you also want to add to sdcard1, included opengapps and TA partition backup."
 wget https://dl.twrp.me/z3c/twrp-3.0.2-0-z3c.img
 ##Gapps
 read -p "installing opengapps. Please select the correct version according to your model arch and cm base ROM version"
@@ -125,7 +125,7 @@ sudo fastboot reboot
 echo "Once the device boots into CyanogenMod Recovery, use the physical volume buttons to move up and down. Select wipe data/factory reset. Then Apply Update from sdcard1 (I suppose you already copied imgs and zips from /downm to SD card)."
 #adb sideload update.zip #this options is to load directly from adb
 #adb push update.zip $folder #this options allows to load from phone or sdcard from terminal
-echo "If Cyanogenmod recovery does not start, or happens a soft brick, push POWER and VOLUME UP at the same time till it starts to get blue bulb of fastboot (red is nothing, green correct, pink CM). Then repeat $ sudo fastboot getvar version $ sudo fastboot devices sudo fastboot reboot"
+echo "If Cyanogenmod recovery does not start, or happens a softc brick, push POWER and VOLUME UP at the same time till it starts to get blue bulb of fastboot (red is nothing, green correct, pink CM). Then repeat $ sudo fastboot getvar version $ sudo fastboot devices sudo fastboot reboot"
 echo "On the device, navigate to the mounts and storage menu. If you see /storage/sdcard0 as a mountable volume, go ahead and mount it. If you do not see this directory, then instead mount the /data directory. Take note of which volume you mounted to write it now one or the other and push the package(s) to your device"
 echo "Select reboot the system. When it is rooted press ENTER. Then you can use adb install example.apk to install in internal memory and adb install -s example.apk to install in sd card. Configure you phone and push INTRO when you are ready to install OpenGapps"
 read -p "When you see your OS working correctly then push ENTER"
