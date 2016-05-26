@@ -32,7 +32,8 @@ sudo iptables restart
 sudo service avahi-daemon stop ##This is for when DHCP does not work. Otherwise ps ax | grep dhclient && sudo kill -9 [pid]
 sudo cupsctl -E --no-remote-any
 sudo service cups-browsed stop
-
+#Minus
+sudo apt-get purge imagemagick -y
 ##psad
 service psad stop
 sudo apt-get -y install libcarp-clan-perl libdate-calc-perl libiptables-chainmgr-perl libiptables-parse-perl libnetwork-ipv4addr-perl libunix-syslog-perl libbit-vector-perl gcc wget -y
