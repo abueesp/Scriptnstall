@@ -17,6 +17,7 @@ sudo /etc/init.d/ssh restart
 sudo chown -R $USER:$USER .ssh
 sudo chmod -R 600 .ssh
 sudo chmod +x .ssh
+
 #Docker 
 sudo wget -qO- https://get.docker.com/ | sh
 sudo usermod -aG docker $USER
