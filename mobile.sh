@@ -57,12 +57,15 @@ read $read
 firefox https://forum.xda-developers.com/z3-compact/general/how-to-root-backup-drm-keys-t3013343 && --new-tab -url https://encrypted.google.com/search?q=$read+ftf+spanish && --newtab -url https://forum.xda-developers.com/crossdevice-dev/sony/giefroot-rooting-tool-cve-2014-4322-t3011598 && --new-tab -url https://wiki.cyanogenmod.org/w/Install_CM_for_z3c --new-tab -url http://developer.sonymobile.com/unlockbootloader/ --new-tab -url https://wiki.cyanogenmod.org/w/Google_Apps && --new-tab -url https://www.movilzona.es/tutoriales/android/root/principales-comandos-para-adb-y-fastboot-guia-basica/
 mkdir downm
 cd downm
+wget https://fl1.androidfilehost.com/dl/yvV8h0FJb7DLdE8mQ4Upyg/1464454504/24459283995301330/D5803_23.4.A.1.264_R8C_SLiM_5.0.zip
 wget https://download.cyanogenmod.org/get/jenkins/162724/cm-12.1-20160523-NIGHTLY-z3c-recovery.img
 wget https://download.cyanogenmod.org/get/jenkins/161009/cm-12.1-20160509-NIGHTLY-z3.zip
-unzip cm**.zip
+##TWRP
+read -p "check your TWRP img model. Then copy all downm to sdcard1."
+wget https://dl.twrp.me/z3c/twrp-3.0.2-0-z3c.img
 cd ..
 
-#Official versions
+#Official versions and twrp
 firefox http://forum.xda-developers.com/attachment.php?attachmentid=3752944&d=1463432738
 sudo apt-get install mono-complete
 cd Downloads
@@ -71,12 +74,9 @@ sudo mozroots --import --machine --sync
 sudo certmgr -ssl -m https://software.sonymobile.com
 mono XperiFirm.exe
 sudo rm -r XperiFirm**
-cd..
+cd ..
 
-##TWRP
-read -p "check your TWRP img model"
-wget https://dl.twrp.me/z3c/twrp-3.0.2-0-z3c.img
-sudo dd if=/sdcard/twrp**.img of=/dev/block/platform/msm_sdcc.1/by-name/FOTAKernel
+
 
 ##ROOT
 ##METHOD1
@@ -104,27 +104,29 @@ sudo rm KingRoot.apk
 #sudo rm -r giefroot**.zip files
 
 ##Fastboot
+cd downm
 read -p "now device will be on fastboot mode. can you see the blue light of the corner?"
 adb reboot bootloader
 sudo fastboot getvar version
 git clone https://github.com/DevShaft/Backup-TA
 read -p " SONY Xperia Z To enter  into  Fastboot : (while turned off) Press and hold the  Volume Up button, at the same time plug in the micro USB cable which is already connected to PC. To enter  into  Flash Mode : (while turned off) Press and hold the  Volume Down button, at the same time plug in the micro USB cable which is already connected to PC. To enter  into Recovery: (while turned off) Power on or plug into charger and keep pressing Volume Up repeatedly. More on : http://www.droidviews.com/how-to-boot-android-devices-in-fastboot-download-bootloader-or-recovery-mode/
-
 If you dont see the bluelight, shut down the device, start it while you are holding Volume Up and then connect the USB cable. The notification light should turn blue to indicate you are in fastboot mode. If you receive the message waiting for device fastboot is not configured properly. If you see the blue light then now you must know you are going to UNLOCK THE BOOTLOADER of your phone. If you have a Z3C DO NOT FORGET TO MAKE FIRST A BACKUP OF YOUR TA PARTITION FOR DRM FILES. YOU CAN DOWNLOAD https://github.com/DevShaft/Backup-TA FROM WINDOWS AND THEN BACKUP IF YOU ARE ROOTED. IT DOES NOT WORK WITH WINE. LINUX VERSION ON GITHUB DOES NOT WORK EITHER. BACKUP TA FIRST!!!"
 read -p "Unlocking the bootloader on a Sony device may automatically wipe internal storage; a backup of the sdcard is suggested. It will also irreversibly erase the DRM keys stored in the TA partition of some devices, which will result in the loss of certain proprietary features that may have been included. LAST WARNING"
 sudo fastboot devices
 firefox http://developer.sonymobile.com/unlockbootloader/unlock-yourboot-loader/
 read -p "Introduce 0x oem to unlock. You can get it using your IMEI on the http://developer.sonymobile.com/unlockbootloader/unlock-yourboot-loader/ Warranty is not lost by default only when you unlock properly, but you can lock again" $0xnumber
 fastboot -i 0x0fce oem unlock $0xnumber
+sudo fastboot flash recovery twrp**.img
 sudo fastboot flash boot cm**z3c-recovery.img
 sudo fastboot reboot 
-echo "Once the device boots into CyanogenMod Recovery, use the physical volume buttons to move up and down. Select wipe data/factory reset."
+echo "Once the device boots into CyanogenMod Recovery, use the physical volume buttons to move up and down. Select wipe data/factory reset. Then Apply Update from sdcard1 (I suppose you already copied imgs to SD card)."
 adb sideload update.zip
 echo "On the device, navigate to the mounts and storage menu. If you see /storage/sdcard0 as a mountable volume, go ahead and mount it. If you do not see this directory, then instead mount the /data directory. Take note of which volume you mounted to write it now one or the other and push the package(s) to your device"
 read $folder
 adb push update.zip $folder
 echo "Select reboot the system. When it is rooted press ENTER. Then you can use adb install example.apk to install in internal memory and adb install -s example.apk to install in sd card"
 read $pause
+cd ..
 
 ##Gapps
 echo "installing opengapps"
