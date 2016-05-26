@@ -120,10 +120,10 @@ sudo fastboot flash recovery twrp**.img
 sudo fastboot flash boot cm**z3c-recovery.img
 sudo fastboot reboot 
 echo "Once the device boots into CyanogenMod Recovery, use the physical volume buttons to move up and down. Select wipe data/factory reset. Then Apply Update from sdcard1 (I suppose you already copied imgs to SD card)."
-adb sideload update.zip
+#adb sideload update.zip #this options is to load directly from adb
+#adb push update.zip $folder #this options allows to load from phone or sdcard from terminal
+echo "If Cyanogenmod recovery does not start, or happens a soft brick, push POWER and VOLUME UP at the same time till it starts to get blue bulb of fastboot (red is nothing, green correct, pink CM). Then repeat $ sudo fastboot getvar version $ sudo fastboot devices sudo fastboot reboot"
 echo "On the device, navigate to the mounts and storage menu. If you see /storage/sdcard0 as a mountable volume, go ahead and mount it. If you do not see this directory, then instead mount the /data directory. Take note of which volume you mounted to write it now one or the other and push the package(s) to your device"
-read $folder
-adb push update.zip $folder
 echo "Select reboot the system. When it is rooted press ENTER. Then you can use adb install example.apk to install in internal memory and adb install -s example.apk to install in sd card"
 read $pause
 cd ..
