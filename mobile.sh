@@ -65,7 +65,7 @@ read -p "check your TWRP img model. Then copy all downm to sdcard1."
 wget https://dl.twrp.me/z3c/twrp-3.0.2-0-z3c.img
 ##Gapps
 read -p "installing opengapps. Please select the correct version according to your model arch and cm base ROM version"
-wget https://github.com/opengapps/arm64/releases/download/20160525/open_gapps-arm64-5.0-aroma-20160525.zip
+wget https://github.com/opengapps/arm64/releases/download/20160525/open_gapps-arm64-5.1-aroma-20160525.zip
 cd ..
 
 #Official versions and twrp
