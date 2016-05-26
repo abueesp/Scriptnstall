@@ -454,6 +454,15 @@ cd ethaddress.org
 gpg --verify ryep**.asc
 cd ..
 echo "alias coldstorage = 'cd /home/$USER/ethaddress.org && firefox -new-tab -url index.html'"
+git clone https://github.com/pointbiz/bitaddress.org
+cd bitaddress.org
+gpg --verify CHANGE**.asc
+cd ..
+git clone https://github.com/litecoin-project/liteaddress.org
+cd liteaddress.org
+gpg --verify CHANGE**.asc
+cd ..
+
 
 ##Electrum
 sudo apt-get install python-qt4 python-pip
