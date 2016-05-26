@@ -61,7 +61,7 @@ wget https://fl1.androidfilehost.com/dl/yvV8h0FJb7DLdE8mQ4Upyg/1464454504/244592
 wget https://download.cyanogenmod.org/get/jenkins/162724/cm-12.1-20160523-NIGHTLY-z3c-recovery.img
 wget https://download.cyanogenmod.org/get/jenkins/161009/cm-12.1-20160509-NIGHTLY-z3.zip
 ##TWRP
-read -p "check your TWRP img model. Then copy all downm to sdcard1."
+read -p "check your TWRP img model. Then copy all downm and the files you also want to add to sdcard1."
 wget https://dl.twrp.me/z3c/twrp-3.0.2-0-z3c.img
 ##Gapps
 read -p "installing opengapps. Please select the correct version according to your model arch and cm base ROM version"
