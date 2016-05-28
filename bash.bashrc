@@ -22,17 +22,17 @@ else
    darkgrey="$(tput bold ; tput setaf 0)"
    lightgrey="$(tput setaf 7)"
    white="$(tput bold ; tput setaf 7)"
-   red="$(tput setaf 1)"
-   lightred="$(tput bold ; tput setaf 1)"
-   green="$(tput setaf 2)"
-   lightgreen="$(tput bold ; tput setaf 2)"
+   red="$(tput bold ; tput setaf 1)"
+   lightred="$(tput setaf 1)"
+   green="$(tput bold ; tput setaf 2)"
+   lightgreen="$( tput setaf 2)"
    yellow="$(tput setaf 3)"
-   blue="$(tput setaf 4)"
-   lightblue="$(tput bold ; tput setaf 4)"
-   purple="$(tput setaf 5)"
-   pink="$(tput bold ; tput setaf 5)"
-   cyan="$(tput setaf 6)"
-   lightcyan="$(tput bold ; tput setaf 6)"
+   blue="$(tput bold ;tput setaf 4)"
+   lightblue="$(tput setaf 4)"
+   purple="$(tput bold ;tput setaf 5)"
+   pink="$(tput setaf 5)"
+   cyan="$(tput bold ;tput setaf 6)"
+   lightcyan="$(tput setaf 6)"
    nc="$(tput sgr0)" # no color
 fi
 export darkgrey lightgreywhite red lightred green lightgreen yellow blue
@@ -62,39 +62,24 @@ reset_screen
  
 usage()
 {
-cat <<'EOF'
 
-usage: debug 
-- help|usage: print this screen
-- verbose: sets -xv flags
-- noexec: sets -xvn flags
-- no parameter sets -x flags
- 
-EOF
-fmt <<EOF
-Color Variables:
-script_color linenum_color funcname_color: 
-${darkgrey}darkgrey$nc, ${lightgrey}light grey$nc, ${white}white,
-${red}red, ${lightred}light red, ${green}green, ${lightgreen}light green,
-${yellow}yellow, ${blue}blue, ${lightblue}light blue, ${purple}purple,
-${pink}pink, ${cyan}cyan, ${lightcyan}light cyan$nc.
-
-
-EOF
- 
 cat <<EOF
- 
-default colors are:
+Default colors are:
 ${level_color}- shell level color:cyan$nc
 ${script_color}- script name: yellow$nc
 ${linenum_color}- line number: red$nc
 ${funcname_color}- function name: green$nc
 ${command_color}- command executed: white$nc
+- Other colors options are: ${darkgrey}darkgrey$nc, ${lightgrey}light grey$nc, ${lightred}light red,${lightgreen}light green, ${blue}blue, ${lightblue}light blue, ${purple}purple, ${pink}pink, ${lightcyan}light cyan$nc.
 
-
-${script_color} coding for good - node command line 
-${command_color} Ƀe ℋuman, be κinđ, be ωise
-
+Usage: debug 
+- help|usage: print this screen
+- verbose: sets -xv flags
+- noexec: sets -xvn flags
+- no parameter sets -x flags
+ 
+${script_color} coding for good - node command line $nc 
+${command_color} Ƀe ℋuman, be κinđ, be ωise $nc
 
 EOF
 }
