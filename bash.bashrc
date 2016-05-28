@@ -89,7 +89,7 @@ ${level_color}- shell level color:cyan$nc
 ${script_color}- script name: yellow$nc
 ${linenum_color}- line number: red$nc
 ${funcname_color}- function name: green$nc
-${command_color}- command executed: white'$nc
+${command_color}- command executed: white$nc
 
 
 ${script_color} coding for good - node command line 
