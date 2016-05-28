@@ -7,7 +7,7 @@
 export HISTTIMEFORMAT='%F %T '
 export HISTCONTROL=ignoredups
 export HISTCONTROL=ignorespace
-alias rmhist="history -c"
+alias rmhist="history -c"mobi
 alias anonhist="export HISTSIZE=0"
 alias hist="export HISTSIZE=1"
 
@@ -418,7 +418,7 @@ alias adbconnect="mtpfs -o allow_other /mnt/mobile"
 alias adbdisconnect="fusermount -u /mnt/mobile"
 
 ### Some cheatsheets###
-alias mobilesheet="firefox -new-tab https://www.movilzona.es/tutoriales/android/root/principales-comandos-para-adb-y-fastboot-guia-basica/"
+alias mobilesheet="firefox -new-tab http://www.movilzona.es/tutoriales/android/root/principales-comandos-para-adb-y-fastboot-guia-basica/"
 alias emacssheet="firefox -new-tab https://www.emacswiki.org/ && firefox -new-tab http://www.ling.ohio-state.edu/~kyoon/tts/unix-help/LaTeX/emacs-cheatsheet-2-of-2.jpg && firefox -new-tab http://www.muylinux.com/wp-content/uploads/2010/11/Emacs-Cheatsheet-wallpaper.jpg && firefox -new-tab https://github.com/emacs-tw/awesome-emacs#markdown && firefox -new-tab http://es.tldp.org/Tutoriales/doc-tutorial-emacs/intro_emacs.pdf"
 alias electrumsheet="firefox -new-tab https://docs.electrum.org/en/latest/"
 alias shsheet="firefox -new-tab https://www.tldp.org/LDP/abs/html/index.html" 
