@@ -65,6 +65,25 @@ wget https://dl.twrp.me/z3c/twrp-3.0.2-0-z3c.img
 ##Gapps
 read -p "installing opengapps. Please select the correct version according to your model arch and cm base ROM version"
 wget https://github.com/opengapps/arm/releases/download/20160526/open_gapps-arm-5.1-aroma-20160526.zip
+##Xposed
+read -p "installing Xposed. Please select the correct version according to your model arch and cm base ROM version"
+wget http://dl-xda.xposed.info/framework/sdk22/arm/xposed-v85-sdk22-arm.zip
+wget http://dl-xda.xposed.info/framework/sdk22/arm/xposed-v85-sdk22-arm.zip.asc
+gpg --verify xposed**.asc
+rm xposed**.asc
+wget http://dl-xda.xposed.info/framework/uninstaller/xposed-uninstaller-20150831-arm.zip
+wget http://dl-xda.xposed.info/framework/uninstaller/xposed-uninstaller-20150831-arm.zip.asc
+gpg --verify xposed**.asc
+rm xposed**.asc
+wget https://basketbuild.com/uploads/devs/Proxy13/ADDITIONAL/Xposed5.1/XposedInstaller_3.0_alpha4.apk
+md5 = $(md5sum **tar.gz)
+if [ $md5 "7ff821c9c916622206862170a4c0c197" ]
+then
+    echo "PACKAGE VERIFIED"
+else
+    echo "PACKAGE NOT VERIFIED"
+    break
+fi
 cd ..
 
 #Official versions and twrp
@@ -82,10 +101,10 @@ cd ..
 
 ##ROOT
 ##METHOD1
-wget http://d.kingoapp.com/default/KingoRoot.apk
-adb install KingRoot.apk
-read -p "search kingoroot on your phone and root it. Then check root with root checker on play storage"
-sudo rm KingRoot.apk
+#wget http://d.kingoapp.com/default/KingoRoot.apk
+#adb install KingRoot.apk
+#read -p "search kingoroot on your phone and root it. Then check root with root checker on play storage"
+#sudo rm KingRoot.apk
 ##METHOD2
 ###Flashtool to up/downgrade
 #wget http://dl-developer.sonymobile.com/code/copylefts/23.0.A.2.93.tar.bz2
@@ -105,7 +124,7 @@ sudo rm KingRoot.apk
 #cd ..
 #sudo rm -r giefroot**.zip files
 
-##Fastboot
+##Root & Fastboot
 cd downm
 read -p "now device will be on fastboot mode. can you see the blue light of the corner?"
 adb reboot bootloader
