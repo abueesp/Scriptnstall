@@ -74,6 +74,7 @@ sudo make install
 sudo rm -r fwsnort**
 
 #Some tools
+sudo apt-get install secure-delete
 sudo apt-get install duplicity deja-dup -y
 sudo apt-get install iotop htop -y
 sudo apt-get install vnstat -y
