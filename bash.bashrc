@@ -255,9 +255,16 @@ gitupload () {
   git push origin master
 }
 
+
+securedelete () {
+  read -p "DANGER VAS A BORRAR DE FORMA SEGURA TODO. INTRODUCE LA RUTA SIN EQUIVOCARTE      -->" route
+  rin="$route""/**"
+  sudo shred -uvzn 3 $rin
+  sudo srm -vrzd $route
+  }
+
 docsthemagic () {
-  echo "vas a crear las copias, luego armonizar los nombres y finalmente limpiar los metadatos de todos los archivos ubicados en esta carpeta. Introduce los documentos. recuerda que si quieres hacer un backup puedes usar mat -b"
-  read docs
+  read -p "vas a crear las copias, luego armonizar los nombres y finalmente limpiar los metadatos de todos los archivos ubicados en esta carpeta. Introduce los documentos. recuerda que si quieres hacer un backup puedes usar mat -b" docs
   sudo unoconv --format=txt $docs
   sudo unoconv --format=pdf $docs
   sudo unoconv --format=doc $docs
@@ -318,7 +325,7 @@ firefox -new-tab https://www.thegeekstuff.com/2010/01/awk-introduction-tutorial-
 }
 
 debugg(){
-read -p "insert the name of the file \n" $file
+read -p "insert the name of the file \n" file
 sed -i '1i-set' $file
 sed -b "\$a-set" $file
 }
@@ -345,7 +352,7 @@ fi
 
 ##Monitoring
 appmon(){
-read -p "introduce el nombre del proceso" $app
+read -p "introduce el nombre del proceso" app
 sudo lsof -i -n -P | grep $app && sudo ps ax
 }
 alias usermon="sudo users; sudo w; sudo who -a; sudo ipcs -m -c"
@@ -584,7 +591,7 @@ searchpdf () {
 
 #wine in and out
   weneedwine () {
-  read -p "file to wine" $filewine
+  read -p "file to wine" filewine
   wget http://dl.winehq.org/wine/source/1.8/wine-1.8.2.tar.bz2
   tar -jxvf wine**.bz2
   cd wine**
