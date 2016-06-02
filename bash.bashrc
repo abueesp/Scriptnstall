@@ -257,8 +257,9 @@ gitupload () {
 
 
 securedelete () {
-  read -p "DANGER VAS A BORRAR DE FORMA SEGURA TODO. INTRODUCE LA RUTA SIN EQUIVOCARTE      -->" route
+  read -p "DANGER VAS A BORRAR DE FORMA SEGURA TODO. INTRODUCE LA RUTA DE LA CARPETA O EL ARCHIVO SIN EQUIVOCARTE      -->" route
   rin="$route""/**"
+  sudo shred -uvzn 3 $route
   sudo shred -uvzn 3 $rin
   sudo srm -vrzd $route
   }
