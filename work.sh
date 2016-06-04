@@ -467,3 +467,17 @@ cd ..
 ##Electrum
 sudo apt-get install python-qt4 python-pip
 sudo pip install https://download.electrum.org/2.6.4/Electrum-2.6.4.tar.gz
+
+##Ruby
+sudo apt-get install -y git-core subversion
+sudo gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+\curl -O https://raw.githubusercontent.com/rvm/rvm/master/binscripts/rvm-installer
+\curl -O https://raw.githubusercontent.com/rvm/rvm/master/binscripts/rvm-installer.asc
+\curl -sSL https://get.rvm.io | bash -s stable --rails --ruby
+type rvm | head -n -1
+sudo gpg --verify rvm-installer.asc 
+bash rvm-installer stable
+rvm list
+rvm rubies
+sudo echo 'alias rubysheet="firefox -new-tab -url https://cheat.errtheblog.com/s/rvm'"' >> /etc/bash.bashrc
+
