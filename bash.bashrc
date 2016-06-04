@@ -447,7 +447,7 @@ uninstall(){
 
 mysshkey(){
 sudo chown -R $USER:$USER ~/.ssh
-sudo chmod -R 600 ~/.ssh
+sudo chmod -R 755 ~/.ssh
 sudo chmod +x ~/.ssh 
 sudo apt-get install xclip
 sudo xclip -sel clip ~/.ssh/id_rsa/id_rsa.pub
@@ -459,7 +459,7 @@ sudo chmod -R 600 ~/.ssh
 
 mylastsshkey(){
 sudo chown -R $USER:$USER ~/.ssh
-sudo chmod -R 600 ~/.ssh
+sudo chmod -R 755 ~/.ssh
 sudo chmod +x ~/.ssh  
 sudo apt-get install xclip
 xclip -sel clip < ~/.ssh/lastid_rsa.pub
@@ -471,7 +471,7 @@ sudo chmod -R 600 ~/.ssh
 
 switchsshkey(){
 sudo chown -R $USER:$USER ~/.ssh
-sudo chmod -R 600 ~/.ssh
+sudo chmod -R 755 ~/.ssh
 sudo chmod +x ~/.ssh
 if [ $1 ]
 then
@@ -488,7 +488,7 @@ sudo chmod -R 600 ~/.ssh
 
 newsshkey(){
 sudo chown -R $USER:$USER ~/.ssh
-sudo chmod -R 600 ~/.ssh
+sudo chmod -R 755 ~/.ssh
 sudo chmod +x ~/.ssh 
 $emai = emai
 sudo mkdir ~/.ssh
@@ -497,10 +497,11 @@ echo 'those are your keys up to now'
 sudo ls -al -R ~/.ssh # Lists the files in your .ssh directory, if they exist
 echo "Please, introduce 'youremail@server.com'"
 read emai
-echo "please choose a file like this /home/node/.ssh/id_rsa/id_rsa.pub and a password longer or equal to 5 caractheres"
-sudo ssh-keygen -t rsa -b 4096 -C $emai
+echo "please introduce this /home/node/.ssh/id_rsa/id_rsa.pub as file, OTHERWISE YOU WONT BE ABLE TO USE MYSSHKEY AND THE REST OF SSH MANAGEMENT COMMANDS, and a password longer or equal to 5 caractheres"
+ssh-keygen -t rsa -b 4096 -C $emai
 eval "$(ssh-agent -s)" 
-ssh-add ~/.ssh/id_rsa
+sudo ssh-add ~/.ssh/id_rsa.pub
+sudo chmod -R 600 ~/.ssh
 }
 
 # mkmv - creates a new directory and moves the file into it, in 1 step
