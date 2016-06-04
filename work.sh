@@ -471,13 +471,21 @@ sudo pip install https://download.electrum.org/2.6.4/Electrum-2.6.4.tar.gz
 ##Ruby
 sudo apt-get install -y git-core subversion
 sudo gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-\curl -O https://raw.githubusercontent.com/rvm/rvm/master/binscripts/rvm-installer
-\curl -O https://raw.githubusercontent.com/rvm/rvm/master/binscripts/rvm-installer.asc
-\curl -sSL https://get.rvm.io | bash -s stable --rails --ruby
+curl -O https://raw.githubusercontent.com/rvm/rvm/master/binscripts/rvm-installer
+curl -O https://raw.githubusercontent.com/rvm/rvm/master/binscripts/rvm-installer.asc
+#curl -sSL https://get.rvm.io | bash -s stable --rails --ruby
 type rvm | head -n -1
 sudo gpg --verify rvm-installer.asc 
 bash rvm-installer stable
 rvm list
 rvm rubies
-sudo echo 'alias rubysheet="firefox -new-tab -url https://cheat.errtheblog.com/s/rvm'"' >> /etc/bash.bashrc
+echo 'alias rubysheet="firefox -new-tab -url https://cheat.errtheblog.com/s/rvm"' >> sudo /etc/bash.bashrc
+exit
 
+##Mail
+sudo apt-get install mailutils ssmtp -y
+read -p "Email Configuration for a mail integrated on terminal. Introduce email  \n" emmail
+read -p "Password  \n" Passs
+read -p "SMTP. Gmail uses smtp.gmail.com:587    \n" SMTP
+sudo sed -i 's/#FromLineOverride=YES/FromLineOverride=YES \nAuthUser=$emmail \nAuthPass=$Passs \nmailhub=$SMTP \nUseSTARTTLS=YES/g' /etc/ssmtp/ssmtp.conf
+echo 'sendemail(){\nread -p "Introduce the route of the file to annex   \n" filem \nread -p "Introduce the subject   \n" subjectm \nread -p "Introduce the receiver emails separated by commas  \n" emailsm \nread -p "Introduce the route of the text, or echo 'Text here'  \n" emailtext \nmail -a $filem -s $subjectm $emailsm < $emailtext \n}' >> sudo /etc/bash.bashrc
