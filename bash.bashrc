@@ -296,7 +296,7 @@ docsthemagic () {
   sudo mat **
 }
 
-rbash() {
+upgradebash() {
 sudo wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/bash.bashrc
 sudo rm /etc/bash.bashrc
 sudo rm /etc/bash.bashrc~
@@ -491,7 +491,6 @@ if [$1]
     sudo mv ~/.ssh/$1 ~/.ssh/id_rsa ~/.ssh/lastid_rsa0
     sudo mv ~/.ssh/$1 ~/.ssh/id_rsa.pub ~/.ssh/lastid_rsa0.pub
     echo "Your last key is now lastid_rsa (priv) and lastid_rsa0.pub (pub). If you want to copy the new one type mysshkey. If you want to copy the last one type mylastsshkey"
-        done
     else
     ls -al -R ~/.ssh
     echo "Please, introduce the key you want to switch by the default id_rsa.pub. Those are your current keys: "
