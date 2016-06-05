@@ -460,10 +460,11 @@ sudo chmod -R 600 ~/.ssh
 mylastsshkey(){
 sudo chown -R $USER:$USER ~/.ssh
 sudo chmod -R 755 ~/.ssh
-sudo chmod +x ~/.ssh  
 sudo apt-get install xclip
-xclip -sel clip < ~/.ssh/lastid_rsa.pub
-echo 'this is your last key, lastid_rsa.pub is the default.'
+sudo chmod +x ~/.ssh  
+readp -p "Introduce the ssh last key number (0 is the first)" numerossh 
+xclip -sel clip < ~/.ssh/lastid_rsa$numerossh.pub
+echo 'this is your last key, lastid_rsa'$numerossh'.pub is the default.'
 ls -al -R ~/.ssh
 echo "Now you may have your last ssh key on your clipboard. If you have already set your app global configuration, now you should go to Settings -> New SSH key and paste it there"
 sudo chmod -R 600 ~/.ssh
@@ -473,12 +474,25 @@ switchsshkey(){
 sudo chown -R $USER:$USER ~/.ssh
 sudo chmod -R 755 ~/.ssh
 sudo chmod +x ~/.ssh
-if [ $1 ]
-then
-    sudo mv ~/.ssh/$1 ~/.ssh/id_rsa.pub ~/.ssh/lastid_rsa.pub
-    sudo mv ~/.ssh/$1 ~/.ssh/id_rsa.pub
-    echo "Your last key is now lastid_rsa.pub. If you want to copy the new one type mysshkey. If you want to copy the last one type mylastsshkey"
-else
+numberssh = 0
+if [$1]
+    then
+    while [ ! -f lastid_rsa$numberssh ] ;
+        do
+             numberssh++
+        done
+    while [ ! -f lastid_rsa$numberssh ] ;
+        do
+             numberssh1 = $numberssh+1
+             sudo mv ~/.ssh/$1 ~/.ssh/lastid_rsa$numberssh ~/.ssh/lastid_rsa$numberssh1
+             sudo mv ~/.ssh/$1 ~/.ssh/lastid_rsa$numberssh.pub ~/.ssh/lastid_rsa$numberssh1.pub
+             numberssh--
+        done 
+    sudo mv ~/.ssh/$1 ~/.ssh/id_rsa ~/.ssh/lastid_rsa0
+    sudo mv ~/.ssh/$1 ~/.ssh/id_rsa.pub ~/.ssh/lastid_rsa0.pub
+    echo "Your last key is now lastid_rsa (priv) and lastid_rsa0.pub (pub). If you want to copy the new one type mysshkey. If you want to copy the last one type mylastsshkey"
+        done
+    else
     ls -al -R ~/.ssh
     echo "Please, introduce the key you want to switch by the default id_rsa.pub. Those are your current keys: "
 fi
@@ -497,7 +511,7 @@ echo 'those are your keys up to now'
 sudo ls -al -R ~/.ssh # Lists the files in your .ssh directory, if they exist
 echo "Please, introduce 'youremail@server.com'"
 read emai
-echo "please introduce this /home/node/.ssh/id_rsa/id_rsa.pub as file, OTHERWISE YOU WONT BE ABLE TO USE MYSSHKEY AND THE REST OF SSH MANAGEMENT COMMANDS, and a password longer or equal to 5 caractheres"
+echo "please introduce this /home/node/.ssh/id_rsa/id_rsa as file, OTHERWISE YOU WONT BE ABLE TO USE MYSSHKEY AND THE REST OF SSH MANAGEMENT COMMANDS, and a password longer or equal to 5 caractheres"
 ssh-keygen -t rsa -b 4096 -C $emai
 eval "$(ssh-agent -s)" 
 sudo ssh-add ~/.ssh/id_rsa.pub
