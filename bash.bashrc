@@ -462,7 +462,7 @@ sudo chown -R $USER:$USER ~/.ssh
 sudo chmod -R 755 ~/.ssh
 sudo apt-get install xclip
 sudo chmod +x ~/.ssh  
-readp -p "Introduce the ssh last key number (0 is the first)" numerossh 
+read -p "Introduce the ssh last key number (0 is the first)" numerossh 
 xclip -sel clip < ~/.ssh/lastid_rsa$numerossh.pub
 echo 'this is your last key, lastid_rsa'$numerossh'.pub is the default.'
 ls -al -R ~/.ssh
