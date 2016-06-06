@@ -131,44 +131,44 @@ gpg -v --verify **.DIGESTS
 
 gpgexport() {
 read -p "introduce the key username to export" USN
-gpg --export -a $USN > $USNpublic.key
-gpg --export-secret-key -a $USN > $USNprivate.key
-gpg --fingerprint > $USNfingerprint
+sudo gpg --export -a $USN > $USNpublic.key
+sudo gpg --export-secret-key -a $USN > $USNprivate.key
+sudo gpg --fingerprint > $USNfingerprint
 echo "your public key and private have been exported on $USNpublic.key, $USNprivate.key and $USNfingerprint" 
 }
 
 gpgimport() {
 read -p "introduce the key username to import Usernameprivate.key and/or Usernamepublic.key" USN
-gpg --import -a $USN > $USNpublic.key
-gpg --import-secret-key -a $USN > $USNprivate.key
+sudo gpg --import -a $USN > $USNpublic.key
+sudo gpg --import-secret-key -a $USN > $USNprivate.key
 echo "your public key and private have been imported as $USNpublic.key and $USNprivate.key" 
 }
 
 gpgdelete() {
 read -p "introduce the key username to delete Usernameprivate.key and/or Usernamepublic.key" USN
-gpg --delete -a $USN > $USNpublic.key
-gpg --delete-secret-key -a $USN > $USNprivate.key
+sudo gpg --delete -a $USN > $USNpublic.key
+sudo gpg --delete-secret-key -a $USN > $USNprivate.key
 echo "your public key and private have been deleted as $USNpublic.key and $USNprivate.key" 
 }
 
 gpglist() {
 echo "pubkeys list"
-gpg --list-keys
+sudo gpg --list-keys
 echo "privkeys list"
-gpg --list-secret-keys
+sudo gpg --list-secret-keys
 echo "fingerprints"
-gpg --fingerprint
+sudo gpg --fingerprint
 }
 
 gpgencrypt() {
 read -p "enter your gpg username (sender username)" USNs
 read -p "enter your gpg username (receiver username)" USNr
-gpg -e -u $USNs -r $USNr somefile
+sudo gpg -e -u $USNs -r $USNr somefile
 }
 
 gpgdecrypt() {
 read -p "enter file.gpg to decrypt" filegpg
-gpg -o $filegpg[-4] -d $filegpg
+sudo gpg -o $filegpg[-4] -d $filegpg
 }
 
 # If not running interactively, don't do anything
@@ -450,7 +450,7 @@ alias gethtest="geth --testnet console"
 alias gethupgrade="geth upgradedb --fast console"
 alias adbconnect="mtpfs -o allow_other /mnt/mobile"
 alias adbdisconnect="fusermount -u /mnt/mobile"
-alias newgpgkey="gpg --gen-key"
+alias newgpg="sudo gpg --gen-key"
 
 ### Some cheatsheets###
 alias mobilesheet="firefox -new-tab http://www.movilzona.es/tutoriales/android/root/principales-comandos-para-adb-y-fastboot-guia-basica/"
