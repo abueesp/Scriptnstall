@@ -493,7 +493,7 @@ sudo chmod -R 755 ~/.ssh
 sudo chmod +x ~/.ssh 
 sudo apt-get install xclip
 sudo xclip -sel clip ~/.ssh/id_rsa/id_rsa.pub
-echo 'those are your keys up to now, id_rsa.pub is the default. If you want to change it, type switchmyssh'
+echo 'those are your keys up to now, id_rsa.pub is the default.'
 sudo ls -al -R ~/.ssh/id_rsa
 echo "Now you may have your ssh key on your clipboard. If you have already set your app global configuration, now you should go to Settings -> New SSH key and paste it there"
 sudo chmod -R 600 ~/.ssh
@@ -512,10 +512,11 @@ echo "Now you may have your last ssh key on your clipboard. If you have already 
 sudo chmod -R 600 ~/.ssh
 }
 
-switchsshkey(){
+
+newsshkey(){
 sudo chown -R $USER:$USER ~/.ssh
 sudo chmod -R 755 ~/.ssh
-sudo chmod +x ~/.ssh
+sudo chmod +x ~/.ssh 
 numberssh = 0
 if [$1]
     then
@@ -532,19 +533,11 @@ if [$1]
         done 
     sudo mv ~/.ssh/$1 ~/.ssh/id_rsa ~/.ssh/lastid_rsa0
     sudo mv ~/.ssh/$1 ~/.ssh/id_rsa.pub ~/.ssh/lastid_rsa0.pub
-    echo "Your last key is now lastid_rsa (priv) and lastid_rsa0.pub (pub). If you want to copy the new one type mysshkey. If you want to copy the last one type mylastsshkey"
+    echo "Your last key is now lastid_rsa (priv) and lastid_rsa0.pub (pub). If you want to create a new one type mysshkey. If you want to copy the last one type mylastsshkey"
     else
     ls -al -R ~/.ssh
-    echo "Please, introduce the key you want to switch by the default id_rsa.pub. Those are your current keys: "
+    echo "Those are your current keys: "
 fi
-sudo chmod -R 600 ~/.ssh
-}
-
-
-newsshkey(){
-sudo chown -R $USER:$USER ~/.ssh
-sudo chmod -R 755 ~/.ssh
-sudo chmod +x ~/.ssh 
 $emai = emai
 sudo mkdir ~/.ssh
 sudo mkdir ~/.ssh/id_rsa
