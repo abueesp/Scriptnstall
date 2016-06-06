@@ -130,25 +130,29 @@ gpg -v --verify **.DIGESTS
 }
 
 gpgexport() {
+mkdir gpgexport
+cd gpgexport
 read -p "introduce the key username to export" USN
-sudo gpg --export -a $USN > $USNpublic.key
-sudo gpg --export-secret-key -a $USN > $USNprivate.key
-sudo gpg --fingerprint > $USNfingerprint
-echo "your public key and private have been exported on $USNpublic.key, $USNprivate.key and $USNfingerprint" 
+sudo gpg --export -a $USN > public.key
+sudo gpg --export-secret-key -a $USN > private.key
+sudo gpg --fingerprint -a $USN > fingerprint
+echo "your public key and private have been exported on public.key, private.key and fingerprint" 
+cd ..
+sudo chmod 600 ~/gpgexport
 }
 
 gpgimport() {
-read -p "introduce the key username to import Usernameprivate.key and/or Usernamepublic.key" USN
-sudo gpg --import -a $USN > $USNpublic.key
-sudo gpg --import-secret-key -a $USN > $USNprivate.key
-echo "your public key and private have been imported as $USNpublic.key and $USNprivate.key" 
+read -p "Go to the folder. Rename as public.key and private.key; as well as introduce the key username" USN
+sudo gpg --import -a $USN > $public.key
+sudo gpg --import-secret-key -a $USN > private.key
+echo "your public key and private have been imported as public.key and private.key" 
 }
 
 gpgdelete() {
 read -p "introduce the key username to delete Usernameprivate.key and/or Usernamepublic.key" USN
-sudo gpg --delete -a $USN > $USNpublic.key
-sudo gpg --delete-secret-key -a $USN > $USNprivate.key
-echo "your public key and private have been deleted as $USNpublic.key and $USNprivate.key" 
+sudo gpg --delete -a $USN
+sudo gpg --delete-secret-key -a $USN
+echo "your public key and private have been deleted as public.key and private.key" 
 }
 
 gpglist() {
@@ -161,14 +165,15 @@ sudo gpg --fingerprint
 }
 
 gpgencrypt() {
-read -p "enter your gpg username (sender username)" USNs
-read -p "enter your gpg username (receiver username)" USNr
-sudo gpg -e -u $USNs -r $USNr somefile
+read -p "enter your gpg username (sender username): " USNs
+read -p "enter your gpg username (receiver username): " USNr
+read -p "enter the route of the file" filegpge
+sudo gpg -e -u $USNs -r $USNr $filegpge
 }
 
 gpgdecrypt() {
-read -p "enter file.gpg to decrypt" filegpg
-sudo gpg -o $filegpg[-4] -d $filegpg
+read -p "enter file.gpg to decrypt" filegpgd
+sudo gpg -o $filegpg[-4] -d $filegpgd
 }
 
 # If not running interactively, don't do anything
