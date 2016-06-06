@@ -9,7 +9,7 @@ export HISTCONTROL=ignoredups
 export HISTCONTROL=ignorespace
 alias rmhist="history -c"mobi
 alias anonhist="export HISTSIZE=0"
-alias hist="export HISTSIZE=1"
+alias hist="export HISTSIZE=1"gpgen
 
 ##Colors
 color_def="~/.colorrc"
