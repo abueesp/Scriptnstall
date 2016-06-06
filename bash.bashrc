@@ -117,7 +117,7 @@ else
    usage
 fi
 
-verify() {
+gpgverify() {
 echo "FIRST. IMPORT THE SERVER KEY. COPY AND PASTE SOMETHING LIKE gpg --keyserver pool.sks-keyservers.net --recv-keys 0x427F11FD0FAA4B080123F01CDDFA1A3E36879494"
 read command
 $command
@@ -127,7 +127,48 @@ read masterkey
 gpg --edit-key $masterkey -c "fpr && trust && 5 && y && q"
 gpg -v --verify **.asc **.iso
 gpg -v --verify **.DIGESTS
+}
 
+gpgexport() {
+read -p "introduce the key username to export" USN
+gpg --export -a $USN > $USNpublic.key
+gpg --export-secret-key -a $USN > $USNprivate.key
+gpg --fingerprint > $USNfingerprint
+echo "your public key and private have been exported on $USNpublic.key, $USNprivate.key and $USNfingerprint" 
+}
+
+gpgimport() {
+read -p "introduce the key username to import Usernameprivate.key and/or Usernamepublic.key" USN
+gpg --import -a $USN > $USNpublic.key
+gpg --import-secret-key -a $USN > $USNprivate.key
+echo "your public key and private have been imported as $USNpublic.key and $USNprivate.key" 
+}
+
+gpgdelete() {
+read -p "introduce the key username to delete Usernameprivate.key and/or Usernamepublic.key" USN
+gpg --delete -a $USN > $USNpublic.key
+gpg --delete-secret-key -a $USN > $USNprivate.key
+echo "your public key and private have been deleted as $USNpublic.key and $USNprivate.key" 
+}
+
+gpglist {
+echo "pubkeys list"
+gpg --list-keys
+echo "privkeys list"
+gpg --list-secret-keys
+echo "fingerprints"
+gpg --fingerprint
+}
+
+gpgencrypt {
+read -p "enter your gpg username (sender username)" USNs
+read -p "enter your gpg username (receiver username)" USNr
+gpg -e -u $USNs -r $USNr somefile
+}
+
+gpgdecrypt {
+read -p "enter file.gpg to decrypt" filegpg
+gpg -o $filegpg[-4] -d $filegpg
 }
 
 # If not running interactively, don't do anything
@@ -409,6 +450,7 @@ alias gethtest="geth --testnet console"
 alias gethupgrade="geth upgradedb --fast console"
 alias adbconnect="mtpfs -o allow_other /mnt/mobile"
 alias adbdisconnect="fusermount -u /mnt/mobile"
+alias newgpgkey="gpg --gen-key"
 
 ### Some cheatsheets###
 alias mobilesheet="firefox -new-tab http://www.movilzona.es/tutoriales/android/root/principales-comandos-para-adb-y-fastboot-guia-basica/"
@@ -416,7 +458,7 @@ alias emacssheet="firefox -new-tab https://www.emacswiki.org/ && firefox -new-ta
 alias electrumsheet="firefox -new-tab https://docs.electrum.org/en/latest/"
 alias shsheet="firefox -new-tab https://www.tldp.org/LDP/abs/html/index.html" 
 alias gethsheet="https://github.com/ethereum/go-ethereum/wiki/Command-Line-Options"
-alias gpgsheet="firefox -new-tab https://irtfweb.ifa.hawaii.edu/~lockhart/gpg/gpg-cs.html"
+alias gpgsheet="firefox -new-tab http://irtfweb.ifa.hawaii.edu/~lockhart/gpg/gpg-cs.html"
 alias bitcoinsheet="firefox -new-tab  https://en.bitcoin.it/wiki/Script#Words"
 alias dockersheet="firefox -new-tab  https://www.cheatography.com/storage/thumb/aabs_docker-and-friends.600.jpg && firefox -new-tab https://container-solutions.com/content/uploads/2015/06/15.06.15_DockerCheatSheet_A2.pdf"
 alias nmapsheet="firefox -new-tab  https://4.bp.blogspot.com/-lCguW2iNKi4/UgmjCu1UNfI/AAAAAAAABuI/35Px0VIOuIg/s1600/Screen+Shot+2556-08-13+at+10.06.38+AM.png"
