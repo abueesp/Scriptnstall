@@ -160,13 +160,13 @@ echo "fingerprints"
 gpg --fingerprint
 }
 
-gpgencrypt {
+gpgencrypt() {
 read -p "enter your gpg username (sender username)" USNs
 read -p "enter your gpg username (receiver username)" USNr
 gpg -e -u $USNs -r $USNr somefile
 }
 
-gpgdecrypt {
+gpgdecrypt() {
 read -p "enter file.gpg to decrypt" filegpg
 gpg -o $filegpg[-4] -d $filegpg
 }
