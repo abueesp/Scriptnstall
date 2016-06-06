@@ -151,7 +151,7 @@ gpg --delete-secret-key -a $USN > $USNprivate.key
 echo "your public key and private have been deleted as $USNpublic.key and $USNprivate.key" 
 }
 
-gpglist {
+gpglist() {
 echo "pubkeys list"
 gpg --list-keys
 echo "privkeys list"
