@@ -337,7 +337,7 @@ docsthemagic () {
   sudo mat **
 }
 
-upgradebash() {
+updatebash() {
 sudo wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/bash.bashrc
 sudo rm /etc/bash.bashrc
 sudo rm /etc/bash.bashrc~
