@@ -132,7 +132,7 @@ gpg -v --verify **.DIGESTS
 gpgexport() {
 mkdir gpgexport
 cd gpgexport
-read -p "introduce the key username to export" USN
+read -p "introduce the key username to export: " USN
 sudo gpg --export -a $USN > public.key
 sudo gpg --export-secret-key -a $USN > private.key
 sudo gpg --fingerprint -a $USN > fingerprint
@@ -142,16 +142,16 @@ sudo chmod 600 ~/gpgexport
 }
 
 gpgimport() {
-read -p "Go to the folder. Rename as public.key and private.key; as well as introduce the key username" USN
+read -p "Go to the folder. Rename as public.key and private.key; as well as introduce the key username: " USN
 sudo gpg --import -a $USN > $public.key
 sudo gpg --import-secret-key -a $USN > private.key
 echo "your public key and private have been imported as public.key and private.key" 
 }
 
 gpgdelete() {
-read -p "introduce the key username to delete Usernameprivate.key and/or Usernamepublic.key" USN
+read -p "introduce the key username to delete Usernameprivate.key and/or Usernamepublic.key: " USN
 sudo gpg --delete -a $USN
-sudo gpg --delete-secret-key -a $USN
+sudo gpg --deleete-secret-key -a $USN
 echo "your public key and private have been deleted as public.key and private.key" 
 }
 
@@ -172,7 +172,7 @@ sudo gpg -e -u $USNs -r $USNr $filegpge
 }
 
 gpgdecrypt() {
-read -p "enter file.gpg to decrypt" filegpgd
+read -p "enter file.gpg to decrypt: " filegpgd
 sudo gpg -o $filegpg[-4] -d $filegpgd
 }
 
