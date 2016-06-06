@@ -7,9 +7,9 @@
 export HISTTIMEFORMAT='%F %T '
 export HISTCONTROL=ignoredups
 export HISTCONTROL=ignorespace
-alias rmhist="history -c"mobi
+alias rmhist="history -c"
 alias anonhist="export HISTSIZE=0"
-alias hist="export HISTSIZE=1"gpgen
+alias hist="export HISTSIZE=1"
 
 ##Colors
 color_def="~/.colorrc"
