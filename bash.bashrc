@@ -130,14 +130,13 @@ gpg -v --verify **.DIGESTS
 }
 
 gpgexport() {
-mkdir gpgexport
+sudo mkdir gpgexport
 cd gpgexport
 read -p "introduce the key username to export: " USN
 sudo gpg --export -a $USN > public.key
 sudo gpg --export-secret-key -a $USN > private.key
 sudo gpg --fingerprint -a $USN > fingerprint
-echo "your public key and private have been exported on public.key, private.key and fingerprint" 
-cd ..
+echo "here you are your public.key, private.key and fingerprint" 
 }
 
 gpgimport() {
