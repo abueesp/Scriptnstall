@@ -138,7 +138,6 @@ sudo gpg --export-secret-key -a $USN > private.key
 sudo gpg --fingerprint -a $USN > fingerprint
 echo "your public key and private have been exported on public.key, private.key and fingerprint" 
 cd ..
-sudo chmod 600 ~/gpgexport
 }
 
 gpgimport() {
