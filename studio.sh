@@ -54,3 +54,6 @@ sudo apt-get install aeolus blop caps cmt hexter fil-plugins ladspa-sdk mcp-plug
 sudo apt-get install inkscape blender gimp gimp-data-extras gimp-gap gimp-ufraw gimp-plugin-registry f-spot scribus fontforge gnome-raw-thumbnailer xsane wacom-tools hugin agave yafray synfigstudio  -y
 #video
 sudo apt-get install openmovieeditor ffmpeg ffmpeg2theora kino stopmotion dvgrab -y
+#download 
+sudo apt-get install qbittorrent
+echo "check also `music` command"
