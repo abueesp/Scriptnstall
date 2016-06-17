@@ -473,6 +473,10 @@ sudo ./manage.py collectstatic
 #sudo ./manage.py update_repos pip
 echo "alias readthedocs='sudo ./manage.py runserver && firefox -new-tab -url http://127.0.0.1:8000'" >> /etc/bash.bashrc
 
+##Automatic Django Project setup, with git, heroku, rvmrc, coffeescript, less, automatic deployment, and many more features from https://github.com/andres-torres-marroquin/django-sparker
+curl -L https://raw.github.com/andres-torres-marroquin/django-sparker/master/sparker.sh | bash -s stable
+
+
 ##Icecold
 git clone https://github.com/ryepdx/ethaddress.org
 cd ethaddress.org
