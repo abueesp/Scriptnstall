@@ -385,10 +385,36 @@ sudo npm install npm -g
 sudo npm install web3
 sudo meteor add ethereum:web3
 
+#Uglify
+git clone git://github.com/mishoo/UglifyJS2.git
+cd UglifyJS2
+npm link .
+cd
+sudo rm -r UglifyJS2
+
+#Grunt for js
+npm install -g grunt-cli
+#Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript: grunt.loadNpmTasks('grunt-contrib-watch');
+npm install grunt-contrib-watch --save-dev
+#Once that's done, add this line to your project's Gruntfile: grunt.loadNpmTasks('grunt-embark');
+npm install embark-framework --save-dev
+npm install grunt-embark --save-dev
+#And so on
+npm install grunt-contrib-clean --save-dev
+npm install grunt-contrib-jshint --save-dev
+npm install grunt-contrib-copy --save-dev
+npm install grunt-contrib-uglify --save-dev
+npm install grunt-mkdir --save-dev
+#those have different flavours https://www.npmjs.com/package/grunt-shell
+npm install --save-dev grunt-shell
+#https://www.npmjs.com/package/grunt-contrib-htmlmin
+npm install grunt-contrib-htmlmin --save-dev
+
 ##Other npm
 npm install -g jshint
 npm install -g coffeescript-compiler
 npm install -g coffee-script
+
 
 ##MongoDB
 sudo npm install mongodb
@@ -465,10 +491,11 @@ cd ..
 
 
 ##Electrum
-sudo apt-get install python-qt4 python-pip
+sudo apt-get install python-qt4 python-pip -y
 sudo pip install https://download.electrum.org/2.6.4/Electrum-2.6.4.tar.gz
 
-##Ruby
+##Ruby Version Manager (RVM) with Ruby on Rails
+#RVM is a command-line tool which allows you to easily install, manage, and work with multiple ruby environments from interpreters to sets of gems.
 sudo apt-get install -y git-core subversion
 sudo gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
 curl -O https://raw.githubusercontent.com/rvm/rvm/master/binscripts/rvm-installer
@@ -476,11 +503,20 @@ curl -O https://raw.githubusercontent.com/rvm/rvm/master/binscripts/rvm-installe
 #curl -sSL https://get.rvm.io | bash -s stable --rails --ruby
 type rvm | head -n -1
 sudo gpg --verify rvm-installer.asc 
+sudo curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -
 bash rvm-installer stable
 rvm list
 rvm rubies
-echo 'alias rubysheet="firefox -new-tab -url https://cheat.errtheblog.com/s/rvm"' >> sudo /etc/bash.bashrc
+echo 'alias rubysheet="firefox -new-tab -url https://cheat.errtheblog.com/s/rvm" -new-tab -url https://rvm.io/ -new-tab -url http://bundler.io/'>> sudo /etc/bash.bashrc
 exit
+##Bundler provides a consistent environment for Ruby projects by tracking and installing the exact gems and versions that are needed. 
+gem install bundler
+##Install ribbot
+git clone https://github.com/barmstrong/ribbot
+cd ribbot
+bundle install
+git add Gemfile Gemfile.lock
+cd
 
 ##Mail
 sudo apt-get install mailutils ssmtp -y
