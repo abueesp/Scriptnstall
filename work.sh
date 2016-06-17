@@ -527,5 +527,4 @@ sudo apt-get install mailutils ssmtp -y
 read -p "Email Configuration for a mail integrated on terminal. Introduce email  \n" emmail
 read -p "Password  \n" Passs
 read -p "SMTP. Gmail uses smtp.gmail.com:587    \n" SMTP
-sudo sed -i 's/#FromLineOverride=YES/FromLineOverride=YES \nAuthUser=$emmail \nAuthPass=$Passs \nmailhub=$SMTP \nUseSTARTTLS=YES/g' /etc/ssmtp/ssmtp.conf
-echo 'sendemail(){\nread -p "Introduce the route of the file to annex   \n" filem \nread -p "Introduce the subject   \n" subjectm \nread -p "Introduce the receiver emails separated by commas  \n" emailsm \nread -p "Introduce the route of the text, or echo 'Text here'  \n" emailtext \nmail -a $filem -s $subjectm $emailsm < $emailtext \n}' >> sudo /etc/bash.bashrc
+sudo sed -i 's/#FromLineOverride=YES/FromLineOverride=YES \AuthUser=$emmail \AuthPass=$Passs \mailhub=$SMTP \UseSTARTTLS=YES/g' /etc/ssmtp/ssmtp.conf
