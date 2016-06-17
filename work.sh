@@ -296,7 +296,6 @@ sudo make install prefix=/usr/local/stow/emacs-"$version" && cd /usr/local/stow
 sudo rm /usr/local/share/info/dir
 sudo stow emacs-"$version" 
 #spacemacs & plugins
-sudo rm -r .emacs**
 sudo mkdir .emacs.d
 sudo mkdir .emacs
 sudo git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
@@ -508,7 +507,8 @@ bash rvm-installer stable
 rvm list
 rvm rubies
 echo 'alias rubysheet="firefox -new-tab -url https://cheat.errtheblog.com/s/rvm" -new-tab -url https://rvm.io/ -new-tab -url http://bundler.io/'>> sudo /etc/bash.bashrc
-exit
+#https://github.com/Nerian/simple_gemset
+gem install simple_gemsets
 ##Bundler provides a consistent environment for Ruby projects by tracking and installing the exact gems and versions that are needed. 
 gem install bundler
 ##Install ribbot
