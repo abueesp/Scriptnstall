@@ -6,8 +6,8 @@ rfkill block bluetooth
 sudo sed -i 's|http://us.archive.ubuntu.com/ubuntu|http://mirrors.mit.edu/ubuntu|g' /etc/apt/sources.list
 wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/bash.bashrc
 sudo mv bash.bashrc /etc/bash.bashrc
-sudo apt-get update
-sudo apt-get upgrade
+sudo apt-get update -y
+sudo apt-get upgrade -y
 #SSH
 sudo apt-get install ssh -y
 newsshkey
