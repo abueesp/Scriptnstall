@@ -476,6 +476,11 @@ echo "alias readthedocs='sudo ./manage.py runserver && firefox -new-tab -url htt
 ##Automatic Django Project setup, with git, heroku, rvmrc, coffeescript, less, automatic deployment, and many more features from https://github.com/andres-torres-marroquin/django-sparker
 curl -L https://raw.github.com/andres-torres-marroquin/django-sparker/master/sparker.sh | bash -s stable
 
+##Jaxx
+wget https://jaxx.io/files/1.0.5/Jaxx-v1.0.5-linux-x64.tar.gz
+sha1sum Jaxx-v1.0.5-linux-x64.tar.gz d0d74e52d2e8e654d27a6653ed058b412b52d583
+tar -xvzf Jaxx**.tar.gz
+sudo rm -r -f Jaxx**.tar.gz
 
 ##Icecold
 git clone https://github.com/ryepdx/ethaddress.org
