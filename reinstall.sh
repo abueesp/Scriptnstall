@@ -119,7 +119,7 @@ sudo make install
 sudo rm -r fwsnort**
 
 #Some tools
-sudo apt-get install secure-delete
+sudo apt-get install secure-delete -y
 sudo apt-get install traceroute -y
 sudo apt-get install zsh -y 
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
