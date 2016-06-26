@@ -475,7 +475,7 @@ alias gitsheet="firefox -new-tab  https://developer.exoplatform.org/docs/scm/git
 alias ubuntusheet="firefox -new-tab  https://slashbox.org/index.php/Ubuntu#Cheat_Sheet && firefox -new-tab https://slashbox.org/index.php/Ubuntu#Cheat_Sheet" 
 alias vimsheet="firefox -new-tab  https://michael.peopleofhonoronly.com/vim/vim_cheat_sheet_for_programmers_screen.png && firefox -new-tab https://cdn.shopify.com/s/files/1/0165/4168/files/digital-preview-letter.png && firefox -new-tab https://michael.peopleofhonoronly.com/vim/vim_cheat_sheet_for_programmers_screen.png && firefox -new-tab https://cdn.shopify.com/s/files/1/0165/4168/files/digital-preview-letter.png'"
 alias wgetsheet="firefox -new-tab https://www.thegeekstuff.com/2009/09/the-ultimate-wget-download-guide-with-15-awesome-examples/"
-
+alias soliditysheet="firefox -new-tab https://solidity.readthedocs.io/en/latest/units-and-global-variables.html"
 ### Functions ###
 
 free(){
