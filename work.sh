@@ -441,6 +441,19 @@ sudo echo "alias daosheet='firefox -new-tab -url https://github.com/slockit/DAO/
 cd ..
 rm Ethereum**.zip
 
+#Install solidity, alethzero, mist
+sudo apt-get install npm -y
+sudo npm install solc
+sudo apt-get -y install build-essential git cmake libgmp-dev libboost-all-dev libjsoncpp-dev libleveldb-dev libcurl4-openssl-dev libminiupnpc-dev libmicrohttpd-dev
+sudo add-apt-repository -y ppa:ethereum/ethereum -y
+sudo add-apt-repository -y ppa:ethereum/ethereum-dev -y
+sudo apt-get -y update 
+sudo apt-get -y upgrade # this will update cmake to version 3.x
+sudo apt-get -y install libcryptopp-dev libjson-rpc-cpp-dev
+git clone --recursive https://github.com/ethereum/webthree-umbrella.git
+cd webthree-umbrella && mkdir -p build && cd build
+cmake ..
+
 #Text Edition Tools
 sudo apt-get install unoconv -y
 sudo apt-get install detox -y
