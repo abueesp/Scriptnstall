@@ -299,6 +299,10 @@ gitupload () {
   git push origin master
 }
 
+readlater () {
+read -p "introduce the website to download" $ws
+wget --mirror -p --convert-links -P ./ $ws
+}
 
 securedelete () {
   read -p "DANGER VAS A BORRAR DE FORMA SEGURA TODO. INTRODUCE LA RUTA DE LA CARPETA O EL ARCHIVO SIN EQUIVOCARTE      -->" route
