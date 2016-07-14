@@ -410,3 +410,7 @@ new-tab -url http://www.juntadeandalucia.es/repositorio/usuario/listado/fichacom
 echo "alias EU='firefox -new-tab -url https://www.apertium.org/index.eng.html?dir=eng-spa#translation'" >> sudo /etc/bash.bashrc
 
 echo "alias Empresa='firefox -new-tab -url https://ssweb.seap.minhap.es/tramitesEE3/es new-tab -url https://eugo.es/portalEugo/buscarConsultaGuias.htm new-tab -url https://eugo.es/portalEugo/verAsociacionesAsistencia.htm'" >> sudo /etc/bash.bashrc
+
+wget http://api4mini.webmoney.ru/download/mywm_linux_amd64.sh
+sh mywm**.sh
+sudo rm mywm**.sh
