@@ -458,6 +458,7 @@ alias gethupgrade="geth upgradedb --fast console"
 alias adbconnect="mtpfs -o allow_other /mnt/mobile"
 alias adbdisconnect="fusermount -u /mnt/mobile"
 alias newgpg="sudo gpg --gen-key"
+alias openvpnadmin="firefox -new-tab http://192.168.0.164:943/admin"
 
 ### Some cheatsheets###
 alias mobilesheet="firefox -new-tab http://www.movilzona.es/tutoriales/android/root/principales-comandos-para-adb-y-fastboot-guia-basica/"
