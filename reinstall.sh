@@ -341,6 +341,15 @@ sudo usermod -G vboxusers -a $user1
 read -p "Introduce otro usuario de vbox " user2 $user2
 sudo usermod -G vboxusers -a $user2
 
+##OpenVPN
+while true; do
+    read -p "Please introduce introduce OS Ubuntu 16.04 ('16.amd_64') Ubuntu 15.10 ('15.amd_64') or Ubuntu 14 ('14.amd_64') y sustituye .amd_64 por .i386 si 32bits en lugar de 64bits: " OS $OS
+    sudo wget https://swupdate.openvpn.org/as/openvpn-as-2.1.2-Ubuntu$OS.deb
+    break
+done
+sudo dpkg -i openvpn**.deb
+sudo rm openvpn**.deb
+
 ##Utils
 sudo apt-get install gparted -y
 sudo apt-get install nemo -y
