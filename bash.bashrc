@@ -673,3 +673,33 @@ ifconfig -a | grep HWaddr
 read -p "Enjoy!"
 }
 
+
+zeitlogeist(){
+PS3='Please enter your choice: '
+options=("Copy log files" "Delete log files" "Smile" "Quit")
+select opt in "${options[@]}"
+do
+    case $opt in
+        "Copy log files")
+            sudo apt-get install sqlitebrowser
+	    sudo zip -r /var/logs ~/.local/share/zeitgeist
+            sudo apt-get install sqlitebrowser
+            ;;
+        "Delete log files")
+            echo "you chose choice 2"
+            sudo rm -r /var/logs/**
+            sudo rm -r ~/.local/share/zeitgeist/**
+            ;;
+        "Smile")
+            echo "Hi, this is a joke. Smile ! :)"
+            ;;
+        "Quit")
+	    echo 'Good bye!'
+            break
+            ;;
+        *) echo invalid option;;
+    esac
+done
+
+}
+
