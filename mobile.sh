@@ -84,6 +84,8 @@ else
     echo "PACKAGE NOT VERIFIED"
     break
 fi
+echo "Downloading SuperSu"
+wget https://download.chainfire.eu/696/SuperSU/UPDATE-SuperSU-v2.46.zip
 cd ..
 
 #Official versions and twrp
