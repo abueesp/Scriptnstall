@@ -1,7 +1,7 @@
 
 
 ##Installing packages
-sudo apt-get install android-tools-adb android-tools-fastboot mtp-tools mtpfs libusb-dev gmtp -y
+sudo apt-get install android-tools-adb android-tools-fastboot mtp-tools mtpfs libusb-dev gmtp unzip -y
 ls -lah /usr/lib/libmtp*
 wget http://downloads.sourceforge.net/project/libmtp/libmtp/1.1.11/libmtp-1.1.11.tar.gz
 wget http://downloads.sourceforge.net/project/libmtp/libmtp/1.1.11/libmtp-1.1.11.tar.gz.asc
@@ -158,3 +158,18 @@ sudo rm -r /downm
 
 ##Android studio SDK
 wget https://dl.google.com/dl/android/studio/ide-zips/2.1.2.0/android-studio-ide-143.2915827-linux.zip
+sha1 = $(sha1sum **-linux.zip)
+if [ $sha1 "d34c75ae2ca1cf472e21eb5301f43603082c6fd0" ]
+then
+    echo "PACKAGE VERIFIED"
+else
+    echo "PACKAGE NOT VERIFIED"
+    break
+fi
+tar xvzf android-studio-ide-**-linux.zip
+cd android-studio-ide-**-linux
+./studio.sh
+cd ..
+sudo rm -r android-studio-ide-**-linux
+
+alias sheet="firefox -new-tab https://developer.android.com/design/index.html && firefox -new-tab https://developer.android.com/studio/intro/keyboard-shortcuts.html"
