@@ -12,6 +12,7 @@ cd libmtp**/
 make
 sudo make install
 cd ..
+
 sudo rm -r libmtp**
 ##mounting
 sudo lsusb
@@ -30,7 +31,7 @@ sudo xterm -e sudo gmtp #you can also use xterm -e mtpfs -o allow_other /mnt/mob
 ##backup
 NOW = date
 cd android-backup-extractor
-wget http://downloads.sourceforge.net/project/adbextractor/android-backup-extractor-20151102-bin.zip
+wget http://downloads.sourceforge.net/project/adbextractor/android-backup-extractor-20160710-bin.zip
 unzip android-backup-extractor**
 cd android-backup-extractor**
 adb backup -apk -shared -f backup-apps-$NOW.ab
@@ -154,3 +155,6 @@ fusermount -u /mnt/mobile
 sudo rm -r /mnt/mobile
 sudo sed -i 's/user_allow_other/#user_allow_other/g' /etc/fuse.conf
 sudo rm -r /downm
+
+##Android studio SDK
+wget https://dl.google.com/dl/android/studio/ide-zips/2.1.2.0/android-studio-ide-143.2915827-linux.zip
