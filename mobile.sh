@@ -179,8 +179,8 @@ cd ..
 sudo rm -r ibus**
 sudo add-apt-repository ppa:webupd8team/java
 sudo apt-get update
-sudo apt-get install oracle-java8-installer
-sudo apt-get install oracle-java8-set-default
+sudo apt-get install oracle-java7-installer
+sudo apt-get install oracle-java7-set-default
 sudo javac -version
 wget https://dl.google.com/dl/android/studio/ide-zips/2.1.2.0/android-studio-ide-143.2915827-linux.zip
 sha1 = $(sha1sum **-linux.zip)
@@ -195,9 +195,22 @@ unzip android-studio-ide-**-linux.zip
 cd android-studio
 cd bin
 ./studio.sh
-cd ..
-cd ..
-sudo rm -r android-studi**
-'Android SDK installed. Run it using "androidsdk" (you also have "androidsheet". You can now also emulate a virtual device using the green insect symbol.'
-alias androidsdk="sh ~/android-studio**/bin/studio.sh"
-alias androidsheet="firefox -new-tab https://developer.android.com/design/index.html && firefox -new-tab https://developer.android.com/studio/intro/keyboard-shortcuts.html"
+echo 'Android SDK installed. Run it using "androidsdk" (you also have "androidsheet". You can now also emulate a virtual device using the green insect symbol.'
+##APKdecompiler
+sudo apt-get install oracle-java7-installer
+sudo add-apt-repository ppa:webupd8team/java -y
+sudo apt-get update -y
+sudo sudo apt-get install oracle-java7-installer  openjdk-7-jre openjdk-7-jdk -y
+sudo apt-get install openjdk-7-jre
+wget https://raw.githubusercontent.com/iBotPeaches/Apktool/master/scripts/linux/apktool
+wget https://bitbucket.org/iBotPeaches/apktool/downloads/apktool_2.1.1.jar
+mv apktool**.jar apktool.jar
+sudo chmod +x apktool
+sudo chmod +x apktool.jar
+echo 'APKdecompiler Apktool installed. Run it using decompileapk <nameof.apk>'
+##APKsigner
+git clone https://github.com/appium/sign
+mv sign/** .
+sudo rm -r sign
+cd
+echo 'APKsigner installed. Run it using signapk <nameof.apk>'
