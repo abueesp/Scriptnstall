@@ -1,6 +1,7 @@
 
 
-##Installing packages
+##Installing packages (specially Android Debugging Bridge)
+echo 'Installing packages (specially Android Debugging Bridge)'
 sudo apt-get install android-tools-adb android-tools-fastboot mtp-tools mtpfs libusb-dev gmtp unzip -y
 ls -lah /usr/lib/libmtp*
 wget http://downloads.sourceforge.net/project/libmtp/libmtp/1.1.11/libmtp-1.1.11.tar.gz
@@ -12,7 +13,6 @@ cd libmtp**/
 make
 sudo make install
 cd ..
-
 sudo rm -r libmtp**
 ##mounting
 sudo lsusb
@@ -28,7 +28,9 @@ sudo sed -i 's/#user_allow_other/user_allow_other/g' /etc/fuse.conf
 sudo chmod a+rwx /etc/fuse.conf
 sudo adduser $USER fuse
 sudo xterm -e sudo gmtp #you can also use xterm -e mtpfs -o allow_other /mnt/mobile/
-##backup
+
+##Installing Android Backup Extractor
+echo "Installing Android Backup Extractor"
 NOW = date
 cd android-backup-extractor
 wget http://downloads.sourceforge.net/project/adbextractor/android-backup-extractor-20160710-bin.zip
@@ -156,7 +158,30 @@ sudo rm -r /mnt/mobile
 sudo sed -i 's/user_allow_other/#user_allow_other/g' /etc/fuse.conf
 sudo rm -r /downm
 
-##Android studio SDK
+##Installing Android Studio SDK
+echo 'Installing Android Studio SDK'
+sudo apt-get install libdconf-dev libnotify-dev intltool libgtk2.0-dev libgtk-3-dev libdbus-1-dev -y
+wget https://github.com/ibus/ibus/releases/download/1.5.13/ibus-1.5.13.tar.gz
+md5 = $(md5sum ibus-**.tar.gz)
+if [ $md5 "314c5e4fbfa7a52e6bbe4d1fe87c33f4" ]
+then
+    echo "PACKAGE VERIFIED"
+else
+    echo "PACKAGE NOT VERIFIED"
+    break
+fi
+tar -xvf ibus-**.tar.gz
+cd ibus**
+sudo apt-get install intltool libgtk-3-dev libnotify-dev dconf. -y
+./configure --prefix=/usr --sysconfdir=/etc && make
+sudo make install
+cd ..
+sudo rm -r ibus**
+sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get update
+sudo apt-get install oracle-java8-installer
+sudo apt-get install oracle-java8-set-default
+sudo javac -version
 wget https://dl.google.com/dl/android/studio/ide-zips/2.1.2.0/android-studio-ide-143.2915827-linux.zip
 sha1 = $(sha1sum **-linux.zip)
 if [ $sha1 "d34c75ae2ca1cf472e21eb5301f43603082c6fd0" ]
@@ -166,10 +191,13 @@ else
     echo "PACKAGE NOT VERIFIED"
     break
 fi
-tar xvzf android-studio-ide-**-linux.zip
-cd android-studio-ide-**-linux
+unzip android-studio-ide-**-linux.zip
+cd android-studio
+cd bin
 ./studio.sh
 cd ..
-sudo rm -r android-studio-ide-**-linux
-
-alias sheet="firefox -new-tab https://developer.android.com/design/index.html && firefox -new-tab https://developer.android.com/studio/intro/keyboard-shortcuts.html"
+cd ..
+sudo rm -r android-studi**
+'Android SDK installed. Run it using "androidsdk" (you also have "androidsheet". You can now also emulate a virtual device using the green insect symbol.'
+alias androidsdk="sh ~/android-studio**/bin/studio.sh"
+alias androidsheet="firefox -new-tab https://developer.android.com/design/index.html && firefox -new-tab https://developer.android.com/studio/intro/keyboard-shortcuts.html"
