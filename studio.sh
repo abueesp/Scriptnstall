@@ -1,5 +1,4 @@
 #!/bin/bash
-#!/bin/bash
 #Bluetooth
 sudo sed -i 's/InitiallyPowered = true/InitiallyPowered = false/g' /etc/bluetooth/main.conf
 rfkill block bluetooth
