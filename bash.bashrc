@@ -619,7 +619,7 @@ files="/mnt/$numF"
 mkdir -p $numF
 if [ ${#files[@]} -gt 0 ]; then 
   read -p "write here the identificator of the device to mount (for example, sdb1): " disks
-  sudo mount /dev/"$disks" /mnt/$numF
+  sudo mount -o remount,rw -force /dev/"$disks" /mnt/$numF
   echo "The device is mounted in /mnt/$numF"
   break
 else
