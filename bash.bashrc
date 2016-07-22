@@ -887,21 +887,22 @@ done
 
 }
 
-killcam fuser /dev/video0
-
-CAMARA
-$ fuser /dev/video0
-/dev/video0: 1871m
-$ ps axl | grep 1871
-$ kill -9 1871
-
 killmycam () {
-  sudo fuser /dev/video0
-  read -p "Este es tu proceso de camara. Introduce el numero m del proceso. "
-  read text
-  echo "introduce pdf filename"
-  read pdf
-  pdftotext $pdf - | grep '$text'
+  if sudo fuser /dev/video0; then 
+  
+  read -p "Este es tu proceso de camara. Introduce el numero m del proceso. " camm
+  ps axl | grep $camm
+  while true; do
+    read -p "Tu cámara está siendo usada por este proceso. ¿Quieres acabar con él? Introduce 'y' si quieres acabar con él o 'n' si no" yn
+    case $yn in
+        [Yy]* ) sudo kill -9 $camm; sudo pkill $camm; echo "Proceso eliminado";;
+        [Nn]* ) echo "Proceso mantenido";;
+        * ) echo "Por favor, responda y (sí) o n (no)";;
+    esac
+  done
+  else
+  echo "You cam is not being used by any process."; 
+  fi
 }
 
 #autostart, send text to init.d
@@ -922,3 +923,29 @@ sudo sh -c "echo $textito >> $testroute/$nameoftest"
 sudo ls $testroute | grep $nameoftest
 sudo cat $testroute/$nameoftest
 }
+
+
+#Keyfixer
+changekey(){
+echo "Keyboardfixer Changekey: One key at a time"
+echo "Now you are going to see all the keys of your keyboard: "
+sudo apt-get install xmodmap -y
+sudo xmodmap -pke
+echo "This is the whole list of keys"
+read -p "Introduce the your CURRENT KEY: " scukey
+sudo xmodmap -pke | grep $scukey
+read -p "Introduce CURRENT KEY SPACE: keycode 66 (which is BloqMayus key), keycode 25 or keysym q (which is q Q key), keycode 50 (which is Shift_L)...: " keyby
+read -p "Introduce what is your NEW KEY: " snewkey
+sudo xmodmap -pke | grep $snewkey
+read -p "Introduce NEW KEY FUNCTION: Shift_L, Shift_R, Control_L,  Control_R, Alt_L,  Meta_L, Num_Lock, Super_L, Super_R, Hyper_L, BloqMayus, q Q, w W, a W...: " keyfor
+sudo xmodmap -e "${keyby} = ${keyfor}"
+while true; do
+    read -p "The key fix has been done. Do you want to install it permanently in order to mantain it after reboot?" yn
+    case $yn in
+        [Yy]* ) sudo sh -c "echo #!/bin/bash >> /etc/init.d/autoshiftfixer"; sudo sh -c "echo sudo xmodmap -e '$keyby = $keyfor' >> /etc/init.d/autoshiftfixer"; sudo ls /etc/init.d | grep autoshiftfixer; sudo cat /etc/init.d/autoshiftfixer; break;;
+        [Nn]* ) echo "Enjoy!"; break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+}
+
