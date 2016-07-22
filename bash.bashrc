@@ -734,3 +734,37 @@ done
 
 }
 
+killcam fuser /dev/video0
+
+CAMARA
+$ fuser /dev/video0
+/dev/video0: 1871m
+$ ps axl | grep 1871
+$ kill -9 1871
+
+killmycam () {
+  sudo fuser /dev/video0
+  read -p "Este es tu proceso de camara. Introduce el numero m del proceso. "
+  read text
+  echo "introduce pdf filename"
+  read pdf
+  pdftotext $pdf - | grep '$text'
+}
+
+#autostart, send text to init.d
+startwith(){
+read -p "Introduce the name of the program: " nameofp
+read -p "Introduce the command you want to include on init.d: " commandito
+sudo sh -c "echo $commandito >> /etc/init.d/$nameofp"
+sudo ls /etc/init.d | grep $nameofp
+sudo cat /etc/init.d/$nameofp
+}
+
+#anota algo en algún lado
+anote(){
+read -p "Dígame, le escucho: " textito
+read -p "¿Dónde guardo esta nota? (ENTER por defecto, /home/nota.txt): " nameoff
+sudo sh -c "echo $textito >> /etc/init.d/$nameoff"
+sudo ls /etc/init.d | grep $nameoff
+sudo cat /etc/init.d/$nameoff
+}
