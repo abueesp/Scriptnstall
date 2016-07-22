@@ -9,7 +9,7 @@ sudo sed -i 's|http://us.archive.ubuntu.com/ubuntu|http://mirrors.mit.edu/ubuntu
 wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/bash.bashrc
 sudo mv bash.bashrc /etc/bash.bashrc
 sudo apt-get update -y
-sudo apt-get upgrade -y
+sudo apt-get upgrade -y 
 #SSH
 sudo apt-get install ssh -y
 newsshkey
@@ -55,6 +55,7 @@ sudo apt-get install autojump -y
 sudo apt-get install nmap -y
 sudo apt-get install tmux -y
 sudo apt-get install htop -y
+sudo apt-get install gtk-recordmydesktop recordmydesktop -y
 sudo apt-get install vnstat -y
 sudo apt-get install fail2ban -y
 sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
