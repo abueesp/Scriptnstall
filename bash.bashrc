@@ -334,15 +334,13 @@ fi
  dir_name=`basename $(pwd)`
 
  if [ "$repo_name" = "" ]; then
- echo "Repo name (hit enter to use '$dir_name')?"
+ echo "Introduce el nombre del repositorio o pulsa ENTER si quieres llamarlo  '$dir_name'. En principio debería de ser un nombre correlativo al repositorio de destino creado en Github en https://github.com/$_username?tab=repositories"
  read repo_name
  fi
-
  if [ "$repo_name" = "" ]; then
  repo_name=$dir_name
  fi
  
-
  echo -n "Creating Github repository '$repo_name' ..."
  curl -u "$_username:$token" https://api.github.com/user/repos -d '{"name":"'$repo_name'"}' > /dev/null 2>&1
  git init
@@ -423,24 +421,21 @@ echo "Your current token set is $_token"
  fi 
 fi
  
-
  if [ "$invalid_credentials" == "1" ]; then
  echo "There was a credentials error. Please introduce your credentials"
  break
  fi
 
  repo_name=$1
-
  dir_name=`basename $(pwd)`
-
  if [ "$repo_name" = "" ]; then
- echo "Introduce el nombre del repositorio o pulsa ENTER si quieres llamarlo  '$dir_name'?"
+ echo "Introduce el nombre del repositorio o pulsa ENTER si quieres llamarlo  '$dir_name' y asegúrate de que tienes un repositorio creado en Github con el mismo nombre en https://github.com/$_username?tab=repositories"
  read repo_name
  fi
-
  if [ "$repo_name" = "" ]; then
  repo_name=$dir_name
  fi
+ 
   git commit -m "This is my commit"
   url="https://www.github.com/$_username/$repo_name"
   git remote add origin $url
