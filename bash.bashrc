@@ -502,8 +502,9 @@ docsthemagic () {
 
 updatebash() {
 sudo wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/bash.bashrc
-sudo rm /etc/bash.bashrc
 sudo rm /etc/bash.bashrc~
+sudo cp /etc/bash.bashrc /etc/bash.bashrc~
+sudo rm /etc/bash.bashrc
 sudo mv bash.bashrc /etc/bash.bashrc
 }
 
