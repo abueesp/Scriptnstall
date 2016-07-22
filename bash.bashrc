@@ -246,6 +246,7 @@ if [ -f /etc/bash_preexec ]; then
     . /etc/bash_preexec
 fi
 
+
 ## Create a repo on git (not Github)
 gitnew() {
 
@@ -344,6 +345,7 @@ fi
 
  echo -n "Creating Github repository '$repo_name' ..."
  curl -u "$_username:$token" https://api.github.com/user/repos -d '{"name":"'$repo_name'"}' > /dev/null 2>&1
+ git init
  echo " done."
 }
 
@@ -440,12 +442,12 @@ fi
  repo_name=$dir_name
  fi
   git commit -m "This is my commit"
-  url = "https://www.github.com/$_username/$repo_name"
+  url="https://www.github.com/$_username/$repo_name"
   git remote add origin $url
   git remote -v
   git pull origin master
   git push origin master
-} 
+}
 
 
 securedelete () {
