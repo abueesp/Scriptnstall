@@ -900,13 +900,14 @@ killmycam () {
   while true; do
     read -p "Tu cámara está siendo usada por este proceso. ¿Quieres acabar con él? Introduce 'y' si quieres acabar con él o 'n' si no" yn
     case $yn in
-        [Yy]* ) sudo kill -9 $camm; sudo pkill $camm; echo "Proceso eliminado";;
-        [Nn]* ) echo "Proceso mantenido";;
+        [Yy]* ) sudo kill -9 $camm; sudo pkill $camm; echo "Proceso eliminado";break;;
+        [Nn]* ) echo "Proceso mantenido";break;;
         * ) echo "Por favor, responda y (sí) o n (no)";;
     esac
   done
   else
-  echo "You cam is not being used by any process."; 
+  echo "You cam is not being used by any process."
+  break 
   fi
 }
 
