@@ -768,30 +768,42 @@ extract () {
   fi
 }
 
-monta () {
-numF="0" #nombre de la celda
-sudo shopt -s nullglob dotglob     # To include hidden files
-sudo fdisk -l 
-for folders in /mnt/* . -type d
-do
-files="/mnt/$numF"
-mkdir -p $numF
-if [ ${#files[@]} -gt 0 ]; then 
-  read -p "write here the identificator of the device to mount (for example, sdb1): " disks
-  sudo mount -o remount,rw -force /dev/"$disks" /mnt/$numF
-  echo "The device is mounted in /mnt/$numF"
-  break
+
+desmonta(){
+sudo ls /mnt
+read -p "Introduce el disco a desmontar (sda5, sdb1...): " sdjoh
+sudo umount /dev/$sdjoh
+if [ "$(ls -A /mnt/$sdjoh)" ]; then
+     echo "¡Cuidado! ¡La celda /mnt/$sdjoh no está vacía! Contiene los siguientes archivos todavía:"
+     cd /mnt/$sdjoh
+     sudo ls /mnt/$sdjoh
 else
-  echo "La celda $numF está ocupada. Creando siguiente celda."
-  $numF = $numF + 1
+    sudo rm -r /mnt/$sdjoh
+    echo "Borrando celda..."
 fi
-done
 }
 
-desmonta () {
-sudo df
-read -p "write here the identificator of the device to unmount (for example, sdb1): " partitions
-  sudo umount /dev/"$partitions"
+
+monta(){ 
+sudo fdisk -l 
+read -p "Introduce el disco a montar (sda5, sdb1...): " sdjah
+sudo mkdir -p /mnt/$sdjah
+echo "Cell /mnt/$sdjah created"
+sudo mount /dev/$sdjah /mnt/$sdjah
+
+##OPEN IT
+read -p 'Your disk '$sdjah' was mounted on /mnt/'$sdjah'. Do you want to open it with sudo or without? 1=sudo 2=notsudo 3=goterminal; Q=do nothing: ' opt
+    case $opt in
+        "1")
+            echo "You were sudo"; sudo nemo /mnt/$sdjah || sudo /mnt/nautilus $sdjah; break;;
+        "2")
+            echo "You were not sudo"; nemo /mnt/$sdjah || /mnt/nautilus $sdjah; break;;
+        "3")
+            cd /mnt/$sdjah && ls;;
+        "Q")
+            break;;
+        *) echo invalid option;;
+    esac
 }
 
 
