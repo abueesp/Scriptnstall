@@ -246,8 +246,88 @@ if [ -f /etc/bash_preexec ]; then
     . /etc/bash_preexec
 fi
 
-## Create a repo on Github (not git)
+## Create a repo on git (not Github)
 gitnew() {
+
+###INTRODUCE EMAIL
+  read -p "Introduce tu email o pulsa ENTER si ya lo hiciste: " _email
+   if [ -z "$_email" ]
+     then
+	_email=$(git config --global user.email)
+##verif
+ if [ "$_email" = "" ]; then
+ echo "Could not find email, run 'git config --global github.email <email>'"
+ invalid_credentials=1
+else
+echo "Your current email set is $_email"
+ fi
+     else
+	 git config --global user.email $_email
+	_email=$(git config --global user.email)
+##verif
+ if [ "$_email" = "" ]; then
+ echo "Could not find email, run 'git config --global github.email <email>'"
+ invalid_credentials=1
+else
+echo "Your current email set is $_email"
+ fi
+
+####INTRODUCE USERNAME
+fi 
+  read -p "Introduce tu username o pulsa ENTER si ya lo hiciste: " _username
+    if [ -z "$_username" ]
+     then
+	_username=$(git config --global user.name)
+##verif
+ if [ "$_username" = "" ]; then
+ echo "Could not find username, run 'git config --global github.user <username>'"
+ invalid_credentials=1
+else
+echo "Your current username set is $_username"
+ fi 
+     else
+	 git config --global user.name $_username
+	_username=$(git config --global user.name)
+##verif
+ if [ "$_username" = "" ]; then
+ echo "Could not find username, run 'git config --global github.user <username>'"
+ invalid_credentials=1
+else
+echo "Your current username set is $_username"
+ fi 
+fi
+
+####INTRODUCE TOKEN
+  read -p "Introduce tu token o pulsa ENTER si ya lo hiciste: " _token
+    if [ -z "$_token" ]
+     then
+	_token=$(git config --global user.token)
+##verif
+ if [ "$_token" = "" ]; then
+ echo "Could not find token, run 'git config --global github.token <token>'"
+ invalid_credentials=1
+else
+echo "Your current token set is $_token"
+ fi 
+     else
+	 git config --global user.token $_token
+	_token=$(git config --global user.token)
+##verif
+ if [ "$_token" = "" ]; then
+ echo "Could not find token, run 'git config --global github.token <token> and check https://help.github.com/articles/creating-an-access-token-for-command-line-use/'"
+ invalid_credentials=1 
+else
+echo "Your current token set is $_token"
+ fi 
+fi
+ 
+
+ if [ "$invalid_credentials" == "1" ]; then
+ echo "There was a credentials error. Please introduce your credentials"
+ break
+ fi
+
+
  repo_name=$1
 
  dir_name=`basename $(pwd)`
@@ -260,49 +340,113 @@ gitnew() {
  if [ "$repo_name" = "" ]; then
  repo_name=$dir_name
  fi
-
- username=`git config github.user`
- if [ "$username" = "" ]; then
- echo "Could not find username, run 'git config --global github.user <username>'"
- invalid_credentials=1
- fi
-
- token=`git config github.token`
- if [ "$token" = "" ]; then
- echo "Could not find token, run 'git config --global github.token <token>'"
- invalid_credentials=1
- fi
-
- if [ "$invalid_credentials" == "1" ]; then
- return 1
- fi
+ 
 
  echo -n "Creating Github repository '$repo_name' ..."
- curl -u "$username:$token" https://api.github.com/user/repos -d '{"name":"'$repo_name'"}' > /dev/null 2>&1
+ curl -u "$_username:$token" https://api.github.com/user/repos -d '{"name":"'$repo_name'"}' > /dev/null 2>&1
  echo " done."
 }
 
-
 gitupload () {
-  echo "introduce tu email"
-  read email
-  git config --global user.email $email
-  echo "introduce tu username"
-  read username
-  git config --global user.name $username
-  git commit -m "First commit"
-  echo "introduce la url del repositorio"
-  read url
+
+###INTRODUCE EMAIL
+  read -p "Introduce tu email o pulsa ENTER si ya lo hiciste: " _email
+   if [ -z "$_email" ]
+     then
+	_email=$(git config --global user.email)
+##verif
+ if [ "$_email" = "" ]; then
+ echo "Could not find email, run 'git config --global github.email <email>'"
+ invalid_credentials=1
+else
+echo "Your current email set is $_email"
+ fi
+     else
+	 git config --global user.email $_email
+	_email=$(git config --global user.email)
+##verif
+ if [ "$_email" = "" ]; then
+ echo "Could not find email, run 'git config --global github.email <email>'"
+ invalid_credentials=1
+else
+echo "Your current email set is $_email"
+ fi
+
+####INTRODUCE USERNAME
+fi 
+  read -p "Introduce tu username o pulsa ENTER si ya lo hiciste: " _username
+    if [ -z "$_username" ]
+     then
+	_username=$(git config --global user.name)
+##verif
+ if [ "$_username" = "" ]; then
+ echo "Could not find username, run 'git config --global github.user <username>'"
+ invalid_credentials=1
+else
+echo "Your current username set is $_username"
+ fi 
+     else
+	 git config --global user.name $_username
+	_username=$(git config --global user.name)
+##verif
+ if [ "$_username" = "" ]; then
+ echo "Could not find username, run 'git config --global github.user <username>'"
+ invalid_credentials=1
+else
+echo "Your current username set is $_username"
+ fi 
+fi
+
+####INTRODUCE TOKEN
+  read -p "Introduce tu token o pulsa ENTER si ya lo hiciste: " _token
+    if [ -z "$_token" ]
+     then
+	_token=$(git config --global user.token)
+##verif
+ if [ "$_token" = "" ]; then
+ echo "Could not find token, run 'git config --global github.token <token>'"
+ invalid_credentials=1
+else
+echo "Your current token set is $_token"
+ fi 
+     else
+	 git config --global user.token $_token
+	_token=$(git config --global user.token)
+##verif
+ if [ "$_token" = "" ]; then
+ echo "Could not find token, run 'git config --global github.token <token> and check https://help.github.com/articles/creating-an-access-token-for-command-line-use/'"
+ invalid_credentials=1 
+else
+echo "Your current token set is $_token"
+ fi 
+fi
+ 
+
+ if [ "$invalid_credentials" == "1" ]; then
+ echo "There was a credentials error. Please introduce your credentials"
+ break
+ fi
+
+ repo_name=$1
+
+ dir_name=`basename $(pwd)`
+
+ if [ "$repo_name" = "" ]; then
+ echo "Introduce el nombre del repositorio o pulsa ENTER si quieres llamarlo  '$dir_name'?"
+ read repo_name
+ fi
+
+ if [ "$repo_name" = "" ]; then
+ repo_name=$dir_name
+ fi
+  git commit -m "This is my commit"
+  url = "https://www.github.com/$_username/$repo_name"
   git remote add origin $url
   git remote -v
   git pull origin master
   git push origin master
-}
+} 
 
-readlater () {
-read -p "introduce the website to download" $ws
-wget --mirror -p --convert-links -P ./ $ws
-}
 
 securedelete () {
   read -p "DANGER VAS A BORRAR DE FORMA SEGURA TODO. INTRODUCE LA RUTA DE LA CARPETA O EL ARCHIVO SIN EQUIVOCARTE      -->" route
@@ -761,10 +905,11 @@ sudo cat /etc/init.d/$nameofp
 }
 
 #anota algo en algún lado
-anote(){
+anota(){
 read -p "Dígame, le escucho: " textito
-read -p "¿Dónde guardo esta nota? (ENTER por defecto, /home/nota.txt): " nameoff
-sudo sh -c "echo $textito >> /etc/init.d/$nameoff"
-sudo ls /etc/init.d | grep $nameoff
-sudo cat /etc/init.d/$nameoff
+read -p "¿Dónde guardo esta nota? (Por ejemplo, /home/$USER): " testroute
+read -p "¿Nombre de la nota? (Por ejemplo, nota.txt): " nameoftest
+sudo sh -c "echo $textito >> $testroute/$nameoftest"
+sudo ls $testroute | grep $nameoftest
+sudo cat $testroute/$nameoftest
 }
