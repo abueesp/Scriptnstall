@@ -52,7 +52,7 @@ sudo apt-get install aeolus blop caps cmt hexter fil-plugins ladspa-sdk mcp-plug
 # graphics
 sudo apt-get install inkscape blender gimp gimp-data-extras gimp-gap gimp-ufraw gimp-plugin-registry f-spot scribus fontforge gnome-raw-thumbnailer xsane wacom-tools hugin agave yafray synfigstudio  -y
 #video
-sudo apt-get install openmovieeditor ffmpeg ffmpeg2theora kino stopmotion dvgrab -y
+sudo apt-get install openmovieeditor ffmpeg ffmpeg2theora kino stopmotion dvgrabgtk-recordmydesktop recordmydesktop -y
 ##video Natron
 sudo apt-get install libegl1-mesa -y 
 wget -c https://downloads.natron.fr/Linux/releases/64bit/files/Natron-2.1.2-Linux-x86_64bit.tgz
