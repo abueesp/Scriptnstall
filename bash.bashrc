@@ -348,7 +348,7 @@ fi
 }
 
 gitupload () {
-
+  
 ###INTRODUCE EMAIL
   read -p "Introduce tu email o pulsa ENTER si ya lo hiciste: " _email
    if [ -z "$_email" ]
@@ -436,12 +436,24 @@ fi
  repo_name=$dir_name
  fi
  
-  git commit -m "This is my commit"
+ ###CHOOSE AND UPLOAD FILES
+  read -p "Introduce los archivos a subir separados por espacios o escribe ** si son todos los de la carpeta en la que estás: " _files
+  git add $_files  #FROM WORKSPACE TO INDEX
+ 
+  ##commit title
+   titlecommit=$1
+ titledefault="This is my commit"
+ if [ "$titlecommit" = "" ]; then
+ echo "Introduce un título para el commit o pulsa ENTER si quieres que sea 'This is my commit'"
+ read titlecommit
+ fi
+ if [ "$titlecommit" = "" ]; then
+ titlecommit=$titledefault
+ fi
+ 
+  git commit -m "$titlecommit" $_files #FROM INDEX TO LOCAL REPOSITORY
   url="https://www.github.com/$_username/$repo_name"
-  git remote add origin $url
-  git remote -v
-  git pull origin master
-  git push origin master
+  git push origin master #FROM LOCAL REPOSITORY TO REMOTE REPOSITORY
 }
 
 
