@@ -428,13 +428,15 @@ sudo echo 'alias meteor="firefox -new-tab -url http://localhost:3000 && geth --r
 sudo echo 'alias ethertweet="firefox -new-tab -url https://github.com/yep/eth-tweet -new-tab -url https://ethertweet.net/ui && geth --rpc --rpccorsdomain='http://ethertweet.net'"' >> /etc/bash.bashrc 
 
 ##Mist
-sudo curl https://install.meteor.com/ | sudo sh 
-wget https://github.com/ethereum/mist/releases/download/0.7.3/Ethereum-Wallet-linux64-0-7-3.zip
-unzip Ethereum**.zip
-git clone https://github.com/ethereum/mist.git
+sudo apt-get install npm -y
+sudo curl https://install.meteor.com/ | sh
+sudo npm install -g electron-prebuilt@1.2.5
+sudo npm install -g gulp
+sudo git clone https://github.com/ethereum/mist.git
 cd mist
 sudo git submodule update --init
 sudo npm install
+sudo gulp update-nodes
 sudo git pull && git submodule update
 sudo echo "alias mist='cd mist && electron . --mode wallet && electron && cd interface && meteor'" >> /etc/bash.bashrc 
 sudo echo "alias privchain='geth --networkid 1 --ipcpath route/geth.ipc --datadir'" >> /etc/bash.bashrc
