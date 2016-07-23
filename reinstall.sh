@@ -390,7 +390,7 @@ sudo stow emacs-"$version"
 sudo git clone http://github.com/syl20bnr/spacemacs ~/.emacs.d
 ##plugins
 cd ~/.emacs.d
-wget http://github.com/ethereum/emacs-solidity/blob/master/solidity-mode.el ##solidity
+sudo wget http://github.com/ethereum/emacs-solidity/blob/master/solidity-mode.el ##solidity
 (add-to-list load-path "~/.emacs.d/") 
 (load "myplugin.el")
 cd
