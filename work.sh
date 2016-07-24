@@ -4,6 +4,14 @@ sudo mv /usr/share/sounds/freedesktop/stereo/camera-shutter.oga /usr/share/sound
 #Bluetooth
 sudo sed -i 's/InitiallyPowered = true/InitiallyPowered = false/g' /etc/bluetooth/main.conf
 rfkill block bluetooth
+#Sudo on Files Eos
+echo "[Contractor Entry] 
+Name=Open folder as root
+Icon=gksu-root-terminal
+Description=Open folder as root
+MimeType=inode;application/x-sh;application/x-executable;
+Exec=gksudo pantheon-files -d %U
+Gettext-Domain=pantheon-files" >> sudo /usr/share/contractor/Open_as_admin.contract
 #mirror
 sudo sed -i 's|http://us.archive.ubuntu.com/ubuntu|http://mirrors.mit.edu/ubuntu|g' /etc/apt/sources.list
 wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/bash.bashrc
