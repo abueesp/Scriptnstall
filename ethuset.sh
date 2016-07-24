@@ -1,9 +1,9 @@
 #!/bin/bash
+
 #mirror
 sudo sed -i 's|http://us.archive.ubuntu.com/ubuntu|http://mirrors.mit.edu/ubuntu|g' /etc/apt/sources.list
 sudo wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/bash.bashrc
 sudo cp bash.bashrc /etc/bash.bashrc
-
 # Secure environment
 sudo apt-get autoremove -y
 #Bluetooth
@@ -86,10 +86,9 @@ then
 sudo apt-get install git
 git clone https://github.com/kvhnuke/etherwallet
 git clone https://github.com/ryepdx/ethaddress.org
-fi
-
 sudo nohup pantheon-files ~/ethwallet || sudo nohup nemo ~/ethwallet || sudo nohup nautilus ~/ethwallet
 sudo nohup pantheon-files ~/ethaddress.org || sudo nohup nemo ~/ethaddress.org || sudo nohup nautilus ~/ethaddress.org
+fi
 
 ##Mist Wallet and Mist Beta with Hard Fork choice 0.8.1
 #from https://github.com/ethereum/mist/releases
@@ -102,13 +101,17 @@ else
     echo "PACKAGE NOT VERIFIED"
     break
 fi
+read -p "Please ENTER if PACKAGE VERIFIED. Otherwise Ctrl-C " pause
 unzip Ethereum-**
 sudo rm Ethereum-**.zip
 cd Ethereum**
 nohup ./Ethereum-Wallet
 cd ..
-df -h
-echo "This is your free space to download the blockchain"
+df
+echo "alias ethwallet='cd ~/Ethereum-Wal** && ./Ethereum-Wal**'" >> sudo /etc/bash.bashrc
+echo "This is your free space to download the blockchain. Last time it took 6GB and 3 hours."
+
+
 ##Mist browser
 #from https://github.com/ethereum/mist/releases
 wget https://github.com/ethereum/mist/releases/download/0.8.1/Mist-linux64-0-8-1.zip
@@ -119,38 +122,24 @@ else
     echo "PACKAGE NOT VERIFIED"
     break
 fi
+read -p "Please ENTER if PACKAGE VERIFIED. Otherwise Ctrl-C " pause
 unzip Mist-**
 cd Mist
 nohup ./Mist
 cd ..
 sudo rm Mist-**.zip
-df -h
-echo "This is your free space to download the blockchain"
-##Mist browser
-#from https://github.com/ethereum/mist
-#sudo apt-get install npm -y
-#sudo curl https://install.meteor.com/ | sh
-#sudo npm install -g electron-prebuilt@1.2.5
-#sudo npm install -g gulp
-#sudo git clone https://github.com/ethereum/mist.git
-#cd mist
-#sudo git submodule update --init
-#sudo npm install
-#sudo gulp update-nodes
-#sudo git pull && git submodule update
-#sudo echo "alias mist='cd mist && electron . --mode wallet && electron && cd interface && meteor'" >> /etc/bash.bashrc 
-#sudo echo "alias privchain='geth --networkid 1 --ipcpath route/geth.ipc --datadir'" >> /etc/bash.bashrc
-#sudo echo "alias daosheet='firefox -new-tab -url https://github.com/slockit/DAO/wiki/ && firefox -newtab- -url https://daohub.org'" >> /etc/bash.bashrc
-#cd ..
-#rm Ethereum**.zip
-#cd mist/interface && meteor
-#cd
-#cd /home/$User/meteor-dapp-wallet/app && meteor --port 3050
+df
+echo "This is your free space to download the blockchain. Last time it took 6GB and 3 hours."
+echo "alias ethmist='cd ~/Mist** && ./Mist**'" >> sudo /etc/bash.bashrc 
 
-##Geth 
-#curl -L https://install-geth.ethereum.org
+read -p "Do you want to install Geth? " -n 1 -r
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+curl -L https://install-geth.ethereum.org
+echo "alias privchain='geth --networkid 1 --ipcpath route/geth.ipc --datadir'" >> sudo /etc/bash.bashrc
+fi
 
-read -p "Do you want to open the DAO? " -n 1 -r
+read -p "Do you want to open Myetherwallet? " -n 1 -r
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
    midori https://www.myetherwallet.com/#the-dao
