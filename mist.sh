@@ -11,6 +11,17 @@ else
 fi
 unzip Ethereum-**
 ##Mist browser
+#from https://github.com/ethereum/mist/releases
+wget https://github.com/ethereum/mist/releases/download/0.8.1/Mist-linux64-0-8-1.zip
+if [ $sha1 "2a3cf6e5ddfc46df75f78c4dc7bb2e6248fac2ce84cb2708882895b9f2eda1b7" ]
+then
+    echo "PACKAGE VERIFIED"
+else
+    echo "PACKAGE NOT VERIFIED"
+    break
+fi
+unzip Mist-**
+##Mist browser
 #from https://github.com/ethereum/mist
 #sudo apt-get install npm -y
 #sudo curl https://install.meteor.com/ | sh
