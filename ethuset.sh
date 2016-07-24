@@ -65,8 +65,8 @@ sudo make
 sudo make install
 sudo rm -r fwsnort**
 #Some tools
-sudo apt-get install secure-delete
-sudo apt-get install duplicity deja-dup -y
+sudo apt-get install secure-delete -y
+sudo apt-get install duplicity deja-dup pyrenamer -y
 sudo apt-get install iotop htop -y
 sudo apt-get install vnstat -y
 sudo apt-get install fail2ban -y
@@ -77,18 +77,10 @@ echo "You entered: $email"
 sudo sed "s/destemail = your_email@domain.com/destemail = $email/g" /etc/fail2ban/jail.local
 sudo sed "s/action = %(action_)s/action = %(action_mw)s/g" /etc/fail2ban/jail.local
 sudo sed -e "s/enabled  = false/enabled  = true/g" /etc/fail2ban/jail.local
+sudo apt-get install git -y
 
-
-
-read -p "Do you want to create some cold storage addresses? " -n 1 -r
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-sudo apt-get install git
 git clone https://github.com/kvhnuke/etherwallet
 git clone https://github.com/ryepdx/ethaddress.org
-sudo nohup pantheon-files ~/ethwallet || sudo nohup nemo ~/ethwallet || sudo nohup nautilus ~/ethwallet
-sudo nohup pantheon-files ~/ethaddress.org || sudo nohup nemo ~/ethaddress.org || sudo nohup nautilus ~/ethaddress.org
-fi
 
 ##Mist Wallet and Mist Beta with Hard Fork choice 0.8.1
 #from https://github.com/ethereum/mist/releases
