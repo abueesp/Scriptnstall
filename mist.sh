@@ -1,3 +1,5 @@
+
+#!/bin/bash
 ##Mist Wallet and Mist Beta with Hard Fork choice 0.8.1
 #from https://github.com/ethereum/mist/releases
 wget https://github.com/ethereum/mist/releases/download/0.8.1/Ethereum-Wallet-linux64-0-8-1.zip
@@ -41,3 +43,20 @@ unzip Mist-**
 #cd mist/interface && meteor
 #cd
 #cd /home/$User/meteor-dapp-wallet/app && meteor --port 3050
+
+# My first script for dnie environment
+sudo apt-get autoremove -y
+#Bluetooth
+sudo sed -i 's/InitiallyPowered = true/InitiallyPowered = false/g' /etc/bluetooth/main.conf
+rfkill block bluetooth
+#Prntscreensound
+sudo mv /usr/share/sounds/freedesktop/stereo/camera-shutter.oga /usr/share/sounds/freedesktop/stereo/camera-shutter-disabled.oga
+#Sudo on Files Eos
+echo "[Contractor Entry] 
+Name=Open folder as root
+Icon=gksu-root-terminal
+Description=Open folder as root
+MimeType=inode;application/x-sh;application/x-executable;
+Exec=gksudo pantheon-files -d %U
+Gettext-Domain=pantheon-files" >> sudo /usr/share/contractor/Open_as_admin.contract
+
