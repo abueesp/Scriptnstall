@@ -63,3 +63,12 @@ sudo rm -r Natron**
 #download 
 sudo apt-get install qbittorrent
 echo "check also `music` command"
+
+#Sudo on Files Eos
+echo "[Contractor Entry] 
+Name=Open folder as root
+Icon=gksu-root-terminal
+Description=Open folder as root
+MimeType=inode;application/x-sh;application/x-executable;
+Exec=gksudo pantheon-files -d %U
+Gettext-Domain=pantheon-files" >> sudo /usr/share/contractor/Open_as_admin.contract
