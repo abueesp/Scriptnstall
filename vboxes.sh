@@ -3,14 +3,19 @@ sudo mount /dev/sr0 /media/cdrom
 cd /media/cdrom
 sudo ./VBoxLinuxAdditions.run
 
+read -p "Copia 
+\n
 
-echo "[Contractor Entry] 
+[Contractor Entry] 
 Name=Open folder as root
 Icon=gksu-root-terminal
 Description=Open folder as root
 MimeType=inode;application/x-sh;application/x-executable;
 Exec=gksudo pantheon-files -d %U
-Gettext-Domain=pantheon-files" >> sudo /usr/share/contractor/Open_as_admin.contract
+Gettext-Domain=pantheon-files
+
+\n 
+en /usr/share/contractor/Open_as_admin.contract en el host y pulsa ENTER" enter
 
 mirror
 sudo sed -i 's|http://us.archive.ubuntu.com/ubuntu|http://mirrors.mit.edu/ubuntu|g' /etc/apt/sources.list
