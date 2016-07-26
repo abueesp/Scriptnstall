@@ -530,12 +530,11 @@ sudo pip install https://download.electrum.org/2.6.4/Electrum-2.6.4.tar.gz
 
 ##Ruby Version Manager (RVM) with Ruby on Rails
 #RVM is a command-line tool which allows you to easily install, manage, and work with multiple ruby environments from interpreters to sets of gems.
-sudo apt-get install -y git-core subversion
+sudo apt-get install -y git-core subversion gnupg2
+curl -sSL https://get.rvm.io | bash -s stable --rails --ruby
 sudo gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
 curl -O https://raw.githubusercontent.com/rvm/rvm/master/binscripts/rvm-installer
 curl -O https://raw.githubusercontent.com/rvm/rvm/master/binscripts/rvm-installer.asc
-#curl -sSL https://get.rvm.io | bash -s stable --rails --ruby
-type rvm | head -n -1
 sudo gpg --verify rvm-installer.asc 
 sudo curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -
 bash rvm-installer stable
@@ -543,15 +542,19 @@ rvm list
 rvm rubies
 echo 'alias rubysheet="firefox -new-tab -url https://cheat.errtheblog.com/s/rvm" -new-tab -url https://rvm.io/ -new-tab -url http://bundler.io/'>> sudo /etc/bash.bashrc
 #https://github.com/Nerian/simple_gemset
-gem install simple_gemsets
+sudo gem install simple_gemset
 ##Bundler provides a consistent environment for Ruby projects by tracking and installing the exact gems and versions that are needed. 
-gem install bundler
+sudo gem install bundler
+#Etherum
+sudo gem install ethereum
 ##Install ribbot
 git clone https://github.com/barmstrong/ribbot
 cd ribbot
 bundle install
 git add Gemfile Gemfile.lock
 cd
+rvm list
+rvm rubies
 
 ##Mail
 sudo apt-get install mailutils ssmtp -y
