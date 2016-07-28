@@ -68,6 +68,7 @@ fi
 tar xvf psad**.gz
 cd psad**
 sudo ./install.pl
+cd
 sudo rm -r psad**
 service psad start
 
