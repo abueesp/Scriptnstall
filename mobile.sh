@@ -27,8 +27,9 @@ sudo service udev restart
 sudo sed -i 's/#user_allow_other/user_allow_other/g' /etc/fuse.conf
 sudo chmod a+rwx /etc/fuse.conf
 sudo adduser $USER fuse
+sudo apt-get install xterm -y
 sudo xterm -e sudo gmtp #you can also use xterm -e mtpfs -o allow_other /mnt/mobile/
-
+sudo apt-get purge xterm -y
 ##Installing Android Backup Extractor
 echo "Installing Android Backup Extractor"
 NOW = date
