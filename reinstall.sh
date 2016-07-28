@@ -6,17 +6,14 @@ sudo mv /usr/share/sounds/freedesktop/stereo/camera-shutter.oga /usr/share/sound
 sudo sed -i 's/InitiallyPowered = true/InitiallyPowered = false/g' /etc/bluetooth/main.conf
 rfkill block bluetooth
 #Sudo on Files Eos
-echo "[Contractor Entry] 
-Name=Open folder as root
-Icon=gksu-root-terminal
-Description=Open folder as root
-MimeType=inode;application/x-sh;application/x-executable;
-Exec=gksudo pantheon-files -d %U
-Gettext-Domain=pantheon-files" >> sudo /usr/share/contractor/Open_as_admin.contract
+sudo su
+echo "[Contractor Entry]\nName=Open folder as root\nIcon=gksu-root-terminal\nDescription=Open folder as root\nMimeType=inode;application/x-sh;application/x-executable;\nExec=gksudo pantheon-files -d %U\nGettext-Domain=pantheon-files" >> sudo /usr/share/contractor/Open_as_admin.contract
+exit
 #mirror
-sudo sed -i 's|http://us.archive.ubuntu.com/ubuntu|http://mirrors.mit.edu/ubuntu|g' /etc/apt/sources.list
+sudo sed -i 's|http://us.archive.ubuntu.com/ubuntu|http://releases.ubuntu.csg.uzh.ch/ubuntu|g' /etc/apt/sources.list
 sudo wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/bash.bashrc
 sudo cp bash.bashrc /etc/bash.bashrc
+sudo rm bash.bashrc**
 #SSH
 sudo apt-get install ssh -y
 newsshkey
@@ -36,42 +33,6 @@ sudo apt-get purge apparmor -y
 sudo rm -rf /etc/apparmor.d/
 sudo rm -rf /etc/apparmor
 
-#KeePass (see KeeFox in Browsers)
-sudo apt-get install mono-complete mono-dmcs libmono-system-management4.0-cil libmono-system-xml-linq4.0-cil libmono-system-data-datasetextensions4.0-cil libmono-system-runtime-serialization4.0-cil mono-mcs -y
-mkdir KeePass
-cd KeePass
-sudo wget http://downloads.sourceforge.net/project/keepass/KeePass%202.x/2.33/KeePass-2.33.zip
-sudo unzip KeePass**.zip
-sudo rm **.zip
-sudo add-apt-repository ppa:dlech/keepass2-plugins
-sudo apt-get update 
-sudo wget https://raw.github.com/pfn/keepasshttp/master/KeePassHttp.plgx
-sudo chmod 644 KeePassHttp.plgx
-sudo wget https://keepass.info/extensions/v2/kpscript/KPScript-2.32.zip
-wget -r --no-parent -A 'KPScript*.zip' https://keepass.info/extensions/v2/kpscript/
-sudo unzip KPScript**.zip
-sudo rm KPScript**.zip
-sudo wget https://downloads.sourceforge.net/project/kp-googlesync/GoogleSyncPlugin-2.x/GoogleSyncPlugin-2.1.2.zip
-sudo unzip GoogleSync**.zip
-sudo rm GoogleSync**.zip
-sudo wget https://github.com/islog/keepassrfid/releases/download/1.0.0/keepassrfid.plgx
-sudo git clone git://github.com/dlech/KeeAgent --recursive
-cd KeeAgent
-sudo mozroots --import --machine --sync
-sudo certmgr -ssl -m https://go.microsoft.com
-sudo certmgr -ssl -m https://nugetgallery.blob.core.windows.net
-sudo certmgr -ssl -m https://nuget.org
-sudo rm nuget.exe*
-sudo wget https://nuget.org/nuget.exe
-sudo mono nuget.exe restore
-sudo rm nuget.exe*
-sudo xbuild /property:Configuration=ReleasePlgx KeeAgent.sln
-cd
-sudo cp bin/ReleasePlgx/KeeAgent.plgx /KeePass
-sudo chmod +x /KeePass
-rm keepassrfid.plgx 
-rm -r KeeAgent
-sudo apt-get purge keepass2-plugin-rpc
 
 #UFW
 sudo apt-get install gufw -y
@@ -126,17 +87,13 @@ cd fwsnort**
 ./configure
 sudo make
 sudo make install
+cd
 sudo rm -r fwsnort**
 
 #Some tools
 sudo apt-get install secure-delete -y
 sudo apt-get install traceroute -y
-sudo apt-get install zsh -y 
-sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-sudo sed -ir 's/ZSH_THEME="robbyrussell"/ZSH_THEME="norm"/g' ~/.oh-my-zsh #noroot
 sudo apt-get install iotop -y 
-sudo apt-get install fish -y
-sudo apt-get install byobu -y
 sudo apt-get install unoconv -y
 sudo apt-get install detox -y
 sudo apt-get install autojump -y
@@ -305,6 +262,7 @@ sudo rm **.bz2 && sudo rm **.sig && sudo rm -r gpa**
 
 cd ..
 sudo rm -r gpg
+
 ##Fail2ban
 sudo apt-get install fail2ban -y
 sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
@@ -350,27 +308,6 @@ sudo usermod -G vboxusers -a $user1
 read -p "Introduce otro usuario de vbox " user2 $user2
 sudo usermod -G vboxusers -a $user2
 
-##Utils
-sudo apt-get install gparted -y
-sudo apt-get install nemo -y
-sudo apt-get install thunderbird -y
-thunderbird https://addons.mozilla.org/thunderbird/downloads/latest/775/addon-775-latest.xpi
-sudo apt-get install gtk-recordmydesktop recordmydesktop -y
-sudo apt-get install firefox -y
-firefox https://addons.mozilla.org/firefox/downloads/file/271802/no_more_install_delay-3.0-fx+sm+fn+tb.xpi
-#Text Edition Tools
-sudo add-apt-repository ppa:webupd8team/sublime-text-3 -y 
-sudo apt-get update -y
-sudo apt-get install vim vim-scripts -y
-git clone https://github.com/amix/vimrc.git ~/.vim_runtime
-sh ~/.vim_runtime/install_awesome_vimrc.sh
-sudo apt-get install gedit -y
-sudo apt-get install sublime-text-installer -y
-sudo apt-get install libreoffice -y
-wget http://www.literatureandlatte.com/scrivenerforlinux/scrivener-1.9.0.1-amd64.deb
-sudo dpkg -i scrivener**
-sudo rm scrivener**
-
 ##Emacs
 sudo rm -r /usr/local/stow
 set -e
@@ -405,6 +342,27 @@ sudo wget http://github.com/ethereum/emacs-solidity/blob/master/solidity-mode.el
 cd
 sudo rm emacs-"$version".tar.xz
 sudo rm -r emacs-**
+
+##Utils
+sudo apt-get install gparted -y
+sudo apt-get install nemo -y
+sudo apt-get install thunderbird -y
+thunderbird https://addons.mozilla.org/thunderbird/downloads/latest/775/addon-775-latest.xpi
+sudo apt-get install gtk-recordmydesktop recordmydesktop -y
+sudo apt-get install firefox -y
+firefox https://addons.mozilla.org/firefox/downloads/file/271802/no_more_install_delay-3.0-fx+sm+fn+tb.xpi
+#Text Edition Tools
+sudo add-apt-repository ppa:webupd8team/sublime-text-3 -y 
+sudo apt-get update -y
+sudo apt-get install vim vim-scripts -y
+git clone https://github.com/amix/vimrc.git ~/.vim_runtime
+sh ~/.vim_runtime/install_awesome_vimrc.sh
+sudo apt-get install gedit -y
+sudo apt-get install sublime-text-installer -y
+sudo apt-get install libreoffice gedit -y
+wget http://www.literatureandlatte.com/scrivenerforlinux/scrivener-1.9.0.1-amd64.deb
+sudo dpkg -i scrivener**
+sudo rm scrivener**
 
 
 ##Github
@@ -527,9 +485,7 @@ wget https://addons.mozilla.org/thunderbird/downloads/latest/875/addon-875-lates
 wget https://addons.mozilla.org/thunderbird/downloads/latest/1003/addon-1003-latest.xpi 
 wget https://addons.mozilla.org/firefox/downloads/latest/390151/addon-390151-latest.xpi
 cd ..
-keepass2
-sudo cp /home/node/.mozilla/firefox/**.default/extensions/keefox@chris.tomlinson/deps/KeePassRPC.plgx /usr/lib/keepass2
-
+ 
 
 sudo apt-get autoremove -y
 
