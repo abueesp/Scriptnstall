@@ -309,6 +309,8 @@ read -p "Introduce un usuario de vbox " user1 $user1
 sudo usermod -G vboxusers -a $user1
 read -p "Introduce otro usuario de vbox " user2 $user2
 sudo usermod -G vboxusers -a $user2
+read -p "Introduce otro usuario de vbox " user2 $user3
+sudo usermod -G vboxusers -a $user3
 
 ##Emacs
 sudo rm -r /usr/local/stow
