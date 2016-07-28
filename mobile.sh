@@ -55,8 +55,7 @@ tar -xvf backup-all-$NOW.tar
 sudo cd ..
 
 ##Second preparation
-read -p "insert *#06# on the phone and take note of the IMEI while this is downloading. Also USB debugging enabled,  
-Settings => About phone => Click 7 times on Android Build (Numero de Compilacion) and Model Number (en mi caso D5803) to unlock developer options and check it for later, and Settings => Developer Settings Allow mock locations (ubicaciones simuladas). IF YOU HAVE A SONY DEVICE INTO ACCOUNT YOU MAY ALSO BACKUP TA PARTITION WITH DMR KEYS FOR Z3C ON WINDOWS WITH git clone https://github.com/DevShaft/Backup-TA and http://forum.xda-developers.com/showthread.php?t=2292598"
+read -p "insert *#06# on the phone and take note of the IMEI while this is downloading. Also USB debugging enabled, Settings => About phone => Click 7 times on Android Build (Numero de Compilacion) and Model Number (en mi caso D5803) to unlock developer options and check it for later, and Settings => Developer Settings Allow mock locations (ubicaciones simuladas). IF YOU HAVE A SONY DEVICE INTO ACCOUNT YOU MAY ALSO BACKUP TA PARTITION WITH DMR KEYS FOR Z3C ON WINDOWS WITH git clone https://github.com/DevShaft/Backup-TA and http://forum.xda-developers.com/showthread.php?t=2292598" pause
 firefox https://forum.xda-developers.com/z3-compact/general/how-to-root-backup-drm-keys-t3013343 && --new-tab -url https://encrypted.google.com/search?q=$read+ftf+spanish && --newtab -url https://forum.xda-developers.com/crossdevice-dev/sony/giefroot-rooting-tool-cve-2014-4322-t3011598 && --new-tab -url https://wiki.cyanogenmod.org/w/Install_CM_for_z3c --new-tab -url http://developer.sonymobile.com/unlockbootloader/ --new-tab -url https://wiki.cyanogenmod.org/w/Google_Apps && --new-tab -url https://www.movilzona.es/tutoriales/android/root/principales-comandos-para-adb-y-fastboot-guia-basica/
 mkdir downm
 cd downm
