@@ -792,12 +792,12 @@ echo "Cell /mnt/$sdjah created"
 sudo mount /dev/$sdjah /mnt/$sdjah
 
 ##OPEN IT
-read -p 'Your disk '$sdjah' was mounted on /mnt/'$sdjah'. Do you want to open it with sudo or without? 1=sudo 2=notsudo 3=goterminal; Q=do nothing: ' opt
+read -p 'Your disk '$sdjah' was mounted on /mnt/'$sdjah'. Do you want to open it with sudo or without? 1=Sudo 2=Notsudo 3=Goterminal; Q=Do nothing: ' opt
     case $opt in
         "1")
-            echo "You were sudo"; sudo nemo /mnt/$sdjah || sudo /mnt/nautilus $sdjah; break;;
+            echo "You were sudo"; sudo pantheon-files /mnt/$sdjah || sudo nemo /mnt/$sdjah || sudo /mnt/nautilus $sdjah; break;;
         "2")
-            echo "You were not sudo"; nemo /mnt/$sdjah || /mnt/nautilus $sdjah; break;;
+            echo "You were not sudo"; pantheon-files /mnt/$sdjah || nemo /mnt/$sdjah || /mnt/nautilus $sdjah; break;;
         "3")
             cd /mnt/$sdjah && ls;;
         "Q")
