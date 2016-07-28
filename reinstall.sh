@@ -6,9 +6,10 @@ sudo mv /usr/share/sounds/freedesktop/stereo/camera-shutter.oga /usr/share/sound
 sudo sed -i 's/InitiallyPowered = true/InitiallyPowered = false/g' /etc/bluetooth/main.conf
 rfkill block bluetooth
 #Sudo on Files Eos
-sudo su
-echo "[Contractor Entry]\nName=Open folder as root\nIcon=gksu-root-terminal\nDescription=Open folder as root\nMimeType=inode;application/x-sh;application/x-executable;\nExec=gksudo pantheon-files -d %U\nGettext-Domain=pantheon-files" >> sudo /usr/share/contractor/Open_as_admin.contract
-exit
+echo "[Contractor Entry]\nName=Open folder as root\nIcon=gksu-root-terminal\nDescription=Open folder as root\nMimeType=inode;application/x-sh;application/x-executable;\nExec=gksudo pantheon-files -d %U\nGettext-Domain=pantheon-files" >> Open_as_admin.contract
+sudo mv Open_as_admin.contract /usr/share/contractor/Open_as_admi$
+rm Open_as_admin.contract
+
 #mirror
 sudo sed -i 's|http://us.archive.ubuntu.com/ubuntu|http://releases.ubuntu.csg.uzh.ch/ubuntu|g' /etc/apt/sources.list
 sudo wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/bash.bashrc
