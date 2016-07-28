@@ -341,8 +341,7 @@ sudo git clone http://github.com/syl20bnr/spacemacs ~/.emacs.d
 ##plugins
 cd ~/.emacs.d
 sudo wget http://github.com/ethereum/emacs-solidity/blob/master/solidity-mode.el ##solidity
-(add-to-list load-path "~/.emacs.d/") 
-(load "myplugin.el")
+echo 'Carga los elementos de emacs con (add-to-list load-path "~/.emacs.d/") + (load "myplugin.el")'
 cd
 sudo rm emacs-"$version".tar.xz
 sudo rm -r emacs-**
