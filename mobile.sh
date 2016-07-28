@@ -61,8 +61,8 @@ firefox https://forum.xda-developers.com/z3-compact/general/how-to-root-backup-d
 mkdir downm
 cd downm
 wget https://fl1.androidfilehost.com/dl/yvV8h0FJb7DLdE8mQ4Upyg/1464454504/24459283995301330/D5803_23.4.A.1.264_R8C_SLiM_5.0.zip
-wget https://download.cyanogenmod.org/get/jenkins/162724/cm-12.1-20160523-NIGHTLY-z3c-recovery.img
-wget https://download.cyanogenmod.org/get/jenkins/161009/cm-12.1-20160509-NIGHTLY-z3.zip
+wget https://download.cyanogenmod.org/get/jenkins/169319/cm-12.1-20160711-NIGHTLY-z3c-recovery.img
+wget https://download.cyanogenmod.org/get/jenkins/169319/cm-12.1-20160711-NIGHTLY-z3c.zip
 ##TWRP
 read -p "check your TWRP img model. Then copy all downm and the files you also want to add to sdcard1, included opengapps, and if your device is Sony consider also TA partition."
 wget https://dl.twrp.me/z3c/twrp-3.0.2-0-z3c.img
