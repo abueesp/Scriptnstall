@@ -35,3 +35,6 @@ sudo chmod +x /KeePass
 rm keepassrfid.plgx 
 rm -r KeeAgent
 sudo apt-get purge keepass2-plugin-rpc
+
+keepass2
+sudo cp /home/node/.mozilla/firefox/**.default/extensions/keefox@chris.tomlinson/deps/KeePassRPC.plgx /usr/lib/keepass2
