@@ -8,7 +8,7 @@ rfkill block bluetooth
 sudo mv /usr/share/sounds/freedesktop/stereo/camera-shutter.oga /usr/share/sounds/freedesktop/stereo/camera-shutter-disabled.oga
 #Sudo on Files Eos
 echo "[Contractor Entry]\nName=Open folder as root\nIcon=gksu-root-terminal\nDescription=Open folder as root\nMimeType=inode;application/x-sh;application/x-executable;\nExec=gksudo pantheon-files -d %U\nGettext-Domain=pantheon-files" >> Open_as_admin.contract
-sudo mv Open_as_admin.contract /usr/share/contractor/Open_as_admi$
+sudo mv Open_as_admin.contract /usr/share/contractor/Open_as_admin.contract
 rm Open_as_admin.contract
 
 #mirror
