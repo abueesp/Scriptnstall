@@ -16,13 +16,9 @@ sudo cp bash.bashrc /etc/bash.bashrc
 #Prntscreensound
 sudo mv /usr/share/sounds/freedesktop/stereo/camera-shutter.oga /usr/share/sounds/freedesktop/stereo/camera-shutter-disabled.oga
 #Sudo on Files Eos
-echo "[Contractor Entry] 
-Name=Open folder as root
-Icon=gksu-root-terminal
-Description=Open folder as root
-MimeType=inode;application/x-sh;application/x-executable;
-Exec=gksudo pantheon-files -d %U
-Gettext-Domain=pantheon-files" >> sudo /usr/share/contractor/Open_as_admin.contract
+echo "[Contractor Entry]\nName=Open folder as root\nIcon=gksu-root-terminal\nDescription=Open folder as root\nMimeType=inode;application/x-sh;application/x-executable;\nExec=gksudo pantheon-files -d %U\nGettext-Domain=pantheon-files" >> Open_as_admin.contract
+sudo mv Open_as_admin.contract /usr/share/contractor/Open_as_admi$
+rm Open_as_admin.contract
 #SSH
 sudo sed -i "s/NoDisplay=true/NoDisplay=false/g" /etc/xdg/autostart/gnome-keyring-ssh.desktop
 sudo sed -i 's/PermitRootLogin without password/PermitRootLogin no/' /etc/ssh/sshd_config #noroot
@@ -64,6 +60,27 @@ cd fwsnort**
 sudo make
 sudo make install
 sudo rm -r fwsnort**
+##psad
+service psad stop
+sudo apt-get -y install libcarp-clan-perl libdate-calc-perl libiptables-chainmgr-perl libiptables-parse-perl libnetwork-ipv4addr-perl libunix-syslog-perl libbit-vector-perl gcc wget -y
+wget https://cipherdyne.org/psad/download/psad-2.4.3.tar.gz
+wget https://cipherdyne.org/psad/download/psad-2.4.3.tar.gz.asc
+gpg --verify psad**.asc
+md5 = $(md5sum **tar.gz)
+if [ $md5 "5aa0d22f0bea3ba32e3b9730f78157cf" ]
+then
+    echo "PACKAGE VERIFIED"
+else
+    echo "PACKAGE NOT VERIFIED"
+    break
+fi
+tar xvf psad**.gz
+cd psad**
+sudo ./install.pl
+cd
+sudo rm -r psad**
+service psad start
+
 #Some tools
 sudo apt-get install secure-delete -y
 sudo apt-get install duplicity deja-dup pyrenamer -y
