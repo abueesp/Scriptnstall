@@ -7,13 +7,9 @@ rfkill block bluetooth
 #Prntscreensound
 sudo mv /usr/share/sounds/freedesktop/stereo/camera-shutter.oga /usr/share/sounds/freedesktop/stereo/camera-shutter-disabled.oga
 #Sudo on Files Eos
-echo "[Contractor Entry] 
-Name=Open folder as root
-Icon=gksu-root-terminal
-Description=Open folder as root
-MimeType=inode;application/x-sh;application/x-executable;
-Exec=gksudo pantheon-files -d %U
-Gettext-Domain=pantheon-files" >> sudo /usr/share/contractor/Open_as_admin.contract
+echo "[Contractor Entry]\nName=Open folder as root\nIcon=gksu-root-terminal\nDescription=Open folder as root\nMimeType=inode;application/x-sh;application/x-executable;\nExec=gksudo pantheon-files -d %U\nGettext-Domain=pantheon-files" >> Open_as_admin.contract
+sudo mv Open_as_admin.contract /usr/share/contractor/Open_as_admi$
+rm Open_as_admin.contract
 
 #mirror
 sudo sed -i 's|http://us.archive.ubuntu.com/ubuntu|http://ubuntu.uc3m.es/ubuntu|g' /etc/apt/sources.list
@@ -61,6 +57,7 @@ fi
 tar xvf psad**.gz
 cd psad**
 sudo ./install.pl
+cd
 sudo rm -r psad**
 service psad start
 
