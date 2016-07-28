@@ -23,7 +23,7 @@ sudo sed -i 's/PermitRootLogin without password/PermitRootLogin no/' /etc/ssh/ss
 sudo sed -i 's/Port **/Port 1022/' /etc/ssh/sshd_config #SSH PORT OTHER THAN 22, SET 1022
 sudo /etc/init.d/ssh restart
 sudo chown -R $USER:$USER .ssh
-sudo chmod -R 600 .ssh
+sudo chmod -R 600 .ssh 
 sudo chmod +x .ssh
 #Minus
 sudo apt-get purge imagemagick fontforge geary -y
