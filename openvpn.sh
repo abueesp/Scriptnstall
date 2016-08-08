@@ -1,6 +1,7 @@
 #!/bin/bash
 ##install openvpn and prepare key
-sudo apt-get install openvpn network-manager-openvpn-gnome -y
+sudo apt-get install openvpn network-manager-openvpn -y
+sudo service network-manager restart
  sudo apt-get install gdebi -y #forprivacyguard
 sudo chmod 755 /home/node/.gnupg/pubring.gpg
 gpg --keyserver pgp.mit.edu --recv 198D22A3
@@ -24,49 +25,14 @@ sudo rm **.asc
 cd ..
 sudo rm -r ovpn
 
-##setting files
-sudo apt-get install unzip
-cd /etc/openvpn
-sudo wget https://torguard.net/downloads/OpenVPN-UDP.zip
-sudo wget https://torguard.net/downloads/OpenVPN-TCP.zip
-read -p 'Those are your TCP ovpns. Choose yours and write it here, the you could use it using openvpn:'
-sudo wget https://nordvpn.com/api/files/zip ##CHANGE THE LINK FOR OTHER VPN
-sudo rm -r zipvpn
-sudo rm -r OpenVPN-UDP
-sudo rm -r OpenVPN-TCP
-sudo mv zip zipvpn.zip
-sudo unzip zipvpn.zip
-sudo unzip OpenVPN-UDP.zip
-sudo unzip OpenVPN-TCP.zip
-sudo rm **.zip
+##settinf files
 sudo apt-get install ca-certificates -y
 sudo apt-get autoremove
-
-#show setting files and select one
-cd OpenVPN-TCP
-ls -al
-cd ..
-cd zip
-ls -al
-read -p 'Those are your TCP ovpns. Choose yours and write it here (Tor are /OpenVPN-TCP/nameof.ovpn and your VPN files are /zipvpn/nameof.ovpn. Then you will be able to use it just with the *ovpn* shortcut command instead of *openvpn /route/file.ovp*: ' fille
-comman = echo 'alias ovpn="openvpn --config /etc/openvpn$fille"' 
-sudo echo comman >> /etc/bash.bashrc
-cd
-
-
+sudo wget -O /etc/openvpn/ca.vyprvpn.com.crt https://support.goldenfrog.com/hc/en-us/article_attachments/205312238/ca.vyprvpn.com.crt
+read -p "Create a new VPN. Type: select Password. Introduce your credentials and the CA certificate from /etc/openvpn/ca.vyprvpn.com.crt. Select the gateway server (such as ch1.vpn.goldenfrog.com) from https://support.goldenfrog.com/hc/en-us/articles/203733723-What-are-the-VyprVPN-server-addresses- On Advanced, select  Use LZO data compression. Then push ENTER. You can also manage your account and servers here: https://www.goldenfrog.com/login." $extravpn
 ##closing
 sudo gpg --delete-key 198D22A3 -y
 sudo chmod 644 /home/node/.gnupg/pubring.gpg
-
-# Ruta de los certificados
-#ca /etc/ssl/certs/Sobrebits_CA.crt
-#cert /etc/ssl/certs/Nombredeusuario.crt
-#key /etc/ssl/private/Nombredeusuario.key
-
-# Redirigimos todo el tráfico a través de la VPN
-redirect-gateway def1
-
-#client route /etc/openvpn/client.conf
 
 
 #testing
