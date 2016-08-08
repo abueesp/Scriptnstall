@@ -1,10 +1,23 @@
 #!/bin/bash
+##vyvpr
+sudo wget http://www.goldenfrog.com/downloads/vyprvpn/desktop/linux/0.0.1-55/amd64/vyprvpn-linux-cli-0.0.1-55.amd64.deb
+sudo dpkg -i vyprvpn**
+vyprvpn protocol set chameleon
+vyprvpn server list
+vyprvpn protocol list
+vyprvpn server show
+vyprvpn protocol show
+vyprvpn login
+vyprvpn connect
+sudo rm vyprvpn
+
 ##install openvpn and prepare key
 sudo apt-get install openvpn network-manager-openvpn -y
 sudo service network-manager restart
- sudo apt-get install gdebi -y #forprivacyguard
+sudo apt-get install gdebi -y #forprivacyguard
 sudo chmod 755 /home/node/.gnupg/pubring.gpg
 gpg --keyserver pgp.mit.edu --recv 198D22A3
+
 
 ##install openvpn from website
 echo "installing openvpn-2.3.11"
