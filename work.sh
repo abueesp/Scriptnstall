@@ -1,4 +1,7 @@
 #!/bin/bash
+#TCP flood mitigation
+echo "net.ipv4.tcp_challenge_ack_limit = 999999999" >> sudo /etc/sysctl.conf
+sudo sysctl -p
 #Prntscreensound
 sudo mv /usr/share/sounds/freedesktop/stereo/camera-shutter.oga /usr/share/sounds/freedesktop/stereo/camera-shutter-disabled.oga
 #Bluetooth
