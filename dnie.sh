@@ -1,4 +1,7 @@
 #!/bin/bash
+#TCP flood mitigation
+echo "net.ipv4.tcp_challenge_ack_limit = 999999999" >> sudo /etc/sysctl.conf
+sudo sysctl -p
 # My first script for dnie environment
 sudo apt-get autoremove -y
 #Bluetooth
