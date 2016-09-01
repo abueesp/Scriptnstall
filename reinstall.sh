@@ -490,6 +490,7 @@ wget https://addons.mozilla.org/thunderbird/downloads/latest/210/addon-210-lates
 wget https://addons.mozilla.org/thunderbird/downloads/latest/875/addon-875-latest.xpi 
 wget https://addons.mozilla.org/thunderbird/downloads/latest/1003/addon-1003-latest.xpi 
 wget https://addons.mozilla.org/firefox/downloads/latest/390151/addon-390151-latest.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/passiverecon/addon-6196-latest.xpi
 cd ..
  
 
