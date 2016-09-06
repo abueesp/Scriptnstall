@@ -5,6 +5,7 @@ sudo dpkg -i vyprvpn**
 vyprvpn protocol set chameleon
 vyprvpn server list
 vyprvpn protocol list
+vyprvpn server set ch1.vpn.goldenfrog.com
 vyprvpn server show
 vyprvpn protocol show
 vyprvpn login
