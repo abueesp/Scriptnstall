@@ -423,3 +423,5 @@ echo "alias Empresa='firefox -new-tab -url https://ssweb.seap.minhap.es/tramites
 wget http://api4mini.webmoney.ru/download/mywm_linux_amd64.sh
 sh mywm**.sh
 sudo rm mywm**.sh
+
+wget http://www.sinadura.net/documents/18043/217945/sinadura-ce-4.2.0-unix64-installer.jar?version=1.0
