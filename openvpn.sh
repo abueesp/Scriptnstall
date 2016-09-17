@@ -1,6 +1,6 @@
 #!/bin/bash
 ##vyvpr
-sudo wget http://www.goldenfrog.com/downloads/vyprvpn/desktop/linux/0.0.1-55/amd64/vyprvpn-linux-cli-0.0.1-55.amd64.deb
+wget http://www.goldenfrog.com/downloads/vyprvpn/desktop/linux/0.0.1-55/amd64/vyprvpn-linux-cli-0.0.1-55.amd64.deb
 sudo dpkg -i vyprvpn**
 vyprvpn protocol set chameleon
 vyprvpn server list
