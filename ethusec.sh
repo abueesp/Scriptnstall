@@ -103,9 +103,9 @@ git clone https://github.com/ryepdx/ethaddress.org
 
 ##Mist Wallet and Mist Beta with Hard Fork choice 0.8.1
 #from https://github.com/ethereum/mist/releases
-wget https://github.com/ethereum/mist/releases/download/0.8.1/Ethereum-Wallet-linux64-0-8-1.zip
+wget https://github.com/ethereum/mist/releases/download/0.8.2/Ethereum-Wallet-linux64-0-8-2.zip
 sha1 = $(sha1sum **tar.bz2)
-if [ $sha1 "c90ef7cdbb5f8d05e4a3c69e3851973ff878481269472f0397ef97b9bfbe397a" ]
+if [ $sha1 "e4893796e4cee64d8dd21e36eb938ed9f90baf8690e17584ac579f99af871fd7" ]
 then
     echo "PACKAGE VERIFIED"
 else
