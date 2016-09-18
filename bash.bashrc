@@ -715,7 +715,7 @@ echo 'those are your keys up to now'
 sudo ls -al -R ~/.ssh # Lists the files in your .ssh directory, if they exist
 echo "Please, introduce 'youremail@server.com'"
 read emai
-echo "please introduce this /home/node/.ssh/id_rsa/id_rsa as file, OTHERWISE YOU WONT BE ABLE TO USE MYSSHKEY AND THE REST OF SSH MANAGEMENT COMMANDS, and a password longer or equal to 5 caractheres"
+echo "please introduce this /home/node/.ssh/id_rsa/id_rsa/id_rsa.pub as file, OTHERWISE YOU WONT BE ABLE TO USE MYSSHKEY AND THE REST OF SSH MANAGEMENT COMMANDS, and a password longer or equal to 5 caractheres"
 ssh-keygen -t rsa -b 4096 -C $emai
 eval "$(ssh-agent -s)" 
 sudo ssh-add ~/.ssh/id_rsa.pub
