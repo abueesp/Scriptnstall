@@ -12,8 +12,8 @@ gpg --keyserver pgp.mit.edu --recv 198D22A3
 echo "installing openvpn-2.3.11"
 mkdir ovpn
 cd ovpn
-wget https://swupdate.openvpn.org/community/releases/openvpn-2.3.11.tar.gz
-wget https://swupdate.openvpn.org/community/releases/openvpn-2.3.11.tar.gz.asc
+sudo wget https://swupdate.openvpn.org/community/releases/openvpn-2.3.11.tar.gz
+sudo wget https://swupdate.openvpn.org/community/releases/openvpn-2.3.11.tar.gz.asc
 gpg --verify **.asc
 tar xfz openvpn-**.tar.gz
 cd openvpn**
