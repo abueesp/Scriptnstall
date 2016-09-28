@@ -1,16 +1,4 @@
 #!/bin/bash
-##vyvpr
-wget http://www.goldenfrog.com/downloads/vyprvpn/desktop/linux/0.0.1-55/amd64/vyprvpn-linux-cli-0.0.1-55.amd64.deb
-sudo dpkg -i vyprvpn**
-vyprvpn protocol set chameleon
-vyprvpn server list
-vyprvpn protocol list
-vyprvpn server set ch1.vpn.goldenfrog.com
-vyprvpn server show
-vyprvpn protocol show
-vyprvpn login
-vyprvpn connect
-sudo rm vyprvpn
 
 ##install openvpn and prepare key
 sudo apt-get install openvpn network-manager-openvpn -y
@@ -48,6 +36,18 @@ read -p "Create a new VPN. Type: select Password. Introduce your credentials and
 sudo gpg --delete-key 198D22A3 -y
 sudo chmod 644 /home/node/.gnupg/pubring.gpg
 
+##vyvpr
+wget http://www.goldenfrog.com/downloads/vyprvpn/desktop/linux/0.0.1-55/amd64/vyprvpn-linux-cli-0.0.1-55.amd64.deb
+sudo dpkg -i vyprvpn**
+vyprvpn protocol set chameleon
+vyprvpn server list
+vyprvpn protocol list
+vyprvpn server set ch1.vpn.goldenfrog.com
+vyprvpn server show
+vyprvpn protocol show
+vyprvpn login
+vyprvpn connect
+sudo rm vyprvpn
 
 #testing
 traceroute www.google.es
