@@ -37,7 +37,7 @@ sudo gpg --delete-key 198D22A3 -y
 sudo chmod 644 /home/node/.gnupg/pubring.gpg
 
 ##vyvpr
-wget http://www.goldenfrog.com/downloads/vyprvpn/desktop/linux/0.0.1-55/amd64/vyprvpn-linux-cli-0.0.1-55.amd64.deb
+sudo wget http://www.goldenfrog.com/downloads/vyprvpn/desktop/linux/0.0.1-55/amd64/vyprvpn-linux-cli-0.0.1-55.amd64.deb
 sudo dpkg -i vyprvpn**
 vyprvpn protocol set chameleon
 vyprvpn server list
