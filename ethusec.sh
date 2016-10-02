@@ -115,12 +115,12 @@ fi
 read -p "Please ENTER if PACKAGE VERIFIED. Otherwise Ctrl-C " pause
 unzip Ethereum-**
 sudo rm Ethereum-**.zip
+echo "alias ethwallet='cd ~/Ethereum-Wal** && ./Ethereum-Wal**'" >> sudo /etc/bash.bashrc
+echo "This is your free space to download the blockchain. Last time it took 6GB and 3 hours."
 cd Ethereum**
 nohup ./Ethereum-Wallet
 cd ..
 df
-echo "alias ethwallet='cd ~/Ethereum-Wal** && ./Ethereum-Wal**'" >> sudo /etc/bash.bashrc
-echo "This is your free space to download the blockchain. Last time it took 6GB and 3 hours."
 
 
 ##Mist browser
