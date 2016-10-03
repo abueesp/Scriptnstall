@@ -138,29 +138,17 @@ cd ..
 sudo rm Mist-**.zip
 df
 echo "This is your free space to download the blockchain. Last time it took 6GB and 3 hours."
-echo "alias ethmist='cd ~/Mist** && ./Mist**'" >> sudo /etc/bash.bashrc 
+echo "alias ethmist='cd linux && ./Mist**'" >> sudo /etc/bash.bashrc 
 
 read -p "Do you want to install Geth? " -n 1 -r
 if [ $REPLY =~ ^[Yy]$ ]
 then
-wget https://github.com/ethereum/go-ethereum/releases/download/v1.4.15/geth-OSX-20161003100155-1.4.15-cb7d7d3.zip
+https://github.com/ethereum/go-ethereum/releases/download/v1.4.15/geth-OSX-20161003100155-1.4.15-cb7d7d3.zip
 unzip geth**.zip
-cd geth
-./configure
-make
-sudo make install
-
-OR
-
-sudo apt-get install aptitude -y 
-sudo aptitude install build-essential -y 
-sudo apt-get install libgmp3-dev golang -y
-git clone https://github.com/ethereum/go-ethereum
-cd go-ethereum
-make geth
-build/bin/geth
-
-echo "alias privchain='geth --networkid 1 --ipcpath route/geth.ipc --datadir'" >> sudo /etc/bash.bashrc
+sudo rm geth**.zip
+echo "alias ethmist='cd home && ./geth**'" >> sudo /etc/bash.bashrc 
+./geth
+echo "alias privchain='cd home && ./geth --networkid 1 --ipcpath route/geth.ipc --datadir'" >> sudo /etc/bash.bashrc
 fi
 
 read -p "Do you want to open Myetherwallet? " -n 1 -r
