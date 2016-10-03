@@ -101,7 +101,7 @@ git clone https://github.com/ryepdx/ethaddress.org
 #from https://github.com/ethereum/mist/releases
 wget https://github.com/ethereum/mist/releases/download/v0.8.4/Ethereum-Wallet-linux64-0-8-4.zip
 sha1 = $(sha1sum Ethereum**.zip)
-if [ $sha1 "0989fdc5ca511cded529193f08626562e5b8a0191149ffba9060d3d0cfa640aa" ]
+if [ $sha1 == "0989fdc5ca511cded529193f08626562e5b8a0191149ffba9060d3d0cfa640aa" ]
 then
     echo "PACKAGE VERIFIED"
 else
@@ -123,7 +123,7 @@ df
 #from https://github.com/ethereum/mist/releases
 sudo wget https://github.com/ethereum/mist/releases/download/v0.8.4/Mist-linux64-0-8-4.zip
 sha1 = $(sha1sum Mist**.zip)
-if [ $sha1 "ad5af23bb6c5d6aa946f35a7bbe07ddedf79939ee5149248eea5c275fadf8eb9" ]
+if [ $sha1 == "ad5af23bb6c5d6aa946f35a7bbe07ddedf79939ee5149248eea5c275fadf8eb9" ]
 then
     echo "PACKAGE VERIFIED"
 else
@@ -131,8 +131,8 @@ else
     break
 fi
 read -p "Please ENTER if PACKAGE VERIFIED. Otherwise Ctrl-C " pause
-unzip Mist-**
-cd Mist
+unzip Mist-**.zip
+cd linux
 nohup ./Mist
 cd ..
 sudo rm Mist-**.zip
