@@ -99,9 +99,9 @@ git clone https://github.com/ryepdx/ethaddress.org
 
 ##Mist Wallet and Mist Beta with Hard Fork choice 0.8.1
 #from https://github.com/ethereum/mist/releases
-wget https://github.com/ethereum/mist/releases/download/0.8.2/Ethereum-Wallet-linux64-0-8-2.zip
-sha1 = $(sha1sum **tar.bz2)
-if [ $sha1 "e4893796e4cee64d8dd21e36eb938ed9f90baf8690e17584ac579f99af871fd7" ]
+wget https://github.com/ethereum/mist/releases/download/v0.8.4/Ethereum-Wallet-linux64-0-8-4.zip
+sha1 = $(sha1sum Ethereum**.zip)
+if [ $sha1 "0989fdc5ca511cded529193f08626562e5b8a0191149ffba9060d3d0cfa640aa" ]
 then
     echo "PACKAGE VERIFIED"
 else
@@ -113,7 +113,7 @@ unzip Ethereum-**
 sudo rm Ethereum-**.zip
 echo "alias ethwallet='cd ~/Ethereum-Wal** && ./Ethereum-Wal**'" >> sudo /etc/bash.bashrc
 echo "This is your free space to download the blockchain. Last time it took 6GB and 3 hours."
-cd Ethereum**
+cd /linux/Ethereum**
 nohup ./Ethereum-Wallet
 cd ..
 df
@@ -121,8 +121,9 @@ df
 
 ##Mist browser
 #from https://github.com/ethereum/mist/releases
-wget https://github.com/ethereum/mist/releases/download/0.8.1/Mist-linux64-0-8-1.zip
-if [ $sha1 "2a3cf6e5ddfc46df75f78c4dc7bb2e6248fac2ce84cb2708882895b9f2eda1b7" ]
+sudo wget https://github.com/ethereum/mist/releases/download/v0.8.4/Mist-linux64-0-8-4.zip
+sha1 = $(sha1sum Mist**.zip)
+if [ $sha1 "ad5af23bb6c5d6aa946f35a7bbe07ddedf79939ee5149248eea5c275fadf8eb9" ]
 then
     echo "PACKAGE VERIFIED"
 else
