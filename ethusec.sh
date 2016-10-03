@@ -2,12 +2,6 @@
 #TCP flood mitigation
 echo "net.ipv4.tcp_challenge_ack_limit = 999999999" >> sudo /etc/sysctl.conf
 sudo sysctl -p
-#mirror
-sudo sed -i 's|http://us.archive.ubuntu.com/ubuntu|http://mirrors.mit.edu/ubuntu|g' /etc/apt/sources.list
-sudo wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/bash.bashrc
-sudo cp bash.bashrc /etc/bash.bashrc
-# Secure environment
-sudo apt-get autoremove -y
 #Bluetooth
 sudo sed -i 's/InitiallyPowered = true/InitiallyPowered = false/g' /etc/bluetooth/main.conf
 rfkill block bluetooth
@@ -15,6 +9,8 @@ rfkill block bluetooth
 sudo sed -i 's|http://us.archive.ubuntu.com/ubuntu|http://mirrors.mit.edu/ubuntu|g' /etc/apt/sources.list
 sudo wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/bash.bashrc
 sudo cp bash.bashrc /etc/bash.bashrc
+# Secure environment
+sudo apt-get autoremove -y
 #Prntscreensound
 sudo mv /usr/share/sounds/freedesktop/stereo/camera-shutter.oga /usr/share/sounds/freedesktop/stereo/camera-shutter-disabled.oga
 #Sudo on Files Eos
