@@ -141,14 +141,38 @@ echo "This is your free space to download the blockchain. Last time it took 6GB 
 echo "alias ethmist='cd ~/Mist** && ./Mist**'" >> sudo /etc/bash.bashrc 
 
 read -p "Do you want to install Geth? " -n 1 -r
-if [[ $REPLY =~ ^[Yy]$ ]]
+if [ $REPLY =~ ^[Yy]$ ]
 then
-curl -L https://install-geth.ethereum.org
+wget https://github.com/ethereum/go-ethereum/releases/download/v1.4.15/geth-OSX-20161003100155-1.4.15-cb7d7d3.zip
+unzip geth**.zip
+cd geth
+./configure
+make
+sudo make install
+
+OR
+
+sudo apt-get install aptitude -y 
+sudo aptitude install build-essential -y 
+sudo apt-get install libgmp3-dev golang -y
+git clone https://github.com/ethereum/go-ethereum
+cd go-ethereum
+make geth
+build/bin/geth
+
 echo "alias privchain='geth --networkid 1 --ipcpath route/geth.ipc --datadir'" >> sudo /etc/bash.bashrc
 fi
 
 read -p "Do you want to open Myetherwallet? " -n 1 -r
-if [[ $REPLY =~ ^[Yy]$ ]]
+if [ $REPLY =~ ^[Yy]$ ]
 then
    midori https://www.myetherwallet.com/#the-dao
 fi
+
+wget https://nodejs.org/dist/v6.7.0/node-v6.7.0-linux-x64.tar.xz
+tar Jxf --strip=1 -C **.xz
+./configure
+make
+sudo make install
+sudo rm **.xz
+npm install -g gulp-cli
