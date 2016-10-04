@@ -14,7 +14,7 @@ sudo mv Open_as_admin.contract /usr/share/contractor/Open_as_admi$
 rm Open_as_admin.contract
 
 #mirror
-sudo sed -i 's|http://us.archive.ubuntu.com/ubuntu|http://releases.ubuntu.csg.uzh.ch/ubuntu|g' /etc/apt/sources.list
+sudo sed -i 's|http://us.archive.ubuntu.com/ubuntu|http://mirrors.mit.edu/ubuntu|g' /etc/apt/sources.list
 sudo wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/bash.bashrc
 sudo cp bash.bashrc /etc/bash.bashrc
 sudo rm bash.bashrc**
