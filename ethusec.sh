@@ -153,7 +153,7 @@ fi
 
 ##Parity
 echo "Parity"
-curl https://get.parity.io -Lk
+bash <(curl https://get.parity.io -Lk)
 echo "alias paritysheet='firefox -new-tab https://ethcore.github.io/parity/ethcore/index.html'" >> sudo /etc/bash.bashrc
 
 read -p "Do you want to open Myetherwallet? " REPLY
