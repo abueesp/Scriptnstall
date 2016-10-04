@@ -3,6 +3,7 @@
 ##install openvpn and prepare key
 sudo apt-get install openvpn network-manager-openvpn -y
 sudo service network-manager restart
+sleep 10s
 sudo apt-get install gdebi -y #forprivacyguard
 sudo chmod 755 /home/node/.gnupg/pubring.gpg
 gpg --keyserver pgp.mit.edu --recv 198D22A3
