@@ -560,3 +560,7 @@ read -p "Email Configuration for a mail integrated on terminal. Introduce email 
 read -p "Password  \n" Passs
 read -p "SMTP. Gmail uses smtp.gmail.com:587    \n" SMTP
 sudo sed -i 's/#FromLineOverride=YES/FromLineOverride=YES \AuthUser=$emmail \AuthPass=$Passs \mailhub=$SMTP \UseSTARTTLS=YES/g' /etc/ssmtp/ssmtp.conf
+
+wget https://ftp.opera.com/pub/opera-developer/41.0.2349.0/linux/opera-developer_41.0.2349.0_amd64.deb
+sudo dpkg -i opera**.deb
+sudo rm opera**.deb
