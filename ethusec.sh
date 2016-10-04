@@ -142,9 +142,9 @@ echo "alias ethmist='cd linux && ./Mist**'" >> sudo /etc/bash.bashrc
 
 ##Geth
 echo "Geth"
-https://github.com/ethereum/go-ethereum/releases/download/v1.4.15/geth-OSX-20161003100155-1.4.15-cb7d7d3.zip
-unzip geth**.zip
-sudo rm geth**.zip
+wget https://github.com/ethereum/go-ethereum/releases/download/v1.4.15/geth-Linux64-20161003120700-1.4.15-cb7d7d3d.tar.bz2
+bzip2 -cd geth**.tar.bz2 | tar xvf -
+sudo rm geth**.tar.bz2
 echo "alias ethmist='cd home && ./geth**'" >> sudo /etc/bash.bashrc 
 ./geth
 echo "alias privchain='cd home && ./geth --networkid 1 --ipcpath route/geth.ipc --datadir'" >> sudo /etc/bash.bashrc
