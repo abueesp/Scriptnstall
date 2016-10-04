@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ##install openvpn and prepare key
-sudo apt-get install openvpn network-manager-openvpn -y
+sudo apt-get install openvpn network-manager-openvpn openssl -y
 sudo service network-manager restart
 sleep 10s
 sudo apt-get install gdebi -y #forprivacyguard
