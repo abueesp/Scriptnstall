@@ -510,6 +510,10 @@ sudo make install
 cd ..
 cd ..
 
+wget https://ftp.opera.com/pub/opera-developer/41.0.2349.0/linux/opera-developer_41.0.2349.0_amd64.deb
+sudo dpkg -i opera**.deb
+sudo rm opera**.deb
+
 sudo apt-get autoremove -y
 
 EOF
