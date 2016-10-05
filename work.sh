@@ -375,18 +375,18 @@ sudo R
 
 ##Nodejs & NPM 
 cd /usr/local
+sudo npm build-dep npm -g
 versionnpm=v6.7.0
 sudo wget $(echo "https://nodejs.org/dist/"$versionnpm"/node-$versionnpm-linux-x64.tar.xz")
 gpg --keyserver pool.sks-keyservers.net --recv-keys DD8F2338BAE7501E3DD5AC78C273792F7D83545D
 wget -O https://nodejs.org/dist/$versionnpm/SHASUMS256.txt.asc
 gpg --verify SHASUMS256.txt.asc
 sudo rm SHASUM**
-sudo tar -xf /usr/local/node**.tar.xz
+sudo tar --strip-components 1 -xf /usr/local/node**.tar.xz
 cd node**
 ./configure
 sudo make
 sudo make install
-sudo npm install npm -g
 cd
 
 ##Web3 Library
