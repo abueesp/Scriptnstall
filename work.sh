@@ -375,6 +375,9 @@ sudo R
 
 ##Nodejs & NPM 
 cd /usr/local
+
+sudo apt-get purge npm nodejs -y
+sudo apt-get build-dep nodejs -y
 sudo npm build-dep npm -g
 versionnpm=v6.7.0
 sudo wget $(echo "https://nodejs.org/dist/"$versionnpm"/node-$versionnpm-linux-x64.tar.xz")
@@ -387,7 +390,17 @@ cd node**
 ./configure
 sudo make
 sudo make install
+npm init -y
 cd
+
+##Dapple
+sudo npm uninstall parse-stack
+sudo npm install error-stack-parser lodash minimatch graceful-fs
+sudo npm install -g dapple
+dapple init
+dapple --help
+
+
 
 ##Web3 Library
 sudo npm install web3
