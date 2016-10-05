@@ -373,13 +373,11 @@ install.packages("gmp")
 Install those packages in R. To exit type quit()' 
 sudo R
 
-##Nodejs & NPM
-cd /usr/local
+##Nodejs & NPM 
 versionnpm=v6.7.0
 sudo wget $(echo "https://nodejs.org/dist/"$versionnpm"/node-$versionnpm-linux-x64.tar.xz")
-gpg --keyserver pool.sks-keyservers.net \
-  --recv-keys DD8F2338BAE7501E3DD5AC78C273792F7D83545D
-curl -O https://nodejs.org/dist/$versionnpm/SHASUMS256.txt.asc
+gpg --keyserver pool.sks-keyservers.net --recv-keys DD8F2338BAE7501E3DD5AC78C273792F7D83545D
+wget -O https://nodejs.org/dist/$versionnpm/SHASUMS256.txt.asc
 gpg --verify SHASUMS256.txt.asc
 sudo rm SHASUM**
 sudo tar --strip-components 1 -xf /usr/save/node**.tar.xz
