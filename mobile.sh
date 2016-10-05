@@ -214,3 +214,6 @@ mv sign/** .
 sudo rm -r sign
 cd
 echo 'APKsigner installed. Run it using signapk <nameof.apk>'
+
+##Write disable protection for Xperia
+firefox "https://mega.nz/#!CJMzVTJD!INyqTPX601_cFJbpNHM9iNoOTu8NC1_3I8Pqq9OHrs0"
