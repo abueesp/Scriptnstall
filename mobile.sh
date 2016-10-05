@@ -4,8 +4,8 @@
 echo 'Installing packages (specially Android Debugging Bridge)'
 sudo apt-get install android-tools-adb android-tools-fastboot mtp-tools mtpfs libusb-dev gmtp unzip -y
 ls -lah /usr/lib/libmtp*
-wget http://downloads.sourceforge.net/project/libmtp/libmtp/1.1.11/libmtp-1.1.11.tar.gz
-wget http://downloads.sourceforge.net/project/libmtp/libmtp/1.1.11/libmtp-1.1.11.tar.gz.asc
+wget https://sourceforge.net/projects/libmtp/files/libmtp/1.1.12/libmtp-1.1.12.tar.gz
+wget https://sourceforge.net/projects/libmtp/files/libmtp/1.1.12/libmtp-1.1.12.tar.gz
 gpg --verify libmtp**.asc
 tar xvf libmtp**.tar.gz
 cd libmtp**/
@@ -59,19 +59,19 @@ read -p "insert *#06# on the phone and take note of the IMEI while this is downl
 firefox https://forum.xda-developers.com/z3-compact/general/how-to-root-backup-drm-keys-t3013343 && --new-tab -url https://encrypted.google.com/search?q=$read+ftf+spanish && --newtab -url https://forum.xda-developers.com/crossdevice-dev/sony/giefroot-rooting-tool-cve-2014-4322-t3011598 && --new-tab -url https://wiki.cyanogenmod.org/w/Install_CM_for_z3c --new-tab -url http://developer.sonymobile.com/unlockbootloader/ --new-tab -url https://wiki.cyanogenmod.org/w/Google_Apps && --new-tab -url https://www.movilzona.es/tutoriales/android/root/principales-comandos-para-adb-y-fastboot-guia-basica/
 mkdir downm
 cd downm
-wget https://ga1.androidfilehost.com/dl/T1thVpgo95fXMB5jcLu--w/1469915179/24459283995301330/D5803_23.4.A.1.264_R8C_SLiM_5.0.zip
-wget https://download.cyanogenmod.org/get/jenkins/169319/cm-12.1-20160711-NIGHTLY-z3c-recovery.img
-wget https://download.cyanogenmod.org/get/jenkins/169319/cm-12.1-20160711-NIGHTLY-z3c.zip
+wget https://ga1.androidfilehost.com/dl/a9h_hMJ8GbiEH0eZCxoRow/1475894608/24459283995301330/D5803_23.4.A.1.264_R8C_SLiM_5.0.zip
+wget https://download.cyanogenmod.org/get/jenkins/181764/cm-12.1-20161002-NIGHTLY-z3c-recovery.img
+wget https://download.cyanogenmod.org/get/jenkins/181764/cm-12.1-20161002-NIGHTLY-z3c.zip
 ##TWRP
 read -p "check your TWRP img model. Then copy all downm and the files you also want to add to sdcard1, included opengapps, and if your device is Sony consider also TA partition." pause
-wget https://dl.twrp.me/z3c/twrp-3.0.2-0-z3c.img
+wget https://dl.twrp.me/z3c/twrp-3.0.2-1-z3c.img
 ##Gapps
 read -p "installing opengapps. Please select the correct version according to your model arch and cm base ROM version" pause
-wget https://github.com/opengapps/arm/releases/download/20160526/open_gapps-arm-5.1-aroma-20160526.zip
+wget https://github.com/opengapps/arm/releases/download/20161005/open_gapps-arm-4.4-aroma-20161005.zip
 ##Xposed
 read -p "installing Xposed. Please select the correct version according to your model arch and cm base ROM version" pause
-wget http://dl-xda.xposed.info/framework/sdk22/arm/xposed-v85-sdk22-arm.zip
-wget http://dl-xda.xposed.info/framework/sdk22/arm/xposed-v85-sdk22-arm.zip.asc
+wget http://dl-xda.xposed.info/framework/sdk22/arm/xposed-v86-sdk22-arm.zip
+wget http://dl-xda.xposed.info/framework/sdk22/arm/xposed-v86-sdk22-arm.zip.asc
 gpg --verify xposed**.asc
 rm xposed**.asc
 wget http://dl-xda.xposed.info/framework/uninstaller/xposed-uninstaller-20150831-arm.zip
