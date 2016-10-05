@@ -396,7 +396,7 @@ cd
 ##Dapple
 sudo npm uninstall parse-stack
 sudo npm install error-stack-parser lodash minimatch graceful-fs
-sudo npm install -g dapple
+sudo npm install -g dapple leveldown
 dapple init
 dapple --help
 
