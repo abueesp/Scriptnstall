@@ -145,9 +145,8 @@ echo "Geth"
 wget https://github.com/ethereum/go-ethereum/releases/download/v1.4.16/geth-linux-amd64-1.4.16-4fced097.tar.gz
 tar -zxvf **.tar.gz
 sudo rm geth**.tar.gz
-echo "alias ethmist='cd home && ./geth**'" >> sudo /etc/bash.bashrc 
 ./geth
-echo "alias privchain='cd home && ./geth --networkid 1 --ipcpath route/geth.ipc --datadir'" >> sudo /etc/bash.bashrc
+echo "alias geth='./geth --ipcpath /home/$USER/geth.ipc'" >> sudo /etc/bash.bashrc
 echo "alias blockchain='cd ~/.ethereum/chaindata'" >> sudo /etc/bash.bashrc
 
 
