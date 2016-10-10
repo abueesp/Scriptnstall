@@ -149,7 +149,7 @@ sudo rm geth**.tar.gz
 echo "alias geth='./geth --ipcpath /home/$USER/geth.ipc'" >> sudo /etc/bash.bashrc
 echo "alias blockchain='cd ~/.ethereum/chaindata'" >> sudo /etc/bash.bashrc
 
-echo "alias gethmine='geth --mine --minergpus --autodag --minerthreads "8" console'" >> sudo /etc/bash.bashrc
+echo "alias gethmine='geth --mine --minergpus --autodag --minerthreads 8 console'" >> sudo /etc/bash.bashrc
 echo "alias ethmine='ethminer -G --opencl-device 0'" >> sudo /etc/bash.bashrc
 echo "alias gethtest='geth --testnet console'" >> sudo /etc/bash.bashrc
 echo "alias gethupgrade='geth upgradedb --fast console'" >> sudo /etc/bash.bashrc
