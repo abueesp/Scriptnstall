@@ -610,10 +610,6 @@ alias fgrepp='fgrep --color=auto'
 alias aptclean='sudo apt-get autoremove'
 alias rename='mv'
 alias gitlist='git remote -v'
-alias gethlocal="geth --rpc --rpccorsdomain localhost --etherbase '0x9B366b5493a545f070E4a0F16c81182670fEE6' --solc console"
-alias gethmine='geth --etherbase '0x9B366b5493a545f070E4a0F16c81182670fEE6' --mine --minergpus --autodag --minerthreads "8" console'
-alias gethtest="geth --testnet console"
-alias gethupgrade="geth upgradedb --fast console"
 alias adbconnect="mtpfs -o allow_other /mnt/mobile"
 alias adbdisconnect="fusermount -u /mnt/mobile"
 alias newgpg="sudo gpg --gen-key"
