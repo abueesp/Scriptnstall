@@ -185,3 +185,6 @@ echo '        "WS_SECRET"       : "a38e1e50b1b82fa" // WebSockets api server sec
 echo '        "VERBOSITY"       : 2 // Set the verbosity (0 = silent, 1 = error, warn, 2 = error, warn, info, success, 3 = all logs)'
 echo '    }'
 gedit app.json
+sudo pm2 start app.json
+echo "alias ethstats='sudo pm2 start ~/eth-net-intelligence-api/app.json'" >> sudo /etc/bash.bashrc
+echo "
