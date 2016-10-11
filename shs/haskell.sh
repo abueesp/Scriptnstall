@@ -10,3 +10,6 @@ export PATH=$HOME/.cabal/bin:/opt/cabal/1.22/bin:/opt/ghc/7.10.3/bin:$PATH
 echo 'export PATH=$HOME/.cabal/bin:/opt/cabal/1.22/bin:/opt/ghc/7.10.3/bin:$PATH' >> sudo /etc/bash.bashrc
 echo 'export PATH=~/.cabal/bin:/opt/cabal/1.22/bin:/opt/ghc/7.10.3/bin:$PATH' >> sudo /etc/bash.bashrc
 exit
+cabal update
+cabal install webdriver
+
