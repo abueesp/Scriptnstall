@@ -42,3 +42,5 @@ echo "alias zcinfo='~/zcash/./src/zcash-cli getinfo'" >> sudo /etc/bash.bashrc
 echo "alias zctxs='~/zcash/./src/zcash-cli listtransactions'" >> sudo /etc/bash.bashrc
 echo "alias zcstart='~/zcash/./src/zcashd -daemon'" >> sudo /etc/bash.bashrc
 echo "alias zcstop='lsof -i | grep zcashd && ~/zcash/./src/zcash-cli stop && sudo pkill -9 zcashd && sudo pkill -9 zcash-cli'" >> sudo /etc/bash.bashrc
+
+#https://docs.google.com/spreadsheets/d/1Um22iBf8bPbfuI4rUDZzSB4W444ouUEnQTBnb8EsdYk/edit#gid=0
