@@ -186,4 +186,4 @@ echo '        "VERBOSITY"       : 2 // Set the verbosity (0 = silent, 1 = error,
 echo '    }'
 gedit app.json
 sudo pm2 start app.json
-echo "alias ethstats='sudo pm2 start ~/eth-net-intelligence-api/app.json && firefox --new-tab https://ethstats.net/' && parity --max-peers 52 " >> sudo /etc/bash.bashrc
+echo "alias ethstats='sudo pm2 start ~/eth-net-intelligence-api/app.json && firefox --new-tab https://ethstats.net/' && parity --max-peers 100 --peers 100 --min-peers 100 " >> sudo /etc/bash.bashrc
