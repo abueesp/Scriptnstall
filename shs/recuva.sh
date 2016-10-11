@@ -1,4 +1,5 @@
 #!/bin/bash
+#TestDisk & PhotoRec: A Linux Recuva
 wget https://www.cgsecurity.org/testdisk-7.0.linux26-x86_64.tar.bz2 #also with photorec
 tar -jxvf testdisk**.bz2
 cd testdisk
