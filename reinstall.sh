@@ -110,8 +110,8 @@ sudo apt-get install vnstat -y
 sudo apt-get install duplicity deja-dup -y
 
 #youtube-dl
-sudo wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl
-sudo chmod a+rx /usr/local/bin/youtube-dl
+sudo wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/bin/youtube-dl
+sudo chmod a+rx /usr/bin/youtube-dl
 
 ##GNUPG
 sudo apt-get install libgtk2.0-dev -y
