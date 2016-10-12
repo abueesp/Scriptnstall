@@ -3,6 +3,10 @@
 # To enable the settings / commands in this file for login shells as well,
 # this file has to be sourced in /etc/profile.
 
+##Normal Ctrl+C Ctrl+V
+gconftool-2 -t str -s /apps/gnome-terminal/keybindings/copy "<Control>c"
+gconftool-2 -t str -s /apps/gnome-terminal/keybindings/paste "<Control>v"
+
 ##History
 export HISTTIMEFORMAT='%F %T '
 export HISTCONTROL=ignoredups
