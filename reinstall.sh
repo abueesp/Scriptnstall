@@ -291,6 +291,7 @@ sudo dpkg -i virtualbox**.deb
 sudo rm virtualbox**.deb
 sudo apt-get install vagrant -y
 vagrant box add precise64 http://files.vagrantup.com/precise64.box
+sudo apt-get -f install -y
 version=$(vboxmanage -v)
 echo $version
 var1=$(echo $version | cut -d 'r' -f 1)
@@ -304,6 +305,7 @@ sudo wget http://download.virtualbox.org/virtualbox/$var1/$file -O $file
 sudo VBoxManage extpack install $file --replace
 sudo rm $file
 sudo apt-get install dkms
+sudo apt-get -f install -y
 vagrant plugin install vagrant-vbguest
 wget http://download.virtualbox.org/virtualbox/5.0.16/VBoxGuestAdditions_5.0.16.iso
 sudo mv VBoxGuestAdditions**.iso /usr/share/Virtualbox/VBoxGuestAdditions.iso
@@ -341,6 +343,7 @@ sudo make install prefix=/usr/local/stow/emacs-"$version" && cd /usr/local/stow
 sudo rm /usr/local/share/info/dir
 sudo stow emacs-"$version" 
 #spacemacs
+sudo apt-get install git -y
 sudo git clone http://github.com/syl20bnr/spacemacs ~/.emacs.d
 ##plugins
 cd ~/.emacs.d
