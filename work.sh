@@ -324,9 +324,9 @@ sudo aptitude install r-base -y
 sudo aptitude install openjdk-7-source -y
 sudo updatedb
 sudo wget https://cran.r-project.org/src/base-prerelease/R-latest.tar.gz
-tar -xvzf R-latest.tar.gz
+tar -xvzf R-latest.tar.gz Rfolder
 sudo rm -r -f R-latest.tar.gz
-cd R-**
+cd Rfolder
 sudo wget  ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre2-10.20.tar.bz2
 sudo wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre2-10.20.tar.bz2.sig
 sudo gpg --verify prce**sig pcre**bz2
@@ -338,7 +338,7 @@ sudo ./configure --prefix=$HOME/$USER/R**
 sudo make -j3
 sudo make install
 cd ..
-./configure --prefix=$HOME/R-** '--with-cairo' \
+./configure --prefix=$HOME/$USER/Rfolder '--with-cairo' \
  '--with-jpeglib' '--with-readline' '--with-tcltk' \
  '--with-blas' '--with-lapack' '--enable-R-profiling' \
  '--enable-R-shlib' \
