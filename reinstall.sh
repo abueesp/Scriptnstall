@@ -56,7 +56,7 @@ sudo service cups-browsed stop
 
 ##psad
 service psad stop
-sudo apt-get -y install libcarp-clan-perl libdate-calc-perl libiptables-chainmgr-perl libiptables-parse-perl libnetwork-ipv4addr-perl libunix-syslog-perl libbit-vector-perl gcc wget -y
+sudo apt-get -y install libc--clan-perl libdate-calc-perl libiptables-chainmgr-perl libiptables-parse-perl libnetwork-ipv4addr-perl libunix-syslog-perl libbit-vector-perl gcc wget -y
 wget https://cipherdyne.org/psad/download/psad-2.4.3.tar.gz
 wget https://cipherdyne.org/psad/download/psad-2.4.3.tar.gz.asc
 gpg --verify psad**.asc
@@ -510,7 +510,7 @@ sudo rm ArpON-**tar.gz
 cd ArpON**
 mkdir build
 cd build
-sudo apt-get install libpcap-dev libnet1-dev libdnet-dev cmake -y
+sudo apt-get install libdnet libpcap-dev libnet1-dev libdnet-dev cmake libdumbnet-dev -y
 cmake ..
 make
 sudo make install
