@@ -88,6 +88,10 @@ cd ..
 sudo apt-get install firefox -y
 firefox https://addons.mozilla.org/firefox/downloads/file/271802/no_more_install_delay-3.0-fx+sm+fn+tb.xpi
 
+#youtube-dl
+sudo wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl
+sudo chmod a+rx /usr/local/bin/youtube-dl
+
 ##GNUPG
 sudo apt-get install libgtk2.0-dev -y
 sudo mkdir gpg
