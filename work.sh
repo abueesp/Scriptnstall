@@ -400,12 +400,11 @@ dapple --help
 
 
 
-##Web3 Library
-sudo npm install web3
+##Meteor & Web3 Library & Atmosphere
+curl https://install.meteor.com/ | sh
+sudo npm install -g harp
 sudo meteor add ethereum:web3
-
-#Atmosphere
-meteor add mrt:moment
+sudo meteor add mrt:moment
 
 #Uglify
 git clone git://github.com/mishoo/UglifyJS2.git
