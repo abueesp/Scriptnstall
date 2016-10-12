@@ -345,12 +345,7 @@ cd ..
  '--enable-memory-profiling'
 sudo make
 sudo make install
-while true; do
-    read -p "copy and paste this command bash <(curl -L https://install-geth.ethereum.org) then pulse ENTER" command $command
-    sudo $command
-    break
-done
-#geth --rpc --rpccorsdomain localhost --autodag console 2>>/dev/tty
+echo "install Geth if you want to see EthR working"
 cd
 sudo wget https://www.mpfr.org/mpfr-current/mpfr-3.1.4.zip
 sudo wget https://www.mpfr.org/mpfr-current/mpfr-3.1.4.tar.xz.asc
