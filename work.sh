@@ -327,12 +327,14 @@ sudo wget https://cran.r-project.org/src/base-prerelease/R-latest.tar.gz
 tar -xvzf R-latest.tar.gz
 sudo rm -r -f R-latest.tar.gz
 cd R-**
-sudo mkdir prce
-cd prce
-sudo wget  ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.38.tar.gz
-sudo tar xzvf pcre-8.38.tar.gz
-sudo rm pcre**.tar.gz
-./configure --prefix=$HOME/R-**
+sudo wget  ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre2-10.20.tar.bz2
+sudo wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre2-10.20.tar.bz2.sig
+sudo gpg --verify prce**sig pcre**bz2
+sudo bzip2 -d pcre**bz2
+sudo tar -xvf pcre**tar
+sudo rm pcre**.bz2 pcre**.bz2.sig pcre**.tar
+cd pcre
+sudo ./configure --prefix=$HOME/$USER/R**
 sudo make -j3
 sudo make install
 cd ..
