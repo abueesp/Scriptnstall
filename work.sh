@@ -333,7 +333,7 @@ sudo gpg --verify prce**sig pcre**bz2
 sudo bzip2 -d pcre**bz2
 sudo tar -xvf pcre**tar
 sudo rm pcre**.bz2 pcre**.bz2.sig pcre**.tar
-cd pcre
+cd pcre**
 sudo ./configure --prefix=$HOME/$USER/R**
 sudo make -j3
 sudo make install
