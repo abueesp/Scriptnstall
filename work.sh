@@ -390,56 +390,62 @@ sudo tar --strip-components 1 -xf /usr/local/node**.tar.xz
 npm init -y
 cd
 npm init -y
-
-##Dapple
-sudo npm uninstall parse-stack
-sudo npm install error-stack-parser lodash minimatch graceful-fs
-sudo npm install -g dapple leveldown
-dapple init
-dapple --help
-
-
+sudo npm install error-stack-parser lodash minimatch graceful-fs secp256k1 fs-extra
 
 ##Meteor & Web3 Library & Atmosphere
 curl https://install.meteor.com/ | sh
+meteor create mydapp
+cd mydapp
 sudo npm install -g harp
-sudo meteor add ethereum:web3
-sudo meteor add mrt:moment
+meteor add ethereum:web3
+meteor add mrt:moment
+cd
+
+##Dapple
+sudo npm uninstall parse-stack
+sudo npm install error-stack-parser lodash minimatch graceful-fs secp256k1 fs-extra
+sudo npm install -g dapple leveldown
+mkdir myapp
+cd mydapp
+dapple init
+dapple --help
+cd
 
 #Uglify
 git clone git://github.com/mishoo/UglifyJS2.git
 cd UglifyJS2
-npm link .
+sudo npm link .
 cd
 sudo rm -r UglifyJS2
 
 #Grunt for js
-npm install -g grunt-cli
+sudo npm install -g grunt-cli
 #Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript: grunt.loadNpmTasks('grunt-contrib-watch');
-npm install grunt-contrib-watch --save-dev
+sudo npm install grunt-contrib-watch --save-dev
 #Once that's done, add this line to your project's Gruntfile: grunt.loadNpmTasks('grunt-embark');
-npm install embark-framework --save-dev
-npm install grunt-embark --save-dev
+sudo npm install embark-framework --save-dev
+sudo npm install grunt-embark --save-dev
 #And so on
-npm install grunt-contrib-clean --save-dev
-npm install grunt-contrib-jshint --save-dev
-npm install grunt-contrib-copy --save-dev
-npm install grunt-contrib-uglify --save-dev
-npm install grunt-mkdir --save-dev
+sudo npm install grunt-contrib-clean --save-dev
+sudo npm install grunt-contrib-jshint --save-dev
+sudo npm install grunt-contrib-copy --save-dev
+sudo npm install grunt-contrib-uglify --save-dev
+sudo npm install grunt-mkdir --save-dev
 #those have different flavours https://www.npmjs.com/package/grunt-shell
-npm install --save-dev grunt-shell
+sudo npm install --save-dev grunt-shell
 #https://www.npmjs.com/package/grunt-contrib-htmlmin
-npm install grunt-contrib-htmlmin --save-dev
+sudo npm install grunt-contrib-htmlmin --save-dev
 
 ##Other npm
-npm install -g jshint
-npm install -g coffeescript-compiler
-npm install -g coffee-script
+sudo npm install -g jshint
+sudo npm install -g coffeescript-compiler
+sudo npm install -g coffee-script
 
 ##npm JS React Boilerplate
 git clone --depth=1 https://github.com/mxstbr/react-boilerplate.git
-npm run setup
-
+cd react**
+sudo npm run setup
+cd
 ##MongoDB
 sudo npm install mongodb
 
