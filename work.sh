@@ -436,6 +436,9 @@ npm install -g jshint
 npm install -g coffeescript-compiler
 npm install -g coffee-script
 
+##npm JS React Boilerplate
+git clone --depth=1 https://github.com/mxstbr/react-boilerplate.git
+npm run setup
 
 ##MongoDB
 sudo npm install mongodb
