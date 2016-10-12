@@ -406,6 +406,9 @@ dapple --help
 sudo npm install web3
 sudo meteor add ethereum:web3
 
+#Atmosphere
+meteor add mrt:moment
+
 #Uglify
 git clone git://github.com/mishoo/UglifyJS2.git
 cd UglifyJS2
