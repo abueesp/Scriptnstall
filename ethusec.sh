@@ -168,8 +168,8 @@ echo "alias gethupgrade='geth upgradedb --fast console'" >> sudo /etc/bash.bashr
 
 
 ##Parity
-echo "Parity"
-bash <(curl https://get.parity.io -Lk)
+read -p "Parity. Copy and paste this bash <(curl https://get.parity.io -Lk)" pause
+$pause
 echo "alias paritysheet='firefox -new-tab https://ethcore.github.io/parity/ethcore/index.html'" >> sudo /etc/bash.bashrc
 
 read -p "Do you want to open Myetherwallet? " REPLY
@@ -179,23 +179,12 @@ then
 fi
 
 #Connect to ethstats
-git https://github.com/cubedro/eth-net-intelligence-api
+git clone https://github.com/cubedro/eth-net-intelligence-api
 cd eth-net-intelligence-api
 sudo npm install
 sudo npm install -g pm2
-echo "PASTE YOUR SETTINGS ON APP.JSON"
-echo '"env":'
-echo '    {'
-echo '        "NODE_ENV"        : "production", // tell the client we are in production environment'
-echo '        "RPC_HOST"        : "localhost", // eth JSON-RPC host'
-echo '        "RPC_PORT"        : "8545", // eth JSON-RPC port'
-echo '        "LISTENING_PORT"  : "30303", // eth listening port (only used for display)'
-echo '        "INSTANCE_NAME"   : "@abueesp (not official node)", // whatever you wish to name your node'
-echo '        "CONTACT_DETAILS" : "Manoliyou", // add your contact details here if you wish (email/skype)'
-echo '        "WS_SERVER"       : "wss://rpc.ethstats.net", // path to eth-netstats WebSockets api server'
-echo '        "WS_SECRET"       : "a38e1e50b1b82fa" // WebSockets api server secret used for login'
-echo '        "VERBOSITY"       : 2 // Set the verbosity (0 = silent, 1 = error, warn, 2 = error, warn, info, success, 3 = all logs)'
-echo '    }'
+sudo mv app.json.example app.json
+echo "a38e1e50b1b82fa"
 gedit app.json
 sudo pm2 start app.json
 echo "alias ethstats='sudo pm2 start ~/eth-net-intelligence-api/app.json && firefox --new-tab https://ethstats.net/' && parity --max-peers 100 --peers 100 --min-peers 100 " >> sudo /etc/bash.bashrc
