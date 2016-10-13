@@ -442,6 +442,7 @@ sudo npm install -g coffeescript-compiler
 sudo npm install -g coffee-script
 
 ##npm JS React Boilerplate
+sudo npm cheerio
 git clone --depth=1 https://github.com/mxstbr/react-boilerplate.git
 cd react**
 sudo npm run setup
@@ -455,36 +456,9 @@ sudo npm install -g truffle
 sudo echo 'alias meteor="firefox -new-tab -url http://localhost:3000 && geth --rpc --rpccorsdomain='http://localhost:3000'"' >> /etc/bash.bashrc
 sudo echo 'alias ethertweet="firefox -new-tab -url https://github.com/yep/eth-tweet -new-tab -url https://ethertweet.net/ui && geth --rpc --rpccorsdomain='http://ethertweet.net'"' >> /etc/bash.bashrc 
 
-##Mist
-sudo apt-get install npm -y
-sudo curl https://install.meteor.com/ | sh
-sudo npm install -g electron-prebuilt@1.2.5
-sudo npm install -g gulp
-sudo git clone https://github.com/ethereum/mist.git
-cd mist
-sudo git submodule update --init
-sudo npm install
-sudo gulp update-nodes
-sudo git pull && git submodule update
-sudo echo "alias mist='cd mist && electron . --mode wallet && electron && cd interface && meteor'" >> /etc/bash.bashrc 
-sudo echo "alias privchain='geth --networkid 1 --ipcpath route/geth.ipc --datadir'" >> /etc/bash.bashrc
-sudo echo "alias daosheet='firefox -new-tab -url https://github.com/slockit/DAO/wiki/ && firefox -newtab- -url https://daohub.org'" >> /etc/bash.bashrc
-cd ..
-rm Ethereum**.zip
-
-#Install solidity, alethzero, mist
-sudo apt-get install npm -y
+#Install solidity compiler
 sudo npm install solc
-sudo apt-get -y install build-essential git cmake libgmp-dev libboost-all-dev libjsoncpp-dev libleveldb-dev libcurl4-openssl-dev libminiupnpc-dev libmicrohttpd-dev
-sudo add-apt-repository -y ppa:ethereum/ethereum -y
-sudo add-apt-repository -y ppa:ethereum/ethereum-dev -y
-sudo apt-get -y update 
-sudo apt-get -y upgrade # this will update cmake to version 3.x
-sudo apt-get -y install libcryptopp-dev libjson-rpc-cpp-dev
-git clone --recursive https://github.com/ethereum/webthree-umbrella.git
-cd webthree-umbrella && mkdir -p build && cd build
-cmake ..
-
+ 
 #Text Edition Tools
 sudo apt-get install unoconv -y
 sudo apt-get install detox -y
