@@ -685,9 +685,9 @@ mysshkey(){
 sudo chmod -R 755 ~/.ssh
 sudo chmod +x ~/.ssh 
 sudo apt-get install xclip
-sudo xclip -sel clip ~/.ssh/id_rsa/id_rsa.pub
+sudo xclip -sel clip ~/.ssh/id_rsa.pub
 echo 'those are your keys up to now, id_rsa.pub is the default.'
-sudo ls -al -R ~/.ssh/id_rsa
+sudo ls -al -R ~/.ssh/
 echo "Now you may have your ssh key on your clipboard. If you have already set your app global configuration, now you should go to Settings -> New SSH key and paste it there"
 sudo chmod -R 600 ~/.ssh
 }
@@ -733,15 +733,14 @@ if [$1]
 fi
 $emai = emai
 sudo mkdir ~/.ssh
-sudo mkdir ~/.ssh/id_rsa
-echo '-------------> Those are your keys up to now'
+echo "-------------> Those are your keys up to now"
 sudo ls -al -R ~/.ssh # Lists the files in your .ssh directory, if they exist
 echo "Please, introduce 'youremail@server.com'"
 read emai
-echo "please introduce this /home/node/.ssh/id_rsa/id_rsa/id_rsa.pub as file, OTHERWISE YOU WONT BE ABLE TO USE MYSSHKEY AND THE REST OF SSH MANAGEMENT COMMANDS, and a password longer or equal to 5 caractheres"
+echo "------------->Introduce this /home/$USER/.ssh/id_rsa as file, OTHERWISE YOU WONT BE ABLE TO USE MYSSHKEY AND THE REST OF SSH MANAGEMENT COMMANDS, and a password longer or equal to 5 caractheres"
 ssh-keygen -t rsa -b 4096 -C $emai
 eval "$(ssh-agent -s)" 
-sudo ssh-add ~/.ssh/id_rsa.pub
+sudo ssh-add ~/.ssh/id_rsa**
 sudo chmod -R 600 ~/.ssh
 }
 
