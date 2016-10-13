@@ -97,9 +97,9 @@ sudo apt-get install git -y
 git clone https://github.com/kvhnuke/etherwallet
 git clone https://github.com/ryepdx/ethaddress.org
 
-##Mist Wallet and Mist Beta with Hard Fork choice 0.8.1
+##Mist Wallet and Mist Beta
 #from https://github.com/ethereum/mist/releases
-wget https://github.com/ethereum/mist/releases/download/v0.8.4/Ethereum-Wallet-linux64-0-8-4.zip
+wget https://github.com/ethereum/mist/releases/download/v0.8.5/Ethereum-Wallet-linux64-0-8-5.zip
 sha1 = $(sha1sum Ethereum**.zip)
 if [ $sha1 == "0989fdc5ca511cded529193f08626562e5b8a0191149ffba9060d3d0cfa640aa" ]
 then
