@@ -30,13 +30,6 @@ sudo chmod -R 600 .ssh
 sudo chmod +x .ssh
 #Minus
 sudo apt-get purge imagemagick fontforge geary -y
-#Docker 
-sudo wget -qO- https://get.docker.com/ | sh
-sudo usermod -aG docker $USER
-sudo apt-get purge apparmor -y
-sudo rm -rf /etc/apparmor.d/
-sudo rm -rf /etc/apparmor
-
 
 #UFW
 sudo apt-get install gufw -y
