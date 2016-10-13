@@ -534,7 +534,7 @@ sudo curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -
 bash rvm-installer stable
 rvm list
 rvm rubies
-echo 'alias rubysheet="firefox -new-tab -url https://cheat.errtheblog.com/s/rvm" -new-tab -url https://rvm.io/ -new-tab -url http://bundler.io/'>> sudo /etc/bash.bashrc
+sed -i  'aalias rubysheet="firefox -new-tab -url https://cheat.errtheblog.com/s/rvm" -new-tab -url https://rvm.io/ -new-tab -url http://bundler.io/' /etc/bash.bashrc
 #https://github.com/Nerian/simple_gemset
 sudo gem install simple_gemset
 ##Bundler provides a consistent environment for Ruby projects by tracking and installing the exact gems and versions that are needed. 
