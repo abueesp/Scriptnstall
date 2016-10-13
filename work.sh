@@ -35,6 +35,7 @@ sudo usermod -aG docker $USER
 sudo apt-get purge apparmor -y
 sudo rm -rf /etc/apparmor.d/
 sudo rm -rf /etc/apparmor
+git clone https://github.com/CISOfy/lynis
 #UFW
 sudo apt-get install gufw -y
 sudo ufw enable
