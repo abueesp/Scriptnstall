@@ -96,6 +96,7 @@ cd
 sudo rm -r fwsnort**
 
 #Some tools
+sudo apt-get install tmux terminator -y
 sudo apt-get install secure-delete -y
 sudo apt-get install traceroute -y
 sudo apt-get install iotop -y 
