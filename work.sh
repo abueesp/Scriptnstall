@@ -558,3 +558,21 @@ sudo sed -i 's/#FromLineOverride=YES/FromLineOverride=YES \AuthUser=$emmail \Aut
 wget https://ftp.opera.com/pub/opera-developer/41.0.2349.0/linux/opera-developer_41.0.2349.0_amd64.deb
 sudo dpkg -i opera**.deb
 sudo rm opera**.deb
+
+
+#FTP VSFTPD
+wget https://security.appspot.com/downloads/vsftpd-3.0.3.tar.gz
+wget https://security.appspot.com/downloads/vsftpd-3.0.3.tar.gz.asc
+gpg --keyserver pgpkeys.mit.edu --recv-key 3C0E751C
+gpg --with-fingerprint vsftpd**.asc
+sudo rm vsftpd**.asc
+read "Is verified?" pause
+tar xvzf vsftpd**.tar.gz
+sudo rm vsftpd-**tar.gz
+cd vsftpd**
+make
+sudo cp -r /usr/share/man/man5/ /usr/local/man/man5
+sudo cp /usr/local/sbin/vsftpd /usr/sbin/vsftpd
+sudo make install
+cd ..
+
