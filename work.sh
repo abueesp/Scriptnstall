@@ -51,6 +51,7 @@ sudo service avahi-daemon stop
 sudo cupsctl -E --no-remote-any
 sudo service cups-browsed stop
 #Some tools
+sudo apt-get install tmux terminator -y
 sudo apt-get install traceroute -y
 sudo apt-get install zsh -y
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
