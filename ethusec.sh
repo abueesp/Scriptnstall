@@ -97,7 +97,7 @@ sudo apt-get install git -y
 git clone https://github.com/kvhnuke/etherwallet
 git clone https://github.com/ryepdx/ethaddress.org
 
-##Mist Wallet and Mist Beta
+##Electrum Wallet
 #from https://github.com/ethereum/mist/releases
 wget https://github.com/ethereum/mist/releases/download/v0.8.5/Ethereum-Wallet-linux64-0-8-5.zip
 sha1 = $(sha1sum Ethereum**.zip)
@@ -123,7 +123,7 @@ df
 #from https://github.com/ethereum/mist/releases
 sudo wget https://github.com/ethereum/mist/releases/download/v0.8.4/Mist-linux64-0-8-4.zip
 sha1 = $(sha1sum Mist**.zip)
-if [ $sha1 == "ad5af23bb6c5d6aa946f35a7bbe07ddedf79939ee5149248eea5c275fadf8eb9" ]
+if [ $sha1 == "e41f61c581c079f7e94ee52277541663575f63d3dc10ea1e0f9ecf12e9fef072" ]
 then
     echo "PACKAGE VERIFIED"
 else
@@ -142,8 +142,18 @@ echo "alias ethmist='cd linux && ./Mist**'" >> sudo /etc/bash.bashrc
 
 ##Geth
 echo "Geth"
-wget https://github.com/ethereum/go-ethereum/releases/download/v1.4.16/geth-linux-amd64-1.4.16-4fced097.tar.gz
-tar -zxvf **.tar.gz
+cd linux
+wget https://github.com/ethereum/go-ethereum/releases/download/v1.4.17/geth-linux-amd64-1.4.17-5a6008e0.tar.gz
+tar -zxvf geth**.tar.gz
+sha1 = $(sha1sum geth**.tar.gz)
+if [ $sha1 == "10a3f1ff357d3d6c566b4557df242a28169d1431f19b6505ac1e06c540bfadfd" ]
+then
+    echo "PACKAGE VERIFIED"
+else
+    echo "PACKAGE NOT VERIFIED"
+    break
+fi
+read -p "Please ENTER if PACKAGE VERIFIED. Otherwise Ctrl-C " pause
 sudo rm geth**.tar.gz
 ./geth
 echo "alias geth='./geth --ipcpath /home/$USER/geth.ipc'" >> sudo /etc/bash.bashrc
