@@ -9,8 +9,7 @@ cd eth-net-intelligence-api
 sudo npm install
 sudo npm install -g pm2
 sudo mv app.json.example app.json
-echo "a38e1e50b1b82fa"
-gedit app.json
+nano app.json
 sudo pm2 start app.json
 #Miner
 sudo add-apt-repository ppa:ethereum/ethereum
