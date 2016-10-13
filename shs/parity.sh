@@ -17,7 +17,7 @@ sudo add-apt-repository ppa:ethereum/ethereum -y
 sudo apt-get update
 sudo apt-get install ethminer -y
 parity account new
-read "Introduce your coinbase address" coinbase
+read -p "Introduce your coinbase address" coinbase
 parity --author $coinbase
 sudo apt-get install xterm
 ethminer -G --opencl-device 0 #use --notify-work URL,URL to set urls to push work notifications 
