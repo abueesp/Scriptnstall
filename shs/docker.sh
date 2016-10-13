@@ -4,4 +4,5 @@ sudo usermod -aG docker $USER
 sudo apt-get purge apparmor -y
 sudo rm -rf /etc/apparmor.d/
 sudo rm -rf /etc/apparmor
+git clone https://github.com/CISOfy/lynis
 
