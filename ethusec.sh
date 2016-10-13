@@ -111,7 +111,7 @@ fi
 read -p "Please ENTER if PACKAGE VERIFIED. Otherwise Ctrl-C " pause
 unzip Ethereum-**
 sudo rm Ethereum-**.zip
-sed -i "aalias ethwallet='cd ~/Ethereum-Wal** && ./Ethereum-Wal**'" /etc/bash.bashrc
+sudo sed -i "aalias ethwallet='cd ~/Ethereum-Wal** && ./Ethereum-Wal**'" /etc/bash.bashrc
 echo "This is your free space to download the blockchain. Last time it took 6GB and 3 hours."
 cd linux
 nohup ./Ethereum-Wallet
@@ -140,7 +140,7 @@ cd ..
 sudo rm Mist-**.zip
 df
 echo "This is your free space to download the blockchain. Last time it took 6GB and 3 hours."
-sed -i "aalias ethmist='cd linux && ./Mist**'" sudo /etc/bash.bashrc 
+sudo sed -i "aalias ethmist='cd linux && ./Mist**'" sudo /etc/bash.bashrc 
 
 ##Geth
 echo "Geth"
@@ -158,19 +158,19 @@ fi
 read -p "Please ENTER if PACKAGE VERIFIED. Otherwise Ctrl-C " pause
 sudo rm geth**.tar.gz
 ./geth
-sed -i  "aalias geth='./geth --ipcpath /home/$USER/geth.ipc'" sudo /etc/bash.bashrc
-sed -i "aalias blockchain='cd ~/.ethereum/chaindata'" sudo /etc/bash.bashrc
+sudo sed -i  "aalias geth='./geth --ipcpath /home/$USER/geth.ipc'" sudo /etc/bash.bashrc
+sudo sed -i "aalias blockchain='cd ~/.ethereum/chaindata'" sudo /etc/bash.bashrc
 
-sed -i  "aalias gethmine='geth --mine --minergpus --autodag --minerthreads 8 console'" /etc/bash.bashrc
-sed -i "aalias ethmine='ethminer -G --opencl-device 0'" /etc/bash.bashrc
-sed -i "alias gethtest='geth --testnet console'" /etc/bash.bashrc
-sed -i "alias gethupgrade='geth upgradedb --fast console'" /etc/bash.bashrc
+sudo sed -i  "aalias gethmine='geth --mine --minergpus --autodag --minerthreads 8 console'" /etc/bash.bashrc
+sudo sed -i "aalias ethmine='ethminer -G --opencl-device 0'" /etc/bash.bashrc
+sudo sed -i "alias gethtest='geth --testnet console'" /etc/bash.bashrc
+sudo sed -i "alias gethupgrade='geth upgradedb --fast console'" /etc/bash.bashrc
 
 
 ##Parity
 read -p "Parity. Copy and paste this bash <(curl https://get.parity.io -Lk)" pause
 $pause
-sed -i  "alias paritysheet='firefox -new-tab https://ethcore.github.io/parity/ethcore/index.html'" /etc/bash.bashrc
+sudo sed -i  "alias paritysheet='firefox -new-tab https://ethcore.github.io/parity/ethcore/index.html'" /etc/bash.bashrc
 
 read -p "Do you want to open Myetherwallet? " REPLY
 if [ $REPLY =~ ^[Yy]$ ]
@@ -187,4 +187,4 @@ sudo mv app.json.example app.json
 echo "a38e1e50b1b82fa"
 gedit app.json
 sudo pm2 start app.json
-sed -i  "alias ethstats='sudo pm2 start ~/eth-net-intelligence-api/app.json && firefox --new-tab https://ethstats.net/' && parity --max-peers 100 --peers 100 --min-peers 100 " /etc/bash.bashrc
+sudo sed -i  "alias ethstats='sudo pm2 start ~/eth-net-intelligence-api/app.json && firefox --new-tab https://ethstats.net/' && parity --max-peers 100 --peers 100 --min-peers 100 " /etc/bash.bashrc
