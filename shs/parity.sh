@@ -13,9 +13,9 @@ sed -i 's/how-to-add-yourself-to-the-stats-dashboard-its-not-automatic/a38e1e50b
 nano app.json
 sudo pm2 start app.json
 #Miner
-sudo add-apt-repository ppa:ethereum/ethereum
+sudo add-apt-repository ppa:ethereum/ethereum -y
 sudo apt-get update
-sudo apt-get install ethminer
+sudo apt-get install ethminer -y
 parity account new
 read "Introduce your coinbase address" coinbase
 parity --author $coinbase
