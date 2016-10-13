@@ -630,19 +630,31 @@ alias shsheet="firefox -new-tab https://www.tldp.org/LDP/abs/html/index.html"
 alias gethsheet="https://github.com/ethereum/go-ethereum/wiki/Command-Line-Options"
 alias gpgsheet="firefox -new-tab http://irtfweb.ifa.hawaii.edu/~lockhart/gpg/gpg-cs.html"
 alias bitcoinsheet="firefox -new-tab  https://en.bitcoin.it/wiki/Script#Words"
-alias dockersheet="echo '#Crea el droplet en DO \
 alias rubysheet="firefox -new-tab -url https://cheat.errtheblog.com/s/rvm -new-tab -url https://rvm.io/ -new-tab -url http://bundler.io/"
+alias dockersheet="echo '#Crea el droplet en DO con Docker \
 create Droplet on DO con docker \
-#Conecta al DRoplet \
+#Conecta al Droplet \
 ssh root@IP  \
 #Crea la imagen de docker \
 Docker build -t imagenameapp:versionapp dockerfile  \
-#See docker images \
+ADD	Copy downloads or data into the image (use cURL/wget with https and cheksum instead) :: COPY	Copy data into the image \
+CMD Define default command to run (usually the service CMD [“lynis”, “-c”, “-Q”]) :: RUN	Execute a command or script \
+ENV	Define an environment variable (ENV PATH /usr/local/yourpackage/bin:$PATH):: EXPOSE	Makes a port available for incoming traffic to the container :: MAINTAINER	Maintainer of the image \
+FROM	Define the base image, which contains a minimal operating system :: VOLUME	Make directory available (e.g. for access, backup) :: WORKDIR	Change the current work directory\
+#See docker images 
+\
 docker images    \
 #Haz correr la app \
 docker run  -it --name myappcontainer -d -p 1337:80  \
 #Visita tu webapp \
-go to IP:1337 and there it is' && 'firefox -new-tab  https://www.cheatography.com/storage/thumb/aabs_docker-and-friends.600.jpg && firefox -new-tab https://container-solutions.com/content/uploads/2015/06/15.06.15_DockerCheatSheet_A2.pdf"
+go to IP:1337 and there it is \
+#Audit
+Audit using 'lynis audit dockerfile $filename'\
+    SELinux/AppApparmor support – limit processes what resources they can access \
+    Capabilities support – limit the maximum level a functions (or “roles”) a process can achieve within the container\
+    Seccomp support – allow/disallow what system calls can be used by processes\
+    docker exec – no more SSH in containers for just management\
+' && 'firefox -new-tab  https://www.cheatography.com/storage/thumb/aabs_docker-and-friends.600.jpg && firefox -new-tab https://container-solutions.com/content/uploads/2015/06/15.06.15_DockerCheatSheet_A2.pdf"
 alias nmapsheet="firefox -new-tab  https://4.bp.blogspot.com/-lCguW2iNKi4/UgmjCu1UNfI/AAAAAAAABuI/35Px0VIOuIg/s1600/Screen+Shot+2556-08-13+at+10.06.38+AM.png"
 alias gitsheet="firefox -new-tab  https://developer.exoplatform.org/docs/scm/git/cheatsheet/ && firefox -new-tab https://github.com/tiimgreen/github-cheat-sheet && echo 'Warning: Never git add, commit, or push sensitive information to a remote repository. Sensitive information can include, but is not limited to:
     Passwords
