@@ -33,7 +33,7 @@ nano ~/.zcash/zcash.conf
 ~/zcash/./src/zcash-cli getinfo
 sleep 5
 ~/zcash/./src/zcash-cli getinfo
-"check you hashrate using ~/zcash/src/./zcash-cli zcbenchmark solveequihash 10 and how many coins you have mined with ~/zcash/./src/zcash-cli listtransactions"
+"Welcome to Zcash. You can check you hashrate using zcbm, consult the info on zcinfo, read the txs with zctxs, and use zcstart and zcstop to manage it. You can also use >>watch free<< to watch your memory consumption."
 ~/zcash/./src/zcash-cli getinfo
 ~/zcash/src/./zcash-cli zcbenchmark solveequihash 10
 ~/zcash/./src/zcash-cli listtransactions
