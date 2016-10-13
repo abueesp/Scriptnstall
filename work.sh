@@ -361,15 +361,15 @@ sudo make install
 
 echo ' *****************
 Install those packages in R. To exit type quit()
-
-install.packages("Rmpfr") 
-install.packages("devtools")
+setRepositories()
+install.packages("Rmpfr", repos="http://cran.cnr.berkeley.edu")
+install.packages("devtools", repos="http://cran.cnr.berkeley.edu")
 devtools::install_github("BSDStudios/ethr")
-install.packages("plyr")
-install.packages("dplyr")
-install.packages("httr")
-install.packages("igraph")
-install.packages("gmp")
+install.packages("plyr", repos="http://cran.cnr.berkeley.edu")
+install.packages("dplyr", repos="http://cran.cnr.berkeley.edu")
+install.packages("httr", repos="http://cran.cnr.berkeley.edu")
+install.packages("igraph", repos="http://cran.cnr.berkeley.edu")
+install.packages("gmp", repos="http://cran.cnr.berkeley.edu")
 
 Install those packages in R. To exit type quit()' 
 sudo R
