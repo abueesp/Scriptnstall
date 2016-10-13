@@ -682,7 +682,6 @@ uninstall(){
 }
 
 mysshkey(){
-sudo chown -R $USER:$USER ~/.ssh
 sudo chmod -R 755 ~/.ssh
 sudo chmod +x ~/.ssh 
 sudo apt-get install xclip
@@ -725,17 +724,17 @@ if [$1]
              sudo mv ~/.ssh/$1 ~/.ssh/lastid_rsa$numberssh.pub ~/.ssh/lastid_rsa$numberssh1.pub
              numberssh--
         done 
+    echo "-------------> Your last key is now lastid_rsa (priv) and lastid_rsa0.pub (pub). If you want to create a new one type mysshkey. If you want to copy the last one type mylastsshkey"
     sudo mv ~/.ssh/$1 ~/.ssh/id_rsa ~/.ssh/lastid_rsa0
     sudo mv ~/.ssh/$1 ~/.ssh/id_rsa.pub ~/.ssh/lastid_rsa0.pub
-    echo "Your last key is now lastid_rsa (priv) and lastid_rsa0.pub (pub). If you want to create a new one type mysshkey. If you want to copy the last one type mylastsshkey"
     else
+    echo "-------------> Those are your current keys: "
     ls -al -R ~/.ssh
-    echo "Those are your current keys: "
 fi
 $emai = emai
 sudo mkdir ~/.ssh
 sudo mkdir ~/.ssh/id_rsa
-echo 'those are your keys up to now'
+echo '-------------> Those are your keys up to now'
 sudo ls -al -R ~/.ssh # Lists the files in your .ssh directory, if they exist
 echo "Please, introduce 'youremail@server.com'"
 read emai
