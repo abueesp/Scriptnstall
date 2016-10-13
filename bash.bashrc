@@ -631,6 +631,7 @@ alias gethsheet="https://github.com/ethereum/go-ethereum/wiki/Command-Line-Optio
 alias gpgsheet="firefox -new-tab http://irtfweb.ifa.hawaii.edu/~lockhart/gpg/gpg-cs.html"
 alias bitcoinsheet="firefox -new-tab  https://en.bitcoin.it/wiki/Script#Words"
 alias dockersheet="echo '#Crea el droplet en DO \
+alias rubysheet="firefox -new-tab -url https://cheat.errtheblog.com/s/rvm -new-tab -url https://rvm.io/ -new-tab -url http://bundler.io/"
 create Droplet on DO con docker \
 #Conecta al DRoplet \
 ssh root@IP  \
@@ -982,15 +983,14 @@ done
 
 #alias Ethereum
 alias ethertweet="firefox -new-tab -url https://github.com/yep/eth-tweet -new-tab -url https://ethertweet.net/ui && geth --rpc --rpccorsdomain='http://ethertweet.net'"
-alias rubysheet="firefox -new-tab -url https://cheat.errtheblog.com/s/rvm -new-tab -url https://rvm.io/ -new-tab -url http://bundler.io/"
-alias ethwallet='cd ~/linux && ./Ethereum-Wallet'
-alias ethmist='cd linux && ./Mist'
+alias ethwallet='cd /home/$USER/linux && ./Ethereum-Wallet'
+alias mist='cd linux && ./Mist'
 alias geth='cd /home/$USER/linux && ./geth'
 alias blockchain='cd ~/.ethereum/chaindata'
-alias gethmine='geth --mine --minergpus --autodag --minerthreads 8 console'
-alias ethmine='ethminer -G --opencl-device 0'
-alias gethtest='geth --testnet console'
-alias gethupgrade='geth upgradedb --fast console'
+alias gethminer='cd /home/$USER/linux && ./geth --mine --minergpus --autodag --minerthreads 8 console'
+alias ethminer='ethminer -G --opencl-device 0'
+alias gethtest='cd /home/$USER/linux && ./geth --testnet console'
+alias gethupgrade='cd /home/$USER/linux && ./geth upgradedb --fast console'
 alias gethsheet="https://github.com/ethereum/go-ethereum/wiki/Command-Line-Options"
-alias ethstats='sudo pm2 start ~/eth-net-intelligence-api/app.json && firefox --new-tab https://ethstats.net/ && parity --max-peers 100 --peers 100 --min-peers 100"
-alias meteor="firefox -new-tab -url http://localhost:3000 && geth --rpc --rpccorsdomain='http://localhost:3000'"
+alias ethstats="sudo pm2 start ~/eth-net-intelligence-api/app.json && firefox --new-tab https://ethstats.net/ && parity --max-peers 100 --peers 100 --min-peers 100"
+alias meteor="firefox -new-tab -url http://localhost:3000 && cd /home/$USER/linux && ./geth --rpc --rpccorsdomain='http://localhost:3000'"
