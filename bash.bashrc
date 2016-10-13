@@ -982,15 +982,16 @@ done
 
 
 #alias Ethereum
+routegeth="/home/$USER/linux/geth**"
 alias ethertweet="firefox -new-tab -url https://github.com/yep/eth-tweet -new-tab -url https://ethertweet.net/ui && geth --rpc --rpccorsdomain='http://ethertweet.net'"
 alias ethwallet='cd /home/$USER/linux && ./Ethereum-Wallet'
-alias mist='cd linux && ./Mist'
-alias geth='cd /home/$USER/linux && ./geth'
+alias mist='cd $routegeth && ./Mist'
+alias geth='cd $routegeth && ./geth'
 alias blockchain='cd ~/.ethereum/chaindata'
-alias gethminer='cd /home/$USER/linux && ./geth --mine --minergpus --autodag --minerthreads 8 console'
+alias gethminer='cd $routegeth && ./geth --mine --minergpus --autodag --minerthreads 8 console'
 alias ethminer='ethminer -G --opencl-device 0'
-alias gethtest='cd /home/$USER/linux && ./geth --testnet console'
-alias gethupgrade='cd /home/$USER/linux && ./geth upgradedb --fast console'
+alias gethtest='cd $routegeth && ./geth --testnet console'
+alias gethupgrade='cd $routegeth && ./geth upgradedb --fast console'
 alias gethsheet="https://github.com/ethereum/go-ethereum/wiki/Command-Line-Options"
-alias ethstats="sudo pm2 start ~/eth-net-intelligence-api/app.json && firefox --new-tab https://ethstats.net/ && parity --max-peers 100 --peers 100 --min-peers 100"
+alias ethstats="sudo pm2 start /home/$USER/eth-net-intelligence-api/app.json && firefox --new-tab https://ethstats.net/ && parity --max-peers 100 --peers 100 --min-peers 100"
 alias meteor="firefox -new-tab -url http://localhost:3000 && cd /home/$USER/linux && ./geth --rpc --rpccorsdomain='http://localhost:3000'"
