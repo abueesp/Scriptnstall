@@ -1,3 +1,4 @@
+sudo apt-get install tmux terminator -y
 sudo apt-get install traceroute -y
 sudo apt-get install iotop -y 
 sudo apt-get install fish -y
