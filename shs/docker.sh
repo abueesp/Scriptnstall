@@ -38,15 +38,14 @@ ADD	Copy downloads or data into the image (use cURL/wget with https and cheksum 
 CMD Define default command to run (usually the service CMD [“lynis”, “-c”, “-Q”]) :: RUN	Execute a command or script \
 ENV	Define an environment variable (ENV PATH /usr/local/yourpackage/bin:$PATH):: EXPOSE	Makes a port available for incoming traffic to the container :: MAINTAINER	Maintainer of the image \
 FROM	Define the base image, which contains a minimal operating system :: VOLUME	Make directory available (e.g. for access, backup) :: WORKDIR	Change the current work directory\
-#See docker images 
-\
+#See docker images \
 docker images    \
 #Haz correr la app \
 docker run  -it --name myappcontainer -d -p 1337:80  \
 #Visita tu webapp \
 go to IP:1337 and there it is \
-#Audit
-Audit using 'lynis audit dockerfile $filename'\
+#Audit \
+Audit using lynis audit dockerfile $filename\
     SELinux/AppApparmor support – limit processes what resources they can access \
     Capabilities support – limit the maximum level a functions (or “roles”) a process can achieve within the container\
     Seccomp support – allow/disallow what system calls can be used by processes\
