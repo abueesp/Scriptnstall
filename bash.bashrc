@@ -1,8 +1,7 @@
 # System-wide .bashrc file for interactive bash(1) shells.
-. /usr/share/autojump/autojump.sh #autojump
 # To enable the settings / commands in this file for login shells as well,
 # this file has to be sourced in /etc/profile.
-
+./usr/share/autojump/autojump.sh #autojump
 ##Normal Ctrl+C Ctrl+V
 gconftool-2 -t str -s /apps/gnome-terminal/keybindings/copy "<Control>c"
 gconftool-2 -t str -s /apps/gnome-terminal/keybindings/paste "<Control>v"
@@ -631,7 +630,18 @@ alias shsheet="firefox -new-tab https://www.tldp.org/LDP/abs/html/index.html"
 alias gethsheet="https://github.com/ethereum/go-ethereum/wiki/Command-Line-Options"
 alias gpgsheet="firefox -new-tab http://irtfweb.ifa.hawaii.edu/~lockhart/gpg/gpg-cs.html"
 alias bitcoinsheet="firefox -new-tab  https://en.bitcoin.it/wiki/Script#Words"
-alias dockersheet="firefox -new-tab  https://www.cheatography.com/storage/thumb/aabs_docker-and-friends.600.jpg && firefox -new-tab https://container-solutions.com/content/uploads/2015/06/15.06.15_DockerCheatSheet_A2.pdf"
+alias dockersheet="echo '#Crea el droplet en DO \
+create Droplet on DO con docker \
+#Conecta al DRoplet \
+ssh root@IP  \
+#Crea la imagen de docker \
+Docker build -t imagenameapp:versionapp dockerfile  \
+#See docker images \
+docker images    \
+#Haz correr la app \
+docker run  -it --name myappcontainer -d -p 1337:80  \
+#Visita tu webapp \
+go to IP:1337 and there it is' && 'firefox -new-tab  https://www.cheatography.com/storage/thumb/aabs_docker-and-friends.600.jpg && firefox -new-tab https://container-solutions.com/content/uploads/2015/06/15.06.15_DockerCheatSheet_A2.pdf"
 alias nmapsheet="firefox -new-tab  https://4.bp.blogspot.com/-lCguW2iNKi4/UgmjCu1UNfI/AAAAAAAABuI/35Px0VIOuIg/s1600/Screen+Shot+2556-08-13+at+10.06.38+AM.png"
 alias gitsheet="firefox -new-tab  https://developer.exoplatform.org/docs/scm/git/cheatsheet/ && firefox -new-tab https://github.com/tiimgreen/github-cheat-sheet && echo 'Warning: Never git add, commit, or push sensitive information to a remote repository. Sensitive information can include, but is not limited to:
     Passwords
