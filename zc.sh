@@ -44,3 +44,10 @@ sed -i  "aalias zcstart='~/zcash/./src/zcashd -daemon'" /etc/bash.bashrc
 sed -i  "aalias zcstop='lsof -i | grep zcashd && ~/zcash/./src/zcash-cli stop && sudo pkill -9 zcashd && sudo pkill -9 zcash-cli'" /etc/bash.bashrc
 
 #https://docs.google.com/spreadsheets/d/1Um22iBf8bPbfuI4rUDZzSB4W444ouUEnQTBnb8EsdYk/edit#gid=0
+#lspci | grep VGA
+#sudo apt-get install xorg lynx -y
+#sudo rm /tmp/**
+#lynx http://support.amd.com/en-us/kb-articles/Pages/OpenCL2-Driver.aspx
+#mv /tmp/lynx**/L8400-579TMP.zip L8400-579TMP.zip
+#cd fglrx**
+#./amd-driver-installer
