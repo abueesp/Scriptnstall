@@ -471,7 +471,7 @@ securedelete () {
   sudo srm -vrzd $route
   }
   
-abueesp () {
+tmuxts () {
 tmux new-session -s 'MyTS' -n 'w1' -d 'vim'
 tmux split-window -v -t 'w1' -d 'python'
 tmux split-window -h -t 'w1' -c '/home/$USER'
