@@ -613,6 +613,7 @@ alias egrepp='egrep --color=auto -r -w'
 alias fgrepp='fgrep --color=auto'
 alias aptclean='sudo apt-get autoremove'
 alias rename='mv'
+alias tmuxkillall="tmux ls | grep : | cut -d. -f1 | awk '{print substr($1, 0, length($1)-1)}' | xargs kill"
 alias gitlist='git remote -v'
 alias adbconnect="mtpfs -o allow_other /mnt/mobile"
 alias adbdisconnect="fusermount -u /mnt/mobile"
@@ -631,6 +632,10 @@ alias gethsheet="https://github.com/ethereum/go-ethereum/wiki/Command-Line-Optio
 alias gpgsheet="firefox -new-tab http://irtfweb.ifa.hawaii.edu/~lockhart/gpg/gpg-cs.html"
 alias bitcoinsheet="firefox -new-tab  https://en.bitcoin.it/wiki/Script#Words"
 alias rubysheet="firefox -new-tab -url https://cheat.errtheblog.com/s/rvm -new-tab -url https://rvm.io/ -new-tab -url http://bundler.io/"
+alias tmuxsheet="echo 'There are sessions, windows, panels \
+tmux new -s myname | tmux ls | tmux a -t myname | tmux kill-session -t myname | Ctrl+Shift++ Zoom in | Ctrl+- Zoom out\
+ctrl+b & c create window | ctrl+b & w list windows | ctrl+b & n  next window | ctrl+b & p  previous window | ctrl+b & f  find window | ctrl+b & ,  name window | ctrl+b & d detach window | ctrl+b & & kill window \
+ctrl+b & :set synchronize-panes on/off a/synchronize all panels of the window | ctrl+b & % vertical split | ctrl+b & "  horizontal split | ctrl+b & q  show panel numbers | ctrl+b & x  kill pane | ctrl+b & spacebar change layout | ctrl+b & {} Move the current pane leftright | ctrl+b & z Zoom in zoom out panel | ctrl+b + :resize-pane -U/D/L/R 20 add 20 cells up/down/left/right to that panel"
 alias dockersheet="echo '#Crea el droplet en DO con Docker \
 create Droplet on DO con docker \
 #Conecta al Droplet \
