@@ -2,7 +2,7 @@
 sudo rm -r /etc/apparmorprofiles
 sudo apt-get install apparmor apparmor-utils auditd -y
 sudo apparmor_status
-git clone git://git.launchpad.net/apparmor-profiles
+sudo git clone git://git.launchpad.net/apparmor-profiles
 uname -a
 cd apparmor-profiles
 cd ubuntu && ls
@@ -17,7 +17,7 @@ sudo aa-enforce  /etc/apparmor.d/* #enforce mode log, report and auditd
 sudo auditd -s enable
 sudo rm -r apparmor-profiles
 sudo invoke-rc.d apparmor start
-
+sudo apparmor_status
 #disableprofile
 #sudo ln -s /etc/apparmor.d/bin.ping /etc/apparmor.d/disable/
 #sudo apparmor_parser -R /etc/apparmor.d/bin.ping
