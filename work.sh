@@ -52,6 +52,7 @@ sudo service avahi-daemon stop
 sudo cupsctl -E --no-remote-any
 sudo service cups-browsed stop
 #Some tools
+sudo apt-get install brasero -y
 sudo apt-get install tmux terminator -y
 sudo apt-get install traceroute -y
 sudo apt-get install zsh -y
