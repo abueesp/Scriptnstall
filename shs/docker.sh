@@ -5,6 +5,18 @@ sudo apt-get purge apparmor -y
 sudo rm -rf /etc/apparmor.d/
 sudo rm -rf /etc/apparmor
 mkdir docker
+cd docker
+
+#extra-tools
+sudo apt-get install go -y
+export GOPATH="$HOME/$USER/docker"
+go get github.com/vbatts/docker-utils/cmd/docker-fetch
+go get github.com/vbatts/docker-utils/cmd/dockertarsum
+
+git clone https://github.com/docker/docker-bench-security.git
+cd docker-bench-security
+docker-compose run --rm docker-bench-security
+
 #Securing the server
 git clone https://github.com/konstruktoid/hardening.git
 cd hardening
