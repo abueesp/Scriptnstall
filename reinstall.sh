@@ -102,6 +102,7 @@ sudo apt-get install htop -y
 sudo apt-get install pandoc -y
 sudo apt-get install vnstat -y
 sudo apt-get install duplicity deja-dup -y
+sudo apt-get install brasero -y
 
 #youtube-dl
 sudo wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/bin/youtube-dl
