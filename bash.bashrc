@@ -470,6 +470,20 @@ securedelete () {
   sudo shred -uvzn 3 $rin
   sudo srm -vrzd $route
   }
+  
+abueesp () {
+tmux new-session -s 'MyTS' -n 'w1' -d 'vim'
+tmux split-window -v -t 'w1' -d 'python'
+tmux split-window -h -t 'w1' -c '/home/$USER'
+tmux new-window -n 'w2' -t 'MyTS' -c '/home/$USER/devcon/'
+tmux split-window -h -t 'w2' 'watch free'
+tmux split-window -v -t 'w2'
+tmux send-keys 'tmux list-sessions && tmux list-windows && tmux list-panes && stop'  C-m
+tmux -2 attach-session -t 'MyTS'
+tmux select-window -t 'w1'
+tmux select-pane -t 'w2:2'
+  }
+  
 
 docsthemagic () {
   read -p "vas a crear las copias, luego armonizar los nombres y finalmente limpiar los metadatos de todos los archivos ubicados en esta carpeta. Introduce los documentos. recuerda que si quieres hacer un backup puedes usar mat -b" docs
