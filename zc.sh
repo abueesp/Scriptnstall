@@ -51,3 +51,6 @@ sed -i  "aalias zcstop='lsof -i | grep zcashd && ~/zcash/./src/zcash-cli stop &&
 #mv /tmp/lynx**/L8400-579TMP.zip L8400-579TMP.zip
 #cd fglrx**
 #./amd-driver-installer
+
+##error: Detected X Server version 'XServer 1.18.3_64a' is not supported. Supported versions are X.Org 6.9 or later, up to XServer 1.10 (default:v2:x86_64:lib:XServer 1.18.3_64a:none:4.4.0-42-generic:) Installation will not proceed.
+
