@@ -38,7 +38,17 @@ echo "use -- python drydock.py -d 10.0.0.2:2736 -c /home/$USER/cert/cert.pem -k 
 cd ..
 cd ..
 
-
+#securing 
+echo 'DO NOT USE SUDO TO RUN THE CONTAINER' thanks
+sudo apt-get install lxc -y # –lxc-conf /usr/share/lxc/config/common.seccomp
+sudo iptables -F
+sudo iptables -A INPUT -i lo -j ACCEPT
+sudo iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 1022 -j ACCEPT
+sudo iptables -P INPUT DROP
+sudo iptables -P OUTPUT ACCEPT ##If you are a server change this to DROP OUTPUT connections by default too
+sudo iptables -P FORWARD DROP
+sudo iptables restart
 #Aliasheet
 
 alias dockersheet="echo '#Crea el droplet en DO con Docker \
@@ -54,7 +64,7 @@ FROM	Define the base image, which contains a minimal operating system :: VOLUME	
 #See docker images \
 docker images    \
 #Haz correr la app \
-docker run  -it --name myappcontainer -d -p 1337:80  \
+docker run  -it --name myappcontainer -d -p 1337:80 –lxc-conf  /usr/share/lxc/config/common.seccomp\
 #Visita tu webapp \
 go to IP:1337 and there it is \
 #Audit \
