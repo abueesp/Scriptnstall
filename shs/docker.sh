@@ -1,4 +1,5 @@
 #Docker 
+sudo cat /boot/config-`uname -r` | grep CONFIG_SECCOMP=
 sudo wget -qO- https://get.docker.com/ | sh
 sudo usermod -aG docker $USER
 sudo apt-get purge apparmor -y
