@@ -9,8 +9,8 @@ cd ubuntu && ls
 read -p "Select your version: " version
 cd $version
 sudo mkdir /etc/apparmor.d/cache
-sudo cp apparmor-profiles/ubuntu/14.04/** /etc/apparmor.d/
-sudo cp -r apparmor-profiles/ubuntu/14.04/**/abstractions /etc/apparmor.d/abstractions
+sudo cp apparmor-profiles/ubuntu/$version/** /etc/apparmor.d/
+sudo cp -r apparmor-profiles/ubuntu/$version/**/abstractions /etc/apparmor.d/abstractions
 sudo /etc/init.d/apparmor restart
 sudo aa-enforce  /etc/apparmor.d/* #enforce mode log, report and auditd
 #sudo aa-complain /usr/sbin/mysqld #complain mode only log
