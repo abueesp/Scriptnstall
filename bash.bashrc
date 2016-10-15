@@ -611,6 +611,7 @@ alias geditbash='sudo gedit /etc/bash.bashrc'
 alias vimbash='sudo vim /etc/bash.bashrc'
 alias atombash='sudo atom /etc/bash.bashrc'
 alias nanobash='sudo nano /etc/bash.bashrc'
+alias find='sudo find / | grep'
 alias myip="dig +short http://myip.opendns.com @http://resolver1.opendns.com"
 alias cpc='cp -i -r'
 alias mvm='mv -i -u'
