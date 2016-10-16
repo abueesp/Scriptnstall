@@ -125,7 +125,9 @@ Audit using lynis audit dockerfile filename\
 ' && 'firefox -new-tab  https://www.cheatography.com/storage/thumb/aabs_docker-and-friends.600.jpg && firefox -new-tab https://container-solutions.com/content/uploads/2015/06/15.06.15_DockerCheatSheet_A2.pdf"
 
 
-#Extra
+read -r -p "Are you sure? [y/N] " response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]
+then 
 
 #UFW
 sudo apt-get install gufw -y
@@ -183,3 +185,6 @@ sudo make
 sudo make install
 cd
 sudo rm -r fwsnort**
+else
+    echo "Finished. Thank you."
+fi
