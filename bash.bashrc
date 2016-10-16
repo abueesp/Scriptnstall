@@ -11,11 +11,9 @@ export HISTTIMEFORMAT='%F %T '
 export HISTCONTROL=ignoredups
 export HISTCONTROL=ignorespace
 alias rmhist="history -c"
-alias deletehist="history -c"
 alias anonhist="export HISTSIZE=0"
 alias hist="export HISTSIZE=1"
 alias shis="history | grep"
-alias searchhist="history | grep"
 
 ##Colors
 color_def="~/.colorrc"
@@ -691,6 +689,7 @@ alias ubuntusheet="firefox -new-tab  https://slashbox.org/index.php/Ubuntu#Cheat
 alias vimsheet="firefox -new-tab  http://michael.peopleofhonoronly.com/vim/vim_cheat_sheet_for_programmers_screen.png && firefox -new-tab https://cdn.shopify.com/s/files/1/0165/4168/files/digital-preview-letter.png && firefox -new-tab https://michael.peopleofhonoronly.com/vim/vim_cheat_sheet_for_programmers_screen.png && firefox -new-tab https://cdn.shopify.com/s/files/1/0165/4168/files/digital-preview-letter.png"
 alias wgetsheet="firefox -new-tab https://www.thegeekstuff.com/2009/09/the-ultimate-wget-download-guide-with-15-awesome-examples/"
 alias soliditysheet="firefox -new-tab https://solidity.readthedocs.io/en/latest/units-and-global-variables.html"
+alias chsheet="echo 'chmod: Change the file modes/attributes/permissions | chown: Change the file ownership | chgrp: Change the file group ownership'"
 ### Functions ###
 
 freethis(){
