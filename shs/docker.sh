@@ -41,7 +41,6 @@ cd ..
 #Securing 
 sudo wget https://raw.githubusercontent.com/abueesp/master/apparmor.sh
 sudo sh apparmor.sh
-echo 'DO NOT USE SUDO TO RUN THE CONTAINER, BUT SSH OR PASSWORDS INSIDE EITHER' thanks
 sudo apt-get install lxc -y # –lxc-conf /usr/share/lxc/config/common.seccomp
 sudo iptables -F
 sudo iptables -A INPUT -i lo -j ACCEPT
@@ -51,16 +50,8 @@ sudo iptables -P INPUT DROP
 sudo iptables -P OUTPUT ACCEPT ##If you are a server change this to DROP OUTPUT connections by default too
 sudo iptables -P FORWARD DROP
 sudo iptables restart
-#-lxc-conf=”lxc.id_map = u 0 100000 65536″ -lxc-conf=”lxc.id_map = g 0 100000 65536″
-#–cap-drop=fsetid –cap-drop=fowner –cap-drop=mkdnod –cap-drop=net_raw –cap-drop=setgid –cap-drop=setuid –cap-drop=setfcap –cap-drop=setpcap –cap-drop=net_bin_service –cap-drop=sys_chroot –cap-drop=audit_write –cap-drop=audit_control –cap-drop=chown –cap-drop=audit_write –cap-drop=mac_admin –cap-drop=mac_override –cap-drop=mknod –cap-drop=setfcap setpcap –cap-drop=sys_admin –cap-drop=sys_boot –cap-drop=sys_module –cap-drop=sys_nice –cap-drop=sys_pacct –cap-drop=sys_rawio –cap-drop=sys_resource –cap-drop=sys_time –cap-drop=sys_tty_config
-#–secutity-opt=”apparmor:apparmor"
-echo 'Add this to your Dockerfile'
-echo "RUN find / -perm +6000 -type f -exec chmod a-s {} \; \"
-echo "    || true"
-echo "RUN groupadd -r user && useradd -r -g user $USER"
-echo "USER $USER"
 cd /etc/apparmor.d/ && ls
-echo "Choose a profile and introduce the use–secutity-opt=”apparmor:YOURPROFILE" whenever you run docker"
+echo "Use dockersheet for security recommendations"
 
 
 #DockerComposer
@@ -80,6 +71,11 @@ CMD Define default command to run (usually the service CMD f.i. python app.py) :
 ENV	Define an environment variable (ENV PATH /usr/local/yourpackage/bin:$PATH):: EXPOSE	Makes a port available for incoming traffic to the container :: MAINTAINER	Maintainer of the image \
 VOLUME	Make directory available (e.g. for access, backup) :: WORKDIR	Change the current work directory (f.i. /route/code)\
 
+Add this to your Dockerfile: \
+RUN find / -perm +6000 -type f -exec chmod a-s {} \; \|| true\
+RUN groupadd -r user && useradd -r -g user $USER\
+USER $USER\
+
 #Puedes también añadir un DockerCompose.yml file para abrir puertos de servicios determinados \
 version: “2“  services:    web:      build: .     ports:      - “5000:5000“     volumes:      - .:/code     depends_on:      - redis   redis:     image: redis\
 
@@ -87,18 +83,24 @@ version: “2“  services:    web:      build: .     ports:      - “5000:5000
 Docker build -t imagenameapp:versionapp nameofimage dockerfile. \
 docker-compose up -d \
 
-##O si la has descargado, verifícala\
+##O si no, descárgala y verifícala\
+https://access.redhat.com/search/#/container-images\
 docker pull debian@sha256:shastring\
 
 #See current images \
 docker images    \
 docker-compose ps\
 
+#Check your secure profiles\
+cd /etc/apparmor.d/ && ls\
+Choose a profile and introduce the use–secutity-opt=”apparmor:YOURPROFILE” whenever you run docker\
+DO NOT USE SUDO TO RUN THE CONTAINER, BUT SSH OR PASSWORDS INSIDE EITHER\
+
 #Run a image on a container \
 docker run  -it --name myappimageforcontainer -d -p 1337:80 –lxc-conf /usr/share/lxc/config/common.seccomp -lxc-conf=”lxc.id_map = u 0 100000 65536″ -lxc-conf=”lxc.id_map = g 0 100000 65536″ –cap-drop=fsetid –cap-drop=fowner –cap-drop=mkdnod –cap-drop=net_raw –cap-drop=setgid –cap-drop=setuid –cap-drop=setfcap –cap-drop=setpcap –cap-drop=net_bin_service –cap-drop=sys_chroot –cap-drop=audit_write –cap-drop=audit_control –cap-drop=chown –cap-drop=audit_write –cap-drop=mac_admin –cap-drop=mac_override –cap-drop=mknod –cap-drop=setfcap setpcap –cap-drop=sys_admin –cap-drop=sys_boot –cap-drop=sys_module –cap-drop=sys_nice –cap-drop=sys_pacct –cap-drop=sys_rawio –cap-drop=sys_resource –cap-drop=sys_time –cap-drop=sys_tty_config \
  docker-compose run web env \
  \
-puedes añadir las instrucciones para balance como -c 512 (normal es cpu 1024) o -m 512m, para conectar containers --icc=false --iptables, o -read-only\
+puedes añadir las instrucciones para balance como -c 512 (normal es cpu 1024) o -m 512m, para conectar containers --icc=false --iptables y sus namespaces --pid=host --net=host --ipc=host , o -read-only\
  \
 #Visita tu webapp \
 go to IP:1337 and there it is \
