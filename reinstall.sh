@@ -6,11 +6,11 @@ sudo sysctl -p
 #Prntscreensound
 sudo mv /usr/share/sounds/freedesktop/stereo/camera-shutter.oga /usr/share/sounds/freedesktop/stereo/camera-shutter-disabled.oga
 #Bluetooth
-sudo sed -i 's/InitiallyPowered = true/InitiallyPowered = false/g' /etc/bluetooth/main.conf
+sudo vi /etc/bluetooth/main.conf -c ':%s/\<InitiallyPowered = true\>/<InitiallyPowered = false\>/gIc' -c ':wq'
 rfkill block bluetooth
 #Sudo on Files Eos
 echo "[Contractor Entry]\nName=Open folder as root\nIcon=gksu-root-terminal\nDescription=Open folder as root\nMimeType=inode;application/x-sh;application/x-executable;\nExec=gksudo pantheon-files -d %U\nGettext-Domain=pantheon-files" >> Open_as_admin.contract
-sudo mv Open_as_admin.contract /usr/share/contractor/Open_as_admi$
+sudo mv Open_as_admin.contract /usr/share/contractor/Open_as_admin
 rm Open_as_admin.contract
 
 #mirror
@@ -21,9 +21,10 @@ sudo rm bash.bashrc**
 #SSH
 sudo apt-get install ssh -y
 newsshkey
-sudo sed -i "s/NoDisplay=true/NoDisplay=false/g" /etc/xdg/autostart/gnome-keyring-ssh.desktop
-sudo sed -i 's/PermitRootLogin without password/PermitRootLogin no/' /etc/ssh/sshd_config #noroot
-sudo sed -i 's/Port **/Port 1022/' /etc/ssh/sshd_config #SSH PORT OTHER THAN 22, SET 1022
+
+sudo vi /etc/xdg/autostart/gnome-keyring-ssh.desktop -c ':%s/\<NoDisplay=true\>/<NoDisplay=false\>/gIc' -c ':wq'
+sudo vi /etc/ssh/sshd_config -c ':%s/\<PermitRootLogin without password\>/<PermitRootLogin no>/gIc' -c ':wq'  #noroot
+sudo vi /etc/ssh/sshd_config -c ':%s/\<Port **\>/<Port 1022\>/gIc' -c ':wq' #SSH PORT OTHER THAN 22, SET 1022
 sudo /etc/init.d/ssh restart
 sudo chown -R $USER:$USER .ssh
 sudo chmod -R 600 .ssh 
@@ -273,9 +274,11 @@ sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 echo "Please write down an email to send you notifications when someone is attacking your ports: "
 read email
 echo "You entered: $email"
-sed "s/destemail = your_email@domain.com/destemail = $email/g" /etc/fail2ban/jail.local
-sed "s/action = %(action_)s/action = %(action_mw)s/g" /etc/fail2ban/jail.local
-sed -e "s/enabled  = false/enabled  = true/g" /etc/fail2ban/jail.local
+
+sudo vi /etc/fail2ban/jail.local ':%s/\<destemail = your_email@domain.com\>/<destemail = $email\>/gIc' ':wq'
+cat /etc/fail2ban/jail.local | grep destemail
+sudo vi /etc/fail2ban/jail.local ':%s/\<action = %(action_)s\>/<action = %(action_mw)s\>/gIc' ':wq'
+sudo vi /etc/fail2ban/jail.local ':%s/\<enabled  = false\>/<enabled  = true\>/gIc' ':wq'
 sudo apt-get install zenmap -y
 
 ##Virtualbox
