@@ -476,7 +476,7 @@ tmux new-session -s 'MyTS' -n 'w1' -d 'vim'
 tmux split-window -v -t 'w1' -d 'python'
 tmux split-window -h -t 'w1' -c '/home/$USER'
 tmux new-window -n 'w2' -t 'MyTS' -c '/home/$USER/devcon/'
-tmux split-window -h -t 'w2' 'watch free'
+tmux split-window -h -t 'w2' 'lynx https://encrypted.google.com'
 tmux split-window -v -t 'w2'
 tmux send-keys 'tmux list-sessions && tmux list-windows && tmux list-panes && stop'  C-m
 tmux -2 attach-session -t 'MyTS'
