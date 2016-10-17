@@ -651,6 +651,7 @@ alias shist="history | grep"
 alias vectorize="xargs"
 alias countlines="awk '/a/{++cnt} END {print "Count = ", cnt}'"
 alias chrome="/usr/share/iron/iron"
+alias ffx='/home/$USER/icecat/./icecat
 
 selectelements () {
 read -p "Print from element number: " first
