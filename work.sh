@@ -570,9 +570,19 @@ wget https://ftp.opera.com/pub/opera-developer/41.0.2349.0/linux/opera-developer
 sudo dpkg -i opera**.deb
 sudo rm opera**.deb
 wget http://www.srware.net/downloads/iron64.deb
+
 sudo dpkg -i iron64.deb
 sudo rm iron64.deb
 echo "alias iron='/usr/share/iron/iron'" >> sudo /etc/bash.bashrc
+
+wget https://ftp.gnu.org/gnu/icecat/38.8.0-gnu2/icecat-38.8.0.en-US.linux-x86_64.tar.bz2
+wget https://ftp.gnu.org/gnu/icecat/38.8.0-gnu2/icecat-38.8.0.en-US.linux-x86_64.tar.bz2.sig
+gpg --output icecat**tar.bz2 --decrypt icecat**tar.bz2.sig
+tar -jxvf **tar.bz2
+
+wget http://downloads.sourceforge.net/project/dooble/Version%201.56b/dooble-master.zip
+
+
 
 
 
