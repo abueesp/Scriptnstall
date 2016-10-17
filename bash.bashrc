@@ -680,6 +680,15 @@ read -p "Introduce name of the new fixed copy" thatone
 sed 'N; s/\n / /; P; D' $thisis >> interm.trans
 uniq interm.trans >> $thatone
 sudo rm interm.trans
+cat $thatone
+}
+
+allinoneline {
+read -p "Introduce name of the file" thisis
+read -p "Introduce name of the new fixed copy" thatone
+cat $thisis | tr "\n" " " >> $thatone
+cat $thatone
+}
 
 ### Some cheatsheets ###
 alias subst='echo "vi filename.txt -c \":Ubuntu%s/\<tmux\>/Linux/gIc \" -c \":wq \" meaning (:code) (tres after the first apparition of Ubuntu) (% make changes in all lines, use {START-n},{END-n} instead) (s/ search) (\<\> exact word) (UNIX/ old word) (Linux/ new word) (g global – each occurrence in the line is changed, rather than just the first) (I case sensitive) (c confirm signal)'"
