@@ -650,6 +650,7 @@ alias signapk="java -jar ~/android-studio**/bin/sign.jar $2"
 alias shist="history | grep"
 alias vectorize="xargs"
 alias countlines="awk '/a/{++cnt} END {print "Count = ", cnt}'"
+alias chrome="/usr/share/iron/iron"
 
 selectelements () {
 read -p "Print from element number: " first
