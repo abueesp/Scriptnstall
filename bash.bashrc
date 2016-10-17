@@ -81,8 +81,9 @@ Usage: debug
 - verbose: sets -xv flags
 - noexec: sets -xvn flags
 - no parameter sets -x flags
- 
+
 ${script_color} coding for good - node command line $nc 
+tty
 ${command_color} Ƀe ℋuman, be κinđ, be ωise $nc
 
 EOF
@@ -574,10 +575,15 @@ fi
 ##Monitoring
 processmon(){
 read -p "introduce el nombre del proceso" app
+type $app
 sudo lsof -i -n -P | grep $app
-sudo ps ax | grep $app 
-sudo initctl list 
+sudo ps ax | grep $app
+}
+filemon(){
+file read -p "introduce la ruta del archivo" ruta
+file $ruta
 sudo systemctl status 
+sudo strings $ruta
 }
 alias statusmon="sudo pstree -p && sudo ps axfo pid,euser,egroup,args"
 alias usermon="uptime; sudo users; sudo w; sudo who -a; sudo ipcs -m -c; pwd"
@@ -642,7 +648,14 @@ alias androidsdk="sh ~/android-studio**/bin/studio.sh"
 alias decompileapk="java -jar ~/android-studio**/bin/apktool.jar $1"
 alias signapk="java -jar ~/android-studio**/bin/sign.jar $2"
 alias shist="history | grep"
-alias arreglarenglones="sed 'N; s/\n / /; P; D'"
+alias vectorize="xargs"
+
+arreglarenglones() {
+read -p "Introduce name of the file" thisis
+read -p "Introduce name of the new fixed copy" thatone
+sed 'N; s/\n / /; P; D' $thisis >> interm.trans
+uniq interm.trans >> $thatone
+sudo rm interm.trans
 
 ### Some cheatsheets ###
 alias subst='echo "vi filename.txt -c \":Ubuntu%s/\<tmux\>/Linux/gIc \" -c \":wq \" meaning (:code) (tres after the first apparition of Ubuntu) (% make changes in all lines, use {START-n},{END-n} instead) (s/ search) (\<\> exact word) (UNIX/ old word) (Linux/ new word) (g global – each occurrence in the line is changed, rather than just the first) (I case sensitive) (c confirm signal)'"
