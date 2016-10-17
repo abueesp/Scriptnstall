@@ -320,6 +320,13 @@ sudo wget https://github.com/ethereum/emacs-solidity/blob/master/solidity-mode.e
 sudo emacs --insecure
 cd
 sudo rm -r emacs-**
+#emacsbrowser
+git clone http://repo.or.cz/r/conkeror.git
+cd conkeror
+make
+sudo make install
+cd ..
+sudo rm -r conkeror
 
 
 #Ethr
