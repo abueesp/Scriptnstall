@@ -580,7 +580,7 @@ sudo initctl list
 sudo systemctl status 
 }
 alias statusmon="sudo pstree -p && sudo ps axfo pid,euser,egroup,args"
-alias usermon="uptime; sudo users; sudo w; sudo who -a; sudo ipcs -m -c"
+alias usermon="uptime; sudo users; sudo w; sudo who -a; sudo ipcs -m -c; pwd"
 alias sysmon="lsb_release -a; uname -a; id; sudo id; watch -n 2 free -m; logname; ipcs -m -c; sudo logname; sudo ipcs; sudo initctl list; systemctl status; cat /proc/uptime; sudo df -h;  sudo dmesg | less; ipcs -u; sudo service --status-all; sudo htop; sudo w -i; sudo lshw; sudo dmidecode; sudo ps -efH | more; sudo lsof | wc -l; sudo lsof; ps aux | sort -nk +4 | tail"
 alias netmon="sudo vnstat; sudo netstat -ie | more -s  -l -d -f; sudo netstat -s | more -s  -l -d -f; sudo sudo netstat -pt | more -s  -l -d -f; sudo tcpstat -i wlan0 -l -a; sudo iptables -S; sudo w -i; sudo ipcs -u; sudo tcpdump -i wlan0; sudo iotop; sudo ps; sudo netstat -r; echo 'En router ir a Básica -> Estado -> Listado de equipos'"
 alias portmon="sudo nc -l -6 -4 -u; sudo ss -o state established; sudo ss -l; sudo netstat -avnp -e"
@@ -641,6 +641,8 @@ alias newgpg="sudo gpg --gen-key"
 alias androidsdk="sh ~/android-studio**/bin/studio.sh"
 alias decompileapk="java -jar ~/android-studio**/bin/apktool.jar $1"
 alias signapk="java -jar ~/android-studio**/bin/sign.jar $2"
+alias shist="history | grep"
+alias arreglarenglones="sed 'N; s/\n / /; P; D'"
 
 ### Some cheatsheets ###
 alias subst='echo "vi filename.txt -c \":Ubuntu%s/\<tmux\>/Linux/gIc \" -c \":wq \" meaning (:code) (tres after the first apparition of Ubuntu) (% make changes in all lines, use {START-n},{END-n} instead) (s/ search) (\<\> exact word) (UNIX/ old word) (Linux/ new word) (g global – each occurrence in the line is changed, rather than just the first) (I case sensitive) (c confirm signal)'"
