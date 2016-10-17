@@ -651,11 +651,17 @@ alias shist="history | grep"
 alias vectorize="xargs"
 alias countlines="awk '/a/{++cnt} END {print "Count = ", cnt}'"
 
-selectfv () {
+selectelements () {
 read -p "Print from element number: " first
 read -p "Print to element number: " second
 read -p "Introduce the file of vectors: " vect
 awk '/a/ {print $$first "\t" $$second} $vect'
+awk 'BEGIN {print "Arguments =", ARGC}' $vect
+awk 'BEGIN { 
+   for (i = 0; i < ARGC - 1; ++i) { 
+      printf "ARGV[%d] = %s\n", i, ARGV[i] 
+   } 
+}'
 }
 
 arreglarenglones() {
