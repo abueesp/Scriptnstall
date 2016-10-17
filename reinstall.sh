@@ -421,80 +421,83 @@ sudo apt-get install firefox -y
 cd Downloads
 mkdir extensions
 cd extensions
-wget https://addons.mozilla.org/firefox/downloads/latest/722/addon-722-latest.xpi 
-wget https://addons.mozilla.org/firefox/downloads/latest/363974/addon-363974-latest.xpi 
-wget https://addons.mozilla.org/firefox/downloads/latest/409964/addon-409964-latest.xpi 
-wget https://addons.mozilla.org/firefox/downloads/latest/261959/addon-261959-latest.xpi 
-wget https://addons.mozilla.org/firefox/downloads/latest/261959/addon-261959-latest.xpi 
-wget https://addons.mozilla.org/firefox/downloads/latest/1865/addon-1865-latest.xpi  
-wget https://addons.mozilla.org/firefox/downloads/latest/748/addon-748-latest.xpi 
-wget https://addons.mozilla.org/firefox/downloads/latest/7447/addon-7447-latest.xpi 
-wget https://addons.mozilla.org/firefox/downloads/latest/1122/addon-1122-latest.xpi 
-wget https://addons.mozilla.org/firefox/downloads/latest/1237/addon-1237-latest.xpi 
-wget https://addons.mozilla.org/firefox/downloads/latest/3497/addon-3497-latest.xpi t 
-wget https://addons.mozilla.org/firefox/downloads/latest/10900/addon-10900-latest.xpi 
-wget https://addons.mozilla.org/firefox/downloads/latest/306880/platform:2/addon-306880-latest.xpi 
-wget https://addons.mozilla.org/firefox/downloads/latest/193270/addon-193270-latest.xpi
-wget https://addons.mozilla.org/firefox/downloads/latest/5791/addon-5791-latest.xpi 
-wget https://addons.mozilla.org/firefox/downloads/latest/4775/addon-4775-latest.xpi 
-wget https://addons.mozilla.org/firefox/downloads/file/342774/tineye_reverse_image_search-1.2.1-fx.xpi 
-wget https://addons.mozilla.org/firefox/downloads/latest/1117/addon-1117-latest.xpi 
-wget https://addons.mozilla.org/firefox/downloads/latest/60/addon-60-latest.xpi 
-wget https://addons.mozilla.org/firefox/downloads/latest/1843/addon-1843-latest.xpi 
-wget https://addons.mozilla.org/firefox/downloads/latest/355192/addon-355192-latest.xpi 
-wget https://addons.mozilla.org/firefox/downloads/file/229626/sql_inject_me-0.4.7-fx.xpi 
-wget https://addons.mozilla.org/firefox/downloads/latest/2324/addon-2324-latest.xpi 
-wget https://addons.mozilla.org/firefox/downloads/latest/532/addon-532-latest.xpi 
-wget https://addons.mozilla.org/firefox/downloads/latest/5523/addon-5523-latest.xpi 
-wget https://addons.mozilla.org/firefox/downloads/file/413865/mutetab-0.0.2-fx.xpi 
-wget https://addons.mozilla.org/firefox/downloads/latest/387051/addon-387051-latest.xpi 
-wget https://addons.mozilla.org/firefox/downloads/latest/10586/addon-10586-latest.xpi 
-wget https://addons.mozilla.org/firefox/downloads/latest/607454/addon-607454-latest.xpi 
-wget https://addons.mozilla.org/firefox/downloads/latest/521554/addon-521554-latest.xpi 
-wget https://addons.mozilla.org/firefox/downloads/file/262658/cryptocat-2.2.2-fx.xpi 
-wget https://addons.mozilla.org/firefox/downloads/latest/383235/addon-383235-latest.xpi 
-wget https://addons.mozilla.org/firefox/downloads/file/387220/text_to_voice-1.15-fx.xpi 
-wget https://addons.mozilla.org/firefox/downloads/latest/161670/addon-161670-latest.xpi 
-wget https://addons.mozilla.org/firefox/downloads/latest/3899/addon-3899-latest.xpi 
-wget https://addons.mozilla.org/firefox/downloads/file/281702/google_privacy-0.2.4-sm+fx.xpi 
-wget https://addons.mozilla.org/firefox/downloads/latest/329784/addon-329784-latest.xpi
-wget https://addons.mozilla.org/firefox/downloads/latest/509336/addon-509336-latest.xpi 
-wget https://addons.mozilla.org/firefox/downloads/latest/496120/addon-496120-latest.xpi 
-wget https://addons.mozilla.org/firefox/downloads/latest/8661/addon-8661-latest.xpi 
-wget https://addons.mozilla.org/firefox/downloads/latest/599152/addon-599152-latest.xpi
-wget https://addons.mozilla.org/firefox/downloads/latest/473878/addon-473878-latest.xpi
-wget https://addons.mozilla.org/firefox/downloads/latest/45281/addon-45281-latest.xpi 
-wget https://addons.mozilla.org/firefox/downloads/latest/3829/addon-3829-latest.xpi 
-wget https://addons.mozilla.org/firefox/downloads/latest/229918/addon-229918-latest.xpi 
-wget https://addons.mozilla.org/firefox/downloads/file/373868/soundcloud_downloader_soundgrab-0.98-fx.xpi 
-wget https://addons.mozilla.org/firefox/downloads/latest/415846/addon-415846-latest.xpi 
-wget https://addons.mozilla.org/firefox/downloads/latest/387429/addon-387429-latest.xpi 
-wget https://addons.mozilla.org/firefox/downloads/latest/292320/addon-292320-latest.xpi
-wget https://addons.mozilla.org/firefox/downloads/latest/695840/addon-695840-latest.xpi
-wget https://addons.mozilla.org/firefox/downloads/latest/3456/addon-3456-latest.xpi
-wget https://addons.mozilla.org/firefox/downloads/latest/tab-groups-panorama/addon-671381-latest.xpi
+
+wget https://raw.githubusercontent.com/abueesp/Firefox-Security-Toolkit/master/firefox_security_toolkit.sh ## Cookie Manager # Copy as Plain Text # Crypto Fox # CSRF-Finder # Disable WebRTC # FireBug # Fireforce # FlagFox # Foxy Proxy # HackBar # Live HTTP Headers # Multi Fox # PassiveRecon # Right-Click XSS # Tamper Data # User Agent Switcher # Wappalyzer # Web Developer
+sh firefox_security_toolkit.sh
+rm firefox_security_toolkit.sh
+
+wget https://addons.mozilla.org/firefox/downloads/file/229626/sql_inject_me-0.4.7-fx.xpi #SQL Inject Me
+wget https://addons.mozilla.org/firefox/downloads/latest/521554/addon-521554-latest.xpi #DecentralEyes
+wget https://addons.mozilla.org/firefox/downloads/latest/607454/addon-607454-latest.xpi #UBlockOrigin
+wget https://addons.mozilla.org/firefox/downloads/latest/383235/addon-383235-latest.xpi #FlashDisable
+wget https://addons.mozilla.org/firefox/downloads/file/281702/google_privacy-0.2.4-sm+fx.xpi #GooglePriv
+wget https://addons.mozilla.org/firefox/downloads/latest/415846/addon-415846-latest.xpi #SelfDestructing Cookies
+wget https://addons.mozilla.org/firefox/downloads/latest/387051/addon-387051-latest.xpi #RemoveGoogleTracking
+wget https://addons.mozilla.org/firefox/downloads/latest/722/addon-722-latest.xpi #NoScript
+wget https://addons.mozilla.org/firefox/downloads/latest/1865/addon-1865-latest.xpi  #AdBlock Plus
+wget https://addons.mozilla.org/firefox/downloads/latest/496120/addon-496120-latest.xpi #LocationGuard
+wget https://addons.mozilla.org/firefox/downloads/latest/473878/addon-473878-latest.xpi #RandomAgentSpoofer
+wget https://addons.mozilla.org/firefox/downloads/latest/229918/addon-229918-latest.xpi #HTTPS Everywhere
+
+wget https://addons.mozilla.org/en-US/firefox/downloads/latest/2109/addon-2109-latest.xpi #FEBE Backups
+wget https://addons.mozilla.org/firefox/downloads/latest/363974/addon-363974-latest.xpi #Lightbeam
+wget https://addons.mozilla.org/firefox/downloads/latest/409964/addon-409964-latest.xpi #VideoDownloadHelper
+wget https://addons.mozilla.org/firefox/downloads/latest/export-to-csv/addon-364467-latest.xpi #Export Table to CSV
+wget https://addons.mozilla.org/firefox/downloads/latest/tabletools2/addon-296783-latest.xpi #TableTools2
+wget https://addons.mozilla.org/firefox/downloads/latest/261959/addon-261959-latest.xpi #Bloody Vikings Disposable Email
+wget https://addons.mozilla.org/firefox/downloads/latest/748/addon-748-latest.xpi #Greasemonkey
+wget https://addons.mozilla.org/firefox/downloads/latest/7447/addon-7447-latest.xpi #NetVideoHunter
+wget https://addons.mozilla.org/firefox/downloads/latest/1237/addon-1237-latest.xpi #QuickJava
+wget https://addons.mozilla.org/firefox/downloads/latest/3497/addon-3497-latest.xpi #EnglishUSDict
+wget https://addons.mozilla.org/firefox/downloads/file/502726/colorfultabs-31.0.8-fx+sm.xpi #ColorfulTabs
+wget https://addons.mozilla.org/firefox/downloads/file/485893/forecastfox_fix_version-2.4.8-fx+sm+tb.xpi #ForecastWeather
+wget https://addons.mozilla.org/firefox/downloads/latest/193270/addon-193270-latest.xpi #PrintEdit
+wget https://addons.mozilla.org/firefox/downloads/latest/5791/addon-5791-latest.xpi #Flagfox
+wget https://addons.mozilla.org/firefox/downloads/latest/4775/addon-4775-latest.xpi #AutoFill Forms
+wget https://addons.mozilla.org/firefox/downloads/file/342774/tineye_reverse_image_search-1.2.1-fx.xpi #TinyEye Reverse ImageSearch
+wget https://addons.mozilla.org/firefox/downloads/latest/1117/addon-1117-latest.xpi #FoxClocks
+wget https://addons.mozilla.org/firefox/downloads/latest/355192/addon-355192-latest.xpi #MindTheTime
+wget https://addons.mozilla.org/firefox/downloads/latest/1843/addon-1843-latest.xpi #Firebug
+wget https://addons.mozilla.org/firefox/downloads/latest/161670/addon-161670-latest.xpi #FlashFirebug
+wget https://addons.mozilla.org/firefox/downloads/latest/2324/addon-2324-latest.xpi #Session Manager
+wget https://addons.mozilla.org/firefox/downloads/latest/532/addon-532-latest.xpi #LinkChecker
+wget https://addons.mozilla.org/firefox/downloads/latest/5523/addon-5523-latest.xpi #gui:config extraoptions
+wget https://addons.mozilla.org/firefox/downloads/file/413865/mutetab-0.0.2-fx.xpi #mutetab
+wget https://addons.mozilla.org/firefox/downloads/latest/10586/addon-10586-latest.xpi #URL Shortener
+wget https://addons.mozilla.org/firefox/downloads/file/387220/text_to_voice-1.15-fx.xpi #TextToVoice
+ 
+wget https://addons.mozilla.org/firefox/downloads/latest/8661/addon-8661-latest.xpi #WorldIP
+wget https://addons.mozilla.org/firefox/downloads/latest/599152/addon-599152-latest.xpi #TabMemoryUsage
+wget https://addons.mozilla.org/firefox/downloads/latest/45281/addon-45281-latest.xpi #ePubReader
+wget https://addons.mozilla.org/firefox/downloads/latest/3829/addon-3829-latest.xpi #liveHTTPHeaders
+wget https://addons.mozilla.org/firefox/downloads/file/373868/soundcloud_downloader_soundgrab-0.98-fx.xpi #Soundcloud
+wget https://addons.mozilla.org/firefox/downloads/latest/387429/addon-387429-latest.xpi #Reddit Enhacenment Suit
+wget https://addons.mozilla.org/firefox/downloads/latest/695840/addon-695840-latest.xpi #FlashDebugger
+
+wget https://addons.mozilla.org/firefox/downloads/latest/390151/addon-390151-latest.xpi #TOS
+wget https://addons.mozilla.org/firefox/downloads/latest/3456/addon-3456-latest.xpi #WOT
+wget https://addons.mozilla.org/firefox/downloads/latest/certificate-patrol/addon-6415-latest.xpi #certificate patrol
+wget https://addons.mozilla.org/firefox/downloads/latest/perspectives/addon-7974-latest.xpi #perspectivenetworknotaries
+wget https://addons.mozilla.org/firefox/downloads/latest/306880/platform:2/addon-306880-latest.xpi #Keefox
+wget https://addons.mozilla.org/firefox/downloads/latest/292320/addon-292320-latest.xpi #KeePass Passifox
 
 #thunderbird extensions
 mkdir thunderbird
 cd thunderbird
-wget https://addons.mozilla.org/thunderbird/downloads/latest/611/addon-611-latest.xpi 
-wget https://addons.mozilla.org/thunderbird/downloads/latest/1339/addon-1339-latest.xpi
-wget https://addons.mozilla.org/thunderbird/downloads/latest/556/addon-556-latest.xpi 
-wget https://addons.mozilla.org/thunderbird/downloads/latest/4003/addon-4003-latest.xpi
-wget https://addons.mozilla.org/thunderbird/downloads/latest/1556/addon-1556-latest.xpi 
-wget https://addons.mozilla.org/thunderbird/downloads/latest/550/addon-550-latest.xpi 
-wget https://addons.mozilla.org/thunderbird/downloads/latest/2313/platform:2/addon-2313-latest.xpi 
-wget https://addons.mozilla.org/thunderbird/downloads/latest/4631/addon-4631-latest.xpi 
-wget https://addons.mozilla.org/thunderbird/downloads/latest/2199/addon-2199-latest.xpi 
-wget https://addons.mozilla.org/thunderbird/downloads/latest/550/addon-550-latest.xpi 
-wget https://addons.mozilla.org/thunderbird/downloads/latest/71/addon-71-latest.xpi 
-wget https://addons.mozilla.org/thunderbird/downloads/latest/210/addon-210-latest.xpi 
-wget https://addons.mozilla.org/thunderbird/downloads/latest/875/addon-875-latest.xpi 
-wget https://addons.mozilla.org/thunderbird/downloads/latest/1003/addon-1003-latest.xpi 
-wget https://addons.mozilla.org/firefox/downloads/latest/390151/addon-390151-latest.xpi
-wget https://addons.mozilla.org/firefox/downloads/latest/passiverecon/addon-6196-latest.xpi
-wget https://addons.mozilla.org/firefox/downloads/latest/certificate-patrol/addon-6415-latest.xpi
-wget https://addons.mozilla.org/firefox/downloads/latest/perspectives/addon-7974-latest.xpi
+wget https://addons.mozilla.org/thunderbird/downloads/latest/611/addon-611-latest.xpi #Signature Switch
+wget https://addons.mozilla.org/thunderbird/downloads/latest/1339/addon-1339-latest.xpi #Expression Search Gmail
+wget https://addons.mozilla.org/thunderbird/downloads/latest/556/addon-556-latest.xpi #attachmentextractor
+wget https://addons.mozilla.org/thunderbird/downloads/latest/4003/addon-4003-latest.xpi #autozipattachments
+wget https://addons.mozilla.org/thunderbird/downloads/latest/1556/addon-1556-latest.xpi #allowhtmltemp
+wget https://addons.mozilla.org/thunderbird/downloads/latest/550/addon-550-latest.xpi #mailredirect
+wget https://addons.mozilla.org/thunderbird/downloads/latest/2313/platform:2/addon-2313-latest.xpi #sm+tb linux
+wget https://addons.mozilla.org/thunderbird/downloads/latest/4631/addon-4631-latest.xpi #provider for google calendar
+wget https://addons.mozilla.org/thunderbird/downloads/latest/2199/addon-2199-latest.xpi #withattach
+wget https://addons.mozilla.org/thunderbird/downloads/latest/550/addon-550-latest.xpi #mailredirect
+wget https://addons.mozilla.org/thunderbird/downloads/latest/71/addon-71-latest.xpi #enigmail
+wget https://addons.mozilla.org/thunderbird/downloads/latest/210/addon-210-latest.xpi #viewheaders
+wget https://addons.mozilla.org/thunderbird/downloads/latest/875/addon-875-latest.xpi #tb header tools
+wget https://addons.mozilla.org/thunderbird/downloads/latest/1003/addon-1003-latest.xpi #header scroll extension
 cd ..
  
  
