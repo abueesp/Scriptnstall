@@ -357,6 +357,7 @@ sudo rm -r emacs-**
 
 ##Utils
 sudo apt-get install gparted -y
+sudo apt-get install baobab -y
 sudo apt-get install nemo -y
 sudo apt-get install thunderbird -y
 thunderbird https://addons.mozilla.org/thunderbird/downloads/latest/775/addon-775-latest.xpi
