@@ -565,9 +565,15 @@ read -p "Password  \n" Passs
 read -p "SMTP. Gmail uses smtp.gmail.com:587    \n" SMTP
 sudo sed -i 's/#FromLineOverride=YES/FromLineOverride=YES \AuthUser=$emmail \AuthPass=$Passs \mailhub=$SMTP \UseSTARTTLS=YES/g' /etc/ssmtp/ssmtp.conf
 
+#Other browsers
 wget https://ftp.opera.com/pub/opera-developer/41.0.2349.0/linux/opera-developer_41.0.2349.0_amd64.deb
 sudo dpkg -i opera**.deb
 sudo rm opera**.deb
+wget http://www.srware.net/downloads/iron64.deb
+sudo dpkg -i iron64.deb
+sudo rm iron64.deb
+echo "alias iron='/usr/share/iron/iron'" >> sudo /etc/bash.bashrc
+
 
 
 #FTP VSFTPD
