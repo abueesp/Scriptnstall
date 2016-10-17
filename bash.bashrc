@@ -1069,3 +1069,5 @@ alias meteor="firefox -new-tab -url http://localhost:3000 && cd /home/$USER/linu
 
 #3 random numbers
 alias grn='expr $RANDOM % 9223372036854775807 && od -N 4 -t uL -An /dev/random | tr -d " " && openssl rand 4 | od -DAn'
+
+alias diskusage="df -h && sudo baobab"
