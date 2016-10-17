@@ -580,7 +580,7 @@ sudo initctl list
 sudo systemctl status 
 }
 alias usermon="uptime; sudo users; sudo w; sudo who -a; sudo ipcs -m -c"
-alias sysmon="lsb_release -a; uname -a; watch -n 2 free -m; sudo initctl list; systemctl status; cat /proc/uptime; sudo df -h;  sudo dmesg | less; ipcs -u; sudo ipcs -m -c; sudo service --status-all; sudo htop; sudo w -i; sudo lshw; sudo dmidecode; sudo ps -efH | more; sudo lsof | wc -l; sudo lsof; ps aux | sort -nk +4 | tail"
+alias sysmon="lsb_release -a; uname -a; id; sudo id; watch -n 2 free -m; sudo ipcs; sudo initctl list; systemctl status; cat /proc/uptime; sudo df -h;  sudo dmesg | less; ipcs -u; sudo ipcs -m -c; sudo service --status-all; sudo htop; sudo w -i; sudo lshw; sudo dmidecode; sudo ps -efH | more; sudo lsof | wc -l; sudo lsof; ps aux | sort -nk +4 | tail"
 alias netmon="sudo vnstat; sudo netstat -ie; sudo netstat -s; sudo sudo netstat -pt; sudo tcpstat -i wlan0 -l -a; sudo iptables -S; sudo w -i; sudo ipcs -u; sudo tcpdump -i wlan0; sudo iotop; sudo ps; sudo netstat -r; echo 'En router ir a Básica -> Estado -> Listado de equipos'"
 alias portmon="sudo nc -l -6 -4 -u; sudo ss -o state established; sudo ss -l; sudo netstat -avnp -e"
 alias vpnmon="firefox -new-tab dimage.kali.org && firefox -new-tab https://www.dnsleaktest.com/results.html"
@@ -631,7 +631,7 @@ alias aptclean='sudo apt-get autoremove'
 alias rename='mv'
 alias tmuxkillall="tmux ls | grep : | cut -d. -f1 | awk '{print substr($1, 0, length($1)-1)}' | xargs kill"
 alias gitlist='git remote -v'
-alias compare='diff -y -r'
+alias compara='diff -y -r'
 alias adbconnect="mtpfs -o allow_other /mnt/mobile"
 alias adbdisconnect="fusermount -u /mnt/mobile"
 alias newgpg="sudo gpg --gen-key"
