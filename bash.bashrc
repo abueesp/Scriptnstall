@@ -649,6 +649,14 @@ alias decompileapk="java -jar ~/android-studio**/bin/apktool.jar $1"
 alias signapk="java -jar ~/android-studio**/bin/sign.jar $2"
 alias shist="history | grep"
 alias vectorize="xargs"
+alias countlines="awk '/a/{++cnt} END {print "Count = ", cnt}'"
+
+selectfv () {
+read -p "Print from element number: " first
+read -p "Print to element number: " second
+read -p "Introduce the file of vectors: " vect
+awk '/a/ {print $$first "\t" $$second} $vect'
+}
 
 arreglarenglones() {
 read -p "Introduce name of the file" thisis
