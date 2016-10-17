@@ -664,6 +664,14 @@ awk 'BEGIN {
 }'
 }
 
+selectline () {
+read -p "Write first line: " fline
+read -p "Write last line: " lline
+read -p "Introduce the file with lines: " lined
+cat $lined | sed -n '$fline,$llinep'
+echo "add | xargs -n 2 >> tupled.txt to put the result in tuples'
+}
+
 arreglarenglones() {
 read -p "Introduce name of the file" thisis
 read -p "Introduce name of the new fixed copy" thatone
