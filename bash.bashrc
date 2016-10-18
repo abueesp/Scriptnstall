@@ -79,13 +79,13 @@ ${command_color}- command executed: white$nc
 
 Usage: debug 
 ${lightgrey} - help|usage: print this screen
+${pink} - lynx web browser
 ${lightred} - verbose: sets -xv flags
 ${lightgreen} - noexec: sets -xvn flags
 ${lightcyan} - no parameter sets -x flags
 ${lightblue} - nanobash|geditbash
 ${blue} - alias powered
-${pink} - lynx web
-${purple} - tmuxts: total mode
+${purple} - tmuxts full
 
 ${script_color} coding for good - node command line $nc 
 ${command_color} Ƀe ℋuman, be κinđ, be ωise $nc
