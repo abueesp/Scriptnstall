@@ -646,6 +646,7 @@ alias aptclean='sudo apt-get autoremove'
 alias rename='mv'
 alias tmuxkillall="tmux ls | grep : | cut -d. -f1 | awk '{print substr($1, 0, length($1)-1)}' | xargs kill"
 alias gitlist='git remote -v'
+alias diferencia='diff3 -x'
 alias compara='diff -y -r'
 alias adbconnect="mtpfs -o allow_other /mnt/mobile"
 alias adbdisconnect="fusermount -u /mnt/mobile"
