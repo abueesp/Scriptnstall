@@ -43,6 +43,14 @@ sed -i  "aalias zctxs='~/zcash/./src/zcash-cli listtransactions'"  /etc/bash.bas
 sed -i  "aalias zcstart='~/zcash/./src/zcashd -daemon'" /etc/bash.bashrc
 sed -i  "aalias zcstop='lsof -i | grep zcashd && ~/zcash/./src/zcash-cli stop && sudo pkill -9 zcashd && sudo pkill -9 zcash-cli'" /etc/bash.bashrc
 
+##Install GUI
+sudo apt-get install git default-jdk ant -y
+git clone https://github.com/vaklinov/zcash-swing-wallet-ui.git
+cd zcash-swing-wallet-ui/
+ant -buildfile ./src/build/build.xml
+chmod u+x ./build/jars/ZCashSwingWalletUI.jar
+./build/jars/ZCashSwingWalletUI.jar
+java -jar /home/user/zcash/src/ZCashSwingWalletUI.jar
 
 ##Benchmarks
 #AssWinonLinux & Linux 1s/100-200ms 10-5S/s
