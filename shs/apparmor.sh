@@ -1,6 +1,6 @@
 #AppArmor 
 sudo rm -r /etc/apparmorprofiles
-sudo apt-get install apparmor apparmor-utils auditd policycorutils -y ##con Auditd y Policycoreutils (SELinux)
+sudo apt-get install apparmor apparmor-utils auditd policycoreutils -y ##con Auditd y Policycoreutils (SELinux)
 sudo apparmor_status
 sudo git clone git://git.launchpad.net/apparmor-profiles
 uname -a
