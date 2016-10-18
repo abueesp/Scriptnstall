@@ -610,6 +610,7 @@ alias imprime="lpq && lpstat && lp -d myprinter -E -m -q 100 -o media=legal -o f
 alias nmapp="sudo nmap -v -A --reason -O -sV -PO -sU -sX -f -PN --spoof-mac 0"
 alias nmap100="sudo nmap -F -v -A --reason -O -sV -PO -sU -sX -f -PN --spoof-mac 0"
 alias lss="ls -ld && sudo du -sh && ls -i1 -latr -lSr -FGAhp --color=auto -t -a -al"  # lSr sort by size ltr sort by date
+alias dirr="dir -a --color=auto -g -s -S -t -Z"
 alias lk='ls -lSr --color=auto -FGAhp'        # lSr sort by size ltr sort by date
 alias lsall='ls -ld && sudo du -sh && ls -i1 -latr -lSr -FGAhp --color=auto -t -a -al -lR'        # recursive ls
 alias verifykey="gpg --keyid-format long --import"
