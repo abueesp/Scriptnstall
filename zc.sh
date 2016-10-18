@@ -8,9 +8,9 @@ sudo mkswap /swapfile
 sudo swapon /swapfile
 sudo swapon -s
 fi
-sudo apt-get update
-sudo apt-get install build-essential pkg-config libgtest-dev libc6-dev m4 autoconf libtool ncurses-dev unzip git python zlib1g-dev wget bsdmainutils automake aptitude 
-sudo aptitude install g++ g++-multilib
+sudo apt-get update -y
+sudo apt-get install build-essential pkg-config libgtest-dev libc6-dev m4 autoconf libtool ncurses-dev unzip git python zlib1g-dev wget bsdmainutils automake aptitude -y
+sudo aptitude install g++ g++-multilib -y
 git clone https://github.com/zcash/zcash.git
 cd zcash/
 git checkout v1.0.0-beta1
