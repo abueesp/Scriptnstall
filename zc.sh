@@ -30,18 +30,46 @@ echo "gen=1" >> ~/.zcash/zcash.conf
 echo "Check your conf, add new nodes, etc:"
 nano ~/.zcash/zcash.conf
 ~/zcash/./src/zcashd -daemon
-~/zcash/./src/zcash-cli getinfo
+~/zcash/./src/zcash-cli getmininginfo
 sleep 5
-~/zcash/./src/zcash-cli getinfo
+~/zcash/./src/zcash-cli getwalletinfo
 "Welcome to Zcash. You can check you hashrate using zcbm, consult the info on zcinfo, read the txs with zctxs, and use zcstart and zcstop to manage it. You can also use >>watch free<< to watch your memory consumption."
 ~/zcash/./src/zcash-cli getinfo
 ~/zcash/src/./zcash-cli zcbenchmark solveequihash 10
 ~/zcash/./src/zcash-cli listtransactions
 sed -i  "aalias zcbm='watch -n 2 ~/zcash/src/./zcash-cli zcbenchmark solveequihash 10 && watch -n 2 free -m && watch -n 2 ~/zcash/./src/zcash-cli getinfo'" /etc/bash.bashrc
-sed -i  "aalias zcinfo='~/zcash/./src/zcash-cli getinfo'"  /etc/bash.bashrc
+sed -i  "aalias zcinfo='~/zcash/./src/zcash-cli getinfo && ~/zcash/./src/zcash-cli getwalletinfo && ~/zcash/./src/zcash-cli getmininginfo'"  /etc/bash.bashrc
 sed -i  "aalias zctxs='~/zcash/./src/zcash-cli listtransactions'"  /etc/bash.bashrc
 sed -i  "aalias zcstart='~/zcash/./src/zcashd -daemon'" /etc/bash.bashrc
 sed -i  "aalias zcstop='lsof -i | grep zcashd && ~/zcash/./src/zcash-cli stop && sudo pkill -9 zcashd && sudo pkill -9 zcash-cli'" /etc/bash.bashrc
+echo "\
+\
+zclog() {\
+memory=$(free|awk '/^Mem:/{print $2}')\
+memory=$(echo "$memory/1000" | bc) # integer math in bash\
+mydate=$(date +"%D")\
+echo "$mydate" | tee -a zclog.txt\
+echo "time, block number, difficulty, CPU%, RAM in MB per core" | tee -a zclog.txt\
+c=1\
+until [ $c -gt 240 ]; do # for 1 hour\
+     let c=c+1\
+     mytime=$(date +"%T")\
+     block=$(~/zcash/./src/zcash-cli getblockcount)\
+     difficulty=$(~/zcash/./src/zcash-cli getdifficulty)\
+     difficulty=${difficulty:0:5}\
+     p=$(ps aux | grep zcashd)\
+     q=$(echo "$p" | tail -n1) \
+     cpu=${q:16:3}\
+     if [ "$cpu" == "0.0" ]; then\
+         p=$(echo "$p" | tail -n2)\
+     fi	 	\
+    cpu=${p:16:3}\
+    ram=${p:20:4}\
+     rampercore=$(echo "($ram*$memory/($cpu+1)" | bc)\
+     echo "$mytime $block $difficulty $cpu $rampercore" | tee -a log.txt\
+     sleep 15 # seconds\
+done\
+} >> sudo bash.bashrc
 
 ##Install GUI
 sudo apt-get install git default-jdk ant -y
