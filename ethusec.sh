@@ -180,3 +180,7 @@ read "Introduce your coinbase address" coinbase
 parity --author $coinbase
 sudo apt-get install xterm
 ethminer -G --opencl-device 0 #use --notify-work URL,URL to set urls to push work notifications 
+
+
+#WinonLinuxAss & LinuxAss  1s/100-200ms 10-5S/s
+#CudaLinux 1S/200ms 5S/s  (on GTX 980 224GB/S 20S/s)
