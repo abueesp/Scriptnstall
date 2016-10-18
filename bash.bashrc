@@ -64,9 +64,10 @@ reset_screen() {
 }
 reset_screen
  
+
 usage()
 {
-
+tty
 cat <<EOF
 Default colors are:
 ${level_color}- shell level color:cyan$nc
@@ -77,17 +78,21 @@ ${command_color}- command executed: white$nc
 - Other colors options are: ${darkgrey}darkgrey$nc, ${lightgrey}light grey$nc, ${lightred}light red,${lightgreen}light green, ${blue}blue, ${lightblue}light blue, ${purple}purple, ${pink}pink, ${lightcyan}light cyan$nc.
 
 Usage: debug 
-- help|usage: print this screen
-- verbose: sets -xv flags
-- noexec: sets -xvn flags
-- no parameter sets -x flags
+${lightgrey} - help|usage: print this screen
+${lightred} - verbose: sets -xv flags
+${lightgreen} - noexec: sets -xvn flags
+${lightcyan} - no parameter sets -x flags
+${lightblue} - nanobash|geditbash
+${blue} - alias powered
+${pink} - lynx web
+${purple} - tmuxts: total mode
 
 ${script_color} coding for good - node command line $nc 
-tty
 ${command_color} Ƀe ℋuman, be κinđ, be ωise $nc
 
 EOF
 }
+ 
  
  
 debug_cmd()
@@ -352,7 +357,7 @@ fi
  echo " done."
 }
 
-gitupload () {
+gitupload() {
   
 ###INTRODUCE EMAIL
   read -p "Introduce tu email o pulsa ENTER si ya lo hiciste: " _email
@@ -462,7 +467,7 @@ fi
 }
 
 
-securedelete () {
+securedelete() {
   read -p "DANGER VAS A BORRAR DE FORMA SEGURA TODO. INTRODUCE LA RUTA DE LA CARPETA O EL ARCHIVO SIN EQUIVOCARTE      -->" route
   rin="$route""/**"
   sudo shred -uvzn 3 $route
@@ -470,7 +475,7 @@ securedelete () {
   sudo srm -vrzd $route
   }
   
-tmuxts () {
+tmuxts() {
 tmux new-session -s 'MyTS' -n 'w1' -d 'vim'
 tmux split-window -v -t 'w1' -d 'python'
 tmux split-window -h -t 'w1' -c '/home/$USER'
@@ -484,7 +489,7 @@ tmux select-pane -t 'w2:2'
   }
   
 
-docsthemagic () {
+docsthemagic() {
   read -p "vas a crear las copias, luego armonizar los nombres y finalmente limpiar los metadatos de todos los archivos ubicados en esta carpeta. Introduce los documentos. recuerda que si quieres hacer un backup puedes usar mat -b" docs
   sudo unoconv --format=txt $docs
   sudo unoconv --format=pdf $docs
@@ -649,29 +654,28 @@ alias decompileapk="java -jar ~/android-studio**/bin/apktool.jar $1"
 alias signapk="java -jar ~/android-studio**/bin/sign.jar $2"
 alias shist="history | grep"
 alias vectorize="xargs"
-alias countlines="awk '/a/{++cnt} END {print "Count = ", cnt}'"
+alias countlines="awk '/a/{++cnt} END {print \"Count = \", cnt}'"
 alias chrome="/usr/share/iron/iron"
-alias ffx='/home/$USER/icecat/./icecat
+alias ffx='/home/$USER/icecat/./icecat'
 
-selectelements () {
+selectelements() {
 read -p "Print from element number: " first
 read -p "Print to element number: " second
 read -p "Introduce the file of vectors: " vect
-awk '/a/ {print $$first "\t" $$second} $vect'
+awk '/a/ {print $first "\t" $second} $vect'
 awk 'BEGIN {print "Arguments =", ARGC}' $vect
 awk 'BEGIN { 
    for (i = 0; i < ARGC - 1; ++i) { 
       printf "ARGV[%d] = %s\n", i, ARGV[i] 
-   } 
-}'
+   }'
 }
 
-selectline () {
+selectline() {
 read -p "Write first line: " fline
 read -p "Write last line: " lline
 read -p "Introduce the file with lines: " lined
 cat $lined | sed -n '$fline,$llinep'
-echo "add | xargs -n 2 >> tupled.txt to put the result in tuples'
+echo "add | xargs -n 2 >> tupled.txt to put the result in tuples"
 }
 
 arreglarenglones() {
@@ -683,7 +687,7 @@ sudo rm interm.trans
 cat $thatone
 }
 
-allinoneline {
+allin1line() {
 read -p "Introduce name of the file" thisis
 read -p "Introduce name of the new fixed copy" thatone
 cat $thisis | tr "\n" " " >> $thatone
@@ -691,7 +695,7 @@ cat $thatone
 }
 
 ### Some cheatsheets ###
-alias subst='echo "vi filename.txt -c \":Ubuntu%s/\<tmux\>/Linux/gIc \" -c \":wq \" meaning (:code) (tres after the first apparition of Ubuntu) (% make changes in all lines, use {START-n},{END-n} instead) (s/ search) (\<\> exact word) (UNIX/ old word) (Linux/ new word) (g global – each occurrence in the line is changed, rather than just the first) (I case sensitive) (c confirm signal)'"
+alias subst='echo "vi filename.txt -c \":Ubuntu%s/\<tmux\>/Linux/gIc \" -c \":wq \" meaning (:code) (tres after the first apparition of Ubuntu) (% make changes in all lines, use {START-n},{END-n} instead) (s/ search) (\<\> exact word) (UNIX/ old word) (Linux/ new word) (g global – each occurrence in the line is changed, rather than just the first) (I case sensitive) (c confirm signal)"'
 alias androidsheet="firefox -new-tab https://developer.android.com/design/index.html && firefox -new-tab https://developer.android.com/studio/intro/keyboard-shortcuts.html"
 alias adbsheet="firefox -new-tab http://www.movilzona.es/tutoriales/android/root/principales-comandos-para-adb-y-fastboot-guia-basica/"
 alias emacssheet="firefox -new-tab https://www.emacswiki.org/ && firefox -new-tab http://www.ling.ohio-state.edu/~kyoon/tts/unix-help/LaTeX/emacs-cheatsheet-2-of-2.jpg && firefox -new-tab http://www.muylinux.com/wp-content/uploads/2010/11/Emacs-Cheatsheet-wallpaper.jpg && firefox -new-tab https://github.com/emacs-tw/awesome-emacs#markdown && firefox -new-tab http://es.tldp.org/Tutoriales/doc-tutorial-emacs/intro_emacs.pdf"
@@ -862,7 +866,7 @@ function cdn(){ for i in `seq $1`; do cd ..; done;}
 
 
 ### Extract Archives ###
-extract () {
+extract() {
   if [ -f $1 ] ; then
     case $1 in
       *.tar.bz2)   tar xjvf $1    ;;
@@ -924,7 +928,7 @@ read -p 'Your disk '$sdjah' was mounted on /mnt/'$sdjah'. Do you want to open it
 
 
 #buf - Back Up a file. Usage "bu filename.txt"
-bu () {
+bu() {
   cp $1 ${1}-`date +%Y%m%d%H%M`.backup;
 }
 
@@ -933,10 +937,10 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 
 # use DNS to query wikipedia (wiki QUERY)
-wiki () { dig +short txt $1.wp.dg.cx; }
+wiki() { dig +short txt $1.wp.dg.cx; }
 
 # mount an ISO file. (mountiso FILE)
-mountiso () {
+mountiso() {
   name=`basename "$1" .iso`
   mkdir "/tmp/$name" 2>/dev/null
   sudo mount -o loop "$1" "/tmp/$name"
@@ -944,7 +948,7 @@ mountiso () {
 }
 
 #rename multiple files
-rname () {
+rname() {
 echo introduce from .extension
 read iext
 echo introduce to .extension
@@ -956,7 +960,7 @@ done
 
 
 # search inside pdf
-searchpdf () {
+searchpdf() {
   echo "introduce text to search"
   read text
   echo "introduce pdf filename"
@@ -965,7 +969,7 @@ searchpdf () {
 }
 
 #wine in and out
-  weneedwine () {
+weneedwine() {
   read -p "file to wine" filewine
   wget http://dl.winehq.org/wine/source/1.8/wine-1.8.2.tar.bz2
   tar -jxvf wine**.bz2
@@ -1021,7 +1025,7 @@ done
 
 }
 
-killmycam () {
+killmycam() {
   if sudo fuser /dev/video0; then 
   
   read -p "Este es tu proceso de camara. Introduce el numero m del proceso. " camm
