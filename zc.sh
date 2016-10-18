@@ -43,6 +43,13 @@ sed -i  "aalias zctxs='~/zcash/./src/zcash-cli listtransactions'"  /etc/bash.bas
 sed -i  "aalias zcstart='~/zcash/./src/zcashd -daemon'" /etc/bash.bashrc
 sed -i  "aalias zcstop='lsof -i | grep zcashd && ~/zcash/./src/zcash-cli stop && sudo pkill -9 zcashd && sudo pkill -9 zcash-cli'" /etc/bash.bashrc
 
+
+##Benchmarks
+#AssWinonLinux & Linux 1s/100-200ms 10-5S/s
+
+#CudaLinux 1S/200ms 5S/s  (on GTX 980 224GB/S 20S/s)
+
+#OpenCL2.0AMD
 #https://docs.google.com/spreadsheets/d/1Um22iBf8bPbfuI4rUDZzSB4W444ouUEnQTBnb8EsdYk/edit#gid=0
 #lspci | grep VGA
 #sudo apt-get install xorg lynx -y
@@ -51,6 +58,4 @@ sed -i  "aalias zcstop='lsof -i | grep zcashd && ~/zcash/./src/zcash-cli stop &&
 #mv /tmp/lynx**/L8400-579TMP.zip L8400-579TMP.zip
 #cd fglrx**
 #./amd-driver-installer
-
 ##error: Detected X Server version 'XServer 1.18.3_64a' is not supported. Supported versions are X.Org 6.9 or later, up to XServer 1.10 (default:v2:x86_64:lib:XServer 1.18.3_64a:none:4.4.0-42-generic:) Installation will not proceed.
-
