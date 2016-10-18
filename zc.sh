@@ -69,7 +69,7 @@ until [ $c -gt 240 ]; do # for 1 hour\
      echo "$mytime $block $difficulty $cpu $rampercore" | tee -a log.txt\
      sleep 15 # seconds\
 done\
-} >> sudo bash.bashrc
+}
 
 ##Install GUI
 sudo apt-get install git default-jdk ant -y
