@@ -99,9 +99,9 @@ git clone https://github.com/ryepdx/ethaddress.org
 
 ##Electrum Wallet
 #from https://github.com/ethereum/mist/releases
-wget https://github.com/ethereum/mist/releases/download/v0.8.5/Ethereum-Wallet-linux64-0-8-5.zip
+wget https://github.com/ethereum/mist/releases/download/v0.8.6/Ethereum-Wallet-linux64-0-8-6.zip
 sha1 = $(sha1sum Ethereum**.zip)
-if [ $sha1 "e41f61c581c079f7e94ee52277541663575f63d3dc10ea1e0f9ecf12e9fef072" ]
+if [ $sha1 "73499c9624518de0276e9894d8596c85adb6aded9c9d97f3ea3fbb3282ad115c" ]
 then
     echo "PACKAGE VERIFIED"
 else
@@ -120,9 +120,9 @@ df
 
 ##Mist browser
 #from https://github.com/ethereum/mist/releases
-sudo wget https://github.com/ethereum/mist/releases/download/v0.8.5/Mist-linux64-0-8-5.zip
+sudo wget https://github.com/ethereum/mist/releases/download/v0.8.6/Mist-linux64-0-8-6.zip
 sha1 = $(sha1sum Mist**.zip)
-if [ $sha1 "e003d67db2071eafebe323390f81ae6951cd21d909df22655eb060baeadf32fe" ]
+if [ $sha1 "6160f6d04201495d7f49b75c0e5dd6edda0f7aa82f0a12325cef37d675131395" ]
 then
     echo "PACKAGE VERIFIED"
 else
@@ -143,10 +143,10 @@ echo "This is your free space to download the blockchain. Last time it took 6GB 
 ##Geth
 echo "Geth"
 cd linux
-wget https://github.com/ethereum/go-ethereum/releases/download/v1.4.17/geth-linux-amd64-1.4.17-5a6008e0.tar.gz
+wget https://github.com/ethereum/go-ethereum/releases/download/v1.4.18/geth-linux-amd64-1.4.18-ef9265d0.tar.gz
 tar -zxvf geth**.tar.gz
 sha1 = $(sha1sum geth**.tar.gz)
-if [ $sha1 == "10a3f1ff357d3d6c566b4557df242a28169d1431f19b6505ac1e06c540bfadfd" ]
+if [ $sha1 == "efbace0ef748974becd563803b518965f1567de55b51a444d54a619ed3dae612" ]
 then
     echo "PACKAGE VERIFIED"
 else
@@ -182,5 +182,3 @@ sudo apt-get install xterm
 ethminer -G --opencl-device 0 #use --notify-work URL,URL to set urls to push work notifications 
 
 
-#WinonLinuxAss & LinuxAss  1s/100-200ms 10-5S/s
-#CudaLinux 1S/200ms 5S/s  (on GTX 980 224GB/S 20S/s)
