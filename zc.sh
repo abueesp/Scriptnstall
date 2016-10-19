@@ -1,5 +1,5 @@
 read -p "Delete swapfile and create a 3GB new one [yn]" answer
-if [[ $answer = y ]] ; then
+if [ $answer = "y" ] ; then
 sudo swapon -s
 sudo swapoff -v /swapfile
 sudo rm /swapfile
