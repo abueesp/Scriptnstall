@@ -466,7 +466,11 @@ sudo npm -g install embark-framework
 sudo npm install -g truffle
 #Install solidity compiler
 sudo npm install solc
- 
+
+
+##Contracts
+git clone https://github.com/ethereum/dapp-bin
+
 #Text Edition Tools
 sudo apt-get install unoconv -y
 sudo apt-get install detox -y
