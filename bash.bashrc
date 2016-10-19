@@ -67,7 +67,6 @@ reset_screen
 
 usage()
 {
-tty
 cat <<EOF
 Default colors are:
 ${level_color}- shell level color:cyan$nc
@@ -91,6 +90,7 @@ ${script_color} coding for good - node command line $nc
 ${command_color} Ƀe ℋuman, be κinđ, be ωise $nc
 
 EOF
+tty
 }
  
  
