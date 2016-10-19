@@ -146,7 +146,7 @@ cd linux
 wget https://github.com/ethereum/go-ethereum/releases/download/v1.4.18/geth-linux-amd64-1.4.18-ef9265d0.tar.gz
 tar -zxvf geth**.tar.gz
 sha1 = $(sha1sum geth**.tar.gz)
-if [ $sha1 == "efbace0ef748974becd563803b518965f1567de55b51a444d54a619ed3dae612" ]
+if [ $sha1 "efbace0ef748974becd563803b518965f1567de55b51a444d54a619ed3dae612" ]
 then
     echo "PACKAGE VERIFIED"
 else
@@ -173,9 +173,9 @@ echo "wss://rpc.ethstats.net | wws://stats.parity.io | wss://stats.ethfans.org"
 gedit app.json
 sudo pm2 start app.json
 #Miner
-sudo add-apt-repository ppa:ethereum/ethereum
+sudo add-apt-repository ppa:ethereum/ethereum -y
 sudo apt-get update
-sudo apt-get install ethminer
+sudo apt-get install ethminer -y
 parity account new
 read "Introduce your coinbase address" coinbase
 parity --author $coinbase
