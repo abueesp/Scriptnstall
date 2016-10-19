@@ -168,7 +168,8 @@ cd eth-net-intelligence-api
 sudo npm install
 sudo npm install -g pm2
 sudo mv app.json.example app.json
-echo "a38e1e50b1b82fa"
+echo "a38e1e50b1b82fa | ~ | ethfans4you"
+echo "wss://rpc.ethstats.net | wws://stats.parity.io | wss://stats.ethfans.org"
 gedit app.json
 sudo pm2 start app.json
 #Miner
