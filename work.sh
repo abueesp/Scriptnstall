@@ -434,7 +434,7 @@ sudo npm install -g grunt-cli
 #Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript: grunt.loadNpmTasks('grunt-contrib-watch');
 sudo npm install grunt-contrib-watch --save-dev
 #Once that's done, add this line to your project's Gruntfile: grunt.loadNpmTasks('grunt-embark');
-sudo npm install embark-framework --save-dev
+sudo npm install embark --save-dev
 sudo npm install grunt-embark --save-dev
 #And so on
 sudo npm install grunt-contrib-clean --save-dev
