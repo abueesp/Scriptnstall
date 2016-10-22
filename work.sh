@@ -603,7 +603,18 @@ tar -jxvf **tar.bz2
 wget http://downloads.sourceforge.net/project/dooble/Version%201.56b/dooble-master.zip
 
 
+#IPFS 
+wget https://dist.ipfs.io/go-ipfs/v0.4.3/go-ipfs_v0.4.3_linux-amd64.tar.gz
+tar -zxvf go-ipfs**tar.gz
+rm go-ipfs**tar.gz
+cd go-ipfs
+sudo sh install.sh 
 
+#Go
+cd /usr/local
+sudo wget https://storage.googleapis.com/golang/go1.7.3.linux-amd64.tar.gz
+sudo tar -zxvf go1**.tar.gz
+export PATH=$PATH:/usr/local/go/bin
 
 
 #FTP VSFTPD
