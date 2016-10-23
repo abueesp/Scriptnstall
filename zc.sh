@@ -84,18 +84,35 @@ java -jar /home/user/zcash/src/ZCashSwingWalletUI.jar
 
 #as in Intel(R) Core(TM) i5-4310U CPU @ 2.00GHz 64bits 8GB SODIMM DDR3 Synchronous 1600 MHz Integrated Intel Haswell-ULT Integrated Graphics Controller
 
+#AssWinonLinux & Linux 1s/100-200ms 10-5S/s  Tromp
 
-#AssWinonLinux & Linux 1s/100-200ms 10-5S/s
+#CudaLinux 1S/200ms 5S/s  (on GTX 980 224GB/S 20S/s)  XenonCat
 
-#CudaLinux 1S/200ms 5S/s  (on GTX 980 224GB/S 20S/s)
+#David CPU Segmentation fault
 
-#OpenCL2.0AMD
-#https://docs.google.com/spreadsheets/d/1Um22iBf8bPbfuI4rUDZzSB4W444ouUEnQTBnb8EsdYk/edit#gid=0
-#lspci | grep VGA
-#sudo apt-get install xorg lynx -y
-#sudo rm /tmp/**
-#lynx http://support.amd.com/en-us/kb-articles/Pages/OpenCL2-Driver.aspx
-#mv /tmp/lynx**/L8400-579TMP.zip L8400-579TMP.zip
-#cd fglrx**
-#./amd-driver-installer
-##error: Detected X Server version 'XServer 1.18.3_64a' is not supported. Supported versions are X.Org 6.9 or later, up to XServer 1.10 (default:v2:x86_64:lib:XServer 1.18.3_64a:none:4.4.0-42-generic:) Installation will not proceed.
+nohup firefox -new-tab https://docs.google.com/spreadsheets/d/1Um22iBf8bPbfuI4rUDZzSB4W444ouUEnQTBnb8EsdYk/edit
+
+read -p "Do you want to install OpenCL 2.0 for AMD" answer
+if [ $answer "y" ] ; then
+lspci | grep VGA
+sudo apt-get install xorg -y
+sudo rm -r /tmp/**
+firefox -new-tab http://support.amd.com/en-us/kb-articles/Pages/OpenCL2-Driver.aspx
+unzip /Downloads/linux**.zip
+cd fglrx**
+./amd-driver-installer
+#error: Detected X Server version 'XServer 1.18.3_64a' is not supported. Supported versions are X.Org 6.9 or later, up to XServer 1.10 (default:v2:x86_64:lib:XServer 1.18.3_64a:none:4.4.0-42-generic:) Installation will not proceed.
+fi
+
+read -p "Do you want to install Libsodium?" answer
+if [ $answer "y" ] ; then
+wget https://download.libsodium.org/libsodium/releases/libsodium-1.0.9.tar.gz
+wget https://download.libsodium.org/libsodium/releases/libsodium-1.0.9.tar.gz.sig
+
+tar -zxvf libsodium**tar.gz
+rm libsodium**tar.gz
+cd libsodium**
+./configure
+make && make check
+sudo make install
+fi
