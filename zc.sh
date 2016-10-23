@@ -81,6 +81,10 @@ chmod u+x ./build/jars/ZCashSwingWalletUI.jar
 java -jar /home/user/zcash/src/ZCashSwingWalletUI.jar
 
 ##Benchmarks
+
+#as in Intel(R) Core(TM) i5-4310U CPU @ 2.00GHz 64bits 8GB SODIMM DDR3 Synchronous 1600 MHz Integrated Intel Haswell-ULT Integrated Graphics Controller
+
+
 #AssWinonLinux & Linux 1s/100-200ms 10-5S/s
 
 #CudaLinux 1S/200ms 5S/s  (on GTX 980 224GB/S 20S/s)
