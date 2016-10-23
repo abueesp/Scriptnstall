@@ -583,6 +583,7 @@ read -p "introduce el nombre del proceso" app
 type $app
 sudo lsof -i -n -P | grep $app
 sudo ps ax | grep $app
+sudo pstree -p | grep $app
 }
 filemon(){
 file read -p "introduce la ruta del archivo" ruta
@@ -590,14 +591,13 @@ file $ruta
 sudo systemctl status 
 sudo strings $ruta
 }
-alias statusmon="sudo pstree -p && sudo ps axfo pid,euser,egroup,args"
-alias usermon="uptime; sudo users; sudo w; sudo who -a; sudo ipcs -m -c; pwd; sudo finger; sudo finger -lmps"
-alias sysmon="lsb_release -a; uname -a; id; sudo id; watch -n 2 free -m; logname; hostname; ipcs -m -c; sudo logname; sudo ipcs; sudo initctl list; systemctl status; cat /proc/uptime; sudo df -h;  sudo dmesg | less; ipcs -u; sudo service --status-all; sudo htop; sudo w -i; sudo lshw; sudo dmidecode; sudo ps -efH | more; sudo lsof | wc -l; sudo lsof; ps aux | sort -nk +4 | tail"
+alias usermon="uptime; sudo users; sudo groups; sudo w; sudo who -a; sudo ipcs -m -c; pwd; sudo finger; sudo finger -lmps"
+alias sysmon="lsb_release -a; uname -a; id; sudo id; watch -n 2 free -m; logname; hostname; ipcs -m -c; sudo logname; sudo ipcs; sudo initctl list; systemctl status; cat /proc/uptime; sudo df -h;  sudo dmesg | less; ipcs -u; sudo service --status-all; sudo htop; sudo w -i; sudo lshw; sudo dmidecode; sudo ps -efH | more; sudo lsof | wc -l; sudo lsof; ps aux | sort -nk +4 | tail; sudo pstree -p"
 alias netmon="sudo vnstat; sudo netstat -ie | more -s  -l -d -f; sudo netstat -s | more -s  -l -d -f; sudo sudo netstat -pt | more -s  -l -d -f; sudo tcpstat -i wlan0 -l -a; sudo iptables -S; sudo w -i; sudo ipcs -u; sudo tcpdump -i wlan0; sudo iotop; sudo ps; sudo netstat -r; echo 'En router ir a Básica -> Estado -> Listado de equipos'"
 alias portmon="sudo nc -l -6 -4 -u; sudo ss -o state established; sudo ss -l; sudo netstat -avnp -e"
 alias vpnmon="firefox -new-tab dimage.kali.org && firefox -new-tab https://www.dnsleaktest.com/results.html"
 alias webmon="firefox -new-tab https://who.is/ && firefox -new-tab https://searchdns.netcraft.com/ && firefox -new-tab https://www.shodan.io/ && firefox -new-tab web.archive.org && firefox -new-tab https://validator.w3.org/ && firefox -new-tab https://geekflare.com/online-scan-website-security-vulnerabilities/"
-
+alias hardwaremon="sudo lshw; cat /proc/cpuinfo"
 #General Aliases
 alias voip="firefox -new-tab https://www.appear.in"
 alias anotherskype="skype --dbpath=~/.Skype2 &"
