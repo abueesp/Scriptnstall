@@ -116,3 +116,8 @@ cd libsodium**
 make && make check
 sudo make install
 fi
+
+#Pools 
+##http://zmine.io/51
+##https://www2.coinmine.pl/zec/38
+##https://zec.suprnova.cc/
