@@ -45,7 +45,7 @@ echo "alias zcstop='lsof -i | grep zcashd && ~/zcash/./src/zcash-cli stop && sud
 echo '\
 \
 zclog() {\
-memory=$(free|awk '/^Mem:/{print $2}')\
+memory=$(free|awk "/^Mem:/{print $2}")\
 memory=$(echo "$memory/1000" | bc) # integer math in bash\
 mydate=$(date +"%D")\
 echo "$mydate" | tee -a zclog.txt\
