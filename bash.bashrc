@@ -1114,3 +1114,12 @@ alias meteor="firefox -new-tab -url http://localhost:3000 && cd /home/$USER/linu
 alias rng='expr $RANDOM % 9223372036854775807 && od -N 4 -t uL -An /dev/random | tr -d " " && openssl rand 4 | od -DAn && uuidgen'
 
 alias diskusage="df -h && sudo baobab"
+
+graphvalues(){
+read "Introduce 2D coordenates separated by spaces" values
+read "Introduce a graph label" glabel
+read "Introduce X axis label" xlabel
+read "Introduce Y axis label" ylabel
+echo $values | graph -T svg -l x -L $glabel -X $xlabel -Y $ylabel  > plot.svg
+firefox -new-tab plot.svg
+}
