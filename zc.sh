@@ -72,6 +72,8 @@ done\
 }'
 
 ##Install GUI
+read -p "Do you want to install GUI?" answer
+if [ $answer "y" ] ; then
 sudo apt-get install git default-jdk ant -y
 git clone https://github.com/vaklinov/zcash-swing-wallet-ui.git
 cd zcash-swing-wallet-ui/
@@ -79,7 +81,7 @@ ant -buildfile ./src/build/build.xml
 chmod u+x ./build/jars/ZCashSwingWalletUI.jar
 ./build/jars/ZCashSwingWalletUI.jar
 java -jar /home/user/zcash/src/ZCashSwingWalletUI.jar
-
+fi
 ##Benchmarks
 
 #as in Intel(R) Core(TM) i5-4310U CPU @ 2.00GHz 64bits 8GB SODIMM DDR3 Synchronous 1600 MHz Integrated Intel Haswell-ULT Integrated Graphics Controller
@@ -116,8 +118,3 @@ cd libsodium**
 make && make check
 sudo make install
 fi
-
-#Pools 
-##http://zmine.io/51
-##https://www2.coinmine.pl/zec/38
-##https://zec.suprnova.cc/
