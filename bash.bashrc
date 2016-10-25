@@ -583,7 +583,9 @@ read -p "introduce el nombre del proceso" app
 type $app
 sudo lsof -i -n -P | grep $app
 sudo ps ax | grep $app
-sudo pstree -p | grep $app
+read -p "introduce el pid del proceso" pid
+sudo chrt -p $pid
+sudo pstree -p $pid
 }
 filemon(){
 file read -p "introduce la ruta del archivo" ruta
@@ -591,8 +593,8 @@ file $ruta
 sudo systemctl status 
 sudo strings $ruta
 }
-alias usermon="uptime; sudo users; sudo groups; sudo w; sudo who -a; sudo ipcs -m -c; pwd; sudo finger; sudo finger -lmps"
-alias sysmon="lsb_release -a; uname -a; id; sudo id; watch -n 2 free -m; logname; hostname; ipcs -m -c; sudo logname; sudo ipcs; sudo initctl list; systemctl status; cat /proc/uptime; sudo df -h;  sudo dmesg | less; ipcs -u; sudo service --status-all; sudo htop; sudo w -i; sudo lshw; sudo dmidecode; sudo ps -efH | more; sudo lsof | wc -l; sudo lsof; ps aux | sort -nk +4 | tail; sudo pstree -p"
+alias usermon="uptime; sudo users; sudo groups; sudo w; sudo who -a; sudo ipcs -m -c; pwd; sudo finger; sudo finger -lmps; sudo chfn"
+alias sysmon="lsb_release -a; uname -a; id; sudo id; sudo lshw; watch -n 2 free -m; logname; hostname; ipcs -m -c; sudo logname; sudo ipcs; sudo initctl list; systemctl status; cat /proc/uptime; sudo df -h;  sudo dmesg | less; ipcs -u; sudo service --status-all; sudo htop; sudo w -i; sudo dmidecode; sudo ps -efH | more; sudo lsof | wc -l; sudo lsof; ps aux | sort -nk +4 | tail; sudo pstree -p"
 alias netmon="sudo vnstat; sudo netstat -ie | more -s  -l -d -f; sudo netstat -s | more -s  -l -d -f; sudo sudo netstat -pt | more -s  -l -d -f; sudo tcpstat -i wlan0 -l -a; sudo iptables -S; sudo w -i; sudo ipcs -u; sudo tcpdump -i wlan0; sudo iotop; sudo ps; sudo netstat -r; echo 'En router ir a Básica -> Estado -> Listado de equipos'"
 alias portmon="sudo nc -l -6 -4 -u; sudo ss -o state established; sudo ss -l; sudo netstat -avnp -e"
 alias vpnmon="firefox -new-tab dimage.kali.org && firefox -new-tab https://www.dnsleaktest.com/results.html"
@@ -909,10 +911,11 @@ fi
 monta(){ 
 sudo fdisk -l 
 read -p "Introduce el disco a montar (sda5, sdb1...): " sdjah
+sudo blockdev --getsz --getsize --getbsz --getss --getpbsz --getiomin --getdiscardzeroes --getioopt --getalignoff --getsize64 --getmaxsect --getra --setrw /dev/$sdjah
+sudo blkid /dev/$sdjah 
 sudo mkdir -p /mnt/$sdjah
 echo "Cell /mnt/$sdjah created"
 sudo mount /dev/$sdjah /mnt/$sdjah
-
 ##OPEN IT
 read -p 'Your disk '$sdjah' was mounted on /mnt/'$sdjah'. Do you want to open it with sudo or without? 1=Sudo 2=Notsudo 3=Goterminal; Q=Do nothing: ' opt
     case $opt in
