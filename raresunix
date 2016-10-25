@@ -2,7 +2,7 @@
 
 dmesg -x --facility=daemon dice systemd-hostnamed: Warning: nss-myhostname is not installed
  
- 
+
  asa bc ar bg cflow ctags cxref ipcrm lex localdef logger m4 mesg mkfifo
 nm
  od 
@@ -14,6 +14,7 @@ stty
 ulimit, umask
 xargs
 uucp uustat uux uudecode uuencode 
+getopt
  pax yacc
 fallocate flock fsfreeze
 ldattach
