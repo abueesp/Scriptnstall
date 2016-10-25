@@ -92,7 +92,7 @@ fi
 
 #David CPU Segmentation fault
 
-nohup firefox -new-tab https://docs.google.com/spreadsheets/d/1Um22iBf8bPbfuI4rUDZzSB4W444ouUEnQTBnb8EsdYk/edit
+firefox -new-tab https://docs.google.com/spreadsheets/d/1Um22iBf8bPbfuI4rUDZzSB4W444ouUEnQTBnb8EsdYk/edit
 
 read -p "Do you want to install OpenCL 2.0 for AMD" answer
 if [ $answer "y" ] ; then
