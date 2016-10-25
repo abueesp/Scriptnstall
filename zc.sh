@@ -1,9 +1,11 @@
 read -p "Delete swapfile and create a 3GB new one [yn]" answer
 if [ $answer "y" ] ; then
+read -e -p "Choose a number og GB (3 by default)" -i "3" gygas
 sudo swapon -s
 sudo swapoff -v /swapfile
 sudo rm /swapfile
-sudo dd if=/dev/zero of=/swapfile bs=1024 count=3072000
+bytes=$gygas*1024000
+sudo dd if=/dev/zero of=/swapfile bs=1024 count=bytes
 sudo mkswap /swapfile
 sudo swapon /swapfile
 sudo swapon -s
@@ -27,6 +29,7 @@ echo "addnode=betatestnet.z.cash" >> ~/.zcash/zcash.conf
 echo "rpcuser=$USER" >> ~/.zcash/zcash.conf
 echo "rpcpassword=$passw" >> ~/.zcash/zcash.conf
 echo "gen=1" >> ~/.zcash/zcash.conf
+echo "genproclimit=-1" >> ~/.zcash/zcash.conf
 echo "Check your conf, add new nodes, etc:"
 nano ~/.zcash/zcash.conf
 ~/zcash/./src/zcashd -daemon
