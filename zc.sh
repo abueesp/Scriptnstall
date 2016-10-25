@@ -3,7 +3,7 @@ if [ $answer "y" ] ; then
 sudo swapon -s
 sudo swapoff -v /swapfile
 sudo rm /swapfile
-sudo dd if=/dev/zero of=/swapfile1 bs=1024 count=3072000
+sudo dd if=/dev/zero of=/swapfile bs=1024 count=3072000
 sudo mkswap /swapfile
 sudo swapon /swapfile
 sudo swapon -s
