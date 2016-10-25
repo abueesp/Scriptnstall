@@ -1,5 +1,5 @@
 read -p "Delete swapfile and create a 3GB new one [yn]" answer
-if [ $answer "y" ] ; then
+if [[ $answer == "y" ]] ; then
 read -e -p "Choose a number og GB (3 by default)" -i "3" gygas
 sudo swapon -s
 sudo swapoff -v /swapfile
@@ -76,7 +76,7 @@ done\
 
 ##Install GUI
 read -p "Do you want to install GUI?" answer
-if [ $answer "y" ] ; then
+if [[ $answer == "y" ]] ; then
 sudo apt-get install git default-jdk ant -y
 git clone https://github.com/vaklinov/zcash-swing-wallet-ui.git
 cd zcash-swing-wallet-ui/
@@ -98,7 +98,7 @@ fi
 firefox -new-tab https://docs.google.com/spreadsheets/d/1Um22iBf8bPbfuI4rUDZzSB4W444ouUEnQTBnb8EsdYk/edit
 
 read -p "Do you want to install OpenCL 2.0 for AMD" answer
-if [ $answer "y" ] ; then
+if [[ $answer == "y" ]] ; then
 lspci | grep VGA
 sudo apt-get install xorg -y
 sudo rm -r /tmp/**
@@ -110,7 +110,7 @@ cd fglrx**
 fi
 
 read -p "Do you want to install Libsodium?" answer
-if [ $answer "y" ] ; then
+if [[ $answer == "y" ]] ; then
 wget https://download.libsodium.org/libsodium/releases/libsodium-1.0.9.tar.gz
 wget https://download.libsodium.org/libsodium/releases/libsodium-1.0.9.tar.gz.sig
 
