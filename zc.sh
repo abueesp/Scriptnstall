@@ -5,7 +5,7 @@ sudo swapon -s
 sudo swapoff -v /swapfile
 sudo rm /swapfile
 bytes=$gygas*1024000
-sudo dd if=/dev/zero of=/swapfile bs=1024 count=bytes
+sudo dd if=/dev/zero of=/swapfile bs=1024 count=$bytes
 sudo mkswap /swapfile
 sudo swapon /swapfile
 sudo swapon -s
