@@ -15,3 +15,6 @@ ulimit, umask
 xargs
 uucp uustat uux uudecode uuencode 
  pax yacc
+fallocate flock fsfreeze
+ldattach
+ioctl losetup
