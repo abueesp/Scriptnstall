@@ -4,7 +4,7 @@ read -e -p "Choose a number og GB (3 by default)" -i "3" gygas
 sudo swapon -s
 sudo swapoff -v /swapfile
 sudo rm /swapfile
-bytes=$gygas*1024000
+bytes=$(($gygas*1024000))
 sudo dd if=/dev/zero of=/swapfile bs=1024 count=$bytes
 sudo mkswap /swapfile
 sudo swapon /swapfile
