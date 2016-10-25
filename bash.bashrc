@@ -594,7 +594,7 @@ sudo systemctl status
 sudo strings $ruta
 }
 alias usermon="uptime; sudo users; sudo groups; sudo w; sudo who -a; sudo ipcs -m -c; pwd; sudo finger; sudo finger -lmps; sudo chfn"
-alias sysmon="lsb_release -a; uname -a; id; sudo id; sudo lshw; watch -n 2 free -m; logname; hostname; ipcs -m -c; sudo logname; sudo ipcs; sudo initctl list; systemctl status; cat /proc/uptime; sudo df -h;  sudo dmesg | less; ipcs -u; sudo service --status-all; sudo htop; sudo w -i; sudo dmidecode; sudo ps -efH | more; sudo lsof | wc -l; sudo lsof; ps aux | sort -nk +4 | tail; sudo pstree -p"
+alias sysmon="lsb_release -a; uname -a; id; sudo id; sudo lshw; lscpu; watch -n 2 free -m; logname; hostname; ipcs -m -c; sudo logname; sudo ipcs; sudo initctl list; systemctl status; cat /proc/uptime; sudo df -h;  sudo dmesg | less; ipcs -u; sudo service --status-all; sudo htop; sudo w -i; sudo dmidecode; sudo ps -efH | more; sudo lsof | wc -l; sudo lsof; ps aux | sort -nk +4 | tail; sudo pstree"
 alias netmon="sudo vnstat; sudo netstat -ie | more -s  -l -d -f; sudo netstat -s | more -s  -l -d -f; sudo sudo netstat -pt | more -s  -l -d -f; sudo tcpstat -i wlan0 -l -a; sudo iptables -S; sudo w -i; sudo ipcs -u; sudo tcpdump -i wlan0; sudo iotop; sudo ps; sudo netstat -r; echo 'En router ir a Básica -> Estado -> Listado de equipos'"
 alias portmon="sudo nc -l -6 -4 -u; sudo ss -o state established; sudo ss -l; sudo netstat -avnp -e"
 alias vpnmon="firefox -new-tab dimage.kali.org && firefox -new-tab https://www.dnsleaktest.com/results.html"
@@ -901,14 +901,18 @@ if [ "$(ls -A /mnt/$sdjoh)" ]; then
      echo "¡Cuidado! ¡La celda /mnt/$sdjoh no está vacía! Contiene los siguientes archivos todavía:"
      cd /mnt/$sdjoh
      sudo ls /mnt/$sdjoh
+     sudo findmnt
 else
     sudo rm -r /mnt/$sdjoh
     echo "Borrando celda..."
+    sudo findmnt
 fi
 }
 
 
 monta(){ 
+sudo lsblk
+sudo blkid
 sudo fdisk -l 
 read -p "Introduce el disco a montar (sda5, sdb1...): " sdjah
 sudo blockdev --getsz --getsize --getbsz --getss --getpbsz --getiomin --getdiscardzeroes --getioopt --getalignoff --getsize64 --getmaxsect --getra --setrw /dev/$sdjah
@@ -920,11 +924,11 @@ sudo mount /dev/$sdjah /mnt/$sdjah
 read -p 'Your disk '$sdjah' was mounted on /mnt/'$sdjah'. Do you want to open it with sudo or without? 1=Sudo 2=Notsudo 3=Goterminal; Q=Do nothing: ' opt
     case $opt in
         "1")
-            echo "You were sudo"; sudo pantheon-files /mnt/$sdjah || sudo nemo /mnt/$sdjah || sudo /mnt/nautilus $sdjah; break;;
+            echo "You were sudo"; findmnt; sudo pantheon-files /mnt/$sdjah || sudo nemo /mnt/$sdjah || sudo /mnt/nautilus $sdjah; break;;
         "2")
-            echo "You were not sudo"; pantheon-files /mnt/$sdjah || nemo /mnt/$sdjah || /mnt/nautilus $sdjah; break;;
+            echo "You were not sudo"; findmnt; pantheon-files /mnt/$sdjah || nemo /mnt/$sdjah || /mnt/nautilus $sdjah; break;;
         "3")
-            cd /mnt/$sdjah && ls;;
+            findmnt; cd /mnt/$sdjah && ls;;
         "Q")
             break;;
         *) echo invalid option;;
@@ -1001,6 +1005,7 @@ sudo ifconfig $wlan hw ether $macaddr
 sudo ifconfig $wlan up
 read -p "Those are your new macs:"
 ifconfig -a | grep HWaddr
+mcookie
 read -p "Enjoy!"
 }
 
