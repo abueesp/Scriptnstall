@@ -44,16 +44,17 @@ sleep 5
 ~/zcash/src/./zcash-cli zcbenchmark solveequihash 10
 ~/zcash/./src/zcash-cli listtransactions
 wget https://github.com/KR77/zcashHashTest/blob/master/zcashHashTest.sh -O ~/zcash/./src/zcashHashTest.sh
+sudo su
 echo "alias zcbm='watch -n 2 ~/zcash/./src/zcashHashTest.sh && watch -n 2 free -m && watch -n 2 ~/zcash/./src/zcash-cli getinfo && watch -n 2 ~/zcash/./src/zcash-cli getmininginfo'"  >> sudo /etc/bash.bashrc
 echo "alias zcinfo='~/zcash/./src/zcash-cli getinfo && ~/zcash/./src/zcash-cli getwalletinfo && ~/zcash/./src/zcash-cli getmininginfo'"  >> sudo /etc/bash.bashrc
-echo "alias zctxs='~/zcash/./src/zcash-cli listtransactions'" >> sudo /etc/bash.bashrc
-echo "alias zcstart='~/zcash/./src/zcashd -daemon'" >> sudo /etc/bash.bashrc
-echo "alias zcgpu='./src/zcash-miner -G'" >> sudo /etc/bash.bashrc 
-echo "alias zcstart='~/zcash/./src/zcashd -daemon'" >> sudo /etc/bash.bashrc
-echo "alias zcstratum='echo \"ADD -stratum=\'stratum+tcp://<address>:<port>\' -user=<user> -password=<pass> TO zcgpu or zcstart\"'" >> sudo /etc/bash.bashrc
-echo "alias zcgpupool='./src/zcash-miner -G -stratum=\'stratum+tcp://<address>:<port>\' -user=<user> -password=<pass>'" >> sudo /etc/bash.bashrc
-echo "alias zcstop='lsof -i | grep zcashd && ~/zcash/./src/zcash-cli stop && sudo pkill -9 zcashd && sudo pkill -9 zcash-cli'" >> sudo /etc/bash.bashrc
-echo "alias zcgui='java -jar /home/$USER/zcash/src/ZCashSwingWalletUI.jar'"
+echo "alias zctxs='~/zcash/./src/zcash-cli listtransactions'" >> /etc/bash.bashrc
+echo "alias zcstart='~/zcash/./src/zcashd -daemon'" >> /etc/bash.bashrc
+echo "alias zcgpu='./src/zcash-miner -G'" >> /etc/bash.bashrc 
+echo "alias zcstart='~/zcash/./src/zcashd -daemon'" >> /etc/bash.bashrc
+echo "alias zcstratum='echo \"ADD -stratum=\'stratum+tcp://<address>:<port>\' -user=<user> -password=<pass> TO zcgpu or zcstart\"'" >> /etc/bash.bashrc
+echo "alias zcgpupool='./src/zcash-miner -G -stratum=\'stratum+tcp://<address>:<port>\' -user=<user> -password=<pass>'" >> /etc/bash.bashrc
+echo "alias zcstop='lsof -i | grep zcashd && ~/zcash/./src/zcash-cli stop && sudo pkill -9 zcashd && sudo pkill -9 zcash-cli'" >> /etc/bash.bashrc
+echo "alias zcgui='java -jar /home/$USER/zcash/src/ZCashSwingWalletUI.jar'" >> /etc/bash.bashrc
 echo '\
 \
 zclog() {\
@@ -81,7 +82,8 @@ until [ $c -gt 240 ]; do # for 1 hour\
      echo "$mytime $block $difficulty $cpu $rampercore" | tee -a log.txt\
      sleep 15 # seconds\
 done\
-}' >> sudo /etc/bash.bashrc
+}' >> /etc/bash.bashrc
+exit
 
 ##Install GUI
 read -p "Do you want to install GUI?" answer
