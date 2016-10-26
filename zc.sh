@@ -50,8 +50,7 @@ echo "alias zctxs='~/zcash/./src/zcash-cli listtransactions'" >> /etc/bash.bashr
 echo "alias zcstart='~/zcash/./src/zcashd -daemon'" >> /etc/bash.bashrc
 echo "alias zcgpu='./src/zcash-miner -G'" >> /etc/bash.bashrc 
 echo "alias zcstart='~/zcash/./src/zcashd -daemon'" >> /etc/bash.bashrc
-echo "alias zcstratum='echo \"ADD -stratum=\'stratum+tcp://<address>:<port>\' -user=<user> -password=<pass> TO zcgpu or zcstart\"'" >> /etc/bash.bashrc
-echo "alias zcgpupool='./src/zcash-miner -G -stratum=\'stratum+tcp://<address>:<port>\' -user=<user> -password=<pass>'" >> /etc/bash.bashrc
+echo "alias zcstratum='echo ADD -stratum='stratum+tcp://<address>:<port>' -user=<user> -password=<pass> TO zcgpu or zcstart\'" >> /etc/bash.bashrc
 echo "alias zcstop='lsof -i | grep zcashd && ~/zcash/./src/zcash-cli stop && sudo pkill -9 zcashd && sudo pkill -9 zcash-cli'" >> /etc/bash.bashrc
 echo "alias zcgui='java -jar /home/$USER/zcash/src/ZCashSwingWalletUI.jar'" >> /etc/bash.bashrc
 echo '\
