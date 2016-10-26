@@ -10,7 +10,7 @@ nm
 torque-client grindengine slurm qmsg qstat
 nice renice / sact sccs delta prs
 strip
-stty
+getty stty
 ulimit, umask
 xargs
 uucp uustat uux uudecode uuencode 
