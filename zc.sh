@@ -149,7 +149,24 @@ export LD_LIBRARY_PATH=`pwd`/libs/libsodium-1.0.11/src/libsodium/.libs/:/usr/loc
 ./a.out
 cd ..
 fi
- 
+
+read -p "Do you want to install XenonCatMiner (Demo) https://github.com/xenoncat/equihash-xenon" answer
+git clone https://github.com/xenoncat/equihash-xenon
+cd Linux
+cd blake2b
+make
+cd ..
+cd demo
+make
+./solver**avx1
+./quick**avx1
+./solver**avx2
+./quick**avx2
+cd ..
+cd ..
+fi
+
+
 read -p "Do you want to install ZogMiner (OpenCL - AMD) https://github.com/nginnever/zogminer.git?" answer
 if [[ $answer == "y" ]] ; then
 sudo apt-get install build-essential pkg-config libc6-dev m4 g++-multilib autoconf libtool ncurses-dev unzip git python zlib1g-dev wget bsdmainutils automake opencl-headers mesa-common-dev -y
@@ -160,5 +177,4 @@ cd zogminer
 ./src/zcash-miner -help
 ./src/zcashd
 fi
-
 
