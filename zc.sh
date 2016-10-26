@@ -5,7 +5,7 @@ sudo swapon -s
 sudo swapoff -v /swapfile
 sudo rm /swapfile
 bytes=$(($gygas*1024000))
-sudo dd if=/dev/zero of=/swapfile bs=1024 count=$bytes
+sudo dd if=/dev/zero of=/swapfile bs=1024 count=$bytes ##Gracias Salva!
 sudo mkswap /swapfile
 sudo swapon /swapfile
 sudo swapon -s
@@ -28,9 +28,11 @@ echo "testnet=1" >> ~/.zcash/zcash.conf
 echo "addnode=betatestnet.z.cash" >> ~/.zcash/zcash.conf
 echo "rpcuser=$USER" >> ~/.zcash/zcash.conf
 echo "rpcpassword=$passw" >> ~/.zcash/zcash.conf
-echo "gen=1" >> ~/.zcash/zcash.conf
-echo "genproclimit=-1" >> ~/.zcash/zcash.conf
-echo "Check your conf, add new nodes, etc:"
+echo "gen=$(nproc)" >> ~/.zcash/zcash.conf
+echo "genproclimit=-1" >> ~/.zcash/zcash.conf ##Gracias Salva!!
+echo "GPU=0"  >> ~/.zcash/zcash.conf
+echo "deviceid=0 (default: 0)" >> ~/.zcash/zcash.conf
+read -p "Check your conf, activate GPU and select the deviceid, add new nodes, change usr and passw, etc." pause 
 nano ~/.zcash/zcash.conf
 ~/zcash/./src/zcashd -daemon
 ~/zcash/./src/zcash-cli getmininginfo
@@ -40,10 +42,15 @@ sleep 5
 ~/zcash/./src/zcash-cli getinfo
 ~/zcash/src/./zcash-cli zcbenchmark solveequihash 10
 ~/zcash/./src/zcash-cli listtransactions
-echo "alias zcbm='watch -n 2 ~/zcash/src/./zcash-cli zcbenchmark solveequihash 10 && watch -n 2 free -m && watch -n 2 ~/zcash/./src/zcash-cli getinfo'"  >> sudo /etc/bash.bashrc
+wget https://github.com/KR77/zcashHashTest/blob/master/zcashHashTest.sh -O ~/zcash/./src/zcashHashTest.sh
+echo "alias zcbm='watch -n 2 ~/zcash/./src/zcashHashTest.sh && watch -n 2 free -m && watch -n 2 ~/zcash/./src/zcash-cli getinfo && watch -n 2 ~/zcash/./src/zcash-cli getmininginfo'"  >> sudo /etc/bash.bashrc
 echo "alias zcinfo='~/zcash/./src/zcash-cli getinfo && ~/zcash/./src/zcash-cli getwalletinfo && ~/zcash/./src/zcash-cli getmininginfo'"  >> sudo /etc/bash.bashrc
 echo "alias zctxs='~/zcash/./src/zcash-cli listtransactions'" >> sudo /etc/bash.bashrc
 echo "alias zcstart='~/zcash/./src/zcashd -daemon'" >> sudo /etc/bash.bashrc
+echo "alias zcgpu='./src/zcash-miner -G'" >> sudo /etc/bash.bashrc 
+echo "alias zcstart='~/zcash/./src/zcashd -daemon'" >> sudo /etc/bash.bashrc
+echo "alias zcstratum='echo \"ADD -stratum=\'stratum+tcp://<address>:<port>\' -user=<user> -password=<pass> TO zcgpu or zcstart\"'" >> sudo /etc/bash.bashrc
+echo "alias zcgpupool='./src/zcash-miner -G -stratum=\'stratum+tcp://<address>:<port>\' -user=<user> -password=<pass>'" >> sudo /etc/bash.bashrc
 echo "alias zcstop='lsof -i | grep zcashd && ~/zcash/./src/zcash-cli stop && sudo pkill -9 zcashd && sudo pkill -9 zcash-cli'" >> sudo /etc/bash.bashrc
 echo '\
 \
@@ -97,7 +104,7 @@ fi
 
 firefox -new-tab https://docs.google.com/spreadsheets/d/1Um22iBf8bPbfuI4rUDZzSB4W444ouUEnQTBnb8EsdYk/edit
 
-read -p "Do you want to install OpenCL 2.0 for AMD" answer
+read -p "Do you want to install OpenCL 2.0 for AMD? OpenCL 1.2 is already included in the latest NVIDIA GPU drivers" answer
 if [[ $answer == "y" ]] ; then
 lspci | grep VGA
 sudo apt-get install xorg -y
@@ -109,15 +116,53 @@ cd fglrx**
 #error: Detected X Server version 'XServer 1.18.3_64a' is not supported. Supported versions are X.Org 6.9 or later, up to XServer 1.10 (default:v2:x86_64:lib:XServer 1.18.3_64a:none:4.4.0-42-generic:) Installation will not proceed.
 fi
 
-read -p "Do you want to install Libsodium?" answer
+read -p "Do you want to install CUDA 8.0 for Intel?" answer
 if [[ $answer == "y" ]] ; then
+wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1404/x86_64/7fa2af80.pub
+cat 7fa2af80.pub | sudo apt-key add -
+read -p "Is your linux version 1404 or 1604?" response
+wget https://developer.nvidia.com/compute/cuda/8.0/prod/local_installers/cuda-repo-ubuntu$response-8-0-local_8.0.44-1_amd64-deb
+mv cuda-repo-ubuntu$response-8-0-local_8.0.44-1_amd64-deb cuda-repo-ubuntu$response-8-0-local_8.0.44-1_amd64.deb
+sudo dpkg -i cuda-repo-ubuntu$response-8-0-local_8.0.44-1_amd64.deb
+sudo apt-get update
+sudo apt-get install cuda nvidia-cuda-toolkit -y
+fi
+
+read -p "Do you want to install TrompMiner (CUDA - Nvidia)? https://github.com/tromp/equihash" answer
+if [[ $answer == "y" ]] ; then
+git clone https://github.com/tromp/equihash
+cd equihash
+make all
+echo "RUN <time ./equi1>. The options are -n NONCE -h HEADER -r RANGESIZE, f.i.  -n 255 -r 100"
+fi
+
+read -p "Do you want to install Duggard ZMiner (CUDA - Nvidia)? https://github.com/douggard/zmine" answer
+if [[ $answer == "y" ]] ; then
+git clone https://github.com/douggard/zmine
+cd zmine
 wget https://download.libsodium.org/libsodium/releases/libsodium-1.0.9.tar.gz
 wget https://download.libsodium.org/libsodium/releases/libsodium-1.0.9.tar.gz.sig
-
+gpg libsodium**.sig
 tar -zxvf libsodium**tar.gz
 rm libsodium**tar.gz
 cd libsodium**
 ./configure
 make && make check
 sudo make install
+cd ..
+export LD_LIBRARY_PATH=`pwd`/libs/libsodium-1.0.11/src/libsodium/.libs/:/usr/local/cuda-7.5/lib64
+./a.out
 fi
+ 
+read -p "Do you want to install ZogMiner (OpenCL - AMD) https://github.com/nginnever/zogminer.git?" answer
+if [[ $answer == "y" ]] ; then
+sudo apt-get install build-essential pkg-config libc6-dev m4 g++-multilib autoconf libtool ncurses-dev unzip git python zlib1g-dev wget bsdmainutils automake opencl-headers mesa-common-dev -y
+git clone https://github.com/nginnever/zogminer.git
+cd zogminer
+./zcutil/fetch-params.sh
+./zcutil/build.sh -j$(nproc)
+./src/zcash-miner -help
+./src/zcashd
+fi
+
+
