@@ -14,6 +14,7 @@ alias rmhist="history -c"
 alias anonhist="export HISTSIZE=0"
 alias hist="export HISTSIZE=1"
 alias shis="history | grep"
+alias whatis="apropos"
 
 ##Colors
 color_def="~/.colorrc"
