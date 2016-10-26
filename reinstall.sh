@@ -55,7 +55,7 @@ wget https://cipherdyne.org/psad/download/psad-2.4.3.tar.gz
 wget https://cipherdyne.org/psad/download/psad-2.4.3.tar.gz.asc
 gpg --verify psad**.asc
 md5 = $(md5sum **tar.gz)
-if [ $md5 "5aa0d22f0bea3ba32e3b9730f78157cf" ]
+if [[ $md5 == "5aa0d22f0bea3ba32e3b9730f78157cf" ]]
 then
     echo "PACKAGE VERIFIED"
 else
@@ -74,7 +74,7 @@ wget http://cipherdyne.org/fwsnort/download/fwsnort-1.6.5.tar.gz
 wget https://cipherdyne.org/fwsnort/download/fwsnort-1.6.5.tar.gz.asc
 gpg --verify fwsnort**.asc
 md5 = $(md5sum **tar.gz)
-if [ $md5 "76552f820e125e97e4dfdd1ce6e3ead6" ]
+if [[ $md5 == "76552f820e125e97e4dfdd1ce6e3ead6" ]]
 then
     echo "PACKAGE VERIFIED"
 else
@@ -135,7 +135,7 @@ sudo rm **.bz2 && sudo rm **.sig && sudo rm -r libgp**
 sudo wget https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.7.0.tar.bz2
 sudo wget https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.7.0.tar.bz2.sig
 sha1 = $(sha1sum **tar.bz2)
-if [ $sha1 "f840b737faafded451a084ae143285ad68bbfb01" ]
+if [[ $sha1 == "f840b737faafded451a084ae143285ad68bbfb01" ]]
 then
     echo "PACKAGE VERIFIED"
 else
@@ -154,7 +154,7 @@ sudo rm **.bz2 && sudo rm **.sig && sudo rm -r libgcr**
 sudo wget https://www.gnupg.org/ftp/gcrypt/libksba/libksba-1.3.4.tar.bz2
 sudo wget https://www.gnupg.org/ftp/gcrypt/libksba/libksba-1.3.4.tar.bz2.sig
 sha1 = $(sha1sum **tar.bz2)
-if [ $sha1 "bc84945400bd1cabfd7b8ba4e20e71082f32bcc9" ]
+if [[ $sha1 == "bc84945400bd1cabfd7b8ba4e20e71082f32bcc9" ]]
 then
     echo "PACKAGE VERIFIED"
 else
@@ -173,7 +173,7 @@ sudo rm **.bz2 && sudo rm **.sig && sudo rm -r libks**
 sudo wget https://www.gnupg.org/ftp/gcrypt/libassuan/libassuan-2.4.2.tar.bz2
 sudo wget https://www.gnupg.org/ftp/gcrypt/libassuan/libassuan-2.4.2.tar.bz2.sig
 sha1 = $(sha1sum **tar.bz2)
-if [ $sha1 "ac1047f9764fd4a4db7dafe47640643164394db9" ]
+if [[ $sha1 == "ac1047f9764fd4a4db7dafe47640643164394db9" ]]
 then
     echo "PACKAGE VERIFIED"
 else
@@ -192,7 +192,7 @@ sudo rm **.bz2 && sudo rm **.sig && sudo rm -r libas**
 sudo wget https://www.gnupg.org/ftp/gcrypt/npth/npth-1.2.tar.bz2
 sudo wget https://www.gnupg.org/ftp/gcrypt/npth/npth-1.2.tar.bz2.sig
 sha1 = $(sha1sum **tar.bz2)
-if [ $sha1 "3bfa2a2d7521d6481850e8a611efe5bf5ed75200" ]
+if [[ $sha1 == "3bfa2a2d7521d6481850e8a611efe5bf5ed75200" ]]
 then
     echo "PACKAGE VERIFIED"
 else
@@ -211,7 +211,7 @@ sudo rm **.bz2 && sudo rm **.sig && sudo npth**
 sudo wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.12.tar.bz2
 sudo wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.12.tar.bz2.sig
 sha1 = $(sha1sum **tar.bz2)
-if [ $sha1 "3b01a35ac04277ea31cc01b4ac4e230e54b5480c" ]
+if [[ $sha1 == "3b01a35ac04277ea31cc01b4ac4e230e54b5480c" ]]
 then
     echo "PACKAGE VERIFIED"
 else
@@ -230,7 +230,7 @@ sudo rm **.bz2 && sudo rm **.sig && sudo rm -r gnupg**
 sudo wget https://www.gnupg.org/ftp/gcrypt/gpgme/gpgme-1.6.0.tar.bz2
 sudo wget https://www.gnupg.org/ftp/gcrypt/gpgme/gpgme-1.6.0.tar.bz2.sig
 sha1 = $(sha1sum **tar.bz2)
-if [ $sha1 "f840b737faafded451a084ae143285ad68bbfb01" ]
+if [[ $sha1 == "f840b737faafded451a084ae143285ad68bbfb01" ]]
 then
     echo "PACKAGE VERIFIED"
 else
@@ -249,7 +249,7 @@ sudo rm **.bz2 && sudo rm **.sig && sudo rm -r gpgm**
 sudo wget https://www.gnupg.org/ftp/gcrypt/gpa/gpa-0.9.9.tar.bz2
 sudo wget https://www.gnupg.org/ftp/gcrypt/gpa/gpa-0.9.9.tar.bz2.sig
 sha1 = $(sha1sum **tar.bz2)
-if [ $sha1 "1cf86c9e38aa553fdb880c55cbc6755901ad21a4" ]
+if [[ $sha1 == "1cf86c9e38aa553fdb880c55cbc6755901ad21a4" ]]
 then
     echo "PACKAGE VERIFIED"
 else
