@@ -47,39 +47,35 @@ wget https://github.com/KR77/zcashHashTest/blob/master/zcashHashTest.sh -O ~/zca
 echo "alias zcbm='watch -n 2 ~/zcash/./src/zcashHashTest.sh && watch -n 2 free -m && watch -n 2 ~/zcash/./src/zcash-cli getinfo && watch -n 2 ~/zcash/./src/zcash-cli getmininginfo'"  >> sudo /etc/bash.bashrc
 echo "alias zcinfo='~/zcash/./src/zcash-cli getinfo && ~/zcash/./src/zcash-cli getwalletinfo && ~/zcash/./src/zcash-cli getmininginfo'"  >> sudo /etc/bash.bashrc
 echo "alias zctxs='~/zcash/./src/zcash-cli listtransactions'" >> /etc/bash.bashrc
+echo "alias zcgpu='~/zcash/./src/zcash-miner -G'" >> /etc/bash.bashrc 
 echo "alias zcstart='~/zcash/./src/zcashd -daemon'" >> /etc/bash.bashrc
-echo "alias zcgpu='./src/zcash-miner -G'" >> /etc/bash.bashrc 
-echo "alias zcstart='~/zcash/./src/zcashd -daemon'" >> /etc/bash.bashrc
-echo "alias zcstratum='echo ADD -stratum='stratum+tcp://<address>:<port>' -user=<user> -password=<pass> TO zcgpu or zcstart\'" >> /etc/bash.bashrc
+echo "alias zcstratum='echo ADD -stratum=¨stratum+tcp://<address>:<port>¨ -user=<user> -password=<pass> TO zcgpu or zcstart\'" >> /etc/bash.bashrc
 echo "alias zcstop='lsof -i | grep zcashd && ~/zcash/./src/zcash-cli stop && sudo pkill -9 zcashd && sudo pkill -9 zcash-cli'" >> /etc/bash.bashrc
 echo "alias zcgui='java -jar /home/$USER/zcash/src/ZCashSwingWalletUI.jar'" >> /etc/bash.bashrc
-echo '\
-\
-zclog() {\
-memory=$(free|awk "/^Mem:/{print $2}")\
-memory=$(echo "$memory/1000" | bc) # integer math in bash\
-mydate=$(date +"%D")\
-echo "$mydate" | tee -a zclog.txt\
-echo "time, block number, difficulty, CPU%, RAM in MB per core" | tee -a zclog.txt\
-c=1\
-until [ $c -gt 240 ]; do # for 1 hour\
-     let c=c+1\
-     mytime=$(date +"%T")\
-     block=$(~/zcash/./src/zcash-cli getblockcount)\
-     difficulty=$(~/zcash/./src/zcash-cli getdifficulty)\
-     difficulty=${difficulty:0:5}\
-     p=$(ps aux | grep zcashd)\
+echo 'zclog() { memory=$(free|awk "/^Mem:/{print $2}") \
+memory=$(echo "$memory/1000" | bc) \
+mydate=$(date +"%D") \
+echo "$mydate" | tee -a zclog.txt \
+echo "time, block number, difficulty, CPU%, RAM in MB per core" | tee -a zclog.txt \
+c=1 \
+until [ $c -gt 240 ]; do \
+     let c=c+1 \
+     mytime=$(date +"%T") \
+     block=$(~/zcash/./src/zcash-cli getblockcount) \
+     difficulty=$(~/zcash/./src/zcash-cli getdifficulty) \
+     difficulty=${difficulty:0:5} \
+     p=$(ps aux | grep zcashd) \
      q=$(echo "$p" | tail -n1) \
-     cpu=${q:16:3}\
-     if [ "$cpu" == "0.0" ]; then\
-         p=$(echo "$p" | tail -n2)\
-     fi	 	\
-    cpu=${p:16:3}\
-    ram=${p:20:4}\
-     rampercore=$(echo "($ram*$memory/($cpu+1)" | bc)\
-     echo "$mytime $block $difficulty $cpu $rampercore" | tee -a log.txt\
-     sleep 15 # seconds\
-done\
+     cpu=$({q:16:3}) \
+     if [ "$cpu" == "0.0" ]; then \
+         p=$(echo "$p" | tail -n2) \
+     fi \
+    cpu=$({p:16:3}) \
+    ram=$({p:20:4}) \
+     rampercore=$(echo "($ram*$memory/($cpu+1)" | bc) \
+     echo "$mytime $block $difficulty $cpu $rampercore" | tee -a log.txt \
+     sleep 15 # seconds \
+    done \
 }' >> /etc/bash.bashrc
 
 ##Install GUI
