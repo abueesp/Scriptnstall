@@ -44,7 +44,6 @@ sleep 5
 ~/zcash/src/./zcash-cli zcbenchmark solveequihash 10
 ~/zcash/./src/zcash-cli listtransactions
 wget https://github.com/KR77/zcashHashTest/blob/master/zcashHashTest.sh -O ~/zcash/./src/zcashHashTest.sh
-sudo su
 echo "alias zcbm='watch -n 2 ~/zcash/./src/zcashHashTest.sh && watch -n 2 free -m && watch -n 2 ~/zcash/./src/zcash-cli getinfo && watch -n 2 ~/zcash/./src/zcash-cli getmininginfo'"  >> sudo /etc/bash.bashrc
 echo "alias zcinfo='~/zcash/./src/zcash-cli getinfo && ~/zcash/./src/zcash-cli getwalletinfo && ~/zcash/./src/zcash-cli getmininginfo'"  >> sudo /etc/bash.bashrc
 echo "alias zctxs='~/zcash/./src/zcash-cli listtransactions'" >> /etc/bash.bashrc
@@ -83,7 +82,6 @@ until [ $c -gt 240 ]; do # for 1 hour\
      sleep 15 # seconds\
 done\
 }' >> /etc/bash.bashrc
-exit
 
 ##Install GUI
 read -p "Do you want to install GUI?" answer
