@@ -79,7 +79,7 @@ until [ $c -gt 240 ]; do # for 1 hour\
      echo "$mytime $block $difficulty $cpu $rampercore" | tee -a log.txt\
      sleep 15 # seconds\
 done\
-}'
+}' >> sudo /etc/bash.bashrc
 
 ##Install GUI
 read -p "Do you want to install GUI?" answer
