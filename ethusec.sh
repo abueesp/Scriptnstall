@@ -1,6 +1,6 @@
 #!/bin/bash
 #TCP flood mitigation
-echo "net.ipv4.tcp_challenge_ack_limit = 999999999" >> sudo /etc/sysctl.conf
+echo "net.ipv4.tcp_challenge_ack_limit = 999999999" >> /etc/sysctl.conf
 sudo sysctl -p
 #Bluetooth
 sudo sed -i 's/InitiallyPowered = true/InitiallyPowered = false/g' /etc/bluetooth/main.conf
