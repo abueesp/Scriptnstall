@@ -178,3 +178,4 @@ cd zogminer
 ./src/zcashd
 fi
 
+##Note: This script is merely for research and testing purposes. 
