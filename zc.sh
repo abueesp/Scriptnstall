@@ -52,6 +52,7 @@ echo "alias zcstart='~/zcash/./src/zcashd -daemon'" >> sudo /etc/bash.bashrc
 echo "alias zcstratum='echo \"ADD -stratum=\'stratum+tcp://<address>:<port>\' -user=<user> -password=<pass> TO zcgpu or zcstart\"'" >> sudo /etc/bash.bashrc
 echo "alias zcgpupool='./src/zcash-miner -G -stratum=\'stratum+tcp://<address>:<port>\' -user=<user> -password=<pass>'" >> sudo /etc/bash.bashrc
 echo "alias zcstop='lsof -i | grep zcashd && ~/zcash/./src/zcash-cli stop && sudo pkill -9 zcashd && sudo pkill -9 zcash-cli'" >> sudo /etc/bash.bashrc
+echo "alias zcgui='java -jar /home/$USER/zcash/src/ZCashSwingWalletUI.jar'"
 echo '\
 \
 zclog() {\
@@ -86,23 +87,18 @@ read -p "Do you want to install GUI?" answer
 if [[ $answer == "y" ]] ; then
 sudo apt-get install git default-jdk ant -y
 git clone https://github.com/vaklinov/zcash-swing-wallet-ui.git
-cd zcash-swing-wallet-ui/
+cd zcash-swing-wallet-ui
 ant -buildfile ./src/build/build.xml
 chmod u+x ./build/jars/ZCashSwingWalletUI.jar
-./build/jars/ZCashSwingWalletUI.jar
-java -jar /home/user/zcash/src/ZCashSwingWalletUI.jar
+cp ./build/jars/ZCashSwingWalletUI.jar /home/$USER/zcash/src
+java -jar /home/$USER/zcash/src/ZCashSwingWalletUI.jar
+cd ..
 fi
-##Benchmarks
 
-#as in Intel(R) Core(TM) i5-4310U CPU @ 2.00GHz 64bits 8GB SODIMM DDR3 Synchronous 1600 MHz Integrated Intel Haswell-ULT Integrated Graphics Controller
-
-#AssWinonLinux & Linux 1s/100-200ms 10-5S/s  Tromp
-
-#CudaLinux 1S/200ms 5S/s  (on GTX 980 224GB/S 20S/s)  XenonCat
-
-#David CPU Segmentation fault
-
+read -p "Do you want to open a RAM/Pool comparison?" answer
+if [[ $answer == "y" ]] ; then
 firefox -new-tab https://docs.google.com/spreadsheets/d/1Um22iBf8bPbfuI4rUDZzSB4W444ouUEnQTBnb8EsdYk/edit
+fi
 
 read -p "Do you want to install OpenCL 2.0 for AMD? OpenCL 1.2 is already included in the latest NVIDIA GPU drivers" answer
 if [[ $answer == "y" ]] ; then
@@ -152,6 +148,7 @@ sudo make install
 cd ..
 export LD_LIBRARY_PATH=`pwd`/libs/libsodium-1.0.11/src/libsodium/.libs/:/usr/local/cuda-7.5/lib64
 ./a.out
+cd ..
 fi
  
 read -p "Do you want to install ZogMiner (OpenCL - AMD) https://github.com/nginnever/zogminer.git?" answer
