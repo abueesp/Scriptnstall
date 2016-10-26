@@ -39,16 +39,16 @@ echo "deviceid=0 (default: 0)" >> ~/.zcash/zcash.conf
 read -p "Check your conf, activate GPU and select the deviceid, add new nodes, change usr and passw, etc." pause 
 nano ~/.zcash/zcash.conf
 ~/zcash/./src/zcashd -daemon
+sleep 10
 ~/zcash/./src/zcash-cli getmininginfo
-sleep 5
 ~/zcash/./src/zcash-cli getwalletinfo
 "Welcome to Zcash. You can check you hashrate using zcbm, consult the info on zcinfo, read the txs with zctxs, and use zcstart and zcstop to manage it. You can also use >>watch free<< to watch your memory consumption."
 ~/zcash/./src/zcash-cli getinfo
-~/zcash/src/./zcash-cli zcbenchmark solveequihash 10
 ~/zcash/./src/zcash-cli listtransactions
-wget https://github.com/KR77/zcashHashTest/blob/master/zcashHashTest.sh -O ~/zcash/./src/zcashHashTest.sh
-echo "alias zcbm='watch -n 2 ~/zcash/./src/zcashHashTest.sh && watch -n 2 free -m && watch -n 2 ~/zcash/./src/zcash-cli getinfo && watch -n 2 ~/zcash/./src/zcash-cli getmininginfo'"  >> sudo /etc/bash.bashrc
-echo "alias zcinfo='~/zcash/./src/zcash-cli getinfo && ~/zcash/./src/zcash-cli getwalletinfo && ~/zcash/./src/zcash-cli getmininginfo'"  >> sudo /etc/bash.bashrc
+wget https://raw.githubusercontent.com/KR77/zcashHashTest/master/zcashHashTest.sh -O ~/zcash/./src/zcashHashTest.sh
+chmod u+x ~/zcash/./src/zcashHashTest.sh
+echo "alias zcbm='~/zcash/./src/zcashHashTest.sh && watch -n 2 free -m && watch -n 2 ~/zcash/./src/zcash-cli getinfo && watch -n 2 ~/zcash/./src/zcash-cli getmininginfo'"  >> /etc/bash.bashrc
+echo "alias zcinfo='~/zcash/./src/zcash-cli getinfo && ~/zcash/./src/zcash-cli getwalletinfo && ~/zcash/./src/zcash-cli getmininginfo'"  >> /etc/bash.bashrc
 echo "alias zctxs='~/zcash/./src/zcash-cli listtransactions'" >> /etc/bash.bashrc
 echo "alias zcgpu='~/zcash/./src/zcash-miner -G'" >> /etc/bash.bashrc 
 echo "alias zcstart='~/zcash/./src/zcashd -daemon'" >> /etc/bash.bashrc
