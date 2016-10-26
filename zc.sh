@@ -1,4 +1,4 @@
-read -p "Delete swapfile and create a 3GB new one [yn]" answer
+read -p "Do you want to delete last swapfile and create a 3GB new one [yn]?" answer
 if [[ $answer == "y" ]] ; then
 read -e -p "Choose a number og GB (3 by default)" -i "3" gygas
 sudo swapon -s
@@ -10,6 +10,9 @@ sudo mkswap /swapfile
 sudo swapon /swapfile
 sudo swapon -s
 fi
+
+read -p "Do you want to install the ZCash daemon+client [yn]" answer
+if [[ $answer == "y" ]] ; then
 sudo apt-get update -y
 sudo apt-get upgrade -y
 sudo apt-get install build-essential pkg-config libgtest-dev libc6-dev m4 autoconf libtool ncurses-dev unzip git python zlib1g-dev wget bsdmainutils automake aptitude -y
