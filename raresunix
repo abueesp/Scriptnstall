@@ -17,4 +17,6 @@ fallocate flock fsfreeze
 ldattach
 ioctl losetup
 setsid
-env
+arping, ethtool
+
+---> check env variables
