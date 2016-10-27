@@ -178,4 +178,18 @@ cd zogminer
 ./src/zcashd
 fi
 
+
+read -p "Do you want to install STRMLMiner (???) https://github.com/STRML/nheqminer?" answer
+if [[ $answer == "y" ]] ; then
+sudo apt-get install cmake build-essential libboost-all-dev -y
+git clone https://github.com/nicehash/nheqminer.git
+cd nheqminer/nheqminer
+mkdir build
+cd build
+cmake ..
+make
+./nheqminer -t $(nproc) -d 0
+cd
+fi
+
 ##Note: This script is merely for research and testing purposes. 
