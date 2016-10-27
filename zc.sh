@@ -104,7 +104,7 @@ if [[ $answer == "y" ]] ; then
 lspci | grep VGA
 sudo apt-get install xorg -y
 sudo rm -r /tmp/**
-firefox -new-tab http://support.amd.com/en-us/kb-articles/Pages/OpenCL2-Driver.aspx
+firefox -new-tab http://support.amd.com/en-us/kb-articles/Pages/AMDGPU-PRO-Install.aspx; firefox -new-tab http://support.amd.com/en-us/kb-articles/Pages/AMDGPU-PRO-Install.aspx
 unzip /Downloads/linux**.zip
 cd fglrx**
 ./amd-driver-installer
@@ -183,6 +183,21 @@ read -p "Do you want to install STRMLMiner (CPU) https://github.com/STRML/nheqmi
 if [[ $answer == "y" ]] ; then
 sudo apt-get install cmake build-essential libboost-all-dev -y
 git clone https://github.com/nicehash/nheqminer.git
+cd nheqminer/nheqminer
+mkdir build
+cd build
+cmake ..
+make
+./nheqminer -t $(nproc) -d 0
+cd
+fi
+
+
+
+read -p "Do you want to install SilentArmy (OpenCL2.0 AMD) https://github.com/STRML/nheqminer?" answer
+if [[ $answer == "y" ]] ; then
+sudo apt-get install cmake build-essential libboost-all-dev -y
+git clone https://github.com/mbevand/silentarmy
 cd nheqminer/nheqminer
 mkdir build
 cd build
