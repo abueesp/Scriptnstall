@@ -6,7 +6,8 @@ nm, strip
  od, initctl
  patch pathchk
 torque-client grindengine slurm qmsg qstat
-nice renice / sact sccs delta prs
+nice renice chrt 
+sact sccs delta prs
 getty stty
 ulimit, umask
 xargs
@@ -17,6 +18,7 @@ fallocate flock fsfreeze
 ldattach
 ioctl losetup
 setsid
-arping, ethtool
+arping, inetd, ethtool
+envdir, envuidgid 
+setterm chvt
 
----> check env variables
