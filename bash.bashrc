@@ -545,15 +545,13 @@ bash <(sed -n '5,$W p' $filon)
 }
 
 mysqlconnect(){
-echo "introduce usuario"
-$sqlu
-echo "introduce IP del host o pulsa ENTER si es localhost"
-$sqlh
-firefox -new-tab https://www.thegeekstuff.com/2010/01/awk-introduction-tutorial-7-awk-print-examples/ && mysql -u $sqlu -p -h $sqlh
+read -p "introduce usuario" sqlu
+read -p "introduce IP del host o pulsa ENTER si es localhost" sqlh
+firefox -new-tab https://www.thegeekstuff.com/2010/01/awk-introduction-tutorial-7-awk-print-examples/; mysql -u $sqlu -p -h $sqlh
 }
 
 debugg(){
-read -p "insert the name of the file \n" file
+read -p "insert the name of the file: " file
 sed -i '1i-set' $file
 sed -b "\$a-set" $file
 }
@@ -581,10 +579,11 @@ fi
 ##Monitoring
 processmon(){
 read -p "introduce el nombre del proceso" app
+pid=pidof $app
+echo "El PID de $app es $pid"
 type $app
 sudo lsof -i -n -P | grep $app
 sudo ps ax | grep $app
-read -p "introduce el pid del proceso" pid
 sudo chrt -p $pid
 sudo pstree -p $pid
 }
