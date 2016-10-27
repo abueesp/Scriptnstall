@@ -670,6 +670,14 @@ alias rptty='replayscript rctty.timing rctty'
 alias rpttyfast='replayscript -d 3 rctty.timing rctty'
 alias logg='tailf'
 
+imprime(){
+read -p "Introduce la ruta del archivo a imprimir" imprimf
+sudo lpd
+sudo lpr $imprimf
+sudo lpq
+echo "Lee la cola de impresión con lpq"
+}
+
 selectelements() {
 read -p "Print from element number: " first
 read -p "Print to element number: " second
