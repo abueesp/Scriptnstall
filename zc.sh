@@ -179,7 +179,7 @@ cd zogminer
 fi
 
 
-read -p "Do you want to install STRMLMiner (???) https://github.com/STRML/nheqminer?" answer
+read -p "Do you want to install STRMLMiner (CPU) https://github.com/STRML/nheqminer?" answer
 if [[ $answer == "y" ]] ; then
 sudo apt-get install cmake build-essential libboost-all-dev -y
 git clone https://github.com/nicehash/nheqminer.git
