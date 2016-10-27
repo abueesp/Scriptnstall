@@ -1138,3 +1138,12 @@ read "Introduce Y axis label" ylabel
 echo $values | graph -T svg -l x -L $glabel -X $xlabel -Y $ylabel  > plot.svg
 firefox -new-tab plot.svg
 }
+
+wakealarm(){
+read -p "how many hours from shutdown?" hourz
+minuz=$(($hourz/60))
+sudo rm /sys/class/rtc/rtc0/wakealarm
+touch /sys/class/rtc/rtc0/wakealarm
+sh -c "echo 0 > /sys/class/rtc/rtc0/wakealarm" 
+sh -c "echo `date '+%s' -d '+ $minuz minutes'` > /sys/class/rtc/rtc0/wakealarm"
+}
