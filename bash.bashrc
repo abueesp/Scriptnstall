@@ -668,6 +668,7 @@ alias rctty='script -t 2>rctty.timing rctty'
 alias mtty='more rctty'
 alias rptty='replayscript rctty.timing rctty'
 alias rpttyfast='replayscript -d 3 rctty.timing rctty'
+alias logg='tailf'
 
 selectelements() {
 read -p "Print from element number: " first
