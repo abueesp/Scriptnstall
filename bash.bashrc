@@ -664,6 +664,10 @@ alias vectorize="xargs"
 alias countlines="awk '/a/{++cnt} END {print \"Count = \", cnt}'"
 alias chrome="/usr/share/iron/iron"
 alias ffx='/home/$USER/icecat/./icecat'
+alias rctty='script -t 2>rctty.timing rctty'
+alias mtty='more rctty'
+alias rptty='replayscript rctty.timing rctty'
+alias rpttyfast='replayscript -d 3 rctty.timing rctty'
 
 selectelements() {
 read -p "Print from element number: " first
