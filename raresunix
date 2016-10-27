@@ -16,3 +16,5 @@ lex yacc
 fallocate flock fsfreeze
 ldattach
 ioctl losetup
+setsid
+env
