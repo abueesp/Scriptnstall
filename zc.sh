@@ -11,7 +11,7 @@ sudo swapon /swapfile
 sudo swapon -s
 fi
 
-read -p "Do you want to install the ZCash daemon+client [yn]" answer
+read -p "Do you want to install the ZCash daemon+client & TestBenckmarking.sh [yn]" answer
 if [[ $answer == "y" ]] ; then
 sudo apt-get update -y
 sudo apt-get upgrade -y
@@ -32,14 +32,12 @@ echo "testnet=1" >> ~/.zcash/zcash.conf
 echo "addnode=betatestnet.z.cash" >> ~/.zcash/zcash.conf
 echo "rpcuser=$USER" >> ~/.zcash/zcash.conf
 echo "rpcpassword=$passw" >> ~/.zcash/zcash.conf
-echo "gen=$(nproc)" >> ~/.zcash/zcash.conf
+echo "gen=1" >> ~/.zcash/zcash.conf
 echo "genproclimit=-1" >> ~/.zcash/zcash.conf ##Gracias Salva!!
-echo "GPU=0"  >> ~/.zcash/zcash.conf
-echo "deviceid=0 (default: 0)" >> ~/.zcash/zcash.conf
 read -p "Check your conf, activate GPU and select the deviceid, add new nodes, change usr and passw, etc." pause 
 nano ~/.zcash/zcash.conf
 ~/zcash/./src/zcashd -daemon
-sleep 10
+sleep 12
 ~/zcash/./src/zcash-cli getmininginfo
 ~/zcash/./src/zcash-cli getwalletinfo
 "Welcome to Zcash. You can check you hashrate using zcbm, consult the info on zcinfo, read the txs with zctxs, and use zcstart and zcstop to manage it. You can also use >>watch free<< to watch your memory consumption."
@@ -81,7 +79,6 @@ until [ $c -gt 240 ]; do \
     done \
 }' >> /etc/bash.bashrc
 
-##Install GUI
 read -p "Do you want to install GUI?" answer
 if [[ $answer == "y" ]] ; then
 sudo apt-get install git default-jdk ant -y
@@ -94,7 +91,21 @@ java -jar /home/$USER/zcash/src/ZCashSwingWalletUI.jar
 cd ..
 fi
 
-read -p "Do you want to open a RAM/Pool comparison?" answer
+read -p "Do you want to install mail postfix system?" answer
+if [[ $answer == "y" ]] ; then
+sudo apt-get install mailutils ssmtp postfix -y
+read -p "Email Configuration for a mail integrated on terminal. Introduce email  \n" emmail
+read -p "Password  \n" Passs
+read -p "SMTP. Gmail uses smtp.gmail.com:587    \n" SMTP
+sudo sed -i 's/#FromLineOverride=YES/FromLineOverride=YES \AuthUser=$emmail \AuthPass=$Passs \mailhub=$SMTP \UseSTARTTLS=YES/g' /etc/ssmtp/ssmtp.conf
+echo "Is blacklisted my domain-name or ip?"
+wget http://ipinfo.io/ip -qO -
+firefox -new-tab https://www.spamhaus.org/lookup/ -new-tab https://www.whatismyip.com/blacklist-check/
+echo "Configure (use a postmaster mail)
+firefox -new-tab https://www.spamhaus.org/pbl/removal/form/ -new-tab https://postmaster.google.com/managedomains?pli=1
+fi
+
+read -p "Do you want to open the About/GPU/CPU/Pool/Cost data?" answer
 if [[ $answer == "y" ]] ; then
 firefox -new-tab https://docs.google.com/spreadsheets/d/1Um22iBf8bPbfuI4rUDZzSB4W444ouUEnQTBnb8EsdYk/edit
 fi
@@ -152,6 +163,7 @@ fi
 
 read -p "Do you want to install XenonCatMiner (Demo) https://github.com/xenoncat/equihash-xenon" answer
 git clone https://github.com/xenoncat/equihash-xenon
+cd equihash-xenon
 cd Linux
 cd blake2b
 make
@@ -162,6 +174,7 @@ make
 ./quick**avx1
 ./solver**avx2
 ./quick**avx2
+cd ..
 cd ..
 cd ..
 fi
@@ -179,7 +192,7 @@ cd zogminer
 fi
 
 
-read -p "Do you want to install STRMLMiner (CPU) https://github.com/STRML/nheqminer?" answer
+read -p "Do you want to install Nheqminer (CPU) https://github.com/STRML/nheqminer?" answer
 if [[ $answer == "y" ]] ; then
 sudo apt-get install cmake build-essential libboost-all-dev -y
 git clone https://github.com/nicehash/nheqminer.git
@@ -192,19 +205,16 @@ make
 cd
 fi
 
-
-
-read -p "Do you want to install SilentArmy (OpenCL2.0 AMD) https://github.com/STRML/nheqminer?" answer
-if [[ $answer == "y" ]] ; then
-sudo apt-get install cmake build-essential libboost-all-dev -y
+read -p "Do you want to install Mbevand SilentArmy (OpenCL2.0 AMD) https://github.com/STRML/nheqminer?" answer
+if [[ $answer == "y" ]] ; then 
 git clone https://github.com/mbevand/silentarmy
-cd nheqminer/nheqminer
-mkdir build
-cd build
-cmake ..
-make
-./nheqminer -t $(nproc) -d 0
-cd
+echo "CODING HERE"
 fi
 
 ##Note: This script is merely for research and testing purposes. 
+read -p "Do you want to install JanKalin Zc Tools Pack https://github.com/JanKalin/zcutils?" answer
+if [[ $answer == "y" ]] ; then
+sudo apt-get install python-matplotlib python-prettytable python-scipy -y
+git clone https://github.com/JanKalin/zcutils
+python zcutils/miningrate.py -h
+python zcutils/minerlist.py -h
