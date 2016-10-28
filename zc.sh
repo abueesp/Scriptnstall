@@ -19,6 +19,7 @@ sudo apt-get install build-essential pkg-config libgtest-dev libc6-dev m4 autoco
 sudo aptitude install g++ g++-multilib -y
 git clone https://github.com/zcash/zcash.git
 cd zcash/
+git fetch origin
 git checkout v1.0.0
 ./zcutil/fetch-params.sh
 echo "now compilation will start"
@@ -29,6 +30,7 @@ echo "now testing will start"
 echo "now solo mining will start"
 mkdir -p ~/.zcash
 echo "rpcuser=$USER" > ~/.zcash/zcash.conf
+echo "addnode=mainnet.z.cash" >> ~/.zcash/zcash.conf
 echo "rpcpassword=`head -c 32 /dev/urandom | base64`" >> ~/.zcash/zcash.conf
 echo "gen=1" >> ~/.zcash/zcash.conf
 echo "genproclimit=-1" >> ~/.zcash/zcash.conf ##Gracias Salva!!
@@ -47,6 +49,10 @@ sleep 12
 ~/zcash/./src/zcash-cli getwalletinfo
 "Welcome to Zcash. You can check you hashrate using zcbm, consult the info on zcinfo, read the txs with zctxs, and use zcstart and zcstop to manage it. You can also use >>watch free<< to watch your memory consumption."
 ~/zcash/./src/zcash-cli getinfo
+~/zcash/./src/zcash-cli z_getnewaddress
+~/zcash/./src/zcash-cli z_listaddresses
+read -p "Select your coinbase address" ZADDR
+./src/zcash-cli z_listreceivedbyaddress "$ZADDR"
 ~/zcash/./src/zcash-cli listtransactions
 wget https://raw.githubusercontent.com/KR77/zcashHashTest/master/zcashHashTest.sh -O ~/zcash/./src/zcashHashTest.sh
 chmod u+x ~/zcash/./src/zcashHashTest.sh
@@ -56,16 +62,29 @@ python zcutils/miningrate.py -h
 python zcutils/minerlist.py -h
 fi
 
+
 read -p "Do you want to create aliases for ZCash daemon+client & TestBenckmarking.sh [yn]?" answer
 if [[ $answer == "y" ]] ; then
+echo "alias zcnewaddress='~/zcash/./src/zcash-cli z_getnewaddress'"
 echo "alias zcbm='~/zcash/./src/zcashHashTest.sh && watch -n 2 free -m && watch -n 2 ~/zcash/./src/zcash-cli getinfo && watch -n 2 ~/zcash/./src/zcash-cli getmininginfo'"  >> /etc/bash.bashrc
 echo "alias zcinfo='~/zcash/./src/zcash-cli getinfo && ~/zcash/./src/zcash-cli getwalletinfo && ~/zcash/./src/zcash-cli getmininginfo'"  >> /etc/bash.bashrc
-echo "alias zctxs='~/zcash/./src/zcash-cli listtransactions'" >> /etc/bash.bashrc
+echo "alias zctxs='~/zcash/./src/zcash-cli listtransactions; ~/zcash/./src/zcash-cli z_listaddresses; ~/zcash/./src/zcash-cli z_listreceivedbyaddress \"$ZADDR\"'" >> /etc/bash.bashrc
 echo "alias zcgpu='~/zcash/./src/zcash-miner -G'" >> /etc/bash.bashrc 
 echo "alias zcstart='~/zcash/./src/zcashd -daemon'" >> /etc/bash.bashrc
 echo "alias zcstratum='echo ADD -stratum=¨stratum+tcp://<address>:<port>¨ -user=<user> -password=<pass> TO zcgpu or zcstart\'" >> /etc/bash.bashrc
 echo "alias zcstop='lsof -i | grep zcashd && ~/zcash/./src/zcash-cli stop && sudo pkill -9 zcashd && sudo pkill -9 zcash-cli'" >> /etc/bash.bashrc
 echo "alias zcgui='java -jar /home/$USER/zcash/src/ZCashSwingWalletUI.jar'" >> /etc/bash.bashrc
+echo 'zcsend() { \
+~/zcash/./src/zcash-cli listtransactions \
+~/zcash/./src/zcash-cli z_listaddresses \
+read -p "Select your sender address" ZADDR \
+~/zcash/./src/zcash-cli z_listreceivedbyaddress "$ZADDR" \
+read -p "Write the amount" AMNT \
+read -p "Write your friend address" FRIEND \
+./src/zcash-cli z_sendmany "$ZADDR" "[{\"amount\": $AMNT, \"address\": \"$FRIEND\"}]" \
+sleep 1.1 \
+./src/zcash-cli z_getoperationresult \
+}"
 echo 'zclog() { memory=$(free|awk "/^Mem:/{print $2}") \
 memory=$(echo "$memory/1000" | bc) \
 mydate=$(date +"%D") \
