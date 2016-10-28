@@ -28,12 +28,15 @@ echo "now testing will start"
 ./qa/pull-tester/rpc-tests.sh
 echo "now solo mining will start"
 mkdir -p ~/.zcash
-echo "testnet=0" >> ~/.zcash/zcash.conf
-echo "addnode=testnet.z.cash" >> ~/.zcash/zcash.conf
-echo "rpcuser=$USER" >> ~/.zcash/zcash.conf
-echo "rpcpassword=$passw" >> ~/.zcash/zcash.conf
+echo "rpcuser=$USER" > ~/.zcash/zcash.conf
+echo "rpcpassword=`head -c 32 /dev/urandom | base64`" >> ~/.zcash/zcash.conf
 echo "gen=1" >> ~/.zcash/zcash.conf
 echo "genproclimit=-1" >> ~/.zcash/zcash.conf ##Gracias Salva!!
+read -p "Are you going to mine with GPU [yn]?" answer
+if [[ $answer == "y" ]] ; then 
+echo "GPU=1" >> ~/.zcash/zcash.conf
+echo "deviceid=0" >> ~/.zcash/zcash.conf
+fi
 read -p "Check your conf, activate GPU and select the deviceid, add new nodes, change usr and passw, etc." pause 
 nano ~/.zcash/zcash.conf
 ~/zcash/./src/zcashd -daemon
