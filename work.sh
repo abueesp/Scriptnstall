@@ -579,11 +579,16 @@ rvm list
 rvm rubies
 
 ##Mail
-sudo apt-get install mailutils ssmtp -y
+sudo apt-get install mailutils ssmtp postfix -y
 read -p "Email Configuration for a mail integrated on terminal. Introduce email  \n" emmail
 read -p "Password  \n" Passs
 read -p "SMTP. Gmail uses smtp.gmail.com:587    \n" SMTP
 sudo sed -i 's/#FromLineOverride=YES/FromLineOverride=YES \AuthUser=$emmail \AuthPass=$Passs \mailhub=$SMTP \UseSTARTTLS=YES/g' /etc/ssmtp/ssmtp.conf
+echo "Is blacklisted my domain-name or ip?"
+wget http://ipinfo.io/ip -qO -
+firefox -new-tab https://www.spamhaus.org/lookup/ -new-tab https://www.whatismyip.com/blacklist-check/
+echo "Configure (use a postmaster mail)
+firefox -new-tab https://www.spamhaus.org/pbl/removal/form/ -new-tab https://postmaster.google.com/managedomains?pli=1
 
 #Other browsers
 wget https://ftp.opera.com/pub/opera-developer/41.0.2349.0/linux/opera-developer_41.0.2349.0_amd64.deb
