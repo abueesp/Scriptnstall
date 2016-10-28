@@ -1,7 +1,7 @@
 #!/bin/bash
 # My first script to reinstall
 #TCP flood mitigation
-echo "net.ipv4.tcp_challenge_ack_limit = 999999999" >> /etc/sysctl.conf
+echo "net.ipv4.tcp_challenge_ack_limit = 999999999" | sudo tee -a /etc/sysctl.conf
 sudo sysctl -p
 #Prntscreensound
 sudo mv /usr/share/sounds/freedesktop/stereo/camera-shutter.oga /usr/share/sounds/freedesktop/stereo/camera-shutter-disabled.oga
