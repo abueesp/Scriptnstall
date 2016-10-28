@@ -592,7 +592,7 @@ firefox -new-tab https://www.spamhaus.org/pbl/removal/form/ -new-tab https://pos
 echo "mail(){ \
 read -p 'Write subject' Subject \
 read -p 'Write recipient email' REmail \
-read -p 'Write recipient email' Subject \
+read -p 'Write a subject' Subject \
 read -p 'Introduce text' Textt \
 read -p 'Introduce anexxed files routes separated by commas, like /a/b.txt,/c/c.pdf' filesss \
 mail -a $filesss -s '$Subject' $REmail < $Textt \
