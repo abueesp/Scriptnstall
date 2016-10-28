@@ -19,7 +19,7 @@ sudo apt-get install build-essential pkg-config libgtest-dev libc6-dev m4 autoco
 sudo aptitude install g++ g++-multilib -y
 git clone https://github.com/zcash/zcash.git
 cd zcash/
-git checkout v1.0.0-rc4
+git checkout v1.0.0
 ./zcutil/fetch-params.sh
 echo "now compilation will start"
 ./zcutil/build.sh -j$(nproc)
@@ -238,7 +238,7 @@ echo "alias trompminer='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -
 echo "alias zminer='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify  -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"~/zmine/./a.out\"'" >> /etc/bash.bashrc #Zminer
 echo "alias xenon1miner='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify  -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"~/equihash-xenon/Linux/blake2b/./solver**avx1\"'" >> /etc/bash.bashrc #XenonCatMiner1
 echo "alias xenon2miner='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"~/equihash-xenon/Linux/blake2b/./solver**avx2\"'" >> /etc/bash.bashrc  #XenonCatMiner2
-echo "alias zogminer='~/zogminer/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify  -daemon -par=0 -debug -gen=1  -genproclimit=-1'" >> /etc/bash.bashrc #ZogMiner
+echo "alias zogminer='./src/zcash-miner -G -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify  -daemon -par=0 -debug -gen=1  -genproclimit=-1'" >> /etc/bash.bashrc #ZogMiner
 echo "alias nheqminer='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify  -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"~/nheqminer/nheqminer/./nheqminer -t $(nproc) -d 0 -l $serverr:$portt -u $addd.$workk\"'" >> /etc/bash.bashrc #Nheqminer
 echo "alias silentminer='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"SILENTMINEEEEEEEEEERRRRRR\"'" >> /etc/bash.bashrc #Mbevand SilentArmy
 fi
