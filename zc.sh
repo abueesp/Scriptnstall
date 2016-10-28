@@ -28,8 +28,8 @@ echo "now testing will start"
 ./qa/pull-tester/rpc-tests.sh
 echo "now solo mining will start"
 mkdir -p ~/.zcash
-echo "testnet=1" >> ~/.zcash/zcash.conf
-echo "addnode=betatestnet.z.cash" >> ~/.zcash/zcash.conf
+echo "testnet=0" >> ~/.zcash/zcash.conf
+echo "addnode=testnet.z.cash" >> ~/.zcash/zcash.conf
 echo "rpcuser=$USER" >> ~/.zcash/zcash.conf
 echo "rpcpassword=$passw" >> ~/.zcash/zcash.conf
 echo "gen=1" >> ~/.zcash/zcash.conf
@@ -227,11 +227,15 @@ fi
 
 read -p "Do you want to create aliases for miners [yn]?" answer
 if [[ $answer == "y" ]] ; then
-echo "alias trompminer='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify -daemon -par=0 -debug -gen=1 -genproclimit=-1 -equihashsolver=\"TROOOOOOOOOOOOOOOOOOOOOMP\"'" >> /etc/bash.bashrc #Trompminer
+read "Write pool server: " serverr
+read "Write pool port: " portt
+read "Write pool address: " addd
+read "Write pool worker name: " workk
+echo "alias trompminer='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify -daemon -par=0 -debug -gen=1 -genproclimit=-1 -equihashsolver=\"~/equihash/./eq14451\"'" >> /etc/bash.bashrc #Trompminer
 echo "alias zminer='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify  -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"~/zmine/./a.out\"'" >> /etc/bash.bashrc #Zminer
 echo "alias xenon1miner='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify  -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"~/equihash-xenon/Linux/blake2b/./solver**avx1\"'" >> /etc/bash.bashrc #XenonCatMiner1
 echo "alias xenon2miner='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"~/equihash-xenon/Linux/blake2b/./solver**avx2\"'" >> /etc/bash.bashrc  #XenonCatMiner2
 echo "alias zogminer='~/zogminer/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify  -daemon -par=0 -debug -gen=1  -genproclimit=-1'" >> /etc/bash.bashrc #ZogMiner
-echo "alias nheqminer='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify  -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"~/nheqminer/nheqminer/./nheqminer -t $(nproc) -d 0\"'" >> /etc/bash.bashrc #Nheqminer
+echo "alias nheqminer='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify  -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"~/nheqminer/nheqminer/./nheqminer -t $(nproc) -d 0 -l $serverr:$portt -u $addd.$workk\"'" >> /etc/bash.bashrc #Nheqminer
 echo "alias silentminer='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"SILENTMINEEEEEEEEEERRRRRR\"'" >> /etc/bash.bashrc #Mbevand SilentArmy
-
+fi
