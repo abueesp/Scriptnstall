@@ -32,6 +32,8 @@ echo "rpcuser=$USER" > ~/.zcash/zcash.conf
 echo "rpcpassword=`head -c 32 /dev/urandom | base64`" >> ~/.zcash/zcash.conf
 echo "gen=1" >> ~/.zcash/zcash.conf
 echo "genproclimit=-1" >> ~/.zcash/zcash.conf ##Gracias Salva!!
+read -p "Are you going to mine with Tromp [yn]?" answer
+echo "equihashsolver=tromp" >> ~/.zcash/zcash.conf
 read -p "Are you going to mine with GPU [yn]?" answer
 if [[ $answer == "y" ]] ; then 
 echo "GPU=1" >> ~/.zcash/zcash.conf
