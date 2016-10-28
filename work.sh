@@ -597,7 +597,9 @@ read -p 'Introduce text' Textt \
 read -p 'Introduce anexxed files routes separated by commas, like /a/b.txt,/c/c.pdf' filesss \
 mail -a $filesss -s '$Subject' $REmail < $Textt \
 }" | sudo tee -a /etc/bash.bashrc
-
+echo "$(echo $(wget http://ipinfo.io/ip -qO -) | rev | cut -d. -f2-).in-addr.arpa" #zone file
+echo "$("$(wget http://ipinfo.io/ip -qO -) | cut -d. -f2- | cut -d. -f2- | cut -d. -f2-)""$(wget http://ipinfo.io/ip -qO -) | rev | cut -d. -f2-).in-addr.arpa")  #PTRRecord
+firefox -new-tab http://www.digwebinterface.com/?hostnames=$(wget http://ipinfo.io/ip -qO -)%0D%0A&type=&ns=resolver&useresolver=8.8.4.4&nameservers=
 
 #Other browsers
 wget https://ftp.opera.com/pub/opera-developer/41.0.2349.0/linux/opera-developer_41.0.2349.0_amd64.deb
