@@ -1,9 +1,10 @@
 read -p "Do you want to delete last swapfile and create a 3GB new one [yn]?" answer
 if [[ $answer == "y" ]] ; then
-read -e -p "Choose a number og GB (3 by default)" -i "3" gygas
+read -e -p "Choose the number of GBs for the swapfile (3 by default): " -i "3" gygas
 sudo swapon -s
 sudo swapoff -v /swapfile
 sudo rm /swapfile
+echo "Creating swapfile"
 bytes=$(($gygas*1024000))
 sudo dd if=/dev/zero of=/swapfile bs=1024 count=$bytes ##Gracias Salva!
 sudo mkswap /swapfile
