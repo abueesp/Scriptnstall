@@ -107,7 +107,7 @@ until [ $c -gt 240 ] do \
      p=$(ps aux | grep zcashd) \
      q=$(echo "$p" | tail -n1) \
      cpu=$({q:16:3}) \
-     if [ "$cpu" == "0.0" ]; then \
+     if [[ $cpu == "0.0" ]]; then \
          p=$(echo "$p" | tail -n2) \
      fi \
     cpu=$({p:16:3}) \
@@ -115,7 +115,6 @@ until [ $c -gt 240 ] do \
      rampercore=$(echo "($ram*$memory/($cpu+1)" | bc) \
      echo "$mytime $block $difficulty $cpu $rampercore" | tee -a log.txt \
      sleep 15 # seconds \
-    done \
 }' >> /etc/bash.bashrc
 fi
 
