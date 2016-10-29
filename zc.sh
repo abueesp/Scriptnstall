@@ -35,13 +35,19 @@ echo "addnode=mainnet.z.cash" >> ~/.zcash/zcash.conf
 echo "rpcpassword=`head -c 32 /dev/urandom | base64`" >> ~/.zcash/zcash.conf
 echo "gen=1" >> ~/.zcash/zcash.conf
 echo "genproclimit=-1" >> ~/.zcash/zcash.conf ##Gracias Salva!!
-read -p "Are you going to mine with Tromp [yn]?" answer
-echo "equihashsolver=tromp" >> ~/.zcash/zcash.conf
-read -p "Are you going to mine with GPU [yn]?" answer
-if [[ $answer == "y" ]] ; then 
-echo "GPU=1" >> ~/.zcash/zcash.conf
-echo "deviceid=0" >> ~/.zcash/zcash.conf
-fi
+     read -p "Are you going to mine with Tromp [yn]?" answer
+     if [[ $answer == "y" ]] ; then 
+     echo "equihashsolver=tromp" >> ~/.zcash/zcash.conf
+     else
+     return
+     fi
+     read -p "Are you going to mine with GPU (deviceid=0 used by default) [yn]?" answer
+     if [[ $answer == "y" ]] ; then 
+     echo "GPU=1" >> ~/.zcash/zcash.conf
+     echo "deviceid=0" >> ~/.zcash/zcash.conf
+     else
+     return
+     fi
 read -p "Check your conf, activate GPU and select the deviceid, add new nodes, change usr and passw, etc." pause 
 nano ~/.zcash/zcash.conf
 ~/zcash/./src/zcashd -daemon
@@ -53,7 +59,7 @@ sleep 12
 ~/zcash/./src/zcash-cli z_getnewaddress
 ~/zcash/./src/zcash-cli z_listaddresses
 read -p "Select your coinbase address" ZADDR
-./src/zcash-cli z_listreceivedbyaddress "$ZADDR"
+~/zcash/./src/zcash-cli z_listreceivedbyaddress "$ZADDR"
 ~/zcash/./src/zcash-cli listtransactions
 wget https://raw.githubusercontent.com/KR77/zcashHashTest/master/zcashHashTest.sh -O ~/zcash/./src/zcashHashTest.sh
 chmod u+x ~/zcash/./src/zcashHashTest.sh
@@ -86,7 +92,7 @@ read -p "Write your friend address" FRIEND \
 sleep 1.1 \
 ./src/zcash-cli z_getoperationresult \
 }"
-echo 'zclog() { memory=$(free|awk "/^Mem:/{print $2}") \
+echo 'zclog () { memory=$(free|awk "/^Mem:/{print $2}") \
 memory=$(echo "$memory/1000" | bc) \
 mydate=$(date +"%D") \
 echo "$mydate" | tee -a zclog.txt \
