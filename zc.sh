@@ -73,14 +73,14 @@ fi
 read -p "Do you want to create aliases for ZCash daemon+client & TestBenckmarking.sh [yn]?" answer
 if [[ $answer == "y" ]] ; then
 echo "alias zcnewaddress='~/zcash/./src/zcash-cli z_getnewaddress'"
-echo "alias zcbm='~/zcash/./src/zcashHashTest.sh && watch -n 2 free -m && watch -n 2 ~/zcash/./src/zcash-cli getinfo && watch -n 2 ~/zcash/./src/zcash-cli getmininginfo'"  >> /etc/bash.bashrc
-echo "alias zcinfo='~/zcash/./src/zcash-cli getinfo && ~/zcash/./src/zcash-cli getwalletinfo && ~/zcash/./src/zcash-cli getmininginfo'"  >> /etc/bash.bashrc
-echo "alias zctxs='~/zcash/./src/zcash-cli listtransactions; ~/zcash/./src/zcash-cli z_listaddresses; ~/zcash/./src/zcash-cli z_listreceivedbyaddress \"$ZADDR\"'" >> /etc/bash.bashrc
-echo "alias zcgpu='~/zcash/./src/zcash-miner -G'" >> /etc/bash.bashrc 
-echo "alias zcstart='~/zcash/./src/zcashd -daemon'" >> /etc/bash.bashrc
-echo "alias zcstratum='echo ADD -stratum=¨stratum+tcp://<address>:<port>¨ -user=<user> -password=<pass> TO zcgpu or zcstart\'" >> /etc/bash.bashrc
-echo "alias zcstop='lsof -i | grep zcashd && ~/zcash/./src/zcash-cli stop && sudo pkill -9 zcashd && sudo pkill -9 zcash-cli'" >> /etc/bash.bashrc
-echo "alias zcgui='java -jar ~/zcash/src/ZCashSwingWalletUI.jar'" >> /etc/bash.bashrc
+echo "alias zcbm='~/zcash/./src/zcashHashTest.sh && watch -n 2 free -m && watch -n 2 ~/zcash/./src/zcash-cli getinfo && watch -n 2 ~/zcash/./src/zcash-cli getmininginfo'" | sudo tee -a  /etc/bash.bashrc
+echo "alias zcinfo='~/zcash/./src/zcash-cli getinfo && ~/zcash/./src/zcash-cli getwalletinfo && ~/zcash/./src/zcash-cli getmininginfo'" | sudo tee -a  /etc/bash.bashrc
+echo "alias zctxs='~/zcash/./src/zcash-cli listtransactions; ~/zcash/./src/zcash-cli z_listaddresses; ~/zcash/./src/zcash-cli z_listreceivedbyaddress \"$ZADDR\"'" | sudo tee -a  /etc/bash.bashrc
+echo "alias zcgpu='~/zcash/./src/zcash-miner -G'" | sudo tee -a  /etc/bash.bashrc 
+echo "alias zcstart='~/zcash/./src/zcashd -daemon'" | sudo tee -a  /etc/bash.bashrc
+echo "alias zcstratum='echo ADD -stratum=¨stratum+tcp://<address>:<port>¨ -user=<user> -password=<pass> TO zcgpu or zcstart\'" | sudo tee -a  /etc/bash.bashrc
+echo "alias zcstop='lsof -i | grep zcashd && ~/zcash/./src/zcash-cli stop && sudo pkill -9 zcashd && sudo pkill -9 zcash-cli'" | sudo tee -a  /etc/bash.bashrc
+echo "alias zcgui='java -jar ~/zcash/src/ZCashSwingWalletUI.jar'" | sudo tee -a  /etc/bash.bashrc
 echo 'zcsend() { \
 ~/zcash/./src/zcash-cli listtransactions \
 ~/zcash/./src/zcash-cli z_listaddresses \
@@ -115,7 +115,7 @@ until [ $c -gt 240 ] do \
      rampercore=$(echo "($ram*$memory/($cpu+1)" | bc) \
      echo "$mytime $block $difficulty $cpu $rampercore" | tee -a log.txt \
      sleep 15 # seconds \
-}' >> /etc/bash.bashrc
+}' | sudo tee -a /etc/bash.bashrc
 fi
 
 read -p "Do you want to install GUI [yn]?" answer
