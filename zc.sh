@@ -259,15 +259,15 @@ fi
 
 read -p "Do you want to create aliases for miners [yn]?" answer
 if [[ $answer == "y" ]] ; then
-read "Write pool server: " serverr
-read "Write pool port: " portt
-read "Write pool address: " addd
-read "Write pool worker name: " workk
-echo "alias trompminer='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify -daemon -par=0 -debug -gen=1 -genproclimit=-1 -equihashsolver=\"~/equihash/./eq14451\"'" | sudo tee /etc/bash.bashrc #Trompminer
-echo "alias zminer='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify  -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"~/zmine/./a.out\"'" | sudo tee /etc/bash.bashrc #Zminer
-echo "alias xenon1miner='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify  -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"~/equihash-xenon/Linux/blake2b/./solver**avx1\"'" | sudo tee /etc/bash.bashrc #XenonCatMiner1
-echo "alias xenon2miner='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"~/equihash-xenon/Linux/blake2b/./solver**avx2\"'" | sudo tee /etc/bash.bashrc  #XenonCatMiner2
-echo "alias zogminer='./src/zcash-miner -G -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify  -daemon -par=0 -debug -gen=1  -genproclimit=-1'" | sudo tee /etc/bash.bashrc #ZogMiner
-echo "alias nheqminer='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify  -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"~/nheqminer/nheqminer/./nheqminer -t $(nproc) -d 0 -l $serverr:$portt -u $addd.$workk\"'" | sudo tee /etc/bash.bashrc #Nheqminer
-echo "alias silentminer='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"SILENTMINEEEEEEEEEERRRRRR\"'" | sudo tee /etc/bash.bashrc #Mbevand SilentArmy
+read -p "Write pool server: " serverr
+read -p "Write pool port: " portt
+read -p "Write pool address: " addd
+read -p "Write pool worker name: " workk
+echo "alias trompminer='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify -daemon -par=0 -debug -gen=1 -genproclimit=-1 -equihashsolver=\"~/equihash/./eq14451\"'" | sudo tee -a /etc/bash.bashrc #Trompminer
+echo "alias zminer='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify  -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"~/zmine/./a.out\"'" | sudo tee -a /etc/bash.bashrc #Zminer
+echo "alias xenon1miner='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify  -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"~/equihash-xenon/Linux/blake2b/./solver**avx1\"'" | sudo tee -a /etc/bash.bashrc #XenonCatMiner1
+echo "alias xenon2miner='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"~/equihash-xenon/Linux/blake2b/./solver**avx2\"'" | sudo tee -a /etc/bash.bashrc  #XenonCatMiner2
+echo "alias zogminer='./src/zcash-miner -G -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify  -daemon -par=0 -debug -gen=1  -genproclimit=-1'" | sudo tee -a /etc/bash.bashrc #ZogMiner
+echo "alias nheqminer='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify  -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"~/nheqminer/nheqminer/./nheqminer -t $(nproc) -d 0 -l $serverr:$portt -u $addd.$workk\"'" | sudo tee -a /etc/bash.bashrc #Nheqminer
+echo "alias silentminer='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"SILENTMINEEEEEEEEEERRRRRR\"'" | sudo tee -a /etc/bash.bashrc #Mbevand SilentArmy
 fi
