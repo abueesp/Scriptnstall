@@ -72,7 +72,7 @@ fi
 
 read -p "Do you want to create aliases for ZCash daemon+client & TestBenckmarking.sh [yn]?" answer
 if [[ $answer == "y" ]] ; then
-echo "alias zcnewaddress='~/zcash/./src/zcash-cli z_getnewaddress'"
+echo "alias zcnewaddress='~/zcash/./src/zcash-cli z_getnewaddress'" | sudo tee -a  /etc/bash.bashrc 
 echo "alias zcbm='~/zcash/./src/zcashHashTest.sh && watch -n 2 free -m && watch -n 2 ~/zcash/./src/zcash-cli getinfo && watch -n 2 ~/zcash/./src/zcash-cli getmininginfo'" | sudo tee -a  /etc/bash.bashrc
 echo "alias zcinfo='~/zcash/./src/zcash-cli getinfo && ~/zcash/./src/zcash-cli getwalletinfo && ~/zcash/./src/zcash-cli getmininginfo'" | sudo tee -a  /etc/bash.bashrc
 echo "alias zctxs='~/zcash/./src/zcash-cli listtransactions; ~/zcash/./src/zcash-cli z_listaddresses; ~/zcash/./src/zcash-cli z_listreceivedbyaddress \"$ZADDR\"'" | sudo tee -a  /etc/bash.bashrc
