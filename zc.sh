@@ -207,6 +207,7 @@ cd ..
 fi
 
 read -p "Do you want to install XenonCatMiner (Demo) https://github.com/xenoncat/equihash-xenon [yn]?" answer
+if [[ $answer == "y" ]] ; then
 git clone https://github.com/xenoncat/equihash-xenon
 cd equihash-xenon
 cd Linux
