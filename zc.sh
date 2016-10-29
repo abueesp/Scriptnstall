@@ -98,7 +98,7 @@ mydate=$(date +"%D") \
 echo "$mydate" | tee -a zclog.txt \
 echo "time, block number, difficulty, CPU%, RAM in MB per core" | tee -a zclog.txt \
 c=1 \
-until [ $c -gt 240 ]; do \
+until [ $c -gt 240 ] do \
      let c=c+1 \
      mytime=$(date +"%T") \
      block=$(~/zcash/./src/zcash-cli getblockcount) \
