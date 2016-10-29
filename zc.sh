@@ -150,24 +150,24 @@ read -p 'Write recipient email' REmail
 alertnotify = "mail -s 'ZC Alert' $REmail < 'This is a ZC Alert, please check'"
 fi
 
-read -p "Do you want to open the About/GPU/CPU/Pool/Cost data document [yn]?" answer
+read -p "Do you want to open the Info (Gpu Cpu Pool Cost) data document [yn]?" answer
 if [[ $answer == "y" ]] ; then
 firefox -new-tab https://docs.google.com/spreadsheets/d/1Um22iBf8bPbfuI4rUDZzSB4W444ouUEnQTBnb8EsdYk/edit
 fi
 
-read -p "Do you want to install OpenCL 2.0 for AMD -OpenCL 1.2 is already included in the latest NVIDIA GPU drivers- [yn]?" answer
+read -p "Do you want to install OpenCL 2.0 for AMD (OpenCL 1.2 is already included in the latest NVIDIA GPU drivers) [yn]?" answer
 if [[ $answer == "y" ]] ; then
 lspci | grep VGA
 sudo apt-get install xorg -y
 sudo rm -r /tmp/**
-firefox -new-tab http://support.amd.com/en-us/kb-articles/Pages/AMDGPU-PRO-Install.aspx; firefox -new-tab http://support.amd.com/en-us/kb-articles/Pages/AMDGPU-PRO-Install.aspx
+firefox --new-tab http://support.amd.com/en-us/kb-articles/Pages/AMDGPU-PRO-Install.aspx; firefox --new-tab http://support.amd.com/en-us/kb-articles/Pages/AMDGPU-PRO-Install.aspx
 unzip /Downloads/linux**.zip
 cd fglrx**
 ./amd-driver-installer
 #error: Detected X Server version 'XServer 1.18.3_64a' is not supported. Supported versions are X.Org 6.9 or later, up to XServer 1.10 (default:v2:x86_64:lib:XServer 1.18.3_64a:none:4.4.0-42-generic:) Installation will not proceed.
 fi
 
-read -p "Do you want to install CUDA 8.0 for Intel [yn]?" answer
+read -p "Do you want to install CUDA 8.0 [yn]?" answer
 if [[ $answer == "y" ]] ; then
 wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1404/x86_64/7fa2af80.pub
 cat 7fa2af80.pub | sudo apt-key add -
