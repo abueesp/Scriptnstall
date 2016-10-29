@@ -126,12 +126,12 @@ git clone https://github.com/vaklinov/zcash-swing-wallet-ui.git
 cd zcash-swing-wallet-ui
 ant -buildfile ./src/build/build.xml
 chmod u+x ./build/jars/ZCashSwingWalletUI.jar
-cp ./build/jars/ZCashSwingWalletUI.jar /home/$USER/zcash/src
-java -jar /home/$USER/zcash/src/ZCashSwingWalletUI.jar
+cp ./build/jars/ZCashSwingWalletUI.jar ~/zcash/src
+java -jar ~/zcash/src/ZCashSwingWalletUI.jar
 cd ..
 fi
 
-read -p "Do you want to install mail postfix system [yn]?" answer
+read -p "Do you want to configure your mail postfix system [yn]?" answer
 if [[ $answer == "y" ]] ; then
 sudo apt-get install mailutils ssmtp postfix -y
 read -p "Email Configuration for a mail integrated on terminal. Introduce email  \n" emmail
@@ -150,7 +150,7 @@ read -p 'Write recipient email' REmail
 alertnotify = "mail -s 'ZC Alert' $REmail < 'This is a ZC Alert, please check'"
 fi
 
-read -p "Do you want to open the About/GPU/CPU/Pool/Cost data [yn]?" answer
+read -p "Do you want to open the About/GPU/CPU/Pool/Cost data document [yn]?" answer
 if [[ $answer == "y" ]] ; then
 firefox -new-tab https://docs.google.com/spreadsheets/d/1Um22iBf8bPbfuI4rUDZzSB4W444ouUEnQTBnb8EsdYk/edit
 fi
