@@ -607,7 +607,6 @@ alias whoneedssudo="sudo find . -xdev -userf root -perm -u+w && echo 'maybe you 
 alias calc="let calc"
 alias skill="sudo kill -9"
 alias wline="sudo grep -n"
-alias imprime="lpq && lpstat && lp -d myprinter -E -m -q 100 -o media=legal -o fit-to-page -n"
 alias nmapp="sudo nmap -v -A --reason -O -sV -PO -sU -sX -f -PN --spoof-mac 0"
 alias nmap100="sudo nmap -F -v -A --reason -O -sV -PO -sU -sX -f -PN --spoof-mac 0"
 alias lss="ls -ld && sudo du -sh && ls -i1 -latr -lSr -FGAhp --color=auto -t -a -al"  # lSr sort by size ltr sort by date
@@ -670,11 +669,13 @@ alias rpttyfast='replayscript -d 3 rctty.timing rctty'
 alias logg='tailf'
 
 imprime (){
+echo "List of prints available. With  lp -d you can also choose a printer lp -d myprinter -E -m -q 100 -o media=legal -o fit-to-page -n 1" 
+sudo lpstat
 read -p "Introduce la ruta del archivo a imprimir" imprimf
 sudo lpd
 sudo lpr $imprimf
 sudo lpq
-echo "Lee la cola de impresión con lpq"
+echo "Lee la cola de impresión con lpq."
 }
 
 selectelements() {
