@@ -12,7 +12,7 @@ sudo swapon /swapfile
 sudo swapon -s
 fi
 
-read -p "Do you want to install the ZCash daemon+client & TestBenckmarking.sh+JCUtils [yn]?" answer
+read -p "Do you want to install the ZCash daemon+client [yn]?" answer
 if [[ $answer == "y" ]] ; then
 sudo apt-get update -y
 sudo apt-get upgrade -y
@@ -61,15 +61,13 @@ sleep 12
 read -p "Select your coinbase address" ZADDR
 ~/zcash/./src/zcash-cli z_listreceivedbyaddress "$ZADDR"
 ~/zcash/./src/zcash-cli listtransactions
-wget https://raw.githubusercontent.com/KR77/zcashHashTest/master/zcashHashTest.sh -O ~/zcash/./src/zcashHashTest.sh
-chmod u+x ~/zcash/./src/zcashHashTest.sh
 fi
 
 
-read -p "Do you want to create aliases for ZCash daemon+client & TestBenckmarking.sh [yn]?" answer
+read -p "Do you want to create aliases for ZCash daemon+client [yn]?" answer
 if [[ $answer == "y" ]] ; then
 echo "alias zcnewaddress='~/zcash/./src/zcash-cli z_getnewaddress'" | sudo tee -a  /etc/bash.bashrc 
-echo "alias zcbm='~/zcash/./src/zcashHashTest.sh; watch -n 2 ~/zcash/./src/zcash-cli getinfo; watch -n 2 ~/zcash/./src/zcash-cli getmininginfo'" | sudo tee -a  /etc/bash.bashrc
+echo "alias zcbm='~/zcash/src/./zcash-cli zcbenchmark solveequihash 10; watch -n 2 ~/zcash/./src/zcash-cli getinfo; watch -n 2 ~/zcash/./src/zcash-cli getmininginfo'" | sudo tee -a  /etc/bash.bashrc
 echo "alias zcinfo='echo "Info" && ~/zcash/./src/zcash-cli getinfo && echo \"Wallet info\" && ~/zcash/./src/zcash-cli getwalletinfo && echo \"Mining info\" && ~/zcash/./src/zcash-cli getmininginfo'" | sudo tee -a  /etc/bash.bashrc
 echo "alias zctxs='~/zcash/./src/zcash-cli listtransactions; ~/zcash/./src/zcash-cli z_listaddresses; read -p \"Introduce your address with quotes:\" ZADDR; ~/zcash/./src/zcash-cli z_listreceivedbyaddress $ZADDR'" | sudo tee -a  /etc/bash.bashrc
 echo "alias zcgpu='~/zcash/./src/zcash-miner -G'" | sudo tee -a  /etc/bash.bashrc 
