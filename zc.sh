@@ -239,6 +239,6 @@ echo "alias zminer='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -bloc
 echo "alias xenon1miner='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify  -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"~/equihash-xenon/Linux/blake2b/./solver**avx1\"'" | sudo tee -a /etc/bash.bashrc #XenonCatMiner1
 echo "alias xenon2miner='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"~/equihash-xenon/Linux/blake2b/./solver**avx2\"'" | sudo tee -a /etc/bash.bashrc  #XenonCatMiner2
 echo "alias zogminer='./src/zcash-miner -G -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify  -daemon -par=0 -debug -gen=1  -genproclimit=-1'" | sudo tee -a /etc/bash.bashrc #ZogMiner
-echo "alias nheqminer='~/nheqminer/nheqminer/build/./nheqminer -l <server:port> -u <address>.<worker>'" | sudo tee -a /etc/bash.bashrc #Nheqminer
+echo "alias nheqminer='~/nheqminer/nheqminer/build/./nheqminer -l zec.suprnova.cc:2142 -u $USR.$WRK -p $PSS -t $(nproc)" | sudo tee -a /etc/bash.bashrc #Nheqminer
 echo "alias silentminer='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"SILENTMINEEEEEEEEEERRRRRR\"'" | sudo tee -a /etc/bash.bashrc #Mbevand SilentArmy 
 fi
