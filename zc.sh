@@ -21,7 +21,7 @@ sudo aptitude install g++ g++-multilib -y
 git clone https://github.com/zcash/zcash.git
 cd zcash/
 git fetch origin
-git checkout v1.0.0
+git checkout v1.0.0-rc4
 ./zcutil/fetch-params.sh
 echo "now compilation will start"
 ./zcutil/build.sh -j$(nproc)
