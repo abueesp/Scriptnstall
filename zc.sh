@@ -91,8 +91,8 @@ read -p "Write your friend address" FRIEND \
 ./src/zcash-cli z_sendmany "$ZADDR" "[{\"amount\": $AMNT, \"address\": \"$FRIEND\"}]" \
 sleep 1.1 \
 ./src/zcash-cli z_getoperationresult \
-}"
-echo 'zclog () { tail -f ~/.zcash/debug.log \
+}'
+echo 'zclog () {tail -f ~/.zcash/debug.log \
 memory=$(free|awk "/^Mem:/{print $2}") \
 memory=$(echo "$memory/1000" | bc) \
 mydate=$(date +"%D") \
