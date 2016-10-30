@@ -92,7 +92,8 @@ read -p "Write your friend address" FRIEND \
 sleep 1.1 \
 ./src/zcash-cli z_getoperationresult \
 }"
-echo 'zclog () { memory=$(free|awk "/^Mem:/{print $2}") \
+echo 'zclog () { tail -f ~/.zcash/debug.log \
+memory=$(free|awk "/^Mem:/{print $2}") \
 memory=$(echo "$memory/1000" | bc) \
 mydate=$(date +"%D") \
 echo "$mydate" | tee -a zclog.txt \
