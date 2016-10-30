@@ -70,7 +70,7 @@ read -p "Do you want to create aliases for ZCash daemon+client & TestBenckmarkin
 if [[ $answer == "y" ]] ; then
 echo "alias zcnewaddress='~/zcash/./src/zcash-cli z_getnewaddress'" | sudo tee -a  /etc/bash.bashrc 
 echo "alias zcbm='~/zcash/./src/zcashHashTest.sh; watch -n 2 ~/zcash/./src/zcash-cli getinfo; watch -n 2 ~/zcash/./src/zcash-cli getmininginfo'" | sudo tee -a  /etc/bash.bashrc
-echo "alias zcinfo='~/zcash/./src/zcash-cli getinfo; ~/zcash/./src/zcash-cli getwalletinfo; ~/zcash/./src/zcash-cli getmininginfo'" | sudo tee -a  /etc/bash.bashrc
+echo "alias zcinfo='echo "Info" && ~/zcash/./src/zcash-cli getinfo && echo \"Wallet info\" && ~/zcash/./src/zcash-cli getwalletinfo && echo \"Mining info\" && ~/zcash/./src/zcash-cli getmininginfo'" | sudo tee -a  /etc/bash.bashrc
 echo "alias zctxs='~/zcash/./src/zcash-cli listtransactions; ~/zcash/./src/zcash-cli z_listaddresses; ~/zcash/./src/zcash-cli z_listreceivedbyaddress \"$ZADDR\"'" | sudo tee -a  /etc/bash.bashrc
 echo "alias zcgpu='~/zcash/./src/zcash-miner -G'" | sudo tee -a  /etc/bash.bashrc 
 echo "alias zcstart='~/zcash/./src/zcashd -daemon'" | sudo tee -a  /etc/bash.bashrc
