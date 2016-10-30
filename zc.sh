@@ -84,29 +84,11 @@ read -p "Select your sender address" ZADDR \
 ~/zcash/./src/zcash-cli z_listreceivedbyaddress "$ZADDR" \
 read -p "Write the amount" AMNT \
 read -p "Write your friend address" FRIEND \
-./src/zcash-cli z_sendmany "$ZADDR" "[{\"amount\": $AMNT, \"address\": \"$FRIEND\"}]" \
+~/zcash/./src/zcash-cli z_sendmany "$ZADDR" "[{\"amount\": $AMNT, \"address\": \"$FRIEND\"}]" \
 sleep 1.1 \
-./src/zcash-cli z_getoperationresult \
+~/zcash/./src/zcash-cli z_getoperationresult \
 }' | sudo tee -a /etc/bash.bashrc \
-echo 'zclog() {tails -f ~/.zcash/debug.log \
-date \
-echo "time, block number, difficulty, CPU%, RAM in MB per core"\
-c=1 \
-until [ $c -gt 240 ] do \
-     let c=c+1 \
-     mytime=$(date +"%T") \
-     block=$(~/zcash/./src/zcash-cli getblockcount) \
-     difficulty=$(~/zcash/./src/zcash-cli getdifficulty) \
-     difficulty=${difficulty:0:5} \
-     p=$(ps aux | grep zcashd) \
-     q=$(echo "$p" | tail -n1) \
-    cpu=$({p:16:3}) \
-    ram=$({p:20:4}) \
-     rampercore=$(echo "($ram*$memory/($cpu+1)" | bc) \
-     echo "$mytime $block $difficulty $cpu $rampercore" \
-     sleep 15 # seconds \
-free \
-}' | sudo tee -a /etc/bash.bashrc
+echo "alias zclog='tails -f ~/.zcash/debug.log; watch -n 2 free; date; ~/zcash/./src/zcash-cli getblockcount; ~/zcash/./src/zcash-cli getdifficulty; nproc'" | sudo tee -a /etc/bash.bashrc
 fi
 
 read -p "Do you want to install GUI [yn]?" answer
