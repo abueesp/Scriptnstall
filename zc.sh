@@ -208,16 +208,16 @@ cd zogminer
 fi
 
 
-read -p "Do you want to install Nheqminer (CPU) https://github.com/STRML/nheqminer [yn]?" answer
+read -p "Do you want to install Nheqminer (CPU) https://github.com/etherchain-org/nheqminer.git [yn]?" answer
 if [[ $answer == "y" ]] ; then
-sudo apt-get install cmake build-essential libboost-all-dev -y
-git clone https://github.com/nicehash/nheqminer.git
-cd nheqminer/nheqminer
+sudo apt-get install cmake build-essential libboost-all-dev qt5-default -y
+git clone https://github.com/etherchain-org/nheqminer.git
+cd nheqminer
 mkdir build
 cd build
-cmake ..
+qmake ../nheqminer/nheqminer.pro
 make
-./nheqminer -t $(nproc) -d 0
+./nheqminer -l <server:port> -u <address>.<worker>
 cd
 fi
 
