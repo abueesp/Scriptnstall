@@ -63,18 +63,14 @@ read -p "Select your coinbase address" ZADDR
 ~/zcash/./src/zcash-cli listtransactions
 wget https://raw.githubusercontent.com/KR77/zcashHashTest/master/zcashHashTest.sh -O ~/zcash/./src/zcashHashTest.sh
 chmod u+x ~/zcash/./src/zcashHashTest.sh
-sudo apt-get install python-matplotlib python-prettytable python-scipy -y
-git clone https://github.com/JanKalin/zcutils
-python zcutils/miningrate.py -h
-python zcutils/minerlist.py -h
 fi
 
 
 read -p "Do you want to create aliases for ZCash daemon+client & TestBenckmarking.sh [yn]?" answer
 if [[ $answer == "y" ]] ; then
 echo "alias zcnewaddress='~/zcash/./src/zcash-cli z_getnewaddress'" | sudo tee -a  /etc/bash.bashrc 
-echo "alias zcbm='~/zcash/./src/zcashHashTest.sh && watch -n 2 free -m && watch -n 2 ~/zcash/./src/zcash-cli getinfo && watch -n 2 ~/zcash/./src/zcash-cli getmininginfo'" | sudo tee -a  /etc/bash.bashrc
-echo "alias zcinfo='~/zcash/./src/zcash-cli getinfo && ~/zcash/./src/zcash-cli getwalletinfo && ~/zcash/./src/zcash-cli getmininginfo'" | sudo tee -a  /etc/bash.bashrc
+echo "alias zcbm='~/zcash/./src/zcashHashTest.sh; watch -n 2 ~/zcash/./src/zcash-cli getinfo; watch -n 2 ~/zcash/./src/zcash-cli getmininginfo'" | sudo tee -a  /etc/bash.bashrc
+echo "alias zcinfo='~/zcash/./src/zcash-cli getinfo; ~/zcash/./src/zcash-cli getwalletinfo; ~/zcash/./src/zcash-cli getmininginfo'" | sudo tee -a  /etc/bash.bashrc
 echo "alias zctxs='~/zcash/./src/zcash-cli listtransactions; ~/zcash/./src/zcash-cli z_listaddresses; ~/zcash/./src/zcash-cli z_listreceivedbyaddress \"$ZADDR\"'" | sudo tee -a  /etc/bash.bashrc
 echo "alias zcgpu='~/zcash/./src/zcash-miner -G'" | sudo tee -a  /etc/bash.bashrc 
 echo "alias zcstart='~/zcash/./src/zcashd -daemon'" | sudo tee -a  /etc/bash.bashrc
@@ -91,13 +87,10 @@ read -p "Write your friend address" FRIEND \
 ./src/zcash-cli z_sendmany "$ZADDR" "[{\"amount\": $AMNT, \"address\": \"$FRIEND\"}]" \
 sleep 1.1 \
 ./src/zcash-cli z_getoperationresult \
-}' | sudo tee -a /etc/bash.bashrc
-echo 'zclog () {tail -f ~/.zcash/debug.log \
-memory=$(free|awk "/^Mem:/{print $2}") \
-memory=$(echo "$memory/1000" | bc) \
-mydate=$(date +"%D") \
-echo "$mydate" | tee -a zclog.txt \
-echo "time, block number, difficulty, CPU%, RAM in MB per core" | tee -a zclog.txt \
+}' | sudo tee -a /etc/bash.bashrc \
+echo 'zclog() {tails -f ~/.zcash/debug.log \
+date \
+echo "time, block number, difficulty, CPU%, RAM in MB per core"\
 c=1 \
 until [ $c -gt 240 ] do \
      let c=c+1 \
@@ -107,15 +100,12 @@ until [ $c -gt 240 ] do \
      difficulty=${difficulty:0:5} \
      p=$(ps aux | grep zcashd) \
      q=$(echo "$p" | tail -n1) \
-     cpu=$({q:16:3}) \
-     if [[ $cpu == "0.0" ]] ; then \
-         p=$(echo "$p" | tail -n2) \
-     fi \
     cpu=$({p:16:3}) \
     ram=$({p:20:4}) \
      rampercore=$(echo "($ram*$memory/($cpu+1)" | bc) \
-     echo "$mytime $block $difficulty $cpu $rampercore" | tee -a log.txt \
+     echo "$mytime $block $difficulty $cpu $rampercore" \
      sleep 15 # seconds \
+free \
 }' | sudo tee -a /etc/bash.bashrc
 fi
 
