@@ -230,15 +230,15 @@ fi
 
 read -p "Do you want to create aliases for miners [yn]?" answer
 if [[ $answer == "y" ]] ; then
-read -p "Write pool server: " serverr
-read -p "Write pool port: " portt
-read -p "Write pool address: " addd
+read -p "Write pool server:port ( zec.suprnova.cc:2142 ): " serverr
+read -p "Write pool address user: " addd
 read -p "Write pool worker name: " workk
+read -p "Write pool worker pass: " pazz
 echo "alias trompminer='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify -daemon -par=0 -debug -gen=1 -genproclimit=-1 -equihashsolver=\"~/equihash/./eq14451\"'" | sudo tee -a /etc/bash.bashrc #Trompminer
 echo "alias zminer='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify  -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"~/zmine/./a.out\"'" | sudo tee -a /etc/bash.bashrc #Zminer
 echo "alias xenon1miner='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify  -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"~/equihash-xenon/Linux/blake2b/./solver**avx1\"'" | sudo tee -a /etc/bash.bashrc #XenonCatMiner1
 echo "alias xenon2miner='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"~/equihash-xenon/Linux/blake2b/./solver**avx2\"'" | sudo tee -a /etc/bash.bashrc  #XenonCatMiner2
 echo "alias zogminer='./src/zcash-miner -G -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify  -daemon -par=0 -debug -gen=1  -genproclimit=-1'" | sudo tee -a /etc/bash.bashrc #ZogMiner
-echo "alias nheqminer='~/nheqminer/nheqminer/build/./nheqminer -l zec.suprnova.cc:2142 -u $USR.$WRK -p $PSS -t $(nproc)" | sudo tee -a /etc/bash.bashrc #Nheqminer
+echo "alias nheqminer='~/nheqminer/nheqminer/build/./nheqminer -l $serverr -u $addd.$workk -p $pazz -t $(nproc)" | sudo tee -a /etc/bash.bashrc #Nheqminer
 echo "alias silentminer='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"SILENTMINEEEEEEEEEERRRRRR\"'" | sudo tee -a /etc/bash.bashrc #Mbevand SilentArmy 
 fi
