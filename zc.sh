@@ -76,7 +76,7 @@ echo "alias zcstart='~/zcash/./src/zcashd -daemon'" | sudo tee -a  /etc/bash.bas
 echo "alias zcstratum='echo \"ADD -stratum=\'stratum+tcp://<address>:<port>\' -user=<user> -password=<pass> TO zcgpu or zcstart\"'" | sudo tee -a  /etc/bash.bashrc
 echo "alias zcstop='lsof -i | grep zcashd && ~/zcash/./src/zcash-cli stop && sudo pkill -9 zcashd && sudo pkill -9 zcash-cli'" | sudo tee -a  /etc/bash.bashrc
 echo "alias zcgui='java -jar ~/zcash/src/ZCashSwingWalletUI.jar'" | sudo tee -a  /etc/bash.bashrc
-echo 'zcsend(){ \
+echo 'zcsend() { \
 ~/zcash/./src/zcash-cli listtransactions \
 ~/zcash/./src/zcash-cli z_listaddresses \
 read -p "Select your sender address" ZADDR \
