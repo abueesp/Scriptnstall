@@ -69,9 +69,9 @@ if [[ $answer == "y" ]] ; then
 echo "alias zcnewaddress='~/zcash/./src/zcash-cli z_getnewaddress'" | sudo tee -a  /etc/bash.bashrc 
 echo "alias zcbm='~/zcash/src/./zcash-cli zcbenchmark solveequihash 10; watch -n 2 ~/zcash/./src/zcash-cli getinfo; watch -n 2 ~/zcash/./src/zcash-cli getmininginfo'" | sudo tee -a  /etc/bash.bashrc
 echo "alias zcinfo='echo "Info" && ~/zcash/./src/zcash-cli getinfo && echo \"Wallet info\" && ~/zcash/./src/zcash-cli getwalletinfo && echo \"Mining info\" && ~/zcash/./src/zcash-cli getmininginfo'" | sudo tee -a  /etc/bash.bashrc
-echo "alias zctxs='~/zcash/./src/zcash-cli listtransactions; ~/zcash/./src/zcash-cli z_listaddresses; read -p \"Introduce your address with quotes:\" ZADDR; ~/zcash/./src/zcash-cli z_listreceivedbyaddress $ZADDR'" | sudo tee -a  /etc/bash.bashrc
+echo "alias zctxs='~/zcash/./src/zcash-cli listtransactions; ~/zcash/./src/zcash-cli z_listaddresses; read -p \"Introduce your address without quotes:\" ZADDR; ~/zcash/./src/zcash-cli z_listreceivedbyaddress $ZADDR'" | sudo tee -a  /etc/bash.bashrc
 echo "alias zcgpu='~/zcash/./src/zcash-miner -G'" | sudo tee -a  /etc/bash.bashrc 
-echo "alias zcspool='~/zcash/./src/zcash-cli -stratum=stratum+tcp://zec-eu.suprnova.cc:2142 '
+echo "alias zcspool='~/zcash/./src/zcash-cli -stratum=stratum+tcp://zec-eu.suprnova.cc:2142 -user=abcd -password=<pass>'
 echo "alias zcstart='~/zcash/./src/zcashd -daemon'" | sudo tee -a  /etc/bash.bashrc
 echo "alias zcstratum='echo \"ADD -stratum=\'stratum+tcp://<address>:<port>\' -user=<user> -password=<pass> TO zcgpu or zcstart\"'" | sudo tee -a  /etc/bash.bashrc
 echo "alias zcstop='lsof -i | grep zcashd && ~/zcash/./src/zcash-cli stop && sudo pkill -9 zcashd && sudo pkill -9 zcash-cli'" | sudo tee -a  /etc/bash.bashrc
@@ -87,7 +87,7 @@ read -p "Write your friend address" FRIEND \
 sleep 1.1 \
 ~/zcash/./src/zcash-cli z_getoperationresult \
 }' | sudo tee -a /etc/bash.bashrc \
-echo "alias zclog='tails -f ~/.zcash/debug.log; watch -n 2 free; date; ~/zcash/./src/zcash-cli getblockcount; ~/zcash/./src/zcash-cli getdifficulty; nproc'" | sudo tee -a /etc/bash.bashrc
+echo "alias zclog='tail -f ~/.zcash/debug.log; watch -n 2 free; date; ~/zcash/./src/zcash-cli getblockcount; ~/zcash/./src/zcash-cli getdifficulty; nproc'" | sudo tee -a /etc/bash.bashrc
 fi
 
 read -p "Do you want to install GUI [yn]?" answer
@@ -209,16 +209,16 @@ cd zogminer
 fi
 
 
-read -p "Do you want to install Nheqminer (CPU) https://github.com/etherchain-org/nheqminer.git [yn]?" answer
+read -p "Do you want to install Nheqminer (CPU) https://github.com/ocminer/nheqminer [yn]?" answer
 if [[ $answer == "y" ]] ; then
-sudo apt-get install cmake build-essential libboost-all-dev qt5-default -y
-git clone https://github.com/etherchain-org/nheqminer.git
-cd nheqminer
+sudo apt-get install cmake build-essential libboost-all-dev -y 
+git clone https://github.com/ocminer/nheqminer
+cd ~/nheqminer/nheqminer
 mkdir build
 cd build
-qmake ../nheqminer/nheqminer.pro
+cmake ..
 make
-./nheqminer -l <server:port> -u <address>.<worker>
+~/nheqminer/nheqminer/build/./nheqminer -l <server:port> -u <address>.<worker>
 cd
 fi
 
@@ -239,6 +239,6 @@ echo "alias zminer='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -bloc
 echo "alias xenon1miner='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify  -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"~/equihash-xenon/Linux/blake2b/./solver**avx1\"'" | sudo tee -a /etc/bash.bashrc #XenonCatMiner1
 echo "alias xenon2miner='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"~/equihash-xenon/Linux/blake2b/./solver**avx2\"'" | sudo tee -a /etc/bash.bashrc  #XenonCatMiner2
 echo "alias zogminer='./src/zcash-miner -G -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify  -daemon -par=0 -debug -gen=1  -genproclimit=-1'" | sudo tee -a /etc/bash.bashrc #ZogMiner
-echo "alias nheqminer='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify  -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"~/nheqminer/nheqminer/./nheqminer -t $(nproc) -d 0 -l $serverr:$portt -u $addd.$workk\"'" | sudo tee -a /etc/bash.bashrc #Nheqminer
-echo "alias silentminer='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"SILENTMINEEEEEEEEEERRRRRR\"'" | sudo tee -a /etc/bash.bashrc #Mbevand SilentArmy
+echo "alias nheqminer='~/nheqminer/nheqminer/build/./nheqminer -l <server:port> -u <address>.<worker>'" | sudo tee -a /etc/bash.bashrc #Nheqminer
+echo "alias silentminer='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"SILENTMINEEEEEEEEEERRRRRR\"'" | sudo tee -a /etc/bash.bashrc #Mbevand SilentArmy 
 fi
