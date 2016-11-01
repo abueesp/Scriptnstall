@@ -1,6 +1,5 @@
-sudo apt-get update
-sudo apt-get upgrade 
-sudo apt-get install git -y
+sudo apt-get update -y
+sudo apt-get upgrade -y
 
 read -p "Do you want to delete last swapfile and create a 3GB new one [yn]?" answer
 if [[ $answer == "y" ]] ; then
@@ -18,8 +17,6 @@ fi
 
 read -p "Do you want to install the ZCash daemon+client [yn]?" answer
 if [[ $answer == "y" ]] ; then
-sudo apt-get update -y
-sudo apt-get upgrade -y
 sudo apt-get install build-essential pkg-config libgtest-dev libc6-dev m4 autoconf libtool ncurses-dev unzip git python zlib1g-dev wget bsdmainutils automake aptitude -y
 sudo aptitude install g++ g++-multilib -y
 git clone https://github.com/zcash/zcash.git
@@ -234,7 +231,7 @@ fi
 
 read -p "Do you want to install Kost Nheqminer (CPU) https://github.com/kost/nheqminer [yn]?" answer
 if [[ $answer == "y" ]] ; then
-sudo apt-get install cmake build-essential libboost-all-dev
+sudo apt-get install cmake build-essential libboost-all-dev git -y
 git clone --recursive https://github.com/kost/nheqminer.git
 cd ~/nheqminer/nheqminer
 mkdir build
