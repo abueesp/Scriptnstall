@@ -234,15 +234,12 @@ fi
 
 read -p "Do you want to install Kost Nheqminer (CPU) https://github.com/kost/nheqminer [yn]?" answer
 if [[ $answer == "y" ]] ; then
-sudo apt-get install git cmake make gcc g++ libc-dev boost-dev -y 
-git clone https://github.com/kost/nheqminer 
+sudo apt-get install cmake build-essential libboost-all-dev
+git clone --recursive https://github.com/kost/nheqminer.git
 cd ~/nheqminer/nheqminer
 mkdir build
 cd build
-echo "Check your paramenters and continue"
-firefox --new-tab http://stackoverflow.com/questions/943755/gcc-optimization-flags-for-xeon
-read -p "Introduce your parameters (fi. E3 -DSTATIC_BUILD=1 -DXENON=1 -DMARCH=-m64 -march=core-avx2 )" params
-cmake $params
+cmake ..
 make
 ~/nheqminer/nheqminer/build/./nheqminer
 cd
@@ -265,6 +262,6 @@ echo "alias zminer='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -bloc
 echo "alias xenon1miner='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify  -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"~/equihash-xenon/Linux/blake2b/./solver**avx1\"'" | sudo tee -a /etc/bash.bashrc #XenonCatMiner1
 echo "alias xenon2miner='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"~/equihash-xenon/Linux/blake2b/./solver**avx2\"'" | sudo tee -a /etc/bash.bashrc  #XenonCatMiner2
 echo "alias zogminer='./src/zcash-miner -G -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify  -daemon -par=0 -debug -gen=1  -genproclimit=-1'" | sudo tee -a /etc/bash.bashrc #ZogMiner
-echo "alias nheqminer='~/nheqminer/nheqminer/build/./nheqminer -l $serverr -u $addd.$workk -p $pazz -t $(nproc)" | sudo tee -a /etc/bash.bashrc #Nheqminer
+echo "alias nheqminer='~/nheqminer/nheqminer/build/./nheq** -l $serverr -u $addd.$workk -p $pazz -t $(nproc)'" | sudo tee -a /etc/bash.bashrc #Nheqminer
 echo "alias silentminer='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"SILENTMINEEEEEEEEEERRRRRR\"'" | sudo tee -a /etc/bash.bashrc #Mbevand SilentArmy 
 fi
