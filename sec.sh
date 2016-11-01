@@ -2,29 +2,16 @@
 #TCP flood mitigation
 echo "net.ipv4.tcp_challenge_ack_limit = 999999999" >> /etc/sysctl.conf
 sudo sysctl -p
-#Bluetooth
-sudo sed -i 's/InitiallyPowered = true/InitiallyPowered = false/g' /etc/bluetooth/main.conf
-rfkill block bluetooth
 #mirror
-sudo sed -i 's|http://us.archive.ubuntu.com/ubuntu|http://mirrors.mit.edu/ubuntu|g' /etc/apt/sources.list
 sudo wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/bash.bashrc
 sudo cp bash.bashrc /etc/bash.bashrc
 # Secure environment
 sudo apt-get autoremove -y
 #Prntscreensound
 sudo mv /usr/share/sounds/freedesktop/stereo/camera-shutter.oga /usr/share/sounds/freedesktop/stereo/camera-shutter-disabled.oga
-#Sudo on Files Eos
-echo "[Contractor Entry]\nName=Open folder as root\nIcon=gksu-root-terminal\nDescription=Open folder as root\nMimeType=inode;application/x-sh;application/x-executable;\nExec=gksudo pantheon-files -d %U\nGettext-Domain=pantheon-files" >> Open_as_admin.contract
-sudo mv Open_as_admin.contract /usr/share/contractor/Open_as_admin.contract
-rm Open_as_admin.contract
 #SSH
 sudo sed -i "s/NoDisplay=true/NoDisplay=false/g" /etc/xdg/autostart/gnome-keyring-ssh.desktop
-sudo sed -i 's/PermitRootLogin without password/PermitRootLogin no/' /etc/ssh/sshd_config #noroot
 sudo sed -i 's/Port 22/Port 1022/' /etc/ssh/sshd_config #SSH PORT OTHER THAN 22, SET 1022
-sudo /etc/init.d/ssh stop
-sudo chown -R $USER:$USER .ssh
-sudo chmod -R 600 .ssh
-sudo chmod +x .ssh
 #UFW
 sudo apt-get install gufw -y
 sudo ufw enable
@@ -92,4 +79,4 @@ echo "You entered: $email"
 sudo sed "s/destemail = your_email@domain.com/destemail = $email/g" /etc/fail2ban/jail.local
 sudo sed "s/action = %(action_)s/action = %(action_mw)s/g" /etc/fail2ban/jail.local
 sudo sed -e "s/enabled  = false/enabled  = true/g" /etc/fail2ban/jail.local
-sudo apt-get install git -y
+sudo apt-get install git tmux -y
