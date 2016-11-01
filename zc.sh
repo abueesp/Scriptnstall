@@ -25,9 +25,14 @@ git checkout v1.0.0-rc4
 ./zcutil/fetch-params.sh
 echo "now compilation will start"
 ./zcutil/build.sh -j$(nproc)
-echo "now testing will start"
-./qa/zcash/full-test-suite.sh
-./qa/pull-tester/rpc-tests.sh
+     read -p "Do you want to execute the tests [yn]?" answer
+     if [[ $answer == "y" ]] ; then 
+          echo "now testing will start"
+          ./qa/zcash/full-test-suite.sh
+          ./qa/pull-tester/rpc-tests.sh
+     else
+          echo "Continue" 
+     fi
 echo "now solo mining will start"
 mkdir -p ~/.zcash
 echo "rpcuser=$USER" > ~/.zcash/zcash.conf
