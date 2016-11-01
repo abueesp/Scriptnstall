@@ -209,14 +209,31 @@ cd zogminer
 fi
 
 
-read -p "Do you want to install Nheqminer (CPU) https://github.com/ocminer/nheqminer [yn]?" answer
+read -p "Do you want to install Nheqminer (CPU) https://github.com/nicehash/nheqminer [yn]?" answer
 if [[ $answer == "y" ]] ; then
 sudo apt-get install cmake build-essential libboost-all-dev -y 
-git clone https://github.com/ocminer/nheqminer
+git clone https://github.com/nicehash/nheqminer
 cd ~/nheqminer/nheqminer
 mkdir build
 cd build
 cmake ..
+make
+~/nheqminer/nheqminer/build/./nheqminer
+cd
+fi
+
+
+read -p "Do you want to install Kost Nheqminer (CPU) https://github.com/kost/nheqminer [yn]?" answer
+if [[ $answer == "y" ]] ; then
+sudo apt-get install git cmake make gcc g++ libc-dev boost-dev -y 
+git clone https://github.com/kost/nheqminer 
+cd ~/nheqminer/nheqminer
+mkdir build
+cd build
+echo "Check your paramenters and continue"
+firefox --new-tab http://stackoverflow.com/questions/943755/gcc-optimization-flags-for-xeon
+read -p "Introduce your parameters (fi. E3 -DSTATIC_BUILD=1 -DXENON=1 -DMARCH=-m64 -march=core-avx2 )" params
+cmake $params
 make
 ~/nheqminer/nheqminer/build/./nheqminer
 cd
