@@ -78,3 +78,28 @@ sudo sed "s/destemail = your_email@domain.com/destemail = $email/g" /etc/fail2ba
 sudo sed "s/action = %(action_)s/action = %(action_mw)s/g" /etc/fail2ban/jail.local
 sudo sed -e "s/enabled  = false/enabled  = true/g" /etc/fail2ban/jail.local
 sudo apt-get install git tmux -y
+
+sudo apt-get install cmake build-essential libboost-all-dev -y
+cd nheqminer/cpu_xenoncat/Linux/asm/ && sh assemble.sh && cd ../../../Linux_cmake/nheqminer_cpu && cmake . && make
+~/nheqminer/nheqminer/build/./nheqminer
+cd
+fi
+
+
+
+
+read -p "Do you want to create aliases for miners [yn]?" answer
+if [[ $answer == "y" ]] ; then
+read -p "Write pool server:port ( zec.suprnova.cc:2142 ): " serverr
+read -p "Write pool address user: " addd
+read -p "Write pool worker name: " workk
+read -p "Write pool worker pass: " pazz
+echo "alias trompminer='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify -daemon -par=0 -debug -gen=1 -genproclimit=-1 -equihashsolver=\"~/equihash/./eq14451\"'" | sudo tee -a /etc/bash.bashrc #Trompminer
+echo "alias zminer='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify  -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"~/zmine/./a.out\"'" | sudo tee -a /etc/bash.bashrc #Zminer
+echo "alias xenon1miner='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify  -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"~/equihash-xenon/Linux/blake2b/./solver**avx1\"'" | sudo tee -a /etc/bash.bashrc #XenonCatMiner1
+echo "alias xenon2miner='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"~/equihash-xenon/Linux/blake2b/./solver**avx2\"'" | sudo tee -a /etc/bash.bashrc  #XenonCatMiner2
+echo "alias zogminer='./src/zcash-miner -G -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify  -daemon -par=0 -debug -gen=1  -genproclimit=-1'" | sudo tee -a /etc/bash.bashrc #ZogMiner
+echo "alias knheqminer='~/nheqminer/Linux_cmake/nheqminer_cpu/./nheqminer** -l $serverr -u $addd.$workk -p $pazz -t $(nproc)'" | sudo tee -a /etc/bash.bashrc #Nheqminer
+echo "alias knheqminer='~/nheqminer/nheqminer/build/./nheq** -l $serverr -u $addd.$workk -p $pazz -t $(nproc)'" | sudo tee -a /etc/bash.bashrc #Kosh nheqminer
+echo "alias silentminer='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"SILENTMINEEEEEEEEEERRRRRR\"'" | sudo tee -a /etc/bash.bashrc #Mbevand SilentArmy 
+fi
