@@ -8,9 +8,7 @@ sudo cp bash.bashrc /etc/bash.bashrc
 # Secure environment
 sudo apt-get autoremove -y
 #Prntscreensound
-sudo mv /usr/share/sounds/freedesktop/stereo/camera-shutter.oga /usr/share/sounds/freedesktop/stereo/camera-shutter-disabled.oga
 #SSH
-sudo sed -i "s/NoDisplay=true/NoDisplay=false/g" /etc/xdg/autostart/gnome-keyring-ssh.desktop
 sudo sed -i 's/Port 22/Port 1022/' /etc/ssh/sshd_config #SSH PORT OTHER THAN 22, SET 1022
 #UFW
 sudo apt-get install gufw -y
