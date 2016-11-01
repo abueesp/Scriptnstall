@@ -1,3 +1,7 @@
+sudo apt-get update
+sudo apt-get upgrade 
+sudo apt-get install git -y
+
 read -p "Do you want to delete last swapfile and create a 3GB new one [yn]?" answer
 if [[ $answer == "y" ]] ; then
 read -e -p "Choose the number of GBs for the swapfile (3 by default): " -i "3" gygas
