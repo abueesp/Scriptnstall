@@ -39,14 +39,14 @@ echo "genproclimit=-1" >> ~/.zcash/zcash.conf ##Gracias Salva!!
      if [[ $answer == "y" ]] ; then 
      echo "equihashsolver=tromp" >> ~/.zcash/zcash.conf
      else
-     return
+          echo "Continue" 
      fi
      read -p "Are you going to mine with GPU (deviceid=0 used by default) [yn]?" answer
      if [[ $answer == "y" ]] ; then 
      echo "GPU=1" >> ~/.zcash/zcash.conf
      echo "deviceid=0" >> ~/.zcash/zcash.conf
      else
-     return
+          echo "Continue" 
      fi
 read -p "Check your conf, activate GPU and select the deviceid, add new nodes, change usr and passw, etc." pause 
 nano ~/.zcash/zcash.conf
@@ -218,7 +218,7 @@ mkdir build
 cd build
 cmake ..
 make
-~/nheqminer/nheqminer/build/./nheqminer -l <server:port> -u <address>.<worker>
+~/nheqminer/nheqminer/build/./nheqminer
 cd
 fi
 
