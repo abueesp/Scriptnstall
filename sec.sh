@@ -12,7 +12,7 @@ sudo aptitude install g++ g++-multilib -y
 sudo apt-get autoremove -y
 #Prntscreensound
 #SSH
-sudo sed -i 's/Port 22/Port 1022/' /etc/ssh/sshd_config #SSH PORT OTHER THAN 22, SET 1022
+#sudo sed -i 's/Port 22/Port 1022/' /etc/ssh/sshd_config #SSH PORT OTHER THAN 22, SET 1022
 #UFW
 sudo apt-get install gufw -y
 sudo ufw enable
