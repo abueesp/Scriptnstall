@@ -82,11 +82,13 @@ sudo sed "s/action = %(action_)s/action = %(action_mw)s/g" /etc/fail2ban/jail.lo
 sudo sed -e "s/enabled  = false/enabled  = true/g" /etc/fail2ban/jail.local
 sudo apt-get install git tmux -y
 
-sudo apt-get install cmake build-essential libboost-all-dev -y
+echo "Installing nheq"
+sudo apt-get install cmake build-essential libboost-all-dev git -y
+git clone -b Linux https://github.com/nicehash/nheqminer.git
 cd nheqminer/cpu_xenoncat/Linux/asm/ && sh assemble.sh && cd ../../../Linux_cmake/nheqminer_cpu && cmake . && make
 ~/nheqminer/nheqminer/build/./nheqminer
 cd
-fi
+wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_8.0.44-1_amd64.deb
 
 
 
@@ -102,7 +104,7 @@ echo "alias zminer='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -bloc
 echo "alias xenon1miner='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify  -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"~/equihash-xenon/Linux/blake2b/./solver**avx1\"'" | sudo tee -a /etc/bash.bashrc #XenonCatMiner1
 echo "alias xenon2miner='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"~/equihash-xenon/Linux/blake2b/./solver**avx2\"'" | sudo tee -a /etc/bash.bashrc  #XenonCatMiner2
 echo "alias zogminer='./src/zcash-miner -G -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify  -daemon -par=0 -debug -gen=1  -genproclimit=-1'" | sudo tee -a /etc/bash.bashrc #ZogMiner
-echo "alias knheqminer='~/nheqminer/Linux_cmake/nheqminer_cpu/./nheqminer** -l $serverr -u $addd.$workk -p $pazz -t $(nproc)'" | sudo tee -a /etc/bash.bashrc #Nheqminer
+echo "alias nheqminer='~/nheqminer/Linux_cmake/nheqminer_cpu/./nheqminer** -l $serverr -u $addd.$workk -p $pazz -t $(nproc)'" | sudo tee -a /etc/bash.bashrc #Nheqminer
 echo "alias knheqminer='~/nheqminer/nheqminer/build/./nheq** -l $serverr -u $addd.$workk -p $pazz -t $(nproc)'" | sudo tee -a /etc/bash.bashrc #Kosh nheqminer
 echo "alias silentminer='~/zcash/./src/zcashd -alerts -alertnotify=$alertnotify -blocknotify=$alertnotify -daemon -par=0 -debug -gen=1  -genproclimit=-1 -equihashsolver=\"SILENTMINEEEEEEEEEERRRRRR\"'" | sudo tee -a /etc/bash.bashrc #Mbevand SilentArmy 
 fi
