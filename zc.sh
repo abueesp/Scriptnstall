@@ -217,13 +217,8 @@ fi
 
 read -p "Do you want to install Nheqminer (CPU) https://github.com/nicehash/nheqminer [yn]?" answer
 if [[ $answer == "y" ]] ; then
-sudo apt-get install cmake build-essential libboost-all-dev -y 
-git clone -b https://github.com/nicehash/nheqminer
-cd ~/nheqminer/nheqminer
-mkdir build
-cd build
-cmake ..
-make
+sudo apt-get install cmake build-essential libboost-all-dev -y
+cd nheqminer/cpu_xenoncat/Linux/asm/ && sh assemble.sh && cd ../../../Linux_cmake/nheqminer_cpu && cmake . && make
 ~/nheqminer/nheqminer/build/./nheqminer
 cd
 fi
