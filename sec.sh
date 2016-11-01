@@ -1,4 +1,5 @@
 #!/bin/bash
+sudo apt-get update -y
 #TCP flood mitigation
 echo "net.ipv4.tcp_challenge_ack_limit = 999999999" >> /etc/sysctl.conf
 sudo sysctl -p
