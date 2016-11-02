@@ -31,9 +31,6 @@ git clone -b Linux https://github.com/nicehash/nheqminer.git
 cd nheqminer/cpu_xenoncat/Linux/asm/ && sh assemble.sh && cd ../../../Linux_cmake/nheqminer_cpu && cmake . && make
 ~/nheqminer/nheqminer/build/./nheqminer
 cd
-wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_8.0.44-1_amd64.deb
-
-
 
 
 read -p "Do you want to create aliases for miners [yn]?" answer
