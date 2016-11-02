@@ -8,64 +8,7 @@ sudo wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/bash.bas
 sudo cp bash.bashrc /etc/bash.bashrc
 sudo apt-get install build-essential pkg-config libgtest-dev libc6-dev m4 autoconf libtool ncurses-dev unzip git python zlib1g-dev wget bsdmainutils automake aptitude -y
 sudo aptitude install g++ g++-multilib -y
-# Secure environment
-sudo apt-get autoremove -y
-#Prntscreensound
-#SSH
-#sudo sed -i 's/Port 22/Port 1022/' /etc/ssh/sshd_config #SSH PORT OTHER THAN 22, SET 1022
-#UFW
-sudo apt-get install gufw -y
-sudo ufw enable
-#sudo ufw allow 1022/tcp
-sudo iptables -F
-sudo iptables -A INPUT -i lo -j ACCEPT
-sudo iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
-#sudo iptables -A INPUT -p tcp --dport 1022 -j ACCEPT
-sudo iptables -P INPUT DROP
-sudo iptables -P OUTPUT ACCEPT ##If you are a server change this to DROP OUTPUT connections by default too
-sudo iptables -P FORWARD DROP
-sudo iptables restart
-sudo service avahi-daemon stop ##This is for when DHCP does not work. Otherwise ps ax | grep dhclient && sudo kill -9 [pid]
-sudo cupsctl -E --no-remote-any
-sudo service cups-browsed stop
-#fwsnort
-wget http://cipherdyne.org/fwsnort/download/fwsnort-1.6.5.tar.gz
-wget https://cipherdyne.org/fwsnort/download/fwsnort-1.6.5.tar.gz.asc
-gpg --verify fwsnort**.asc
-md5 = $(md5sum **tar.gz)
-if [ $md5 "76552f820e125e97e4dfdd1ce6e3ead6" ]
-then
-    echo "PACKAGE VERIFIED"
-else
-    echo "PACKAGE NOT VERIFIED"
-    break
-fi
-tar xvf fwsnort**.gz
-cd fwsnort**
-./configure
-sudo make
-sudo make install
-sudo rm -r fwsnort**
-##psad
-service psad stop
-sudo apt-get -y install libcarp-clan-perl libdate-calc-perl libiptables-chainmgr-perl libiptables-parse-perl libnetwork-ipv4addr-perl libunix-syslog-perl libbit-vector-perl gcc wget -y
-wget https://cipherdyne.org/psad/download/psad-2.4.3.tar.gz
-wget https://cipherdyne.org/psad/download/psad-2.4.3.tar.gz.asc
-gpg --verify psad**.asc
-md5 = $(md5sum **tar.gz)
-if [ $md5 "5aa0d22f0bea3ba32e3b9730f78157cf" ]
-then
-    echo "PACKAGE VERIFIED"
-else
-    echo "PACKAGE NOT VERIFIED"
-    break
-fi
-tar xvf psad**.gz
-cd psad**
-sudo ./install.pl
-cd
-sudo rm -r psad**
-service psad start
+
 
 #Some tools
 sudo apt-get install secure-delete -y
