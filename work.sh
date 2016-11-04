@@ -299,24 +299,25 @@ readonly version="24.5"
 # install dependencies
 sudo apt-get install -y stow build-essential libx11-dev xaw3dg-dev libjpeg-dev libpng12-dev libgif-dev libtiff5-dev libncurses5-dev libxft-dev librsvg2-dev libmagickcore-dev libmagick++-dev libxml2-dev libgpm-dev libghc-gconf-dev libotf-dev libm17n-dev  libgnutls-dev -y
 # download source package
-sudo wget http://ftp.gnu.org/gnu/emacs/emacs-"$version".tar.xz
-sudo tar xvf emacs-"$version".tar.xz
+wget http://ftp.gnu.org/gnu/emacs/emacs-"$version".tar.xz
+tar xvf emacs-"$version".tar.xz
 # build and install
-sudo mkdir -p /usr/local/stow
+mkdir -p /usr/local/stow
 cd emacs-"$version"
 ./configure \
     --with-xft \
     --with-x-toolkit=lucid
-sudo make
+make
 sudo rm -r /usr/local/stow
 sudo make install prefix=/usr/local/stow/emacs-"$version" && cd /usr/local/stow
 sudo rm /usr/local/share/info/dir
 sudo stow emacs-"$version" 
 #spacemacs & plugins
-sudo mkdir .emacs.d
-sudo mkdir .emacs
-sudo git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
-sudo wget https://github.com/ethereum/emacs-solidity/blob/master/solidity-mode.el ##solidity
+mkdir .emacs.d
+mkdir .emacs
+git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+wget https://github.com/ethereum/emacs-solidity/blob/master/solidity-mode.el -O ~/.emacs.d/solidity-mode.el ##solidity
+wget https://github.com/syohex/emacs-emamux/blob/master/emamux.el -O ~/.emacs.d/ #tmux on emacs
 sudo emacs --insecure
 cd
 sudo rm -r emacs-**
