@@ -14,7 +14,7 @@ rm Open_as_admin.contract.contract
 #mirror
 sudo sed -i 's/http://us.archive.ubuntu.com/ubuntu/http://mirrors.mit.edu/ubuntu/g' /etc/apt/sources.list
 wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/bash.bashrc
-sudo mv bash.bashrc /etc/bash.bashrc
+sudo mv bash.bashrc ~/.bashrc
 sudo apt-get update -y
 sudo apt-get upgrade -y 
 #SSH
@@ -519,7 +519,7 @@ sudo ./manage.py createsuperuser
 sudo ./manage.py collectstatic
 #sudo ./manage.py loaddata test_data
 #sudo ./manage.py update_repos pip
-echo "alias readthedocs='sudo ./manage.py runserver && firefox -new-tab -url http://127.0.0.1:8000'" >> /etc/bash.bashrc
+echo "alias readthedocs='sudo ./manage.py runserver && firefox -new-tab -url http://127.0.0.1:8000'" >> ~/.bashrc
 
 ##Automatic Django Project setup, with git, heroku, rvmrc, coffeescript, less, automatic deployment, and many more features from https://github.com/andres-torres-marroquin/django-sparker
 curl -L https://raw.github.com/andres-torres-marroquin/django-sparker/master/sparker.sh | bash -s stable
@@ -596,7 +596,7 @@ read -p 'Write a subject' Subject \
 read -p 'Introduce text' Textt \
 read -p 'Introduce anexxed files routes separated by commas, like /a/b.txt,/c/c.pdf' filesss \
 mail -a $filesss -s '$Subject' $REmail < $Textt \
-}" | sudo tee -a /etc/bash.bashrc
+}" | sudo tee -a ~/.bashrc
 echo "$(echo $(wget http://ipinfo.io/ip -qO -) | rev | cut -d. -f2-).in-addr.arpa" #zone file
 echo "$($(echo "$(wget http://ipinfo.io/ip -qO -)" | cut -d. -f2- | cut -d. -f2- | cut -d. -f2-).$(echo "$(wget http://ipinfo.io/ip -qO -)" | rev | cut -d. -f2-).in-addr.arpa)" #PTRRecord
 firefox -new-tab http://www.digwebinterface.com/?hostnames=$(wget http://ipinfo.io/ip -qO -)%0D%0A&type=&ns=resolver&useresolver=8.8.4.4&nameservers=
@@ -609,7 +609,7 @@ wget http://www.srware.net/downloads/iron64.deb
 
 sudo dpkg -i iron64.deb
 sudo rm iron64.deb
-echo "alias iron='/usr/share/iron/iron'" >> sudo /etc/bash.bashrc
+echo "alias iron='/usr/share/iron/iron'" >> sudo ~/.bashrc
 
 wget https://ftp.gnu.org/gnu/icecat/38.8.0-gnu2/icecat-38.8.0.en-US.linux-x86_64.tar.bz2
 wget https://ftp.gnu.org/gnu/icecat/38.8.0-gnu2/icecat-38.8.0.en-US.linux-x86_64.tar.bz2.sig
