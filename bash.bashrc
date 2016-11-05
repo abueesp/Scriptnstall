@@ -522,12 +522,21 @@ docsthemagic() {
   sudo mat **
 }
 
-updatebash() {
+updateallbash() {
 sudo wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/bash.bashrc
 sudo rm /etc/bash.bashrc~
 sudo cp /etc/bash.bashrc /etc/bash.bashrc~
 sudo rm /etc/bash.bashrc
 sudo mv bash.bashrc /etc/bash.bashrc
+}
+
+updatebash() {
+wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/bash.bashrc -O ~/.bashrc
+}
+
+updatetmux() {
+wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/tmux.conf -O ~/tmux.conf
+tmux source-file ~/tmux.conf
 }
 
 getsh() {
