@@ -96,6 +96,11 @@ firefox https://addons.mozilla.org/firefox/downloads/file/271802/no_more_install
 sudo wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/bin/youtube-dl
 sudo chmod a+rx /usr/bin/youtube-dl
 
+##asciinema
+sudo apt-add-repository ppa:zanchey/asciinema
+sudo apt-get update
+sudo apt-get install asciinema
+
 ##GNUPG
 sudo apt-get install libgtk2.0-dev -y
 sudo mkdir gpg
