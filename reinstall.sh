@@ -91,6 +91,13 @@ sudo rm -r fwsnort**
 
 #Some tools
 sudo apt-get install tmux terminator -y
+
+sudo rm ~/tmux.conf~
+cp ~/tmux.conf ~/tmux.conf~
+wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/tmux.conf -O ~/tmux.conf
+tmux source-file ~/tmux.conf
+
+
 sudo apt-get install secure-delete -y
 sudo apt-get install traceroute -y
 sudo apt-get install iotop -y 
