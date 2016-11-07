@@ -588,9 +588,10 @@ fi
 
 
 ##Monitoring
-processmon(){
-read -p "introduce el nombre del proceso" app
+appmon(){
+read -p "introduce el nombre del proceso o aplicacion" app
 pid=pidof $app
+apt-cache show $app
 echo "El PID de $app es $pid"
 sudo lsof -i -n -P | grep $app
 sudo ps ax | grep $app
