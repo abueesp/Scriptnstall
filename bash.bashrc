@@ -799,6 +799,12 @@ Audit using lynis audit dockerfile filename\
 
 ### Functions ###
 
+addsnippet{
+read -p "Name of the snippet: " $SNIPPET
+read -p "Route of the snippet: " $ROUTESNIPPET
+echo "nnoremap ,$SNIPPET :-lread $ROUTESNIPPET<CR>5jwf>a"
+}
+
 freethis(){
   sudo chmod 777 $1 $2
 }
