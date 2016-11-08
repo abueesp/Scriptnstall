@@ -679,6 +679,7 @@ alias mtty='more rctty'
 alias rptty='replayscript rctty.timing rctty'
 alias rpttyfast='replayscript -d 3 rctty.timing rctty'
 alias logg='tailf'
+alias createtags='!ctags -R && echo "Remember: Ctrl+] go to tag; g+Ctrl+] ambiguous tags and enter number; Ctrl+t last tag"'
 
 imprime (){
 echo "List of prints available. With  lp -d you can also choose a printer lp -d myprinter -E -m -q 100 -o media=legal -o fit-to-page -n 1" 
