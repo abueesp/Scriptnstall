@@ -588,9 +588,13 @@ fi
 
 
 ##Monitoring
-appmon(){
+processmon(){
 read -p "introduce el nombre del proceso o aplicacion: " app
-pid=pidof $app
+pid=$(pidof $app)
+if [ -z "$pid" ]; then
+    echo "Ese programa no estaba corriendo o el proceso no fue identificado"
+    exit
+fi
 apt-cache show $app
 sudo ps ax | grep $app
 sudo lsof -i -n -P | grep $app
