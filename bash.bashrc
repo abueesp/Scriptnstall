@@ -589,13 +589,13 @@ fi
 
 ##Monitoring
 appmon(){
-read -p "introduce el nombre del proceso o aplicacion" app
+read -p "introduce el nombre del proceso o aplicacion: " app
 pid=pidof $app
 apt-cache show $app
-echo "El PID de $app es $pid"
-sudo lsof -i -n -P | grep $app
 sudo ps ax | grep $app
-sudo chrt -p $pid
+sudo lsof -i -n -P | grep $app
+read -p "Introduce el PID de $app: " pid
+sudo chrt -p $pid 
 sudo pstree -p $pid
 }
 filemon(){
