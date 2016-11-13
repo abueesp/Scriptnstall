@@ -275,7 +275,7 @@ sudo rm **.bz2 && sudo rm **.sig && sudo rm -r gpa**
 cd ..
 sudo rm -r gpg
 
-##Fail2ban
+##Fail2ban & logcheck
 sudo apt-get install fail2ban -y
 sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 echo "Please write down an email to send you notifications when someone is attacking your ports: "
@@ -286,7 +286,8 @@ sudo vi /etc/fail2ban/jail.local ':%s/\<destemail = your_email@domain.com\>/<des
 cat /etc/fail2ban/jail.local | grep destemail
 sudo vi /etc/fail2ban/jail.local ':%s/\<action = %(action_)s\>/<action = %(action_mw)s\>/gIc' ':wq'
 sudo vi /etc/fail2ban/jail.local ':%s/\<enabled  = false\>/<enabled  = true\>/gIc' ':wq'
-sudo apt-get install zenmap -y
+sudo apt-get install zenmap logcheck logcheck-database -y
+logcheck -p -u -m -h $email
 
 ##Virtualbox
 sudo apt-get purge virtualbox -y
