@@ -992,7 +992,7 @@ read -p "Enter ip ssh: " ipu
 read -p "Enteder directory ssh: " directoryu
 cd roteu
 touch ${roteu}-`date +%d-%m-%Y..%H-%M`
-rsync -av –delete -e 'ssh -p $portu' $routeu $usuu@$ipu:$directoryu
+rsync -avtogh -force -progress –delete -e 'ssh -p $portu' $routeu $usuu@$ipu:$directoryu
 }
 
 # use DNS to query wikipedia (wiki QUERY)
