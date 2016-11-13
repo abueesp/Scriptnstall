@@ -607,6 +607,7 @@ file read -p "introduce la ruta del archivo" ruta
 file $ruta
 sudo systemctl status 
 sudo strings $ruta
+sudo stats $ruta
 }
 alias usermon="uptime; sudo users; sudo groups; sudo w; sudo who -a; sudo ipcs -m -c; pwd; sudo finger; sudo finger -lmps; sudo chfn; sudo last; wall < echo ' Pure honey' "
 alias sysmon="lsb_release -a; uname -a; id; sudo id; sudo lshw; lscpu; watch -n 2 free -m; logname; hostname; ipcs -m -c; sudo logname; sudo ipcs; sudo initctl list; systemctl status; cat /proc/uptime; sudo df -h;  sudo dmesg | less; ipcs -u; sudo service --status-all; sudo htop; sudo w -i; sudo dmidecode; sudo ps -efH | more; sudo lsof | wc -l; sudo lsof; ps aux | sort -nk +4 | tail; sudo pstree; sudo ss; sudo dpkg -l"
