@@ -160,7 +160,7 @@ echo "your public key and private have been imported as public.key and private.k
 gpgdelete() {
 read -p "introduce the key username to delete Usernameprivate.key and/or Usernamepublic.key: " USN
 sudo gpg --delete -a $USN
-sudo gpg --deleete-secret-key -a $USN
+sudo gpg --delete-secret-key -a $USN
 echo "your public key and private have been deleted as public.key and private.key" 
 }
 
@@ -1195,4 +1195,26 @@ read -e -p "Enter your IP (localhost by default): " -i "localhost" IPZ
 for i in $(seq $PORTZS $PORTZF); do nc -zv $IPZ $i; done
 read -p "Do you want to test which process is listening to that port (only for host system)? If so, write down the port: " PORTZC
 lsof -iTCP:$PORTZC -sTCP:LISTEN
+}
+
+leeme() {
+read -p "Hola amigo :) Introduce el nombre del archivo que quieres que te lea: " ezte
+read -p "Introduce el idioma del texto (en-EN, fr-FR, pt-PT... por defecto es-ES)" -i "es-ES" lang
+PS3='Desea solo leer (1) o guardar como lectura.wav (2): '
+options=("1" "2")
+select opt in "${options[@]}"
+do
+    case $opt in
+        "1")
+            pico2wave -l=es-ES -w=/tmp/test.wav "$(cat $ezte)"
+	    aplay /tmp/test.wav
+            rm /tmp/test.wav
+            ;;
+        "2")
+            pico2wave -l=es-ES -w=/home/$USER/lectura.wav "$(cat $ezte)"
+	    aplay /home/$USER/lectura.wav
+            ;;
+        *) echo opcion no reconocida;;
+    esac
+done
 }
