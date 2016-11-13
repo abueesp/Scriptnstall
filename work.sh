@@ -86,6 +86,8 @@ echo "You entered: $email"
 sed "s/destemail = your_email@domain.com/destemail = $email/g" /etc/fail2ban/jail.local
 sed "s/action = %(action_)s/action = %(action_mw)s/g" /etc/fail2ban/jail.local
 sed -e "s/enabled  = false/enabled  = true/g" /etc/fail2ban/jail.local
+sudo apt-get install zenmap logcheck logcheck-database -y
+logcheck -p -u -m -h $email
 sudo apt-get install gnupg gpgv2 pbuilder ubuntu-dev-tools bzr-builddeb -y
 sudo apt-get install zenmap -y
 sudo apt-get install pandoc -y
