@@ -511,6 +511,9 @@ wget https://ftp.opera.com/pub/opera-developer/41.0.2349.0/linux/opera-developer
 sudo dpkg -i opera**.deb
 sudo rm opera**.deb
 
+##blindlector
+sudo apt-get install libttspico** -y
+
 sudo apt-get autoremove -y
 
 EOF
