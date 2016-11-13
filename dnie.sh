@@ -96,7 +96,7 @@ echo "You entered: $email"
 sudo sed "s/destemail = your_email@domain.com/destemail = $email/g" /etc/fail2ban/jail.local
 sudo sed "s/action = %(action_)s/action = %(action_mw)s/g" /etc/fail2ban/jail.local
 sudo sed -e "s/enabled  = false/enabled  = true/g" /etc/fail2ban/jail.local
-sudo apt-get install zenmap logcheck logcheck-database -y
+sudo apt-get install logcheck logcheck-database -y
 logcheck -p -u -m -h $email
 sudo apt-get install firefox -y
 sudo apt-get install subversion -y
