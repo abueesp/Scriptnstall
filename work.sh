@@ -665,3 +665,6 @@ sudo cp /usr/local/sbin/vsftpd /usr/sbin/vsftpd
 sudo make install
 cd ..
 
+
+##blindlector
+sudo apt-get install libttspico** -y
