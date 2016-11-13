@@ -506,20 +506,6 @@ wget https://addons.mozilla.org/thunderbird/downloads/latest/210/addon-210-lates
 wget https://addons.mozilla.org/thunderbird/downloads/latest/875/addon-875-latest.xpi #tb header tools
 wget https://addons.mozilla.org/thunderbird/downloads/latest/1003/addon-1003-latest.xpi #header scroll extension
 cd ..
- 
- 
-wget http://downloads.sourceforge.net/project/arpon/arpon/ArpON-3.0-ng.tar.gz
-tar xvzf ArpON**.tar.gz
-sudo rm ArpON-**tar.gz
-cd ArpON**
-mkdir build
-cd build
-sudo apt-get install libdnet libpcap-dev libnet1-dev libdnet-dev cmake libdumbnet-dev -y
-cmake ..
-make
-sudo make install
-cd ..
-cd ..
 
 wget https://ftp.opera.com/pub/opera-developer/41.0.2349.0/linux/opera-developer_41.0.2349.0_amd64.deb
 sudo dpkg -i opera**.deb
