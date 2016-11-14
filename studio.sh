@@ -64,7 +64,8 @@ tar xzvf Natron**tgz
 ./Natro**bit
 sudo rm -r Natron**
 #guitar
-sudo apt-get install tuxguitar -y
+sudo apt install tuxguitar tuxguitar-alsa tuxguitar-jsa tuxguitar-oss
+echo "Tools -> Settings -> MIDI Port -> Gervill" 
 
 
 #download 
