@@ -50,7 +50,7 @@ sed "s/action = %(action_)s/action = %(action_mw)s/g" /etc/fail2ban/jail.local
 sed -e "s/enabled  = false/enabled  = true/g" /etc/fail2ban/jail.local
 
 #audio
-sudo apt-get install  pulseaudio-module-gconf pulseaudio module-hal pulseaudio-module-x11 aconnectgui alsa-tools alsa-tools-gui audacity audacious audacious-plugins-extra ardour beast bitscope creox denemo timemachine gtick hydrogen jackbeat jackd jackeq jack-rack jack-tools jamin jdelay lilypond lilypond-data meterbridge muse patchage qamix vkeybd qjackctl puredata rosegarden timidity seq24 shaketracker sooperlooper swami csound tapiir freqtweak mixxx terminatorx zynaddsubfx fluidsynth bristol freebirth qsynth tk707 linux-rt ubuntustudio-controls -y 
+sudo apt-get install pulseaudio-module-gconf pulseaudio module-hal pulseaudio-module-x11 aconnectgui alsa-tools alsa-tools-gui audacity audacious audacious-plugins-extra ardour beast bitscope creox denemo timemachine gtick hydrogen jackbeat jackd jackeq jack-rack jack-tools jamin jdelay lilypond lilypond-data meterbridge muse patchage qamix vkeybd qjackctl puredata rosegarden timidity seq24 shaketracker sooperlooper swami csound tapiir freqtweak mixxx terminatorx zynaddsubfx fluidsynth bristol freebirth qsynth tk707 linux-rt ubuntustudio-controls -y 
 #audio plugins
 sudo apt-get install aeolus blop caps cmt hexter fil-plugins ladspa-sdk mcp-plugins omins swh-plugins tap-plugins vcf dssi-example-plugins dssi-host-jack fluidsynth-dssi xsynth-dssi dssi-utils-y
 # graphics
@@ -63,6 +63,9 @@ wget -c https://downloads.natron.fr/Linux/releases/64bit/files/Natron-2.1.2-Linu
 tar xzvf Natron**tgz
 ./Natro**bit
 sudo rm -r Natron**
+#guitar
+sudo apt-get install tuxguitar -y
+
 
 #download 
 sudo apt-get install qbittorrent
