@@ -349,10 +349,10 @@ sudo rm -r conkeror
 ##Geth
 echo "Geth"
 cd linux
-wget https://github.com/ethereum/go-ethereum/releases/download/v1.4.18/geth-linux-amd64-1.4.18-ef9265d0.tar.gz
+wget https://gethstore.blob.core.windows.net/builds/geth-alltools-linux-amd64-1.5.2-c8695209.tar.gz
 tar -zxvf geth**.tar.gz
 sha1 = $(sha1sum geth**.tar.gz)
-if [[ $sha1 == "efbace0ef748974becd563803b518965f1567de55b51a444d54a619ed3dae612" ]]
+if [[ $sha1 == "33d0633e1b30491d2dcb3f118350fa7576e47865" ]]
 then
     echo "PACKAGE VERIFIED"
 else
@@ -361,6 +361,7 @@ else
 fi
 read -p "Please ENTER if PACKAGE VERIFIED. Otherwise Ctrl-C " pause
 sudo rm geth**.tar.gz
+cd geth**
 ./geth
 
 #Ethr
