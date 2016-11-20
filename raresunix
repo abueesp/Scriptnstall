@@ -1,8 +1,7 @@
 
 fuser
 dmesg -x --facility=daemon dice systemd-hostnamed: Warning: nss-myhostname is not installed
- asa bc ar cflow ctags cxref ipcrm localdef logger m4 mkfifo
-nm, strip
+bc cflow ctags cxref ipcrm localdef logger m4 mkfifo
  od, initctl
  patch pathchk
 torque-client grindengine slurm qmsg qstat
@@ -15,10 +14,48 @@ uucp uustat uux uudecode uuencode
 getopt
 lex yacc
 fallocate flock fsfreeze
-ldattach
 ioctl losetup
 setsid
 arping, inetd, ethtool
 envdir, envuidgid 
 setterm chvt
 
+
+
+GNU Binutils
+
+The GNU Binutils are a collection of binary tools. The main ones are:
+ 
+ ./archivo
+    ld - the GNU linker. ld hello.o -e _hw -o hello
+    as - the GNU assembler. as hello.s -o hello.o
+  asmcode
+
+But they also include:
+
+    addr2line - Converts addresses into filenames and line numbers.
+    ar - A utility for creating, modifying and extracting from archives.
+    c++filt - Filter to demangle encoded C++ symbols.
+    dlltool - Creates files for building and using DLLs.
+    gold - A new, faster, ELF only linker, still in beta test.
+    gprof - Displays profiling information.
+    nlmconv - Converts object code into an NLM.
+    ldattach - Attach to GNU linker
+    nm - Lists symbols from object files.
+    objcopy - Copies and translates object files.
+    objdump - Displays information from object files.
+    ranlib - Generates an index to the contents of an archive.
+    readelf - Displays information from any ELF format object file.
+    size - Lists the section sizes of an object or archive file.
+    strings - Lists printable strings from files.
+    strip - Discards symbols.
+    windmc - A Windows compatible message compiler.
+    windres - A compiler for Windows resource files.
+
+ASM Extra Utils http://asm.sourceforge.net/asmutils.html
+
+ASM Other Tools http://asm.sourceforge.net/
+
+ASM Book https://en.m.wikibooks.org/wiki/X86_Assembly/X86_Architecture
+
+ASM Full Doc http://www.intel.com/content/www/us/en/processors/architectures-software-developer-manuals.html
