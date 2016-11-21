@@ -173,16 +173,48 @@ echo "fingerprints"
 sudo gpg --fingerprint
 }
 
+gpg2list() {
+echo "pubkeys list"
+sudo gpg2 --list-keys
+echo "privkeys list"
+sudo gpg2 --list-secret-keys
+echo "fingerprints"
+sudo gpg2 --fingerprint
+}
+
+
+gpgnew() {
+sudo gpg --gen-key 
+}
+
+gpg2new() {
+sudo gpg2 --full-gen-key
+}
+
+gpgeditkey() {
+read -p "Introduce key: " keyy
+sudo gpg --edit-key 0x$keyy
+}
+
+gpg2editkey() {
+read -p "Introduce key: " keyy
+sudo gpg2 --edit-key 0x$keyy
+}
+
 gpgencrypt() {
-read -p "enter your gpg username (sender username): " USNs
-read -p "enter your gpg username (receiver username): " USNr
-read -p "enter the route of the file" filegpge
-sudo gpg -e -u $USNs -r $USNr $filegpge
+read -p "Rename the key as key.txt and the message as message.txt. Then put both on this folder. Then, push ENTER and you will see your encrypted message as ciphertext.txt." Done
+#read -p "enter your gpg username (sender username): " USNs
+#read -p "enter your gpg username (receiver username): " USNr
+#read -p "enter the route of the file" filegpge
+#sudo gpg -e -u $USNs -r $USNr $filegpge
+sudo gpg2 --batch --yes --passphrase-file "key.txt" -z 0 --cipher-algo AES256 --armor --output "ciphertext.txt" --symmetric "message.txt"
 }
 
 gpgdecrypt() {
-read -p "enter file.gpg to decrypt: " filegpgd
-sudo gpg -o $filegpg[-4] -d $filegpgd
+read -p "Rename the key as key.txt and the ciphertext as ciphertext.txt. Then put both on this folder. Then, push ENTER and you will see your decrypted message as message.txt." Done
+#read -p "enter file.gpg to decrypt: " filegpgd
+#sudo gpg -o $filegpg[-4] -d $filegpgd
+sudo gpg2 --batch --yes --passphrase-file "key.txt" --output "message.txt" --decrypt "cp.txt"
 }
 
 # If not running interactively, don't do anything
