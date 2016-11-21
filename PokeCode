@@ -1,0 +1,450 @@
+#All Unicode characteres and codes. Test them all!
+
+a="437 500 500V1 850 851 852 855 856 857 860 861 862 863 864 865 866 866NAV 869 874 904 1026 1046 1047 8859_1 8859_2 8859_3 8859_4 8859_5 8859_6 8859_7 8859_8 8859_9 10646-1:1993 10646-1:1993/UCS4 ANSI_X3.4-1968 ANSI_X3.4-1986 ANSI_X3.4 ANSI_X3.110-1983 ANSI_X3.110 ARABIC ARABIC7 ARMSCII-8 ASCII ASMO-708 ASMO_449 BALTIC BIG-5 BIG-FIVE BIG5-HKSCS BIG5 BIG5HKSCS BIGFIVE BRF BS_4730 CA CN-BIG5 CN-GB CN CP-AR CP-GR CP-HU CP037 CP038 CP273 CP274 CP275 CP278 CP280 CP281 CP282 CP284 CP285 CP290 CP297 CP367 CP420 CP423 CP424 CP437 CP500 CP737 CP770 CP771 CP772 CP773 CP774 CP775 CP803 CP813 CP819 CP850 CP851 CP852 CP855 CP856 CP857 CP860 CP861 CP862 CP863 CP864 CP865 CP866 CP866NAV CP868 CP869 CP870 CP871 CP874 CP875  CP880 CP891 CP901 CP902 CP903 CP904 CP905 CP912 CP915 CP916 CP918 CP920 CP921 CP922 CP930 CP932 CP933 CP935 CP936 CP937 CP939 CP949 CP950 CP1004 CP1008 CP1025 CP1026 CP1046 CP1047 CP1070 CP1079 CP1081 CP1084 CP1089 CP1097 CP1112 CP1122 CP1123 CP1124 CP1125 CP1129 CP1130 CP1132 CP1133 CP1137 CP1140 CP1141 CP1142 CP1143 CP1144 CP1145 CP1146 CP1147 CP1148 CP1149 CP1153 CP1154 CP1155 CP1156 CP1157 CP1158 CP1160 CP1161 CP1162 CP1163 CP1164 CP1166 CP1167 CP1250 CP1251 CP1252 CP1253 CP1254 CP1255 CP1256 CP1257 CP1258 CP1282 CP1361 CP1364 CP1371 CP1388 CP1390 CP1399 CP4517 CP4899 CP4909 CP4971 CP5347 CP9030 CP9066 CP9448 CP10007 CP12712 CP16804 CPIBM861 CSA7-1 CSA7-2 CSASCII CSA_T500-1983 CSA_T500 CSA_Z243.4-1985-1 CSA_Z243.4-1985-2 CSA_Z243.419851 CSA_Z243.419852 CSDECMCS CSEBCDICATDE CSEBCDICATDEA CSEBCDICCAFR CSEBCDICDKNO CSEBCDICDKNOA CSEBCDICES CSEBCDICESA CSEBCDICESS CSEBCDICFISE CSEBCDICFISEA CSEBCDICFR CSEBCDICIT CSEBCDICPT CSEBCDICUK CSEBCDICUS CSEUCKR CSEUCPKDFMTJAPANESE CSGB2312 CSHPROMAN8 CSIBM037 CSIBM038 CSIBM273 CSIBM274 CSIBM275 CSIBM277 CSIBM278 CSIBM280 CSIBM281 CSIBM284 CSIBM285 CSIBM290 CSIBM297 CSIBM420 CSIBM423 CSIBM424 CSIBM500 CSIBM803 CSIBM851 CSIBM855 CSIBM856 CSIBM857 CSIBM860 CSIBM863 CSIBM864 CSIBM865 CSIBM866 CSIBM868 CSIBM869 CSIBM870 CSIBM871 CSIBM880 CSIBM891 CSIBM901 CSIBM902 CSIBM903 CSIBM904 CSIBM905 CSIBM918 CSIBM921 CSIBM922 CSIBM930 CSIBM932 CSIBM933 CSIBM935 CSIBM937 CSIBM939 CSIBM943 CSIBM1008 CSIBM1025 CSIBM1026 CSIBM1097 CSIBM1112 CSIBM1122 CSIBM1123 CSIBM1124 CSIBM1129 CSIBM1130 CSIBM1132 CSIBM1133 CSIBM1137 CSIBM1140 CSIBM1141 CSIBM1142 CSIBM1143 CSIBM1144 CSIBM1145 CSIBM1146 CSIBM1147 CSIBM1148 CSIBM1149 CSIBM1153 CSIBM1154 CSIBM1155 CSIBM1156 CSIBM1157 CSIBM1158 CSIBM1160 CSIBM1161 CSIBM1163 CSIBM1164 CSIBM1166 CSIBM1167 CSIBM1364 CSIBM1371 CSIBM1388 CSIBM1390 CSIBM1399 CSIBM4517 CSIBM4899 CSIBM4909 CSIBM4971 CSIBM5347 CSIBM9030 CSIBM9066 CSIBM9448 CSIBM12712 CSIBM16804 CSIBM11621162 CSISO4UNITEDKINGDOM CSISO10SWEDISH CSISO11SWEDISHFORNAMES CSISO14JISC6220RO CSISO15ITALIAN CSISO16PORTUGESE CSISO17SPANISH  CSISO18GREEK7OLD CSISO19LATINGREEK CSISO21GERMAN CSISO25FRENCH CSISO27LATINGREEK1 CSISO49INIS CSISO50INIS8 CSISO51INISCYRILLIC CSISO58GB1988 CSISO60DANISHNORWEGIAN CSISO60NORWEGIAN1 CSISO61NORWEGIAN2 CSISO69FRENCH CSISO84PORTUGUESE2 CSISO85SPANISH2 CSISO86HUNGARIAN CSISO88GREEK7 CSISO89ASMO449 CSISO90 CSISO92JISC62991984B CSISO99NAPLPS CSISO103T618BIT CSISO111ECMACYRILLIC CSISO121CANADIAN1 CSISO122CANADIAN2 CSISO139CSN369103 CSISO141JUSIB1002 CSISO143IECP271 CSISO150 CSISO150GREEKCCITT CSISO151CUBA CSISO153GOST1976874 CSISO646DANISH CSISO2022CN CSISO2022JP CSISO2022JP2 CSISO2022KR CSISO2033 CSISO5427CYRILLIC CSISO5427CYRILLIC1981 CSISO5428GREEK CSISO10367BOX CSISOLATIN1 CSISOLATIN2 CSISOLATIN3 CSISOLATIN4 CSISOLATIN5 CSISOLATIN6 CSISOLATINARABIC CSISOLATINCYRILLIC CSISOLATINGREEK CSISOLATINHEBREW CSKOI8R CSKSC5636 CSMACINTOSH CSNATSDANO CSNATSSEFI CSN_369103 CSPC8CODEPAGE437 CSPC775BALTIC CSPC850MULTILINGUAL CSPC862LATINHEBREW CSPCP852 CSSHIFTJIS CSUCS4 CSUNICODE CSWINDOWS31J CUBA CWI-2 CWI CYRILLIC DE DEC-MCS DEC DECMCS DIN_66003 DK DS2089 DS_2089 E13B EBCDIC-AT-DE-A EBCDIC-AT-DE EBCDIC-BE EBCDIC-BR EBCDIC-CA-FR EBCDIC-CP-AR1 EBCDIC-CP-AR2 EBCDIC-CP-BE EBCDIC-CP-CA EBCDIC-CP-CH EBCDIC-CP-DK EBCDIC-CP-ES EBCDIC-CP-FI EBCDIC-CP-FR EBCDIC-CP-GB EBCDIC-CP-GR EBCDIC-CP-HE EBCDIC-CP-IS EBCDIC-CP-IT EBCDIC-CP-NL EBCDIC-CP-NO EBCDIC-CP-ROECE EBCDIC-CP-SE EBCDIC-CP-TR EBCDIC-CP-US EBCDIC-CP-WT EBCDIC-CP-YU EBCDIC-CYRILLIC EBCDIC-DK-NO-A EBCDIC-DK-NO EBCDIC-ES-A EBCDIC-ES-S EBCDIC-ES EBCDIC-FI-SE-A EBCDIC-FI-SE EBCDIC-FR EBCDIC-GREEK EBCDIC-INT EBCDIC-INT1 EBCDIC-IS-FRISS EBCDIC-IT EBCDIC-JP-E EBCDIC-JP-KANA EBCDIC-PT EBCDIC-UK EBCDIC-US EBCDICATDE EBCDICATDEA EBCDICCAFR EBCDICDKNO EBCDICDKNOA EBCDICES EBCDICESA EBCDICESS EBCDICFISE EBCDICFISEA EBCDICFR EBCDICISFRISS EBCDICIT EBCDICPT EBCDICUK EBCDICUS ECMA-114 ECMA-118 ECMA-128 ECMA-CYRILLIC ECMACYRILLIC ELOT_928 ES ES2 EUC-CN EUC-JISX0213 EUC-JP-MS EUC-JP EUC-KR EUC-TW EUCCN EUCJP-MS EUCJP-OPEN EUCJP-WIN EUCJP EUCKR EUCTW FI FR GB GB2312 GB13000 GB18030 GBK GB_1988-80 GB_198880 GEORGIAN-ACADEMY GEORGIAN-PS GOST_19768-74 GOST_19768 GOST_1976874 GREEK-CCITT GREEK GREEK7-OLD GREEK7 GREEK7OLD GREEK8 GREEKCCITT HEBREW HP-GREEK8 HP-ROMAN8 HP-ROMAN9 HP-THAI8 HP-TURKISH8 HPGREEK8 HPROMAN8 HPROMAN9 HPTHAI8 HPTURKISH8 HU IBM-803 IBM-856 IBM-901 IBM-902 IBM-921 IBM-922 IBM-930 IBM-932 IBM-933 IBM-935 IBM-937 IBM-939 IBM-943 IBM-1008 IBM-1025 IBM-1046 IBM-1047 IBM-1097 IBM-1112 IBM-1122 IBM-1123 IBM-1124 IBM-1129 IBM-1130 IBM-1132 IBM-1133 IBM-1137 IBM-1140 IBM-1141 IBM-1142 IBM-1143 IBM-1144 IBM-1145 IBM-1146 IBM-1147 IBM-1148 IBM-1149 IBM-1153 IBM-1154 IBM-1155 IBM-1156 IBM-1157 IBM-1158 IBM-1160 IBM-1161 IBM-1162 IBM-1163 IBM-1164 IBM-1166 IBM-1167 IBM-1364 IBM-1371 IBM-1388 IBM-1390 IBM-1399 IBM-4517 IBM-4899 IBM-4909 IBM-4971 IBM-5347 IBM-9030 IBM-9066 IBM-9448 IBM-12712 IBM-16804 IBM037 IBM038 IBM256 IBM273 IBM274 IBM275 IBM277 IBM278 IBM280 IBM281 IBM284 IBM285 IBM290 IBM297 IBM367 IBM420 IBM423 IBM424 IBM437 IBM500 IBM775 IBM803 IBM813 IBM819 IBM848 IBM850 IBM851 IBM852 IBM855 IBM856 IBM857 IBM860 IBM861 IBM862 IBM863 IBM864 IBM865 IBM866 IBM866NAV IBM868 IBM869 IBM870 IBM871 IBM874 IBM875 IBM880 IBM891 IBM901 IBM902 IBM903 IBM904 IBM905 IBM912 IBM915 IBM916 IBM918 IBM920 IBM921 IBM922 IBM930 IBM932 IBM933 IBM935 IBM937 IBM939 IBM943 IBM1004 IBM1008 IBM1025 IBM1026 IBM1046 IBM1047 IBM1089 IBM1097 IBM1112 IBM1122 IBM1123 IBM1124 IBM1129 IBM1130 IBM1132 IBM1133 IBM1137 IBM1140 IBM1141 IBM1142 IBM1143 IBM1144 IBM1145 IBM1146 IBM1147 IBM1148 IBM1149 IBM1153 IBM1154 IBM1155 IBM1156 IBM1157 IBM1158 IBM1160 IBM1161 IBM1162 IBM1163 IBM1164 IBM1166 IBM1167 IBM1364 IBM1371 IBM1388 IBM1390 IBM1399 IBM4517 IBM4899 IBM4909 IBM4971 IBM5347 IBM9030 IBM9066 IBM9448 IBM12712 IBM16804 IEC_P27-1 IEC_P271 INIS-8 INIS-CYRILLIC INIS INIS8 INISCYRILLIC ISIRI-3342 ISIRI3342 ISO-2022-CN-EXT ISO-2022-CN ISO-2022-JP-2 ISO-2022-JP-3 ISO-2022-JP ISO-2022-KR ISO-8859-1 ISO-8859-2 ISO-8859-3 ISO-8859-4 ISO-8859-5 ISO-8859-6 ISO-8859-7 ISO-8859-8 ISO-8859-9 ISO-8859-9E ISO-8859-10 ISO-8859-11 ISO-8859-13 ISO-8859-14 ISO-8859-15 ISO-8859-16 ISO-10646 ISO-10646/UCS2 ISO-10646/UCS4 ISO-10646/UTF-8 ISO-10646/UTF8 ISO-CELTIC ISO-IR-4 ISO-IR-6 ISO-IR-8-1 ISO-IR-9-1 ISO-IR-10 ISO-IR-11 ISO-IR-14 ISO-IR-15 ISO-IR-16 ISO-IR-17 ISO-IR-18 ISO-IR-19 ISO-IR-21 ISO-IR-25 ISO-IR-27 ISO-IR-37 ISO-IR-49 ISO-IR-50 ISO-IR-51 ISO-IR-54 ISO-IR-55 ISO-IR-57 ISO-IR-60 ISO-IR-61 ISO-IR-69 ISO-IR-84 ISO-IR-85 ISO-IR-86 ISO-IR-88 ISO-IR-89 ISO-IR-90 ISO-IR-92 ISO-IR-98 ISO-IR-99 ISO-IR-100 ISO-IR-101 ISO-IR-103 ISO-IR-109 ISO-IR-110 ISO-IR-111 ISO-IR-121 ISO-IR-122 ISO-IR-126 ISO-IR-127 ISO-IR-138 ISO-IR-139 ISO-IR-141 ISO-IR-143 ISO-IR-144 ISO-IR-148 ISO-IR-150 ISO-IR-151 ISO-IR-153 ISO-IR-155 ISO-IR-156 ISO-IR-157 ISO-IR-166 ISO-IR-179 ISO-IR-193 ISO-IR-197 ISO-IR-199 ISO-IR-203 ISO-IR-209 ISO-IR-226 ISO/TR_11548-1 ISO646-CA ISO646-CA2 ISO646-CN ISO646-CU ISO646-DE ISO646-DK ISO646-ES ISO646-ES2 ISO646-FI ISO646-FR ISO646-FR1 ISO646-GB ISO646-HU ISO646-IT ISO646-JP-OCR-B ISO646-JP ISO646-KR ISO646-NO ISO646-NO2 ISO646-PT ISO646-PT2 ISO646-SE ISO646-SE2 ISO646-US ISO646-YU ISO2022CN ISO2022CNEXT ISO2022JP ISO2022JP2 ISO2022KR ISO6937 ISO8859-1 ISO8859-2 ISO8859-3 ISO8859-4 ISO8859-5 ISO8859-6 ISO8859-7 ISO8859-8 ISO8859-9 ISO8859-9E ISO8859-10 ISO8859-11 ISO8859-13 ISO8859-14 ISO8859-15 ISO8859-16 ISO11548-1 ISO88591 ISO88592 ISO88593 ISO88594 ISO88595 ISO88596 ISO88597 ISO88598 ISO88599 ISO88599E ISO885910 ISO885911 ISO885913 ISO885914 ISO885915 ISO885916 ISO_646.IRV:1991 ISO_2033-1983 ISO_2033 ISO_5427-EXT ISO_5427 ISO_5427:1981 ISO_5427EXT ISO_5428 ISO_5428:1980 ISO_6937-2 ISO_6937-2:1983 ISO_6937 ISO_6937:1992 ISO_8859-1 ISO_8859-1:1987 ISO_8859-2 ISO_8859-2:1987 ISO_8859-3 ISO_8859-3:1988 ISO_8859-4 ISO_8859-4:1988 ISO_8859-5 ISO_8859-5:1988 ISO_8859-6 ISO_8859-6:1987 ISO_8859-7 ISO_8859-7:1987 ISO_8859-7:2003 ISO_8859-8 ISO_8859-8:1988 ISO_8859-9 ISO_8859-9:1989 ISO_8859-9E ISO_8859-10 ISO_8859-10:1992 ISO_8859-14 ISO_8859-14:1998 ISO_8859-15 ISO_8859-15:1998 ISO_8859-16 ISO_8859-16:2001 ISO_9036 ISO_10367-BOX ISO_10367BOX ISO_11548-1 ISO_69372 IT JIS_C6220-1969-RO JIS_C6229-1984-B JIS_C62201969RO JIS_C62291984B JOHAB JP-OCR-B JP JS JUS_I.B1.002 KOI-7 KOI-8 KOI8-R KOI8-RU KOI8-T KOI8-U KOI8 KOI8R KOI8U KSC5636 L1 L2 L3 L4 L5 L6 L7 L8 L10 LATIN-9 LATIN-GREEK-1 LATIN-GREEK LATIN1 LATIN2 LATIN3 LATIN4 LATIN5 LATIN6 LATIN7 LATIN8 LATIN9 LATIN10 LATINGREEK LATINGREEK1 MAC-CENTRALEUROPE MAC-CYRILLIC MAC-IS MAC-SAMI MAC-UK MAC MACCYRILLIC MACINTOSH MACIS MACUK MACUKRAINIAN MIK MS-ANSI MS-ARAB MS-CYRL MS-EE MS-GREEK MS-HEBR MS-MAC-CYRILLIC MS-TURK MS932 MS936 MSCP949 MSCP1361 MSMACCYRILLIC MSZ_7795.3 MS_KANJI NAPLPS NATS-DANO NATS-SEFI NATSDANO NATSSEFI NC_NC0010 NC_NC00-10 NC_NC00-10:81 NF_Z_62-010 NF_Z_62-010_(1973) NF_Z_62-010_1973 NF_Z_62010 NF_Z_62010_1973 NO NO2 NS_4551-1 NS_4551-2 NS_45511 NS_45512 OS2LATIN1 OSF00010001 OSF00010002 OSF00010003 OSF00010004 OSF00010005 OSF00010006 OSF00010007 OSF00010008 OSF00010009 OSF0001000A OSF00010020 OSF00010100 OSF00010101 OSF00010102 OSF00010104 OSF00010105 OSF00010106 OSF00030010 OSF0004000A OSF0005000A OSF05010001 OSF100201A4 OSF100201A8 OSF100201B5 OSF100201F4 OSF100203B5 OSF1002011C OSF1002011D OSF1002035D OSF1002035E OSF1002035F OSF1002036B OSF1002037B OSF10010001 OSF10010004 OSF10010006 OSF10020025 OSF10020111 OSF10020115 OSF10020116 OSF10020118 OSF10020122 OSF10020129 OSF10020352 OSF10020354 OSF10020357 OSF10020359 OSF10020360 OSF10020364 OSF10020365 OSF10020366 OSF10020367 OSF10020370 OSF10020387 OSF10020388 OSF10020396 OSF10020402 OSF10020417 PT PT2 PT154 R8 R9 RK1048 ROMAN8 ROMAN9 RUSCII SE SE2 SEN_850200_B SEN_850200_C SHIFT-JIS SHIFT_JIS SHIFT_JISX0213 SJIS-OPEN SJIS-WIN SJIS SS636127 STRK1048-2002 ST_SEV_358-88 T.61-8BIT T.61 T.618BIT TCVN-5712 TCVN TCVN5712-1 TCVN5712-1:1993 THAI8 TIS-620 TIS620-0 TIS620.2529-1 TIS620.2533-0 TIS620 TS-5881 TSCII TURKISH8 UCS-2 UCS-2BE UCS-2LE UCS-4 UCS-4BE UCS-4LE UCS2 UCS4 UHC UJIS UK UNICODE UNICODEBIG UNICODELITTLE US-ASCII US UTF-7 UTF-8 UTF-16 UTF-16BE UTF-16LE UTF-32 UTF-32BE UTF-32LE UTF7 UTF8 UTF16 UTF16BE UTF16LE UTF32 UTF32BE UTF32LE VISCII WCHAR_T WIN-SAMI-2 WINBALTRIM WINDOWS-31J WINDOWS-874 WINDOWS-936 WINDOWS-1250 WINDOWS-1251 WINDOWS-1252 WINDOWS-1253 WINDOWS-1254 WINDOWS-1255 WINDOWS-1256 WINDOWS-1257 WINDOWS-1258 WINSAMI2 WS2 YU"
+
+echo "Script: LATIN
+Atomic (80)
+a æ b ɓ ƃ c ƈ d đ ɖ ɗ ƌ ð e ǝ ə ɛ f ƒ g ǥ ɠ ɣ ƣ h ƕ ħ i ı ɨ ɩ j k ƙ l ł ƚ m n ɲ ƞ ŋ o œ ø ɔ ɵ ȣ p ƥ q r ʀ s ʃ t ŧ ƭ ʈ u ɯ ʊ v ʋ w x y ƴ z ƶ ȥ ʒ ƹ ȝ þ ƿ ƨ ƽ ƅ ʔ
+Atomic-no-uppercase (87)
+ɐ ɑ ɒ ʙ ƀ ɕ ʣ ʥ ʤ ɘ ɚ ɜ ɝ ɞ ʚ ɤ ʩ ɡ ɢ ʛ ʜ ɦ ɧ ɪ ʝ ɟ ʄ ʞ ʪ ʫ ʟ ɫ ɬ ɭ ɮ ƛ ʎ ɱ ɴ ɳ ɶ ɷ ɸ ʠ ĸ ɹ ɺ ɻ ɼ ɽ ɾ ɿ ʁ ʂ ƪ ʅ ʆ ʨ ƾ ʦ ʧ ƫ ʇ ʉ ɥ ɰ ʌ ʍ ʏ ƍ ʐ ʑ ƺ ʓ ƻ ʕ ʡ ʢ ʖ ǀ ǁ ǂ ǃ ʗ ʘ ʬ ʭ
+Decomposable (250)
+á à ă ắ ằ ẵ ẳ â ấ ầ ẫ ẩ ǎ å ǻ ä ǟ ã ȧ ǡ ą ā ả ȁ ȃ ạ ặ ậ ḁ ǽ ǣ ḃ ḅ ḇ ć ĉ č ċ ç ḉ ď ḋ ḑ ḍ ḓ ḏ é è ĕ ê ế ề ễ ể ě ë ẽ ė ȩ ḝ ę ē ḗ ḕ ẻ ȅ ȇ ẹ ệ ḙ ḛ ḟ ǵ ğ ĝ ǧ ġ ģ ḡ ĥ ȟ ḧ ḣ ḩ ḥ ḫ ẖ í ì ĭ î ǐ ï ḯ ĩ į ī ỉ ȉ ȋ ị ḭ ĵ ǰ ḱ ǩ ķ ḳ ḵ ĺ ľ ļ ḷ ḹ ḽ ḻ ḿ ṁ ṃ ń ǹ ň ñ ṅ ņ ṇ ṋ ṉ ó ò ŏ ô ố ồ ỗ ổ ǒ ö ȫ ő õ ṍ ṏ ȭ ȯ ȱ ǫ ǭ ō ṓ ṑ ỏ ȍ ȏ ơ ớ ờ ỡ ở ợ ọ ộ ǿ ṕ ṗ ŕ ř ṙ ŗ ȑ ȓ ṛ ṝ ṟ ś ṥ ŝ š ṧ ṡ ş ṣ ṩ ș ť ẗ ṫ ţ ṭ ț ṱ ṯ ú ù ŭ û ǔ ů ü ǘ ǜ ǚ ǖ ű ũ ṹ ų ū ṻ ủ ȕ ȗ ư ứ ừ ữ ử ự ụ ṳ ṷ ṵ ṽ ṿ ẃ ẁ ŵ ẘ ẅ ẇ ẉ ẍ ẋ ý ỳ ŷ ẙ ÿ ỹ ẏ ȳ ỷ ỵ ź ẑ ž ż ẓ ẕ ǯ
+IDN-Remapped-Case-Atomic (78)
+A Æ B Ɓ Ƃ C Ƈ D Đ Ɖ Ɗ Ƌ Ð E Ǝ Ə Ɛ F Ƒ G Ǥ Ɠ Ɣ Ƣ H Ƕ Ħ I Ɨ Ɩ J K Ƙ L Ł M N Ɲ Ƞ Ŋ O Œ Ø Ɔ Ɵ Ȣ P Ƥ Q R Ʀ S ß Ʃ T Ŧ Ƭ Ʈ U Ɯ Ʊ V Ʋ W X Y Ƴ Z Ƶ Ȥ Ʒ Ƹ Ȝ Þ Ƿ Ƨ Ƽ Ƅ
+IDN-Remapped-Case-Decomposable (246)
+Á À Ă Ắ Ằ Ẵ Ẳ Â Ấ Ầ Ẫ Ẩ Ǎ Å Ǻ Ä Ǟ Ã Ȧ Ǡ Ą Ā Ả Ȁ Ȃ Ạ Ặ Ậ Ḁ Ǽ Ǣ Ḃ Ḅ Ḇ Ć Ĉ Č Ċ Ç Ḉ Ď Ḋ Ḑ Ḍ Ḓ Ḏ É È Ĕ Ê Ế Ề Ễ Ể Ě Ë Ẽ Ė Ȩ Ḝ Ę Ē Ḗ Ḕ Ẻ Ȅ Ȇ Ẹ Ệ Ḙ Ḛ Ḟ Ǵ Ğ Ĝ Ǧ Ġ Ģ Ḡ Ĥ Ȟ Ḧ Ḣ Ḩ Ḥ Ḫ Í Ì Ĭ Î Ǐ Ï Ḯ Ĩ İ Į Ī Ỉ Ȉ Ȋ Ị Ḭ Ĵ Ḱ Ǩ Ķ Ḳ Ḵ Ĺ Ľ Ļ Ḷ Ḹ Ḽ Ḻ Ḿ Ṁ Ṃ Ń Ǹ Ň Ñ Ṅ Ņ Ṇ Ṋ Ṉ Ó Ò Ŏ Ô Ố Ồ Ỗ Ổ Ǒ Ö Ȫ Ő Õ Ṍ Ṏ Ȭ Ȯ Ȱ Ǫ Ǭ Ō Ṓ Ṑ Ỏ Ȍ Ȏ Ơ Ớ Ờ Ỡ Ở Ợ Ọ Ộ Ǿ Ṕ Ṗ Ŕ Ř Ṙ Ŗ Ȑ Ȓ Ṛ Ṝ Ṟ Ś Ṥ Ŝ Š Ṧ Ṡ Ş Ṣ Ṩ Ș Ť Ṫ Ţ Ṭ Ț Ṱ Ṯ Ú Ù Ŭ Û Ǔ Ů Ü Ǘ Ǜ Ǚ Ǖ Ű Ũ Ṹ Ų Ū Ṻ Ủ Ȕ Ȗ Ư Ứ Ừ Ữ Ử Ự Ụ Ṳ Ṷ Ṵ Ṽ Ṿ Ẃ Ẁ Ŵ Ẅ Ẇ Ẉ Ẍ Ẋ Ý Ỳ Ŷ Ÿ Ỹ Ẏ Ȳ Ỷ Ỵ Ź Ẑ Ž Ż Ẓ Ẕ Ǯ
+IDN-Remapped-Compat (99)
+ａ Ａ ª Å ẚ ｂ Ｂ ｃ Ｃ ｄ Ｄ ǳ ǲ Ǳ ǆ ǅ Ǆ ｅ Ｅ ｆ Ｆ ﬀ ﬃ ﬄ ﬁ ﬂ ｇ Ｇ ˠ ｈ Ｈ ʰ ʱ ｉ Ｉ ⁱ ĳ Ĳ ｊ Ｊ ʲ ｋ K Ｋ ｌ Ｌ ˡ ŀ Ŀ ǉ ǈ Ǉ ｍ Ｍ ｎ Ｎ ⁿ ǌ ǋ Ǌ ｏ Ｏ º ｐ Ｐ ｑ Ｑ ｒ Ｒ ʳ ʴ ʵ ʶ ｓ Ｓ ˢ ſ ẛ ﬆ ﬅ ｔ Ｔ ｕ Ｕ ｖ Ｖ ｗ Ｗ ʷ ｘ Ｘ ˣ ｙ Ｙ ʸ ｚ Ｚ ŉ ˤ
+IDN-Invalid (197)
+ᴬ ᵃ ᴀ ᴭ ᴁ ᴂ ᵆ ᵄ ᵅ ᴮ ᵇ ᴯ ᴃ ᴄ ᴰ ᵈ ᴅ ȡ ᴆ ᴱ ᵉ ᴇ ᴲ ᵊ ᵋ ᴈ ᵌ ᴳ ᵍ ᴴ ᴵ ᵢ ᴉ ᵎ ᴶ ᴊ ᴷ ᵏ ᴋ ᴸ ᴌ ȴ ᴹ ᵐ ᴍ ᴺ ᴻ ᴎ ȵ ᵑ ᴼ ᵒ ᴏ ᴑ ᴔ ᴓ ᵓ ᴐ ᴒ ᴖ ᵔ ᴗ ᵕ ᴽ ᴕ ᴾ ᵖ ᴘ ᴿ ᵣ ᴙ ᴚ ᵀ ᵗ ᴛ ȶ ᵁ ᵘ ᵤ ᴜ ᴝ ᵙ ᴞ ᵫ ʮ ʯ ᵚ ᴟ ᵛ ᵥ ᴠ ᵂ ᴡ ᴢ ᴣ ᴤ ᴥ ᵜ ȷ ȸ ȹ Ⱥ Ȼ ȼ Ƚ Ⱦ ȿ ɀ Ɂ ᵬ ᵭ ᵮ ᵯ ᵰ ᵱ ᵲ ᵳ ᵴ ᵵ ᵶ ᵷ ᵹ ᵺ ᵻ ᵼ ᵽ ᵾ ᵿ ᶀ ᶁ ᶂ ᶃ ᶄ ᶅ ᶆ ᶇ ᶈ ᶉ ᶊ ᶋ ᶌ ᶍ ᶎ ᶏ ᶐ ᶑ ᶒ ᶓ ᶔ ᶕ ᶖ ᶗ ᶘ ᶙ ᶚ ᶛ ᶜ ᶝ ᶞ ᶟ ᶠ ᶡ ᶢ ᶣ ᶤ ᶥ ᶦ ᶧ ᶨ ᶩ ᶪ ᶫ ᶬ ᶭ ᶮ ᶯ ᶰ ᶱ ᶲ ᶳ ᶴ ᶵ ᶶ ᶷ ᶸ ᶹ ᶺ ᶻ ᶼ ᶽ ᶾ ᶿ ₐ ₑ ₒ ₓ ₔ
+Script: GREEK
+Atomic (29)
+α β γ δ ε ϝ ϛ ζ η θ ι κ λ μ ν ξ ο π ϟ ϙ ρ σ τ υ φ χ ψ ω ϡ
+Atomic-no-uppercase (2)
+ϳ ϗ
+Non-XID (2)
+͵ ϶
+Decomposable (87)
+ἀ ἄ ἂ ἆ ἁ ἅ ἃ ἇ ά ὰ ᾰ ᾶ ᾱ ἐ ἔ ἒ ἑ ἕ ἓ έ ὲ ἠ ἤ ἢ ἦ ἡ ἥ ἣ ἧ ή ὴ ῆ ἰ ἴ ἲ ἶ ἱ ἵ ἳ ἷ ί ὶ ῐ ῖ ϊ ΐ ῒ ῗ ῑ ὀ ὄ ὂ ὁ ὅ ὃ ό ὸ ῤ ῥ ὐ ὔ ὒ ὖ ὑ ὕ ὓ ὗ ύ ὺ ῠ ῦ ϋ ΰ ῢ ῧ ῡ ὠ ὤ ὢ ὦ ὡ ὥ ὣ ὧ ώ ὼ ῶ
+IDN-Remapped-Case-Atomic (30)
+Α Β Γ Δ Ε Ϝ Ϛ Ζ Η Θ Ι Κ Λ Μ Ν Ξ Ο Π Ϟ Ϙ Ρ Σ ς Τ Υ Φ Χ Ψ Ω Ϡ
+IDN-Remapped-Case-Decomposable (134)
+Ἀ Ἄ ᾄ ᾌ Ἂ ᾂ ᾊ Ἆ ᾆ ᾎ ᾀ ᾈ Ἁ Ἅ ᾅ ᾍ Ἃ ᾃ ᾋ Ἇ ᾇ ᾏ ᾁ ᾉ Ά ᾴ Ὰ ᾲ Ᾰ ᾷ Ᾱ ᾳ ᾼ Ἐ Ἔ Ἒ Ἑ Ἕ Ἓ Έ Ὲ Ἠ Ἤ ᾔ ᾜ Ἢ ᾒ ᾚ Ἦ ᾖ ᾞ ᾐ ᾘ Ἡ Ἥ ᾕ ᾝ Ἣ ᾓ ᾛ Ἧ ᾗ ᾟ ᾑ ᾙ Ή ῄ Ὴ ῂ ῇ ῃ ῌ Ἰ Ἴ Ἲ Ἶ Ἱ Ἵ Ἳ Ἷ Ί Ὶ Ῐ Ϊ Ῑ Ὀ Ὄ Ὂ Ὁ Ὅ Ὃ Ό Ὸ Ῥ Ὑ Ὕ Ὓ Ὗ Ύ Ὺ Ῠ Ϋ Ῡ Ὠ Ὤ ᾤ ᾬ Ὢ ᾢ ᾪ Ὦ ᾦ ᾮ ᾠ ᾨ Ὡ Ὥ ᾥ ᾭ Ὣ ᾣ ᾫ Ὧ ᾧ ᾯ ᾡ ᾩ Ώ ῴ Ὼ ῲ ῷ ῳ ῼ
+IDN-Remapped-Compat (31)
+ʹ ά Ά ϐ ϵ έ Έ ή Ή ϑ ϴ ι ί Ί ΐ ϰ ό Ό ϖ ϱ ϲ ϒ ύ Ύ ϓ ϔ ΰ ϕ Ω ώ Ώ
+IDN-Invalid (187)
+` ´ ΄ ΅ ΅ ῭ ῁ ᾽ ᾿ ῎ ῍ ῏ ῾ ῞ ῝ ῟ ῀ ᵝ ᵦ ᵞ ᵧ ᴦ ᵟ ͺ ᴧ ᴨ ᵨ ᴩ Ϲ ᵠ ᵩ ᵡ ᵪ ᴪ ϸ Ϸ ϻ Ϻ ϼ Ͻ Ͼ Ͽ 𐅀 𐅁 𐅂 𐅃 𐅄 𐅅 𐅆 𐅇 𐅈 𐅉 𐅊 𐅋 𐅌 𐅍 𐅎 𐅏 𐅐 𐅑 𐅒 𐅓 𐅔 𐅕 𐅖 𐅗 𐅘 𐅙 𐅚 𐅛 𐅜 𐅝 𐅞 𐅟 𐅠 𐅡 𐅢 𐅣 𐅤 𐅥 𐅦 𐅧 𐅨 𐅩 𐅪 𐅫 𐅬 𐅭 𐅮 𐅯 𐅰 𐅱 𐅲 𐅳 𐅴 𐅵 𐅶 𐅷 𐅸 𐅹 𐅺 𐅻 𐅼 𐅽 𐅾 𐅿 𐆀 𐆁 𐆂 𐆃 𐆄 𐆅 𐆆 𐆇 𐆈 𐆉 𐆊 𝈀 𝈁 𝈂 𝈃 𝈄 𝈅 𝈆 𝈇 𝈈 𝈉 𝈊 𝈋 𝈌 𝈍 𝈎 𝈏 𝈐 𝈑 𝈒 𝈓 𝈔 𝈕 𝈖 𝈗 𝈘 𝈙 𝈚 𝈛 𝈜 𝈝 𝈞 𝈟 𝈠 𝈡 𝈢 𝈣 𝈤 𝈥 𝈦 𝈧 𝈨 𝈩 𝈪 𝈫 𝈬 𝈭 𝈮 𝈯 𝈰 𝈱 𝈲 𝈳 𝈴 𝈵 𝈶 𝈷 𝈸 𝈹 𝈺 𝈻 𝈼 𝈽 𝈾 𝈿 𝉀 𝉁 𝉂 𝉃 𝉄 𝉅
+
+Script: CYRILLIC
+Atomic (102)
+а ә ӕ б в г ґ ғ ҕ д ԁ ђ ԃ ҙ е є ж җ з ԅ ѕ ӡ ԇ и ҋ і ј к қ ӄ ҡ ҟ ҝ л ӆ љ ԉ м ӎ н ӊ ң ӈ ҥ њ ԋ о ө п ҧ ҁ р ҏ с ԍ ҫ т ԏ ҭ ћ у ү ұ ѹ ф х ҳ һ ѡ ѿ ѽ ѻ ц ҵ ч ҷ ӌ ҹ ҽ ҿ џ ш щ ъ ы ь ҍ ѣ э ю я ѥ ѧ ѫ ѩ ѭ ѯ ѱ ѳ ѵ ҩ Ӏ
+Atomic-no-uppercase (4)
+҃ ҄ ҅ ҆
+Non-XID (3)
+҈ ҉ ҂
+Decomposable (26)
+ӑ ӓ ӛ ѓ ѐ ё ӗ ӂ ӝ ӟ ѝ ӣ ӥ ї й ӧ ӫ ќ ӯ ў ӱ ӳ ӵ ӹ ӭ ѷ
+IDN-Remapped-Case-Atomic (101)
+А Ә Ӕ Б В Г Ґ Ғ Ҕ Д Ԁ Ђ Ԃ Ҙ Е Є Ж Җ З Ԅ Ѕ Ӡ Ԇ И Ҋ І Ј К Қ Ӄ Ҡ Ҟ Ҝ Л Ӆ Љ Ԉ М Ӎ Н Ӊ Ң Ӈ Ҥ Њ Ԋ О Ө П Ҧ Ҁ Р Ҏ С Ԍ Ҫ Т Ԏ Ҭ Ћ У Ү Ұ Ѹ Ф Х Ҳ Һ Ѡ Ѿ Ѽ Ѻ Ц Ҵ Ч Ҷ Ӌ Ҹ Ҽ Ҿ Џ Ш Щ Ъ Ы Ь Ҍ Ѣ Э Ю Я Ѥ Ѧ Ѫ Ѩ Ѭ Ѯ Ѱ Ѳ Ѵ Ҩ
+IDN-Remapped-Case-Decomposable (26)
+Ӑ Ӓ Ӛ Ѓ Ѐ Ё Ӗ Ӂ Ӝ Ӟ Ѝ Ӣ Ӥ Ї Й Ӧ Ӫ Ќ Ӯ Ў Ӱ Ӳ Ӵ Ӹ Ӭ Ѷ
+IDN-Invalid (4)
+ᴫ Ӷ ӷ ᵸ
+
+Script: ARMENIAN
+Atomic (39)
+֊ ա բ գ դ ե զ է ը թ ժ ի լ խ ծ կ հ ձ ղ ճ մ յ ն շ ո չ պ ջ ռ ս վ տ ր ց ւ փ ք օ ֆ
+Atomic-no-uppercase (1)
+ՙ
+Non-XID (6)
+՝ ՜ ՞ ՚ ՛ ՟
+IDN-Remapped-Case-Atomic (38)
+Ա Բ Գ Դ Ե Զ Է Ը Թ Ժ Ի Լ Խ Ծ Կ Հ Ձ Ղ Ճ Մ Յ Ն Շ Ո Չ Պ Ջ Ռ Ս Վ Տ Ր Ց Ւ Փ Ք Օ Ֆ
+IDN-Remapped-Compat (6)
+և ﬔ ﬕ ﬗ ﬓ ﬖ
+
+Script: ARABIC
+Atomic (161)
+ۖ ۗ ۘ ۙ ۚ ۛ ۜ ۟ ۠ ۡ ۢ ۣ ۤ ۧ ۨ ۪ ۫ ۬ ۭ ﹳ ۰ ۱ ۲ ۳ ۴ ۵ ۶ ۷ ۸ ۹ ء ٴ ٲ ٱ ٳ ا ٮ ب ٻ پ ڀ ة ت ث ٹ ٺ ټ ٽ ٿ ج ڃ ڄ چ ڿ ڇ ح خ ځ ڂ څ د ذ ڈ ډ ڊ ڋ ڌ ڍ ڎ ڏ ڐ ر ز ڑ ڒ ړ ڔ ڕ ږ ڗ ژ ڙ س ش ښ ڛ ڜ ۺ ص ض ڝ ڞ ۻ ط ظ ڟ ع غ ڠ ۼ ف ڡ ڢ ڣ ڤ ڥ ڦ ٯ ق ڧ ڨ ك ک ڪ ګ ڬ ڭ ڮ گ ڰ ڱ ڲ ڳ ڴ ل ڵ ڶ ڷ ڸ م ن ں ڻ ڼ ڽ ڹ ه ھ ہ ۃ ە و ۥ ۄ ۅ ۆ ۇ ۈ ۉ ۊ ۋ ۏ ى ي ۦ ی ۍ ێ ې ۑ ے
+Non-XID (9)
+۞ ٫ ٬ ۔ ٭ ٪ ۩ ۽ ۾
+Decomposable (8)
+آ أ ؤ إ ئ ۂ ۀ ۓ
+IDN-Remapped-Compat (703)
+ﺀ ﺂ ﺁ ﺄ ﺃ ﭑ ﭐ ﺆ ﺅ ﺈ ﺇ ﺋ ﺌ ﺊ ﺉ ﯫ ﯪ ﲗ ﰀ ﲘ ﰁ ﲙ ﱤ ﱥ ﲚ ﳟ ﱦ ﰂ ﱧ ﲛ ﳠ ﯭ ﯬ ﯯ ﯮ ﯳ ﯲ ﯱ ﯰ ﯵ ﯴ ﯻ ﯺ ﱨ ﯹ ﰃ ﱩ ﰄ ﯸ ﯷ ﯶ ﺎ ﺍ ٵ ﷳ ﷲ ﺑ ﺒ ﺐ ﺏ ﲜ ﰅ ﲝ ﰆ ﷂ ﲞ ﰇ ﶞ ﱪ ﱫ ﲟ ﳡ ﱬ ﰈ ﱭ ﲠ ﳢ ﱮ ﰉ ﱯ ﰊ ﭔ ﭕ ﭓ ﭒ ﭘ ﭙ ﭗ ﭖ ﭜ ﭝ ﭛ ﭚ ﺔ ﺓ ﺗ ﺘ ﺖ ﺕ ﲡ ﰋ ﵐ ﶠ ﶟ ﲢ ﰌ ﵒ ﵑ ﵓ ﲣ ﰍ ﵔ ﶢ ﶡ ﱰ ﱱ ﲤ ﳣ ﱲ ﰎ ﵕ ﵖ ﵗ ﶤ ﶣ ﱳ ﲥ ﳤ ﱴ ﰏ ﱵ ﰐ ﺛ ﺜ ﺚ ﺙ ﰑ ﱶ ﱷ ﲦ ﳥ ﱸ ﰒ ﱹ ﳦ ﱺ ﰓ ﱻ ﰔ ﭨ ﭩ ﭧ ﭦ ﭠ ﭡ ﭟ ﭞ ﭤ ﭥ ﭣ ﭢ ﺟ ﺠ ﺞ ﺝ ﲧ ﰕ ﶦ ﶾ ﲨ ﰖ ﵙ ﵘ ﶧ ﶥ ﴝ ﴁ ﴞ ﴂ ﭸ ﭹ ﭷ ﭶ ﭴ ﭵ ﭳ ﭲ ﭼ ﭽ ﭻ ﭺ ﮀ ﮁ ﭿ ﭾ ﺣ ﺤ ﺢ ﺡ ﲩ ﰗ ﶿ ﲪ ﰘ ﵛ ﵚ ﴛ ﳿ ﴜ ﴀ ﺧ ﺨ ﺦ ﺥ ﲫ ﰙ ﰚ ﲬ ﰛ ﴟ ﴃ ﴠ ﴄ ﺪ ﺩ ﺬ ﺫ ﮉ ﮈ ﮅ ﮄ ﮃ ﮂ ﮇ ﮆ ﺮ ﺭ ﷶ ﷼ ﺰ ﺯ ﮍ ﮌ ﮋ ﮊ ﺳ ﺴ ﺲ ﺱ ﲭ ﴴ ﰜ ﵝ ﵞ ﲮ ﴵ ﰝ ﵜ ﲯ ﴶ ﰞ ﶨ ﷆ ﴪ ﴎ ﲰ ﳧ ﰟ ﵡ ﵠ ﵟ ﵣ ﵢ ﴱ ﳨ ﴗ ﳻ ﴘ ﳼ ﺷ ﺸ ﺶ ﺵ ﴭ ﴷ ﴥ ﴉ ﵩ ﴮ ﴸ ﴦ ﴊ ﵨ ﵧ ﶪ ﴯ ﴹ ﴧ ﴋ ﴩ ﴍ ﴰ ﳩ ﴨ ﴌ ﵫ ﵪ ﵭ ﵬ ﴲ ﳪ ﴙ ﳽ ﴚ ﳾ ﺻ ﺼ ﺺ ﺹ ﲱ ﰠ ﵥ ﵤ ﶩ ﲲ ﴫ ﴏ ﷵ ﷹ ﷰ ﲳ ﰡ ﷅ ﵦ ﴡ ﴅ ﴢ ﴆ ﺿ ﻀ ﺾ ﺽ ﲴ ﰢ ﲵ ﰣ ﵮ ﶫ ﲶ ﰤ ﵰ ﵯ ﴬ ﴐ ﲷ ﰥ ﴣ ﴇ ﴤ ﴈ ﻃ ﻄ ﻂ ﻁ ﲸ ﰦ ﴳ ﴺ ﰧ ﵲ ﵱ ﵳ ﵴ ﴑ ﳵ ﴒ ﳶ ﻇ ﻈ ﻆ ﻅ ﲹ ﴻ ﰨ ﻋ ﻌ ﻊ ﻉ ﲺ ﰩ ﷄ ﵵ ﷷ ﲻ ﰪ ﵷ ﵶ ﵸ ﶶ ﴓ ﳷ ﴔ ﳸ ﻏ ﻐ ﻎ ﻍ ﲼ ﰫ ﲽ ﰬ ﵹ ﵻ ﵺ ﴕ ﳹ ﴖ ﳺ ﻓ ﻔ ﻒ ﻑ ﲾ ﰭ ﲿ ﰮ ﳀ ﰯ ﵽ ﵼ ﳁ ﰰ ﷁ ﱼ ﰱ ﱽ ﰲ ﭬ ﭭ ﭫ ﭪ ﭰ ﭱ ﭯ ﭮ ﻗ ﻘ ﻖ ﻕ ﳂ ﰳ ﷱ ﳃ ﰴ ﶴ ﵾ ﵿ ﶲ ﱾ ﰵ ﱿ ﰶ ﻛ ﻜ ﻚ ﻙ ﲀ ﰷ ﳄ ﰸ ﳅ ﰹ ﳆ ﰺ ﳇ ﳫ ﲁ ﰻ ﳈ ﳬ ﲂ ﰼ ﷃ ﶻ ﶷ ﲃ ﰽ ﲄ ﰾ ﮐ ﮑ ﮏ ﮎ ﯕ ﯖ ﯔ ﯓ ﮔ ﮕ ﮓ ﮒ ﮜ ﮝ ﮛ ﮚ ﮘ ﮙ ﮗ ﮖ ﻟ ﻠ ﻞ ﻝ ﻶ ﻵ ﻸ ﻷ ﻺ ﻹ ﻼ ﻻ ﳉ ﰿ ﶃ ﶄ ﶺ ﶼ ﶬ ﳊ ﱀ ﶵ ﶀ ﶂ ﶁ ﳋ ﱁ ﶆ ﶅ ﳌ ﳭ ﲅ ﱂ ﶈ ﶇ ﶭ ﳍ ﲆ ﱃ ﲇ ﱄ ﻣ ﻤ ﻢ ﻡ ﲈ ﳎ ﱅ ﶌ ﶒ ﶍ ﷀ ﳏ ﱆ ﶉ ﶊ ﷴ ﶋ ﳐ ﱇ ﶎ ﶏ ﶹ ﳑ ﲉ ﱈ ﶱ ﱉ ﱊ ﻧ ﻨ ﻦ ﻥ ﳒ ﱋ ﶸ ﶽ ﶘ ﶗ ﶙ ﷇ ﳓ ﱌ ﶕ ﶖ ﶳ ﳔ ﱍ ﲊ ﲋ ﳕ ﳮ ﲌ ﱎ ﶛ ﶚ ﲍ ﳖ ﳯ ﲎ ﱏ ﲏ ﱐ ﮟ ﮞ ﮢ ﮣ ﮡ ﮠ ﻫ ﻬ ﻪ ﻩ ﳗ ﱑ ﳘ ﱒ ﶓ ﶔ ﱓ ﱔ ﮬ ﮭ ﮫ ﮪ ﮨ ﮩ ﮧ ﮦ ﮥ ﮤ ﻮ ﻭ ٶ ﷸ ﯡ ﯠ ﯚ ﯙ ﯘ ﯗ ٷ ﯝ ﯜ ﯛ ﯣ ﯢ ﯟ ﯞ ﯨ ﯩ ﻰ ﻯ ﻳ ﻴ ﻲ ﻱ ٸ ﳚ ﱕ ﶯ ﳛ ﱖ ﶮ ﳜ ﱗ ﲑ ﲒ ﳝ ﳰ ﲓ ﱘ ﶝ ﶜ ﶰ ﲔ ﳞ ﳱ ﲕ ﱙ ﲖ ﱚ ﯾ ﯿ ﯽ ﯼ ﯦ ﯧ ﯥ ﯤ ﮯ ﮮ ﮱ ﮰ
+IDN-Invalid (85)
+ؐ ؑ ؒ ؓ ؔ ؕ ﹱ ﹰ ﹲ ﹴ ﹷ ﹶ ﹹ ﹸ ﹻ ﹺ ﳲ ﳳ ﳴ ﹽ ﱞ ﱟ ﱠ ﱡ ﱢ ﹼ ﱣ ﹿ ﹾ ٖ ٗ ٘ ؍ ؎ ؏ ﴼ ﴽ ﷻ ﱛ ۮ ﱜ ۯ ﷺ ﳙ ۿ ﲐ ﱝ ؋ ؞ ٙ ٚ ٛ ٜ ٝ ٞ ݐ ݑ ݒ ݓ ݔ ݕ ݖ ݗ ݘ ݙ ݚ ݛ ݜ ݝ ݞ ݟ ݠ ݡ ݢ ݣ ݤ ݥ ݦ ݧ ݨ ݩ ݪ ݫ ݬ ݭ
+
+Script: SYRIAC
+Atomic (56)
+ܑ ܰ ܱ ܲ ܳ ܴ ܵ ܶ ܷ ܸ ܹ ܺ ܻ ܼ ܽ ܾ ܿ ݀ ݁ ݂ ݃ ݄ ݅ ݆ ݇ ݈ ݉ ݊ ܐ ܒ ܓ ܔ ܖ ܕ ܗ ܘ ܙ ܚ ܛ ܜ ܝ ܞ ܟ ܠ ܡ ܢ ܣ ܤ ܥ ܦ ܧ ܨ ܩ ܪ ܫ ܬ
+Non-XID (14)
+܃ ܄ ܅ ܆ ܇ ܈ ܉ ܁ ܂ ܀ ܊ ܋ ܌ ܍
+IDN-Invalid (7)
+U+070F ܭ ܮ ܯ ݍ ݎ ݏ
+
+Script: THAANA
+Atomic (50)
+ހ ޙ ޚ ށ ނ ރ ޜ ބ ޅ ކ އ ޢ ޣ ވ ޥ މ ފ ދ ޛ ތ ޘ ޠ ޡ ލ ގ ޤ ޏ ސ ޝ ޞ ޟ ޑ ޒ ޓ ޔ ޕ ޖ ޗ ޱ ަ ާ ި ީ ު ޫ ެ ޭ ޮ ޯ ް
+
+Script: DEVANAGARI
+Atomic (90)
+़ ँ ं ः ॑ ॒ ॓ ॔ ० १ २ ३ ४ ५ ६ ७ ८ ९ ॐ अ आ इ ई उ ऊ ऋ ॠ ऌ ॡ ऍ ऎ ए ऐ ऑ ऒ ओ औ क ख ग घ ङ च छ ज झ ञ ट ठ ड ढ ण त थ द ध न प फ ब भ म य र ल ळ व श ष स ह ऽ ा ि ी ु ू ृ ॄ ॢ ॣ ॅ ॆ े ै ॉ ॊ ो ौ ्
+Decomposable (3)
+ऩ ऱ ऴ
+IDN-Remapped-Compat (8)
+क़ ख़ ग़ ज़ ड़ ढ़ फ़ य़
+IDN-Invalid (2)
+ऄ ॽ
+
+Script: BENGALI
+Atomic (75)
+় ঁ ং ঃ ০ ১ ২ ৩ ৪ ৫ ৬ ৭ ৮ ৯ অ আ ই ঈ উ ঊ ঋ ৠ ঌ ৡ এ ঐ ও ঔ ক খ গ ঘ ঙ চ ছ জ ঝ ঞ ট ঠ ড ঢ ণ ত থ দ ধ ন প ফ ব ভ ম য র ৰ ল ৱ শ ষ স হ া ি ী ু ূ ৃ ৄ ৢ ৣ ে ৈ ্ ৗ
+Non-XID (9)
+৺ ৸ ৹ ৲ ৳ ৴ ৵ ৶ ৷
+Decomposable (2)
+ো ৌ
+IDN-Remapped-Compat (3)
+ড় ঢ় য়
+IDN-Invalid (2)
+ঽ ৎ
+
+Script: GURMUKHI
+Atomic (69)
+਼ ਂ ੰ ੱ ੦ ੧ ੨ ੩ ੪ ੫ ੬ ੭ ੮ ੯ ੴ ੳ ਉ ਊ ਓ ਅ ਆ ਐ ਔ ੲ ਇ ਈ ਏ ਸ ਹ ਕ ਖ ਗ ਘ ਙ ਚ ਛ ਜ ਝ ਞ ਟ ਠ ਡ ਢ ਣ ਤ ਥ ਦ ਧ ਨ ਪ ਫ ਬ ਭ ਮ ਯ ਰ ਲ ਵ ੜ ਾ ਿ ੀ ੁ ੂ ੇ ੈ ੋ ੌ ੍
+IDN-Remapped-Compat (6)
+ਸ਼ ਖ਼ ਗ਼ ਜ਼ ਫ਼ ਲ਼
+IDN-Invalid (2)
+ਁ ਃ
+
+Script: GUJARATI
+Atomic (78)
+઼ ઁ ં ઃ ૦ ૧ ૨ ૩ ૪ ૫ ૬ ૭ ૮ ૯ ૐ અ આ ઇ ઈ ઉ ઊ ઋ ૠ ઍ એ ઐ ઑ ઓ ઔ ક ખ ગ ઘ ઙ ચ છ જ ઝ ઞ ટ ઠ ડ ઢ ણ ત થ દ ધ ન પ ફ બ ભ મ ય ર લ ળ વ શ ષ સ હ ઽ ા િ ી ુ ૂ ૃ ૄ ૅ ે ૈ ૉ ો ૌ ્
+IDN-Invalid (5)
+૱ ઌ ૡ ૢ ૣ
+
+Script: ORIYA
+Atomic (73)
+଼ ଁ ଂ ଃ ୦ ୧ ୨ ୩ ୪ ୫ ୬ ୭ ୮ ୯ ଅ ଆ ଇ ଈ ଉ ଊ ଋ ୠ ଌ ୡ ଏ ଐ ଓ ଔ କ ଖ ଗ ଘ ଙ ଚ ଛ ଜ ଝ ଞ ଟ ଠ ଡ ଢ ଣ ତ ଥ ଦ ଧ ନ ପ ଫ ବ ଭ ମ ଯ ୟ ର ଲ ଳ ଶ ଷ ସ ହ ଽ ା ି ୀ ୁ ୂ ୃ େ ୍ ୖ ୗ
+Non-XID (1)
+୰
+Decomposable (3)
+ୈ ୋ ୌ
+IDN-Remapped-Compat (2)
+ଡ଼ ଢ଼
+IDN-Invalid (2)
+ଵ ୱ
+
+Script: TAMIL
+Atomic (54)
+ஂ ௧ ௨ ௩ ௪ ௫ ௬ ௭ ௮ ௯ ஃ அ ஆ இ ஈ உ ஊ எ ஏ ஐ ஒ ஓ க ங ச ஜ ஞ ட ண த ந ன ப ம ய ர ற ல ள ழ வ ஷ ஸ ஹ ா ி ீ ு ூ ெ ே ை ் ௗ
+Non-XID (3)
+௰ ௱ ௲
+Decomposable (4)
+ஔ ொ ோ ௌ
+IDN-Invalid (10)
+௳ ௴ ௵ ௶ ௷ ௸ ௺ ௹ ஶ ௦
+
+Script: TELUGU
+Atomic (79)
+ఁ ం ః ౦ ౧ ౨ ౩ ౪ ౫ ౬ ౭ ౮ ౯ అ ఆ ఇ ఈ ఉ ఊ ఋ ౠ ఌ ౡ ఎ ఏ ఐ ఒ ఓ ఔ క ఖ గ ఘ ఙ చ ఛ జ ఝ ఞ ట ఠ డ ఢ ణ త థ ద ధ న ప ఫ బ భ మ య ర ఱ ల ళ వ శ ష స హ ా ి ీ ు ూ ృ ౄ ె ే ొ ో ౌ ్ ౕ ౖ
+Decomposable (1)
+ై
+
+Script: KANNADA
+Atomic (75)
+ಂ ಃ ೦ ೧ ೨ ೩ ೪ ೫ ೬ ೭ ೮ ೯ ಅ ಆ ಇ ಈ ಉ ಊ ಋ ೠ ಌ ೡ ಎ ಏ ಐ ಒ ಓ ಔ ಕ ಖ ಗ ಘ ಙ ಚ ಛ ಜ ಝ ಞ ಟ ಠ ಡ ಢ ಣ ತ ಥ ದ ಧ ನ ಪ ಫ ಬ ಭ ಮ ಯ ರ ಱ ಲ ವ ಶ ಷ ಸ ಹ ಳ ೞ ಾ ಿ ು ೂ ೃ ೄ ೆ ೌ ್ ೕ ೖ
+Decomposable (5)
+ೀ ೇ ೈ ೊ ೋ
+IDN-Invalid (2)
+಼ ಽ
+
+Script: MALAYALAM
+Atomic (75)
+ം ഃ ൦ ൧ ൨ ൩ ൪ ൫ ൬ ൭ ൮ ൯ അ ആ ഇ ഈ ഉ ഊ ഋ ൠ ഌ ൡ എ ഏ ഐ ഒ ഓ ഔ ക ഖ ഗ ഘ ങ ച ഛ ജ ഝ ഞ ട ഠ ഡ ഢ ണ ത ഥ ദ ധ ന പ ഫ ബ ഭ മ യ ര റ ല ള ഴ വ ശ ഷ സ ഹ ാ ി ീ ു ൂ ൃ െ േ ൈ ് ൗ
+Decomposable (3)
+ൊ ോ ൌ
+
+Script: SINHALA
+Atomic (75)
+ං ඃ අ ආ ඇ ඈ ඉ ඊ උ ඌ ඍ ඎ ඏ ඐ එ ඒ ඓ ඔ ඕ ඖ ක ඛ ග ඝ ඞ ඟ ච ඡ ජ ඣ ඤ ඥ ඦ ට ඨ ඩ ඪ ණ ඬ ත ථ ද ධ න ඳ ප ඵ බ භ ම ඹ ය ර ල ව ශ ෂ ස හ ළ ෆ ් ා ැ ෑ ි ී ු ූ ෘ ෙ ෛ ෟ ෲ ෳ
+Non-XID (1)
+෴
+Decomposable (4)
+ේ ො ෝ ෞ
+
+Script: THAI
+Atomic (82)
+๎ ็ ่ ้ ๊ ๋ ๆ ๐ ๑ ๒ ๓ ๔ ๕ ๖ ๗ ๘ ๙ ก ข ฃ ค ฅ ฆ ง จ ฉ ช ซ ฌ ญ ฎ ฏ ฐ ฑ ฒ ณ ด ต ถ ท ธ น บ ป ผ ฝ พ ฟ ภ ม ย ร ฤ ล ฦ ว ศ ษ ส ห ฬ อ ฮ ฯ ะ ั า ิ ี ึ ื ุ ู ฺ เ แ โ ใ ไ ๅ ์ ํ
+Non-XID (3)
+๚ ๛ ๏
+IDN-Remapped-Compat (1)
+ำ
+
+Script: LAO
+Atomic (62)
+່ ້ ໊ ໋ ໆ ໐ ໑ ໒ ໓ ໔ ໕ ໖ ໗ ໘ ໙ ກ ຂ ຄ ງ ຈ ຊ ຍ ດ ຕ ຖ ທ ນ ບ ປ ຜ ຝ ພ ຟ ມ ຢ ຣ ລ ວ ສ ຫ ອ ຮ ຯ ະ ັ າ ິ ີ ຶ ື ຸ ູ ົ ຼ ຽ ເ ແ ໂ ໃ ໄ ໌ ໍ
+IDN-Remapped-Compat (3)
+ໜ ໝ ຳ
+
+Script: TIBETAN
+Atomic (112)
+༘ ༙ ༵ ༷ ྂ ྃ ྆ ྇ ࿆ ༹ ཾ ཿ ༾ ༿ ༠ ༡ ༢ ༣ ༤ ༥ ༦ ༧ ༨ ༩ ཀ ྐ ཁ ྑ ག ྒ ང ྔ ཅ ྕ ཆ ྖ ཇ ྗ ཉ ྙ ཊ ྚ ཋ ྛ ཌ ྜ ཎ ྞ ཏ ྟ ཐ ྠ ད ྡ ན ྣ པ ྤ ཕ ྥ བ ྦ མ ྨ ཙ ྩ ཚ ྪ ཛ ྫ ཝ ྭ ྺ ཞ ྮ ཟ ྯ འ ྰ ཡ ྱ ྻ ར ཪ ྲ ྼ ལ ླ ཤ ྴ ཥ ྵ ས ྶ ཧ ྷ ཨ ༀ ྸ ྈ ྉ ྊ ྋ ཱ ི ྀ ུ ེ ཻ ོ ཽ ྄
+Non-XID (61)
+༔ ༺ ༻ ༼ ༽ ༄ ༅ ༆ ༇ ༈ ༉ ༊ ་ ། ༎ ༏ ༐ ༑ ༒ ྅ ༁ ༂ ༃ ༓ ༕ ༖ ༗ ༚ ༛ ༜ ༝ ༞ ༟ ༴ ༶ ༸ ྾ ྿ ࿀ ࿁ ࿂ ࿃ ࿄ ࿅ ࿇ ࿈ ࿉ ࿊ ࿋ ࿌ ࿏ ༳ ༪ ༫ ༬ ༭ ༮ ༯ ༰ ༱ ༲
+IDN-Remapped-Compat (20)
+༌ ཀྵ ྐྵ གྷ ྒྷ ཌྷ ྜྷ དྷ ྡྷ བྷ ྦྷ ཛྷ ྫྷ ཱི ཱྀ ཱུ ྲྀ ཷ ླྀ ཹ
+IDN-Invalid (2)
+࿐ ࿑
+
+Script: MYANMAR
+Atomic (71)
+ံ ့ း ၀ ၁ ၂ ၃ ၄ ၅ ၆ ၇ ၈ ၉ က ခ ဂ ဃ င စ ဆ ဇ ဈ ဉ ည ဋ ဌ ဍ ဎ ဏ တ ထ ဒ ဓ န ပ ဖ ဗ ဘ မ ယ ရ လ ဝ ၐ ၑ သ ဟ ဠ အ ဣ ဤ ဥ ဧ ဩ ဪ ၒ ၓ ၔ ၕ ာ ိ ီ ု ူ ေ ဲ ၖ ၗ ၘ ၙ ္
+Non-XID (6)
+၊ ။ ၌ ၍ ၎ ၏
+Decomposable (1)
+ဦ
+
+Script: GEORGIAN
+Atomic (79)
+ა Ⴀ ბ Ⴁ გ Ⴂ დ Ⴃ ე Ⴄ ვ Ⴅ ზ Ⴆ ჱ Ⴡ თ Ⴇ ი Ⴈ კ Ⴉ ლ Ⴊ მ Ⴋ ნ Ⴌ ჲ Ⴢ ო Ⴍ პ Ⴎ ჟ Ⴏ რ Ⴐ ს Ⴑ ტ Ⴒ ჳ Ⴣ უ Ⴓ ფ Ⴔ ქ Ⴕ ღ Ⴖ ყ Ⴗ შ Ⴘ ჩ Ⴙ ც Ⴚ ძ Ⴛ წ Ⴜ ჭ Ⴝ ხ Ⴞ ჴ Ⴤ ჯ Ⴟ ჰ Ⴠ ჵ Ⴥ ჶ ჷ ჸ
+IDN-Invalid (41)
+ჹ ჺ ჼ ⴀ ⴁ ⴂ ⴃ ⴄ ⴅ ⴆ ⴇ ⴈ ⴉ ⴊ ⴋ ⴌ ⴍ ⴎ ⴏ ⴐ ⴑ ⴒ ⴓ ⴔ ⴕ ⴖ ⴗ ⴘ ⴙ ⴚ ⴛ ⴜ ⴝ ⴞ ⴟ ⴠ ⴡ ⴢ ⴣ ⴤ ⴥ
+
+Script: HANGUL
+Atomic (240)
+ᄀ .. ᅙ U+115F .. ᆢ ᆨ .. ᇹ
+Decomposable (11172)
+가 .. 힣
+IDN-Remapped-Compat (174)
+ㄱ .. ㆎ ㉠ .. ㉻ U+FFA0 .. ﾾ ￂ .. ￇ ￊ .. ￏ ￒ .. ￗ ￚ .. ￜ
+IDN-Invalid (33)
+㈀ .. ㈞ ㉼ .. ㉽
+
+Script: ETHIOPIC
+Atomic (326)
+፩ ፪ ፫ ፬ ፭ ፮ ፯ ፰ ፱ ሀ ሁ ሂ ሃ ሄ ህ ሆ ለ ሉ ሊ ላ ሌ ል ሎ ሏ ሐ ሑ ሒ ሓ ሔ ሕ ሖ ሗ መ ሙ ሚ ማ ሜ ም ሞ ሟ ሠ ሡ ሢ ሣ ሤ ሥ ሦ ሧ ረ ሩ ሪ ራ ሬ ር ሮ ሯ ሰ ሱ ሲ ሳ ሴ ስ ሶ ሷ ሸ ሹ ሺ ሻ ሼ ሽ ሾ ሿ ቀ ቁ ቂ ቃ ቄ ቅ ቆ ቈ ቊ ቋ ቌ ቍ ቐ ቑ ቒ ቓ ቔ ቕ ቖ ቘ ቚ ቛ ቜ ቝ በ ቡ ቢ ባ ቤ ብ ቦ ቧ ቨ ቩ ቪ ቫ ቬ ቭ ቮ ቯ ተ ቱ ቲ ታ ቴ ት ቶ ቷ ቸ ቹ ቺ ቻ ቼ ች ቾ ቿ ኀ ኁ ኂ ኃ ኄ ኅ ኆ ኈ ኊ ኋ ኌ ኍ ነ ኑ ኒ ና ኔ ን ኖ ኗ ኘ ኙ ኚ ኛ ኜ ኝ ኞ ኟ አ ኡ ኢ ኣ ኤ እ ኦ ኧ ከ ኩ ኪ ካ ኬ ክ ኮ ኰ ኲ ኳ ኴ ኵ ኸ ኹ ኺ ኻ ኼ ኽ ኾ ዀ ዂ ዃ ዄ ዅ ወ ዉ ዊ ዋ ዌ ው ዎ ዐ ዑ ዒ ዓ ዔ ዕ ዖ ዘ ዙ ዚ ዛ ዜ ዝ ዞ ዟ ዠ ዡ ዢ ዣ ዤ ዥ ዦ ዧ የ ዩ ዪ ያ ዬ ይ ዮ ደ ዱ ዲ ዳ ዴ ድ ዶ ዷ ዸ ዹ ዺ ዻ ዼ ዽ ዾ ዿ ጀ ጁ ጂ ጃ ጄ ጅ ጆ ጇ ገ ጉ ጊ ጋ ጌ ግ ጎ ጐ ጒ ጓ ጔ ጕ ጘ ጙ ጚ ጛ ጜ ጝ ጞ ጠ ጡ ጢ ጣ ጤ ጥ ጦ ጧ ጨ ጩ ጪ ጫ ጬ ጭ ጮ ጯ ጰ ጱ ጲ ጳ ጴ ጵ ጶ ጷ ጸ ጹ ጺ ጻ ጼ ጽ ጾ ጿ ፀ ፁ ፂ ፃ ፄ ፅ ፆ ፈ ፉ ፊ ፋ ፌ ፍ ፎ ፏ ፐ ፑ ፒ ፓ ፔ ፕ ፖ ፗ ፘ ፙ ፚ
+Non-XID (19)
+፡ ፣ ፤ ፥ ፦ ፧ ። ፨ ፲ ፳ ፴ ፵ ፶ ፷ ፸ ፹ ፺ ፻ ፼
+IDN-Invalid (116)
+ሇ ቇ ኇ ኯ ዏ ዯ ጏ ጟ ፇ ፟ ፠ ᎀ ᎁ ᎂ ᎃ ᎄ ᎅ ᎆ ᎇ ᎈ ᎉ ᎊ ᎋ ᎌ ᎍ ᎎ ᎏ ᎐ ᎑ ᎒ ᎓ ᎔ ᎕ ᎖ ᎗ ᎘ ᎙ ⶀ ⶁ ⶂ ⶃ ⶄ ⶅ ⶆ ⶇ ⶈ ⶉ ⶊ ⶋ ⶌ ⶍ ⶎ ⶏ ⶐ ⶑ ⶒ ⶓ ⶔ ⶕ ⶖ ⶠ ⶡ ⶢ ⶣ ⶤ ⶥ ⶦ ⶨ ⶩ ⶪ ⶫ ⶬ ⶭ ⶮ ⶰ ⶱ ⶲ ⶳ ⶴ ⶵ ⶶ ⶸ ⶹ ⶺ ⶻ ⶼ ⶽ ⶾ ⷀ ⷁ ⷂ ⷃ ⷄ ⷅ ⷆ ⷈ ⷉ ⷊ ⷋ ⷌ ⷍ ⷎ ⷐ ⷑ ⷒ ⷓ ⷔ ⷕ ⷖ ⷘ ⷙ ⷚ ⷛ ⷜ ⷝ ⷞ
+
+Script: CHEROKEE
+Atomic (85)
+Ꭰ Ꭱ Ꭲ Ꭳ Ꭴ Ꭵ Ꭶ Ꭷ Ꭸ Ꭹ Ꭺ Ꭻ Ꭼ Ꭽ Ꭾ Ꭿ Ꮀ Ꮁ Ꮂ Ꮃ Ꮄ Ꮅ Ꮆ Ꮇ Ꮈ Ꮉ Ꮊ Ꮋ Ꮌ Ꮍ Ꮎ Ꮏ Ꮐ Ꮑ Ꮒ Ꮓ Ꮔ Ꮕ Ꮖ Ꮗ Ꮘ Ꮙ Ꮚ Ꮛ Ꮜ Ꮝ Ꮞ Ꮟ Ꮠ Ꮡ Ꮢ Ꮣ Ꮤ Ꮥ Ꮦ Ꮧ Ꮨ Ꮩ Ꮪ Ꮫ Ꮬ Ꮭ Ꮮ Ꮯ Ꮰ Ꮱ Ꮲ Ꮳ Ꮴ Ꮵ Ꮶ Ꮷ Ꮸ Ꮹ Ꮺ Ꮻ Ꮼ Ꮽ Ꮾ Ꮿ Ᏸ Ᏹ Ᏺ Ᏻ Ᏼ
+Script: CANADIAN-ABORIGINAL
+Atomic (628)
+ᐁ ᐂ ᐃ ᐄ ᐅ ᐆ ᐇ ᐈ ᐉ ᐊ ᐋ ᐌ ᐍ ᐎ ᐏ ᐐ ᐑ ᐒ ᐓ ᐔ ᐕ ᐖ ᐗ ᐘ ᐙ ᐚ ᐛ ᐜ ᐝ ᐞ ᐟ ᐠ ᐡ ᐢ ᐣ ᐤ ᐥ ᐦ ᐧ ᐨ ᐩ ᐪ ᐫ ᐬ ᐭ ᐮ ᐯ ᐰ ᐱ ᐲ ᐳ ᐴ ᐵ ᐶ ᐷ ᐸ ᐹ ᐺ ᐻ ᐼ ᐽ ᐾ ᐿ ᑀ ᑁ ᑂ ᑃ ᑄ ᑅ ᑆ ᑇ ᑈ ᑉ ᑊ ᑋ ᑌ ᑍ ᑎ ᑏ ᑐ ᑑ ᑒ ᑓ ᑔ ᑕ ᑖ ᑗ ᑘ ᑙ ᑚ ᑛ ᑜ ᑝ ᑞ ᑟ ᑠ ᑡ ᑢ ᑣ ᑤ ᑥ ᑦ ᑧ ᑨ ᑩ ᑪ ᑫ ᑬ ᑭ ᑮ ᑯ ᑰ ᑱ ᑲ ᑳ ᑴ ᑵ ᑶ ᑷ ᑸ ᑹ ᑺ ᑻ ᑼ ᑽ ᑾ ᑿ ᒀ ᒁ ᒂ ᒃ ᒄ ᒅ ᒆ ᒇ ᒈ ᒉ ᒊ ᒋ ᒌ ᒍ ᒎ ᒏ ᒐ ᒑ ᒒ ᒓ ᒔ ᒕ ᒖ ᒗ ᒘ ᒙ ᒚ ᒛ ᒜ ᒝ ᒞ ᒟ ᒠ ᒡ ᒢ ᒣ ᒤ ᒥ ᒦ ᒧ ᒨ ᒩ ᒪ ᒫ ᒬ ᒭ ᒮ ᒯ ᒰ ᒱ ᒲ ᒳ ᒴ ᒵ ᒶ ᒷ ᒸ ᒹ ᒺ ᒻ ᒼ ᒽ ᒾ ᒿ ᓀ ᓁ ᓂ ᓃ ᓄ ᓅ ᓆ ᓇ ᓈ ᓉ ᓊ ᓋ ᓌ ᓍ ᓎ ᓏ ᓐ ᓑ ᓒ ᓓ ᓔ ᓕ ᓖ ᓗ ᓘ ᓙ ᓚ ᓛ ᓜ ᓝ ᓞ ᓟ ᓠ ᓡ ᓢ ᓣ ᓤ ᓥ ᓦ ᓧ ᓨ ᓩ ᓪ ᓫ ᓬ ᓭ ᓮ ᓯ ᓰ ᓱ ᓲ ᓳ ᓴ ᓵ ᓶ ᓷ ᓸ ᓹ ᓺ ᓻ ᓼ ᓽ ᓾ ᓿ ᔀ ᔁ ᔂ ᔃ ᔄ ᔅ ᔆ ᔇ ᔈ ᔉ ᔊ ᔋ ᔌ ᔍ ᔎ ᔏ ᔐ ᔑ ᔒ ᔓ ᔔ ᔕ ᔖ ᔗ ᔘ ᔙ ᔚ ᔛ ᔜ ᔝ ᔞ ᔟ ᔠ ᔡ ᔢ ᔣ ᔤ ᔥ ᔦ ᔧ ᔨ ᔩ ᔪ ᔫ ᔬ ᔭ ᔮ ᔯ ᔰ ᔱ ᔲ ᔳ ᔴ ᔵ ᔶ ᔷ ᔸ ᔹ ᔺ ᔻ ᔼ ᔽ ᔾ ᔿ ᕀ ᕁ ᕂ ᕃ ᕄ ᕅ ᕆ ᕇ ᕈ ᕉ ᕊ ᕋ ᕌ ᕍ ᕎ ᕏ ᕐ ᕑ ᕒ ᕓ ᕔ ᕕ ᕖ ᕗ ᕘ ᕙ ᕚ ᕛ ᕜ ᕝ ᕞ ᕟ ᕠ ᕡ ᕢ ᕣ ᕤ ᕥ ᕦ ᕧ ᕨ ᕩ ᕪ ᕫ ᕬ ᕭ ᕮ ᕯ ᕰ ᕱ ᕲ ᕳ ᕴ ᕵ ᕶ ᕷ ᕸ ᕹ ᕺ ᕻ ᕽ ᙯ ᕾ ᕿ ᖀ ᖁ ᖂ ᖃ ᖄ ᖅ ᖆ ᖇ ᖈ ᖉ ᖊ ᖋ ᖌ ᖍ ᙰ ᖎ ᖏ ᖐ ᖑ ᖒ ᖓ ᖔ ᖕ ᙱ ᙲ ᙳ ᙴ ᙵ ᙶ ᖖ ᖗ ᖘ ᖙ ᖚ ᖛ ᖜ ᖝ ᖞ ᖟ ᖠ ᖡ ᖢ ᖣ ᖤ ᖥ ᖦ ᕼ ᖧ ᖨ ᖩ ᖪ ᖫ ᖬ ᖭ ᖮ ᖯ ᖰ ᖱ ᖲ ᖳ ᖴ ᖵ ᖶ ᖷ ᖸ ᖹ ᖺ ᖻ ᖼ ᖽ ᖾ ᖿ ᗀ ᗁ ᗂ ᗃ ᗄ ᗅ ᗆ ᗇ ᗈ ᗉ ᗊ ᗋ ᗌ ᗍ ᗎ ᗏ ᗐ ᗑ ᗒ ᗓ ᗔ ᗕ ᗖ ᗗ ᗘ ᗙ ᗚ ᗛ ᗜ ᗝ ᗞ ᗟ ᗠ ᗡ ᗢ ᗣ ᗤ ᗥ ᗦ ᗧ ᗨ ᗩ ᗪ ᗫ ᗬ ᗭ ᗮ ᗯ ᗰ ᗱ ᗲ ᗳ ᗴ ᗵ ᗶ ᗷ ᗸ ᗹ ᗺ ᗻ ᗼ ᗽ ᗾ ᗿ ᘀ ᘁ ᘂ ᘃ ᘄ ᘅ ᘆ ᘇ ᘈ ᘉ ᘊ ᘋ ᘌ ᘍ ᘎ ᘏ ᘐ ᘑ ᘒ ᘓ ᘔ ᘕ ᘖ ᘗ ᘘ ᘙ ᘚ ᘛ ᘜ ᘝ ᘞ ᘟ ᘠ ᘡ ᘢ ᘣ ᘤ ᘥ ᘦ ᘧ ᘨ ᘩ ᘪ ᘫ ᘬ ᘭ ᘮ ᘯ ᘰ ᘱ ᘲ ᘳ ᘴ ᘵ ᘶ ᘷ ᘸ ᘹ ᘺ ᘻ ᘼ ᘽ ᘾ ᘿ ᙀ ᙁ ᙂ ᙃ ᙄ ᙅ ᙆ ᙇ ᙈ ᙉ ᙊ ᙋ ᙌ ᙍ ᙎ ᙏ ᙐ ᙑ ᙒ ᙓ ᙔ ᙕ ᙖ ᙗ ᙘ ᙙ ᙚ ᙛ ᙜ ᙝ ᙞ ᙟ ᙠ ᙡ ᙢ ᙣ ᙤ ᙥ ᙦ ᙧ ᙨ ᙩ ᙪ ᙫ ᙬ
+Non-XID (2)
+᙮ ᙭
+
+Script: OGHAM
+Atomic (26)
+ᚁ ᚂ ᚃ ᚄ ᚅ ᚆ ᚇ ᚈ ᚉ ᚊ ᚋ ᚌ ᚍ ᚎ ᚏ ᚐ ᚑ ᚒ ᚓ ᚔ ᚕ ᚖ ᚗ ᚘ ᚙ ᚚ
+Non-XID (2)
+᚛ ᚜
+IDN-Invalid (1)
+U+1680
+
+Script: RUNIC
+Atomic (78)
+ᚠ ᚡ ᚢ ᚤ ᚥ ᚦ ᚧ ᛰ ᚨ ᚩ ᚬ ᚭ ᚮ ᚯ ᚰ ᚱ ᚲ ᚳ ᚴ ᚵ ᚶ ᚷ ᚹ ᛩ ᚺ ᚻ ᚼ ᚽ ᚾ ᚿ ᛀ ᛁ ᛂ ᛃ ᛄ ᛅ ᛆ ᛮ ᛇ ᛈ ᛕ ᛉ ᛊ ᛋ ᛪ ᛌ ᛍ ᛎ ᛏ ᛐ ᛑ ᛒ ᛓ ᛔ ᛖ ᛗ ᛘ ᛙ ᛯ ᛚ ᛛ ᛜ ᛝ ᛞ ᛟ ᚪ ᚫ ᚣ ᛠ ᛣ ᚸ ᛤ ᛡ ᛢ ᛥ ᛦ ᛧ ᛨ
+
+Script: KHMER
+Atomic (94)
+ំ ះ ៈ ៉ ៊ ់ ៌ ៍ ៎ ៏ ័ ៑ ៓ ៗ ០ ១ ២ ៣ ៤ ៥ ៦ ៧ ៨ ៩ ក ខ គ ឃ ង ច ឆ ជ ឈ ញ ដ ឋ ឌ ឍ ណ ត ថ ទ ធ ន ប ផ ព ភ ម យ រ ល វ ឝ ឞ ស ហ ឡ អ ៜ ឣ ឤ ឥ ឦ ឧ ឨ ឩ ឪ ឫ ឬ ឭ ឮ ឯ ឰ ឱ ឲ ឳ ា ិ ី ឹ ឺ ុ ូ ួ ើ ឿ ៀ េ ែ ៃ ោ ៅ ្
+Non-XID (9)
+៖ ។ ៕ ៘ ៙ ៚ ៛ U+17B4 U+17B5
+IDN-Invalid (43)
+៝ ᧠ ᧡ ᧢ ᧣ ᧤ ᧥ ᧦ ᧧ ᧨ ᧩ ᧪ ᧫ ᧬ ᧭ ᧮ ᧯ ᧰ ᧱ ᧲ ᧳ ᧴ ᧵ ᧶ ᧷ ᧸ ᧹ ᧺ ᧻ ᧼ ᧽ ᧾ ᧿ ៰ ៱ ៲ ៳ ៴ ៵ ៶ ៷ ៸ ៹
+
+Script: MONGOLIAN
+Atomic (140)
+᠐ ᠑ ᠒ ᠓ ᠔ ᠕ ᠖ ᠗ ᠘ ᠙ ᢀ ᢁ ᢂ ᢃ ᢄ ᢅ ᢆ ᡃ ᠠ ᢇ ᠡ ᡄ ᡝ ᠢ ᡅ ᡞ ᡳ ᢈ ᡟ ᠣ ᡆ ᠤ ᡇ ᡡ ᠥ ᡈ ᠦ ᡉ ᡠ ᠧ ᠨ ᠩ ᡊ ᡢ ᢊ ᢛ ᠪ ᡋ ᠫ ᡌ ᡦ ᠬ ᡍ ᠭ ᡎ ᡤ ᢚ ᡥ ᠮ ᡏ ᠯ ᠰ ᠱ ᡧ ᢜ ᢝ ᢢ ᢤ ᢥ ᠲ ᡐ ᡨ ᠳ ᡑ ᡩ ᠴ ᡒ ᡱ ᡜ ᢋ ᠵ ᡓ ᡪ ᡷ ᠶ ᡕ ᡲ ᠷ ᡵ ᠸ ᡖ ᠹ ᡫ ᡶ ᠺ ᡗ ᡣ ᡴ ᢉ ᠻ ᠼ ᡔ ᡮ ᠽ ᡯ ᡘ ᡬ ᠾ ᡙ ᡭ ᠿ ᡀ ᡁ ᡂ ᡚ ᡛ ᡰ ᢌ ᢞ ᢍ ᢎ ᢟ ᢏ ᢐ ᢘ ᢠ ᢑ ᢡ ᢒ ᢓ ᢨ ᢔ ᢣ ᢕ ᢙ ᢖ ᢗ ᢦ ᢧ ᢩ
+Non-XID (10)
+᠇ ᠂ ᠈ ᠄ ᠅ ᠁ ᠃ ᠉ ᠀ ᠊
+IDN-Deleted (4)
+U+180B U+180C U+180D ᠆
+IDN-Invalid (1)
+U+180E
+
+Script: HIRAGANA
+Atomic (61)
+ゝ ぁ あ ぃ い ぅ う ぇ え ぉ お ゕ か き く ゖ け こ さ し す せ そ た ち っ つ て と な に ぬ ね の は ひ ふ へ ほ ま み む め も ゃ や ゅ ゆ ょ よ ら り る れ ろ ゎ わ ゐ ゑ を ん
+Decomposable (27)
+ゞ ゔ が ぎ ぐ げ ご ざ じ ず ぜ ぞ だ ぢ づ で ど ば ぱ び ぴ ぶ ぷ べ ぺ ぼ ぽ
+IDN-Remapped-Compat (1)
+ゟ
+
+Script: KATAKANA
+Atomic (77)
+ヽ ァ ア ィ イ ゥ ウ ェ エ ォ オ ヵ カ キ ㇰ ク ヶ ケ コ サ ㇱ シ ㇲ ス セ ソ タ チ ッ ツ テ ㇳ ト ナ ニ ㇴ ヌ ネ ノ ㇵ ハ ㇶ ヒ ㇷ フ ㇸ ヘ ㇹ ホ マ ミ ㇺ ム メ モ ャ ヤ ュ ユ ョ ヨ ㇻ ラ ㇼ リ ㇽ ル ㇾ レ ㇿ ロ ヮ ワ ヰ ヱ ヲ ン
+Decomposable (31)
+ヾ ヴ ガ ギ グ ゲ ゴ ザ ジ ズ ゼ ゾ ダ ヂ ヅ デ ド バ パ ビ ピ ブ プ ベ ペ ボ ポ ヷ ヸ ヹ ヺ
+IDN-Remapped-Compat (56)
+ｧ ｱ ｨ ｲ ｩ ｳ ｪ ｴ ｫ ｵ ｶ ｷ ｸ ｹ ｺ ヿ ｻ ｼ ｽ ｾ ｿ ﾀ ﾁ ｯ ﾂ ﾃ ﾄ ﾅ ﾆ ﾇ ﾈ ﾉ ﾊ ﾋ ﾌ ﾍ ﾎ ﾏ ﾐ ﾑ ﾒ ﾓ ｬ ﾔ ｭ ﾕ ｮ ﾖ ﾗ ﾘ ﾙ ﾚ ﾛ ﾜ ｦ ﾝ
+
+Script: BOPOMOFO
+Atomic (64)
+ㄅ ㆠ ㄆ ㆴ ㄇ ㄈ ㄪ ㄉ ㄊ ㆵ ㄋ ㄌ ㄍ ㆣ ㄎ ㆶ ㄫ ㆭ ㄏ ㆷ ㄐ ㆢ ㄑ ㄒ ㄬ ㄓ ㄔ ㄕ ㄖ ㄗ ㆡ ㄘ ㄙ ㄚ ㆩ ㄛ ㆧ ㆦ ㄜ ㄝ ㆤ ㆥ ㄞ ㆮ ㄟ ㄠ ㆯ ㄡ ㄢ ㄣ ㄤ ㆲ ㄥ ㆰ ㆱ ㆬ ㄦ ㄧ ㆪ ㆳ ㄨ ㆫ ㆨ ㄩ
+
+Script: HAN
+Atomic (70219)
+々 〇 〡 .. 〩 〻 㐀 .. 䶵 一 .. 龥 﨎 .. 﨏 﨑 﨓 .. 﨔 﨟 﨡 﨣 .. 﨤 﨧 .. 﨩 𠀀 .. 𪛖
+Non-XID (113)
+⺀ .. ⺙ ⺛ .. ⺞ ⺠ .. ⻲
+IDN-Remapped-Compat (1110)
+⺟ ⻳ ⼀ .. ⿕ 〸 .. 〺 豈 .. 嗀 塚 晴 凞 .. 羽 蘒 諸 逸 .. 都 飯 .. 鶴 侮 .. 頻 丽 .. 𪘀
+IDN-Invalid (128)
+龦 .. 龻 並 .. 龎
+
+Script: YI
+Atomic (1165)
+ꀀ ꀁ ꀂ ꀃ ꀄ ꀅ ꀆ ꀇ ꀈ ꀉ ꀊ ꀋ ꀌ ꀍ ꀎ ꀏ ꀐ ꀑ ꀒ ꀓ ꀔ ꀕ ꀖ ꀗ ꀘ ꀙ ꀚ ꀛ ꀜ ꀝ ꀞ ꀟ ꀠ ꀡ ꀢ ꀣ ꀤ ꀥ ꀦ ꀧ ꀨ ꀩ ꀪ ꀫ ꀬ ꀭ ꀮ ꀯ ꀰ ꀱ ꀲ ꀳ ꀴ ꀵ ꀶ ꀷ ꀸ ꀹ ꀺ ꀻ ꀼ ꀽ ꀾ ꀿ ꁀ ꁁ ꁂ ꁃ ꁄ ꁅ ꁆ ꁇ ꁈ ꁉ ꁊ ꁋ ꁌ ꁍ ꁎ ꁏ ꁐ ꁑ ꁒ ꁓ ꁔ ꁕ ꁖ ꁗ ꁘ ꁙ ꁚ ꁛ ꁜ ꁝ ꁞ ꁟ ꁠ ꁡ ꁢ ꁣ ꁤ ꁥ ꁦ ꁧ ꁨ ꁩ ꁪ ꁫ ꁬ ꁭ ꁮ ꁯ ꁰ ꁱ ꁲ ꁳ ꁴ ꁵ ꁶ ꁷ ꁸ ꁹ ꁺ ꁻ ꁼ ꁽ ꁾ ꁿ ꂀ ꂁ ꂂ ꂃ ꂄ ꂅ ꂆ ꂇ ꂈ ꂉ ꂊ ꂋ ꂌ ꂍ ꂎ ꂏ ꂐ ꂑ ꂒ ꂓ ꂔ ꂕ ꂖ ꂗ ꂘ ꂙ ꂚ ꂛ ꂜ ꂝ ꂞ ꂟ ꂠ ꂡ ꂢ ꂣ ꂤ ꂥ ꂦ ꂧ ꂨ ꂩ ꂪ ꂫ ꂬ ꂭ ꂮ ꂯ ꂰ ꂱ ꂲ ꂳ ꂴ ꂵ ꂶ ꂷ ꂸ ꂹ ꂺ ꂻ ꂼ ꂽ ꂾ ꂿ ꃀ ꃁ ꃂ ꃃ ꃄ ꃅ ꃆ ꃇ ꃈ ꃉ ꃊ ꃋ ꃌ ꃍ ꃎ ꃏ ꃐ ꃑ ꃒ ꃓ ꃔ ꃕ ꃖ ꃗ ꃘ ꃙ ꃚ ꃛ ꃜ ꃝ ꃞ ꃟ ꃠ ꃡ ꃢ ꃣ ꃤ ꃥ ꃦ ꃧ ꃨ ꃩ ꃪ ꃫ ꃬ ꃭ ꃮ ꃯ ꃰ ꃱ ꃲ ꃳ ꃴ ꃵ ꃶ ꃷ ꃸ ꃹ ꃺ ꃻ ꃼ ꃽ ꃾ ꃿ ꄀ ꄁ ꄂ ꄃ ꄄ ꄅ ꄆ ꄇ ꄈ ꄉ ꄊ ꄋ ꄌ ꄍ ꄎ ꄏ ꄐ ꄑ ꄒ ꄓ ꄔ ꄕ ꄖ ꄗ ꄘ ꄙ ꄚ ꄛ ꄜ ꄝ ꄞ ꄟ ꄠ ꄡ ꄢ ꄣ ꄤ ꄥ ꄦ ꄧ ꄨ ꄩ ꄪ ꄫ ꄬ ꄭ ꄮ ꄯ ꄰ ꄱ ꄲ ꄳ ꄴ ꄵ ꄶ ꄷ ꄸ ꄹ ꄺ ꄻ ꄼ ꄽ ꄾ ꄿ ꅀ ꅁ ꅂ ꅃ ꅄ ꅅ ꅆ ꅇ ꅈ ꅉ ꅊ ꅋ ꅌ ꅍ ꅎ ꅏ ꅐ ꅑ ꅒ ꅓ ꅔ ꅕ ꅖ ꅗ ꅘ ꅙ ꅚ ꅛ ꅜ ꅝ ꅞ ꅟ ꅠ ꅡ ꅢ ꅣ ꅤ ꅥ ꅦ ꅧ ꅨ ꅩ ꅪ ꅫ ꅬ ꅭ ꅮ ꅯ ꅰ ꅱ ꅲ ꅳ ꅴ ꅵ ꅶ ꅷ ꅸ ꅹ ꅺ ꅻ ꅼ ꅽ ꅾ ꅿ ꆀ ꆁ ꆂ ꆃ ꆄ ꆅ ꆆ ꆇ ꆈ ꆉ ꆊ ꆋ ꆌ ꆍ ꆎ ꆏ ꆐ ꆑ ꆒ ꆓ ꆔ ꆕ ꆖ ꆗ ꆘ ꆙ ꆚ ꆛ ꆜ ꆝ ꆞ ꆟ ꆠ ꆡ ꆢ ꆣ ꆤ ꆥ ꆦ ꆧ ꆨ ꆩ ꆪ ꆫ ꆬ ꆭ ꆮ ꆯ ꆰ ꆱ ꆲ ꆳ ꆴ ꆵ ꆶ ꆷ ꆸ ꆹ ꆺ ꆻ ꆼ ꆽ ꆾ ꆿ ꇀ ꇁ ꇂ ꇃ ꇄ ꇅ ꇆ ꇇ ꇈ ꇉ ꇊ ꇋ ꇌ ꇍ ꇎ ꇏ ꇐ ꇑ ꇒ ꇓ ꇔ ꇕ ꇖ ꇗ ꇘ ꇙ ꇚ ꇛ ꇜ ꇝ ꇞ ꇟ ꇠ ꇡ ꇢ ꇣ ꇤ ꇥ ꇦ ꇧ ꇨ ꇩ ꇪ ꇫ ꇬ ꇭ ꇮ ꇯ ꇰ ꇱ ꇲ ꇳ ꇴ ꇵ ꇶ ꇷ ꇸ ꇹ ꇺ ꇻ ꇼ ꇽ ꇾ ꇿ ꈀ ꈁ ꈂ ꈃ ꈄ ꈅ ꈆ ꈇ ꈈ ꈉ ꈊ ꈋ ꈌ ꈍ ꈎ ꈏ ꈐ ꈑ ꈒ ꈓ ꈔ ꈕ ꈖ ꈗ ꈘ ꈙ ꈚ ꈛ ꈜ ꈝ ꈞ ꈟ ꈠ ꈡ ꈢ ꈣ ꈤ ꈥ ꈦ ꈧ ꈨ ꈩ ꈪ ꈫ ꈬ ꈭ ꈮ ꈯ ꈰ ꈱ ꈲ ꈳ ꈴ ꈵ ꈶ ꈷ ꈸ ꈹ ꈺ ꈻ ꈼ ꈽ ꈾ ꈿ ꉀ ꉁ ꉂ ꉃ ꉄ ꉅ ꉆ ꉇ ꉈ ꉉ ꉊ ꉋ ꉌ ꉍ ꉎ ꉏ ꉐ ꉑ ꉒ ꉓ ꉔ ꉕ ꉖ ꉗ ꉘ ꉙ ꉚ ꉛ ꉜ ꉝ ꉞ ꉟ ꉠ ꉡ ꉢ ꉣ ꉤ ꉥ ꉦ ꉧ ꉨ ꉩ ꉪ ꉫ ꉬ ꉭ ꉮ ꉯ ꉰ ꉱ ꉲ ꉳ ꉴ ꉵ ꉶ ꉷ ꉸ ꉹ ꉺ ꉻ ꉼ ꉽ ꉾ ꉿ ꊀ ꊁ ꊂ ꊃ ꊄ ꊅ ꊆ ꊇ ꊈ ꊉ ꊊ ꊋ ꊌ ꊍ ꊎ ꊏ ꊐ ꊑ ꊒ ꊓ ꊔ ꊕ ꊖ ꊗ ꊘ ꊙ ꊚ ꊛ ꊜ ꊝ ꊞ ꊟ ꊠ ꊡ ꊢ ꊣ ꊤ ꊥ ꊦ ꊧ ꊨ ꊩ ꊪ ꊫ ꊬ ꊭ ꊮ ꊯ ꊰ ꊱ ꊲ ꊳ ꊴ ꊵ ꊶ ꊷ ꊸ ꊹ ꊺ ꊻ ꊼ ꊽ ꊾ ꊿ ꋀ ꋁ ꋂ ꋃ ꋄ ꋅ ꋆ ꋇ ꋈ ꋉ ꋊ ꋋ ꋌ ꋍ ꋎ ꋏ ꋐ ꋑ ꋒ ꋓ ꋔ ꋕ ꋖ ꋗ ꋘ ꋙ ꋚ ꋛ ꋜ ꋝ ꋞ ꋟ ꋠ ꋡ ꋢ ꋣ ꋤ ꋥ ꋦ ꋧ ꋨ ꋩ ꋪ ꋫ ꋬ ꋭ ꋮ ꋯ ꋰ ꋱ ꋲ ꋳ ꋴ ꋵ ꋶ ꋷ ꋸ ꋹ ꋺ ꋻ ꋼ ꋽ ꋾ ꋿ ꌀ ꌁ ꌂ ꌃ ꌄ ꌅ ꌆ ꌇ ꌈ ꌉ ꌊ ꌋ ꌌ ꌍ ꌎ ꌏ ꌐ ꌑ ꌒ ꌓ ꌔ ꌕ ꌖ ꌗ ꌘ ꌙ ꌚ ꌛ ꌜ ꌝ ꌞ ꌟ ꌠ ꌡ ꌢ ꌣ ꌤ ꌥ ꌦ ꌧ ꌨ ꌩ ꌪ ꌫ ꌬ ꌭ ꌮ ꌯ ꌰ ꌱ ꌲ ꌳ ꌴ ꌵ ꌶ ꌷ ꌸ ꌹ ꌺ ꌻ ꌼ ꌽ ꌾ ꌿ ꍀ ꍁ ꍂ ꍃ ꍄ ꍅ ꍆ ꍇ ꍈ ꍉ ꍊ ꍋ ꍌ ꍍ ꍎ ꍏ ꍐ ꍑ ꍒ ꍓ ꍔ ꍕ ꍖ ꍗ ꍘ ꍙ ꍚ ꍛ ꍜ ꍝ ꍞ ꍟ ꍠ ꍡ ꍢ ꍣ ꍤ ꍥ ꍦ ꍧ ꍨ ꍩ ꍪ ꍫ ꍬ ꍭ ꍮ ꍯ ꍰ ꍱ ꍲ ꍳ ꍴ ꍵ ꍶ ꍷ ꍸ ꍹ ꍺ ꍻ ꍼ ꍽ ꍾ ꍿ ꎀ ꎁ ꎂ ꎃ ꎄ ꎅ ꎆ ꎇ ꎈ ꎉ ꎊ ꎋ ꎌ ꎍ ꎎ ꎏ ꎐ ꎑ ꎒ ꎓ ꎔ ꎕ ꎖ ꎗ ꎘ ꎙ ꎚ ꎛ ꎜ ꎝ ꎞ ꎟ ꎠ ꎡ ꎢ ꎣ ꎤ ꎥ ꎦ ꎧ ꎨ ꎩ ꎪ ꎫ ꎬ ꎭ ꎮ ꎯ ꎰ ꎱ ꎲ ꎳ ꎴ ꎵ ꎶ ꎷ ꎸ ꎹ ꎺ ꎻ ꎼ ꎽ ꎾ ꎿ ꏀ ꏁ ꏂ ꏃ ꏄ ꏅ ꏆ ꏇ ꏈ ꏉ ꏊ ꏋ ꏌ ꏍ ꏎ ꏏ ꏐ ꏑ ꏒ ꏓ ꏔ ꏕ ꏖ ꏗ ꏘ ꏙ ꏚ ꏛ ꏜ ꏝ ꏞ ꏟ ꏠ ꏡ ꏢ ꏣ ꏤ ꏥ ꏦ ꏧ ꏨ ꏩ ꏪ ꏫ ꏬ ꏭ ꏮ ꏯ ꏰ ꏱ ꏲ ꏳ ꏴ ꏵ ꏶ ꏷ ꏸ ꏹ ꏺ ꏻ ꏼ ꏽ ꏾ ꏿ ꐀ ꐁ ꐂ ꐃ ꐄ ꐅ ꐆ ꐇ ꐈ ꐉ ꐊ ꐋ ꐌ ꐍ ꐎ ꐏ ꐐ ꐑ ꐒ ꐓ ꐔ ꐕ ꐖ ꐗ ꐘ ꐙ ꐚ ꐛ ꐜ ꐝ ꐞ ꐟ ꐠ ꐡ ꐢ ꐣ ꐤ ꐥ ꐦ ꐧ ꐨ ꐩ ꐪ ꐫ ꐬ ꐭ ꐮ ꐯ ꐰ ꐱ ꐲ ꐳ ꐴ ꐵ ꐶ ꐷ ꐸ ꐹ ꐺ ꐻ ꐼ ꐽ ꐾ ꐿ ꑀ ꑁ ꑂ ꑃ ꑄ ꑅ ꑆ ꑇ ꑈ ꑉ ꑊ ꑋ ꑌ ꑍ ꑎ ꑏ ꑐ ꑑ ꑒ ꑓ ꑔ ꑕ ꑖ ꑗ ꑘ ꑙ ꑚ ꑛ ꑜ ꑝ ꑞ ꑟ ꑠ ꑡ ꑢ ꑣ ꑤ ꑥ ꑦ ꑧ ꑨ ꑩ ꑪ ꑫ ꑬ ꑭ ꑮ ꑯ ꑰ ꑱ ꑲ ꑳ ꑴ ꑵ ꑶ ꑷ ꑸ ꑹ ꑺ ꑻ ꑼ ꑽ ꑾ ꑿ ꒀ ꒁ ꒂ ꒃ ꒄ ꒅ ꒆ ꒇ ꒈ ꒉ ꒊ ꒋ ꒌ
+Non-XID (55)
+꒐ ꒑ ꒒ ꒓ ꒔ ꒕ ꒖ ꒗ ꒘ ꒙ ꒚ ꒛ ꒜ ꒝ ꒞ ꒟ ꒠ ꒡ ꒢ ꒣ ꒤ ꒥ ꒦ ꒧ ꒨ ꒩ ꒪ ꒫ ꒬ ꒭ ꒮ ꒯ ꒰ ꒱ ꒲ ꒳ ꒴ ꒵ ꒶ ꒷ ꒸ ꒹ ꒺ ꒻ ꒼ ꒽ ꒾ ꒿ ꓀ ꓁ ꓂ ꓃ ꓄ ꓅ ꓆
+Script: OLD_ITALIC
+Atomic (31)
+𐌀 𐌁 𐌂 𐌃 𐌄 𐌅 𐌆 𐌇 𐌈 𐌉 𐌊 𐌋 𐌌 𐌍 𐌎 𐌏 𐌐 𐌑 𐌒 𐌓 𐌔 𐌕 𐌖 𐌗 𐌘 𐌙 𐌚 𐌛 𐌜 𐌝 𐌞
+Non-XID (4)
+𐌢 𐌣 𐌠 𐌡
+
+Script: GOTHIC
+Atomic (27)
+𐌰 𐌱 𐌲 𐌳 𐌴 𐌵 𐌶 𐌷 𐌸 𐌹 𐌺 𐌻 𐌼 𐌽 𐌾 𐌿 𐍀 𐍁 𐍂 𐍃 𐍄 𐍅 𐍆 𐍇 𐍈 𐍉 𐍊
+
+Script: DESERET
+Atomic (38)
+𐐨 𐐩 𐐪 𐐫 𐐬 𐐭 𐐮 𐐯 𐐰 𐐱 𐐲 𐐳 𐐴 𐐵 𐐶 𐐷 𐐸 𐐹 𐐺 𐐻 𐐼 𐐽 𐐾 𐐿 𐑀 𐑁 𐑂 𐑃 𐑄 𐑅 𐑆 𐑇 𐑈 𐑉 𐑊 𐑋 𐑌 𐑍
+IDN-Remapped-Case-Atomic (38)
+𐐀 𐐁 𐐂 𐐃 𐐄 𐐅 𐐆 𐐇 𐐈 𐐉 𐐊 𐐋 𐐌 𐐍 𐐎 𐐏 𐐐 𐐑 𐐒 𐐓 𐐔 𐐕 𐐖 𐐗 𐐘 𐐙 𐐚 𐐛 𐐜 𐐝 𐐞 𐐟 𐐠 𐐡 𐐢 𐐣 𐐤 𐐥
+IDN-Invalid (4)
+𐑎 𐐦 𐑏 𐐧
+
+Script: TAGALOG
+Atomic (20)
+ᜀ ᜁ ᜂ ᜃ ᜄ ᜅ ᜆ ᜇ ᜈ ᜉ ᜊ ᜋ ᜌ ᜎ ᜏ ᜐ ᜑ ᜒ ᜓ ᜔
+
+Script: HANUNOO
+Atomic (21)
+ᜠ ᜡ ᜢ ᜣ ᜤ ᜥ ᜦ ᜧ ᜨ ᜩ ᜪ ᜫ ᜬ ᜭ ᜮ ᜯ ᜰ ᜱ ᜲ ᜳ ᜴
+
+Script: BUHID
+Atomic (20)
+ᝀ ᝁ ᝂ ᝃ ᝄ ᝅ ᝆ ᝇ ᝈ ᝉ ᝊ ᝋ ᝌ ᝍ ᝎ ᝏ ᝐ ᝑ ᝒ ᝓ
+
+Script: TAGBANWA
+Atomic (18)
+ᝠ ᝡ ᝢ ᝣ ᝤ ᝥ ᝦ ᝧ ᝨ ᝩ ᝪ ᝫ ᝬ ᝮ ᝯ ᝰ ᝲ ᝳ
+
+Script: LIMBU
+IDN-Invalid (66)
+᤹ ᤺ ᤻ ᥄ ᥅ ᥀ ᥆ ᥇ ᥈ ᥉ ᥊ ᥋ ᥌ ᥍ ᥎ ᥏ ᤀ ᤁ ᤂ ᤃ ᤄ ᤅ ᤆ ᤇ ᤈ ᤉ ᤊ ᤋ ᤌ ᤍ ᤎ ᤏ ᤐ ᤑ ᤒ ᤓ ᤔ ᤕ ᤖ ᤗ ᤘ ᤙ ᤚ ᤛ ᤜ ᤠ ᤡ ᤢ ᤣ ᤤ ᤥ ᤦ ᤧ ᤨ ᤩ ᤪ ᤫ ᤰ ᤱ ᤲ ᤳ ᤴ ᤵ ᤶ ᤷ ᤸ
+
+Script: TAI_LE
+IDN-Invalid (35)
+ᥐ ᥑ ᥒ ᥓ ᥔ ᥕ ᥖ ᥗ ᥘ ᥙ ᥚ ᥛ ᥜ ᥝ ᥞ ᥟ ᥠ ᥡ ᥢ ᥣ ᥤ ᥥ ᥦ ᥧ ᥨ ᥩ ᥪ ᥫ ᥬ ᥭ ᥰ ᥱ ᥲ ᥳ ᥴ
+
+Script: LINEAR_B
+IDN-Invalid (211)
+𐀀 𐀁 𐀂 𐀃 𐀄 𐀅 𐀆 𐀇 𐀈 𐀉 𐀊 𐀋 𐀍 𐀎 𐀏 𐀐 𐀑 𐀒 𐀓 𐀔 𐀕 𐀖 𐀗 𐀘 𐀙 𐀚 𐀛 𐀜 𐀝 𐀞 𐀟 𐀠 𐀡 𐀢 𐀣 𐀤 𐀥 𐀦 𐀨 𐀩 𐀪 𐀫 𐀬 𐀭 𐀮 𐀯 𐀰 𐀱 𐀲 𐀳 𐀴 𐀵 𐀶 𐀷 𐀸 𐀹 𐀺 𐀼 𐀽 𐀿 𐁀 𐁁 𐁂 𐁃 𐁄 𐁅 𐁆 𐁇 𐁈 𐁉 𐁊 𐁋 𐁌 𐁍 𐁐 𐁑 𐁒 𐁓 𐁔 𐁕 𐁖 𐁗 𐁘 𐁙 𐁚 𐁛 𐁜 𐁝 𐂀 𐂁 𐂂 𐂃 𐂄 𐂅 𐂆 𐂇 𐂈 𐂉 𐂊 𐂋 𐂌 𐂍 𐂎 𐂏 𐂐 𐂑 𐂒 𐂓 𐂔 𐂕 𐂖 𐂗 𐂘 𐂙 𐂚 𐂛 𐂜 𐂝 𐂞 𐂟 𐂠 𐂡 𐂢 𐂣 𐂤 𐂥 𐂦 𐂧 𐂨 𐂩 𐂪 𐂫 𐂬 𐂭 𐂮 𐂯 𐂰 𐂱 𐂲 𐂳 𐂴 𐂵 𐂶 𐂷 𐂸 𐂹 𐂺 𐂻 𐂼 𐂽 𐂾 𐂿 𐃀 𐃁 𐃂 𐃃 𐃄 𐃅 𐃆 𐃇 𐃈 𐃉 𐃊 𐃋 𐃌 𐃍 𐃎 𐃏 𐃐 𐃑 𐃒 𐃓 𐃔 𐃕 𐃖 𐃗 𐃘 𐃙 𐃚 𐃛 𐃜 𐃝 𐃞 𐃟 𐃠 𐃡 𐃢 𐃣 𐃤 𐃥 𐃦 𐃧 𐃨 𐃩 𐃪 𐃫 𐃬 𐃭 𐃮 𐃯 𐃰 𐃱 𐃲 𐃳 𐃴 𐃵 𐃶 𐃷 𐃸 𐃹 𐃺
+
+Script: UGARITIC
+IDN-Invalid (31)
+𐎟 𐎀 𐎁 𐎂 𐎃 𐎄 𐎅 𐎆 𐎇 𐎈 𐎉 𐎊 𐎋 𐎌 𐎍 𐎎 𐎏 𐎐 𐎑 𐎒 𐎓 𐎔 𐎕 𐎖 𐎗 𐎘 𐎙 𐎚 𐎛 𐎜 𐎝
+
+Script: SHAVIAN
+IDN-Invalid (48)
+𐑐 𐑑 𐑒 𐑓 𐑔 𐑕 𐑖 𐑗 𐑘 𐑙 𐑚 𐑛 𐑜 𐑝 𐑞 𐑟 𐑠 𐑡 𐑢 𐑣 𐑤 𐑥 𐑦 𐑧 𐑨 𐑩 𐑪 𐑫 𐑬 𐑭 𐑮 𐑯 𐑰 𐑱 𐑲 𐑳 𐑴 𐑵 𐑶 𐑷 𐑸 𐑹 𐑺 𐑻 𐑼 𐑽 𐑾 𐑿
+
+Script: OSMANYA
+IDN-Invalid (40)
+𐒠 𐒡 𐒢 𐒣 𐒤 𐒥 𐒦 𐒧 𐒨 𐒩 𐒀 𐒁 𐒂 𐒃 𐒄 𐒅 𐒆 𐒇 𐒈 𐒉 𐒊 𐒋 𐒌 𐒍 𐒎 𐒏 𐒐 𐒑 𐒒 𐒓 𐒔 𐒕 𐒖 𐒗 𐒘 𐒙 𐒚 𐒛 𐒜 𐒝
+
+Script: CYPRIOT
+IDN-Invalid (55)
+𐠀 𐠁 𐠂 𐠃 𐠄 𐠅 𐠈 𐠊 𐠋 𐠌 𐠍 𐠎 𐠏 𐠐 𐠑 𐠒 𐠓 𐠔 𐠕 𐠖 𐠗 𐠘 𐠙 𐠚 𐠛 𐠜 𐠝 𐠞 𐠟 𐠠 𐠡 𐠢 𐠣 𐠤 𐠥 𐠦 𐠧 𐠨 𐠩 𐠪 𐠫 𐠬 𐠭 𐠮 𐠯 𐠰 𐠱 𐠲 𐠳 𐠴 𐠵 𐠷 𐠸 𐠼 𐠿
+
+Script: BRAILLE
+Pattern_Syntax (256)
+⠀ ⠁ ⠂ ⠃ ⠄ ⠅ ⠆ ⠇ ⠈ ⠉ ⠊ ⠋ ⠌ ⠍ ⠎ ⠏ ⠐ ⠑ ⠒ ⠓ ⠔ ⠕ ⠖ ⠗ ⠘ ⠙ ⠚ ⠛ ⠜ ⠝ ⠞ ⠟ ⠠ ⠡ ⠢ ⠣ ⠤ ⠥ ⠦ ⠧ ⠨ ⠩ ⠪ ⠫ ⠬ ⠭ ⠮ ⠯ ⠰ ⠱ ⠲ ⠳ ⠴ ⠵ ⠶ ⠷ ⠸ ⠹ ⠺ ⠻ ⠼ ⠽ ⠾ ⠿ ⡀ ⡁ ⡂ ⡃ ⡄ ⡅ ⡆ ⡇ ⡈ ⡉ ⡊ ⡋ ⡌ ⡍ ⡎ ⡏ ⡐ ⡑ ⡒ ⡓ ⡔ ⡕ ⡖ ⡗ ⡘ ⡙ ⡚ ⡛ ⡜ ⡝ ⡞ ⡟ ⡠ ⡡ ⡢ ⡣ ⡤ ⡥ ⡦ ⡧ ⡨ ⡩ ⡪ ⡫ ⡬ ⡭ ⡮ ⡯ ⡰ ⡱ ⡲ ⡳ ⡴ ⡵ ⡶ ⡷ ⡸ ⡹ ⡺ ⡻ ⡼ ⡽ ⡾ ⡿ ⢀ ⢁ ⢂ ⢃ ⢄ ⢅ ⢆ ⢇ ⢈ ⢉ ⢊ ⢋ ⢌ ⢍ ⢎ ⢏ ⢐ ⢑ ⢒ ⢓ ⢔ ⢕ ⢖ ⢗ ⢘ ⢙ ⢚ ⢛ ⢜ ⢝ ⢞ ⢟ ⢠ ⢡ ⢢ ⢣ ⢤ ⢥ ⢦ ⢧ ⢨ ⢩ ⢪ ⢫ ⢬ ⢭ ⢮ ⢯ ⢰ ⢱ ⢲ ⢳ ⢴ ⢵ ⢶ ⢷ ⢸ ⢹ ⢺ ⢻ ⢼ ⢽ ⢾ ⢿ ⣀ ⣁ ⣂ ⣃ ⣄ ⣅ ⣆ ⣇ ⣈ ⣉ ⣊ ⣋ ⣌ ⣍ ⣎ ⣏ ⣐ ⣑ ⣒ ⣓ ⣔ ⣕ ⣖ ⣗ ⣘ ⣙ ⣚ ⣛ ⣜ ⣝ ⣞ ⣟ ⣠ ⣡ ⣢ ⣣ ⣤ ⣥ ⣦ ⣧ ⣨ ⣩ ⣪ ⣫ ⣬ ⣭ ⣮ ⣯ ⣰ ⣱ ⣲ ⣳ ⣴ ⣵ ⣶ ⣷ ⣸ ⣹ ⣺ ⣻ ⣼ ⣽ ⣾ ⣿
+
+Script: BUGINESE
+IDN-Invalid (30)
+ᨀ ᨁ ᨂ ᨃ ᨄ ᨅ ᨆ ᨇ ᨈ ᨉ ᨊ ᨋ ᨌ ᨍ ᨎ ᨏ ᨐ ᨑ ᨒ ᨓ ᨔ ᨕ ᨖ ᨗ ᨘ ᨙ ᨚ ᨛ ᨞ ᨟
+
+Script: COPTIC
+Atomic (7)
+ϣ ϥ ϧ ϩ ϫ ϭ ϯ
+IDN-Remapped-Case-Atomic (7)
+Ϣ Ϥ Ϧ Ϩ Ϫ Ϭ Ϯ
+IDN-Invalid (114)
+Ⲁ ⲁ Ⲃ ⲃ Ⲅ ⲅ Ⲇ ⲇ Ⲉ ⲉ Ⲋ ⲋ Ⲍ ⲍ Ⲏ ⲏ Ⲑ ⲑ Ⲓ ⲓ Ⲕ ⲕ Ⲗ ⲗ Ⲙ ⲙ Ⲛ ⲛ Ⲝ ⲝ Ⲟ ⲟ Ⲡ ⲡ Ⲣ ⲣ Ⲥ ⲥ Ⲧ ⲧ Ⲩ ⲩ Ⲫ ⲫ Ⲭ ⲭ Ⲯ ⲯ Ⲱ ⲱ Ⲳ ⲳ Ⲵ ⲵ Ⲷ ⲷ Ⲹ ⲹ Ⲻ ⲻ Ⲽ ⲽ Ⲿ ⲿ Ⳁ ⳁ Ⳃ ⳃ Ⳅ ⳅ Ⳇ ⳇ Ⳉ ⳉ Ⳋ ⳋ Ⳍ ⳍ Ⳏ ⳏ Ⳑ ⳑ Ⳓ ⳓ Ⳕ ⳕ Ⳗ ⳗ Ⳙ ⳙ Ⳛ ⳛ Ⳝ ⳝ Ⳟ ⳟ Ⳡ ⳡ Ⳣ ⳣ ⳤ ⳥ ⳦ ⳧ ⳨ ⳩ ⳪ ⳹ ⳺ ⳻ ⳼ ⳽ ⳾ ⳿
+
+Script: NEW_TAI_LUE
+IDN-Invalid (80)
+ᦀ ᦁ ᦂ ᦃ ᦄ ᦅ ᦆ ᦇ ᦈ ᦉ ᦊ ᦋ ᦌ ᦍ ᦎ ᦏ ᦐ ᦑ ᦒ ᦓ ᦔ ᦕ ᦖ ᦗ ᦘ ᦙ ᦚ ᦛ ᦜ ᦝ ᦞ ᦟ ᦠ ᦡ ᦢ ᦣ ᦤ ᦥ ᦦ ᦧ ᦨ ᦩ ᦰ ᦱ ᦲ ᦳ ᦴ ᦵ ᦶ ᦷ ᦸ ᦹ ᦺ ᦻ ᦼ ᦽ ᦾ ᦿ ᧀ ᧁ ᧂ ᧃ ᧄ ᧅ ᧆ ᧇ ᧈ ᧉ ᧐ ᧑ ᧒ ᧓ ᧔ ᧕ ᧖ ᧗ ᧘ ᧙ ᧞ ᧟
+
+Script: GLAGOLITIC
+IDN-Invalid (94)
+Ⰰ Ⰱ Ⰲ Ⰳ Ⰴ Ⰵ Ⰶ Ⰷ Ⰸ Ⰹ Ⰺ Ⰻ Ⰼ Ⰽ Ⰾ Ⰿ Ⱀ Ⱁ Ⱂ Ⱃ Ⱄ Ⱅ Ⱆ Ⱇ Ⱈ Ⱉ Ⱊ Ⱋ Ⱌ Ⱍ Ⱎ Ⱏ Ⱐ Ⱑ Ⱒ Ⱓ Ⱔ Ⱕ Ⱖ Ⱗ Ⱘ Ⱙ Ⱚ Ⱛ Ⱜ Ⱝ Ⱞ ⰰ ⰱ ⰲ ⰳ ⰴ ⰵ ⰶ ⰷ ⰸ ⰹ ⰺ ⰻ ⰼ ⰽ ⰾ ⰿ ⱀ ⱁ ⱂ ⱃ ⱄ ⱅ ⱆ ⱇ ⱈ ⱉ ⱊ ⱋ ⱌ ⱍ ⱎ ⱏ ⱐ ⱑ ⱒ ⱓ ⱔ ⱕ ⱖ ⱗ ⱘ ⱙ ⱚ ⱛ ⱜ ⱝ ⱞ
+
+Script: TIFINAGH
+IDN-Invalid (55)
+ⴰ ⴱ ⴲ ⴳ ⴴ ⴵ ⴶ ⴷ ⴸ ⴹ ⴺ ⴻ ⴼ ⴽ ⴾ ⴿ ⵀ ⵁ ⵂ ⵃ ⵄ ⵅ ⵆ ⵇ ⵈ ⵉ ⵊ ⵋ ⵌ ⵍ ⵎ ⵏ ⵐ ⵑ ⵒ ⵓ ⵔ ⵕ ⵖ ⵗ ⵘ ⵙ ⵚ ⵛ ⵜ ⵝ ⵞ ⵟ ⵠ ⵡ ⵢ ⵣ ⵤ ⵥ ⵯ
+
+Script: SYLOTI_NAGRI
+IDN-Invalid (44)
+ꠀ ꠁ ꠂ ꠃ ꠄ ꠅ ꠆ ꠇ ꠈ ꠉ ꠊ ꠋ ꠌ ꠍ ꠎ ꠏ ꠐ ꠑ ꠒ ꠓ ꠔ ꠕ ꠖ ꠗ ꠘ ꠙ ꠚ ꠛ ꠜ ꠝ ꠞ ꠟ ꠠ ꠡ ꠢ ꠣ ꠤ ꠥ ꠦ ꠧ ꠨ ꠩ ꠪ ꠫
+
+Script: OLD_PERSIAN
+IDN-Invalid (50)
+𐎠 𐎡 𐎢 𐎣 𐎤 𐎥 𐎦 𐎧 𐎨 𐎩 𐎪 𐎫 𐎬 𐎭 𐎮 𐎯 𐎰 𐎱 𐎲 𐎳 𐎴 𐎵 𐎶 𐎷 𐎸 𐎹 𐎺 𐎻 𐎼 𐎽 𐎾 𐎿 𐏀 𐏁 𐏂 𐏃 𐏈 𐏉 𐏊 𐏋 𐏌 𐏍 𐏎 𐏏 𐏐 𐏑 𐏒 𐏓 𐏔 𐏕
+
+Script: KHAROSHTHI
+IDN-Invalid (65)
+𐨀 𐨁 𐨂 𐨃 𐨅 𐨆 𐨌 𐨍 𐨎 𐨏 𐨐 𐨑 𐨒 𐨓 𐨕 𐨖 𐨗 𐨙 𐨚 𐨛 𐨜 𐨝 𐨞 𐨟 𐨠 𐨡 𐨢 𐨣 𐨤 𐨥 𐨦 𐨧 𐨨 𐨩 𐨪 𐨫 𐨬 𐨭 𐨮 𐨯 𐨰 𐨱 𐨲 𐨳 𐨸 𐨹 𐨺 𐨿 𐩀 𐩁 𐩂 𐩃 𐩄 𐩅 𐩆 𐩇 𐩐 𐩑 𐩒 𐩓 𐩔 𐩕 𐩖 𐩗 𐩘
+Script: COMMON
+Atomic (93)
+𝅥 𝅦 𝅭 𝅮 𝅯 𝅰 𝅱 𝅲 ـ ‐ ゠ · ’ ‧ ‿ ⁀ ʹ ʺ ˂ ˃ ˄ ˅ ˆ ˇ ˈ ˉ ˊ ˋ ˌ ˍ ˎ ˏ ˒ ˓ ˔ ˕ ˖ ˗ ˞ ˟ ˥ ˦ ˧ ˨ ˩ ˪ ˫ ˬ ˭ ℘ ℮ ↀ ↁ ↂ Ↄ ː ˑ 〱 〲 〳 〴 〵 ー 0 ٠ 1 ١ 2 ٢ 3 ٣ 4 ٤ 5 ٥ 6 ٦ 7 ٧ 8 ٨ 9 ٩ ʻ ʽ ˀ ʼ ˮ ʾ ʿ ˁ 〆 〼
+Pattern_Syntax (1750)
+‒ – — ― 〜 〰 、 ﹅ ﹆ ⁏ ¡ ¿ ‽ 。 ‘ ‚ ‛ ‹ › “ ” „ ‟ 〝 〞 〟 « » ⁅ ⁆ ⧼ ⧽ ⦃ ⦄ ⦅ ⦆ ⦇ ⦈ ⦉ ⦊ ⦋ ⦌ ⦍ ⦎ ⦏ ⦐ ⦑ ⦒ ⦓ ⦔ ⦕ ⦖ ⦗ ⦘ 〈 〉 《 》 「 」 『 』 【 】 〔 〕 〖 〗 〘 〙 〚 〛 ﴾ ﴿ § ¶ ⁋ © ® ⁎ ⁑ ⁄ ⁊ ‰ ‱ ⁒ † ‡ • ‣ ⁃ ⁌ ⁍ ′ ‵ 〃 ‸ ※ ⁐ ⁁ ⁂ ° ← → ↑ ↓ ↔ ↕ ↖ ↗ ↘ ↙ ↜ ↝ ↞ ↟ ↠ ↡ ↢ ↣ ↤ ↥ ↦ ↧ ↨ ↩ ↪ ↫ ↬ ↭ ↯ ↰ ↱ ↲ ↳ ↴ ↵ ↶ ↷ ↸ ↹ ↺ ↻ ↼ ↽ ↾ ↿ ⇀ ⇁ ⇂ ⇃ ⇄ ⇅ ⇆ ⇇ ⇈ ⇉ ⇊ ⇋ ⇌ ⇐ ⇑ ⇒ ⇓ ⇔ ⇕ ⇖ ⇗ ⇘ ⇙ ⇚ ⇛ ⇜ ⇝ ⇞ ⇟ ⇠ ⇡ ⇢ ⇣ ⇤ ⇥ ⇦ ⇧ ⇨ ⇩ ⇪ ⇫ ⇬ ⇭ ⇮ ⇯ ⇰ ⇱ ⇲ ⇳ ⇴ ⇵ ⇶ ⇷ ⇸ ⇹ ⇺ ⇻ ⇼ ⇽ ⇾ ⇿ ∀ ∁ ∂ ∃ ∅ ∆ ∇ ∈ ∊ ∋ ∍ ∎ ∏ ∐ ∑ ± ÷ × ¬ ¦ ‖ − ∓ ∔ ∕ ∖ ∗ ∘ ∙ √ ∛ ∜ ∝ ∞ ∟ ∠ ∡ ∢ ∣ ∥ ∧ ∨ ∩ ∪ ∫ ∮ ∱ ∲ ∳ ∴ ∵ ∶ ∷ ∸ ∹ ∺ ∻ ∼ ∽ ∾ ∿ ≀ ≂ ≃ ≅ ≆ ≈ ≊ ≋ ≌ ≍ ≎ ≏ ≐ ≑ ≒ ≓ ≔ ≕ ≖ ≗ ≘ ≙ ≚ ≛ ≜ ≝ ≞ ≟ ≡ ≣ ≤ ≥ ≦ ≧ ≨ ≩ ≪ ≫ ≬ ≲ ≳ ≶ ≷ ≺ ≻ ≼ ≽ ≾ ≿ ⊂ ⊃ ⊆ ⊇ ⊊ ⊋ ⊌ ⊍ ⊎ ⊏ ⊐ ⊑ ⊒ ⊓ ⊔ ⊕ ⊖ ⊗ ⊘ ⊙ ⊚ ⊛ ⊜ ⊝ ⊞ ⊟ ⊠ ⊡ ⊢ ⊣ ⊤ ⊥ ⊦ ⊧ ⊨ ⊩ ⊪ ⊫ ⊰ ⊱ ⊲ ⊳ ⊴ ⊵ ⊶ ⊷ ⊸ ⊹ ⊺ ⊻ ⊼ ⊽ ⊾ ⊿ ⋀ ⋁ ⋂ ⋃ ⋄ ⋅ ⋆ ⋇ ⋈ ⋉ ⋊ ⋋ ⋌ ⋍ ⋎ ⋏ ⋐ ⋑ ⋒ ⋓ ⋔ ⋕ ⋖ ⋗ ⋘ ⋙ ⋚ ⋛ ⋜ ⋝ ⋞ ⋟ ⋤ ⋥ ⋦ ⋧ ⋨ ⋩ ⋮ ⋯ ⋰ ⋱ ⋲ ⋳ ⋴ ⋵ ⋶ ⋷ ⋸ ⋹ ⋺ ⋻ ⋼ ⋽ ⋾ ⋿ ⌀ ⌁ ⌂ ⌃ ⌄ ⌅ ⌆ ⌇ ⌈ ⌉ ⌊ ⌋ ⌌ ⌍ ⌎ ⌏ ⌐ ⌑ ⌒ ⌓ ⌔ ⌕ ⌖ ⌗ ⌘ ⌙ ⌚ ⌛ ⌜ ⌝ ⌞ ⌟ ⌠ ⌡ ⌢ ⌣ ⌤ ⌥ ⌦ ⌧ ⌨ ⌫ ⌬ ⌭ ⌮ ⌯ ⌰ ⌱ ⌲ ⌳ ⌴ ⌵ ⌶ ⌷ ⌸ ⌹ ⌺ ⌻ ⌼ ⌽ ⌾ ⌿ ⍀ ⍁ ⍂ ⍃ ⍄ ⍅ ⍆ ⍇ ⍈ ⍉ ⍊ ⍋ ⍌ ⍍ ⍎ ⍏ ⍐ ⍑ ⍒ ⍓ ⍔ ⍕ ⍖ ⍗ ⍘ ⍙ ⍚ ⍛ ⍜ ⍝ ⍞ ⍟ ⍠ ⍡ ⍢ ⍣ ⍤ ⍥ ⍦ ⍧ ⍨ ⍩ ⍪ ⍫ ⍬ ⍭ ⍮ ⍯ ⍰ ⍱ ⍲ ⍳ ⍴ ⍵ ⍶ ⍷ ⍸ ⍹ ⍺ ⍻ ⍼ ⍽ ⍾ ⍿ ⎀ ⎁ ⎂ ⎃ ⎄ ⎅ ⎆ ⎇ ⎈ ⎉ ⎊ ⎋ ⎌ ⎍ ⎎ ⎏ ⎐ ⎑ ⎒ ⎓ ⎔ ⎕ ⎖ ⎗ ⎘ ⎙ ⎚ ⎛ ⎜ ⎝ ⎞ ⎟ ⎠ ⎡ ⎢ ⎣ ⎤ ⎥ ⎦ ⎧ ⎨ ⎩ ⎪ ⎫ ⎬ ⎭ ⎮ ⎯ ⎰ ⎱ ⎲ ⎳ ⎴ ⎵ ⎶ ⎷ ⎸ ⎹ ⎺ ⎻ ⎼ ⎽ ⎾ ⎿ ⏀ ⏁ ⏂ ⏃ ⏄ ⏅ ⏆ ⏇ ⏈ ⏉ ⏊ ⏋ ⏌ ⏍ ⏎ ␀ ␁ ␂ ␃ ␄ ␅ ␆ ␇ ␈ ␉ ␊ ␋ ␌ ␍ ␎ ␏ ␐ ␑ ␒ ␓ ␔ ␕ ␖ ␗ ␘ ␙ ␚ ␛ ␜ ␝ ␞ ␟ ␠ ␡ ␢ ␣ ␤ ␥ ␦ ⑀ ⑁ ⑂ ⑃ ⑄ ⑅ ⑆ ⑇ ⑈ ⑉ ⑊ ─ ━ │ ┃ ┄ ┅ ┆ ┇ ┈ ┉ ┊ ┋ ┌ ┍ ┎ ┏ ┐ ┑ ┒ ┓ └ ┕ ┖ ┗ ┘ ┙ ┚ ┛ ├ ┝ ┞ ┟ ┠ ┡ ┢ ┣ ┤ ┥ ┦ ┧ ┨ ┩ ┪ ┫ ┬ ┭ ┮ ┯ ┰ ┱ ┲ ┳ ┴ ┵ ┶ ┷ ┸ ┹ ┺ ┻ ┼ ┽ ┾ ┿ ╀ ╁ ╂ ╃ ╄ ╅ ╆ ╇ ╈ ╉ ╊ ╋ ╌ ╍ ╎ ╏ ═ ║ ╒ ╓ ╔ ╕ ╖ ╗ ╘ ╙ ╚ ╛ ╜ ╝ ╞ ╟ ╠ ╡ ╢ ╣ ╤ ╥ ╦ ╧ ╨ ╩ ╪ ╫ ╬ ╭ ╮ ╯ ╰ ╱ ╲ ╳ ╴ ╵ ╶ ╷ ╸ ╹ ╺ ╻ ╼ ╽ ╾ ╿ ▀ ▁ ▂ ▃ ▄ ▅ ▆ ▇ █ ▉ ▊ ▋ ▌ ▍ ▎ ▏ ▐ ░ ▒ ▓ ▔ ▕ ▖ ▗ ▘ ▙ ▚ ▛ ▜ ▝ ▞ ▟ ■ □ ▢ ▣ ▤ ▥ ▦ ▧ ▨ ▩ ▪ ▫ ▬ ▭ ▮ ▯ ▰ ▱ ▲ △ ▴ ▵ ▶ ▷ ▸ ▹ ► ▻ ▼ ▽ ▾ ▿ ◀ ◁ ◂ ◃ ◄ ◅ ◆ ◇ ◈ ◉ ◊ ○ ◌ ◍ ◎ ● ◐ ◑ ◒ ◓ ◔ ◕ ◖ ◗ ◘ ◙ ◚ ◛ ◜ ◝ ◞ ◟ ◠ ◡ ◢ ◣ ◤ ◥ ◦ ◧ ◨ ◩ ◪ ◫ ◬ ◭ ◮ ◯ ◰ ◱ ◲ ◳ ◴ ◵ ◶ ◷ ◸ ◹ ◺ ◻ ◼ ◽ ◾ ◿ ☀ ☁ ☂ ☃ ☄ ★ ☆ ☇ ☈ ☉ ☊ ☋ ☌ ☍ ☎ ☏ ☐ ☑ ☒ ☓ ☖ ☗ ☙ ☚ ☛ ☜ ☝ ☞ ☟ ☠ ☡ ☢ ☣ ☤ ☥ ☦ ☧ ☨ ☩ ☪ ☫ ☬ ☭ ☮ ☯ ☸ ☹ ☺ ☻ ☼ ☽ ☾ ☿ ♀ ♁ ♂ ♃ ♄ ♅ ♆ ♇ ♈ ♉ ♊ ♋ ♌ ♍ ♎ ♏ ♐ ♑ ♒ ♓ ♔ ♕ ♖ ♗ ♘ ♙ ♚ ♛ ♜ ♝ ♞ ♟ ♠ ♡ ♢ ♣ ♤ ♥ ♦ ♧ ♨ ♩ ♪ ♫ ♬ ♰ ♱ ♲ ♳ ♴ ♵ ♶ ♷ ♸ ♹ ♺ ♻ ♼ ♽ ⚀ ⚁ ⚂ ⚃ ⚄ ⚅ ⚆ ⚇ ⚈ ⚉ ✁ ✂ ✃ ✄ ✆ ✇ ✈ ✉ ✌ ✍ ✎ ✏ ✐ ✑ ✒ ✓ ✔ ✕ ✖ ✗ ✘ ✙ ✚ ✛ ✜ ✝ ✞ ✟ ✠ ✡ ✢ ✣ ✤ ✥ ✦ ✧ ✩ ✪ ✫ ✬ ✭ ✮ ✯ ✰ ✱ ✲ ✳ ✴ ✵ ✶ ✷ ✸ ✹ ✺ ✻ ✼ ✽ ✾ ✿ ❀ ❁ ❂ ❃ ❄ ❅ ❆ ❇ ❈ ❉ ❊ ❋ ❍ ❏ ❐ ❑ ❒ ❖ ❘ ❙ ❚ ❛ ❜ ❝ ❞ ❡ ❢ ❣ ❤ ❥ ❦ ❧ ❨ ❩ ❪ ❫ ❬ ❭ ❮ ❯ ❰ ❱ ❲ ❳ ❴ ❵ ➔ ➘ ➙ ➚ ➛ ➜ ➝ ➞ ➟ ➠ ➡ ➢ ➣ ➤ ➥ ➦ ➧ ➨ ➩ ➪ ➫ ➬ ➭ ➮ ➯ ➱ ➲ ➳ ➴ ➵ ➶ ➷ ➸ ➹ ➺ ➻ ➼ ➽ ➾ ⟐ ⟑ ⟒ ⟓ ⟔ ⟕ ⟖ ⟗ ⟘ ⟙ ⟚ ⟛ ⟜ ⟝ ⟞ ⟟ ⟠ ⟡ ⟢ ⟣ ⟤ ⟥ ⟦ ⟧ ⟨ ⟩ ⟪ ⟫ ⟰ ⟱ ⟲ ⟳ ⟴ ⟵ ⟶ ⟷ ⟸ ⟹ ⟺ ⟻ ⟼ ⟽ ⟾ ⟿ ⤀ ⤁ ⤂ ⤃ ⤄ ⤅ ⤆ ⤇ ⤈ ⤉ ⤊ ⤋ ⤌ ⤍ ⤎ ⤏ ⤐ ⤑ ⤒ ⤓ ⤔ ⤕ ⤖ ⤗ ⤘ ⤙ ⤚ ⤛ ⤜ ⤝ ⤞ ⤟ ⤠ ⤡ ⤢ ⤣ ⤤ ⤥ ⤦ ⤧ ⤨ ⤩ ⤪ ⤫ ⤬ ⤭ ⤮ ⤯ ⤰ ⤱ ⤲ ⤳ ⤴ ⤵ ⤶ ⤷ ⤸ ⤹ ⤺ ⤻ ⤼ ⤽ ⤾ ⤿ ⥀ ⥁ ⥂ ⥃ ⥄ ⥅ ⥆ ⥇ ⥈ ⥉ ⥊ ⥋ ⥌ ⥍ ⥎ ⥏ ⥐ ⥑ ⥒ ⥓ ⥔ ⥕ ⥖ ⥗ ⥘ ⥙ ⥚ ⥛ ⥜ ⥝ ⥞ ⥟ ⥠ ⥡ ⥢ ⥣ ⥤ ⥥ ⥦ ⥧ ⥨ ⥩ ⥪ ⥫ ⥬ ⥭ ⥮ ⥯ ⥰ ⥱ ⥲ ⥳ ⥴ ⥵ ⥶ ⥷ ⥸ ⥹ ⥺ ⥻ ⥼ ⥽ ⥾ ⥿ ⦀ ⦁ ⦂ ⦙ ⦚ ⦛ ⦜ ⦝ ⦞ ⦟ ⦠ ⦡ ⦢ ⦣ ⦤ ⦥ ⦦ ⦧ ⦨ ⦩ ⦪ ⦫ ⦬ ⦭ ⦮ ⦯ ⦰ ⦱ ⦲ ⦳ ⦴ ⦵ ⦶ ⦷ ⦸ ⦹ ⦺ ⦻ ⦼ ⦽ ⦾ ⦿ ⧀ ⧁ ⧂ ⧃ ⧄ ⧅ ⧆ ⧇ ⧈ ⧉ ⧊ ⧋ ⧌ ⧍ ⧎ ⧏ ⧐ ⧑ ⧒ ⧓ ⧔ ⧕ ⧖ ⧗ ⧘ ⧙ ⧚ ⧛ ⧜ ⧝ ⧞ ⧟ ⧠ ⧡ ⧢ ⧣ ⧤ ⧥ ⧦ ⧧ ⧨ ⧩ ⧪ ⧫ ⧬ ⧭ ⧮ ⧯ ⧰ ⧱ ⧲ ⧳ ⧴ ⧵ ⧶ ⧷ ⧸ ⧹ ⧺ ⧻ ⧾ ⧿ ⨀ ⨁ ⨂ ⨃ ⨄ ⨅ ⨆ ⨇ ⨈ ⨉ ⨊ ⨋ ⨍ ⨎ ⨏ ⨐ ⨑ ⨒ ⨓ ⨔ ⨕ ⨖ ⨗ ⨘ ⨙ ⨚ ⨛ ⨜ ⨝ ⨞ ⨟ ⨠ ⨡ ⨢ ⨣ ⨤ ⨥ ⨦ ⨧ ⨨ ⨩ ⨪ ⨫ ⨬ ⨭ ⨮ ⨯ ⨰ ⨱ ⨲ ⨳ ⨴ ⨵ ⨶ ⨷ ⨸ ⨹ ⨺ ⨻ ⨼ ⨽ ⨾ ⨿ ⩀ ⩁ ⩂ ⩃ ⩄ ⩅ ⩆ ⩇ ⩈ ⩉ ⩊ ⩋ ⩌ ⩍ ⩎ ⩏ ⩐ ⩑ ⩒ ⩓ ⩔ ⩕ ⩖ ⩗ ⩘ ⩙ ⩚ ⩛ ⩜ ⩝ ⩞ ⩟ ⩠ ⩡ ⩢ ⩣ ⩤ ⩥ ⩦ ⩧ ⩨ ⩩ ⩪ ⩫ ⩬ ⩭ ⩮ ⩯ ⩰ ⩱ ⩲ ⩳ ⩷ ⩸ ⩹ ⩺ ⩻ ⩼ ⩽ ⩾ ⩿ ⪀ ⪁ ⪂ ⪃ ⪄ ⪅ ⪆ ⪇ ⪈ ⪉ ⪊ ⪋ ⪌ ⪍ ⪎ ⪏ ⪐ ⪑ ⪒ ⪓ ⪔ ⪕ ⪖ ⪗ ⪘ ⪙ ⪚ ⪛ ⪜ ⪝ ⪞ ⪟ ⪠ ⪡ ⪢ ⪣ ⪤ ⪥ ⪦ ⪧ ⪨ ⪩ ⪪ ⪫ ⪬ ⪭ ⪮ ⪯ ⪰ ⪱ ⪲ ⪳ ⪴ ⪵ ⪶ ⪷ ⪸ ⪹ ⪺ ⪻ ⪼ ⪽ ⪾ ⪿ ⫀ ⫁ ⫂ ⫃ ⫄ ⫅ ⫆ ⫇ ⫈ ⫉ ⫊ ⫋ ⫌ ⫍ ⫎ ⫏ ⫐ ⫑ ⫒ ⫓ ⫔ ⫕ ⫖ ⫗ ⫘ ⫙ ⫚ ⫛ ⫝ ⫞ ⫟ ⫠ ⫡ ⫢ ⫣ ⫤ ⫥ ⫦ ⫧ ⫨ ⫩ ⫪ ⫫ ⫬ ⫭ ⫮ ⫯ ⫰ ⫱ ⫲ ⫳ ⫴ ⫵ ⫶ ⫷ ⫸ ⫹ ⫺ ⫻ ⫼ ⫽ ⫾ ⫿ ☰ ☱ ☲ ☳ ☴ ☵ ☶ ☷ ♭ ♮ ♯ 〒 〓 〠 ¤ ¢ £ ¥
+Non-XID (522)
+・ ، ؛ ։ ᛫ ᛬ ᛭ ؟ । ॥ ᜵ ᜶ ჻ ⅋ 〽 ॰ ℄ ℈ ℔ ℗ ℞ ℟ ℣ ℥ ℧ ℩ Ⅎ ℺ ⅁ ⅂ ⅃ ⅄ ⅊ 𝀀 𝀁 𝀂 𝀃 𝀄 𝀅 𝀆 𝀇 𝀈 𝀉 𝀊 𝀋 𝀌 𝀍 𝀎 𝀏 𝀐 𝀑 𝀒 𝀓 𝀔 𝀕 𝀖 𝀗 𝀘 𝀙 𝀚 𝀛 𝀜 𝀝 𝀞 𝀟 𝀠 𝀡 𝀢 𝀣 𝀤 𝀥 𝀦 𝀧 𝀨 𝀩 𝀪 𝀫 𝀬 𝀭 𝀮 𝀯 𝀰 𝀱 𝀲 𝀳 𝀴 𝀵 𝀶 𝀷 𝀸 𝀹 𝀺 𝀻 𝀼 𝀽 𝀾 𝀿 𝁀 𝁁 𝁂 𝁃 𝁄 𝁅 𝁆 𝁇 𝁈 𝁉 𝁊 𝁋 𝁌 𝁍 𝁎 𝁏 𝁐 𝁑 𝁒 𝁓 𝁔 𝁕 𝁖 𝁗 𝁘 𝁙 𝁚 𝁛 𝁜 𝁝 𝁞 𝁟 𝁠 𝁡 𝁢 𝁣 𝁤 𝁥 𝁦 𝁧 𝁨 𝁩 𝁪 𝁫 𝁬 𝁭 𝁮 𝁯 𝁰 𝁱 𝁲 𝁳 𝁴 𝁵 𝁶 𝁷 𝁸 𝁹 𝁺 𝁻 𝁼 𝁽 𝁾 𝁿 𝂀 𝂁 𝂂 𝂃 𝂄 𝂅 𝂆 𝂇 𝂈 𝂉 𝂊 𝂋 𝂌 𝂍 𝂎 𝂏 𝂐 𝂑 𝂒 𝂓 𝂔 𝂕 𝂖 𝂗 𝂘 𝂙 𝂚 𝂛 𝂜 𝂝 𝂞 𝂟 𝂠 𝂡 𝂢 𝂣 𝂤 𝂥 𝂦 𝂧 𝂨 𝂩 𝂪 𝂫 𝂬 𝂭 𝂮 𝂯 𝂰 𝂱 𝂲 𝂳 𝂴 𝂵 𝂶 𝂷 𝂸 𝂹 𝂺 𝂻 𝂼 𝂽 𝂾 𝂿 𝃀 𝃁 𝃂 𝃃 𝃄 𝃅 𝃆 𝃇 𝃈 𝃉 𝃊 𝃋 𝃌 𝃍 𝃎 𝃏 𝃐 𝃑 𝃒 𝃓 𝃔 𝃕 𝃖 𝃗 𝃘 𝃙 𝃚 𝃛 𝃜 𝃝 𝃞 𝃟 𝃠 𝃡 𝃢 𝃣 𝃤 𝃥 𝃦 𝃧 𝃨 𝃩 𝃪 𝃫 𝃬 𝃭 𝃮 𝃯 𝃰 𝃱 𝃲 𝃳 𝃴 𝃵 𝄀 𝄁 𝄂 𝄃 𝄄 𝄅 𝄆 𝄇 𝄈 𝄉 𝄊 𝄋 𝄌 𝄍 𝄎 𝄏 𝄐 𝄑 𝄒 𝄓 𝄔 𝄕 𝄖 𝄗 𝄘 𝄙 𝄚 𝄛 𝄜 𝄝 𝄞 𝄟 𝄠 𝄡 𝄢 𝄣 𝄤 𝄥 𝄦 𝄪 𝄫 𝄬 𝄭 𝄮 𝄯 𝄰 𝄱 𝄲 𝄳 𝄴 𝄵 𝄶 𝄷 𝄸 𝄹 𝄺 𝄻 𝄼 𝄽 𝄾 𝄿 𝅀 𝅁 𝅂 𝅃 𝅄 𝅅 𝅆 𝅇 𝅈 𝅉 𝅊 𝅋 𝅌 𝅍 𝅎 𝅏 𝅐 𝅑 𝅒 𝅓 𝅔 𝅕 𝅖 𝅗 𝅘 𝅙 𝅚 𝅛 𝅜 𝅝 𝅪 𝅫 𝅬 𝆃 𝆄 𝆌 𝆍 𝆎 𝆏 𝆐 𝆑 𝆒 𝆓 𝆔 𝆕 𝆖 𝆗 𝆘 𝆙 𝆚 𝆛 𝆜 𝆝 𝆞 𝆟 𝆠 𝆡 𝆢 𝆣 𝆤 𝆥 𝆦 𝆧 𝆨 𝆩 𝆮 𝆯 𝆰 𝆱 𝆲 𝆳 𝆴 𝆵 𝆶 𝆷 𝆸 𝆹 𝆺 𝇁 𝇂 𝇃 𝇄 𝇅 𝇆 𝇇 𝇈 𝇉 𝇊 𝇋 𝇌 𝇍 𝇎 𝇏 𝇐 𝇑 𝇒 𝇓 𝇔 𝇕 𝇖 𝇗 𝇘 𝇙 𝇚 𝇛 𝇜 𝇝 〄 〷 〾 〿 ㆐ ㆑ ㉿ ฿ ₠ ₡ ₢ ₣ ₤ ₥ ₦ ₧ ₩ ₪ ₫ € ₭ ₮ ₯ ₰ ₱ ⓵ ❶ ➀ ➊ ⓾ ❿ ➉ ➓ ⓫ ⓬ ⓭ ⓮ ⓯ ⓰ ⓱ ⓲ ⓳ ⓶ ❷ ➁ ➋ ⓴ ⓷ ❸ ➂ ➌ ⓸ ❹ ➃ ➍ ⓹ ❺ ➄ ➎ ⓺ ❻ ➅ ➏ ⓻ ❼ ➆ ➐ ⓼ ❽ ➇ ➑ ⓽ ❾ ➈ ➒
+Decomposable (44)
+↚ ↛ ↮ ⇍ ⇏ ⇎ ∄ ∉ ∌ ≮ ≠ ≯ ∤ ∦ ≁ ≄ ≇ ≉ ≭ ≢ ≰ ≱ ≴ ≵ ≸ ≹ ⊀ ⊁ ⋠ ⋡ ⊄ ⊅ ⊈ ⊉ ⋢ ⋣ ⊬ ⊭ ⊮ ⊯ ⋪ ⋫ ⋬ ⋭
+IDN-Remapped-Compat (1665)
+ﾞ ﾟ ‑ ︲ ﹘ ︱ ･ ﹑ ､ ｡ · ｟ ｠ 〈 ︿ 〉 ﹀ ︽ ︾ ｢ ﹁ ｣ ﹂ ﹃ ﹄ ︻ ︼ ﹝ ︹ ﹞ ︺ ″ ‴ ⁗ ‶ ‷ ℃ ℉ ￩ ￫ ￪ ￬ 𝛛 𝜕 𝝏 𝞉 𝟃 𝛁 𝛻 𝜵 𝝯 𝞩 ⅀ ￢ ￤ ⁻ ₋ ∬ ∭ ⨌ ∯ ∰ ￨ ￭ ￮ ⫝̸ 𝅗𝅥 𝅘𝅥 𝅘𝅥𝅮 𝅘𝅥𝅯 𝅘𝅥𝅰 𝅘𝅥𝅱 𝅘𝅥𝅲 𝆹𝅥 𝆹𝅥𝅮 𝆹𝅥𝅯 𝆺𝅥 𝆺𝅥𝅮 𝆺𝅥𝅯 〶 ｰ ￠ ￡ ￥ ￦ ０ 𝟎 𝟘 𝟢 𝟬 𝟶 ⓪ ⁰ ₀ ㍘ １ 𝟏 𝟙 𝟣 𝟭 𝟷 ① ¹ ₁ ⅟ ½ ⅓ ¼ ⅕ ⅙ ⅛ ⑩ ㏩ ㋉ ㍢ ⑪ ㏪ ㋊ ㍣ ⑫ ㏫ ㋋ ㍤ ⑬ ㏬ ㍥ ⑭ ㏭ ㍦ ⑮ ㏮ ㍧ ⑯ ㏯ ㍨ ⑰ ㏰ ㍩ ⑱ ㏱ ㍪ ⑲ ㏲ ㍫ ㏠ ㋀ ㍙ ２ 𝟐 𝟚 𝟤 𝟮 𝟸 ② ² ₂ ⅔ ⅖ ⑳ ㏳ ㍬ ㉑ ㏴ ㍭ ㉒ ㏵ ㍮ ㉓ ㏶ ㍯ ㉔ ㏷ ㍰ ㉕ ㏸ ㉖ ㏹ ㉗ ㏺ ㉘ ㏻ ㉙ ㏼ ㏡ ㋁ ㍚ ３ 𝟑 𝟛 𝟥 𝟯 𝟹 ③ ³ ₃ ¾ ⅗ ⅜ ㉚ ㏽ ㉛ ㏾ ㉜ ㉝ ㉞ ㉟ ㊱ ㊲ ㊳ ㊴ ㏢ ㋂ ㍛ ４ 𝟒 𝟜 𝟦 𝟰 𝟺 ④ ⁴ ₄ ⅘ ㊵ ㊶ ㊷ ㊸ ㊹ ㊺ ㊻ ㊼ ㊽ ㊾ ㏣ ㋃ ㍜ ５ 𝟓 𝟝 𝟧 𝟱 𝟻 ⑤ ⁵ ₅ ⅚ ⅝ ㊿ ㏤ ㋄ ㍝ ６ 𝟔 𝟞 𝟨 𝟲 𝟼 ⑥ ⁶ ₆ ㏥ ㋅ ㍞ ７ 𝟕 𝟟 𝟩 𝟳 𝟽 ⑦ ⁷ ₇ ⅞ ㏦ ㋆ ㍟ ８ 𝟖 𝟠 𝟪 𝟴 𝟾 ⑧ ⁸ ₈ ㏧ ㋇ ㍠ ９ 𝟗 𝟡 𝟫 𝟵 𝟿 ⑨ ⁹ ₉ ㏨ ㋈ ㍡ 𝐚 𝑎 𝒂 𝒶 𝓪 𝔞 𝕒 𝖆 𝖺 𝗮 𝘢 𝙖 𝚊 ⓐ 𝐀 𝐴 𝑨 𝒜 𝓐 𝔄 𝔸 𝕬 𝖠 𝗔 𝘈 𝘼 𝙰 Ⓐ ℀ ℁ ㍳ 𝐛 𝑏 𝒃 𝒷 𝓫 𝔟 𝕓 𝖇 𝖻 𝗯 𝘣 𝙗 𝚋 ⓑ ℬ 𝐁 𝐵 𝑩 𝓑 𝔅 𝔹 𝕭 𝖡 𝗕 𝘉 𝘽 𝙱 Ⓑ ㍴ ㏃ ⅽ 𝐜 𝑐 𝒄 𝒸 𝓬 𝔠 𝕔 𝖈 𝖼 𝗰 𝘤 𝙘 𝚌 ⓒ Ⅽ ℂ ℭ 𝐂 𝐶 𝑪 𝒞 𝓒 𝕮 𝖢 𝗖 𝘊 𝘾 𝙲 Ⓒ ℅ ℆ ㏆ ㎈ ㏄ ㏅ ㎝ ㎠ ㎤ ⅾ ⅆ 𝐝 𝑑 𝒅 𝒹 𝓭 𝔡 𝕕 𝖉 𝖽 𝗱 𝘥 𝙙 𝚍 ⓓ Ⅾ ⅅ 𝐃 𝐷 𝑫 𝒟 𝓓 𝔇 𝔻 𝕯 𝖣 𝗗 𝘋 𝘿 𝙳 Ⓓ ㍲ ㏈ ㎗ ℯ ⅇ 𝐞 𝑒 𝒆 𝓮 𝔢 𝕖 𝖊 𝖾 𝗲 𝘦 𝙚 𝚎 ⓔ ℰ 𝐄 𝐸 𝑬 𝓔 𝔈 𝔼 𝕰 𝖤 𝗘 𝘌 𝙀 𝙴 Ⓔ ℇ 𝐟 𝑓 𝒇 𝒻 𝓯 𝔣 𝕗 𝖋 𝖿 𝗳 𝘧 𝙛 𝚏 ⓕ ℱ 𝐅 𝐹 𝑭 𝓕 𝔉 𝔽 𝕱 𝖥 𝗙 𝘍 𝙁 𝙵 Ⓕ ㎙ ℊ 𝐠 𝑔 𝒈 𝓰 𝔤 𝕘 𝖌 𝗀 𝗴 𝘨 𝙜 𝚐 ⓖ 𝐆 𝐺 𝑮 𝒢 𝓖 𝔊 𝔾 𝕲 𝖦 𝗚 𝘎 𝙂 𝙶 Ⓖ ㎇ ㎓ ㎬ ㏉ ℎ 𝐡 𝒉 𝒽 𝓱 𝔥 𝕙 𝖍 𝗁 𝗵 𝘩 𝙝 𝚑 ⓗ ℋ ℌ ℍ 𝐇 𝐻 𝑯 𝓗 𝕳 𝖧 𝗛 𝘏 𝙃 𝙷 Ⓗ ㏊ ㏋ ㍱ ㎐ ℏ ⅰ ℹ ⅈ 𝐢 𝑖 𝒊 𝒾 𝓲 𝔦 𝕚 𝖎 𝗂 𝗶 𝘪 𝙞 𝚒 ⓘ Ⅰ ℐ ℑ 𝐈 𝐼 𝑰 𝓘 𝕀 𝕴 𝖨 𝗜 𝘐 𝙄 𝙸 Ⓘ ⅱ Ⅱ ⅲ Ⅲ ㏌ ⅳ Ⅳ ⅸ Ⅸ ⅉ 𝐣 𝑗 𝒋 𝒿 𝓳 𝔧 𝕛 𝖏 𝗃 𝗷 𝘫 𝙟 𝚓 ⓙ 𝐉 𝐽 𝑱 𝒥 𝓙 𝔍 𝕁 𝕵 𝖩 𝗝 𝘑 𝙅 𝙹 Ⓙ 𝐤 𝑘 𝒌 𝓀 𝓴 𝔨 𝕜 𝖐 𝗄 𝗸 𝘬 𝙠 𝚔 ⓚ 𝐊 𝐾 𝑲 𝒦 𝓚 𝔎 𝕂 𝕶 𝖪 𝗞 𝘒 𝙆 𝙺 Ⓚ ㎄ ㎅ ㎉ ㎏ ㎑ ㏍ ㎘ ㎞ ㏎ ㎢ ㎦ ㎪ ㏏ ㎸ ㎾ ㏀ ⅼ ℓ 𝐥 𝑙 𝒍 𝓵 𝔩 𝕝 𝖑 𝗅 𝗹 𝘭 𝙡 𝚕 ⓛ Ⅼ ℒ 𝐋 𝐿 𝑳 𝓛 𝔏 𝕃 𝕷 𝖫 𝗟 𝘓 𝙇 𝙻 Ⓛ ㏐ ㏑ ㏒ ㏓ ⅿ 𝐦 𝑚 𝒎 𝓂 𝓶 𝔪 𝕞 𝖒 𝗆 𝗺 𝘮 𝙢 𝚖 ⓜ Ⅿ ℳ 𝐌 𝑀 𝑴 𝓜 𝔐 𝕄 𝕸 𝖬 𝗠 𝘔 𝙈 𝙼 Ⓜ ㎧ ㎨ ㎡ ㎥ ㎃ ㏔ ㎆ ㎎ ㎒ ㏕ ㎖ ㎜ ㎟ ㎣ ㏖ ㎫ ㎳ ㎷ ㎹ ㎽ ㎿ ㏁ 𝐧 𝑛 𝒏 𝓃 𝓷 𝔫 𝕟 𝖓 𝗇 𝗻 𝘯 𝙣 𝚗 ⓝ ℕ 𝐍 𝑁 𝑵 𝒩 𝓝 𝔑 𝕹 𝖭 𝗡 𝘕 𝙉 𝙽 Ⓝ ㎁ ㎋ ㎚ № ㎱ ㎵ ㎻ ℴ 𝐨 𝑜 𝒐 𝓸 𝔬 𝕠 𝖔 𝗈 𝗼 𝘰 𝙤 𝚘 ⓞ 𝐎 𝑂 𝑶 𝒪 𝓞 𝔒 𝕆 𝕺 𝖮 𝗢 𝘖 𝙊 𝙾 Ⓞ ㍵ 𝐩 𝑝 𝒑 𝓅 𝓹 𝔭 𝕡 𝖕 𝗉 𝗽 𝘱 𝙥 𝚙 ⓟ ℙ 𝐏 𝑃 𝑷 𝒫 𝓟 𝔓 𝕻 𝖯 𝗣 𝘗 𝙋 𝙿 Ⓟ ㎀ ㎩ ㍶ ㎊ ㏗ ㏙ ㏚ ㎰ ㎴ ㎺ 𝐪 𝑞 𝒒 𝓆 𝓺 𝔮 𝕢 𝖖 𝗊 𝗾 𝘲 𝙦 𝚚 ⓠ ℚ 𝐐 𝑄 𝑸 𝒬 𝓠 𝔔 𝕼 𝖰 𝗤 𝘘 𝙌 𝚀 Ⓠ 𝐫 𝑟 𝒓 𝓇 𝓻 𝔯 𝕣 𝖗 𝗋 𝗿 𝘳 𝙧 𝚛 ⓡ ℛ ℜ ℝ 𝐑 𝑅 𝑹 𝓡 𝕽 𝖱 𝗥 𝘙 𝙍 𝚁 Ⓡ ㎭ ㎮ ㎯ ₨ 𝐬 𝑠 𝒔 𝓈 𝓼 𝔰 𝕤 𝖘 𝗌 𝘀 𝘴 𝙨 𝚜 ⓢ 𝐒 𝑆 𝑺 𝒮 𝓢 𝔖 𝕊 𝕾 𝖲 𝗦 𝘚 𝙎 𝚂 Ⓢ ℠ ㏛ ㏜ 𝐭 𝑡 𝒕 𝓉 𝓽 𝔱 𝕥 𝖙 𝗍 𝘁 𝘵 𝙩 𝚝 ⓣ 𝐓 𝑇 𝑻 𝒯 𝓣 𝔗 𝕋 𝕿 𝖳 𝗧 𝘛 𝙏 𝚃 Ⓣ ℡ ㎔ ™ 𝐮 𝑢 𝒖 𝓊 𝓾 𝔲 𝕦 𝖚 𝗎 𝘂 𝘶 𝙪 𝚞 ⓤ 𝐔 𝑈 𝑼 𝒰 𝓤 𝔘 𝕌 𝖀 𝖴 𝗨 𝘜 𝙐 𝚄 Ⓤ ⅴ 𝐯 𝑣 𝒗 𝓋 𝓿 𝔳 𝕧 𝖛 𝗏 𝘃 𝘷 𝙫 𝚟 ⓥ Ⅴ 𝐕 𝑉 𝑽 𝒱 𝓥 𝔙 𝕍 𝖁 𝖵 𝗩 𝘝 𝙑 𝚅 Ⓥ ⅵ Ⅵ ⅶ Ⅶ ⅷ Ⅷ 𝐰 𝑤 𝒘 𝓌 𝔀 𝔴 𝕨 𝖜 𝗐 𝘄 𝘸 𝙬 𝚠 ⓦ 𝐖 𝑊 𝑾 𝒲 𝓦 𝔚 𝕎 𝖂 𝖶 𝗪 𝘞 𝙒 𝚆 Ⓦ ㏝ ⅹ 𝐱 𝑥 𝒙 𝓍 𝔁 𝔵 𝕩 𝖝 𝗑 𝘅 𝘹 𝙭 𝚡 ⓧ Ⅹ 𝐗 𝑋 𝑿 𝒳 𝓧 𝔛 𝕏 𝖃 𝖷 𝗫 𝘟 𝙓 𝚇 Ⓧ ⅺ Ⅺ ⅻ Ⅻ 𝐲 𝑦 𝒚 𝓎 𝔂 𝔶 𝕪 𝖞 𝗒 𝘆 𝘺 𝙮 𝚢 ⓨ 𝐘 𝑌 𝒀 𝒴 𝓨 𝔜 𝕐 𝖄 𝖸 𝗬 𝘠 𝙔 𝚈 Ⓨ 𝐳 𝑧 𝒛 𝓏 𝔃 𝔷 𝕫 𝖟 𝗓 𝘇 𝘻 𝙯 𝚣 ⓩ ℤ ℨ 𝐙 𝑍 𝒁 𝒵 𝓩 𝖅 𝖹 𝗭 𝘡 𝙕 𝚉 Ⓩ 𝛂 𝛼 𝜶 𝝰 𝞪 𝚨 𝛢 𝜜 𝝖 𝞐 𝛃 𝛽 𝜷 𝝱 𝞫 𝚩 𝛣 𝜝 𝝗 𝞑 ℽ 𝛄 𝛾 𝜸 𝝲 𝞬 ℾ 𝚪 𝛤 𝜞 𝝘 𝞒 𝛅 𝛿 𝜹 𝝳 𝞭 𝚫 𝛥 𝜟 𝝙 𝞓 𝛆 𝛜 𝜀 𝜖 𝜺 𝝐 𝝴 𝞊 𝞮 𝟄 𝚬 𝛦 𝜠 𝝚 𝞔 𝛇 𝜁 𝜻 𝝵 𝞯 𝚭 𝛧 𝜡 𝝛 𝞕 𝛈 𝜂 𝜼 𝝶 𝞰 𝚮 𝛨 𝜢 𝝜 𝞖 𝛉 𝛝 𝜃 𝜗 𝜽 𝝑 𝝷 𝞋 𝞱 𝟅 𝚯 𝚹 𝛩 𝛳 𝜣 𝜭 𝝝 𝝧 𝞗 𝞡 𝛊 𝜄 𝜾 𝝸 𝞲 𝚰 𝛪 𝜤 𝝞 𝞘 𝛋 𝛞 𝜅 𝜘 𝜿 𝝒 𝝹 𝞌 𝞳 𝟆 𝚱 𝛫 𝜥 𝝟 𝞙 𝛌 𝜆 𝝀 𝝺 𝞴 𝚲 𝛬 𝜦 𝝠 𝞚 µ 𝛍 𝜇 𝝁 𝝻 𝞵 𝚳 𝛭 𝜧 𝝡 𝞛 ㎂ ㎌ ㎍ ㎕ ㎛ ㎲ ㎶ ㎼ 𝛎 𝜈 𝝂 𝝼 𝞶 𝚴 𝛮 𝜨 𝝢 𝞜 𝛏 𝜉 𝝃 𝝽 𝞷 𝚵 𝛯 𝜩 𝝣 𝞝 𝛐 𝜊 𝝄 𝝾 𝞸 𝚶 𝛰 𝜪 𝝤 𝞞 𝛑 𝛡 𝜋 𝜛 𝝅 𝝕 𝝿 𝞏 𝞹 𝟉 ℿ 𝚷 𝛱 𝜫 𝝥 𝞟 𝛒 𝛠 𝜌 𝜚 𝝆 𝝔 𝞀 𝞎 𝞺 𝟈 𝚸 𝛲 𝜬 𝝦 𝞠 𝛓 𝛔 𝜍 𝜎 𝝇 𝝈 𝞁 𝞂 𝞻 𝞼 𝚺 𝛴 𝜮 𝝨 𝞢 𝛕 𝜏 𝝉 𝞃 𝞽 𝚻 𝛵 𝜯 𝝩 𝞣 𝛖 𝜐 𝝊 𝞄 𝞾 𝚼 𝛶 𝜰 𝝪 𝞤 𝛗 𝛟 𝜑 𝜙 𝝋 𝝓 𝞅 𝞍 𝞿 𝟇 𝚽 𝛷 𝜱 𝝫 𝞥 𝛘 𝜒 𝝌 𝞆 𝟀 𝚾 𝛸 𝜲 𝝬 𝞦 𝛙 𝜓 𝝍 𝞇 𝟁 𝚿 𝛹 𝜳 𝝭 𝞧 𝛚 𝜔 𝝎 𝞈 𝟂 𝛀 𝛺 𝜴 𝝮 𝞨 ℵ ℶ ℷ ℸ ㋐ ㌃ ㌀ ㌁ ㌂ ㋑ ㌄ ㌅ ㋒ ㌆ ㋓ ㌈ ㌇ ㋔ ㌊ ㌉ ㋕ ㌋ ㌌ ㌍ ㌎ ㌏ ㋖ ㌐ ㌑ ㌒ ㌓ ㌔ ㌕ ㌖ ㌗ ㋗ ㌘ ㌙ ㌚ ㌛ ㋘ ㌜ ㋙ ㌞ ㌝ ㋚ ㌟ ㌠ ㋛ ㌡ ㋜ ㋝ ㌢ ㌣ ㋞ ㋟ ㌤ ㋠ ㋡ ㋢ ㌥ ㋣ ㌦ ㌧ ㋤ ㌨ ㋥ ㋦ ㋧ ㋨ ㌩ ㋩ ㌫ ㌬ ㌭ ㌪ ㋪ ㌮ ㌯ ㌰ ㌱ ㋫ ㌲ ㌳ ㌴ ㌵ ㋬ ㌻ ㌼ ㌶ ㌷ ㌸ ㌹ ㌺ ㋭ ㍁ ㍂ ㌽ ㌾ ㌿ ㍀ ㋮ ㍃ ㍄ ㍅ ㍆ ㍇ ㋯ ㍈ ㍉ ㍊ ㋰ ㋱ ㍍ ㍋ ㍌ ㋲ ㋳ ㍎ ㍏ ㋴ ㍐ ㋵ ㋶ ㋷ ㍑ ㍒ ㋸ ㍔ ㍓ ㋹ ㍕ ㍖ ㋺ ㋻ ㍗ ㋼ ㋽ ㋾ ㊀ ㆒ ㆜ ㊆ ㊂ ㆔ ㊤ ㆖ ㊦ ㆘ ㆛ ㊥ ㆗ ㆚ ㊈ ㊁ ㆓ ㊄ ㆟ ㊭ ㊡ ㊝ ㊇ ㊅ ㊢ ㊘ ㊩ ㊉ ㊯ ㊞ ㊨ ㊔ ㊃ ㆕ ㊏ ㆞ ㊰ ㍽ ㆝ ㊛ ㊫ ㊪ ㊧ ㍻ ㊐ ㍾ ㍼ ㊊ ㊒ ㊍ ㊑ ㍿ ㊣ ㊌ ㊟ ㊋ ㊕ ㆙ ㊚ ㊬ ㊓ ㊗ ㊙ ㊖ ㊮ ㊜ ㊎ ㊠
+IDN-Deleted (4)
+U+200B U+2060 U+FEFF U+00AD
+IDN-Invalid (673)
+tilde ｀ ´ ˜ ^ ＾ ¯ ￣ ‾ ﹉ ﹊ ﹋ ﹌ ˘ ˙ ¨ ˚ ˝ ¸ ˛ _ ＿ ﹍ ﹎ ﹏ ︳ ︴ ‗ ゛ ゜ - － ﹣ ⁓ , ， ﹐ ; ; ； ﹔ : ： ﹕ ⩴ ! ！ ﹗ ‼ ⁉ ? ？ ﹖ ⁈ ⁇ . ． ․ ﹒ ‥ ︰ … 𐄀 𐄁 𐄂 ' ＇ doublequotes ＂ ( （ ﹙ ⁽ ₍ ︵ ⑴ ⑽ ⑾ ⑿ ⒀ ⒁ ⒂ ⒃ ⒄ ⒅ ⒆ ⑵ ⒇ ⑶ ⑷ ⑸ ⑹ ⑺ ⑻ ⑼ ⒜ ⒝ ⒞ ⒟ ⒠ ⒡ ⒢ ⒣ ⒤ ⒥ ⒦ ⒧ ⒨ ⒩ ⒪ ⒫ ⒬ ⒭ ⒮ ⒯ ⒰ ⒱ ⒲ ⒳ ⒴ ⒵ ㈠ ㈦ ㈢ ㈨ ㈡ ㈤ ㈹ ㈽ ㉁ ㈧ ㈥ ㈸ ㈩ ㈿ ㈴ ㈺ ㈣ ㈯ ㈻ ㈰ ㈪ ㈲ ㈭ ㈱ ㈬ ㈫ ㈵ ㈼ ㈳ ㈷ ㉀ ㉂ ㉃ ㈶ ㈾ ㈮ ) ） ﹚ ⁾ ₎ ︶ [ ［ ﹇ ] ］ ﹈ { ｛ ﹛ ︷ } ｝ ﹜ ︸ @ ＠ ﹫ * ＊ ﹡ / ／ \ ＼ ﹨ & ＆ ﹠ # ＃ ﹟ % ％ ﹪ ⁔ ˯ ˰ ˱ ˲ ˳ ˴ ˵ ˶ ˷ ˸ ˹ ˺ ˻ ˼ ˽ ˾ ˿ ﷽ + ＋ ﹢ ⁺ ₊ < ＜ ﹤ = ＝ ﹦ ⁼ ₌ ⩵ ⩶ > ＞ ﹥ | ｜ ~ ～ ⏏ ⏐ ☔ ☕ ⚐ ⚑ ⚠ ⚡ ⬀ ⬁ ⬂ ⬃ ⬄ ⬅ ⬆ ⬇ ⬈ ⬉ ⬊ ⬋ ⬌ ⬍ ⚊ ⚋ ⚌ ⚍ ⚎ ⚏ ䷀ ䷁ ䷂ ䷃ ䷄ ䷅ ䷆ ䷇ ䷈ ䷉ ䷊ ䷋ ䷌ ䷍ ䷎ ䷏ ䷐ ䷑ ䷒ ䷓ ䷔ ䷕ ䷖ ䷗ ䷘ ䷙ ䷚ ䷛ ䷜ ䷝ ䷞ ䷟ ䷠ ䷡ ䷢ ䷣ ䷤ ䷥ ䷦ ䷧ ䷨ ䷩ ䷪ ䷫ ䷬ ䷭ ䷮ ䷯ ䷰ ䷱ ䷲ ䷳ ䷴ ䷵ ䷶ ䷷ ䷸ ䷹ ䷺ ䷻ ䷼ ䷽ ䷾ ䷿ 𝌀 𝌁 𝌂 𝌃 𝌄 𝌅 𝌆 𝌇 𝌈 𝌉 𝌊 𝌋 𝌌 𝌍 𝌎 𝌏 𝌐 𝌑 𝌒 𝌓 𝌔 𝌕 𝌖 𝌗 𝌘 𝌙 𝌚 𝌛 𝌜 𝌝 𝌞 𝌟 𝌠 𝌡 𝌢 𝌣 𝌤 𝌥 𝌦 𝌧 𝌨 𝌩 𝌪 𝌫 𝌬 𝌭 𝌮 𝌯 𝌰 𝌱 𝌲 𝌳 𝌴 𝌵 𝌶 𝌷 𝌸 𝌹 𝌺 𝌻 𝌼 𝌽 𝌾 𝌿 𝍀 𝍁 𝍂 𝍃 𝍄 𝍅 𝍆 𝍇 𝍈 𝍉 𝍊 𝍋 𝍌 𝍍 𝍎 𝍏 𝍐 𝍑 𝍒 𝍓 𝍔 𝍕 𝍖 𐄷 𐄸 𐄹 𐄺 𐄻 𐄼 𐄽 𐄾 𐄿 ⿰ ⿱ ⿲ ⿳ ⿴ ⿵ ⿶ ⿷ ⿸ ⿹ ⿺ ⿻ ￼ � 𐄐 𐄑 𐄒 𐄓 𐄔 𐄕 𐄖 𐄗 𐄘 𐄙 𐄚 𐄛 𐄜 𐄝 𐄞 𐄟 𐄠 𐄡 𐄢 𐄣 𐄤 𐄥 𐄦 𐄧 𐄨 𐄩 𐄪 𐄫 𐄬 𐄭 𐄮 𐄯 𐄰 𐄱 𐄲 𐄳 $ ＄ ﹩ ⓿ 𐄇 ⒈ ⒑ ⒒ ⒓ ⒔ ⒕ ⒖ ⒗ ⒘ ⒙ ⒚ 𐄈 ⒉ ⒛ 𐄉 ⒊ 𐄊 ⒋ 𐄋 ⒌ 𐄌 ⒍ 𐄍 ⒎ 𐄎 ⒏ 𐄏 ⒐ ㏂ ㏟ ㏇ ㍷ ㍸ ㍹ ㋍ ㋎ ℻ ㏿ ㋌ ㍺ 𝓁 ㋏ ㏘ ㉐ ㏞ ⁕ ⁖ ⁘ ⁙ ⁚ ⁛ ⁜ ⁝ ⁞ ₲ ₳ ₴ ₵ ℼ ⅌ ⏑ ⏒ ⏓ ⏔ ⏕ ⏖ ⏗ ⏘ ⏙ ⏚ ⏛ ☘ ♾ ♿ ⚒ ⚓ ⚔ ⚕ ⚖ ⚗ ⚘ ⚙ ⚚ ⚛ ⚜ ⚢ ⚣ ⚤ ⚥ ⚦ ⚧ ⚨ ⚩ ⚪ ⚫ ⚬ ⚭ ⚮ ⚯ ⚰ ⚱ ⟀ ⟁ ⟂ ⟃ ⟄ ⟅ ⟆ ⬎ ⬏ ⬐ ⬑ ⬒ ⬓ ⸀ ⸁ ⸂ ⸃ ⸄ ⸅ ⸆ ⸇ ⸈ ⸉ ⸊ ⸋ ⸌ ⸍ ⸎ ⸏ ⸐ ⸑ ⸒ ⸓ ⸔ ⸕ ⸖ ⸗ ⸜ ⸝ ㇀ ㇁ ㇂ ㇃ ㇄ ㇅ ㇆ ㇇ ㇈ ㇉ ㇊ ㇋ ㇌ ㇍ ㇎ ㇏ ㉾ ꜀ ꜁ ꜂ ꜃ ꜄ ꜅ ꜆ ꜇ ꜈ ꜉ ꜊ ꜋ ꜌ ꜍ ꜎ ꜏ ꜐ ꜑ ꜒ ꜓ ꜔ ꜕ ꜖ ︐ ︑ ︒ ︓ ︔ ︕ ︖ ︗ ︘ ︙ 𝚤 𝚥
+
+Script: INHERITED
+Atomic (156)
+︡ ︣ 𝅧 𝅨 𝅩 𝅻 𝅼 𝅽 𝅾 𝅿 𝆀 𝆁 𝆂 𝆅 𝆆
+𝆇 𝆈 𝆉 𝆊 𝆋 𝆪 𝆫 𝆬 𝆭 ̲ ̓ ̔ ́ ̀ ̆ ̂ ̌
+̊ ͂ ̈ ̋ ̃ ̇ ̸ ̧ ̨ ̄ ̅ ̉ ̍ ̎ ̏ ̐ ̑ ̒ ̕
+̖ ̗ ̘ ̙ ̚ ̛ ̜ ̝ ̞ ̟ ̠ ̡ ̢ ̣ ̤ ̥ ̦ ̩
+̪ ̫ ̬ ̭ ̮ ̯ ̰ ̱ ̳ ̴ ̵ ̶ ̷ ̹ ̺ ̻ ̼
+̽ ̾ ̿ ͆ ͇ ͈ ͉ ͊ ͋ ͌ ͍ ͎ ͠ ︢ ͡ ︠ ͢
+ً ٌ ٍ َ ُ ِ ّ ْ ٓ ٔ ٕ ٰ 〪 〫 〬 〭 〮 〯 ゙
+゚ ⃐ ⃑ ⃒ ⃓ ⃔ ⃕ ⃖ ⃗ ⃘ ⃙ ⃚ ⃛ ⃜ ⃡ ⃥ ⃦ ⃧ ⃨ ⃩ ⃪ ͣ ͨ ͩ ͤ ͪ ͥ ͫ ͦ ͬ ͭ ͧ ͮ ͯ
+Non-XID (7)
+⃝ ⃞ ⃟ ⃠ ⃢ ⃣ ⃤
+IDN-Remapped-Case-Atomic (1)
+ͅ
+IDN-Remapped-Compat (4)
+̓ ́ ̀ ̈́
+IDN-Invalid (21)
+͐ ͑ ͒ ͓ ͔ ͕ ͖ ͗ ͝ ͞ ͟ ͘ ͙ ͚ ͛ ͜ ᷀ ᷁ ᷂ ᷃ ⃫" >> allUnicode
+
+
+for i in ${a}; do
+echo " ------------------------------------------------------------------------------------------------------------------------------------"
+echo " ------------------------------------------------------------------------------------------------------------------------------------"
+echo $i
+echo " ------------------------------------------------------------------------------------------------------------------------------------"
+echo " ------------------------------------------------------------------------------------------------------------------------------------"
+iconv allUnicode --from-code=UTF8 --to-code=$i
+done
