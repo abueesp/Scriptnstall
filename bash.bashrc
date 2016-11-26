@@ -1266,18 +1266,18 @@ saltpack sign --message $messg | tee ~/signed_message
 echo "The signed message was saved as signed_message"
 }
 
-saltverify {
+sverify(){
 read -p "Message to verify (~/signedmessage by default): " -i ~/signedmessage -e messg 
 saltpack verify < ~/signedmessage
 }
 
-saltencrypt {
+sencrypt(){
 read -p "Message to encrypt (~/message by default): " -i ~/message -e messg
 saltpack encrypt --message $messg | tee ~/encrypted_message
 echo "The signed message was saved as signed_message"
 }
 
-saltdecrypt {
+sdecrypt(){
 read -p "Message to decrypt (~/encrypted_message by default): " -i ~/message -e messg
 saltpack decrypt < ~/encrypted_message
 }
