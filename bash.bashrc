@@ -1258,3 +1258,26 @@ do
     esac
 done
 }
+
+
+Saltsign {
+read -p "Message to sign (~/message by default): " -i ~/message -e messg
+saltpack sign --message $messg | tee ~/signed_message
+echo "The signed message was saved as signed_message"
+}
+
+Saltverify {
+read -p "Message to verify (~/signedmessage by default): " -i ~/signedmessage -e messg 
+saltpack verify < ~/signedmessage
+}
+
+Saltencrypt {
+read -p "Message to encrypt (~/message by default): " -i ~/message -e messg
+saltpack encrypt --message $messg | tee ~/encrypted_message
+echo "The signed message was saved as signed_message"
+}
+
+Saltdecrypt {
+read -p "Message to decrypt (~/encrypted_message by default): " -i ~/message -e messg
+saltpack decrypt < ~/encrypted_message
+}
