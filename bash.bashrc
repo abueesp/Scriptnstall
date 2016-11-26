@@ -1260,7 +1260,7 @@ done
 }
 
 
-saltsign(){
+ssign(){
 read -p "Message to sign (~/message by default): " -i ~/message -e messg
 saltpack sign --message $messg | tee ~/signed_message
 echo "The signed message was saved as signed_message"
