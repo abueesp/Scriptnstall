@@ -521,9 +521,11 @@ wget http://www.literatureandlatte.com/scrivenerforlinux/scrivener-1.9.0.1-amd64
 sudo dpkg -i scrivener**
 sudo rm scrivener**
 
-##readthedocs
+##Python 2.7 & 3 + readthedocs + saltpack
 sudo apt-get install build-essential python-dev python-pip python-setuptools python-virtualenv libxml2-dev libxslt1-dev zlib1g-dev -y
+sudo apt-get pip install python3-pip -y
 sudo pip install --upgrade pip
+sudo pip3 install saltpack
 virtualenv rtd
 cd rtd
 source bin/activate
@@ -539,6 +541,7 @@ sudo ./manage.py collectstatic
 #sudo ./manage.py loaddata test_data
 #sudo ./manage.py update_repos pip
 echo "alias readthedocs='sudo ./manage.py runserver && firefox -new-tab -url http://127.0.0.1:8000'" >> ~/.bashrc
+
 
 ##Automatic Django Project setup, with git, heroku, rvmrc, coffeescript, less, automatic deployment, and many more features from https://github.com/andres-torres-marroquin/django-sparker
 curl -L https://raw.github.com/andres-torres-marroquin/django-sparker/master/sparker.sh | bash -s stable
