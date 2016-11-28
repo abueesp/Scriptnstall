@@ -344,7 +344,8 @@ pip3 install saltpack
 
 #Text Edition Tools
 sudo apt-get install software-properties-common -y ##for add-apt-repository
-sudo add-apt-repository ppa:webupd8team/sublime-text-3 -y sudo apt-get install vim vim-scripts -y
+sudo add-apt-repository ppa:webupd8team/sublime-text-3 -y 
+sudo apt-get install vim vim-scripts -y
 git clone https://github.com/amix/vimrc.git ~/.vim_runtime
 sh ~/.vim_runtime/install_awesome_vimrc.sh
 sudo apt-get install gedit -y
