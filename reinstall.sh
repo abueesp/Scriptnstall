@@ -392,7 +392,8 @@ mkdir extensions
 cd extensions
 
 wget https://raw.githubusercontent.com/abueesp/Firefox-Security-Toolkit/master/firefox_security_toolkit.sh ## Cookie Manager # Copy as Plain Text # Crypto Fox # CSRF-Finder # Disable WebRTC # FireBug # Fireforce # FlagFox # Foxy Proxy # HackBar # Live HTTP Headers # Multi Fox # PassiveRecon # Right-Click XSS # Tamper Data # User Agent Switcher # Wappalyzer # Web Developer
-sh firefox_security_toolkit.sh
+chmod 777 firefox_security_toolkit.sh
+bash firefox_security_toolkit.sh run
 rm firefox_security_toolkit.sh
 
 wget https://addons.mozilla.org/firefox/downloads/file/229626/sql_inject_me-0.4.7-fx.xpi #SQL Inject Me
