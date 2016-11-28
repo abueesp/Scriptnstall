@@ -434,7 +434,6 @@ wget https://addons.mozilla.org/firefox/downloads/latest/193270/addon-193270-lat
 wget https://addons.mozilla.org/firefox/downloads/latest/5791/addon-5791-latest.xpi #Flagfox
 wget https://addons.mozilla.org/firefox/downloads/latest/4775/addon-4775-latest.xpi #AutoFill Forms
 wget https://addons.mozilla.org/firefox/downloads/file/342774/tineye_reverse_image_search-1.2.1-fx.xpi #TinyEye Reverse ImageSearch
-wget https://addons.mozilla.org/firefox/downloads/latest/1117/addon-1117-latest.xpi #FoxClocks
 wget https://addons.mozilla.org/firefox/downloads/latest/355192/addon-355192-latest.xpi #MindTheTime
 wget https://addons.mozilla.org/firefox/downloads/latest/1843/addon-1843-latest.xpi #Firebug
 wget https://addons.mozilla.org/firefox/downloads/latest/161670/addon-161670-latest.xpi #FlashFirebug
