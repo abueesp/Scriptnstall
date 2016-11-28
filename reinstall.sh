@@ -350,7 +350,7 @@ git clone https://github.com/amix/vimrc.git ~/.vim_runtime
 sh ~/.vim_runtime/install_awesome_vimrc.sh
 sudo apt-get install gedit -y
 sudo apt-get install sublime-text-installer -y
-sudo apt-get install libreoffice gedit -y
+sudo apt-get install libreoffice -y
 wget http://www.literatureandlatte.com/scrivenerforlinux/scrivener-1.9.0.1-amd64.deb
 sudo dpkg -i scrivener**
 sudo rm scrivener**
