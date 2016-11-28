@@ -18,10 +18,11 @@ sudo sed -i 's|http://us.archive.ubuntu.com/ubuntu|http://mirrors.mit.edu/ubuntu
 sudo wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/bash.bashrc
 sudo cp bash.bashrc ~/.bashrc
 sudo rm bash.bashrc**
+sudo apt-get update
+
 #SSH
 sudo apt-get install ssh -y
 newsshkey
-
 sudo vi /etc/xdg/autostart/gnome-keyring-ssh.desktop -c ':%s/\<NoDisplay=true\>/<NoDisplay=false\>/gIc' -c ':wq'
 sudo vi /etc/ssh/sshd_config -c ':%s/\<PermitRootLogin without password\>/<PermitRootLogin no>/gIc' -c ':wq'  #noroot
 sudo vi /etc/ssh/sshd_config -c ':%s/\<Port **\>/<Port 1022\>/gIc' -c ':wq' #SSH PORT OTHER THAN 22, SET 1022
@@ -238,6 +239,8 @@ sudo vi /etc/fail2ban/jail.local ':%s/\<enabled  = false\>/<enabled  = true\>/gI
 sudo apt-get install zenmap logcheck logcheck-database -y
 logcheck -p -u -m -h $email
 
+sudo apt-get upgrade -y
+
 ##Virtualbox
 sudo apt-get purge virtualbox -y
 sudo apt-get build-dep virtualbox
@@ -324,7 +327,6 @@ sudo apt-get install firefox -y
 firefox https://addons.mozilla.org/firefox/downloads/file/271802/no_more_install_delay-3.0-fx+sm+fn+tb.xpi
 #Text Edition Tools
 sudo add-apt-repository ppa:webupd8team/sublime-text-3 -y 
-sudo apt-get update -y
 sudo apt-get install vim vim-scripts -y
 git clone https://github.com/amix/vimrc.git ~/.vim_runtime
 sh ~/.vim_runtime/install_awesome_vimrc.sh
