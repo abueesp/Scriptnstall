@@ -281,8 +281,9 @@ sudo apt-get -f install -y
 vagrant plugin install vagrant-vbguest
 wget http://download.virtualbox.org/virtualbox/5.0.16/VBoxGuestAdditions_5.0.16.iso
 sudo mv VBoxGuestAdditions**.iso /usr/share/Virtualbox/VBoxGuestAdditions.iso
-echo "insert iso additions"
-VBoxManage.exe storageattach work --storagectl IDE --port 0 --device 0 --type dvddrive --medium "/home/$USER/VBox**.iso"
+echo "To insert iso additions, install first yout vm"
+virtualbox
+vboxmanage storageattach work --storagectl IDE --port 0 --device 0 --type dvddrive --medium "/home/$USER/VBox**.iso"
 read -p "Introduce un usuario de vbox " user1 $user1
 sudo usermod -G vboxusers -a $user1
 read -p "Introduce otro usuario de vbox " user2 $user2
@@ -293,11 +294,10 @@ sudo usermod -G vboxusers -a $user3
 ##Emacs
 sudo rm -r /usr/local/stow
 set -e
-
 readonly version="24.5"
 
 # install dependencies
-sudo apt-get install -y stow build-essential libx11-dev xaw3dg-dev libjpeg-dev libpng12-dev libgif-dev libtiff5-dev libncurses5-dev libxft-dev librsvg2-dev libmagickcore-dev libmagick++-dev libxml2-dev libgpm-dev libghc-gconf-dev libotf-dev libm17n-dev  libgnutls-dev -y
+sudo apt-get install stow build-essential libx11-dev xaw3dg-dev libjpeg-dev libpng12-dev libgif-dev libtiff5-dev libncurses5-dev libxft-dev librsvg2-dev libmagickcore-dev libmagick++-dev libxml2-dev libgpm-dev libotf-dev libm17n-dev  libgnutls-dev -y
 
 # download source package
 wget http://ftp.gnu.org/gnu/emacs/emacs-"$version".tar.xz
