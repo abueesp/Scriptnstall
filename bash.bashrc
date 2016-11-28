@@ -635,8 +635,8 @@ sudo chrt -p $pid
 sudo pstree -p $pid
 }
 filemon(){
-file read -p "introduce la ruta del archivo" ruta
-file $ruta
+read -p "introduce la ruta del archivo" ruta
+$ruta
 sudo systemctl status 
 sudo strings $ruta
 sudo stats $ruta
