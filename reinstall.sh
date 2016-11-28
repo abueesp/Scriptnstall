@@ -1,7 +1,7 @@
 #!/bin/bash
 # My first script to reinstall
 #TCP flood mitigation
-echo "net.ipv4.tcp_challenge_ack_limit = 999999999" | sudo tee -a /etc/sysctl.conf
+echo 'net.ipv4.tcp_challenge_ack_limit = 999999999' | sudo tee -a /etc/sysctl.conf
 sudo sysctl -p
 #Prntscreensound
 sudo mv /usr/share/sounds/freedesktop/stereo/camera-shutter.oga /usr/share/sounds/freedesktop/stereo/camera-shutter-disabled.oga
@@ -126,6 +126,14 @@ cd gpg
 sudo wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.16.tar.bz2
 sudo wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.16.tar.bz2.sig
 gpg --verify **.sig **.bz2
+md5 = $(md5sum **tar.bz2)
+if [[ $md5 == "bfb53004773a014d401694f94229fc00" ]]
+then
+    echo "PACKAGE VERIFIED"
+else
+    echo "PACKAGE NOT VERIFIED"
+    break
+fi
 sudo tar xvjf **.tar.bz2
 cd gnupg**
 ./configure
