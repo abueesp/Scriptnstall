@@ -334,9 +334,16 @@ thunderbird https://addons.mozilla.org/thunderbird/downloads/latest/775/addon-77
 sudo apt-get install gtk-recordmydesktop recordmydesktop -y
 sudo apt-get install firefox -y
 firefox https://addons.mozilla.org/firefox/downloads/file/271802/no_more_install_delay-3.0-fx+sm+fn+tb.xpi
+
+#Python essentials
+sudo apt-get install build-essential python-dev python-pip python-setuptools python-virtualenv libxml2-dev libxslt1-dev zlib1g-dev -y
+sudo apt-get pip install python3-pip -y
+pip install --upgrade pip
+sudo pip3 install saltpack
+
 #Text Edition Tools
-sudo add-apt-repository ppa:webupd8team/sublime-text-3 -y 
-sudo apt-get install vim vim-scripts -y
+sudo apt-get install software-properties-common -y ##for add-apt-repository
+sudo add-apt-repository ppa:webupd8team/sublime-text-3 -y sudo apt-get install vim vim-scripts -y
 git clone https://github.com/amix/vimrc.git ~/.vim_runtime
 sh ~/.vim_runtime/install_awesome_vimrc.sh
 sudo apt-get install gedit -y
