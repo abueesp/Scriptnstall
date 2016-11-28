@@ -1281,3 +1281,10 @@ sdecrypt(){
 read -p "Message to decrypt (~/encrypted_message by default): " -i ~/message -e messg
 saltpack decrypt < ~/encrypted_message
 }
+
+wgetall(){
+read -p "Write the file formats to download (pdf,doc,docx,zip,rar,jpg...)" formatt
+formattt=$formatt^^+","+$formatt # as accept is case sensitive
+read -p "Write the website" flinkkk
+wget --accept $formattt --mirror --progress --adjust-extension --convert-links --backup-converted --no-parent $linkkk
+}
