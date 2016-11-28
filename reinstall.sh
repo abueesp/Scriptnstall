@@ -451,8 +451,6 @@ wget https://addons.mozilla.org/firefox/downloads/latest/390151/addon-390151-lat
 wget https://addons.mozilla.org/firefox/downloads/latest/3456/addon-3456-latest.xpi #WOT
 wget https://addons.mozilla.org/firefox/downloads/latest/certificate-patrol/addon-6415-latest.xpi #certificate patrol
 wget https://addons.mozilla.org/firefox/downloads/latest/perspectives/addon-7974-latest.xpi #perspectivenetworknotaries
-wget https://addons.mozilla.org/firefox/downloads/latest/306880/platform:2/addon-306880-latest.xpi #Keefox
-wget https://addons.mozilla.org/firefox/downloads/latest/292320/addon-292320-latest.xpi #KeePass Passifox
 
 #thunderbird extensions
 mkdir thunderbird
