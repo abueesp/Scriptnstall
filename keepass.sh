@@ -1,5 +1,10 @@
 
 #KeePass (see KeeFox in Browsers)
+
+wget https://addons.mozilla.org/firefox/downloads/latest/306880/platform:2/addon-306880-latest.xpi #Keefox
+wget https://addons.mozilla.org/firefox/downloads/latest/292320/addon-292320-latest.xpi #KeePass Passifox
+echo "INSTALL FIREFOX KEEPASS EXTENSIONS"
+firefox
 sudo apt-get install mono-complete mono-dmcs libmono-system-management4.0-cil libmono-system-xml-linq4.0-cil libmono-system-data-datasetextensions4.0-cil libmono-system-runtime-serialization4.0-cil mono-mcs -y
 mkdir KeePass
 cd KeePass
