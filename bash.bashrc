@@ -1288,3 +1288,13 @@ formattt=$formatt^^+","+$formatt # as accept is case sensitive
 read -p "Write the website" flinkkk
 wget --accept $formattt --mirror --progress --adjust-extension --convert-links --backup-converted --no-parent $linkkk
 }
+
+
+##Linux container set
+alias lxcinstall='wget https://github.com/abueesp/Scriptnstall/linuxcontainers.sh && bash linuxcontainers.sh && rm linuxcontainers.sh'
+alias lxcc='read -p "Name of the container (MYC by default): " -i MYC namecont; lxc-create -t download -n $namecont; read -p "Set a hard limit for kernel memory to fix fork bomb attack for cgroups (1000MB by default)" -i 1000 memm; read -p "And swap? (0MB by default)" -i 0 swapp; echo "lxc.cgroup.memory.limit_in_bytes = $memmM" >> /var/lib/lxc/$namecont/config; summ = $(expr $swapp + $memm); echo "lxc.cgroup.memory.memsw.limit_in_bytes = $summM; " >> /var/lib/lxc/$namecont/config'
+alias lxcs='read -p "Name of the container (MYC by default): " -i MYC namecont; lxc-start -n $namecont -F -l debug -o $namecontdebug.out; echo "Monitoring in $namecontdebug.out"'
+alias lxci='lxc-info -n' 
+alias lxcls='lxc-ls -f' 
+alias lxca='lxc-attach -n' 
+alias lxckill='lxc-destroy -n' 
