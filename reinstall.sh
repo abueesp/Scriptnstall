@@ -477,6 +477,24 @@ wget https://ftp.opera.com/pub/opera-developer/41.0.2349.0/linux/opera-developer
 sudo dpkg -i opera**.deb
 sudo rm opera**.deb
 
+##Superbeam
+mkdir superbeam && cd superbeam
+wget http://superbe.am/download/5173
+mv 5173 superbeam-linux.tar.gz
+tar xvf superbeam-linux.tar.gz
+cd ..
+sudo mv superbeam /bin/superbeam
+sudo chmod +x /bin/superbeam/start-superbeam.sh
+echo "[Desktop Entry]" >> ~/Desktop/superbeam.desktop
+echo "Encoding=UTF-8" | tee -a ~/Desktop/superbeam.desktop
+echo "Name=Mobile Door" | tee -a ~/Desktop/superbeam.desktop
+echo "Comment=STEMBEAMpedazodeprogramaparapasararchivosalmovil" | tee -a ~/Desktop/superbeam.desktop
+echo "Exec=gnome-terminal -e sh '/bin/superbeam/start-superbeam.sh'" | tee -a ~/Desktop/superbeam.desktop
+echo "Icon=/bin/superbeam/icon.png" | tee -a ~/Desktop/superbeam.desktop
+echo "Type=Application" | tee -a ~/Desktop/superbeam.desktop
+
+
+
 ##blindlector
 sudo apt-get install libttspico** -y
 
