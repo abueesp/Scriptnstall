@@ -788,6 +788,39 @@ alias wgetsheet="firefox -new-tab https://www.thegeekstuff.com/2009/09/the-ultim
 alias soliditysheet="firefox -new-tab https://solidity.readthedocs.io/en/latest/units-and-global-variables.html"
 alias chsheet="echo 'chmod: Change the file modes/attributes/permissions | chown: Change the file ownership | chgrp: Change the file group ownership'"
 
+#APT PIP YUM 
+aptsheet(){
+echo "
+find / -name example.file
+apt-cache pkgnames #see all pkgs installed
+
+apt-cache search word #synaptics
+apt-cache show pkgname #pkg information
+apt-get install 'word' #Install Several Packages using Wildcard
+apt-get install pkgname=2.3.5-3ubuntu1 #specific version
+apt-cache showpkg pkgname #show dependencies
+apt-get purge pkgname #better than remove, also conf files
+
+apt-cache stats #overall stats
+apt-get update #sources
+apt-get upgrade #packages
+apt-get install packageName --only-upgrade
+apt-get --simulate upgrade
+apt-get --simulate install packageName
+
+#With source you unpack and download, but you can say --download-only.
+You can also download, unpack and compile the source code at the same time, using option ‘–compile‘ as shown below.
+sudo apt-get --compile source goaccess
+
+sudo apt-get clean
+sudo apt-get autoclean
+
+for python modules
+pip show module #module version
+
+for yum search for apt2yum txt"
+}
+
 #Docker Aliasheet
 #Aliasheet
 alias dockersheet="echo '#Crea el droplet en DO con Docker \
