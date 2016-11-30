@@ -782,7 +782,6 @@ alias tmuxsheet="tmux list-keys; tmux list-commands; echo 'https://gist.github.c
 tmux new -s myname | tmux ls | tmux a -t myname | tmux kill-session -t myname | Ctrl+Shift++ Zoom in | Ctrl+- Zoom out\
 ctrl+b & c create window | ctrl+b & w list windows | ctrl+b & n  next window | ctrl+b & p  previous window | ctrl+b & f  find window | ctrl+b & ,  name window | ctrl+b & d detach window | ctrl+b & & kill window \
 ctrl+b & :set synchronize-panes on/off a/synchronize all panels of the window | ctrl+b & % vertical split | ctrl+b & \"  horizontal split | ctrl+b & q  show panel numbers | ctrl+b & x  kill pane | ctrl+b & spacebar change layout | ctrl+b & {} Move the current pane leftright | ctrl+b & z Zoom in zoom out panel | ctrl+b + :resize-pane -U/D/L/R 20 add 20 cells up/down/left/right to that panel'"
-alias shortcut='ln'
 alias ubuntusheet="firefox -new-tab  https://slashbox.org/index.php/Ubuntu#Cheat_Sheet && firefox -new-tab https://slashbox.org/index.php/Ubuntu#Cheat_Sheet" 
 alias vimsheet="echo ':h vimtex, :help i_C^M, :help e_<Esc>, :help c_<Del>, move with [], createtags, nnoremap, addsnippet'; firefox -new-tab  http://michael.peopleofhonoronly.com/vim/vim_cheat_sheet_for_programmers_screen.png && firefox -new-tab https://cdn.shopify.com/s/files/1/0165/4168/files/digital-preview-letter.png && firefox -new-tab https://michael.peopleofhonoronly.com/vim/vim_cheat_sheet_for_programmers_screen.png && firefox -new-tab https://cdn.shopify.com/s/files/1/0165/4168/files/digital-preview-letter.png"
 alias wgetsheet="firefox -new-tab https://www.thegeekstuff.com/2009/09/the-ultimate-wget-download-guide-with-15-awesome-examples/"
@@ -1338,3 +1337,28 @@ alias lxcimport='lxc image list images; echo "Select images and run -lxc remote 
 alias lxcrun='read -e -p "Name of the container (MYC by default): " -i MYC namecont; lxc exec $namecont --'
 alias lxcpull='echo "Remember that your source route -> destination route may be something like -my_container/route .-"; lxc file pull'
 alias lxcpush='echo "Remember that your destination route -> source route may be  something like  -hosts my_container/route-"; lxc file push'
+
+##Create your shorcut
+alias icon = "shortcut"
+shortcut(){
+read -p "Name of the program: " NAMECUT
+sudo find -iname $NAMECUT
+read -p "Write the whole program fileroute: " ROUTECUT
+echo $ROUTECUT >> routecut
+echo $grep -oP '/\K.*' $(rev routecut))) >> tucetuor
+rm routecut
+rev tucetuor >> routecut
+rm tucetor
+NEWROUTECUT=$(cat routecut)
+read -p "Write the route for the icon image ($NEWROUTECUT/icon.png by default): " -i "$NEWROUTECUT/icon.png" ICONROUTE
+rm routecut
+echo "Introduce a description (blank for none): " DESCCUT
+echo "[Desktop Entry]" >> ~/Desktop/$NAMECUT.desktop
+echo "Encoding=UTF-8" | tee -a ~/Desktop/$NAMECUT.desktop
+echo "Name=$NAMECUT" | tee -a ~/Desktop/$NAMECUT.desktop
+echo "Comment=$DESCCUT" | tee -a ~/Desktop/$NAMECUT.desktop
+echo "Exec=gnome-terminal -e sh '$ROUTECUT'" | tee -a ~/Desktop/$NAMECUT.desktop
+echo "Icon=$ICONROUTE" | tee -a ~/Desktop/$NAMECUT.desktop
+echo "Type=Application" | tee -a ~/Desktop/$NAMECUT.desktop
+echo "DESKTOP SHORTCUT ICON CREATED. YOU CAN ALSO CREATE A SYMBOLIC LINK USIN 'LN $ROUTECUT'. ENJOY!"
+}
