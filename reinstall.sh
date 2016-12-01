@@ -504,6 +504,12 @@ rm firetools
 ##blindlector
 sudo apt-get install libttspico** -y
 
+#ironchrome
+sudo dpkg -i iron64.deb
+sudo rm iron64.deb
+sudo mv /usr/share/iron /bin/iron/
+echo "alias iron='/bin/iron/./chrome'" >> tee -a ~/.bashrc
+
 sudo apt-get autoremove -y
 
 EOF
