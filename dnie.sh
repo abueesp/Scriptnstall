@@ -427,3 +427,11 @@ sh mywm**.sh
 sudo rm mywm**.sh
 
 wget http://www.sinadura.net/documents/18043/217945/sinadura-ce-4.2.0-unix64-installer.jar?version=1.0
+
+##firejail & firetools
+wget https://downloads.sourceforge.net/project/firejail/firejail/firejail_0.9.44_1_amd64.deb
+wget https://downloads.sourceforge.net/project/firejail/firetools/firetools_0.9.44_1_amd64.deb
+sudo dpkg -i firejails**
+rm firejails
+sudo dpkg -i firetools**
+rm firetools
