@@ -10,7 +10,7 @@ gconftool-2 -t str -s /apps/gnome-terminal/keybindings/paste "<Control>v"
 export HISTTIMEFORMAT='%F %T '
 export HISTCONTROL=ignoredups
 export HISTCONTROL=ignorespace
-alias rmhist="history -c"
+` rmhist="history -c"
 alias anonhist="export HISTSIZE=0"
 alias hist="export HISTSIZE=1"
 alias shis="history | grep"
@@ -648,6 +648,8 @@ alias portmon="sudo nc -l -6 -4 -u; sudo ss -o state established; sudo ss -l; su
 alias vpnmon="firefox -new-tab dimage.kali.org && firefox -new-tab https://www.dnsleaktest.com/results.html"
 alias webmon="firefox -new-tab https://who.is/ && firefox -new-tab https://searchdns.netcraft.com/ && firefox -new-tab https://www.shodan.io/ && firefox -new-tab web.archive.org && firefox -new-tab https://validator.w3.org/ && firefox -new-tab https://geekflare.com/online-scan-website-security-vulnerabilities/"
 alias hardwaremon="sudo lshw; cat /proc/cpuinfo"
+alias debug="sudo apt-get install apport-retrace apport-collect python-problem-report python-apport -y; apropos apport"
+
 #General Aliases
 alias voip="firefox -new-tab https://www.appear.in"
 alias anotherskype="skype --dbpath=~/.Skype2 &"
