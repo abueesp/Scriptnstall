@@ -493,7 +493,13 @@ echo "Exec=gnome-terminal -e sh '/bin/superbeam/start-superbeam.sh'" | tee -a ~/
 echo "Icon=/bin/superbeam/icon.png" | tee -a ~/Desktop/superbeam.desktop
 echo "Type=Application" | tee -a ~/Desktop/superbeam.desktop
 
-
+##firejail & firetools
+wget https://downloads.sourceforge.net/project/firejail/firejail/firejail_0.9.44_1_amd64.deb
+wget https://downloads.sourceforge.net/project/firejail/firetools/firetools_0.9.44_1_amd64.deb
+sudo dpkg -i firejails**
+rm firejails
+sudo dpkg -i firetools**
+rm firetools
 
 ##blindlector
 sudo apt-get install libttspico** -y
