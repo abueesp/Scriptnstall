@@ -710,7 +710,7 @@ alias shist="history | grep"
 alias vectorize="xargs"
 alias cuenta="wc"
 alias countlines="awk '/a/{++cnt} END {print \"Count = \", cnt}'"
-alias chrome="/bin/iron/./chrome"
+#check alias chrome --> iron
 alias ffx='/home/$USER/icecat/./icecat'
 alias rctty='script -t 2>rctty.timing rctty'
 alias mtty='more rctty'
