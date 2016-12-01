@@ -185,4 +185,10 @@ parity --author $coinbase
 sudo apt-get install xterm
 ethminer -G --opencl-device 0 #use --notify-work URL,URL to set urls to push work notifications 
 
-
+##firejail & firetools
+wget https://downloads.sourceforge.net/project/firejail/firejail/firejail_0.9.44_1_amd64.deb
+wget https://downloads.sourceforge.net/project/firejail/firetools/firetools_0.9.44_1_amd64.deb
+sudo dpkg -i firejails**
+rm firejails
+sudo dpkg -i firetools**
+rm firetools
