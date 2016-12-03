@@ -428,7 +428,6 @@ wget https://addons.mozilla.org/firefox/downloads/latest/7447/addon-7447-latest.
 wget https://addons.mozilla.org/firefox/downloads/latest/1237/addon-1237-latest.xpi #QuickJava
 wget https://addons.mozilla.org/firefox/downloads/latest/3497/addon-3497-latest.xpi #EnglishUSDict
 wget https://addons.mozilla.org/firefox/downloads/file/502726/colorfultabs-31.0.8-fx+sm.xpi #ColorfulTabs
-wget https://addons.mozilla.org/firefox/downloads/file/485893/forecastfox_fix_version-2.4.8-fx+sm+tb.xpi #ForecastWeather
 wget https://addons.mozilla.org/firefox/downloads/latest/193270/addon-193270-latest.xpi #PrintEdit
 wget https://addons.mozilla.org/firefox/downloads/latest/5791/addon-5791-latest.xpi #Flagfox
 wget https://addons.mozilla.org/firefox/downloads/latest/4775/addon-4775-latest.xpi #AutoFill Forms
