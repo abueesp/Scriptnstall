@@ -650,9 +650,9 @@ alias webmon="firefox -new-tab https://who.is/ && firefox -new-tab https://searc
 alias hardwaremon="sudo lshw; cat /proc/cpuinfo"
 alias debug="sudo apt-get install apport-retrace apport-collect python-problem-report python-apport -y; apropos apport; read -p 'Write process name: ' PROCESSCRASH; sudo find /var | grep $PROCESSCRASH; read -p 'Copy the route of your crash file' ROUTECRASH; mkdir /var/dump$PROCESSNAME; apport-unpack $ROUTECRASH /var/dump$PROCESSNAME; sudo apt-get purge apport-retrace apport-collect python-problem-report python-apport"
 alias ccleaner="sudo apt-get install bleachbit -y; bleachbit -list; read p 'Write the name of what you want to clean (f.i. firefox -e chromium.history -e password...)' CLEANN; bleachbit --list | grep -E "[a-z]+\.[a-z]+" | grep -e CLEANN | xargs bleachbit --clean; sudo apt-get purge bleachbit -y"
-alias cleanall="sudo apt-get install bleachbit -y; bleachbit --list | grep -E "[a-z]+\.[a-z]+" | xargs bleachbit --clean; sudo apt-get purge bleachbit -y"
+alias cleanall="echo 'Cleaning temp, presets, browsers data, memory, cache and so forth'; sudo sh -c $(which echo) 3 > /proc/sys/vm/drop_caches; sudo apt-get install bleachbit -y; bleachbit --list | grep -E '[a-z]+\.[a-z]+' | xargs bleachbit --clean; sudo apt-get purge bleachbit -y"
 alias clenexcept="sudo apt-get install bleachbit -y; bleachbit -list; read p 'Write the name of what you DO NOT want to clean (f.i. firefox -e chromium.history -e password...)' UNCLEANN; bleachbit --list | grep -E "[a-z]+\.[a-z]+" | grep -v -e UNCLEANN | xargs bleachbit --clean; sudo apt-get purge bleachbit -y"
-
+alias cleanmem="echo 'Cleaning memory, cache and swap'; sudo sh -c $(which echo) 3 > /proc/sys/vm/drop_caches; sudo free"
 
 #General Aliases
 alias voip="firefox -new-tab https://www.appear.in"
