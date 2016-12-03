@@ -350,7 +350,7 @@ sh ~/.vim_runtime/install_awesome_vimrc.sh
 sudo apt-get install gedit -y
 sudo apt-get install sublime-text-installer -y
 sudo apt-get install libreoffice -y
-sudo apt-get install libgstreamer-plugins-base0.10-0 #for scrivener requirements libgstapp-0.10.so.0
+sudo apt-get install libgstreamer-plugins-base0.10-0 -y#for scrivener requirements libgstapp-0.10.so.0
 wget http://www.literatureandlatte.com/scrivenerforlinux/scrivener-1.9.0.1-amd64.deb
 sudo dpkg -i scrivener**
 sudo rm scrivener**
