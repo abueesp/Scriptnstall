@@ -91,7 +91,6 @@ logcheck -p -u -m -h $email
 sudo apt-get install gnupg gpgv2 pbuilder ubuntu-dev-tools bzr-builddeb -y
 sudo apt-get install zenmap -y
 sudo apt-get install pandoc -y
-sudo apt-get install virtualbox -y
 sudo apt-get install gparted -y
 sudo apt-get install nemo -y
 sudo apt-get install apt-get install amarok -y
@@ -107,6 +106,48 @@ firefox https://addons.mozilla.org/firefox/downloads/file/271802/no_more_install
 #youtube-dl
 sudo wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/bin/youtube-dl
 sudo chmod a+rx /usr/bin/youtube-dl
+
+##Virtualbox
+sudo apt-get purge virtualbox -y
+sudo apt-get build-dep virtualbox
+sudo apt-get -f install -y
+while true; do
+    read -p "Please introduce introduce OS Ubuntu 16.10 ('yaketty_amd64') Ubuntu 16.04 ('xenial_amd64') Ubuntu 15.10 ('wily_i386') or Ubuntu 14.04 ('trusty_amd64') / 14.10 Utopic/ 15.04 Vivid: " OS $OS
+    sudo wget http://download.virtualbox.org/virtualbox/5.1.10/virtualbox-5.1_5.1.10-112026~Ubuntu~$OS.deb
+    break
+done
+sudo dpkg -i virtualbox**.deb
+sudo rm virtualbox**.deb
+sudo apt-get install vagrant -y
+vagrant box add precise64 http://files.vagrantup.com/precise64.box
+sudo apt-get -f install -y
+version=$(vboxmanage -v)
+echo $version
+var1=$(echo $version | cut -d 'r' -f 1)
+echo $var1
+var2=$(echo $version | cut -d 'r' -f 2)
+echo $var2
+file="Oracle_VM_VirtualBox_Extension_Pack-$var1-$var2.vbox-extpack"
+echo $file
+sudo wget http://download.virtualbox.org/virtualbox/$var1/$file -O $file
+#sudo VBoxManage extpack uninstall "Oracle VM VirtualBox Extension Pack"
+sudo VBoxManage extpack install $file --replace
+sudo rm $file
+sudo apt-get install dkms
+sudo apt-get -f install -y
+vagrant plugin install vagrant-vbguest
+sudo rm VBoxGuestAdditions**
+wget http://download.virtualbox.org/virtualbox/5.1.0_RC1/VBoxGuestAdditions_5.1.0_RC1.iso
+sudo mv VBoxGuestAdditions**.iso /usr/share/Virtualbox/VBoxGuestAdditions.iso
+echo "To insert iso additions, install first yout vm"
+virtualbox
+vboxmanage storageattach work --storagectl IDE --port 0 --device 0 --type dvddrive --medium "/home/$USER/VBox**.iso"
+read -p "Introduce un usuario de vbox " user1 $user1
+sudo usermod -G vboxusers -a $user1
+read -p "Introduce otro usuario de vbox " user2 $user2
+sudo usermod -G vboxusers -a $user2
+read -p "Introduce otro usuario de vbox " user2 $user3
+sudo usermod -G vboxusers -a $user3
 
 ##asciinema
 sudo apt-add-repository ppa:zanchey/asciinema
