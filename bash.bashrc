@@ -10,7 +10,7 @@ gconftool-2 -t str -s /apps/gnome-terminal/keybindings/paste "<Control>v"
 export HISTTIMEFORMAT='%F %T '
 export HISTCONTROL=ignoredups
 export HISTCONTROL=ignorespace
-` rmhist="history -c"
+rmhist="history -c"
 alias anonhist="export HISTSIZE=0"
 alias hist="export HISTSIZE=1"
 alias shis="history | grep"
@@ -374,7 +374,7 @@ fi
 
  repo_name=$1
 
- dir_name=`basename $(pwd)`
+ dir_name='basename $(pwd)'
 
  if [ "$repo_name" = "" ]; then
  echo "Introduce el nombre del repositorio o pulsa ENTER si quieres llamarlo  '$dir_name'. En principio debería de ser un nombre correlativo al repositorio de destino creado en Github en https://github.com/$_username?tab=repositories"
@@ -470,7 +470,7 @@ fi
  fi
 
  repo_name=$1
- dir_name=`basename $(pwd)`
+ dir_name='basename $(pwd)'
  if [ "$repo_name" = "" ]; then
  echo "Introduce el nombre del repositorio o pulsa ENTER si quieres llamarlo  '$dir_name' y asegúrate de que tienes un repositorio creado en Github con el mismo nombre en https://github.com/$_username?tab=repositories"
  read repo_name
@@ -533,22 +533,22 @@ docsthemagic() {
   sudo pandoc -f html -t markdown -o $docs+".md" $docs
   sudo detox -r **
   for file in *.html.pdf; do
-    sudo mv "$file" "`basename $file .html.pdf`.pdf"
+    sudo mv "$file" "'basename $file .html.pdf'.pdf"
     done
   for file in *.html.epub; do
-    sudo mv "$file" "`basename $file .html.pdf`.epub"
+    sudo mv "$file" "'basename $file .html.pdf'.epub"
     done
   for file in *.html.wiki; do
-    sudo mv "$file" "`basename $file .html.wiki`.wiki"
+    sudo mv "$file" "'basename $file .html.wiki'.wiki"
     done
   for file in *.html.txt; do
-    sudo mv "$file" "`basename $file .html.txt`.txt"
+    sudo mv "$file" "'basename $file .html.txt'.txt"
     done
  for file in *.html.md; do
-    sudo mv "$file" "`basename $file .html.md`.md"
+    sudo mv "$file" "'basename $file .html.md'.md"
     done
   for file in *.html.odt; do
-    sudo mv "$file" "`basename $file .html.odt`.odt"
+    sudo mv "$file" "'basename $file .html.odt'.odt"
     done
   sudo mat -c **
   sudo mat **
@@ -979,7 +979,7 @@ commit() {
 alias la='ls -lah $LS_COLOR'
 function cl(){ cd "$@" && la; }
 alias back="cd .."
-function cdn(){ for i in `seq $1`; do cd ..; done;}
+function cdn(){ for i in 'seq $1'; do cd ..; done;}
 
 
 ### Extract Archives ###
@@ -1052,7 +1052,7 @@ read -p 'Your disk '$sdjah' was mounted on /mnt/'$sdjah'. Do you want to open it
 
 #buf - Back Up a file. Usage "buf filename.txt"
 buf() {
-  cp $1 ${1}-`date +%d-%m-%Y..%H-%M`.backup
+  cp $1 ${1}-'date +%d-%m-%Y..%H-%M'.backup
 }
 
 backup() {
@@ -1062,7 +1062,7 @@ read -p "Enter port ssh: " portu
 read -p "Enter ip ssh: " ipu
 read -p "Enteder directory ssh: " directoryu
 cd roteu
-touch ${roteu}-`date +%d-%m-%Y..%H-%M`
+touch ${roteu}-'date +%d-%m-%Y..%H-%M'
 rsync -avtogh -force -progress –delete -e 'ssh -p $portu' $routeu $usuu@$ipu:$directoryu
 }
 
@@ -1071,7 +1071,7 @@ wiki() { dig +short txt $1.wp.dg.cx; }
 
 # mount an ISO file. (mountiso FILE)
 mountiso() {
-  name=`basename "$1" .iso`
+  name='basename "$1" .iso'
   mkdir "/tmp/$name" 2>/dev/null
   sudo mount -o loop "$1" "/tmp/$name"
   echo "mounted iso on /tmp/$name"
@@ -1084,7 +1084,7 @@ read iext
 echo introduce to .extension
 read text
 for file in *$iext; do
-    sudo mv "$file" "`basename $file $iext`$text"
+    sudo mv "$file" "'basename $file $iext'$text"
 done
 }
 
@@ -1255,7 +1255,7 @@ firefox -new-tab plot.svg
 
 wakealarm(){
 read -p "how long from shutdown you want this pc become awake?" hourz
-minuz=$(expr $hourz*60))
+minuz=$(expr $hourz*60)
 sh -c "echo 0 > /sys/class/rtc/rtc0/wakealarm" 
 dat=$(date +%s)
 newdat=$dat+$minuz
