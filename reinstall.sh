@@ -13,6 +13,7 @@ sudo mv Open_as_admin.contract /usr/share/contractor/Open_as_admin
 rm Open_as_admin.contract
 
 #mirror
+sudo apt-get install apt-transport-https -y
 sudo wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/bash.bashrc
 sudo cp bash.bashrc ~/.bashrc
 sudo rm bash.bashrc**
