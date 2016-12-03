@@ -337,7 +337,7 @@ firefox https://addons.mozilla.org/firefox/downloads/file/271802/no_more_install
 
 #Python essentials
 sudo apt-get install build-essential python-dev python-pip python-setuptools python-virtualenv libxml2-dev libxslt1-dev zlib1g-dev -y
-sudo apt-get pip install python3-pip -y
+sudo apt-get install python3-pip -y
 pip install --upgrade pip
 pip3 install --upgrade pip
 pip3 install saltpack
