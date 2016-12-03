@@ -254,8 +254,8 @@ sudo apt-get purge virtualbox -y
 sudo apt-get build-dep virtualbox
 sudo apt-get -f install -y
 while true; do
-    read -p "Please introduce introduce OS Ubuntu 16.04 ('xenial_amd64') Ubuntu 15.10 ('wily_amd64') or Ubuntu 14.04 ('trusty_amd64') / 14.10 Utopic/ 15.04 Vivid: " OS $OS
-    sudo wget http://download.virtualbox.org/virtualbox/5.0.20/virtualbox-5.0_5.0.20-106931~Ubuntu~$OS.deb
+    read -p "Please introduce introduce OS Ubuntu 16.10 ('yaketty_amd64') Ubuntu 16.04 ('xenial_amd64') Ubuntu 15.10 ('wily_i386') or Ubuntu 14.04 ('trusty_amd64') / 14.10 Utopic/ 15.04 Vivid: " OS $OS
+    sudo wget http://download.virtualbox.org/virtualbox/5.1.10/virtualbox-5.1_5.1.10-112026~Ubuntu~$OS.deb
     break
 done
 sudo dpkg -i virtualbox**.deb
@@ -278,7 +278,8 @@ sudo rm $file
 sudo apt-get install dkms
 sudo apt-get -f install -y
 vagrant plugin install vagrant-vbguest
-wget http://download.virtualbox.org/virtualbox/5.0.16/VBoxGuestAdditions_5.0.16.iso
+sudo rm VBoxGuestAdditions**
+wget http://download.virtualbox.org/virtualbox/5.1.0_RC1/VBoxGuestAdditions_5.1.0_RC1.iso
 sudo mv VBoxGuestAdditions**.iso /usr/share/Virtualbox/VBoxGuestAdditions.iso
 echo "To insert iso additions, install first yout vm"
 virtualbox
