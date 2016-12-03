@@ -1254,12 +1254,12 @@ firefox -new-tab plot.svg
 }
 
 wakealarm(){
-read -p "how many hours from shutdown?" hourz
-minuz=$(($hourz/60))
-sudo rm /sys/class/rtc/rtc0/wakealarm
-touch /sys/class/rtc/rtc0/wakealarm
+read -p "how long from shutdown you want this pc become awake?" hourz
+minuz=$(expr $hourz*60))
 sh -c "echo 0 > /sys/class/rtc/rtc0/wakealarm" 
-sh -c "echo `date '+%s' -d '+ $minuz minutes'` > /sys/class/rtc/rtc0/wakealarm"
+dat=$(date +%s)
+newdat=$dat+$minuz
+sh -c "echo $newdat > /sys/class/rtc/rtc0/wakealarm"
 }
 
 checkgmail() {
