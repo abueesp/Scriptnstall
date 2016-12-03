@@ -12,6 +12,7 @@ echo "[Contractor Entry]\nName=Open folder as root\nIcon=gksu-root-terminal\nDes
 sudo mv Open_as_admin.contract /usr/share/contractor/Open_as_admin.contract
 rm Open_as_admin.contract.contract
 #mirror
+sudo apt-get install apt-transport-https apt-transport-tor -y
 sudo sed -i 's/http://us.archive.ubuntu.com/ubuntu/http://mirrors.mit.edu/ubuntu/g' /etc/apt/sources.list
 wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/bash.bashrc
 sudo mv bash.bashrc ~/.bashrc
