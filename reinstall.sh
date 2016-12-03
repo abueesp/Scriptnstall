@@ -495,15 +495,16 @@ echo "Type=Application" | tee -a ~/Desktop/superbeam.desktop
 ##firejail & firetools
 wget https://downloads.sourceforge.net/project/firejail/firejail/firejail_0.9.44_1_amd64.deb
 wget https://downloads.sourceforge.net/project/firejail/firetools/firetools_0.9.44_1_amd64.deb
-sudo dpkg -i firejails**
-rm firejails
+sudo dpkg -i firejail**
+rm firejail**
 sudo dpkg -i firetools**
-rm firetools
+rm firetools**
 
 ##blindlector
 sudo apt-get install libttspico** -y
 
 #ironchrome
+wget http://www.srware.net/downloads/iron64.deb
 sudo dpkg -i iron64.deb
 sudo rm iron64.deb
 sudo mv /usr/share/iron /bin/iron/
