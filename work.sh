@@ -563,8 +563,8 @@ sudo dpkg -i scrivener**
 sudo rm scrivener**
 
 ##Python 2.7 & 3 + readthedocs + saltpack
-sudo apt-get install build-essential python-dev python-pip python-setuptools python-virtualenv libxml2-dev libxslt1-dev zlib1g-dev -y
-sudo apt-get pip install python3-pip -y
+sudo apt-get install build-essential python-dev python-setuptools python-virtualenv libxml2-dev libxslt1-dev zlib1g-dev -y
+sudo apt-get install python-pip python3-pip -y
 pip install --upgrade pip
 pip3 install --upgrade pip
 pip3 install saltpack
