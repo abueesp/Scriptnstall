@@ -1345,14 +1345,14 @@ alias lxcrun='read -e -p "Name of the container (MYC by default): " -i MYC namec
 alias lxcpull='echo "Remember that your source route -> destination route may be something like -my_container/route .-"; lxc file pull'
 alias lxcpush='echo "Remember that your destination route -> source route may be  something like  -hosts my_container/route-"; lxc file push'
 
-##Create your shorcut
-alias icon = "shortcut"
+##Create your shortcut
+alias icon='shortcut'
 shortcut(){
 read -p "Name of the program: " NAMECUT
 sudo find -iname $NAMECUT
 read -p "Write the whole program fileroute: " ROUTECUT
 echo $ROUTECUT >> routecut
-echo $grep -oP '/\K.*' $(rev routecut))) >> tucetuor
+echo $grep -oP '/\K.*' $(rev routecut) >> tucetuor
 rm routecut
 rev tucetuor >> routecut
 rm tucetor
