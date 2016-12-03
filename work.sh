@@ -670,8 +670,8 @@ firefox -new-tab http://www.digwebinterface.com/?hostnames=$(wget http://ipinfo.
 wget https://ftp.opera.com/pub/opera-developer/41.0.2349.0/linux/opera-developer_41.0.2349.0_amd64.deb
 sudo dpkg -i opera**.deb
 sudo rm opera**.deb
-wget http://www.srware.net/downloads/iron64.deb
 
+wget http://www.srware.net/downloads/iron64.deb
 sudo dpkg -i iron64.deb
 sudo rm iron64.deb
 sudo mv /usr/share/iron /bin/iron/
@@ -722,7 +722,7 @@ sudo apt-get install libttspico** -y
 ##firejail & firetools
 wget https://downloads.sourceforge.net/project/firejail/firejail/firejail_0.9.44_1_amd64.deb
 wget https://downloads.sourceforge.net/project/firejail/firetools/firetools_0.9.44_1_amd64.deb
-sudo dpkg -i firejails**
-rm firejails
+sudo dpkg -i firejail**
+rm firejail**
 sudo dpkg -i firetools**
-rm firetools
+rm firetools**
