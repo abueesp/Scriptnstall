@@ -676,7 +676,7 @@ wget http://www.srware.net/downloads/iron64.deb
 sudo dpkg -i iron64.deb
 sudo rm iron64.deb
 sudo mv /usr/share/iron /bin/iron/
-echo "alias iron='/bin/iron/./chrome'" >> tee -a ~/.bashrc
+echo "alias iron='/bin/iron/./chrome'" | tee -a ~/.bashrc
 
 wget https://ftp.gnu.org/gnu/icecat/38.8.0-gnu2/icecat-38.8.0.en-US.linux-x86_64.tar.bz2
 wget https://ftp.gnu.org/gnu/icecat/38.8.0-gnu2/icecat-38.8.0.en-US.linux-x86_64.tar.bz2.sig
