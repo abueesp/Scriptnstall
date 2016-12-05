@@ -508,7 +508,7 @@ wget http://www.srware.net/downloads/iron64.deb
 sudo dpkg -i iron64.deb
 sudo rm iron64.deb
 sudo mv /usr/share/iron /bin/iron/
-echo "alias iron='/bin/iron/./chrome'" >> tee -a ~/.bashrc
+echo "alias iron='/bin/iron/./chrome'" | tee -a ~/.bashrc
 
 sudo apt-get autoremove -y
 
