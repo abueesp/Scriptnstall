@@ -107,6 +107,10 @@ firefox https://addons.mozilla.org/firefox/downloads/file/271802/no_more_install
 #youtube-dl
 sudo wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/bin/youtube-dl
 sudo chmod a+rx /usr/bin/youtube-dl
+sudo add-apt-repository ppa:mc3man/trusty-media -y
+sudo apt-get update -y
+sudo apt-get install ffmpeg -y
+sudo add-apt-repository --remove ppa:mc3man/trusty-media -y
 
 ##Virtualbox
 sudo apt-get purge virtualbox -y
