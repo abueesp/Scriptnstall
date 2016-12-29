@@ -13,8 +13,9 @@ sudo mv Open_as_admin.contract /usr/share/contractor/Open_as_admin
 rm Open_as_admin.contract
 
 #mirror
-sudo apt-get install apt-transport-https -y
-sudo sed -i 's/http:\/\/us.archive.ubuntu.com\/ubuntu/https:\/\/mirror.cpsc.ucalgary.ca\/mirror\/ubuntu.com\/packages\//g' /etc/apt/sources.list
+sudo apt-get install apt-transport-https apt-transport-tor -y
+sudo sed -i 's/http:\/\/us.archive.ubuntu.com\/ubuntu/http:\/\/mirrors.mit.edu\/ubuntu/g' /etc/apt/sources.list
+#sudo sed -i 's/http:\/\/us.archive.ubuntu.com\/ubuntu/https:\/\/mirror.cpsc.ucalgary.ca\/mirror\/ubuntu.com\/packages\//g' /etc/apt/sources.list
 sudo wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/bash.bashrc
 sudo cp bash.bashrc ~/.bashrc
 sudo rm bash.bashrc**
