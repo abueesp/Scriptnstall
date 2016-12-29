@@ -1323,10 +1323,10 @@ saltpack decrypt < ~/encrypted_message
 }
 
 wgetall(){
-read -p "Write the file formats to download (pdf,doc,docx,zip,rar,jpg...)" formatt
+read -p "Write the file formats to download (pdf,doc,docx,zip,rar,jpg...): " formatt
 formattt=$formatt^^+","+$formatt # as accept is case sensitive
-read -p "Write the website" flinkkk
-wget --accept $formattt --mirror --progress --adjust-extension --convert-links --backup-converted --no-parent $linkkk
+read -p "Write the website: " flinkkk
+wget --accept $formattt --mirror --adjust-extension --convert-links --backup-converted --no-parent $flinkkk
 }
 
 
