@@ -591,7 +591,7 @@ sudo ./manage.py collectstatic
 #sudo ./manage.py update_repos pip
 echo "alias readthedocs='sudo ./manage.py runserver && firefox -new-tab -url http://127.0.0.1:8000'" >> ~/.bashrc
 
-##Etherex
+##Etherex (This also requires nodejs and npm)
 git clone https://github.com/etherex/etherex.git
 cd etherex
 sudo apt-get install libssl-dev -y
@@ -603,6 +603,7 @@ cd frontend
 sudo npm install grunt
 geth --testnet --rpc --rpccorsdomain https://etherex.github.io
 firefox --new-tab http://localhost:8545/
+
 
 
 ##Automatic Django Project setup, with git, heroku, rvmrc, coffeescript, less, automatic deployment, and many more features from https://github.com/andres-torres-marroquin/django-sparker
@@ -629,7 +630,6 @@ cd liteaddress.org
 gpg --verify CHANGE**.asc
 cd ..
 
-
 ##Electrum
 sudo apt-get install python-qt4 python-pip -y
 sudo pip install https://download.electrum.org/2.7.12/Electrum-2.7.12.tar.gz
@@ -655,6 +655,29 @@ make
 sudo make install
 sudo add-apt-repository --remove ppa:bitcoin/bitcoin
 vi  ~/bitcoin/bitcoin.conf  
+
+#OpenTimestamps
+sudo apt-get install git python3 python3-pip -y
+sudo -H pip install --upgrade pip
+sudo -H pip install --upgrade pip3
+git clone https://github.com/opentimestamps/opentimestamps-client.git
+cd opentimestamps-client
+git checkout opentimestamps-client-v0.2.0
+pip3 install -r requirements.txt
+cat examples/hello-world.txt
+./ots verify examples/hello-world.txt.ots
+./ots -v verify examples/hello-world.txt.ots
+echo 'Every Bitcoin block header has a field in it called nTime. For a Bitcoin block to be accepted by the network the Bitcoin protocol requires that field to be set to approximately the time the block was created. The timestamp of the blocks is not monotonically increasing. “A timestamp is accepted as valid if it is greater than the median timestamp of the previous 11 blocks, and less than the network-adjusted time + 2 hours. "Network-adjusted time" is the median of the timestamps returned by
+all nodes connected to you. To understand why, it’s necessary for us to have a basic understanding of distributed computing systems, one of the elementary characteristics of which is the lack of a global clock. 
+In Bitcoin: “A timestamp is accepted as valid if it is greater than the median timestamp of the previous 11 blocks, and less than the network-adjusted time + 2 hours. "Network-adjusted time" is the median of the timestamps returned by all nodes connected to you. Whenever a node connects to another node, it gets a UTC timestamp from it, and stores its offset from node-local UTC. The network-adjusted time is then the node-local UTC plus the median offset from all connected nodes. Network time is never adjusted more than 70 minutes from local system time, however.”
+The time adjustment algorithm has even been called the most obvious possible weakness in the Bitcoin protocol. It’s fair to say it’ll very likely be accurate to within two or three hours - even if a sizable minority of Bitcoin miners are trying to create invalid timestamps - and almost certainly within a day. Thus we can say Bitcoin is a notary, and we can use Bitcoin block headers as time attestation. '
+echo "CREATING A TIMESTAMP"
+echo "You can create timestamps that don’t depend on calendars by using the --wait option. If enabled, the client simply waits until the timestamp is completely confirmed by the Bitcoin blockchain. The resulting timestamp will contain all the data needed to prove the timestamp with Bitcoin, allowing verification to be done completely locally. An incomplete timestamp can be upgraded later with the ‘ots upgrade’ command. The complete Bitcoin proof will be downloaded from the calendar and saved as part of the timestamp, with the result being as though you used the --wait option in the first place."
+echo "VERIFICATION"
+read -p "We can’t verify it immediately however. It takes a few hours for the timestamp to get confirmed by the Bitcoin blockchain; we’re not doing one transaction per   timestamp. Write the down the route of your notary deeds. It takes a few hours for the timestamp to get confirmed by the Bitcoin blockchain, we are not doing one transaction per timestamp" ROUTE
+./ots info $ROUTE
+./ots -v verify $ROUTE
+echo "Public calendar servers. A calendar is simply a collection of timestamps; a calendar server provides remote access to a calendar. As of writing, there are two public calendar servers in operation, alice.btc.calendar.opentimestamps.org, and bob.btc.calendar.opentimestamps.org. It is redundant. By default when creating timestamps two public calendars are used simultaneously, and the timestamp is only saved if we get a response back from both. You are of course able to use your own calendars, both instead of, and in addition too, the public calendars. The client has a whitelist of calendars it’ll contact automatically, so users external to Example Inc. will just ignore their pending attestation and try the public calendars instead. We can also ask to the remote calendar for only a part of the OTS file without the rest of the timestamp"
 
 ##Ruby Version Manager (RVM) with Ruby on Rails
 #RVM is a command-line tool which allows you to easily install, manage, and work with multiple ruby environments from interpreters to sets of gems.
