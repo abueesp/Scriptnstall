@@ -591,6 +591,19 @@ sudo ./manage.py collectstatic
 #sudo ./manage.py update_repos pip
 echo "alias readthedocs='sudo ./manage.py runserver && firefox -new-tab -url http://127.0.0.1:8000'" >> ~/.bashrc
 
+##Etherex
+git clone https://github.com/etherex/etherex.git
+cd etherex
+sudo apt-get install libssl-dev -y
+sudo -H pip install -r dev_requirements.txt
+sudo npm install error-stack-parser lodash minimatch graceful-fs secp256k1 fs-extra
+python setup.py build
+sudo python setup.py install
+cd frontend
+sudo npm install grunt
+geth --testnet --rpc --rpccorsdomain https://etherex.github.io
+firefox --new-tab http://localhost:8545/
+
 
 ##Automatic Django Project setup, with git, heroku, rvmrc, coffeescript, less, automatic deployment, and many more features from https://github.com/andres-torres-marroquin/django-sparker
 curl -L https://raw.github.com/andres-torres-marroquin/django-sparker/master/sparker.sh | bash -s stable
@@ -619,7 +632,29 @@ cd ..
 
 ##Electrum
 sudo apt-get install python-qt4 python-pip -y
-sudo pip install https://download.electrum.org/2.6.4/Electrum-2.6.4.tar.gz
+sudo pip install https://download.electrum.org/2.7.12/Electrum-2.7.12.tar.gz
+tar zxvf Electrum**gz
+cd Electrum**
+./configure
+sudo make
+sudo make install
+cd ..
+sudo rm -r **Electrum
+
+#Bitcoin
+sudo apt-get install build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils -y
+sudo apt-get install libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-program-options-dev libboost-test-dev libboost-thread-dev -y
+sudo apt-get install libboost-all-dev -y
+sudo apt-get install software-properties-common -y
+sudo add-apt-repository ppa:bitcoin/bitcoin
+sudo apt-get update
+sudo apt-get install libdb4.8-dev libdb4.8++-dev -y
+sudo apt-get install libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler -y
+./configure
+make
+sudo make install
+sudo add-apt-repository --remove ppa:bitcoin/bitcoin
+vi  ~/bitcoin/bitcoin.conf  
 
 ##Ruby Version Manager (RVM) with Ruby on Rails
 #RVM is a command-line tool which allows you to easily install, manage, and work with multiple ruby environments from interpreters to sets of gems.
@@ -776,7 +811,7 @@ wget https://addons.mozilla.org/firefox/downloads/latest/3829/addon-3829-latest.
 wget https://addons.mozilla.org/firefox/downloads/file/373868/soundcloud_downloader_soundgrab-0.98-fx.xpi #Soundcloud
 wget https://addons.mozilla.org/firefox/downloads/latest/387429/addon-387429-latest.xpi #Reddit Enhacenment Suit
 wget https://addons.mozilla.org/firefox/downloads/latest/695840/addon-695840-latest.xpi #FlashDebugger
-https://addons.mozilla.org/firefox/downloads/latest/video-downloadhelper/addon-3006-latest.xpi #VideoDownloadHelper
+wget https://addons.mozilla.org/firefox/downloads/latest/video-downloadhelper/addon-3006-latest.xpi #VideoDownloadHelper
 wget https://addons.mozilla.org/firefox/downloads/latest/390151/addon-390151-latest.xpi #TOS
 wget https://addons.mozilla.org/firefox/downloads/latest/3456/addon-3456-latest.xpi #WOT
 wget https://addons.mozilla.org/firefox/downloads/latest/certificate-patrol/addon-6415-latest.xpi #certificate patrol
