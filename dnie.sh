@@ -264,17 +264,15 @@ sudo rm -r gpg
 sudo apt-get install opensc libccid pcscd libacr38u pinentry-gtk2 pcsc-tools libpcsclite1 libpcsclite-dev libreadline6 libreadline-dev coolkey libnss3-tools -y
 sudo apt-get install autoconf subversion libpcsclite-dev libreadline6 libreadline-dev openssl libssl-dev libtool libltdl-dev libccid pinentry-gtk2 build-essential autoconf subversion openssl libssl-dev libtool libltdl-dev pkg-config -y
 sudo apt-get autoremove opensc -y
-sudo svn list https://forja.cenatic.es/svn/opendnie/opensc-opendnie/trunk
 sudo cp /home/$USER/.mozilla/firefox/**.default/cert8.db /etc/firefox-3.0/profile/cert8.db
 sudo dpkg-reconfigure ca-certificates
 sudo update-ca-certificates
-sudo svn checkout --trust-server-cert --no-auth-cache --username anonsvn --pass anonsvn https://forja.cenatic.es/svn/opendnie/opensc-opendnie/trunk
-sudo mkdir -p .openscDNIe
-cd trunk
-sudo sed -i 's:(top_builddir)/src/libopensc/libopensc.la:(top_builddir)/src/libopensc/libopensc.la \ "'$(sudo find / -name libltdl.la)'":g' src/tools/Makefile.am
-cd trunk
+#sudo svn checkout --trust-server-cert --no-auth-cache --noninteractive --username anonsvn --pass anonsvn https://forja.cenatic.es/svn/opendnie/opensc-opendnie/trunk
+https://github.com/OpenSC/OpenSC
+cd OpenSC
+sudo sed -i 's:(top_builddir)/src/libopensc/libopensc.la:(top_builddir)/src/libopensc/libopensc.la \ "'+$(sudo find / -name libltdl.la)+'":g' src/tools/Makefile.am
 ./bootstrap
-./configure --prefix=/usr --sysconfdir=/etc/opensc
+./configure
 make
 sudo make install
 sudo modutil -add module -libfile /usr/lib/opensc-pkcs11.so -force
@@ -305,7 +303,7 @@ sudo cp /home/$USER/.mozilla/firefox/**.default/cert8.db /etc/firefox-3.0/profil
 sudo update-ca-certificates
 sudo modutil -add module -libfile /usr/lib/opensc-pkcs11.so
 sudo apt-get autoremove -y
-echo "HEY! CHECK IF YOU HAVE CORRECTED INSTALLED THE 2 CERTIFICATES!! If so, your 2 CA Certicates from Spanish Admin and DNIe tools have been installed. Write *** lsusb *** to check which usb is dnie connected and *** pcsc_scan *** to check its data. Pulse ENTER TO DO IT." 
+read -p "HEY! CHECK IF YOU HAVE CORRECTED INSTALLED THE 2 CERTIFICATES!! If so, your 2 CA Certicates from Spanish Admin and DNIe tools have been installed. Write *** lsusb *** to check which usb is dnie connected and *** pcsc_scan *** to check its data. Pulse ENTER TO DO IT." ENTER
 read $ENTER 
 sudo lsusb
 
@@ -315,7 +313,6 @@ sudo apt-get install libccid libpcsclite1 pcscd pcsc-tools pcsc-lite -y
 sudo apt-get install libusb-dev -y
 sudo /etc/init.d/pcscd restart
 sudo lsusb
-sudo wget --user-agent="Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.3) Gecko/2008092416 Firefox/3.0.3" http://www.abogacia.es/repositorio/acadescarga/SCR_3310_Linux.zip
 #Old drivers
 #wget http://www.abogacia.es/wp-content/uploads/2012/09/scmccid_linux_32bit_driver_V5.0.21.tar.gz
 sudo tar -xzvf scmccid**
@@ -382,7 +379,7 @@ sudo wget --no-check-certificate https://documentacion.redabogacia.org/docushare
 
 
 ##bash
-echo "alias gpgcard='gpg --card-status'" >> sudo /etc/bash.bashrc
+echo "alias gpgcard='gpg --card-status'" >> sudo tee -a ~/.bashrc
 echo "alias troubleshoot='firefox -new-tab -url https://valide.redsara.es/valide/ 
 -new-tab -url https://av-dnie.cert.fnmt.es/compruebacert/compruebacert
 -new-tab -url https://formacion.lexnetabogacia.es/lexnetabogacia/v1/security/start?idParameter=formacion
@@ -392,7 +389,7 @@ echo "alias troubleshoot='firefox -new-tab -url https://valide.redsara.es/valide
 -new-tab -url https://administracionelectronica.gob.es/pae_Home/pae_Estrategias/pae_Identidad_y_firmaelectronica.html
 -new-tab -url https://www.administraciondejusticia.gob.es/verificadorInfolexnet/compruebaNavegador.html
 -new-tab -url https://www.administraciondejusticia.gob.es/paj/publico/ciudadano/informacion_institucional/modernizacion/modernizacion_tecnologica/infolexnet/faqs/tecnicas/
--new-tab -url https://www.sede.fnmt.gob.es/certificados/persona-fisica/obtener-certificado-software' && sudo lsusb && sudo pcsc_scan" >> sudo /etc/bash.bashrc
+-new-tab -url https://www.sede.fnmt.gob.es/certificados/persona-fisica/obtener-certificado-software' && sudo lsusb && sudo pcsc_scan" >> sudo tee -a ~/.bashrc
 
 echo "alias AGE='firefox -new-tab -url https://administracion.gob.es/ 
 new-tab -url https://administracionelectronica.gob.es/pae_Home/pae_Estrategias/Racionaliza_y_Comparte/catalogo-servicios-admon-digital.html 
@@ -401,7 +398,7 @@ new-tab -url http://administracionelectronica.gob.es/ctt/buscadorSoluciones.htm
 new-tab -url https://contrataciondelestado.es/wps/portal/plataforma 
 new-tab -url https://www.agenciatributaria.gob.es/AEAT.sede/Inicio/Inicio.shtml
 new-tab -url https://www.abogacia.es/servicios-abogacia/
-new-tab -url https://www.ventanillaunicaabogados.org/vup/index.jsp'" >> sudo /etc/bash.bashrc
+new-tab -url https://www.ventanillaunicaabogados.org/vup/index.jsp'" >> sudo tee -a ~/.bashrc
 
 echo "alias abogado='firefox -new-tab -url http://www.abogacia.es/
 new-tab -url https://www.redabogacia.org/
@@ -409,18 +406,18 @@ new-tab -url https://mail.icasevilla.org/
 new-tab -url https://mail.icasevilla.org/pronto/
 new-tab -url https://lexnet.justicia.es
 new-tab -url https://www.icas.es/ 
-new-tab -url https://www.ventanillaunicaabogados.org/vup/index.jsp'">> sudo /etc/bash.bashrc
+new-tab -url https://www.ventanillaunicaabogados.org/vup/index.jsp'">> sudo tee -a ~/.bashrc
 
 echo "alias JA='firefox -new-tab -url https://transparencia.dipusevilla.es/es/busqueda/index.html 
 new-tab -url https://ws024.juntadeandalucia.es/ae/ 
 new-tab -url https://administracionelectronica.gob.es/ctt/buscadorSoluciones.htm
 new-tab -url https://www.juntadeandalucia.es/haciendayadministracionpublica/ciudadania/
 new-tab -url http://www.abogacia.es/servicios-abogacia/
-new-tab -url http://www.juntadeandalucia.es/repositorio/usuario/listado/fichacompleta.jsf'" >> sudo /etc/bash.bashrc
+new-tab -url http://www.juntadeandalucia.es/repositorio/usuario/listado/fichacompleta.jsf'" >> sudo tee -a ~/.bashrc
 
-echo "alias EU='firefox -new-tab -url https://www.apertium.org/index.eng.html?dir=eng-spa#translation'" >> sudo /etc/bash.bashrc
+echo "alias EU='firefox -new-tab -url https://www.apertium.org/index.eng.html?dir=eng-spa#translation'" >> sudo tee -a ~/.bashrc
 
-echo "alias Empresa='firefox -new-tab -url https://ssweb.seap.minhap.es/tramitesEE3/es new-tab -url https://eugo.es/portalEugo/buscarConsultaGuias.htm new-tab -url https://eugo.es/portalEugo/verAsociacionesAsistencia.htm'" >> sudo /etc/bash.bashrc
+echo "alias Empresa='firefox -new-tab -url https://ssweb.seap.minhap.es/tramitesEE3/es new-tab -url https://eugo.es/portalEugo/buscarConsultaGuias.htm new-tab -url https://eugo.es/portalEugo/verAsociacionesAsistencia.htm'" >> sudo tee -a ~/.bashrc
 
 wget http://api4mini.webmoney.ru/download/mywm_linux_amd64.sh
 sh mywm**.sh
