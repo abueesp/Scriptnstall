@@ -2,6 +2,9 @@
 #Minus
 sudo apt-get purge imagemagick fontforge geary -y
 
+#More
+sudo apt-get install exfat-fuse exfat-utils -y
+
 
 #audio
 sudo apt-get install pulseaudio-module-gconf pulseaudio module-hal pulseaudio-module-x11 aconnectgui alsa-tools alsa-tools-gui audacity audacious audacious-plugins-extra ardour beast bitscope creox denemo timemachine gtick hydrogen jackbeat jackd jackeq jack-rack jack-tools jamin jdelay lilypond lilypond-data meterbridge muse patchage qamix vkeybd qjackctl puredata rosegarden timidity seq24 shaketracker sooperlooper swami csound tapiir freqtweak mixxx terminatorx zynaddsubfx fluidsynth bristol freebirth qsynth tk707 linux-rt ubuntustudio-controls -y 
