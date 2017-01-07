@@ -217,21 +217,24 @@ read -p "Rename the key as key.txt and the ciphertext as ciphertext.txt. Then pu
 sudo gpg2 --batch --yes --passphrase-file "key.txt" --output "message.txt" --decrypt "cp.txt"
 }
 
+
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
-
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+else
+#    PS1='\[\033[1;36m\]\u\[\033[1;31m\]@\[\033[1;32m\]\h:\[\033[1;31m\]❤\[\033[1;00m\] Ξ \]'
+    PS1='\[\033[1;36m\]\u\[\033[1;31m\]@\[\033[1;00m\]\h:\]'
 fi
- force_color_prompt=yes
-# set a fancy prompt (non-color, overwrite the one in /etc/profile)
-PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-
+force_color_prompt=yes
+ls --color=always
+export LS_COLORS='rs=0:di=01;34:ln=01;36:mh=00:pi=40;33'
 # Commented out, don't overwrite xterm -T "title" -n "icontitle" by default.
 # If this is an xterm set the title to user@host:dir
 #case "$TERM" in
@@ -242,14 +245,14 @@ PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 #    ;;
 #esac
 
-# enable bash completion in interactive shells
-#if ! shopt -oq posix; then
-#  if [ -f /usr/share/bash-completion/bash_completion ]; then
-#    . /usr/share/bash-completion/bash_completion
-#  elif [ -f /etc/bash_completion ]; then
-#    . /etc/bash_completion
-#  fi
-#fi
+#enable bash completion in interactive shells
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
 
 # sudo hint
 if [ ! -e "$HOME/.sudo_as_admin_successful" ] && [ ! -e "$HOME/.hushlogin" ] ; then
