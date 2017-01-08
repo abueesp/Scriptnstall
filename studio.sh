@@ -13,13 +13,14 @@ sudo apt-get install aeolus blop caps cmt hexter fil-plugins ladspa-sdk mcp-plug
 # graphics
 sudo apt-get install inkscape blender gimp gimp-data-extras gimp-gap gimp-ufraw gimp-plugin-registry f-spot scribus fontforge gnome-raw-thumbnailer xsane wacom-tools hugin agave yafray synfigstudio  -y
 #video
-sudo apt-get install openmovieeditor ffmpeg ffmpeg2theora kino stopmotion dvgrabgtk-recordmydesktop recordmydesktop -y
+sudo apt-get install openshot kdenlive ffmpeg ffmpeg2theora kino stopmotion dvgrabgtk-recordmydesktop recordmydesktop -y
 ##video Natron
 sudo apt-get install libegl1-mesa -y 
-wget -c https://downloads.natron.fr/Linux/releases/64bit/files/Natron-2.1.2-Linux-x86_64bit.tgz
-tar xzvf Natron**tgz
-./Natro**bit
-sudo rm -r Natron**
+firefox --new-tab http://natron.fr/login?os=Linux&file=https://downloads.natron.fr/Linux/releases/64bit/files/natron_2.1.9_amd64.deb
+cd Downloads
+sudo dpkg -i natron**.deb
+sudo rm natron**.deb
+cd ..
 #guitar
 sudo apt install tuxguitar tuxguitar-alsa tuxguitar-jsa tuxguitar-oss
 echo "Tools -> Settings -> MIDI Port -> Gervill" 
