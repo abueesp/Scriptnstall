@@ -227,10 +227,10 @@ shopt -s checkwinsize
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\$PWD} '
 else
-#    PS1='\[\033[1;36m\]\u\[\033[1;31m\]@\[\033[1;32m\]\h:\[\033[1;31m\]❤\[\033[1;00m\] Ξ \]'
-    PS1='\[\033[1;36m\]\u\[\033[1;31m\]@\[\033[1;00m\]\h:\]'
+#    PS1='\[\033[1;36m\]\u\[\033[1;31m\]@\[\033[1;33m\]\h:\[\033[1;32m\]$PWD/\[\033[1;31m\]❤\[\033[1;00m\] ΞTH: '
+    PS1='\[\033[1;36m\]\u\[\033[1;31m\]@\[\033[1;33m\]\h:\[\033[1;32m\]$PWD/\[\033[1;00m\] '
 fi
 force_color_prompt=yes
 ls --color=always
