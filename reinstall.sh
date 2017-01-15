@@ -318,10 +318,10 @@ sudo rm /usr/local/share/info/dir
 sudo stow emacs-"$version" 
 #spacemacs
 sudo apt-get install git -y
-sudo git clone http://github.com/syl20bnr/spacemacs ~/.emacs.d
+git clone http://github.com/syl20bnr/spacemacs ~/.emacs.d
 ##plugins
 cd ~/.emacs.d
-sudo wget http://github.com/ethereum/emacs-solidity/blob/master/solidity-mode.el ##solidity
+wget http://github.com/ethereum/emacs-solidity/blob/master/solidity-mode.el ##solidity
 echo 'Carga los elementos de emacs con (add-to-list load-path "~/.emacs.d/") + (load "myplugin.el")'
 cd
 sudo rm emacs-"$version".tar.xz
