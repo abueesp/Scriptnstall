@@ -342,7 +342,10 @@ sudo apt-get install build-essential python-dev python-setuptools python-virtual
 sudo apt-get install python3-pip python-pip -y
 pip install --upgrade pip
 pip3 install --upgrade pip
-pip3 install saltpack
+
+#Saltpack
+sudo apt-get install libffi-dev python-cffi -y
+sudo -H pip3 install saltpack
 
 #Text Edition Tools
 sudo apt-get install software-properties-common -y ##for add-apt-repository
