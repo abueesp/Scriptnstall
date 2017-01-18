@@ -1319,13 +1319,15 @@ saltpack verify $messg
 
 sencrypt(){
 read -p "Message to encrypt (~/message by default): " -i ~/message -e messg
-saltpack encrypt $messg | tee ~/encrypted_message
+MESIG=$(cat $messg)
+saltpack encrypt --message $MESIG | tee ~/encrypted_message
 echo "The encrypted message was saved as ~/encrypted_message"
 }
 
 sdecrypt(){
 read -p "Message to decrypt (~/encrypted_message by default): " -i ~/message -e messg
-saltpack decrypt $messg
+MESIG=$(cat $messg)
+saltpack decrypt < MESIG
 }
 
 wgetall(){
