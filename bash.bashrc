@@ -1314,18 +1314,18 @@ echo "The signed message was saved as signed_message"
 
 sverify(){
 read -p "Message to verify (~/signedmessage by default): " -i ~/signedmessage -e messg 
-saltpack verify < ~/signedmessage
+saltpack verify $messg
 }
 
 sencrypt(){
 read -p "Message to encrypt (~/message by default): " -i ~/message -e messg
-saltpack encrypt --message $messg | tee ~/encrypted_message
-echo "The signed message was saved as signed_message"
+saltpack encrypt $messg | tee ~/encrypted_message
+echo "The encrypted message was saved as ~/encrypted_message"
 }
 
 sdecrypt(){
 read -p "Message to decrypt (~/encrypted_message by default): " -i ~/message -e messg
-saltpack decrypt < ~/encrypted_message
+saltpack decrypt $messg
 }
 
 wgetall(){
