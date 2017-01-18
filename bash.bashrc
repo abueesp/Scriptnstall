@@ -705,6 +705,8 @@ alias grepp='grep --color=auto -r -H'
 alias egrepp='egrep --color=auto -r -w'
 alias fgrepp='fgrep --color=auto'
 alias aptclean='sudo apt-get autoremove'
+alias aptinstall='sudo apt-get install'
+alias aptlog='less /var/log/apt/history.log'
 alias rename='mv'
 alias tmuxkillall="tmux ls | grep : | cut -d. -f1 | awk '{print substr($1, 0, length($1)-1)}' | xargs kill"
 alias gitlist='git remote -v'
@@ -830,6 +832,7 @@ pip show module #module version
 
 for yum search for apt2yum txt"
 }
+yumsheet=aptsheet
 
 #Docker Aliasheet
 #Aliasheet
