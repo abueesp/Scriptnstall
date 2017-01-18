@@ -1,3 +1,39 @@
+
+sudo apt-get install ffmpeg mencoder imagemagick vlc -y
+git clone https://github.com/KonradIT/goprotools
+cd goprotools
+wget https://github.com/KonradIT/goprotools/archive/master.zip
+unzip master.zip
+rm master.zip
+rm README.md
+ls
+echo "Choose your service"
+sudo mv /home/$USER/goprotools/ /usr/local/bin/
+chmod -x /usr/local/bin/goprotools
+cd ..
+
+git clone https://github.com/TeskeVirtualSystem/goprofit
+cd goprofit/src
+firefox --new-tab index.html
+cd ..
+
+git clone https://github.com/KonradIT/HeroProApp
+cd HeroProApp/HTML5App/Computer
+firefox --new-tab index.html
+cd ..
+
+git clone https://github.com/KonradIT/goprowifihack
+echo "Connect to the internet. Go to the URL that is assigned to your device. Then connect to the GoPro wifi
+Go back to the web browser. DONT REFRESH THE WEB BROWSER! DONT FORGET TO WRITE YOUR GOPRO WIFI PASS IN THE APP"
+firefox --new-tab http://10.5.5.9:8080
+
+git clone https://github.com/KonradIT/gopro.py
+cd gopro.py
+ls
+echo "Choose your service and open it using python3"
+cd ..
+
+echo "
 0, RES, FPS, FOV,,
 1, 480, 240, WID,,
 2, 720, 240, NAR,,
@@ -62,8 +98,9 @@
 61, 2.7, 24, LIN,,
 62, 4K, 24, SPR,,
 63, 4K, 24, WID,,
+"
 
-VIDEOS MUST HAVE IDENTICAL FPS AND RESOLUTION
+echo "VIDEOS MUST HAVE IDENTICAL FPS AND RESOLUTION"
 
 1, 480, 240, WID,,
 mencoder -oac pcm -ovc copy -idx -o 1GoPro480RES240FPSWID.MP4  GOPR0438.MP4 
