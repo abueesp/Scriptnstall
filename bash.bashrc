@@ -790,7 +790,7 @@ alias shsheet="firefox -new-tab https://www.tldp.org/LDP/abs/html/index.html"
 alias gethsheet="https://github.com/ethereum/go-ethereum/wiki/Command-Line-Options"
 alias gpgsheet="firefox -new-tab http://irtfweb.ifa.hawaii.edu/~lockhart/gpg/gpg-cs.html"
 alias bitcoinsheet="firefox -new-tab  https://en.bitcoin.it/wiki/Script#Words"
-alias rubysheet="firefox -new-tab -url https://cheat.errtheblog.com/s/rvm -new-tab -url https://rvm.io/ -new-tab -url http://bundler.io/"
+alias rubysheet="firefox -new-tab -url https://cheat.errtheblog.com/s/rvm -new-tab http://spacemacs.org/layers/+frameworks/ruby-on-rails/README.html -new-tab -url https://rvm.io/ -new-tab -url http://bundler.io/"
 alias tmuxsheet="tmux list-keys; tmux list-commands; echo 'https://gist.github.com/MohamedAlaa/2961058 There are sessions, windows, panels \
 tmux new -s myname | tmux ls | tmux a -t myname | tmux kill-session -t myname | Ctrl+Shift++ Zoom in | Ctrl+- Zoom out\
 ctrl+b & c create window | ctrl+b & w list windows | ctrl+b & n  next window | ctrl+b & p  previous window | ctrl+b & f  find window | ctrl+b & ,  name window | ctrl+b & d detach window | ctrl+b & & kill window \
@@ -1244,7 +1244,7 @@ alias ethminer='ethminer -G --opencl-device 0'
 alias gethtest='cd $routegeth && ./geth --testnet console'
 alias gethupgrade='cd $routegeth && ./geth upgradedb --fast console'
 alias gethsheet="https://github.com/ethereum/go-ethereum/wiki/Command-Line-Options"
-alias ethstats="sudo pm2 start /home/$USER/eth-net-intelligence-api/app.json && firefox --new-tab https://ethstats.net/ && parity --max-peers 100 --peers 100 --min-peers 100"
+alias ethstats="sudo pm2 start /home/$USER/eth-net-intelligence-api/app.json && firefox -new-tab https://ethstats.net/ && parity --max-peers 100 --peers 100 --min-peers 100"
 alias meteor="firefox -new-tab -url http://localhost:3000 && cd /home/$USER/linux && ./geth --rpc --rpccorsdomain='http://localhost:3000'"
 
 #3 random numbers & uuid
@@ -1382,8 +1382,8 @@ echo "DESKTOP SHORTCUT ICON CREATED. YOU CAN ALSO CREATE A SYMBOLIC LINK USIN 'L
 
 searchtorrent(){
 read -p "Write a torrent description to query: " QUERY
-firefox --new-tab https://extratorrent.unblockall.xyz/search/?search=$QUERY&new=1&x=0&y=0 
-firefox --new-tab https://pirateproxy.tf/s/?q=QUERY&page=0&orderby=99 
-firefox --new-tab https://kickasstorrents.to/search.php?q=$QUERY 
-firefox --new-tab https://www.torlock.com/all/torrents/$QUERY.html 
+firefox -new-tab https://extratorrent.unblockall.xyz/search/?search=$QUERY&new=1&x=0&y=0 
+firefox -new-tab https://pirateproxy.tf/s/?q=QUERY&page=0&orderby=99 
+firefox -new-tab https://kickasstorrents.to/search.php?q=$QUERY 
+firefox -new-tab https://www.torlock.com/all/torrents/$QUERY.html 
 }
