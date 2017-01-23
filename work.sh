@@ -19,6 +19,8 @@ wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/bash.bashrc
 sudo mv bash.bashrc ~/.bashrc
 sudo apt-get update -y
 sudo apt-get upgrade -y 
+sudo apt-get install apt-file -y
+sudo apt-file update
 #SSH
 sudo apt-get install ssh -y
 newsshkey
