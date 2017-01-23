@@ -20,6 +20,8 @@ sudo wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/bash.bas
 sudo cp bash.bashrc ~/.bashrc
 sudo rm bash.bashrc**
 sudo apt-get update
+sudo apt-get install apt-file
+sudo apt-file update
 
 #SSH
 sudo apt-get install ssh -y
