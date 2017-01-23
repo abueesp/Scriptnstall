@@ -707,7 +707,7 @@ alias fgrepp='fgrep --color=auto'
 alias aptclean='sudo apt-get autoremove'
 alias aptinstall='sudo apt-get install'
 alias aptlog='less /var/log/apt/history.log'
-alais aptlist='apt list | grep installed'
+alias aptinstalled='apt list | grep installed'
 alias rename='mv'
 alias tmuxkillall="tmux ls | grep : | cut -d. -f1 | awk '{print substr($1, 0, length($1)-1)}' | xargs kill"
 alias gitlist='git remote -v'
