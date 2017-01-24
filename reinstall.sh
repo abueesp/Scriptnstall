@@ -478,7 +478,7 @@ wget https://addons.mozilla.org/thunderbird/downloads/latest/210/addon-210-lates
 wget https://addons.mozilla.org/thunderbird/downloads/latest/875/addon-875-latest.xpi #tb header tools
 wget https://addons.mozilla.org/thunderbird/downloads/latest/1003/addon-1003-latest.xpi #header scroll extension
 cd ..
-
+sudo apt-get install libpangox-1.0-0  libpango1.0-0 -y
 wget https://ftp.opera.com/pub/opera-developer/41.0.2349.0/linux/opera-developer_41.0.2349.0_amd64.deb
 sudo dpkg -i opera**.deb
 sudo rm opera**.deb
@@ -500,6 +500,7 @@ echo "Icon=/bin/superbeam/icon.png" | tee -a ~/Desktop/superbeam.desktop
 echo "Type=Application" | tee -a ~/Desktop/superbeam.desktop
 
 ##firejail & firetools
+sudo apt-get install libqtgui4  libqt4-svg libqtcore4 libmng2 libqt4-declarative libqt4-network libqt4-script  libqt4-sql libqt4-xmlpatterns libqtcore4 libqtdbus4 libqtdbus4  qtcore4-l10n libqt4-xml -y
 wget https://downloads.sourceforge.net/project/firejail/firejail/firejail_0.9.44_1_amd64.deb
 wget https://downloads.sourceforge.net/project/firejail/firetools/firetools_0.9.44_1_amd64.deb
 sudo dpkg -i firejail**
