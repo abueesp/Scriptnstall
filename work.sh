@@ -734,6 +734,7 @@ echo "$($(echo "$(wget http://ipinfo.io/ip -qO -)" | cut -d. -f2- | cut -d. -f2-
 firefox -new-tab http://www.digwebinterface.com/?hostnames=$(wget http://ipinfo.io/ip -qO -)%0D%0A&type=&ns=resolver&useresolver=8.8.4.4&nameservers=
 
 #Other browsers
+sudo apt-get install libpangox-1.0-0  libpango1.0-0 -y
 wget https://ftp.opera.com/pub/opera-developer/41.0.2349.0/linux/opera-developer_41.0.2349.0_amd64.deb
 sudo dpkg -i opera**.deb
 sudo rm opera**.deb
@@ -787,6 +788,7 @@ cd ..
 sudo apt-get install libttspico** -y
 
 ##firejail & firetools
+sudo apt-get install libqtgui4  libqt4-svg libqtcore4 libmng2 libqt4-declarative libqt4-network libqt4-script  libqt4-sql libqt4-xmlpatterns libqtcore4 libqtdbus4 libqtdbus4  qtcore4-l10n libqt4-xml -y
 wget https://downloads.sourceforge.net/project/firejail/firejail/firejail_0.9.44_1_amd64.deb
 wget https://downloads.sourceforge.net/project/firejail/firetools/firetools_0.9.44_1_amd64.deb
 sudo dpkg -i firejail**
