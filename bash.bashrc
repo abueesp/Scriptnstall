@@ -1391,3 +1391,25 @@ firefox -new-tab https://www.torlock.com/all/torrents/$QUERY.html
 
 alias emacstex="\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}"
+
+
+
+alias vimsubs="echo '
+Go To line 1889 and write at the beginning
+sudo vi -c \":1889\" -c \"s/^/extension=mcrypt.so/\" /etc/php/7.0/fpm/php.ini
+
+To find a search string \"hi\" and append string \" everyone\" on line 3:
+vim -c \"3 s/\(hi\)/\1 everyone/\" -c \"wq\" file.txt
+
+To find a search string \"hi\" and prepend a string \"say \" on line 3:
+vim -c \"3 s/\(hi\)/say \1/\" -c \"wq\" file.txt
+
+In case the line number is not known, To append first occurrences of string \"hi\" on every line with \" all\":
+vim -c \"1,$ s/\(hi\)/\1 all/\" -c \"wq\" file.txt
+
+To append all occurrences of string \"hi\" on every line with \" all\":
+vim -c \"1,$ s/\(hi\)/\1 all/g\" -c \"wq\" file.txt 
+
+For more info about substitutions:
+vim -c \"help substitute\"
+'"
