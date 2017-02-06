@@ -692,6 +692,7 @@ alias mvm='mv -i -u'
 alias rmr='sudo rm -irv -rf'
 alias delete=rmr
 alias remove=rmr
+alias event=evtest
 alias keepasss="sudo mono /home/$USER/KeePass/KeePass.exe"
 alias keepass="mono /home/$USER/KeePass/KeePass.exe"
 alias df='df -h'
