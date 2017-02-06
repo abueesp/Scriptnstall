@@ -561,6 +561,8 @@ sudo apt-get install detox -y
 sudo add-apt-repository ppa:webupd8team/sublime-text-3 -y 
 sudo apt-get update -y
 sudo apt-get install vim vim-scripts -y
+mv ~/.vim/autoload/plug.vim ~/.vim/autoload/plug-backup.vim
+wget https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim -O ~/.vim/autoload/plug.vim
 git clone https://github.com/amix/vimrc.git ~/.vim_runtime
 sh ~/.vim_runtime/install_awesome_vimrc.sh
 sudo apt-get install gedit -y
