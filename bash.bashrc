@@ -1399,8 +1399,6 @@ firefox -new-tab https://www.torlock.com/all/torrents/$QUERY.html
 alias emacstex="\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}"
 
-
-
 alias vimsubs="echo '
 Go To line 1889 and write at the beginning
 sudo vi -c \":1889\" -c \"s/^/extension=mcrypt.so/\" /etc/php/7.0/fpm/php.ini
@@ -1420,3 +1418,16 @@ vim -c \"1,$ s/\(hi\)/\1 all/g\" -c \"wq\" file.txt
 For more info about substitutions:
 vim -c \"help substitute\"
 '"
+
+
+crtime() {
+  for target in "${@}"; do
+    inode=$(ls -di "${target}" | cut -d ' ' -f 1)
+    fs=$(df "${target}"  | tail -1 | awk '{print $1}')
+    crtime=$(sudo debugfs -R 'stat <'"${inode}"'>' "${fs}" 2>/dev/null | 
+    grep -oP 'crtime.*--\s*\K.*')
+    printf "%s\t%s\n" "${crtime}" "${target}"
+  done
+}
+
+find . -type f -cmin -1 -delete
