@@ -1421,6 +1421,7 @@ vim -c \"help substitute\"
 
 
 crtime() {
+  a=()
   for target in "${@}"; do
     inode=$(ls -di "${target}" | cut -d ' ' -f 1)
     fs=$(df "${target}"  | tail -1 | awk '{print $1}')
@@ -1430,4 +1431,28 @@ crtime() {
   done
 }
 
-find . -type f -cmin -1 -delete
+delnew() {
+  a=()
+  read -p "How many minutes back from now? " minutes
+  for target in *; do
+    inode=$(ls -di "${target}" | cut -d ' ' -f 1)
+    fs=$(df "${target}"  | tail -1 | awk '{print $1}')
+    crtime=$(sudo debugfs -R 'stat <'"${inode}"'>' "${fs}" 2>/dev/null | 
+    grep -oP 'crtime.*--\s*\K.*')
+    printf "%s\t%s\n" "${crtime}" "${target}"
+    datus=$(date --date '-'$minutes'min')
+    if [[ $(date -d"${crtime}" +%s) > $(date -d"${datus}" +%s) ]]; then
+	a+=("${target}")
+	echo ${target}' was recently created'
+    fi
+  done
+  read -p "Delete all files created before $datus? (y/n) FILES LIST: ${a[*]} " yn
+    case $yn in
+        [Yy]* ) for i in "${a[@]}"; do
+			rm $i 
+			echo "$i was deleted"
+		done;;
+        [Nn]* ) echo "No files were deleted";;
+        * ) echo "Please answer yes or no.";;
+    esac
+}
