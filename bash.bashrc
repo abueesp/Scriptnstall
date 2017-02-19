@@ -148,61 +148,51 @@ gpgexport() {
 sudo mkdir gpgexport
 cd gpgexport
 read -p "introduce the key username to export: " USN
-sudo gpg --export -a $USN > public.key
-sudo gpg --export-secret-key -a $USN > private.key
-sudo gpg --fingerprint -a $USN > fingerprint
-echo "here you are your public.key, private.key and fingerprint" 
+gpg2 --export -a $USN > public.key
+gpg2 --export-secret-key -a $USN > private.key
+gpg2 --fingerprint -a $USN > fingerprint
+echo "Here you are your public.key, private.key and fingerprint" 
+echo "Fingerprint"
+cat fingerprint
+echo "Public key"
+cat public.key
+echo "To see you private key, write cat private.key"
 }
 
 gpgimport() {
 read -p "Go to the folder. Rename as public.key and private.key; as well as introduce the key username: " USN
-sudo gpg --import -a $USN > $public.key
-sudo gpg --import-secret-key -a $USN > private.key
+gpg2 --import -a $USN > $public.key
+gpg2 --import-secret-key -a $USN > private.key
 echo "your public key and private have been imported as public.key and private.key" 
 }
 
 gpgdelete() {
 read -p "introduce the key username to delete Usernameprivate.key and/or Usernamepublic.key: " USN
-sudo gpg --delete -a $USN
-sudo gpg --delete-secret-key -a $USN
+gpg2 --delete -a $USN
+gpg2 --delete-secret-key -a $USN
 echo "your public key and private have been deleted as public.key and private.key" 
 }
 
 gpglist() {
 echo "pubkeys list"
-sudo gpg --list-keys
+gpg2 --list-keys
 echo "privkeys list"
-sudo gpg --list-secret-keys
+gpg2 --list-secret-keys
 echo "fingerprints"
-sudo gpg --fingerprint
+gpg2 --fingerprint
 }
-
-gpg2list() {
-echo "pubkeys list"
-sudo gpg2 --list-keys
-echo "privkeys list"
-sudo gpg2 --list-secret-keys
-echo "fingerprints"
-sudo gpg2 --fingerprint
-}
-
 
 gpgnew() {
-sudo gpg --gen-key 
+gpg2 --gen-key 
 }
 
 gpg2new() {
-sudo gpg2 --full-gen-key
+gpg2 --full-gen-key
 }
 
 gpgeditkey() {
 read -p "Introduce key: " keyy
-sudo gpg --edit-key 0x$keyy
-}
-
-gpg2editkey() {
-read -p "Introduce key: " keyy
-sudo gpg2 --edit-key 0x$keyy
+gpg2 --edit-key 0x$keyy
 }
 
 gpgencrypt() {
@@ -210,15 +200,15 @@ read -p "Rename the key as key.txt and the message as message.txt. Then put both
 #read -p "enter your gpg username (sender username): " USNs
 #read -p "enter your gpg username (receiver username): " USNr
 #read -p "enter the route of the file" filegpge
-#sudo gpg -e -u $USNs -r $USNr $filegpge
-sudo gpg2 --batch --yes --passphrase-file "key.txt" -z 0 --cipher-algo AES256 --armor --output "ciphertext.txt" --symmetric "message.txt"
+#gpg -e -u $USNs -r $USNr $filegpge
+gpg2 --batch --yes --passphrase-file "key.txt" -z 0 --cipher-algo AES256 --armor --output "ciphertext.txt" --symmetric "message.txt"
 }
 
 gpgdecrypt() {
 read -p "Rename the key as key.txt and the ciphertext as ciphertext.txt. Then put both on this folder. Then, push ENTER and you will see your decrypted message as message.txt." Done
 #read -p "enter file.gpg to decrypt: " filegpgd
-#sudo gpg -o $filegpg[-4] -d $filegpgd
-sudo gpg2 --batch --yes --passphrase-file "key.txt" --output "message.txt" --decrypt "cp.txt"
+#gpg -o $filegpg[-4] -d $filegpgd
+gpg2 --batch --yes --passphrase-file "key.txt" --output "message.txt" --decrypt "cp.txt"
 }
 
 
