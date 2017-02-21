@@ -580,6 +580,7 @@ pip install --upgrade pip
 pip3 install --upgrade pip
 sudo apt-get install libffi-dev python-cffi -y
 sudo -H pip3 install saltpack
+sudo -H pip3 install pyminifier
 virtualenv rtd
 cd rtd
 source bin/activate
