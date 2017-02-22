@@ -20,7 +20,7 @@ sudo wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/bash.bas
 sudo cp bash.bashrc ~/.bashrc
 sudo rm bash.bashrc**
 sudo apt-get update
-sudo apt-get install apt-file -y
+sudo apt-get install apt-file
 sudo apt-file update
 
 #SSH
@@ -235,6 +235,12 @@ sudo rm **.bz2 && sudo rm **.sig && sudo rm -r gpa**
 
 cd ..
 sudo rm -r gpg
+
+#keybase
+curl -O https://prerelease.keybase.io/keybase_amd64.deb
+sudo dpkg -i keybase_amd64.deb
+sudo apt-get install -f
+run_keybase
 
 ##Fail2ban & logcheck
 sudo apt-get install fail2ban -y
