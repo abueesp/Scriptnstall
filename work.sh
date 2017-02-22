@@ -113,10 +113,15 @@ sudo dpkg -i keybase_amd64.deb
 sudo apt-get install -f
 run_keybase
 
+
+##DataSc Complex Networks
 #gephi
 wget https://github.com/gephi/gephi/releases/download/v0.9.1/gephi-0.9.1-linux.tar.gz
 tar -xf gephi*.tar.gz
 rm gephi*.tar.gz
+#cytoscape
+wget http://chianti.ucsd.edu/cytoscape-3.4.0/Cytoscape_3_4_0_unix.sh
+bash Cytoscape*.sh
 
 #youtube-dl
 sudo wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/bin/youtube-dl
