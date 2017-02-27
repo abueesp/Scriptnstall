@@ -14,8 +14,8 @@ echo "installing openvpn-2.3.11"
 mkdir ovpn
 cd ovpn
 sudo apt-get install libssl1.0.0 libssl-dev liblzo2-dev libpam0g-dev -y
-sudo wget https://swupdate.openvpn.org/community/releases/openvpn-2.3.11.tar.gz
-sudo wget https://swupdate.openvpn.org/community/releases/openvpn-2.3.11.tar.gz.asc
+sudo wget https://swupdate.openvpn.org/community/releases/openvpn-2.4.0.tar.gz
+sudo wget https://swupdate.openvpn.org/community/releases/openvpn-2.4.0.tar.gz.asc
 gpg --verify **.asc
 tar xfz openvpn-**.tar.gz
 cd openvpn**
