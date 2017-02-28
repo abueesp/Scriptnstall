@@ -1381,7 +1381,7 @@ searchtorrent(){
 read -p "Write a torrent description to query: " QUERY
 firefox -new-tab https://www.skytorrents.in/search/all/ed/1/?q=$QUERY
 firefox -new-tab https://extratorrent.unblockall.xyz/search/?search=$QUERY&new=1&x=0&y=0 
-firefox -new-tab https://pirateproxy.tf/s/?q=QUERY&page=0&orderby=99 
+firefox -new-tab https://pirateproxy.tf/s/?q=$QUERY&page=0&orderby=99 
 firefox -new-tab https://kickasstorrents.to/search.php?q=$QUERY 
 firefox -new-tab https://www.torlock.com/all/torrents/$QUERY.html 
 }
