@@ -1125,7 +1125,7 @@ searchpdf() {
 changemymac(){
 ifconfig -a | grep HWaddr
 read -p "Those are your macs. Choose the ethernet interface (eth, wlan...) you want to change. It will be sustitued by a random MAC, so write before in case it could have been mac filtering whitelisted : " wlan
-macaddr=$(echo $FQDN|md5sum|sed 's/^\(..\)\(..\)\(..\)\(..\)\(..\).*$/02:\1:\2:\3:\4:\5/')
+macaddr=$(tr -dc A-F0-9 < /dev/urandom | head -c 10 | sed -r 's/(..)/\1:/g;s/:$//;s/^/02:/')
 sudo ifconfig $wlan down
 sudo ifconfig $wlan hw ether $macaddr
 sudo ifconfig $wlan up
