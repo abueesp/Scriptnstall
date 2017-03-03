@@ -1165,7 +1165,6 @@ done
 macadd="${octet}:${octeta}:${octetb}:${octetc}:${octetd}:${octete}"
 #concatenate values and add dashes
 macaddr=$(echo $macadd)
-echo $macaddr
 sudo ifconfig $wlan down
 sudo ifconfig $wlan hw ether $macaddr
 sudo ifconfig $wlan up
