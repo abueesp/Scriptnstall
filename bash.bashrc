@@ -1125,14 +1125,37 @@ searchpdf() {
 changemymac(){
 ifconfig -a | grep HWaddr
 read -p "Those are your macs. Choose the ethernet interface (eth, wlan...) you want to change. It will be sustitued by a random MAC, so write before in case it could have been mac filtering whitelisted : " wlan
-macaddr=$(tr -dc A-F0-9 < /dev/urandom | head -c 10 | sed -r 's/(..)/\1:/g;s/:$//;s/^/02:/')
-sudo ifconfig $wlan down
-sudo ifconfig $wlan hw ether $macaddr
-sudo ifconfig $wlan up
-read -p "Those are your new macs:"
-ifconfig -a | grep HWaddr
-mcookie
-echo "Enjoy!"
+RANGE=255
+ #set integer ceiling
+ number=$RANDOM
+ numbera=$RANDOM
+ numberb=$RANDOM
+ #generate random numbers
+ let "number %= $RANGE"
+ let "numbera %= $RANGE"
+ let "numberb %= $RANGE"
+ #ensure they are less than ceiling
+ #octets='64:60:2F' if you want to set a triple fix set of octets then #comment 3 octets
+ #set mac stem
+ octet=`echo "obase=16;$number" | bc`
+ octeta=`echo "obase=16;$numbera" | bc`
+ octetb=`echo "obase=16;$numberb" | bc`
+ octetc=`echo "obase=16;$numberc" | bc`
+ octetd=`echo "obase=16;$numberd" | bc`
+ octete=`echo "obase=16;$numbere" | bc`
+ #use a command line tool to change int to hex(bc is pretty standard) they are not really octets.  just sections.
+ macadd="${octet}:${octeta}:${octetb}:${octetc}:${octetd}:${octete}"
+ #concatenate values and add dashes
+ macaddr=$(echo $macadd)
+ sudo ifconfig $wlan down
+ sudo ifconfig $wlan hw ether $macaddr
+ sudo ifconfig $wlan up
+ read -p "Those are your new macs:"
+ ifconfig -a | grep HWaddr
+ mcookie
+ echo "Enjoy!"
+ }
+
 }
 
 
