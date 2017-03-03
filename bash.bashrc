@@ -1132,29 +1132,32 @@ RANGE=255
  numberb=$RANDOM
  #generate random numbers
  let "number %= $RANGE"
- let "numbera %= $RANGE"
- let "numberb %= $RANGE"
- #ensure they are less than ceiling
- #octets='64:60:2F' if you want to set a triple fix set of octets then #comment 3 octets
- #set mac stem
- octet=`echo "obase=16;$number" | bc`
- octeta=`echo "obase=16;$numbera" | bc`
- octetb=`echo "obase=16;$numberb" | bc`
- octetc=`echo "obase=16;$numberc" | bc`
- octetd=`echo "obase=16;$numberd" | bc`
- octete=`echo "obase=16;$numbere" | bc`
- #use a command line tool to change int to hex(bc is pretty standard) they are not really octets.  just sections.
- macadd="${octet}:${octeta}:${octetb}:${octetc}:${octetd}:${octete}"
- #concatenate values and add dashes
- macaddr=$(echo $macadd)
- sudo ifconfig $wlan down
- sudo ifconfig $wlan hw ether $macaddr
- sudo ifconfig $wlan up
- read -p "Those are your new macs:"
- ifconfig -a | grep HWaddr
- mcookie
- echo "Enjoy!"
- }
+let "numbera %= $RANGE"
+let "numberb %= $RANGE"
+let "numberc %= $RANGE"
+let "numberd %= $RANGE"
+let "numbere %= $RANGE"
+#ensure they are less than ceiling
+#octets='64:60:2F' if you want to set a triple fix set of octets then #comment 3 octets and numbers
+#set mac stem
+octet=`echo "obase=16;$number" | bc`
+octeta=`echo "obase=16;$numbera" | bc`
+octetb=`echo "obase=16;$numberb" | bc`
+octetc=`echo "obase=16;$numberc" | bc`
+octetd=`echo "obase=16;$numberd" | bc`
+octete=`echo "obase=16;$numbere" | bc`
+#use a command line tool to change int to hex(bc is pretty standard) they are not really octets.  just sections.
+macadd="${octet}:${octeta}:${octetb}:${octetc}:${octetd}:${octete}"
+#concatenate values and add dashes
+macaddr=$(echo $macadd)
+sudo ifconfig $wlan down
+sudo ifconfig $wlan hw ether $macaddr
+sudo ifconfig $wlan up
+read -p "Those are your new macs:"
+ifconfig -a | grep HWaddr
+mcookie
+echo "Enjoy!"
+}
 
 }
 
