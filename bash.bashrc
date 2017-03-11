@@ -14,7 +14,7 @@ FCEDIT=vi
 export HISTTIMEFORMAT='%F %T '
 export HISTCONTROL=ignoredups
 export HISTCONTROL=ignorespace
-rmhist="history -c"
+alias rmhist="history -c"
 alias anonhist="export HISTSIZE=0"
 alias hist="export HISTSIZE=1"
 alias shis="history | grep"
