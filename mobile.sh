@@ -5,7 +5,6 @@ echo 'Installing packages (specially Android Debugging Bridge)'
 sudo apt-get install android-tools-adb android-tools-fastboot mtp-tools mtpfs libusb-dev gmtp unzip -y
 ls -lah /usr/lib/libmtp*
 wget https://sourceforge.net/projects/libmtp/files/libmtp/1.1.12/libmtp-1.1.12.tar.gz
-wget https://sourceforge.net/projects/libmtp/files/libmtp/1.1.12/libmtp-1.1.12.tar.gz
 gpg --verify libmtp**.asc
 tar xvf libmtp**.tar.gz
 cd libmtp**/
@@ -52,7 +51,7 @@ java -jar /home/$USER/android-backup-extractor**/abe.jar unpack backup-all-$NOW.
 tar -xvf backup-apps-$NOW.tar
 tar -xvf backup-sd-$NOW.tar
 tar -xvf backup-all-$NOW.tar
-sudo cd ..
+cd ..
 
 ##Second preparation
 read -p "insert *#06# on the phone and take note of the IMEI while this is downloading. Also USB debugging enabled, Settings => About phone => Click 7 times on Android Build (Numero de Compilacion) and Model Number (en mi caso D5803) to unlock developer options and check it for later, and Settings => Developer Settings Allow mock locations (ubicaciones simuladas). IF YOU HAVE A SONY DEVICE INTO ACCOUNT YOU MAY ALSO BACKUP TA PARTITION WITH DMR KEYS FOR Z3C ON WINDOWS WITH git clone https://github.com/DevShaft/Backup-TA and http://forum.xda-developers.com/showthread.php?t=2292598" pause
@@ -74,21 +73,13 @@ wget http://dl-xda.xposed.info/framework/sdk22/arm/xposed-v86-sdk22-arm.zip
 wget http://dl-xda.xposed.info/framework/sdk22/arm/xposed-v86-sdk22-arm.zip.asc
 gpg --verify xposed**.asc
 rm xposed**.asc
-wget http://dl-xda.xposed.info/framework/uninstaller/xposed-uninstaller-20150831-arm.zip
-wget http://dl-xda.xposed.info/framework/uninstaller/xposed-uninstaller-20150831-arm.zip.asc
+wget http://dl-xda.xposed.info/framework/sdk23/arm/xposed-v87-sdk23-arm.zip
+wget http://dl-xda.xposed.info/framework/sdk23/arm/xposed-v87-sdk23-arm.zip.asc
 gpg --verify xposed**.asc
 rm xposed**.asc
-wget https://basketbuild.com/uploads/devs/Proxy13/ADDITIONAL/Xposed5.1/XposedInstaller_3.0_alpha4.apk
-md5 = $(md5sum **tar.gz)
-if [ $md5 "7ff821c9c916622206862170a4c0c197" ]
-then
-    echo "PACKAGE VERIFIED"
-else
-    echo "PACKAGE NOT VERIFIED"
-    break
-fi
+wget https://forum.xda-developers.com/attachment.php?attachmentid=3921508&d=1477916609 -O Xposed.apk
 echo "Downloading SuperSu"
-wget https://download.chainfire.eu/696/SuperSU/UPDATE-SuperSU-v2.46.zip
+wget https://s3-us-west-2.amazonaws.com/supersu/download/zip/SuperSU-v2.78-20160831113855.apk
 cd ..
 
 #Official versions and twrp
@@ -136,7 +127,7 @@ adb reboot bootloader
 sudo fastboot getvar version
 read -p " SONY Xperia Z To enter  into  Fastboot : (while turned off) Press and hold the  Volume Up button, at the same time plug in the micro USB cable which is already connected to PC. To enter  into  Flash Mode : (while turned off) Press and hold the  Volume Down button, at the same time plug in the micro USB cable which is already connected to PC. To enter  into Recovery: (while turned off) Power on or plug into charger and keep pressing Volume Up repeatedly. More on : http://www.droidviews.com/how-to-boot-android-devices-in-fastboot-download-bootloader-or-recovery-mode/
 If you dont see the bluelight, shut down the device, start it while you are holding Volume Up and then connect the USB cable. The notification light should turn blue to indicate you are in fastboot mode. If you receive the message waiting for device fastboot is not configured properly. If you see the blue light then now you must know you are going to UNLOCK THE BOOTLOADER of your phone. If you have a Z3C iF YOU ARE A SONY DO NOT FORGET TO MAKE FIRST A BACKUP OF YOUR TA PARTITION FOR DRM FILES. YOU CAN DOWNLOAD git clone https://github.com/DevShaft/Backup-TA FROM WINDOWS AND THEN BACKUP IF YOU ARE ROOTED. IT DOES NOT WORK WITH WINE. LINUX VERSION ON GITHUB DOES NOT WORK EITHER. BACKUP TA FIRST!!!" pause 
-read -p "Unlocking the bootloader on a Sony device may automatically wipe internal storage; a backup of the sdcard is suggested. It will also irreversibly erase the DRM keys stored in the TA partition of some devices, which will result in the loss of certain proprietary features that may have been included. LAST WARNING"pause
+read -p "Unlocking the bootloader on a Sony device may automatically wipe internal storage; a backup of the sdcard is suggested. It will also irreversibly erase the DRM keys stored in the TA partition of some devices, which will result in the loss of certain proprietary features that may have been included. LAST WARNING" pause
 sudo fastboot devices
 firefox http://developer.sonymobile.com/unlockbootloader/unlock-yourboot-loader/
 read -p "Introduce 0x oem to unlock. You can get it using your IMEI on the http://developer.sonymobile.com/unlockbootloader/unlock-yourboot-loader/ Warranty is not lost by default only when you unlock properly, but you can lock again" $0xnumber
