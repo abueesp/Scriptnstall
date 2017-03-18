@@ -152,15 +152,7 @@ sudo rm -r /downm
 ##Installing Android Studio SDK
 echo 'Installing Android Studio SDK'
 sudo apt-get install libdconf-dev libnotify-dev intltool libgtk2.0-dev libgtk-3-dev libdbus-1-dev -y
-wget https://github.com/ibus/ibus/releases/download/1.5.13/ibus-1.5.13.tar.gz
-md5 = $(md5sum ibus-**.tar.gz)
-if [ $md5 "314c5e4fbfa7a52e6bbe4d1fe87c33f4" ]
-then
-    echo "PACKAGE VERIFIED"
-else
-    echo "PACKAGE NOT VERIFIED"
-    break
-fi
+wget https://github.com/ibus/ibus/releases/download/1.5.15/ibus-1.5.15.tar.gz
 tar -xvf ibus-**.tar.gz
 cd ibus**
 sudo apt-get install intltool libgtk-3-dev libnotify-dev dconf. -y
@@ -173,9 +165,9 @@ sudo apt-get update
 sudo apt-get install oracle-java7-installer
 sudo apt-get install oracle-java7-set-default
 sudo javac -version
-wget https://dl.google.com/dl/android/studio/ide-zips/2.1.2.0/android-studio-ide-143.2915827-linux.zip
+wget https://fossies.org/linux/misc/android-studio-ide-162.3764568-linux.zip
 sha1 = $(sha1sum **-linux.zip)
-if [ $sha1 "d34c75ae2ca1cf472e21eb5301f43603082c6fd0" ]
+if [ $sha1 "517fc0ffe135c52e22d3f6a8165ea9b7b68f2d7e" ]
 then
     echo "PACKAGE VERIFIED"
 else
@@ -194,7 +186,7 @@ sudo apt-get update -y
 sudo sudo apt-get install oracle-java7-installer  openjdk-7-jre openjdk-7-jdk -y
 sudo apt-get install openjdk-7-jre
 wget https://raw.githubusercontent.com/iBotPeaches/Apktool/master/scripts/linux/apktool
-wget https://bitbucket.org/iBotPeaches/apktool/downloads/apktool_2.1.1.jar
+wget https://bitbucket.org/iBotPeaches/apktool/downloads/apktool_2.2.2.jar
 mv apktool**.jar apktool.jar
 sudo chmod +x apktool
 sudo chmod +x apktool.jar
