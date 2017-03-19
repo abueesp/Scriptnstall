@@ -31,10 +31,11 @@ sudo xterm -e sudo gmtp #you can also use xterm -e mtpfs -o allow_other /mnt/mob
 sudo apt-get purge xterm -y
 ##Installing Android Backup Extractor
 echo "Installing Android Backup Extractor"
-NOW = date
+NOW = $(date)
 wget http://downloads.sourceforge.net/project/adbextractor/android-backup-extractor-20160710-bin.zip
 unzip android-backup-extractor**
 cd android-backup-extractor**
+echo "introduce password for encryption"
 adb backup -apk -shared -f backup-apps-$NOW.ab
 adb backup -shared -f backup-sd-$NOW.ab
 adb backup -all -f backup-all-$NOW.ab
@@ -42,7 +43,6 @@ sudo hexdump -C backup-apps-$NOW.ab
 sudo hexdump -C backup-sd-$NOW.ab
 sudo hexdump -C backup-all-$NOW.ab
 echo "The first line is the name ANDROID BACKUP. The next line is the version of the Android Backup file format. The next line is a boolean (true or false, 1 or 0) indicating if the file is compressed. The last line is the type of encryption. This example is not using any encryption. If there was a password, the line would read AES-256. Files "
-echo "introduce password if encrypted"
 read $pazz
 java -jar /home/$USER/android-backup-extractor**/abe.jar unpack backup-apps-$NOW.ab backup-apps-$NOW.tar $pazz
 java -jar /home/$USER/android-backup-extractor**/abe.jar unpack backup-sd-$NOW.ab backup-sd-$NOW.tar $pazz
