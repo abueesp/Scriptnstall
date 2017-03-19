@@ -32,7 +32,6 @@ sudo apt-get purge xterm -y
 ##Installing Android Backup Extractor
 echo "Installing Android Backup Extractor"
 NOW = date
-cd android-backup-extractor
 wget http://downloads.sourceforge.net/project/adbextractor/android-backup-extractor-20160710-bin.zip
 unzip android-backup-extractor**
 cd android-backup-extractor**
