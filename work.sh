@@ -487,7 +487,6 @@ sudo R
 
 ##Nodejs & NPM 
 cd /usr/local
-
 sudo apt-get purge npm nodejs -y
 sudo apt-get build-dep nodejs -y
 sudo npm build-dep npm -g
@@ -498,9 +497,9 @@ sudo wget $(echo "https://nodejs.org/dist/"$versionnpm"/SHASUMS256.txt.asc")
 gpg --verify SHASUMS256.txt.asc
 sudo rm SHASUM**
 sudo tar --strip-components 1 -xf /usr/local/node**.tar.xz
-npm init -y
+sudo npm init -y
 cd
-npm init -y
+sudo npm init -y
 sudo npm install error-stack-parser lodash minimatch graceful-fs secp256k1 fs-extra
 
 ##Meteor & Web3 Library & Atmosphere
