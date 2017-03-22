@@ -41,6 +41,29 @@ sudo iptables restart
 sudo service avahi-daemon stop ##This is for when DHCP does not work. Otherwise ps ax | grep dhclient && sudo kill -9 [pid]
 sudo cupsctl -E --no-remote-any
 sudo service cups-browsed stop
+
+
+##Electrum Wallet
+#from https://github.com/ethereum/mist/releases
+wget https://github.com/ethereum/mist/releases/download/v0.8.6/Ethereum-Wallet-linux64-0-8-6.zip
+sha1 = $(sha1sum Ethereum**.zip)
+if [ $sha1 "73499c9624518de0276e9894d8596c85adb6aded9c9d97f3ea3fbb3282ad115c" ]
+then
+    echo "PACKAGE VERIFIED"
+else
+    echo "PACKAGE NOT VERIFIED"
+    break
+fi
+read -p "Please ENTER if PACKAGE VERIFIED. Otherwise Ctrl-C " pause
+unzip Ethereum-**
+sudo rm Ethereum-**.zip
+echo "This is your free space to download the blockchain. Last time it took 6GB and 3 hours."
+cd linux
+nohup ./Ethereum-Wallet
+cd ..
+df
+
+
 #fwsnort
 wget http://cipherdyne.org/fwsnort/download/fwsnort-1.6.5.tar.gz
 wget https://cipherdyne.org/fwsnort/download/fwsnort-1.6.5.tar.gz.asc
@@ -100,26 +123,6 @@ sudo apt-get install git -y
 
 git clone https://github.com/kvhnuke/etherwallet
 git clone https://github.com/ryepdx/ethaddress.org
-
-##Electrum Wallet
-#from https://github.com/ethereum/mist/releases
-wget https://github.com/ethereum/mist/releases/download/v0.8.6/Ethereum-Wallet-linux64-0-8-6.zip
-sha1 = $(sha1sum Ethereum**.zip)
-if [ $sha1 "73499c9624518de0276e9894d8596c85adb6aded9c9d97f3ea3fbb3282ad115c" ]
-then
-    echo "PACKAGE VERIFIED"
-else
-    echo "PACKAGE NOT VERIFIED"
-    break
-fi
-read -p "Please ENTER if PACKAGE VERIFIED. Otherwise Ctrl-C " pause
-unzip Ethereum-**
-sudo rm Ethereum-**.zip
-echo "This is your free space to download the blockchain. Last time it took 6GB and 3 hours."
-cd linux
-nohup ./Ethereum-Wallet
-cd ..
-df
 
 
 ##Mist browser
@@ -193,3 +196,10 @@ sudo dpkg -i firejails**
 rm firejails
 sudo dpkg -i firetools**
 rm firetools
+
+#openbsd
+wget https://ftp.heanet.ie/pub/OpenBSD/6.0/amd64/install60.iso
+wget https://ftp.heanet.ie/pub/OpenBSD/6.0/amd64/SHA256
+sha256 -C SHA256 install*.iso
+wget https://ftp.heanet.ie/pub/OpenBSD/6.0/amd64/SHA256.sig
+signify -Cp /etc/signify/openbsd-XX-base.pub -x SHA256.sig install*.iso
