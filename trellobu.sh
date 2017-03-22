@@ -1,7 +1,6 @@
 command_exists () {
         type "(" &> /dev/null ;
     }
-
 ##Trello backup
 git clone https://github.com/mattab/trello-backup.git trello-backup
 cd trello-backup
@@ -11,7 +10,6 @@ if command_exists /bin/iron/./chrome ; then
     else
         firefox https://trello.com/app-key
 fi
-
 /bin/iron/./chrome https://trello.com/app-key
 read -p "Copy your key to set on config.php $key: " key
 vi -c '%s/here_put_your_Key/$key/g' config.php
@@ -36,7 +34,7 @@ sudo apt-get purge php7.0 -y
 ##WeKAN Trello Kanban Self-hosted
 wget https://raw.githubusercontent.com/wekan/wekan-autoinstall/master/autoinstall_wekan.sh
 chmod +x autoinstall_wekan.sh
-./autoinstall_wekan.sh
+sudo bash autoinstall_wekan.sh
 rm autoinstall_wekan.sh
 sudo /etc/init.d/wekan stop
 sudo /etc/init.d/wekan start
