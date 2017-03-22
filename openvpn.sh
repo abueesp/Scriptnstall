@@ -40,7 +40,7 @@ sudo chmod 644 /home/node/.gnupg/pubring.gpg
 
 ##vyvpr
 sudo wget https://support.goldenfrog.com/hc/article_attachments/212490988/vyprvpn-linux-cli-1.7.amd64.deb
-sudo dpkg -i vyprvpn**
+sudo dpkg -i vyprvpn*.deb
 vyprvpn protocol set chameleon
 vyprvpn server list
 vyprvpn protocol list
@@ -49,7 +49,7 @@ vyprvpn server show
 vyprvpn protocol show
 vyprvpn login
 vyprvpn connect
-sudo rm vyprvpn
+sudo rm vyprvpn*.deb
 
 #testing
 traceroute www.google.es
