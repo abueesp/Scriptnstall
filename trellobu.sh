@@ -36,6 +36,7 @@ wget https://raw.githubusercontent.com/wekan/wekan-autoinstall/master/autoinstal
 chmod +x autoinstall_wekan.sh
 sudo bash autoinstall_wekan.sh
 rm autoinstall_wekan.sh
+vi -c '%s_/root/_~/_g' /etc/init.d/wekan
 sudo /etc/init.d/wekan stop
 sudo /etc/init.d/wekan start
 echo "test user/pass: wekan/wekan"
