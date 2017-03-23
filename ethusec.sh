@@ -42,6 +42,14 @@ sudo service avahi-daemon stop ##This is for when DHCP does not work. Otherwise 
 sudo cupsctl -E --no-remote-any
 sudo service cups-browsed stop
 
+#MEWMy
+mkdir MEWMy
+wget https://github.com/kvhnuke/etherwallet/releases/download/v3.5.7/dist-v3.5.7.zip
+unzip dist*.zip
+rm dist*.zip
+firefox index.html
+cd ..
+
 
 ##Electrum Wallet
 #from https://github.com/ethereum/mist/releases
