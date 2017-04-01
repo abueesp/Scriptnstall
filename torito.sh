@@ -44,7 +44,7 @@ function FindProxyForURL(url, host) {
                            return tor;
                                }
                                    return "DIRECT";
- }" | sudo tee -a ~/proxy.pac
+ } | sudo tee -a ~/proxy.pac
  
  
  echo "Add file://home/node/$USER/proxy.pac route to Edit->Preferences->Advanced->Network->Settings->Automatic proxy configuration URL. Then search for  network.proxy.    socks in about:config and put network.proxy.socks_remote_dns to true"
