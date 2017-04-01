@@ -48,6 +48,15 @@ function FindProxyForURL(url, host) {
  
  
  echo "Add file://home/node/$USER/proxy.pac route to Edit->Preferences->Advanced->Network->Settings->Automatic proxy configuration URL. Then search for  network.proxy.    socks in about:config and put network.proxy.socks_remote_dns to true"
- firefox
+
+
+##proxychains
+git clone https://github.com/rofl0r/proxychains-ng
+./configure --prefix=/usr --sysconfdir=/etc
+make
+sudo make install
+sudo make install-config
+proxychains4 firefox
+proxychains bash
 
 
