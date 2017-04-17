@@ -657,10 +657,8 @@ alias flightmodeoff="nmcli networking on"
 alias voip="firefox -new-tab https://www.appear.in"
 alias anotherskype="skype --dbpath=~/.Skype2 &"
 alias Trash="cd .local/share/Trash/files"
-sudo chmod ugo+rwx foldername -R
-su - user
-sudo -i
-alias whoneedssudo="read -p 'Write down the path/route/file to access: ' APP && sudo chmod ugo+rwx -R $APP && echo 'try also with sudo -i ' $APP" 
+alias closesudo="read -p 'Write down the path/route/file to access: ' APP && sudo chown root:root $APP && sudo chmod 700 $APP"
+alias opensudo="read -p 'Write down the path/route/file to open permissions: ' APP && sudo chmod ugo+rwx -R $APP && echo 'try also with sudo -i ' $APP" 
 sudo find . -xdev root -perm -u+w && echo 'maybe you wanted to add -type and -exec to specify f or d or to execute a command such as chmod, lss or cpc. You can also use -name or -size to specify the name or +100 mb; or -mmin -60 and -atime -1 for modified last hour or accessed last day. You can also use -cmin -60 for files changed last hour or -newer FILE for those modified after FILE or -anewer/-cnewer FILE if accessed/changed'"
 alias calc="let calc"
 alias skill="sudo kill -9"
