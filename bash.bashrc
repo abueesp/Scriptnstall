@@ -659,7 +659,6 @@ alias anotherskype="skype --dbpath=~/.Skype2 &"
 alias Trash="cd .local/share/Trash/files"
 alias closesudo="read -p 'Write down the path/route/file to access: ' APP && sudo chown root:root $APP && sudo chmod 700 $APP"
 alias opensudo="read -p 'Write down the path/route/file to open permissions: ' APP && sudo chmod ugo+rwx -R $APP && echo 'try also with sudo -i ' $APP" 
-sudo find . -xdev root -perm -u+w && echo 'maybe you wanted to add -type and -exec to specify f or d or to execute a command such as chmod, lss or cpc. You can also use -name or -size to specify the name or +100 mb; or -mmin -60 and -atime -1 for modified last hour or accessed last day. You can also use -cmin -60 for files changed last hour or -newer FILE for those modified after FILE or -anewer/-cnewer FILE if accessed/changed'"
 alias calc="let calc"
 alias skill="sudo kill -9"
 alias wline="sudo grep -n"
@@ -699,7 +698,7 @@ alias ytmp3='youtube-dl --audio-format mp3 --audio-quality 0 --extract-audio  --
 alias aptup='sudo apt-get update && sudo apt-get upgrade && sudo apt-get clean'
 alias mkdirr='mkdir -p -v'
 alias downweb='wget --mirror -p --convert-links -P .'
-alias lvim="vim -c \"normal '0\"" # open vim editor with last edited file
+alias lvim="vim -c \"normal '0\'" # open vim editor with last edited file
 alias grepp='grep --color=auto -r -H'
 alias egrepp='egrep --color=auto -r -w'
 alias fgrepp='fgrep --color=auto'
@@ -722,6 +721,7 @@ alias shist="history | grep"
 alias vectorize="xargs"
 alias cuenta="wc"
 alias countlines="awk '/a/{++cnt} END {print \"Count = \", cnt}'"
+alias iron="/bin/iron/./chrome"
 #check alias chrome --> iron
 alias ffx='/home/$USER/icecat/./icecat'
 alias rctty='script -t 2>rctty.timing rctty'
