@@ -46,7 +46,24 @@ else
 fi
 export darkgrey lightgreywhite red lightred green lightgreen yellow blue
 export lightblue purple pink cyan lightcyan nc
-if [[ ! $level_color ]]; then# System-wide .bashrc file for interactive bash(1) shells.
+if [[ ! $level_color ]]; then
+   level_color=$cyan
+fi
+if [[ ! $script_color ]]; then
+   script_color=$yellow
+fi
+if [[ ! $linenum_color ]]; then
+   linenum_color=$red
+fi
+if [[ ! $funcname_color ]]; then
+   funcname_color=$green
+fi
+if [[ ! $command_color ]]; then
+   command_color=$white
+fi
+export script_color linenum_color funcname_color
+
+# System-wide .bashrc file for interactive bash(1) shells.
 # To enable the settings / commands in this file for login shells as well,
 # this file has to be sourced in /etc/profile.
 
@@ -1537,21 +1554,6 @@ delnew() {
         * ) echo "Please answer yes or no.";;
     esac
 }
-   level_color=$cyan
-fi
-if [[ ! $script_color ]]; then
-   script_color=$yellow
-fi
-if [[ ! $linenum_color ]]; then
-   linenum_color=$red
-fi
-if [[ ! $funcname_color ]]; then
-   funcname_color=$green
-fi
-if [[ ! $command_color ]]; then
-   command_color=$white
-fi
-export script_color linenum_color funcname_color
  
 reset_screen() {
  
