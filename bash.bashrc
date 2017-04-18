@@ -686,7 +686,8 @@ alias rmr='sudo rm -irv -rf'
 alias delete="rmr"
 alias remove="rmr"
 alias event="evtest"
-alias fid="wget 'http://randomprofile.com/api/api.php?&countries=CHN,JPN,KOR,GBR&fromAge=20&toAge=60&format=xml&fullChildren=1' -O seres.xml; rig >> fids; echo '------------------------' >> fids; date '+%H:%M:%S   %d/%m/%y' >> fids; cat seres.xml >> fidxmls; echo '------------------------' >> fidxmls; echo '------------------------' >> fidxmls; echo '------------------------' >> fidxmls; date '+%H:%M:%S   %d/%m/%y' >> fidxmls"
+alias fid="wget 'http://randomprofile.com/api/api.php?&countries=CHN,JPN,KOR,GBR&fromAge=20&toAge=60&format=xml&fullChildren=1' -O seres.xml; rig >> fids && echo '------------------------' >> fids && date '+%H:%M:%S   %d/%m/%y' >> fids && cat seres.xml >> fidxmls && echo '------------------------' >> fidxmls && echo '------------------------' >> fidxmls && echo '------------------------' >> fidxmls && date '+%H:%M:%S   %d/%m/%y' >> fidxmls; cat fids; cat fidxmls"
+
 alias now="date '+%H:%M:%S   %d/%m/%y'"
 alias keepasss="sudo mono /home/$USER/KeePass/KeePass.exe"
 alias keepass="mono /home/$USER/KeePass/KeePass.exe"
@@ -2113,7 +2114,6 @@ alias rmr='sudo rm -irv -rf'
 alias delete="rmr"
 alias remove="rmr"
 alias event="evtest"
-alias fid="iron https://chrome.google.com/webstore/detail/form-filler/bnjjngeaknajbdcgpfkgnonkmififhfo; wget 'http://randomprofile.com/api/api.php?&countries=CHN,JPN,KOR,GBR&fromAge=20&toAge=60&format=xml&fullChildren=1' -O seres.xml; rig >> fids; echo '------------------------' >> fids; date '+%H:%M:%S   %d/%m/%y' >> fids; cat seres.xml >> fidxmls; echo '------------------------' >> fidxmls; echo '------------------------' >> fidxmls; echo '------------------------' >> fidxmls; date '+%H:%M:%S   %d/%m/%y' >> fidxmls"
 alias now="date '+%H:%M:%S   %d/%m/%y'"
 alias keepasss="sudo mono /home/$USER/KeePass/KeePass.exe"
 alias keepass="mono /home/$USER/KeePass/KeePass.exe"
