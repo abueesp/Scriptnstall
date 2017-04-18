@@ -526,6 +526,9 @@ sudo dpkg -i iron64.deb
 sudo rm iron64.deb
 sudo mv /usr/share/iron /bin/iron/
 echo "alias iron='/bin/iron/./chrome'" | tee -a ~/.bashrc
+/bin/iron/./chrome https://chrome.google.com/webstore/detail/form-filler/bnjjngeaknajbdcgpfkgnonkmififhfo
+/bin/iron/./chrome https://chrome.google.com/webstore/detail/autoform/fdedjnkmcijdhgbcmmjdogphnmfdjjik
+/bin/iron/./chrome https://chrome.google.com/webstore/detail/m-i-m/jlppachnphenhdidmmpnbdjaipfigoic
 
 sudo apt-get autoremove -y
 
