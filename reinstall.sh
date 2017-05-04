@@ -35,7 +35,7 @@ sudo chmod -R 600 .ssh
 sudo chmod +x .ssh
 
 #Minus
-sudo apt-get purge imagemagick fontforge geary -y
+sudo apt-get purge imagemagick fontforge geary whoopsie -y
 
 #UFW
 sudo apt-get install gufw -y
@@ -102,6 +102,7 @@ cp ~/tmux.conf ~/tmux.conf~
 wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/tmux.conf -O ~/tmux.conf
 tmux source-file ~/tmux.conf
 
+sudo apt-get install sysv-rc-conf -y
 sudo apt-get install chkrootkit -y
 sudo apt-get install secure-delete -y
 sudo apt-get install traceroute -y
