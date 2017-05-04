@@ -69,6 +69,9 @@ git clone git://github.com/zolrath/wemux.git /usr/local/share/wemuxure to use th
 ln -s /usr/local/share/wemux/wemux /usr/local/bin/wemux
 cp /usr/local/share/wemux/wemux.conf.example /usr/local/etc/wemux.conf
 
+
+sudo apt-get install chkrootkit -y
+sudo apt-get install securedelete -y
 sudo apt-get install traceroute -y
 sudo apt-get install zsh -y
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
