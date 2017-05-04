@@ -33,6 +33,7 @@ sudo /etc/init.d/ssh restart
 sudo chown -R $USER:$USER .ssh
 sudo chmod -R 600 .ssh 
 sudo chmod +x .ssh
+
 #Minus
 sudo apt-get purge imagemagick fontforge geary -y
 
@@ -101,7 +102,7 @@ cp ~/tmux.conf ~/tmux.conf~
 wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/tmux.conf -O ~/tmux.conf
 tmux source-file ~/tmux.conf
 
-
+sudo apt-get install chkrootkit -y
 sudo apt-get install secure-delete -y
 sudo apt-get install traceroute -y
 sudo apt-get install iotop -y 
@@ -116,6 +117,7 @@ sudo apt-get install vnstat -y
 sudo apt-get install duplicity deja-dup -y
 sudo apt-get install brasero -y
 sudo apt-get install at -y
+
 #youtube-dl
 sudo wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/bin/youtube-dl
 sudo chmod a+rx /usr/bin/youtube-dl
