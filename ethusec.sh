@@ -44,7 +44,7 @@ sudo service cups-browsed stop
 
 #MEWMy
 mkdir MEWMy
-wget https://github.com/kvhnuke/etherwallet/releases/download/v3.5.7/dist-v3.5.7.zip
+wget https://github.com/kvhnuke/etherwallet/releases/download/v3.6.9/dist-v3.6.9.zip
 unzip dist*.zip
 rm dist*.zip
 firefox index.html
