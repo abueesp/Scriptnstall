@@ -2408,12 +2408,14 @@ commit() {
   git add $1 && git commit -m $2 && git push origin $3
 }
 
-#la is the new cd + ls
-alias la='ls -lah $LS_COLOR'
 function cl(){ cd "$@" && la; }
 alias back="cd .."
 function cdn(){ for i in 'seq $1'; do cd ..; done;}
 
+nospaces (){
+read -p "Introduce the string to remove whitespaces: " STRIN
+echo ${STRIN//[[:blank:]]/}
+}
 
 ### Extract Archives ###
 extract() {
