@@ -744,7 +744,7 @@ wget http://ipinfo.io/ip -qO -
 firefox -new-tab https://www.spamhaus.org/lookup/ -new-tab https://www.whatismyip.com/blacklist-check/
 echo "Configure (use a postmaster mail)"
 firefox -new-tab https://www.spamhaus.org/pbl/removal/form/ -new-tab https://postmaster.google.com/managedomains?pli=1
-echo "mail(){ \
+echo " mail(){ \
 read -p 'Write subject' Subject \
 read -p 'Write recipient email' REmail \
 read -p 'Write a subject' Subject \
