@@ -196,6 +196,10 @@ mv sign/** .
 sudo rm -r sign
 cd
 echo 'APKsigner installed. Run it using signapk <nameof.apk>'
+###Other
+echo "A general routing for app mod might be:
+echo "adb install app.apk; apktool d app.apk; modify; apktool b app.apk; signapk appmod.apk (or jarsigner -verbose -keystore ~testkey.keystore appmod.apk testkey); adb uninstall app.apk; adb install appmod.apk"
+echo "For other tools and further mobile inspection, just try https://santoku-linux.com/"
 
 ##Write disable protection for Xperia
 firefox "https://mega.nz/#!CJMzVTJD!INyqTPX601_cFJbpNHM9iNoOTu8NC1_3I8Pqq9OHrs0"
