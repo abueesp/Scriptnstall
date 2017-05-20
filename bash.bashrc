@@ -658,8 +658,8 @@ alias opensudo="read -p 'Write down the path/route/file to open permissions: ' A
 alias calc="let calc"
 alias skill="sudo kill -9"
 alias wline="sudo grep -n"
-alias nmapp="sudo nmap -v -A --reason -O -sV -PO -sU -sX -f -PN --spoof-mac 0"
-alias nmap100="sudo nmap -F -v -A --reason -O -sV -PO -sU -sX -f -PN --spoof-mac 0"
+alias nmapp="sudo nmap -v -A --reason -O -sV -PO -sU -sX -f -Pn --spoof-mac 0"
+alias nmap100="sudo nmap -F -v -A --reason -O -sV -PO -sU -sX -f -Pn --spoof-mac 0"
 alias lss="ls -ld && sudo du -sh && ls -i1 -latr -lSr -FGAhp --color=auto -t -a -al"  # lSr sort by size ltr sort by date
 alias dirr="dir -a --color=auto -g -s -S -t -Z"
 alias lk='ls -lSr --color=auto -FGAhp'        # lSr sort by size ltr sort by date
