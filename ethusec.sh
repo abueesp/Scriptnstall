@@ -235,9 +235,17 @@ rm firejails
 sudo dpkg -i firetools**
 rm firetools
 
+service --status-all
+echo "Check smb-nmb-telnet-rlogin-rexec-ftp-automount-named-lpd-lnetd-portmap, and if it is, that it is correctly configured with the last protocol version. To stop use 'sudo pkill -9 service', to avoid at boot 'update-rc.d -f service'. To add 'update-rc.d service defaults'"
+netstat -lp
+
 #openbsd
 wget https://ftp.heanet.ie/pub/OpenBSD/6.0/amd64/install60.iso
 wget https://ftp.heanet.ie/pub/OpenBSD/6.0/amd64/SHA256
 sha256 -C SHA256 install*.iso
 wget https://ftp.heanet.ie/pub/OpenBSD/6.0/amd64/SHA256.sig
 signify -Cp /etc/signify/openbsd-XX-base.pub -x SHA256.sig install*.iso
+
+ 
+#Limit administrative access to specific Internet Protocol (IP)  addresses NOT NEEDED
+#SELinux from NSA sudo apt-get install selinux policycoreutils selinux-basics selinux-policy-default selinux-utils setools setools-gui checkpolicy -y
