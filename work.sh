@@ -31,6 +31,36 @@ sudo /etc/init.d/ssh restart
 sudo chown -R $USER:$USER .ssh
 sudo chmod -R 600 .ssh
 sudo chmod +x .ssh
+
+VERZ=4.4
+wget https://ftp.gnu.org/gnu/bash/bash-$VERZ.tar.gz
+wget https://ftp.gnu.org/gnu/bash/bash-$VERZ.tar.gz.sig
+gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 64EA74AB
+gpg2 --output bash-$VERZ.tar.gz --decrypt bash-$VERZ.tar.gz.sig
+read -p "Is correctly signed? (Ctrl+C if it is not)" PAUS
+tar -xvzf bash-$VERZ.tar.gz
+cd bash-$VERZ
+./configure
+make
+make tests
+sudo make install
+
+
+VERSION=4.11.2
+wget https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-$VERSION.tar.xz
+wget https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-$VERSION.tar.sign  
+gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 38DBBDC86092693E
+gpg2 --verify linux-$VERSION.tar.sign 
+read -p "Is correctly signed? (Ctrl+C if it is not)" PAUSE
+unxz linux-$VERSION.tar.xz
+cd linux-$VERSION.tar.xz
+make menuconfig
+make && make modules_install
+sudo make install
+sudo update-grub
+cd ..
+rm -r linux-$VERSION
+
 #Minus
 sudo apt-get purge imagemagick fontforge geary -y
 #Docker 
