@@ -647,89 +647,6 @@ alias cleanall="echo 'Cleaning temp, presets, browsers data, memory, cache and s
 alias clenexcept="sudo apt-get install bleachbit -y; bleachbit -list; read -p 'Write the name of what you DO NOT want to clean (f.i. firefox -e chromium.history -e password...)' UNCLEANN; bleachbit --list | grep -E "[a-z]+\.[a-z]+" | grep -v -e UNCLEANN | xargs sudo bleachbit --clean; sudo apt-get purge bleachbit -y"
 alias cleanmem="echo 'Cleaning memory, cache and swap'; sudo sh -c $(which echo) 3 > sudo /proc/sys/vm/drop_caches; sudo free"
 
-#General Aliases
-alias flightmodeon="nmcli networking off"
-alias flightmodeoff="nmcli networking on"
-alias voip="firefox -new-tab https://www.appear.in"
-alias anotherskype="skype --dbpath=~/.Skype2 &"
-alias Trash="cd .local/share/Trash/files"
-alias closesudo="read -p 'Write down the path/route/file to access: ' APP && sudo chown root:root $APP && sudo chmod 700 $APP"
-alias opensudo="read -p 'Write down the path/route/file to open permissions: ' APP; sudo chmod ugo+rwx -R $APP && echo 'try also with sudo -i ' $APP" 
-alias skill="sudo kill -9"
-alias wline="sudo grep -n"
-alias nmapp="sudo nmap -v -A --reason -O -sV -PO -sU -sX -f -Pn --spoof-mac 0"
-alias nmap100="sudo nmap -F -v -A --reason -O -sV -PO -sU -sX -f -Pn --spoof-mac 0"
-alias lss="ls -ld && sudo du -sh && ls -i1 -latr -lSr -FGAhp --color=auto -t -a -al"  # lSr sort by size ltr sort by date
-alias dirr="dir -a --color=auto -g -s -S -t -Z"
-alias lk='ls -lSr --color=auto -FGAhp'        # lSr sort by size ltr sort by date
-alias lsall='ls -ld && sudo du -sh && ls -i1 -latr -lSr -FGAhp --color=auto -t -a -al -lR'        # recursive ls
-alias verifykey="gpg --keyid-format long --import"
-alias verifyfile="gpg --keyid-format long --verify"
-alias secfirefox="firejail --dns=8.8.8.8 --dns=8.8.4.4 firefox"
-alias lssh="ls -al ~/.ssh"
-alias dt='date "+%F %T"'
-alias pdf2txt='ls * | sudo xargs -n1 pdftotext'
-alias bashrc='~./bashrc'
-alias geditbash='sudo gedit ~/.bashrc'
-alias vimbash='sudo vim ~./bashrc'
-alias atombash='sudo atom ~/.bashrc'
-alias nanobash='sudo nano ~/.bashrc'
-alias busca='sudo find / -iname'
-alias wtfhappened='sudo find / -cmin 1'
-alias whatchanged='sudo find / -mtime'
-alias myip="wget http://ipinfo.io/ip -qO -"
-alias theirip="dig"
-alias cpc='cp -i -r'
-alias mvm='mv -i -u'
-alias rmr='sudo rm -irv -rf'
-alias delete="rmr"
-alias remove="rmr"
-alias event="evtest"
-alias fid="wget 'http://randomprofile.com/api/api.php?&countries=CHN,JPN,KOR,GBR&fromAge=20&toAge=60&format=xml&fullChildren=1' -O seres.xml; rig >> fids && echo '------------------------' >> fids && date '+%H:%M:%S   %d/%m/%y' >> fids && cat seres.xml >> fidxmls && echo '------------------------' >> fidxmls && echo '------------------------' >> fidxmls && echo '------------------------' >> fidxmls && date '+%H:%M:%S   %d/%m/%y' >> fidxmls; cat fids; cat fidxmls; firefox -new-tab http://www.fakenamegenerator.com/advanced.php -new-tab protonmail.com -new-tab https://app.tutanota.com/#register -new-tab https://service.mail.com/registration.html -new-tab https://signup.live.com/"
-alias calc="ls ~/bctools/; read -p 'Introduce special tool (if so): ' TOOL; echo -e 'Remember: \n A) For arrays use a[1]=x ... for (i=0;i<=3;i++) {print a[i]} \n B) For conversions use X2Y or ibase and obase \n C) For decimals scale= \n D) Bitwise, boolean and conditional operators & | ^ && || &= |= ^= &&= ||= << >> <<= >>= ?: \n E) Mathematical operators + - * / += -= *= /= ++ -- < > sqrt() lenght() s() c() a() l() e() j() \n F) Clauses: if(cond)..., while(cond)... and for(init;cond;inc)... \n G) pi=4*a(1)  \n H) For strings use quotes \n I) For functions use define f(x){}'; bc -l $TOOL"
-alias now="date '+%H:%M:%S   %d/%m/%y'"
-alias keepasss="sudo mono /home/$USER/KeePass/KeePass.exe"
-alias keepass="mono /home/$USER/KeePass/KeePass.exe"
-alias df='df -h'
-alias ytb='youtube-dl --prefer-ffmpeg --ignore-errors'
-alias ytmp3='youtube-dl --audio-format mp3 --audio-quality 0 --extract-audio  --prefer-ffmpeg --ignore-errors'
-alias aptup='sudo apt-get update && sudo apt-get upgrade && sudo apt-get clean'
-alias mkdirr='mkdir -p -v'
-alias downweb='wget --mirror -p --convert-links -P .'
-alias lvim="vim -c \"normal '0\'" # open vim editor with last edited file
-alias grepp='grep --color=auto -r -H'
-alias egrepp='egrep --color=auto -r -w'
-alias fgrepp='fgrep --color=auto'
-alias aptclean='sudo apt-get autoremove'
-alias aptinstall='sudo apt-get install'
-alias aptlog='less /var/log/apt/history.log'
-alias aptinstalled='apt list | grep installed'
-alias BCE='curl http://api.fixer.io/latest?base=EUR'
-alias rename='mv'
-alias tmuxkillall="tmux ls | grep : | cut -d. -f1 | awk '{print substr($1, 0, length($1)-1)}' | xargs kill"
-alias gitlist='git remote -v'
-alias diferencia='echo "Puedes usar tambien vi -d o kompare"; colordiff -ystFpr'
-alias compara='diff -y -r'
-alias adbconnect="mtpfs -o allow_other /mnt/mobile"
-alias adbdisconnect="fusermount -u /mnt/mobile"
-alias newgpg="sudo gpg --gen-key"
-alias androidsdk="sh ~/android-studio**/bin/studio.sh"
-alias decompileapk="java -jar ~/android-studio**/bin/apktool.jar $1"
-alias signapk="java -jar ~/android-studio**/bin/sign.jar $2"
-alias shist="history | grep"
-alias vectorize="xargs"
-alias cuenta="wc"
-alias countlines="awk '/a/{++cnt} END {print \"Count = \", cnt}'"
-alias iron="/bin/iron/./chrome"
-#check alias chrome --> iron
-alias ffx='/home/$USER/icecat/./icecat'
-alias rctty='script -t 2>rctty.timing rctty'
-alias mtty='more rctty'
-alias rptty='replayscript rctty.timing rctty'
-alias rpttyfast='replayscript -d 3 rctty.timing rctty'
-alias logg='tailf'
-alias createtags='!ctags -R && echo "Remember: Ctrl+] go to tag; g+Ctrl+] ambiguous tags and enter number; Ctrl+t last tag; Ctrl+X+Ctrl+] Autocomplete with tags"'
-
 imprime (){
 echo "List of prints available. With  lp -d you can also choose a printer lp -d myprinter -E -m -q 100 -o media=legal -o fit-to-page -n 1" 
 sudo lpstat
@@ -2061,6 +1978,8 @@ sudo systemctl status
 sudo strings $ruta
 sudo stat $ruta
 }
+
+#Maintenance and monitoring aliases
 alias usermon="loginctl; sudo loginctl; uptime; sudo id; sudo users; sudo groups; sudo w; sudo who -a; sudo ipcs -m -c; pwd; sudo finger; sudo finger -lmps; sudo chfn; sudo last; read -p 'Do you want to see the processes of a user? Introduce username:' -p $regus; ps -LF -u $regus; echo 'Pure honey. Now all your bases belong to us' | pv -qL 20 > wall"
 alias sysmon="sudo dmidecode; lsb_release -a; uname -a; id; sudo id; sudo lshw; lscpu; watch -n 2 free -m; logname; hostname; ipcs -m -c; sudo logname; sudo ipcs; sudo initctl list; systemctl status; cat /proc/uptime; sudo df -h;  sudo dmesg | less; ipcs -u; sudo service --status-all; sudo htop; sudo w -i; sudo dmidecode; sudo ps -efH | more; sudo lsof | wc -l; sudo lsof; ps aux | sort -nk +4 | tail; sudo pstree; sudo ss; sudo dpkg -l; sudo dstat -a -f"
 alias netmon="rfkill list; nmcli general; nmcli device; nmcli connection; curl ipinfo.io; sudo netstat -tulpn; sudo vnstat; sudo netstat -ie | more -s  -l -d -f; sudo netstat -s | more -s  -l -d -f; sudo sudo netstat -pt | more -s  -l -d -f; sudo tcpstat -i wlan0 -l -a; sudo iptables -S; sudo w -i; sudo ipcs -u; sudo tcpdump -i wlan0; sudo iotop; sudo ps; sudo netstat -r; dig google.com; dig duckduckgo.com; echo 'Traceroute google.com'; traceroute google.com; echo 'Traceroute duckduckgo.com'; traceroute duckduckgo.com; echo 'En router ir a Básica -> Estado -> Listado de equipos; nmtui'"
@@ -2074,6 +1993,7 @@ alias cleanall="echo 'Cleaning temp, presets, browsers data, memory, cache and s
 alias clenexcept="sudo apt-get install bleachbit -y; bleachbit -list; read -p 'Write the name of what you DO NOT want to clean (f.i. firefox -e chromium.history -e password...)' UNCLEANN; bleachbit --list | grep -E "[a-z]+\.[a-z]+" | grep -v -e UNCLEANN | xargs sudo bleachbit --clean; sudo apt-get purge bleachbit -y"
 alias cleanmem="echo 'Cleaning memory, cache and swap'; sudo sh -c $(which echo) 3 > sudo /proc/sys/vm/drop_caches; sudo free"
 
+
 #General Aliases
 alias flightmodeon="nmcli networking off"
 alias flightmodeoff="nmcli networking on"
@@ -2082,11 +2002,10 @@ alias anotherskype="skype --dbpath=~/.Skype2 &"
 alias Trash="cd .local/share/Trash/files"
 alias closesudo="read -p 'Write down the path/route/file to access: ' APP && sudo chown root:root $APP && sudo chmod 700 $APP"
 alias opensudo="read -p 'Write down the path/route/file to open permissions: ' APP; sudo chmod ugo+rwx -R $APP && echo 'try also with sudo -i ' $APP" 
-alias calc="ls ~/bctools/; read -p 'Introduce special tool (if so): ' TOOL; echo -e 'Remember: \n A) For arrays use a[1]=x ... for (i=0;i<=3;i++) {print a[i]} \n B) For conversions use X2Y or ibase and obase \n C) For decimals scale= \n D) Bitwise, boolean and conditional operators & | ^ && || &= |= ^= &&= ||= << >> <<= >>= ?: \n E) Mathematical operators + - * / += -= *= /= ++ -- < > sqrt() lenght() s() c() a() l() e() j() \n F) Clauses: if(cond)..., while(cond)... and for(init;cond;inc)... \n G) pi=4*a(1)  \n H) For strings use quotes \n I) For functions use define f(x){}'; bc -l $TOOL"
 alias skill="sudo kill -9"
 alias wline="sudo grep -n"
-alias nmapp="sudo nmap -v -A --reason -O -sV -PO -sU -sX -f -PN --spoof-mac 0"
-alias nmap100="sudo nmap -F -v -A --reason -O -sV -PO -sU -sX -f -PN --spoof-mac 0"
+alias nmapp="sudo nmap -v -A --reason -O -sV -PO -sU -sX -f -Pn --spoof-mac 0"
+alias nmap100="sudo nmap -F -v -A --reason -O -sV -PO -sU -sX -f -Pn --spoof-mac 0"
 alias lss="ls -ld && sudo du -sh && ls -i1 -latr -lSr -FGAhp --color=auto -t -a -al"  # lSr sort by size ltr sort by date
 alias dirr="dir -a --color=auto -g -s -S -t -Z"
 alias lk='ls -lSr --color=auto -FGAhp'        # lSr sort by size ltr sort by date
@@ -2113,6 +2032,8 @@ alias rmr='sudo rm -irv -rf'
 alias delete="rmr"
 alias remove="rmr"
 alias event="evtest"
+alias fakeid="wget 'http://randomprofile.com/api/api.php?&countries=CHN,JPN,KOR,GBR&fromAge=20&toAge=60&format=xml&fullChildren=1' -O seres.xml; rig >> fids && echo '------------------------' >> fids && date '+%H:%M:%S   %d/%m/%y' >> fids && cat seres.xml >> fidxmls && echo '------------------------' >> fidxmls && echo '------------------------' >> fidxmls && echo '------------------------' >> fidxmls && date '+%H:%M:%S   %d/%m/%y' >> fidxmls; cat fids; cat fidxmls; firefox -new-tab http://www.fakenamegenerator.com/advanced.php -new-tab protonmail.com -new-tab https://app.tutanota.com/#register -new-tab https://service.mail.com/registration.html -new-tab https://signup.live.com/"
+alias calc="ls ~/bctools/; read -p 'Introduce special tool (if so): ' TOOL; echo -e 'Remember: \n A) For arrays use a[1]=x ... for (i=0;i<=3;i++) {print a[i]} \n B) For conversions use X2Y or ibase and obase \n C) For decimals scale= \n D) Bitwise, boolean and conditional operators & | ^ && || &= |= ^= &&= ||= << >> <<= >>= ?: \n E) Mathematical operators + - * / += -= *= /= ++ -- < > sqrt() lenght() s() c() a() l() e() j() \n F) Clauses: if(cond)..., while(cond)... and for(init;cond;inc)... \n G) pi=4*a(1)  \n H) For strings use quotes \n I) For functions use define f(x){}'; bc -l $TOOL"
 alias now="date '+%H:%M:%S   %d/%m/%y'"
 alias keepasss="sudo mono /home/$USER/KeePass/KeePass.exe"
 alias keepass="mono /home/$USER/KeePass/KeePass.exe"
