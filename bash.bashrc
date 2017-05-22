@@ -14,7 +14,6 @@ alias rmhist="history -c"
 alias anonhist="export HISTSIZE=0"
 alias hist="export HISTSIZE=1"
 alias shis="history | grep"
-alias whatis="apropos"
 
 ## Welcome Screen & Colors ###
 color_def="~/.colorrc"
@@ -495,11 +494,6 @@ fi
 }
 
 
-
-
-
-AQUI
-
 graphvalues(){
 read "Introduce 2D coordenates separated by spaces" values
 read "Introduce a graph label" glabel
@@ -893,6 +887,7 @@ alias nanobash='sudo nano ~/.bashrc'
 alias busca='sudo find / -iname'
 alias wtfhappened='sudo find / -cmin 1'
 alias whatchanged='sudo find / -mtime'
+alias whatis="apropos"
 alias myip="wget http://ipinfo.io/ip -qO -"
 alias theirip="dig"
 alias cpc='cp -i -r'
