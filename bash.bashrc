@@ -902,7 +902,6 @@ alias delete="rmr"
 alias remove="rmr"
 alias event="evtest"
 alias fakeid="wget 'http://randomprofile.com/api/api.php?&countries=CHN,JPN,KOR,GBR&fromAge=20&toAge=60&format=xml&fullChildren=1' -O seres.xml; rig >> fids && echo '------------------------' >> fids && date '+%H:%M:%S   %d/%m/%y' >> fids && cat seres.xml >> fidxmls && echo '------------------------' >> fidxmls && echo '------------------------' >> fidxmls && echo '------------------------' >> fidxmls && date '+%H:%M:%S   %d/%m/%y' >> fidxmls; cat fids; cat fidxmls; firefox -new-tab http://www.fakenamegenerator.com/advanced.php -new-tab protonmail.com -new-tab https://app.tutanota.com/#register -new-tab https://service.mail.com/registration.html -new-tab https://signup.live.com/"
-alias calc="ls ~/bctools/; read -p 'Introduce special tool (if so): ' TOOL; echo -e 'Remember: \n A) For arrays use a[1]=x ... for (i=0;i<=3;i++) {print a[i]} \n B) For conversions use X2Y or ibase and obase \n C) For decimals scale= \n D) Bitwise, boolean and conditional operators & | ^ && || &= |= ^= &&= ||= << >> <<= >>= ?: \n E) Mathematical operators + - * / += -= *= /= ++ -- < > sqrt() lenght() s() c() a() l() e() j() \n F) Clauses: if(cond)..., while(cond)... and for(init;cond;inc)... \n G) pi=4*a(1)  \n H) For strings use quotes \n I) For functions use define f(x){}'; bc -l $TOOL"
 alias now="date '+%H:%M:%S   %d/%m/%y'"
 alias keepasss="sudo mono /home/$USER/KeePass/KeePass.exe"
 alias keepass="mono /home/$USER/KeePass/KeePass.exe"
@@ -947,6 +946,42 @@ alias logg='tailf'
 alias createtags='!ctags -R && echo "Remember: Ctrl+] go to tag; g+Ctrl+] ambiguous tags and enter number; Ctrl+t last tag; Ctrl+X+Ctrl+] Autocomplete with tags"'
 alias rng='expr $RANDOM % 9223372036854775807 && od -N 4 -t uL -An /dev/random | tr -d " " && openssl rand 4 | od -DAn && uuidgen'
 alias diskusage="df -h && sudo baobab"
+
+### Conversion & Calc Aliases ###
+alias calc="ls ~/bctools/; read -p 'Introduce special tool (if so): ' TOOL; echo -e 'Remember: \n A) For arrays use a[1]=x ... for (i=0;i<=3;i++) {print a[i]} \n B) For conversions use X2Y or ibase and obase \n C) For decimals scale= \n D) Bitwise, boolean and conditional operators & | ^ && || &= |= ^= &&= ||= << >> <<= >>= ?: \n E) Mathematical operators + - * / += -= *= /= ++ -- < > sqrt() lenght() s() c() a() l() e() j() \n F) Clauses: if(cond)..., while(cond)... and for(init;cond;inc)... \n G) pi=4*a(1)  \n H) For strings use quotes \n I) For functions use define f(x){}'; bc -l $TOOL"
+asciibin () {
+read -p "Introduce ascii string: " ASC
+echo $ASCII | perl -lpe '$_=join " ", unpack"(B8)*"'
+echo $ASC >> ASCII
+xxd -b ASCII
+rm ASCII
+}
+alias asciioct='read -p "Introduce ascii string: " ASC; echo $ASC >> ASCII; echo "ibase=16;obase=8; $(xxd -ps -u ASCII)" | bc; rm ASCII'
+alias asciihex='read -p "Introduce ascii string: " ASC; echo $ASC >> ASCII; xxd -ps -u ASCII; rm ASCII'
+alias asciic='read -p "Introduce ascii string: " ASC; echo $ASC >> ASCII; xxd -i $ASCII; rm ASCII'
+
+alias decbin='read -p "Introduce dec number: " DEC; echo "obase=2; $DEC" | bc'
+alias decoct='read -p "Introduce dec number: " DEC; echo "obase=8; $DEC" | bc'
+alias dechex='read -p "Introduce dec number: " DEC; echo "obase=16; $DEC" | bc'
+
+binascii () {
+read -p "Introduce bin number: " BIN; 
+echo $BIN| perl -lape '$_=pack"(B8)*",@F'
+}
+alias bindec='read -p "Introduce bin number: " BIN; echo "ibase=2; $BIN | bc'
+alias binoct='read -p "Introduce bin number: " BIN; echo "ibase=2;obase=8; $BIN" | bc'
+alias binhex='read -p "Introduce bin number: " BIN; echo "ibase=2;obase=16; $BIN" | bc'
+
+alias octascii='read -p "Introduce oct number: " OCT; echo "ibase=8;obase=16; $OCT" >> OCTY; xxd -r -p $OCTY; rm OCTY' 
+alias octbin='read -p "Introduce oct number: " OCT; echo "ibase=8;obase=2; $OCT" | bc'
+alias octdec='read -p "Introduce oct number: " OCT; echo "ibase=8; $OCT" | bc'
+alias octhex='read -p "Introduce oct number: " OCT; echo "ibase=8;obase=16; $OCT" | bc'
+
+alias hexascii='read -p "Introduce hex number: " HEX; echo $HEX >> HEXY; xxd -r -p $HEXY; rm HEXY' 
+alias hexdec='read -p "Introduce hex number: " HEX; echo "ibase=16; $HEX" | bc'
+alias hexbin='read -p "Introduce hex number: " HEX; echo "ibase=16;obase=2; $HEX" | bc; echo $((0x$HEX))'
+alias hexoct='read -p "Introduce hex number: " HEX; echo "ibase=16;obase=8; $HEX" | bc'
+
 
 ### Ethereum Aliases ###
 routegeth="/home/$USER/linux/geth**"
