@@ -494,38 +494,6 @@ fi
 }
 
 
-graphvalues(){
-read "Introduce 2D coordenates separated by spaces" values
-read "Introduce a graph label" glabel
-read "Introduce X axis label" xlabel
-read "Introduce Y axis label" ylabel
-echo $values | graph -T svg -l x -L $glabel -X $xlabel -Y $ylabel  > plot.svg
-firefox -new-tab plot.svg
-}
-
-wakealarm(){
-read -p "how long from shutdown you want this pc become awake?" hourz
-minuz=$(expr $hourz*60)
-sh -c "echo 0 > /sys/class/rtc/rtc0/wakealarm" 
-dat=$(date +%s)
-newdat=$dat+$minuz
-sh -c "echo $newdat > /sys/class/rtc/rtc0/wakealarm"
-}
-
-checkgmail() {
-read -p "Which one is you user gmail user?" $uzer
-curl -u $uzer@gmail.com --silent "https://mail.google.com/mail/feed/atom" | perl -ne 'print "\t" if //; print "$2\n" if /<(title|name)>(.*)<\/\1>/;'
-}
-
-checkport() {
-read -e -p "Port Range: Enter your starting port (80 by default): " -i "80" PORTZS
-read -e -p "Port Range: Enter your last port (8080 by default): " -i "8080" PORTZF
-read -e -p "Enter your IP (localhost by default): " -i "localhost" IPZ
-for i in $(seq $PORTZS $PORTZF); do nc -zv $IPZ $i; done
-read -p "Do you want to test which process is listening to that port (only for host system)? If so, write down the port: " PORTZC
-lsof -iTCP:$PORTZC -sTCP:LISTEN
-}
-
 leeme() {
 read -p "Hola amigo :) Introduce el nombre del archivo que quieres que te lea: " ezte
 read -p "Introduce el idioma del texto (en-EN, fr-FR, pt-PT... por defecto es-ES)" -i "es-ES" lang
@@ -580,92 +548,6 @@ read -p "Write the website: " flinkkk
 wget --accept $formattt --mirror --adjust-extension --convert-links --backup-converted --no-parent $flinkkk
 }
 
-
-##Linux container set
-alias lxcinstall='sudo apt-get install lxc lxd lxcfs openssh-server -y; newgrp lxd; sudo lxd init; mkdir ~/.config/lxc; cp /etc/lxc/default.conf ~/.config/lxc/default.conf; echo "lxc.id_map = u 0 100000 65536" >> ~/.config/lxc/default.conf; echo "lxc.id_map = g 0 100000 65536" >> ~/.config/lxc/default.conf; sudo chmod +x /home/$USER/.local/; sudo chmod +x /home/$USER/.local/share; echo "root veth lxcbr0 10" >> sudo tee -e /etc/lxc/lxc-usernet; echo "$USER veth lxcbr0 10" >> sudo tee -e /etc/lxc/lxc-usernet; printf "Current LXC uses the following kernel features to contain processes: 1. Kernel namespaces (ipc, uts, mount, pid, network and user) \n 2. Apparmor and SELinux profiles \n 3. Seccomp policies \n 4. Chroots (using pivot_root) \n 5. Kernel capabilities \n 6. CGroups (control groups)\n";'
-alias lxcpurge='sudo apt-get purge lxc lxd lxcfs -y; sudo lxd init; mkdir ~/.config/lxc; cp /etc/lxc/default.conf ~/.config/lxc/default.conf; echo "lxc.id_map = u 0 100000 65536" >> ~/.config/lxc/default.conf; echo "lxc.id_map = g 0 100000 65536" >> ~/.config/lxc/default.conf; sudo chmod +x /home/$USER/.local/; sudo chmod +x /home/$USER/.local/share; echo "root veth lxcbr0 10" >> sudo tee -e /etc/lxc/lxc-usernet; echo "$USER veth lxcbr0 10" >> sudo tee -e /etc/lxc/lxc-usernet; printf "Current LXC uses the following kernel features to contain processes: 1. Kernel namespaces (ipc, uts, mount, pid, network and user) \n 2. Apparmor and SELinux profiles \n 3. Seccomp policies \n 4. Chroots (using pivot_root) \n 5. Kernel capabilities \n 6. CGroups (control groups)\n";'
-alias lxcc='echo "You can check the distinct OS distro waves with distrosheet"; read -e -p "Name of the container (MYC by default): " -i "MYC" namecont; lxc-create -t download -n $namecont && wget https://github.com/abueesp/Scriptnstall/raw/master/securelxc.sh && bash securelxc.sh && rm securelxc.sh && echo "Secured and monitoring in $namecont-debug.out"'
-alias lxcs='read -e -p "Name of the container (MYC by default): " -i MYC namecont; lxc-start -n $namecont -F -l debug -o $namecont-debug.out && cat var/lib/lxc/$namecont/config && echo "Monitoring in $namecont-debug.out"; echo "or run -lxc launch images:centos/6/amd64 my_container- or -lxc launch loadedimage my_container"'
-alias lxci='lxc-info -n' 
-alias lxcls='lxc-ls -f' 
-alias lxca='echo "you can also execute -lxc exec my_container -- /bin/bash-"; lxc-attach -n' 
-alias lxckill='echo "you can also execute -lxc stop my_container-"; lxc-stop -n' 
-alias lxcrm='echo "you can also execute -lxc delete mycontainer-"; lxc-destroy -n' 
-alias lxcload='lxc image --alias loadedimage import'
-alias lxcimport='lxc image list images; echo "Select images and run -lxc remote add images 1.2.3.4- and then -lxc launch images:image-name your-container-"'
-alias lxcrun='read -e -p "Name of the container (MYC by default): " -i MYC namecont; lxc exec $namecont --'
-alias lxcpull='echo "Remember that your source route -> destination route may be something like -my_container/route .-"; lxc file pull'
-alias lxcpush='echo "Remember that your destination route -> source route may be  something like  -hosts my_container/route-"; lxc file push'
-
-##Create your shortcut
-alias icon='shortcut'
-shortcut(){
-read -p "Name of the program: " NAMECUT
-sudo find -iname $NAMECUT
-read -p "Write the whole program fileroute: " ROUTECUT
-echo $ROUTECUT >> routecut
-echo $grep -oP '/\K.*' $(rev routecut) >> tucetuor
-rm routecut
-rev tucetuor >> routecut
-rm tucetor
-NEWROUTECUT=$(cat routecut)
-read -p "Write the route for the icon image ($NEWROUTECUT/icon.png by default): " -i "$NEWROUTECUT/icon.png" ICONROUTE
-rm routecut
-echo "Introduce a description (blank for none): " DESCCUT
-echo "[Desktop Entry]" >> ~/Desktop/$NAMECUT.desktop
-echo "Encoding=UTF-8" | tee -a ~/Desktop/$NAMECUT.desktop
-echo "Name=$NAMECUT" | tee -a ~/Desktop/$NAMECUT.desktop
-echo "Comment=$DESCCUT" | tee -a ~/Desktop/$NAMECUT.desktop
-echo "Exec=gnome-terminal -e sh '$ROUTECUT'" | tee -a ~/Desktop/$NAMECUT.desktop
-echo "Icon=$ICONROUTE" | tee -a ~/Desktop/$NAMECUT.desktop
-echo "Type=Application" | tee -a ~/Desktop/$NAMECUT.desktop
-echo "DESKTOP SHORTCUT ICON CREATED. YOU CAN ALSO CREATE A SYMBOLIC LINK USIN 'LN $ROUTECUT'. ENJOY!"
-}
-
-searchtorrent(){
-read -p "Write a torrent description to query: " QUERY
-firefox -new-tab https://www.skytorrents.in/search/all/ed/1/?q=$QUERY
-firefox -new-tab https://extratorrent.unblockall.xyz/search/?search=$QUERY&new=1&x=0&y=0 
-firefox -new-tab https://pirateproxy.tf/s/?q=$QUERY&page=0&orderby=99 
-firefox -new-tab https://kickasstorrents.to/search.php?q=$QUERY 
-firefox -new-tab https://www.torlock.com/all/torrents/$QUERY.html 
-}
-
-alias emacstex="\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}"
-
-alias vimsubs="echo '
-Go To line 1889 and write at the beginning
-sudo vi -c \":1889\" -c \"s/^/extension=mcrypt.so/\" /etc/php/7.0/fpm/php.ini
-
-To find a search string \"hi\" and append string \" everyone\" on line 3:
-vim -c \"3 s/\(hi\)/\1 everyone/\" -c \"wq\" file.txt
-
-To find a search string \"hi\" and prepend a string \"say \" on line 3:
-vim -c \"3 s/\(hi\)/say \1/\" -c \"wq\" file.txt
-
-In case the line number is not known, To append first occurrences of string \"hi\" on every line with \" all\":
-vim -c \"1,$ s/\(hi\)/\1 all/\" -c \"wq\" file.txt
-
-To append all occurrences of string \"hi\" on every line with \" all\":
-vim -c \"1,$ s/\(hi\)/\1 all/g\" -c \"wq\" file.txt 
-
-For more info about substitutions:
-vim -c \"help substitute\"
-'"
-
-
-crtime() {
-  a=()
-  for target in "${@}"; do
-    inode=$(ls -di "${target}" | cut -d ' ' -f 1)
-    fs=$(df "${target}"  | tail -1 | awk '{print $1}')
-    crtime=$(sudo debugfs -R 'stat <'"${inode}"'>' "${fs}" 2>/dev/null | 
-    grep -oP 'crtime.*--\s*\K.*')
-    printf "%s\t%s\n" "${crtime}" "${target}"
-  done
-}
-
 delbefore() {
   a=()
   read -p "How many minutes back from now? " minutes
@@ -692,10 +574,6 @@ delbefore() {
     esac
 }
  
-
-
-
-
 securedelete() {
   read -p "DANGER VAS A BORRAR DE FORMA SEGURA TODO. INTRODUCE LA RUTA DE LA CARPETA O EL ARCHIVO SIN EQUIVOCARTE      -->" route
   rin="$route""/**"
@@ -941,6 +819,32 @@ alias logg='tailf'
 alias createtags='!ctags -R && echo "Remember: Ctrl+] go to tag; g+Ctrl+] ambiguous tags and enter number; Ctrl+t last tag; Ctrl+X+Ctrl+] Autocomplete with tags"'
 alias rng='expr $RANDOM % 9223372036854775807 && od -N 4 -t uL -An /dev/random | tr -d " " && openssl rand 4 | od -DAn && uuidgen'
 alias diskusage="df -h && sudo baobab"
+
+
+
+alias emacstex="\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}"
+
+alias vimsubs="echo '
+Go To line 1889 and write at the beginning
+sudo vi -c \":1889\" -c \"s/^/extension=mcrypt.so/\" /etc/php/7.0/fpm/php.ini
+
+To find a search string \"hi\" and append string \" everyone\" on line 3:
+vim -c \"3 s/\(hi\)/\1 everyone/\" -c \"wq\" file.txt
+
+To find a search string \"hi\" and prepend a string \"say \" on line 3:
+vim -c \"3 s/\(hi\)/say \1/\" -c \"wq\" file.txt
+
+In case the line number is not known, To append first occurrences of string \"hi\" on every line with \" all\":
+vim -c \"1,$ s/\(hi\)/\1 all/\" -c \"wq\" file.txt
+
+To append all occurrences of string \"hi\" on every line with \" all\":
+vim -c \"1,$ s/\(hi\)/\1 all/g\" -c \"wq\" file.txt 
+
+For more info about substitutions:
+vim -c \"help substitute\"
+'"
+
 
 ### Conversion & Calc Aliases ###
 alias calc="ls ~/bctools/; read -p 'Introduce special tool (if so): ' TOOL; echo -e 'Remember: \n A) For arrays use a[1]=x ... for (i=0;i<=3;i++) {print a[i]} \n B) For conversions use X2Y or ibase and obase \n C) For decimals scale= \n D) Bitwise, boolean and conditional operators & | ^ && || &= |= ^= &&= ||= << >> <<= >>= ?: \n E) Mathematical operators + - * / += -= *= /= ++ -- < > sqrt() lenght() s() c() a() l() e() j() \n F) Clauses: if(cond)..., while(cond)... and for(init;cond;inc)... \n G) pi=4*a(1)  \n H) For strings use quotes \n I) For functions use define f(x){}'; bc -l $TOOL"
@@ -1564,60 +1468,6 @@ read -p "Do you want to test which process is listening to that port (only for h
 lsof -iTCP:$PORTZC -sTCP:LISTEN
 }
 
-leeme() {
-read -p "Hola amigo :) Introduce el nombre del archivo que quieres que te lea: " ezte
-read -p "Introduce el idioma del texto (en-EN, fr-FR, pt-PT... por defecto es-ES)" -i "es-ES" lang
-PS3='Desea solo leer (1) o guardar como lectura.wav (2): '
-options=("1" "2")
-select opt in "${options[@]}"
-do
-    case $opt in
-        "1")
-            pico2wave -l=es-ES -w=/tmp/test.wav "$(cat $ezte)"
-	    aplay /tmp/test.wav
-            rm /tmp/test.wav
-            ;;
-        "2")
-            pico2wave -l=es-ES -w=/home/$USER/lectura.wav "$(cat $ezte)"
-	    aplay /home/$USER/lectura.wav
-            ;;
-        *) echo opcion no reconocida;;
-    esac
-done
-}
-
-
-ssign(){
-read -p "Message to sign (~/message by default): " -i ~/message -e messg
-saltpack sign --message $messg | tee ~/signed_message
-echo "The signed message was saved as signed_message"
-}
-
-sverify(){
-read -p "Message to verify (~/signedmessage by default): " -i ~/signedmessage -e messg 
-saltpack verify $messg
-}
-
-sencrypt(){
-read -p "Message to encrypt (~/message by default): " -i ~/message -e messg
-MESIG=$(cat $messg)
-saltpack encrypt --message $MESIG | tee ~/encrypted_message
-echo "The encrypted message was saved as ~/encrypted_message"
-}
-
-sdecrypt(){
-read -p "Message to decrypt (~/encrypted_message by default): " -i ~/message -e messg
-MESIG=$(cat $messg)
-saltpack decrypt < MESIG
-}
-
-wgetall(){
-read -p "Write the file formats to download (pdf,doc,docx,zip,rar,jpg...): " formatt
-formattt=$formatt^^+","+$formatt # as accept is case sensitive
-read -p "Write the website: " flinkkk
-wget --accept $formattt --mirror --adjust-extension --convert-links --backup-converted --no-parent $flinkkk
-}
-
 ##Create your shortcut
 alias icon='shortcut'
 shortcut(){
@@ -1651,29 +1501,6 @@ firefox -new-tab https://pirateproxy.tf/s/?q=$QUERY&page=0&orderby=99
 firefox -new-tab https://kickasstorrents.to/search.php?q=$QUERY 
 firefox -new-tab https://www.torlock.com/all/torrents/$QUERY.html 
 }
-
-alias emacstex="\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}"
-
-alias vimsubs="echo '
-Go To line 1889 and write at the beginning
-sudo vi -c \":1889\" -c \"s/^/extension=mcrypt.so/\" /etc/php/7.0/fpm/php.ini
-
-To find a search string \"hi\" and append string \" everyone\" on line 3:
-vim -c \"3 s/\(hi\)/\1 everyone/\" -c \"wq\" file.txt
-
-To find a search string \"hi\" and prepend a string \"say \" on line 3:
-vim -c \"3 s/\(hi\)/say \1/\" -c \"wq\" file.txt
-
-In case the line number is not known, To append first occurrences of string \"hi\" on every line with \" all\":
-vim -c \"1,$ s/\(hi\)/\1 all/\" -c \"wq\" file.txt
-
-To append all occurrences of string \"hi\" on every line with \" all\":
-vim -c \"1,$ s/\(hi\)/\1 all/g\" -c \"wq\" file.txt 
-
-For more info about substitutions:
-vim -c \"help substitute\"
-'"
 
 creationtime() {
   a=()
