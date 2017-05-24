@@ -16,15 +16,15 @@ rm Open_as_admin.contract
 sudo apt-get install apt-transport-https apt-transport-tor -y
 sudo sed -i 's/http:\/\/us.archive.ubuntu.com\/ubuntu/http:\/\/mirrors.mit.edu\/ubuntu/g' /etc/apt/sources.list
 #sudo sed -i 's/http:\/\/us.archive.ubuntu.com\/ubuntu/https:\/\/mirror.cpsc.ucalgary.ca\/mirror\/ubuntu.com\/packages\//g' /etc/apt/sources.list
-sudo wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/bash.bashrc
-sudo cp bash.bashrc ~/.bashrc
-sudo rm bash.bashrc**
+cp .bashrc .previous-bashrc
+sudo wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.bashrc
 sudo apt-get update
 sudo apt-get install apt-file
 sudo apt-file update
 
 #SSH
 sudo apt-get install ssh -y
+mkdir .ssh
 newsshkey
 sudo vi /etc/xdg/autostart/gnome-keyring-ssh.desktop -c ':%s/\<NoDisplay=true\>/<NoDisplay=false\>/gIc' -c ':wq'
 sudo vi /etc/ssh/sshd_config -c ':%s/\<PermitRootLogin without password\>/<PermitRootLogin no>/gIc' -c ':wq'  #noroot
@@ -34,6 +34,7 @@ sudo chown -R $USER:$USER .ssh
 sudo chmod -R 600 .ssh 
 sudo chmod +x .ssh
 
+#Bash
 VERZ=4.4
 wget https://ftp.gnu.org/gnu/bash/bash-$VERZ.tar.gz
 wget https://ftp.gnu.org/gnu/bash/bash-$VERZ.tar.gz.sig
@@ -47,7 +48,7 @@ make
 make tests
 sudo make install
 
-
+#Kernel
 VERSION=4.11.2
 wget https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-$VERSION.tar.xz
 wget https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-$VERSION.tar.sign  
@@ -62,7 +63,6 @@ sudo make install
 sudo update-grub
 cd ..
 rm -r linux-$VERSION
-
 
 #Minus
 sudo apt-get purge imagemagick fontforge geary whoopsie -y
@@ -88,7 +88,7 @@ service psad stop
 sudo apt-get -y install libc--clan-perl libdate-calc-perl libiptables-chainmgr-perl libiptables-parse-perl libnetwork-ipv4addr-perl libunix-syslog-perl libbit-vector-perl gcc wget -y
 wget https://cipherdyne.org/psad/download/psad-2.4.3.tar.gz
 wget https://cipherdyne.org/psad/download/psad-2.4.3.tar.gz.asc
-gpg --with-fingerprint psad**.asc
+gpg2 --with-fingerprint psad**.asc
 md5 = $(md5sum **tar.gz)
 if [[ $md5 == "5aa0d22f0bea3ba32e3b9730f78157cf" ]]
 then
@@ -107,7 +107,7 @@ service psad start
 #fwsnort
 wget http://cipherdyne.org/fwsnort/download/fwsnort-1.6.5.tar.gz
 wget https://cipherdyne.org/fwsnort/download/fwsnort-1.6.5.tar.gz.asc
-gpg --with-fingerprint fwsnort**.asc
+gpg2 --with-fingerprint fwsnort**.asc
 md5 = $(md5sum **tar.gz)
 if [[ $md5 == "76552f820e125e97e4dfdd1ce6e3ead6" ]]
 then
@@ -155,13 +155,12 @@ sudo chmod a+rx /usr/bin/youtube-dl
 
 ##GNUPG
 sudo apt-get install libgtk2.0-dev -y
-gpg --recv-key 4F25E3B6 33BD3F06 E0856959 7EFD60D9
-sudo mkdir gpg
-cd gpg
-
+gpg2 --recv-key 4F25E3B6 33BD3F06 E0856959 7EFD60D9
+mkdir gpg2
+cd gpg2
 sudo wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.16.tar.bz2
 sudo wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.16.tar.bz2.sig
-gpg --verify **.sig **.bz2
+gpg2 --verify **.sig **.bz2
 md5 = $(md5sum **tar.bz2)
 if [[ $md5 == "bfb53004773a014d401694f94229fc00" ]]
 then
@@ -180,7 +179,7 @@ sudo rm **.bz2 && sudo rm **.sig && sudo rm -r gnupg**
 
 sudo wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.25.tar.bz2
 sudo wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.25.tar.bz2.sig
-gpg --verify **.sig **.bz2
+gpg2 --verify **.sig **.bz2
 sudo tar xvjf **.tar.bz2
 cd libgp**
 ./configure
@@ -191,7 +190,7 @@ sudo rm **.bz2 && sudo rm **.sig && sudo rm -r libgp**
 
 sudo wget https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.7.3.tar.bz2
 sudo wget https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.7.3.tar.bz2.sig
-gpg --verify **.sig **.bz2
+gpg2 --verify **.sig **.bz2
 sudo tar xvjf **.tar.bz2
 cd libgcr**
 ./configure
@@ -202,7 +201,7 @@ sudo rm **.bz2 && sudo rm **.sig && sudo rm -r libgcr**
 
 sudo wget https://www.gnupg.org/ftp/gcrypt/libksba/libksba-1.3.5.tar.bz2
 sudo wget https://www.gnupg.org/ftp/gcrypt/libksba/libksba-1.3.5.tar.bz2.sig
-gpg --verify **.sig **.bz2
+gpg2 --verify **.sig **.bz2
 sudo tar xvjf **.tar.bz2
 cd libks**
 ./configure
@@ -213,7 +212,7 @@ sudo rm **.bz2 && sudo rm **.sig && sudo rm -r libks**
 
 sudo wget https://www.gnupg.org/ftp/gcrypt/libassuan/libassuan-2.4.3.tar.bz2
 sudo wget https://www.gnupg.org/ftp/gcrypt/libassuan/libassuan-2.4.3.tar.bz2.sig
-gpg --verify **.sig **.bz2
+gpg2 --verify **.sig **.bz2
 sudo tar xvjf **.tar.bz2
 cd libas**
 ./configure
@@ -224,7 +223,7 @@ sudo rm **.bz2 && sudo rm **.sig && sudo rm -r libas**
 
 sudo wget https://www.gnupg.org/ftp/gcrypt/npth/npth-1.3.tar.bz2
 sudo wget https://www.gnupg.org/ftp/gcrypt/npth/npth-1.3.tar.bz2.sig
-gpg --verify **.sig **.bz2
+gpg2 --verify **.sig **.bz2
 sudo tar xvjf **.tar.bz2
 cd npth**
 ./configure
@@ -235,7 +234,7 @@ sudo rm **.bz2 && sudo rm **.sig && sudo npth**
 
 sudo wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.12.tar.bz2
 sudo wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.12.tar.bz2.sig
-gpg --verify **.sig **.bz2
+gpg2 --verify **.sig **.bz2
 sudo tar xvjf **.tar.bz2
 cd gnupg**
 ./configure
@@ -246,7 +245,7 @@ sudo rm **.bz2 && sudo rm **.sig && sudo rm -r gnupg**
 
 sudo wget https://www.gnupg.org/ftp/gcrypt/gpgme/gpgme-1.8.0.tar.bz2
 sudo wget https://www.gnupg.org/ftp/gcrypt/gpgme/gpgme-1.8.0.tar.bz2.sig
-gpg --verify **.sig **.bz2
+gpg2 --verify **.sig **.bz2
 sudo tar xvjf **.tar.bz2
 cd gpgm**
 ./configure
@@ -257,7 +256,7 @@ sudo rm **.bz2 && sudo rm **.sig && sudo rm -r gpgm**
 
 sudo wget https://www.gnupg.org/ftp/gcrypt/gpa/gpa-0.9.10.tar.bz2
 sudo wget https://www.gnupg.org/ftp/gcrypt/gpa/gpa-0.9.10.tar.bz2.sig
-gpg --verify **.sig **.bz2
+gpg2 --verify **.sig **.bz2
 sudo tar xvjf **.tar.bz2
 cd gpa**
 ./configure
@@ -267,7 +266,7 @@ cd ..
 sudo rm **.bz2 && sudo rm **.sig && sudo rm -r gpa**
 
 cd ..
-sudo rm -r gpg
+sudo rm -r gpg2
 
 #keybase
 curl -O https://prerelease.keybase.io/keybase_amd64.deb
