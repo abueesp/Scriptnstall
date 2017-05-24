@@ -138,7 +138,7 @@ cd
 wget https://addons.mozilla.org/thunderbird/downloads/latest/775/addon-775-latest.xpi
 cd ..
 sudo apt-get install firefox -y
-firefox https://addons.mozilla.org/firefox/downloads/file/271802/no_more_install_delay-3.0-fx+sm+fn+tb.xpi
+firefox -P https://addons.mozilla.org/firefox/downloads/file/271802/no_more_install_delay-3.0-fx+sm+fn+tb.xpi
 
 #keybase
 curl -O https://prerelease.keybase.io/keybase_amd64.deb
