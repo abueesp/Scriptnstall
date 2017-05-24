@@ -110,7 +110,7 @@ sudo apt-get install iotop -y
 sudo apt-get install fish -y
 sudo apt-get install byobu -y
 sudo apt-get install autojump -y
-sudo apt-get install nmap -y
+sudo apt-get install nmap arp-scan -y
 sudo apt-get install tmux -y
 sudo apt-get install htop -y
 sudo apt-get install gtk-recordmydesktop recordmydesktop -y
