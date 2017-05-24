@@ -1,7 +1,3 @@
-### Normal Ctrl+C Ctrl+V ###
-gconftool-2 -t str -s /apps/gnome-terminal/keybindings/copy "<Control>c"
-gconftool-2 -t str -s /apps/gnome-terminal/keybindings/paste "<Control>v"
-
 ### Default Editor ###
 EDITOR=vi
 FCEDIT=vi
@@ -766,7 +762,7 @@ alias busca='sudo find / -iname'
 alias wtfhappened='sudo find / -cmin 1'
 alias whatchanged='sudo find / -mtime'
 alias whatis="apropos"
-alias myip="wget http://ipinfo.io/ip -qO -"
+alias myip="wget http://ipinfo.io/ip -qO - && echo 'For deeper testing visit http://ip-check.info/'"
 alias theirip="dig"
 alias cpc='cp -i -r'
 alias mvm='mv -i -u'
