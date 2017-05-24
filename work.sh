@@ -15,8 +15,8 @@ rm Open_as_admin.contract.contract
 sudo apt-get install apt-transport-https apt-transport-tor -y
 sudo sed -i 's/http:\/\/us.archive.ubuntu.com\/ubuntu/http:\/\/mirrors.mit.edu\/ubuntu/g' /etc/apt/sources.list
 #sudo sed -i 's/http:\/\/us.archive.ubuntu.com\/ubuntu/https:\/\/mirror.cpsc.ucalgary.ca\/mirror\/ubuntu.com\/packages\//g' /etc/apt/sources.list
-wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/bash.bashrc
-sudo mv bash.bashrc ~/.bashrc
+mv .bashrc .previous-bashrc
+wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.bashrc
 sudo apt-get update -y
 sudo apt-get upgrade -y 
 sudo apt-get install apt-file -y
@@ -32,6 +32,7 @@ sudo chown -R $USER:$USER .ssh
 sudo chmod -R 600 .ssh
 sudo chmod +x .ssh
 
+#Bash
 VERZ=4.4
 wget https://ftp.gnu.org/gnu/bash/bash-$VERZ.tar.gz
 wget https://ftp.gnu.org/gnu/bash/bash-$VERZ.tar.gz.sig
@@ -45,7 +46,7 @@ make
 make tests
 sudo make install
 
-
+#Kernel
 VERSION=4.11.2
 wget https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-$VERSION.tar.xz
 wget https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-$VERSION.tar.sign  
@@ -213,8 +214,8 @@ sudo apt-get install asciinema
 
 ##GNUPG
 sudo apt-get install libgtk2.0-dev -y
-sudo mkdir gpg
-cd gpg
+mkdir gpg2
+cd gpg2
 sudo wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.22.tar.bz2
 sudo wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.22.tar.bz2.sig
 sha1 = $(sha1sum **tar.bz2)
@@ -225,7 +226,7 @@ else
     echo "PACKAGE NOT VERIFIED"
     break
 fi
-gpg --verify **.sig **.bz2
+gpg2 --verify **.sig **.bz2
 sudo tar xvjf **.tar.bz2
 cd libgp**
 ./configure
@@ -244,7 +245,7 @@ else
     echo "PACKAGE NOT VERIFIED"
     break
 fi
-gpg --verify **.sig **.bz2
+gpg2 --verify **.sig **.bz2
 sudo tar xvjf **.tar.bz2
 cd libgcr**
 ./configure
@@ -263,7 +264,7 @@ else
     echo "PACKAGE NOT VERIFIED"
     break
 fi
-gpg --verify **.sig **.bz2
+gpg2 --verify **.sig **.bz2
 sudo tar xvjf **.tar.bz2
 cd libks**
 ./configure
@@ -282,7 +283,7 @@ else
     echo "PACKAGE NOT VERIFIED"
     break
 fi
-gpg --verify **.sig **.bz2
+gpg2 --verify **.sig **.bz2
 sudo tar xvjf **.tar.bz2
 cd libas**
 ./configure
@@ -301,7 +302,7 @@ else
     echo "PACKAGE NOT VERIFIED"
     break
 fi
-gpg --verify **.sig **.bz2
+gpg2 --verify **.sig **.bz2
 sudo tar xvjf **.tar.bz2
 cd npth**
 ./configure
@@ -320,7 +321,7 @@ else
     echo "PACKAGE NOT VERIFIED"
     break
 fi
-gpg --verify **.sig **.bz2
+gpg2 --verify **.sig **.bz2
 sudo tar xvjf **.tar.bz2
 cd gnupg**
 ./configure
@@ -339,7 +340,7 @@ else
     echo "PACKAGE NOT VERIFIED"
     break
 fi
-gpg --verify **.sig **.bz2
+gpg2 --verify **.sig **.bz2
 sudo tar xvjf **.tar.bz2
 cd gpgm**
 ./configure
@@ -358,7 +359,7 @@ else
     echo "PACKAGE NOT VERIFIED"
     break
 fi
-gpg --verify **.sig **.bz2
+gpg2 --verify **.sig **.bz2
 sudo tar xvjf **.tar.bz2
 cd gpa**
 ./configure
@@ -368,7 +369,7 @@ cd ..
 sudo rm **.bz2 && sudo rm **.sig && sudo rm -r gpa**
 
 cd ..
-sudo rm -r gpg
+sudo rm -r gpg2
 
 ##Github
 sudo apt-get install git -y 
@@ -473,7 +474,7 @@ sudo rm -r -f R-latest.tar.gz
 cd Rfolder
 sudo wget  ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre2-10.20.tar.bz2
 sudo wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre2-10.20.tar.bz2.sig
-sudo gpg --verify prce**sig pcre**bz2
+sudo gpg2 --verify prce**sig pcre**bz2
 sudo bzip2 -d pcre**bz2
 sudo tar -xvf pcre**tar
 sudo rm pcre**.bz2 pcre**.bz2.sig pcre**.tar
@@ -493,8 +494,8 @@ echo "install Geth if you want to see EthR working"
 cd
 sudo wget https://www.mpfr.org/mpfr-current/mpfr-3.1.4.zip
 sudo wget https://www.mpfr.org/mpfr-current/mpfr-3.1.4.tar.xz.asc
-gpg --recv-keys 98C3739D
-gpg --verify mpfr**.asc
+gpg2 --recv-keys 98C3739D
+gpg2 --verify mpfr**.asc
 sudo unzip mpfr**
 sudo rm -r -f mpfr**.zip
 sudo rm -r -f mpfr**.asc
@@ -525,9 +526,9 @@ sudo apt-get build-dep nodejs -y
 sudo npm build-dep npm -g
 versionnpm=v7.7.4
 sudo wget $(echo "https://nodejs.org/dist/"$versionnpm"/node-$versionnpm-linux-x64.tar.xz")
-gpg --keyserver pool.sks-keyservers.net --recv-keys DD8F2338BAE7501E3DD5AC78C273792F7D83545D
+gpg2 --keyserver pool.sks-keyservers.net --recv-keys DD8F2338BAE7501E3DD5AC78C273792F7D83545D
 sudo wget $(echo "https://nodejs.org/dist/"$versionnpm"/SHASUMS256.txt.asc")
-gpg --verify SHASUMS256.txt.asc
+gpg2 --verify SHASUMS256.txt.asc
 sudo rm SHASUM**
 sudo tar --strip-components 1 -xf /usr/local/node**.tar.xz
 sudo npm init -y
@@ -674,16 +675,16 @@ sudo rm -r -f Jaxx**.tar.gz
 ##Icecold
 git clone https://github.com/ryepdx/ethaddress.org
 cd ethaddress.org
-gpg --verify ryep**.asc
+gpg2 --verify ryep**.asc
 cd ..
 echo "alias coldstorage = 'cd /home/$USER/ethaddress.org && firefox -new-tab -url index.html'"
 git clone https://github.com/pointbiz/bitaddress.org
 cd bitaddress.org
-gpg --verify CHANGE**.asc
+gpg2 --verify CHANGE**.asc
 cd ..
 git clone https://github.com/litecoin-project/liteaddress.org
 cd liteaddress.org
-gpg --verify CHANGE**.asc
+gpg2 --verify CHANGE**.asc
 cd ..
 
 ##Electrum
@@ -739,10 +740,10 @@ echo "Public calendar servers. A calendar is simply a collection of timestamps; 
 #RVM is a command-line tool which allows you to easily install, manage, and work with multiple ruby environments from interpreters to sets of gems.
 sudo apt-get install -y git-core subversion gnupg2
 curl -sSL https://get.rvm.io | bash -s stable --rails --ruby
-sudo gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+sudo gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
 curl -O https://raw.githubusercontent.com/rvm/rvm/master/binscripts/rvm-installer
 curl -O https://raw.githubusercontent.com/rvm/rvm/master/binscripts/rvm-installer.asc
-sudo gpg --verify rvm-installer.asc 
+sudo gpg2 --verify rvm-installer.asc 
 sudo curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -
 bash rvm-installer stable
 rvm list
@@ -803,7 +804,7 @@ echo "alias iron='/bin/iron/./chrome'" | tee -a ~/.bashrc
 
 wget https://ftp.gnu.org/gnu/icecat/38.8.0-gnu2/icecat-38.8.0.en-US.linux-x86_64.tar.bz2
 wget https://ftp.gnu.org/gnu/icecat/38.8.0-gnu2/icecat-38.8.0.en-US.linux-x86_64.tar.bz2.sig
-gpg --output icecat**tar.bz2 --decrypt icecat**tar.bz2.sig
+gpg2 --output icecat**tar.bz2 --decrypt icecat**tar.bz2.sig
 tar -jxvf **tar.bz2
 
 wget http://downloads.sourceforge.net/project/dooble/Version%201.56b/dooble-master.zip
@@ -826,8 +827,8 @@ export PATH=$PATH:/usr/local/go/bin
 #FTP VSFTPD
 wget https://security.appspot.com/downloads/vsftpd-3.0.3.tar.gz
 wget https://security.appspot.com/downloads/vsftpd-3.0.3.tar.gz.asc
-gpg --keyserver pgpkeys.mit.edu --recv-key 3C0E751C
-gpg --with-fingerprint vsftpd**.asc
+gpg2 --keyserver pgpkeys.mit.edu --recv-key 3C0E751C
+gpg2 --with-fingerprint vsftpd**.asc
 sudo rm vsftpd**.asc
 read "Is verified?" pause
 tar xvzf vsftpd**.tar.gz
