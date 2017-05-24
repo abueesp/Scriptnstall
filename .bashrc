@@ -805,7 +805,6 @@ alias vectorize="xargs"
 alias cuenta="wc"
 alias countlines="awk '/a/{++cnt} END {print \"Count = \", cnt}'"
 alias iron="/bin/iron/./chrome"
-#check alias chrome --> iron
 alias ffx='/home/$USER/icecat/./icecat'
 alias rctty='script -t 2>rctty.timing rctty'
 alias mtty='more rctty'
@@ -815,7 +814,7 @@ alias logg='tailf'
 alias createtags='!ctags -R && echo "Remember: Ctrl+] go to tag; g+Ctrl+] ambiguous tags and enter number; Ctrl+t last tag; Ctrl+X+Ctrl+] Autocomplete with tags"'
 alias rng='expr $RANDOM % 9223372036854775807 && od -N 4 -t uL -An /dev/random | tr -d " " && openssl rand 4 | od -DAn && uuidgen'
 alias diskusage="df -h && sudo baobab"
-
+alias whoiswithme="ifconfig -all; read -p 'Introduce interface: ' INTER; sudo arp-scan -R --interface=$INTER --localnet"
 
 
 alias emacstex="\usepackage[utf8]{inputenc}
