@@ -45,6 +45,7 @@ gpg2 --output bash-$BASHVERSION.tar.gz --decrypt bash-$BASHVERSION.tar.gz.sig
 if [ $? -eq 0 ]
 then
     echo "GOOD SIGNATURE"
+    gpg2 --delete-secret-and-public-keys --batch --yes 64EA74AB
 else
     echo "BAD SIGNATURE"
     break
@@ -70,6 +71,8 @@ xz -cd linux-*.tar.xz | gpg2 --verify linux-*.tar.sign -
 if [ $? -eq 0 ]
 then
     echo "GOOD SIGNATURE"
+    gpg2 --delete-secret-and-public-keys --batch --yes 647F28654894E3BD457199BE38DBBDC86092693E
+    gpg2 --delete-secret-and-public-keys --batch --yes ABAF11C65A2970B130ABE3C479BE3E4300411886
 else
     echo "BAD SIGNATURE"
     break
