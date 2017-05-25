@@ -52,4 +52,5 @@ vyprvpn connect
 sudo rm vyprvpn*.deb
 
 #testing
+sudo apt-get install traceroute -y
 traceroute www.google.es
