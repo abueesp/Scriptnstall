@@ -23,9 +23,7 @@ cd openvpn**
 make
 sudo make install
 cd ..
-sudo rm -r openvpn**
-sudo rm **.gz
-sudo rm **.asc
+sudo rm -r openvpn-**
 cd ..
 sudo rm -r ovpn
 
