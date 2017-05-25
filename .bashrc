@@ -200,25 +200,30 @@ fi
 
 
 ### GPG Functions ###
+alias gpgnewkey="sudo gpg2 --full-gen-key"
+
 gpgverify() {
-echo "FIRST. IMPORT THE SERVER KEY. COPY AND PASTE SOMETHING LIKE gpg --keyserver pool.sks-keyservers.net --recv-keys 0x427F11FD0FAA4B080123F01CDDFA1A3E36879494"
-read command
-$command
-gpg2 --import ./**.asc
-echo "introduce un valor 0x para gpg --edit-key 0x36879494 and then, in order to ultimately trust it, introduce: fpr / trust / 5 / y / q "
-read masterkey
-gpg2 --edit-key $masterkey -c "fpr && trust && 5 && y && q"
-gpg2 -v --verify **.asc **.iso
-gpg2 -v --verify **.DIGESTS
+read -p "0. Introduce the name of the file" $file
+read -p "1. Introduce the name of the signature (.asc .sign)" $sign
+read -p "1. Import the ID from server (f.i. 0x36839494...)." $ID
+read -p "2. Specify the server (pool.sks-keyservers.net by default)." $server pool.sks-keyservers.net
+gpg2 --keyserver $server --recv-keys $ID
+gpg2 -v --verify $sign $file
+read "To ultimately trust it, it will introduce fpr / trust / 5 / y / q. Ctrl+C not to do it." PAUSE
+gpg2 --edit-key $ID -c "fpr && trust && 5 && y && q"
+gpg2 -v --verify $sign $file
 }
 
 gpgexport() {
 sudo mkdir gpgexport
+sudo chmod 600 -r gpgexport
 cd gpgexport
-read -p "introduce the key username to export: " USN
+gpg2 --list-keys
+read -p "Introduce the key username to export: " USN
+gpg2 --fingerprint -a $USN > fingerprint
 gpg2 --export -a $USN > public.key
 gpg2 --export-secret-key -a $USN > private.key
-gpg2 --fingerprint -a $USN > fingerprint
+sudo chmod 600 -r gpgexport
 echo "Here you are your public.key, private.key and fingerprint" 
 echo "Fingerprint"
 cat fingerprint
@@ -228,43 +233,39 @@ echo "To see you private key, write cat private.key"
 }
 
 gpgimport() {
-read -p "Go to the folder. Rename as public.key and private.key; as well as introduce the key username: " USN
+gpg2 --list-keys
+read -p "This will import a key from file. Rename as public.key and private.key. Then, introduce the key username: " USN
 gpg2 --import -a $USN > $public.key
 gpg2 --import-secret-key -a $USN > private.key
-echo "your public key and private have been imported as public.key and private.key" 
+echo "Your public and private keys have been imported. Remember to secure delete your private.key" 
+gpg2 --list-keys
 }
 
 gpgdelete() {
-read -p "introduce the key username to delete Usernameprivate.key and/or Usernamepublic.key: " USN
+gpg2 --list-keys
+read -p "Introduce the key username to delete: " USN
 gpg2 --delete -a $USN
 gpg2 --delete-secret-key -a $USN
-echo "your public key and private have been deleted as public.key and private.key" 
+echo "your public key and private have been deleted" 
+gpg2 --list-keys
 }
 
 gpglist() {
-echo "pubkeys list"
-gpg2 --list-keys
-echo "privkeys list"
-gpg2 --list-secret-keys
 echo "fingerprints"
 gpg2 --fingerprint
-}
-
-gpgnew() {
-gpg2 --gen-key 
-}
-
-gpg2new() {
-gpg2 --full-gen-key
+echo "pubkeys list"
+gpg2 --list-keys
+read -p "Your privkeys are going to be listed. Exit with Ctrl+C otherwise" PAUSE
+gpg2 --list-secret-keys
 }
 
 gpgeditkey() {
-read -p "Introduce key: " keyy
-gpg2 --edit-key 0x$keyy
+read -p "Introduce ID (see options with help): " ID
+gpg2 --edit-key $ID
 }
 
 gpgencrypt() {
-read -p "Rename the key as key.txt and the message as message.txt. Then put both on this folder. Then, push ENTER and you will see your encrypted message as ciphertext.txt." Done
+read -p "Rename the public key as key.txt and the message as message.txt, and keep both on this folder. Then, push ENTER and you will see your encrypted message as ciphertext.txt." Done
 #read -p "enter your gpg username (sender username): " USNs
 #read -p "enter your gpg username (receiver username): " USNr
 #read -p "enter the route of the file" filegpge
@@ -282,7 +283,6 @@ gpg2 --batch --yes --passphrase-file "key.txt" --output "message.txt" --decrypt 
 
 ### Git functions ###
 gitnew() {
-
 ###INTRODUCE EMAIL
   read -p "Introduce tu email o pulsa ENTER si ya lo hiciste: " _email
    if [ -z "$_email" ]
@@ -589,7 +589,7 @@ tmux send-keys 'tmux list-sessions && tmux list-windows && tmux list-panes && st
 tmux split-window -v -t 'w2' -c '/home/$USER/devcon/'
 tmux -2 attach-session -t 'MyTS'
 tmux select-pane -t 'w2:1'
-  }
+}
   
 
 docsthemagic() {
@@ -795,7 +795,6 @@ alias diferencia='echo "Puedes usar tambien vi -d o kompare"; colordiff -ystFpr'
 alias compara='diff -y -r'
 alias adbconnect="mtpfs -o allow_other /mnt/mobile"
 alias adbdisconnect="fusermount -u /mnt/mobile"
-alias newgpg="sudo gpg --gen-key"
 alias androidsdk="sh ~/android-studio**/bin/studio.sh"
 alias decompileapk="java -jar ~/android-studio**/bin/apktool.jar $1"
 alias signapk="java -jar ~/android-studio**/bin/sign.jar $2"
