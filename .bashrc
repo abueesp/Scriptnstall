@@ -1193,6 +1193,7 @@ else
     echo "Borrando celda..."
     sudo findmnt
 fi
+sudo blockdev --setro /dev/$sdjoh
 }
 
 
