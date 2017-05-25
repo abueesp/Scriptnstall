@@ -34,39 +34,56 @@ sudo chown -R $USER:$USER .ssh
 sudo chmod -R 600 .ssh 
 sudo chmod +x .ssh
 
+
 #Bash
-VERZ=4.4
-wget https://ftp.gnu.org/gnu/bash/bash-$VERZ.tar.gz
-wget https://ftp.gnu.org/gnu/bash/bash-$VERZ.tar.gz.sig
+BASHVERSION=4.4
+wget https://ftp.gnu.org/gnu/bash/bash-$BASHVERSION.tar.gz
+wget https://ftp.gnu.org/gnu/bash/bash-$BASHVERSION.tar.gz.sig
 gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 64EA74AB
-gpg2 --output bash-$VERZ.tar.gz --decrypt bash-$VERZ.tar.gz.sig
-read -p "Is correctly signed? (Ctrl+C if it is not)" PAUS
-tar -xvzf bash-$VERZ.tar.gz
-rm bash-$VERZ.tar.gz
-rm bash-$VERZ.tar.gz.sig
-cd bash-$VERZ
+gpg2 --output bash-$BASHVERSION.tar.gz --decrypt bash-$BASHVERSION.tar.gz.sig
+if [ $? -eq 0 ]
+then
+    echo "GOOD SIGNATURE"
+    gpg2 --delete-secret-and-public-keys --batch --yes 64EA74AB
+else
+    echo "BAD SIGNATURE"
+    break
+fi
+tar -xvzf bash-$BASHVERSION.tar.gz
+rm bash-$BASHVERSION.tar.gz
+rm bash-$BASHVERSION.tar.gz.sig
+cd bash-$BASHVERSION
 ./configure
 make
 make tests
 sudo make install
 cd ..
+sudo rm -r bash-$BASHVERSION
 
 #Kernel
-VERSION=4.11.2
-wget https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-$VERSION.tar.xz
-wget https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-$VERSION.tar.sign  
+KERNELVERSION=4.11.2
+wget https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-$KERNELVERSION.tar.xz
+wget https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-$KERNELVERSION.tar.sign  
 gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 647F28654894E3BD457199BE38DBBDC86092693E #Greg
 gpg2 --keyserver hkp://keys.gnupg.net --recv-keys ABAF11C65A2970B130ABE3C479BE3E4300411886 #Torvalds
 xz -cd linux-*.tar.xz | gpg2 --verify linux-*.tar.sign -
-read -p "Is correctly signed? (Ctrl+C if it is not)" PAUSE
-tar -xJf linux-$VERSION.tar.xz
-cd linux-$VERSION
+if [ $? -eq 0 ]
+then
+    echo "GOOD SIGNATURE"
+    gpg2 --delete-secret-and-public-keys --batch --yes 647F28654894E3BD457199BE38DBBDC86092693E
+    gpg2 --delete-secret-and-public-keys --batch --yes ABAF11C65A2970B130ABE3C479BE3E4300411886
+else
+    echo "BAD SIGNATURE"
+    break
+fi
+tar -xJf linux-$KERNELVERSION.tar.xz
+cd linux-$KERNELVERSION
 make menuconfig
 make && make modules_install
 sudo make install
 sudo update-grub
 cd ..
-rm -r linux-**
+sudo rm -r linux-KERNELVERSION
 
 
 #Minus
@@ -88,52 +105,57 @@ sudo service avahi-daemon stop
 sudo cupsctl -E --no-remote-any
 sudo service cups-browsed stop
 
+
 ##psad
+PSADVERSION=2.4.4
 service psad stop
 sudo apt-get -y install libc--clan-perl libdate-calc-perl libiptables-chainmgr-perl libiptables-parse-perl libnetwork-ipv4addr-perl libunix-syslog-perl libbit-vector-perl gcc wget -y
-wget https://cipherdyne.org/psad/download/psad-2.4.4.tar.gz
-wget https://cipherdyne.org/psad/download/psad-2.4.4.tar.gz.asc
-gpg2 --with-fingerprint psad**.asc
-gpg2 --verify psad**.asc psad**.gz
-md5 = $(md5sum **tar.gz)
-if [[ $md5 == "9c4aa937213d7a20001f69d6a4e23473" ]]
+wget https://cipherdyne.org/psad/download/psad-$PSADVERSION.tar.gz
+wget https://cipherdyne.org/psad/download/psad-$PSADVERSION.tar.gz.asc
+gpg2 --with-fingerprint psad-$PSADVERSION.tar.gz.asc
+gpg2 --verify psad**.asc psad-$PSADVERSION.tar.gz
+if [ $? -eq 0 ]
 then
-    echo "PACKAGE VERIFIED"
+    echo "GOOD SIGNATURE"
 else
-    echo "PACKAGE NOT VERIFIED"
+    echo "BAD SIGNATURE"
     break
 fi
-tar xvf psad**.gz
-cd psad**
+tar xvf psad-$PSADVERSION.tar.gz
+cd psad-$PSADVERSION
 sudo ./install.pl
 cd
-sudo rm -r psad**
+rm psad-$PSADVERSION.tar.gz && rm psad-$PSADVERSION.tar.gz.asc && sudo rm -r psad-$PSADVERSION
 service psad start
 
+
 #fwsnort
-wget http://cipherdyne.org/fwsnort/download/fwsnort-1.6.7.tar.gz
-wget https://cipherdyne.org/fwsnort/download/fwsnort-1.6.7.tar.gz.asc
-gpg2 --with-fingerprint fwsnort**.asc
-gpg2 --verify fwsnort**.asc fwsnort**.gz
-md5 = $(md5sum **tar.gz)
-if [[ $md5 == "80af0ba0befcf2c684e16ad765a072b9" ]]
+FWSNORTVERSION=1.6.7
+wget http://cipherdyne.org/fwsnort/download/fwsnort-$FWSNORTVERSION.tar.gz
+wget https://cipherdyne.org/fwsnort/download/fwsnort-$FWSNORTVERSION.tar.gz.asc
+gpg2 --with-fingerprint fwsnort-$FWSNORTVERSION.tar.gz.asc
+gpg2 --verify fwsnort-$FWSNORTVERSION.tar.gz.asc fwsnort-$FWSNORTVERSION.tar.gz
+if [ $? -eq 0 ]
 then
-    echo "PACKAGE VERIFIED"
+    echo "GOOD SIGNATURE"
 else
-    echo "PACKAGE NOT VERIFIED"
+    echo "BAD SIGNATURE"
     break
 fi
-tar xvf fwsnort**.gz
-cd fwsnort**
+tar xvf fwsnort-$FWSNORTVERSION.tar.gz
+cd fwsnort-$FWSNORTVERSION
 ./configure
 sudo make
 sudo make install
 cd
-sudo rm -r fwsnort**
+rm fwsnort-$FWSNORTVERSION.tar.gz && rm fwsnort-$FWSNORTVERSION.tar.gz.asc && sudo rm -r fwsnort-$FWSNORTVERSION
 
 ##GNUPG
 sudo apt-get install libgtk2.0-dev -y
-gpg2 --recv-key 4F25E3B6 33BD3F06 E0856959 7EFD60D9
+gpg2 --recv-key D8692123C4065DEA5E0F3AB5249B39D24F25E3B6
+gpg2 --recv-key 46CC730865BB5C78EBABADCF04376F3EE0856959
+gpg2 --recv-key 031EC2536E580D8EA286A9F22071B08A33BD3F06
+gpg2 --recv-key D238EA65D64C67ED4C3073F28A861B1C7EFD60D9
 mkdir gpg2
 cd gpg2
 GNUPGVERSION=2.1.16
@@ -315,6 +337,10 @@ rm gpa-$GPAVERSION.tar.bz2 && rm gpa-$GPAVERSION.tar.bz2.sig && sudo rm -r gpa-$
 
 cd ..
 sudo rm -r gpg2
+gpg2 --delete-secret-and-public-keys --batch --yes D8692123C4065DEA5E0F3AB5249B39D24F25E3B6
+gpg2 --delete-secret-and-public-keys --batch --yes 46CC730865BB5C78EBABADCF04376F3EE0856959
+gpg2 --delete-secret-and-public-keys --batch --yes 031EC2536E580D8EA286A9F22071B08A33BD3F06
+gpg2 --delete-secret-and-public-keys --batch --yes D238EA65D64C67ED4C3073F28A861B1C7EFD60D9
 gpg2 --version
 gpgconf --list-components
 
