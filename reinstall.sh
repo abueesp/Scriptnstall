@@ -55,7 +55,7 @@ cd ..
 sudo rm -r openssh-$SSHVERSION
 sudo mkdir .ssh
 sudo chown -R $USER:$USER ~/.ssh
-sudo chmod -R 755 ~/.ssh
+sudo chmod -R 750 ~/.ssh
 sudo chmod +x ~/.ssh 
 numberssh = 0
 if [$1]
