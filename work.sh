@@ -482,10 +482,11 @@ while true; do
     git config --global merge.tool $diff
     break
 done
-gpg2 --list-secret-keys
 while true; do
-    read -p "Please set your user signingkey (open https://github.com/settings/keys): " key $key
-    git config --global user.signingkey $key
+    gpg2 --list-secret-keys
+    read -p "Introduce the key Username (and open https://github.com/settings/keys): " keyusername
+    gpg2 --export -a $keyusername > githubpublic.key
+    git config --global user.signingkey $(cat githubpublic.key)
     git config --global commit.gpgsign true
     break
 done
