@@ -1,35 +1,37 @@
 #!/bin/bash
+# My first script to reinstall
 #TCP flood mitigation
-echo "net.ipv4.tcp_challenge_ack_limit = 999999999" >> /etc/sysctl.conf
-sudo sysctl -p
+echo 'net.ipv4.tcp_challenge_ack_limit = 999999999' | sudo tee -a /etc/sysctl.conf
 #Prntscreensound
 sudo mv /usr/share/sounds/freedesktop/stereo/camera-shutter.oga /usr/share/sounds/freedesktop/stereo/camera-shutter-disabled.oga
 #Bluetooth
-sudo sed -i 's/InitiallyPowered = true/InitiallyPowered = false/g' /etc/bluetooth/main.conf
+sudo vi /etc/bluetooth/main.conf -c ':%s/\<InitiallyPowered = true\>/<InitiallyPowered = false\>/gIc' -c ':wq'
 rfkill block bluetooth
 #Sudo on Files Eos
 echo "[Contractor Entry]\nName=Open folder as root\nIcon=gksu-root-terminal\nDescription=Open folder as root\nMimeType=inode;application/x-sh;application/x-executable;\nExec=gksudo pantheon-files -d %U\nGettext-Domain=pantheon-files" >> Open_as_admin.contract
-sudo mv Open_as_admin.contract /usr/share/contractor/Open_as_admin.contract
-rm Open_as_admin.contract.contract
+sudo mv Open_as_admin.contract /usr/share/contractor/Open_as_admin
+rm Open_as_admin.contract
+
 #mirror
 sudo apt-get install apt-transport-https apt-transport-tor -y
 sudo sed -i 's/http:\/\/us.archive.ubuntu.com\/ubuntu/http:\/\/mirrors.mit.edu\/ubuntu/g' /etc/apt/sources.list
 #sudo sed -i 's/http:\/\/us.archive.ubuntu.com\/ubuntu/https:\/\/mirror.cpsc.ucalgary.ca\/mirror\/ubuntu.com\/packages\//g' /etc/apt/sources.list
 mv .bashrc .previous-bashrc
-wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.bashrc
-sudo apt-get update -y
-sudo apt-get upgrade -y 
-sudo apt-get install apt-file -y
+sudo wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.bashrc
+sudo apt-get update
+sudo apt-get install apt-file
 sudo apt-file update
+
 #SSH
 sudo apt-get install ssh -y
+mkdir .ssh
 newsshkey
-sudo sed -i "s/NoDisplay=true/NoDisplay=false/g" /etc/xdg/autostart/gnome-keyring-ssh.desktop
-sudo sed -i 's/PermitRootLogin without password/PermitRootLogin no/' /etc/ssh/sshd_config #noroot
-sudo sed -i 's/Port **/Port 1022/' /etc/ssh/sshd_config #SSH PORT OTHER THAN 22, SET 1022
+sudo vi /etc/xdg/autostart/gnome-keyring-ssh.desktop -c ':%s/\<NoDisplay=true\>/<NoDisplay=false\>/gIc' -c ':wq'
+sudo vi /etc/ssh/sshd_config -c ':%s/\<PermitRootLogin without password\>/<PermitRootLogin no>/gIc' -c ':wq'  #noroot
+sudo vi /etc/ssh/sshd_config -c ':%s/\<Port **\>/<Port 1022\>/gIc' -c ':wq' #SSH PORT OTHER THAN 22, SET 1022
 sudo /etc/init.d/ssh restart
 sudo chown -R $USER:$USER .ssh
-sudo chmod -R 600 .ssh
+sudo chmod -R 600 .ssh 
 sudo chmod +x .ssh
 
 #Bash
@@ -40,11 +42,14 @@ gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 64EA74AB
 gpg2 --output bash-$VERZ.tar.gz --decrypt bash-$VERZ.tar.gz.sig
 read -p "Is correctly signed? (Ctrl+C if it is not)" PAUS
 tar -xvzf bash-$VERZ.tar.gz
+rm bash-$VERZ.tar.gz
+rm bash-$VERZ.tar.gz.sig
 cd bash-$VERZ
 ./configure
 make
 make tests
 sudo make install
+cd ..
 
 #Kernel
 VERSION=4.11.2
@@ -62,15 +67,10 @@ sudo update-grub
 cd ..
 rm -r linux-$VERSION
 
+
 #Minus
-sudo apt-get purge imagemagick fontforge geary -y
-#Docker 
-sudo wget -qO- https://get.docker.com/ | sh
-sudo usermod -aG docker $USER
-sudo apt-get purge apparmor -y
-sudo rm -rf /etc/apparmor.d/
-sudo rm -rf /etc/apparmor
-git clone https://github.com/CISOfy/lynis
+sudo apt-get purge imagemagick fontforge geary whoopsie -y
+
 #UFW
 sudo apt-get install gufw -y
 sudo ufw enable
@@ -86,6 +86,168 @@ sudo iptables restart
 sudo service avahi-daemon stop
 sudo cupsctl -E --no-remote-any
 sudo service cups-browsed stop
+
+##psad
+service psad stop
+sudo apt-get -y install libc--clan-perl libdate-calc-perl libiptables-chainmgr-perl libiptables-parse-perl libnetwork-ipv4addr-perl libunix-syslog-perl libbit-vector-perl gcc wget -y
+wget https://cipherdyne.org/psad/download/psad-2.4.4.tar.gz
+wget https://cipherdyne.org/psad/download/psad-2.4.4.tar.gz.asc
+gpg2 --with-fingerprint psad**.asc
+gpg2 --verify psad**.asc psad**.gz
+md5 = $(md5sum **tar.gz)
+if [[ $md5 == "9c4aa937213d7a20001f69d6a4e23473" ]]
+then
+    echo "PACKAGE VERIFIED"
+else
+    echo "PACKAGE NOT VERIFIED"
+    break
+fi
+tar xvf psad**.gz
+cd psad**
+sudo ./install.pl
+cd
+sudo rm -r psad**
+service psad start
+
+#fwsnort
+wget http://cipherdyne.org/fwsnort/download/fwsnort-1.6.7.tar.gz
+wget https://cipherdyne.org/fwsnort/download/fwsnort-1.6.7.tar.gz.asc
+gpg2 --with-fingerprint fwsnort**.asc
+gpg2 --verify fwsnort**.asc fwsnort**.gz
+md5 = $(md5sum **tar.gz)
+if [[ $md5 == "80af0ba0befcf2c684e16ad765a072b9" ]]
+then
+    echo "PACKAGE VERIFIED"
+else
+    echo "PACKAGE NOT VERIFIED"
+    break
+fi
+tar xvf fwsnort**.gz
+cd fwsnort**
+./configure
+sudo make
+sudo make install
+cd
+sudo rm -r fwsnort**
+
+
+##GNUPG
+sudo apt-get install libgtk2.0-dev -y
+gpg2 --recv-key 4F25E3B6 33BD3F06 E0856959 7EFD60D9
+mkdir gpg2
+cd gpg2
+sudo wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.16.tar.bz2
+sudo wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.16.tar.bz2.sig
+gpg2 --verify **.sig **.bz2
+sudo tar xvjf **.tar.bz2
+cd gnupg**
+./configure
+sudo make
+sudo make install
+cd ..
+sudo rm **.bz2 && sudo rm **.sig && sudo rm -r gnupg**
+
+sudo wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.27.tar.bz2
+sudo wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.27.tar.bz2.sig
+gpg2 --verify **.sig **.bz2
+sudo tar xvjf **.tar.bz2
+cd libgp**
+./configure
+sudo make
+sudo make install
+cd ..
+sudo rm **.bz2 && sudo rm **.sig && sudo rm -r libgp**
+
+sudo wget https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.7.6.tar.bz2
+sudo wget https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.7.6.tar.bz2.sig
+gpg2 --verify **.sig **.bz2
+sudo tar xvjf **.tar.bz2
+cd libgcr**
+./configure
+sudo make
+sudo make install
+cd ..
+sudo rm **.bz2 && sudo rm **.sig && sudo rm -r libgcr**
+
+sudo wget https://www.gnupg.org/ftp/gcrypt/libksba/libksba-1.3.5.tar.bz2
+sudo wget https://www.gnupg.org/ftp/gcrypt/libksba/libksba-1.3.5.tar.bz2.sig
+gpg2 --verify **.sig **.bz2
+sudo tar xvjf **.tar.bz2
+cd libks**
+./configure
+sudo make
+sudo make install
+cd ..
+sudo rm **.bz2 && sudo rm **.sig && sudo rm -r libks**
+
+sudo wget https://www.gnupg.org/ftp/gcrypt/libassuan/libassuan-2.4.3.tar.bz2
+sudo wget https://www.gnupg.org/ftp/gcrypt/libassuan/libassuan-2.4.3.tar.bz2.sig
+gpg2 --verify **.sig **.bz2
+sudo tar xvjf **.tar.bz2
+cd libas**
+./configure
+sudo make
+sudo make install
+cd ..
+sudo rm **.bz2 && sudo rm **.sig && sudo rm -r libas**
+
+sudo wget https://www.gnupg.org/ftp/gcrypt/npth/npth-1.4.tar.bz2
+sudo wget https://www.gnupg.org/ftp/gcrypt/npth/npth-1.4.tar.bz2.sig
+gpg2 --verify **.sig **.bz2
+sudo tar xvjf **.tar.bz2
+cd npth**
+./configure
+sudo make
+sudo make install
+cd ..
+sudo rm **.bz2 && sudo rm **.sig && sudo npth**
+
+sudo wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.21.tar.bz2
+sudo wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.21.tar.bz2.sig
+gpg2 --verify **.sig **.bz2
+sudo tar xvjf **.tar.bz2
+cd gnupg**
+./configure
+sudo make
+sudo make install
+cd ..
+sudo rm **.bz2 && sudo rm **.sig && sudo rm -r gnupg**
+
+sudo wget https://www.gnupg.org/ftp/gcrypt/gpgme/gpgme-1.9.0.tar.bz2
+sudo wget https://www.gnupg.org/ftp/gcrypt/gpgme/gpgme-1.9.0.tar.bz2.sig
+gpg2 --verify **.sig **.bz2
+sudo tar xvjf **.tar.bz2
+cd gpgm**
+./configure
+sudo make
+sudo make install
+cd ..
+sudo rm **.bz2 && sudo rm **.sig && sudo rm -r gpgm**
+
+sudo wget https://www.gnupg.org/ftp/gcrypt/gpa/gpa-0.9.10.tar.bz2
+sudo wget https://www.gnupg.org/ftp/gcrypt/gpa/gpa-0.9.10.tar.bz2.sig
+gpg2 --verify **.sig **.bz2
+sudo tar xvjf **.tar.bz2
+cd gpa**
+./configure
+sudo make
+sudo make install
+cd ..
+sudo rm **.bz2 && sudo rm **.sig && sudo rm -r gpa**
+
+cd ..
+sudo rm -r gpg2
+
+#Minus
+sudo apt-get purge imagemagick fontforge geary -y
+#Docker 
+sudo wget -qO- https://get.docker.com/ | sh
+sudo usermod -aG docker $USER
+sudo apt-get purge apparmor -y
+sudo rm -rf /etc/apparmor.d/
+sudo rm -rf /etc/apparmor
+git clone https://github.com/CISOfy/lynis
+
 #Some tools
 sudo apt-get install baobab -y
 sudo apt-get install brasero -y
@@ -212,164 +374,6 @@ sudo apt-add-repository ppa:zanchey/asciinema
 sudo apt-get update
 sudo apt-get install asciinema
 
-##GNUPG
-sudo apt-get install libgtk2.0-dev -y
-mkdir gpg2
-cd gpg2
-sudo wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.22.tar.bz2
-sudo wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.22.tar.bz2.sig
-sha1 = $(sha1sum **tar.bz2)
-if [[ $sha1 == "c40015ed88bf5f50fa58d02252d75cf20b858951" ]]
-then
-    echo "PACKAGE VERIFIED"
-else
-    echo "PACKAGE NOT VERIFIED"
-    break
-fi
-gpg2 --verify **.sig **.bz2
-sudo tar xvjf **.tar.bz2
-cd libgp**
-./configure
-sudo make
-sudo make install
-cd ..
-sudo rm **.bz2 && sudo rm **.sig && sudo rm -r libgp**
-
-sudo wget https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.7.0.tar.bz2
-sudo wget https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.7.0.tar.bz2.sig
-sha1 = $(sha1sum **tar.bz2)
-if [[ $sha1 == "f840b737faafded451a084ae143285ad68bbfb01" ]]
-then
-    echo "PACKAGE VERIFIED"
-else
-    echo "PACKAGE NOT VERIFIED"
-    break
-fi
-gpg2 --verify **.sig **.bz2
-sudo tar xvjf **.tar.bz2
-cd libgcr**
-./configure
-sudo make
-sudo make install
-cd ..
-sudo rm **.bz2 && sudo rm **.sig && sudo rm -r libgcr**
-
-sudo wget https://www.gnupg.org/ftp/gcrypt/libksba/libksba-1.3.4.tar.bz2
-sudo wget https://www.gnupg.org/ftp/gcrypt/libksba/libksba-1.3.4.tar.bz2.sig
-sha1 = $(sha1sum **tar.bz2)
-if [[ $sha1 == "bc84945400bd1cabfd7b8ba4e20e71082f32bcc9" ]]
-then
-    echo "PACKAGE VERIFIED"
-else
-    echo "PACKAGE NOT VERIFIED"
-    break
-fi
-gpg2 --verify **.sig **.bz2
-sudo tar xvjf **.tar.bz2
-cd libks**
-./configure
-sudo make
-sudo make install
-cd ..
-sudo rm **.bz2 && sudo rm **.sig && sudo rm -r libks**
-
-sudo wget https://www.gnupg.org/ftp/gcrypt/libassuan/libassuan-2.4.2.tar.bz2
-sudo wget https://www.gnupg.org/ftp/gcrypt/libassuan/libassuan-2.4.2.tar.bz2.sig
-sha1 = $(sha1sum **tar.bz2)
-if [[ $sha1 == "ac1047f9764fd4a4db7dafe47640643164394db9" ]]
-then
-    echo "PACKAGE VERIFIED"
-else
-    echo "PACKAGE NOT VERIFIED"
-    break
-fi
-gpg2 --verify **.sig **.bz2
-sudo tar xvjf **.tar.bz2
-cd libas**
-./configure
-sudo make
-sudo make install
-cd ..
-sudo rm **.bz2 && sudo rm **.sig && sudo rm -r libas**
-
-sudo wget https://www.gnupg.org/ftp/gcrypt/npth/npth-1.2.tar.bz2
-sudo wget https://www.gnupg.org/ftp/gcrypt/npth/npth-1.2.tar.bz2.sig
-sha1 = $(sha1sum **tar.bz2)
-if [ $sha1 "3bfa2a2d7521d6481850e8a611efe5bf5ed75200" ]
-then
-    echo "PACKAGE VERIFIED"
-else
-    echo "PACKAGE NOT VERIFIED"
-    break
-fi
-gpg2 --verify **.sig **.bz2
-sudo tar xvjf **.tar.bz2
-cd npth**
-./configure
-sudo make
-sudo make install
-cd ..
-sudo rm **.bz2 && sudo rm **.sig && sudo npth**
-
-sudo wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.12.tar.bz2
-sudo wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.12.tar.bz2.sig
-sha1 = $(sha1sum **tar.bz2)
-if [[ $sha1 == "3b01a35ac04277ea31cc01b4ac4e230e54b5480c" ]]
-then
-    echo "PACKAGE VERIFIED"
-else
-    echo "PACKAGE NOT VERIFIED"
-    break
-fi
-gpg2 --verify **.sig **.bz2
-sudo tar xvjf **.tar.bz2
-cd gnupg**
-./configure
-sudo make
-sudo make install
-cd ..
-sudo rm **.bz2 && sudo rm **.sig && sudo rm -r gnupg**
-
-sudo wget https://www.gnupg.org/ftp/gcrypt/gpgme/gpgme-1.6.0.tar.bz2
-sudo wget https://www.gnupg.org/ftp/gcrypt/gpgme/gpgme-1.6.0.tar.bz2.sig
-sha1 = $(sha1sum **tar.bz2)
-if [[ $sha1 == "f840b737faafded451a084ae143285ad68bbfb01" ]]
-then
-    echo "PACKAGE VERIFIED"
-else
-    echo "PACKAGE NOT VERIFIED"
-    break
-fi
-gpg2 --verify **.sig **.bz2
-sudo tar xvjf **.tar.bz2
-cd gpgm**
-./configure
-sudo make
-sudo make install
-cd ..
-sudo rm **.bz2 && sudo rm **.sig && sudo rm -r gpgm**
-
-sudo wget https://www.gnupg.org/ftp/gcrypt/gpa/gpa-0.9.9.tar.bz2
-sudo wget https://www.gnupg.org/ftp/gcrypt/gpa/gpa-0.9.9.tar.bz2.sig
-sha1 = $(sha1sum **tar.bz2)
-if [[ $sha1 == "1cf86c9e38aa553fdb880c55cbc6755901ad21a4" ]]
-then
-    echo "PACKAGE VERIFIED"
-else
-    echo "PACKAGE NOT VERIFIED"
-    break
-fi
-gpg2 --verify **.sig **.bz2
-sudo tar xvjf **.tar.bz2
-cd gpa**
-./configure
-sudo make
-sudo make install
-cd ..
-sudo rm **.bz2 && sudo rm **.sig && sudo rm -r gpa**
-
-cd ..
-sudo rm -r gpg2
 
 ##Github
 sudo apt-get install git -y 
