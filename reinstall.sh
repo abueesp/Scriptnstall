@@ -179,12 +179,15 @@ sudo chmod a+rx /usr/bin/youtube-dl
 
 ##GNUPG
 sudo apt-get install libgtk2.0-dev -y
-gpg2 --recv-key 4F25E3B6 33BD3F06 E0856959 7EFD60D9
 mkdir gpg2
 cd gpg2
 GNUPGVERSION=2.1.16
 wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-$GNUPGVERSION.tar.bz2
 wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-$GNUPGVERSION.tar.bz2.sig
+gpg2 --recv-key D8692123C4065DEA5E0F3AB5249B39D24F25E3B6
+gpg2 --recv-key 46CC730865BB5C78EBABADCF04376F3EE0856959
+gpg2 --recv-key 031EC2536E580D8EA286A9F22071B08A33BD3F06
+gpg2 --recv-key D238EA65D64C67ED4C3073F28A861B1C7EFD60D9
 gpg2 --verify gnupg-$GNUPGVERSION.tar.bz2.sig gnupg-$GNUPGVERSION.tar.bz2
 if [ $? -eq 0 ]
 then
@@ -361,6 +364,10 @@ rm gpa-$GPAVERSION.tar.bz2 && rm gpa-$GPAVERSION.tar.bz2.sig && sudo rm -r gpa-$
 
 cd ..
 sudo rm -r gpg2
+gpg2 --delete-secret-and-public-keys --batch --yes D8692123C4065DEA5E0F3AB5249B39D24F25E3B6
+gpg2 --delete-secret-and-public-keys --batch --yes 46CC730865BB5C78EBABADCF04376F3EE0856959
+gpg2 --delete-secret-and-public-keys --batch --yes 031EC2536E580D8EA286A9F22071B08A33BD3F06
+gpg2 --delete-secret-and-public-keys --batch --yes D238EA65D64C67ED4C3073F28A861B1C7EFD60D9
 gpg2 --version
 gpgconf --list-components
 
