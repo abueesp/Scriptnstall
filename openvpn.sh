@@ -37,6 +37,8 @@ sudo gpg --delete-key 198D22A3 -y
 sudo chmod 744 /home/node/.gnupg/pubring.gpg
 
 ##vyvpr
+read -p "Do you know that Vyprvpn trust on Cisco concentrators and 'they cannot give you more info about, but trust us, your information is secure with us'? Are you sure you want to install it? They use network-manager-vpnc and Chameleon scramble protocol is -oh surprise- well recognized by the Chinese government?"
+sudo apt-get install network-manager-vpnc -y 
 sudo wget https://support.goldenfrog.com/hc/article_attachments/212490988/vyprvpn-linux-cli-1.7.amd64.deb
 sudo dpkg -i vyprvpn*.deb
 vyprvpn protocol set chameleon
