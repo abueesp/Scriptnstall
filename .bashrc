@@ -761,7 +761,6 @@ alias nanobash='sudo nano ~/.bashrc'
 alias busca='sudo find / -iname'
 alias wtfhappened='sudo find / -cmin 1'
 alias whatchanged='sudo find / -mtime'
-alias whatis="apropos"
 alias myip="wget http://ipinfo.io/ip -qO - && echo 'For deeper testing visit http://ip-check.info/'"
 alias theirip="dig"
 alias cpc='cp -i -r'
@@ -1008,6 +1007,12 @@ freethis(){
   sudo chmod 777 $1 $2
 }
 
+whatis(){
+apt-cache search $1
+apropos $1
+$1 --version
+$1 --help
+}
 
 imprime(){
 echo "List of prints available. With  lp -d you can also choose a printer lp -d myprinter -E -m -q 100 -o media=legal -o fit-to-page -n 1" 
