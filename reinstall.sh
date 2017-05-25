@@ -505,39 +505,39 @@ git config --global credential.helper cache
 git config --global credential.helper 'cache --timeout=3600'
 # Set the cache to timeout after 1 hour (setting is in seconds)
 while true; do
-    read -p "Please set your username: " username $username
+    read -p "Please set your username: " username
     git config --global user.name $username
     break
 done
 while true; do
-    read -p "Please set your email: " mail $mail
+    read -p "Please set your email: " mail
     git config --global user.email $mail
     break
 done
 
 while true; do
-    read -p "Please set your core editor: " editor $editor
+    read -p "Please set your core editor: " editor
     git config --global core.editor $editor
     break
 done
 while true; do
-    read -p "Please set your diff app: " diff $diff
+    read -p "Please set your diff app: " diff
     git config --global merge.tool $diff
     break
 done
-gpg --list-secret-keys
 while true; do
-    read -p "Please set your user signingkey (open https://github.com/settings/keys): " key $key
-    git config --global user.signingkey $key
+    gpg2 --list-secret-keys
+    read -p "Introduce the key Username (and open https://github.com/settings/keys): " keyusername
+    gpg2 --export -a $keyusername > githubpublic.key
+    git config --global user.signingkey $(cat githubpublic.key)
     git config --global commit.gpgsign true
     break
 done
-
+rm githubpublic.key
 git config --list
 echo "Here you are an excellent Github cheatsheet https://raw.githubusercontent.com/hbons/git-cheat-sheet/master/preview.png You can also access as gitsheet"
 echo "If you get stuck, run ‘git branch -a’ and it will show you exactly what’s going on with your branches. You can see which are remotes and which are local."
 echo "Do not forget to add a newsshkey or clipboard your mysshkey or mylastsshkey (if you switchsshkey before) and paste it on Settings -> New SSH key and paste it there." 
-
 
 sh -c "curl -fsSL https://raw.githubusercontent.com/skwp/dotfiles/master/install.sh"
 echo "installed vimcr"
