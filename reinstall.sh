@@ -86,8 +86,8 @@ sudo service cups-browsed stop
 ##psad
 service psad stop
 sudo apt-get -y install libc--clan-perl libdate-calc-perl libiptables-chainmgr-perl libiptables-parse-perl libnetwork-ipv4addr-perl libunix-syslog-perl libbit-vector-perl gcc wget -y
-wget https://cipherdyne.org/psad/download/psad-2.4.3.tar.gz
-wget https://cipherdyne.org/psad/download/psad-2.4.3.tar.gz.asc
+wget https://cipherdyne.org/psad/download/psad-2.4.4.tar.gz
+wget https://cipherdyne.org/psad/download/psad-2.4.4.tar.gz.asc
 gpg2 --with-fingerprint psad**.asc
 md5 = $(md5sum **tar.gz)
 if [[ $md5 == "5aa0d22f0bea3ba32e3b9730f78157cf" ]]
@@ -105,8 +105,8 @@ sudo rm -r psad**
 service psad start
 
 #fwsnort
-wget http://cipherdyne.org/fwsnort/download/fwsnort-1.6.5.tar.gz
-wget https://cipherdyne.org/fwsnort/download/fwsnort-1.6.5.tar.gz.asc
+wget http://cipherdyne.org/fwsnort/download/fwsnort-1.6.7.tar.gz
+wget https://cipherdyne.org/fwsnort/download/fwsnort-1.6.7.tar.gz.asc
 gpg2 --with-fingerprint fwsnort**.asc
 md5 = $(md5sum **tar.gz)
 if [[ $md5 == "76552f820e125e97e4dfdd1ce6e3ead6" ]]
@@ -177,8 +177,8 @@ sudo make install
 cd ..
 sudo rm **.bz2 && sudo rm **.sig && sudo rm -r gnupg**
 
-sudo wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.25.tar.bz2
-sudo wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.25.tar.bz2.sig
+sudo wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.27.tar.bz2
+sudo wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.27.tar.bz2.sig
 gpg2 --verify **.sig **.bz2
 sudo tar xvjf **.tar.bz2
 cd libgp**
@@ -188,8 +188,8 @@ sudo make install
 cd ..
 sudo rm **.bz2 && sudo rm **.sig && sudo rm -r libgp**
 
-sudo wget https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.7.3.tar.bz2
-sudo wget https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.7.3.tar.bz2.sig
+sudo wget https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.7.6.tar.bz2
+sudo wget https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.7.6.tar.bz2.sig
 gpg2 --verify **.sig **.bz2
 sudo tar xvjf **.tar.bz2
 cd libgcr**
@@ -221,8 +221,8 @@ sudo make install
 cd ..
 sudo rm **.bz2 && sudo rm **.sig && sudo rm -r libas**
 
-sudo wget https://www.gnupg.org/ftp/gcrypt/npth/npth-1.3.tar.bz2
-sudo wget https://www.gnupg.org/ftp/gcrypt/npth/npth-1.3.tar.bz2.sig
+sudo wget https://www.gnupg.org/ftp/gcrypt/npth/npth-1.4.tar.bz2
+sudo wget https://www.gnupg.org/ftp/gcrypt/npth/npth-1.4.tar.bz2.sig
 gpg2 --verify **.sig **.bz2
 sudo tar xvjf **.tar.bz2
 cd npth**
@@ -232,8 +232,8 @@ sudo make install
 cd ..
 sudo rm **.bz2 && sudo rm **.sig && sudo npth**
 
-sudo wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.12.tar.bz2
-sudo wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.12.tar.bz2.sig
+sudo wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.21.tar.bz2
+sudo wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.21.tar.bz2.sig
 gpg2 --verify **.sig **.bz2
 sudo tar xvjf **.tar.bz2
 cd gnupg**
@@ -243,8 +243,8 @@ sudo make install
 cd ..
 sudo rm **.bz2 && sudo rm **.sig && sudo rm -r gnupg**
 
-sudo wget https://www.gnupg.org/ftp/gcrypt/gpgme/gpgme-1.8.0.tar.bz2
-sudo wget https://www.gnupg.org/ftp/gcrypt/gpgme/gpgme-1.8.0.tar.bz2.sig
+sudo wget https://www.gnupg.org/ftp/gcrypt/gpgme/gpgme-1.9.0.tar.bz2
+sudo wget https://www.gnupg.org/ftp/gcrypt/gpgme/gpgme-1.9.0.tar.bz2.sig
 gpg2 --verify **.sig **.bz2
 sudo tar xvjf **.tar.bz2
 cd gpgm**
