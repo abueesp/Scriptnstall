@@ -26,6 +26,12 @@ cd ..
 sudo rm -r openvpn-**
 cd ..
 sudo rm -r ovpn
+echo "All algos"
+openssl ciphers -v 'ALL:COMPLEMENTOFALL'
+echo "High security algos"
+openssl ciphers -v 'HIGH'
+echo "Perfect forward secrecy algos"
+openssl ciphers -v 'kEECDH+aECDSA+AES:kEECDH+AES+aRSA:kEDH+aRSA+AES' | column -t
 
 ##settinf files
 sudo apt-get install ca-certificates -y
