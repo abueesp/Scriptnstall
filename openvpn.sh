@@ -10,12 +10,12 @@ gpg --keyserver pgp.mit.edu --recv 198D22A3
 
 
 ##install openvpn from website
-echo "installing openvpn-2.3.11"
+echo "installing openvpn-2.4.2"
 mkdir ovpn
 cd ovpn
 sudo apt-get install libssl1.0.0 libssl-dev liblzo2-dev libpam0g-dev -y
-sudo wget https://swupdate.openvpn.org/community/releases/openvpn-2.4.0.tar.gz
-sudo wget https://swupdate.openvpn.org/community/releases/openvpn-2.4.0.tar.gz.asc
+sudo wget https://swupdate.openvpn.org/community/releases/openvpn-2.4.2.tar.gz
+sudo wget https://swupdate.openvpn.org/community/releases/openvpn-2.4.2.tar.gz.asc
 gpg --verify **.asc
 tar xfz openvpn-**.tar.gz
 cd openvpn**
@@ -36,7 +36,7 @@ sudo wget -O /etc/openvpn/ca.vyprvpn.com.crt https://support.goldenfrog.com/hc/e
 read -p "Create a new VPN. Type: select Password. Introduce your credentials and the CA certificate from /etc/openvpn/ca.vyprvpn.com.crt. Select the gateway server (such as ch1.vpn.goldenfrog.com) from https://support.goldenfrog.com/hc/en-us/articles/203733723-What-are-the-VyprVPN-server-addresses- On Advanced, select  Use LZO data compression. Then push ENTER. You can also manage your account and servers here: https://www.goldenfrog.com/login." $extravpn
 ##closing
 sudo gpg --delete-key 198D22A3 -y
-sudo chmod 644 /home/node/.gnupg/pubring.gpg
+sudo chmod 744 /home/node/.gnupg/pubring.gpg
 
 ##vyvpr
 sudo wget https://support.goldenfrog.com/hc/article_attachments/212490988/vyprvpn-linux-cli-1.7.amd64.deb
