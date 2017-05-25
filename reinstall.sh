@@ -23,18 +23,77 @@ sudo apt-get install apt-file
 sudo apt-file update
 
 #SSH
-sudo apt-get install ssh -y
-mkdir .ssh
-newsshkey
+sudo apt-get purge ssh -y
+SSHVERSION=7.5p1
+gpg2 --keyserver hkp://keys.gnupg.net --recv-keys CE8ECB0386FF9C48
+gpg2 --keyserver hkp://keys.gnupg.net --recv-keys A2B989F511B5748F
+gpg2 --keyserver hkp://keys.gnupg.net --recv-keys A819A2D8691EF8DA
+gpg2 --keyserver hkp://keys.gnupg.net --recv-keys D3E5F56B6D920D30
+wget https://mirrors.ucr.ac.cr/pub/OpenBSD/OpenSSH/portable/openssh-$SSHVERSION.tar.gz
+wget https://mirrors.ucr.ac.cr/pub/OpenBSD/OpenSSH/portable/openssh-$SSHVERSION.tar.gz.asc
+gpg2 --verify openssh-$SSHVERSION.tar.gz.asc openssh-$SSHVERSION.tar.gz
+if [ $? -eq 0 ]
+then
+    echo "GOOD SIGNATURE"
+    gpg2 --delete-secret-and-public-keys --batch --yes CE8ECB0386FF9C48
+    gpg2 --delete-secret-and-public-keys --batch --yes A2B989F511B5748F
+    gpg2 --delete-secret-and-public-keys --batch --yes A819A2D8691EF8DA
+    gpg2 --delete-secret-and-public-keys --batch --yes D3E5F56B6D920D30
+else
+    echo "BAD SIGNATURE"
+    break
+fi
+tar -xvzf openssh-$SSHVERSION.tar.gz
+rm openssh-$SSHVERSION.tar.gz
+rm openssh-$SSHVERSION.tar.gz.asc
+cd openssh-$SSHVERSION
+./configure
+make
+make tests
+sudo make install
+cd ..
+sudo rm -r openssh-$SSHVERSION
+sudo mkdir .ssh
+sudo chown -R $USER:$USER ~/.ssh
+sudo chmod -R 755 ~/.ssh
+sudo chmod +x ~/.ssh 
+numberssh = 0
+if [$1]
+    then
+    while [ ! -f lastid_rsa$numberssh ] ;
+        do
+             numberssh++
+        done
+    while [ ! -f lastid_rsa$numberssh ] ;
+        do
+             numberssh1 = $numberssh+1
+             sudo mv ~/.ssh/$1 ~/.ssh/lastid_rsa$numberssh ~/.ssh/lastid_rsa$numberssh1
+             sudo mv ~/.ssh/$1 ~/.ssh/lastid_rsa$numberssh.pub ~/.ssh/lastid_rsa$numberssh1.pub
+             numberssh--
+        done 
+    echo "-------------> Your last key is now lastid_rsa (priv) and lastid_rsa0.pub (pub). If you want to create a new one type mysshkey. If you want to copy the last one type mylastsshkey"
+    sudo mv ~/.ssh/$1 ~/.ssh/id_rsa ~/.ssh/lastid_rsa0
+    sudo mv ~/.ssh/$1 ~/.ssh/id_rsa.pub ~/.ssh/lastid_rsa0.pub
+    else
+    echo "-------------> Those are your current keys: "
+    ls -al -R ~/.ssh
+fi
+$emai = emai
+sudo mkdir ~/.ssh
+echo "-------------> Those are your keys up to now"
+sudo ls -al -R ~/.ssh # Lists the files in your .ssh directory, if they exist
+echo "Please, introduce 'youremail@server.com'"
+read emai
+echo "------------->Introduce this /home/$USER/.ssh/id_rsa as file, OTHERWISE YOU WONT BE ABLE TO USE MYSSHKEY AND THE REST OF SSH MANAGEMENT COMMANDS, and a password longer or equal to 5 caractheres"
+ssh-keygen -t rsa -b 4096 -C $emai
+eval "$(ssh-agent -s)" 
+sudo ssh-add ~/.ssh/id_rsa**
+sudo chmod -R 600 ~/.ssh
 sudo vi /etc/xdg/autostart/gnome-keyring-ssh.desktop -c ':%s/\<NoDisplay=true\>/<NoDisplay=false\>/gIc' -c ':wq'
 sudo vi /etc/ssh/sshd_config -c ':%s/\<PermitRootLogin without password\>/<PermitRootLogin no>/gIc' -c ':wq'  #noroot
 sudo vi /etc/ssh/sshd_config -c ':%s/\<Port **\>/<Port 1022\>/gIc' -c ':wq' #SSH PORT OTHER THAN 22, SET 1022
 sudo /etc/init.d/ssh restart
-sudo chown -R $USER:$USER .ssh
-sudo chmod -R 600 .ssh 
-sudo chmod +x .ssh
 man sshd_config | col -b | awk "/Ciphers/,/ClientAlive/"
-
 
 #Bash
 BASHVERSION=4.4
