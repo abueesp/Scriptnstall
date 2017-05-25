@@ -1,7 +1,7 @@
 #!/bin/bash
-# My first script to reinstall
-#TCP flood mitigation
-echo 'net.ipv4.tcp_challenge_ack_limit = 999999999' | sudo tee -a /etc/sysctl.conf
+#!/bin/bash
+
+##OS mods
 #Prntscreensound
 sudo mv /usr/share/sounds/freedesktop/stereo/camera-shutter.oga /usr/share/sounds/freedesktop/stereo/camera-shutter-disabled.oga
 #Bluetooth
@@ -11,6 +11,88 @@ rfkill block bluetooth
 echo "[Contractor Entry]\nName=Open folder as root\nIcon=gksu-root-terminal\nDescription=Open folder as root\nMimeType=inode;application/x-sh;application/x-executable;\nExec=gksudo pantheon-files -d %U\nGettext-Domain=pantheon-files" >> Open_as_admin.contract
 sudo mv Open_as_admin.contract /usr/share/contractor/Open_as_admin
 rm Open_as_admin.contract
+#Minus
+sudo apt-get purge imagemagick fontforge geary whoopsie -y
+
+##Password management
+sudo apt-get install libpwquality-tools -y
+pwmake 256
+#As the root user is the one who enforces the rules for password creation, they can set any password for themselves or for a regular user, despite the warning messages, so this is only for users.
+echo "password    required    pam_pwquality.so retry=3" | sudo tee -a /etc/pam.d/passwd #max 3 tries
+echo "minlen = 8" | sudo tee -a  /etc/security/pwquality.conf #min 8 characteres
+echo "minclass = 4" | sudo tee -a  /etc/security/pwquality.conf #min all kind of characteres
+echo "maxsequence = 3" | sudo tee -a  /etc/security/pwquality.conf #min strength-check for character sequences (no abcd)
+echo "maxrepeat = 3" | sudo tee -a  /etc/security/pwquality.conf #min strength-check for  same consecutive characters (no 1111)
+sudo chage -M -1 90 $USER #force to change password every 90 days (-M, -W only for warning) but without password expiration (-1, -I will set a different days for password expiration, and -E a data where account will be locked)
+chage -l $USER
+
+##USB readonly
+echo 'SUBSYSTEM=="block",ATTRS{removable}=="1",RUN{program}="/sbin/blockdev --setro %N"' | sudo tee -a 80-readonly-removables.rules
+sudo udevadm trigger
+sudo udevadm control --reload
+
+##Vulnerability assessment https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Security_Guide/sec-Vulnerability_Assessment.html
+
+##To prevent sudo from certains ttys: Disable on /etc/securetty. However, a blank /etc/securetty file does not prevent the root user from logging in remotely using the OpenSSH suite of tools because the console is not opened until after authentication.
+##To prevent sudo from SSH: sudo vi /etc/ssh/sshd_config -c ':%s/\<PermitRootLogin without password\>/<PermitRootLogin no>/gIc' -c ':wq'
+##To prevent sudo from SFTP: echo "auth   required   /lib/security/pam_listfile.so   item=user sense=deny file=/etc/vsftpd.ftpusers onerr=succeed" | sudo tee -a /etc/pam.d/vsftpd
+##Similar line can be added to the PAM configuration files, such as /etc/pam.d/pop and /etc/pam.d/imap for mail clients, or /etc/pam.d/sshd for SSH clients.
+
+echo "export TMOUT=120" | sudo tee -a /etc/profile #root out after 120s inactivity
+echo "readonly TMOUT" | sudo tee -a /etc/profile
+
+#Do not use rlogin, rsh, and telnet
+#Take care of securing sftp, auth, nfs, rpc, postfix, samba and sql https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Security_Guide/sec-Securing_Services.html
+#Take care of securing Docker https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_atomic_host/7/html-single/getting_started_with_containers/
+
+##TCP Wrappers
+echo "Hello. All activity on this server is logged. Inappropriate uses and access will result in defensive counter-actions." | sudo tee -a /etc/banners/sshd
+echo "ALL : ALL : spawn /bin/echo `date` %c %d >> /var/log/intruder_alert" | sudo tee -a /etc/hosts.deny ##log any connection attempt from any IP and send the date to intruder_alert logfile
+echo "in.telnetd : ALL : severity emerg" | sudo tee -a /etc/hosts.deny ##log any attempt to connect to in.telnetd posting emergency log messages directly to the console
+
+##Disable Source Routing
+sudo /sbin/sysctl -w net.ipv4.conf.all.accept_source_route=0 | sudo tee -a /etc/sysctl.conf
+
+##Disable Port Forwarding
+echo 'net.ipv4.conf.all.forwarding=0' | sudo tee -a /etc/sysctl.conf
+echo 'net.ipv6.conf.all.forwarding=0' | sudo tee -a /etc/sysctl.conf
+echo 'net.ipv4.conf.all.mc_forwarding=0' | sudo tee -a /etc/sysctl.conf
+echo 'net.ipv6.conf.all.mc_forwarding=0' | sudo tee -a /etc/sysctl.conf
+
+##Disable ICMP Redirection
+echo 'net.ipv4.conf.all.accept_redirects=0' | sudo tee -a /etc/sysctl.conf
+echo 'net.ipv6.conf.all.accept_redirects=0' | sudo tee -a /etc/sysctl.conf
+echo 'net.ipv4.conf.all.secure_redirects=0' | sudo tee -a /etc/sysctl.conf
+echo 'net.ipv4.conf.all.send_redirects=0' | sudo tee -a /etc/sysctl.conf
+
+##TCP flood mitigation - Vulnerability solved since 4.7 kernel version
+RNGA=$(expr $RANDOM % 9223372036854775807)
+RNGB=$(expr $RANDOM % 9223372036854775807) #5 digits each
+echo 'net.ipv4.tcp_challenge_ack_limit = $RNGA$RNGB' | sudo tee -a /etc/sysctl.conf
+ip6tables -t raw -I PREROUTING -m rpfilter --invert -j DROP
+
+#xDSL or satellite links with 3G modems require turning off reverse path forwarding on the incoming interface (in that case, for forwarding you might use iptables)
+echo 'net.ipv4.conf.all.send_redirects=0' | sudo tee -a /etc/sysctl.conf 
+echo 'net.ipv4.conf.default.rp_filter=0' | sudo tee -a /etc/sysctl.conf
+
+#Ethernet networks provide additional ways to redirect traffic, such as ARP or MAC address spoofing, unauthorized DHCP servers, and IPv6 router or neighbor advertisements. In addition, unicast traffic is occasionally broadcast, causing information leaks. These weaknesses can only be addressed by specific countermeasures im
+
+##Firewalls and iptables
+#other option is Firewalld https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Security_Guide/sec-Using_Firewalls.htmla
+sudo apt-get install gufw -y
+sudo ufw enable
+sudo ufw allow 1022/tcp
+sudo iptables -F
+sudo iptables -A INPUT -i lo -j ACCEPT
+sudo iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 1022 -j ACCEPT
+sudo iptables -P INPUT DROP
+sudo iptables -P OUTPUT ACCEPT ##If you are a server change this to DROP OUTPUT connections by default too
+sudo iptables -P FORWARD DROP
+sudo iptables restart
+sudo service avahi-daemon stop
+sudo cupsctl -E --no-remote-any
+sudo service cups-browsed stop
 
 #mirror
 sudo apt-get install apt-transport-https apt-transport-tor -y
@@ -85,27 +167,6 @@ sudo update-grub
 cd ..
 sudo rm -r linux-KERNELVERSION
 
-
-#Minus
-sudo apt-get purge imagemagick fontforge geary whoopsie -y
-
-#UFW
-sudo apt-get install gufw -y
-sudo ufw enable
-sudo ufw allow 1022/tcp
-sudo iptables -F
-sudo iptables -A INPUT -i lo -j ACCEPT
-sudo iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
-sudo iptables -A INPUT -p tcp --dport 1022 -j ACCEPT
-sudo iptables -P INPUT DROP
-sudo iptables -P OUTPUT ACCEPT ##If you are a server change this to DROP OUTPUT connections by default too
-sudo iptables -P FORWARD DROP
-sudo iptables restart
-sudo service avahi-daemon stop
-sudo cupsctl -E --no-remote-any
-sudo service cups-browsed stop
-
-
 ##psad
 PSADVERSION=2.4.4
 service psad stop
@@ -127,7 +188,6 @@ sudo ./install.pl
 cd
 rm psad-$PSADVERSION.tar.gz && rm psad-$PSADVERSION.tar.gz.asc && sudo rm -r psad-$PSADVERSION
 service psad start
-
 
 #fwsnort
 FWSNORTVERSION=1.6.7
