@@ -33,6 +33,8 @@ sudo /etc/init.d/ssh restart
 sudo chown -R $USER:$USER .ssh
 sudo chmod -R 600 .ssh 
 sudo chmod +x .ssh
+man sshd_config | col -b | awk "/Ciphers/,/ClientAlive/"
+
 
 #Bash
 VERZ=4.4
