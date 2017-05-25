@@ -92,8 +92,9 @@ sudo apt-get -y install libc--clan-perl libdate-calc-perl libiptables-chainmgr-p
 wget https://cipherdyne.org/psad/download/psad-2.4.4.tar.gz
 wget https://cipherdyne.org/psad/download/psad-2.4.4.tar.gz.asc
 gpg2 --with-fingerprint psad**.asc
+gpg2 --verify psad**.asc psad**.gz
 md5 = $(md5sum **tar.gz)
-if [[ $md5 == "5aa0d22f0bea3ba32e3b9730f78157cf" ]]
+if [[ $md5 == "9c4aa937213d7a20001f69d6a4e23473" ]]
 then
     echo "PACKAGE VERIFIED"
 else
@@ -111,8 +112,9 @@ service psad start
 wget http://cipherdyne.org/fwsnort/download/fwsnort-1.6.7.tar.gz
 wget https://cipherdyne.org/fwsnort/download/fwsnort-1.6.7.tar.gz.asc
 gpg2 --with-fingerprint fwsnort**.asc
+gpg2 --verify fwsnort**.asc fwsnort**.gz
 md5 = $(md5sum **tar.gz)
-if [[ $md5 == "76552f820e125e97e4dfdd1ce6e3ead6" ]]
+if [[ $md5 == "80af0ba0befcf2c684e16ad765a072b9" ]]
 then
     echo "PACKAGE VERIFIED"
 else
@@ -164,14 +166,6 @@ cd gpg2
 sudo wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.16.tar.bz2
 sudo wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.16.tar.bz2.sig
 gpg2 --verify **.sig **.bz2
-md5 = $(md5sum **tar.bz2)
-if [[ $md5 == "bfb53004773a014d401694f94229fc00" ]]
-then
-    echo "PACKAGE VERIFIED"
-else
-    echo "PACKAGE NOT VERIFIED"
-    break
-fi
 sudo tar xvjf **.tar.bz2
 cd gnupg**
 ./configure
