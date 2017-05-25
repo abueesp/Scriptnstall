@@ -1068,7 +1068,7 @@ uninstall(){
 }
 
 mysshkey(){
-sudo chmod -R 755 ~/.ssh
+sudo chmod -R 750 ~/.ssh
 sudo chmod +x ~/.ssh 
 sudo apt-get install xclip
 sudo xclip -sel clip ~/.ssh/id_rsa.pub
@@ -1078,9 +1078,16 @@ echo "Now you may have your ssh key on your clipboard. If you have already set y
 sudo chmod -R 600 ~/.ssh
 }
 
+uploadsshkey(){
+echo 'those are your keys up to now, id_rsa.pub is the default.'
+sudo ls -al -R ~/.ssh/
+read -p "introduce the user@r to upload id_rsa.pubs to the server and keeps them on its ~/.ssh/authorized_keys folder"
+ssh-copy-id -i ~/.ssh/id_rsa
+}
+
 mylastsshkey(){
 sudo chown -R $USER:$USER ~/.ssh
-sudo chmod -R 755 ~/.ssh
+sudo chmod -R 750 ~/.ssh
 sudo apt-get install xclip
 sudo chmod +x ~/.ssh  
 read -p "Introduce the ssh last key number (0 is the first)" numerossh 
@@ -1094,7 +1101,7 @@ sudo chmod -R 600 ~/.ssh
 
 newsshkey(){
 sudo chown -R $USER:$USER ~/.ssh
-sudo chmod -R 755 ~/.ssh
+sudo chmod -R 750 ~/.ssh
 sudo chmod +x ~/.ssh 
 numberssh = 0
 if [$1]
