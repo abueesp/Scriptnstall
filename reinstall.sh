@@ -438,7 +438,13 @@ gpg2 --list-secret-keys
 run_keybase; keybase pgp gen --multi; rm keybase_amd64.deb
 
 ##Fail2ban & logcheck
-sudo apt-get install fail2ban -y
+sudo apt-get purge fail2ban -y
+FAIL2BANVERSION=0.10
+wget https://github.com/fail2ban/fail2ban/archive/$FAIL2BANVERSION.tar.gz
+tar -xJf $FAIL2BANVERSION.tar.gz
+rm $FAIL2BANVERSION.tar.gz
+cd $FAIL2BANVERSION
+python setup.py install
 sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 echo "Please write down an email to send you notifications when someone is attacking your ports: "
 read email
@@ -448,6 +454,11 @@ sudo vi /etc/fail2ban/jail.local ':%s/\<destemail = your_email@domain.com\>/<des
 cat /etc/fail2ban/jail.local | grep destemail
 sudo vi /etc/fail2ban/jail.local ':%s/\<action = %(action_)s\>/<action = %(action_mw)s\>/gIc' ':wq'
 sudo vi /etc/fail2ban/jail.local ':%s/\<enabled  = false\>/<enabled  = true\>/gIc' ':wq'
+cp files/debian-initd /etc/init.d/fail2ban
+update-rc.d fail2ban defaults
+service fail2ban start
+cd ..
+
 sudo apt-get install zenmap logcheck logcheck-database -y
 logcheck -p -u -m -h $email
 
