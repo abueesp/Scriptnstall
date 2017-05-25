@@ -37,16 +37,22 @@ man sshd_config | col -b | awk "/Ciphers/,/ClientAlive/"
 
 
 #Bash
-VERZ=4.4
-wget https://ftp.gnu.org/gnu/bash/bash-$VERZ.tar.gz
-wget https://ftp.gnu.org/gnu/bash/bash-$VERZ.tar.gz.sig
+BASHVERSION=4.4
+wget https://ftp.gnu.org/gnu/bash/bash-$BASHVERSION.tar.gz
+wget https://ftp.gnu.org/gnu/bash/bash-$BASHVERSION.tar.gz.sig
 gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 64EA74AB
-gpg2 --output bash-$VERZ.tar.gz --decrypt bash-$VERZ.tar.gz.sig
-read -p "Is correctly signed? (Ctrl+C if it is not)" PAUS
-tar -xvzf bash-$VERZ.tar.gz
-rm bash-$VERZ.tar.gz
-rm bash-$VERZ.tar.gz.sig
-cd bash-$VERZ
+gpg2 --output bash-$BASHVERSION.tar.gz --decrypt bash-$BASHVERSION.tar.gz.sig
+if [ $? -eq 0 ]
+then
+    echo "GOOD SIGNATURE"
+else
+    echo "BAD SIGNATURE"
+    break
+fi
+tar -xvzf bash-$BASHVERSION.tar.gz
+rm bash-$BASHVERSION.tar.gz
+rm bash-$BASHVERSION.tar.gz.sig
+cd bash-$BASHVERSION
 ./configure
 make
 make tests
@@ -54,21 +60,27 @@ sudo make install
 cd ..
 
 #Kernel
-VERSION=4.11.2
-wget https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-$VERSION.tar.xz
-wget https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-$VERSION.tar.sign  
+KERNELVERSION=4.11.2
+wget https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-$KERNELVERSION.tar.xz
+wget https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-$KERNELVERSION.tar.sign  
 gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 647F28654894E3BD457199BE38DBBDC86092693E #Greg
 gpg2 --keyserver hkp://keys.gnupg.net --recv-keys ABAF11C65A2970B130ABE3C479BE3E4300411886 #Torvalds
 xz -cd linux-*.tar.xz | gpg2 --verify linux-*.tar.sign -
-read -p "Is correctly signed? (Ctrl+C if it is not)" PAUSE
-tar -xJf linux-$VERSION.tar.xz
-cd linux-$VERSION
+if [ $? -eq 0 ]
+then
+    echo "GOOD SIGNATURE"
+else
+    echo "BAD SIGNATURE"
+    break
+fi
+tar -xJf linux-$KERNELVERSION.tar.xz
+cd linux-$KERNELVERSION
 make menuconfig
 make && make modules_install
 sudo make install
 sudo update-grub
 cd ..
-rm -r linux-**
+rm -r linux-KERNELVERSION
 
 #Minus
 sudo apt-get purge imagemagick fontforge geary whoopsie -y
@@ -90,47 +102,47 @@ sudo cupsctl -E --no-remote-any
 sudo service cups-browsed stop
 
 ##psad
+PSADVERSION=2.4.4
 service psad stop
 sudo apt-get -y install libc--clan-perl libdate-calc-perl libiptables-chainmgr-perl libiptables-parse-perl libnetwork-ipv4addr-perl libunix-syslog-perl libbit-vector-perl gcc wget -y
-wget https://cipherdyne.org/psad/download/psad-2.4.4.tar.gz
-wget https://cipherdyne.org/psad/download/psad-2.4.4.tar.gz.asc
-gpg2 --with-fingerprint psad**.asc
-gpg2 --verify psad**.asc psad**.gz
-md5 = $(md5sum **tar.gz)
-if [[ $md5 == "9c4aa937213d7a20001f69d6a4e23473" ]]
+wget https://cipherdyne.org/psad/download/psad-$PSADVERSION.tar.gz
+wget https://cipherdyne.org/psad/download/psad-$PSADVERSION.tar.gz.asc
+gpg2 --with-fingerprint psad-$PSADVERSION.tar.gz.asc
+gpg2 --verify psad**.asc psad-$PSADVERSION.tar.gz
+if [ $? -eq 0 ]
 then
-    echo "PACKAGE VERIFIED"
+    echo "GOOD SIGNATURE"
 else
-    echo "PACKAGE NOT VERIFIED"
+    echo "BAD SIGNATURE"
     break
 fi
-tar xvf psad**.gz
-cd psad**
+tar xvf psad-$PSADVERSION.tar.gz
+cd psad-$PSADVERSION
 sudo ./install.pl
 cd
-sudo rm -r psad**
+rm psad-$PSADVERSION.tar.gz && rm psad-$PSADVERSION.tar.gz.asc && rm -r psad-$PSADVERSION
 service psad start
 
 #fwsnort
-wget http://cipherdyne.org/fwsnort/download/fwsnort-1.6.7.tar.gz
-wget https://cipherdyne.org/fwsnort/download/fwsnort-1.6.7.tar.gz.asc
-gpg2 --with-fingerprint fwsnort**.asc
-gpg2 --verify fwsnort**.asc fwsnort**.gz
-md5 = $(md5sum **tar.gz)
-if [[ $md5 == "80af0ba0befcf2c684e16ad765a072b9" ]]
+FWSNORTVERSION=1.6.7
+wget http://cipherdyne.org/fwsnort/download/fwsnort-$FWSNORTVERSION.tar.gz
+wget https://cipherdyne.org/fwsnort/download/fwsnort-$FWSNORTVERSION.tar.gz.asc
+gpg2 --with-fingerprint fwsnort-$FWSNORTVERSION.tar.gz.asc
+gpg2 --verify fwsnort-$FWSNORTVERSION.tar.gz.asc fwsnort-$FWSNORTVERSION.tar.gz
+if [ $? -eq 0 ]
 then
-    echo "PACKAGE VERIFIED"
+    echo "GOOD SIGNATURE"
 else
-    echo "PACKAGE NOT VERIFIED"
+    echo "BAD SIGNATURE"
     break
 fi
-tar xvf fwsnort**.gz
-cd fwsnort**
+tar xvf fwsnort-$FWSNORTVERSION.tar.gz
+cd fwsnort-$FWSNORTVERSION
 ./configure
 sudo make
 sudo make install
 cd
-sudo rm -r fwsnort**
+rm fwsnort-$FWSNORTVERSION.tar.gz && rm fwsnort-$FWSNORTVERSION.tar.gz.asc && rm -r fwsnort-$FWSNORTVERSION
 
 #Some tools
 sudo apt-get install tmux terminator -y
@@ -166,104 +178,178 @@ sudo apt-get install libgtk2.0-dev -y
 gpg2 --recv-key 4F25E3B6 33BD3F06 E0856959 7EFD60D9
 mkdir gpg2
 cd gpg2
-sudo wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.16.tar.bz2
-sudo wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.16.tar.bz2.sig
-gpg2 --verify **.sig **.bz2
-sudo tar xvjf **.tar.bz2
-cd gnupg**
+GNUPGVERSION=2.1.16
+wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-$GNUPGVERSION.tar.bz2
+wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-$GNUPGVERSION.tar.bz2.sig
+gpg2 --verify gnupg-$GNUPGVERSION.tar.bz2.sig gnupg-$GNUPGVERSION.tar.bz2
+if [ $? -eq 0 ]
+then
+    echo "GOOD SIGNATURE"
+else
+    echo "BAD SIGNATURE"
+    break
+fi
+sudo apt-get purge gnupg -y #remove previous gnupg
+tar xvjf gnupg-$GNUPGVERSION.tar.bz2
+cd gnupg-$GNUPGVERSION
 ./configure
-sudo make
+make
 sudo make install
 cd ..
-sudo rm **.bz2 && sudo rm **.sig && sudo rm -r gnupg**
+sudo rm gnupg-$GNUPGVERSION.bz2 && sudo rm gnupg-$GNUPGVERSION.sig && sudo rm -r gnupg-$GNUPGVERSION
+gpg2 --version
 
-sudo wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.27.tar.bz2
-sudo wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.27.tar.bz2.sig
-gpg2 --verify **.sig **.bz2
-sudo tar xvjf **.tar.bz2
-cd libgp**
+LIBGPGVERSION=1.27
+wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-$LIBGPGVERSION.tar.bz2
+wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-$LIBGPGVERSION.tar.bz2.sig
+gpg2 --verify libgpg-error-$LIBGPGVERSION.tar.bz2.sig libgpg-error-$LIBGPGVERSION.bz2
+if [ $? -eq 0 ]
+then
+    echo "GOOD SIGNATURE"
+else
+    echo "BAD SIGNATURE"
+    break
+fi
+tar xvjf libgpg-error-$LIBGPGVERSION.tar.bz2
+cd libgpg-error-$LIBGPGVERSION
 ./configure
-sudo make
+make
 sudo make install
 cd ..
-sudo rm **.bz2 && sudo rm **.sig && sudo rm -r libgp**
+sudo rm libgpg-error-$LIBGPGVERSION.bz2 && sudo rm libgpg-error-$LIBGPGVERSION.sig && sudo rm -r libgpg-error-$LIBGPGVERSION
 
-sudo wget https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.7.6.tar.bz2
-sudo wget https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.7.6.tar.bz2.sig
-gpg2 --verify **.sig **.bz2
-sudo tar xvjf **.tar.bz2
-cd libgcr**
+LIBGCRYPTVERSION=1.7.6
+wget https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-$LIBGCRYPTVERSION.tar.bz2
+wget https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-$LIBGCRYPTVERSION.tar.bz2.sig
+gpg2 --verify libgcrypt-$LIBGCRYPTVERSION.tar.bz2.sig libgcrypt-$LIBGCRYPTVERSION.bz2
+if [ $? -eq 0 ]
+then
+    echo "GOOD SIGNATURE"
+else
+    echo "BAD SIGNATURE"
+    break
+fi
+tar xvjf libgcrypt-$LIBGCRYPTVERSION.tar.bz2
+cd libgcrypt-$LIBGCRYPTVERSION
 ./configure
-sudo make
+make
 sudo make install
 cd ..
-sudo rm **.bz2 && sudo rm **.sig && sudo rm -r libgcr**
+sudo rm libgcrypt-$LIBGCRYPTVERSION.bz2 && sudo rm libgcrypt-$LIBGCRYPTVERSION.sig && sudo rm -r libgcrypt-$LIBGCRYPTVERSION
 
-sudo wget https://www.gnupg.org/ftp/gcrypt/libksba/libksba-1.3.5.tar.bz2
-sudo wget https://www.gnupg.org/ftp/gcrypt/libksba/libksba-1.3.5.tar.bz2.sig
-gpg2 --verify **.sig **.bz2
-sudo tar xvjf **.tar.bz2
-cd libks**
+LIBKSBAVERSION=1.3.5
+wget https://www.gnupg.org/ftp/gcrypt/libksba/libksba-$LIBKSBAVERSION.tar.bz2
+wget https://www.gnupg.org/ftp/gcrypt/libksba/libksba-$LIBKSBAVERSION.tar.bz2.sig
+gpg2 --verify libksba-$LIBKSBAVERSION.tar.bz2.sig libksba-$LIBKSBAVERSION.tar.bz2
+if [ $? -eq 0 ]
+then
+    echo "GOOD SIGNATURE"
+else
+    echo "BAD SIGNATURE"
+    break
+fi
+tar xvjf libksba-$LIBKSBAVERSION.tar.bz2
+cd libksba-$LIBKSBAVERSION
 ./configure
-sudo make
+make
 sudo make install
 cd ..
-sudo rm **.bz2 && sudo rm **.sig && sudo rm -r libks**
+sudo rm libksba-$LIBKSBAVERSION.tar.bz2 && sudo rm libksba-$LIBKSBAVERSION.tar.bz2.sig && sudo rm -r libksba-$LIBKSBAVERSION
 
-sudo wget https://www.gnupg.org/ftp/gcrypt/libassuan/libassuan-2.4.3.tar.bz2
-sudo wget https://www.gnupg.org/ftp/gcrypt/libassuan/libassuan-2.4.3.tar.bz2.sig
-gpg2 --verify **.sig **.bz2
-sudo tar xvjf **.tar.bz2
-cd libas**
+LIBASSUANVERSION=2.4.3
+wget https://www.gnupg.org/ftp/gcrypt/libassuan/libassuan-$LIBASSUANVERSION.tar.bz2
+wget https://www.gnupg.org/ftp/gcrypt/libassuan/libassuan-$LIBASSUANVERSION.tar.bz2.sig
+gpg2 --verify libassuan-$LIBASSUANVERSION.tar.bz2.sig libassuan-$LIBASSUANVERSION.tar.bz2
+if [ $? -eq 0 ]
+then
+    echo "GOOD SIGNATURE"
+else
+    echo "BAD SIGNATURE"
+    break
+fi
+tar xvjf libassuan-$LIBASSUANVERSION.tar.bz2
+cd libassuan-$LIBASSUANVERSION
 ./configure
-sudo make
+make
 sudo make install
 cd ..
-sudo rm **.bz2 && sudo rm **.sig && sudo rm -r libas**
+sudo rm libassuan-$LIBASSUANVERSION.tar.bz2 && sudo rm libassuan-$LIBASSUANVERSION.tar.bz2.sig && sudo rm -r libassuan-$LIBASSUANVERSION
 
-sudo wget https://www.gnupg.org/ftp/gcrypt/npth/npth-1.4.tar.bz2
-sudo wget https://www.gnupg.org/ftp/gcrypt/npth/npth-1.4.tar.bz2.sig
-gpg2 --verify **.sig **.bz2
-sudo tar xvjf **.tar.bz2
-cd npth**
+NPTHVERSION=1.4
+wget https://www.gnupg.org/ftp/gcrypt/npth/npth-$NPTHVERSION.tar.bz2
+wget https://www.gnupg.org/ftp/gcrypt/npth/npth-$NPTHVERSION.tar.bz2.sig
+gpg2 --verify npth-$NPTHVERSION.tar.bz2.sig npth-$NPTHVERSION.tar.bz2
+if [ $? -eq 0 ]
+then
+    echo "GOOD SIGNATURE"
+else
+    echo "BAD SIGNATURE"
+    break
+fi
+tar xvjf npth-$NPTHVERSION.tar.bz2
+cd npth-$NPTHVERSION
 ./configure
-sudo make
+make
 sudo make install
 cd ..
-sudo rm **.bz2 && sudo rm **.sig && sudo npth**
+sudo rm npth-$NPTHVERSION.tar.bz2 && sudo rm npth-$NPTHVERSION.tar.bz2.sig && sudo npth-$NPTHVERSION
 
-sudo wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.21.tar.bz2
-sudo wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.21.tar.bz2.sig
-gpg2 --verify **.sig **.bz2
-sudo tar xvjf **.tar.bz2
-cd gnupg**
+GNUPGVERSION=2.1.21
+wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-$GNUPGVERSION.tar.bz2
+wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-$GNUPGVERSION.tar.bz2.sig
+gpg2 --verify gnupg-$GNUPGVERSION.tar.bz2.sig gnupg-$GNUPGVERSION.tar.bz2
+if [ $? -eq 0 ]
+then
+    echo "GOOD SIGNATURE"
+else
+    echo "BAD SIGNATURE"
+    break
+fi
+tar xvjf gnupg-$GNUPGVERSION.tar.bz2
+cd gnupg-$GNUPGVERSION
 ./configure
-sudo make
+make
 sudo make install
 cd ..
-sudo rm **.bz2 && sudo rm **.sig && sudo rm -r gnupg**
+sudo rm gnupg-$GNUPGVERSION.tar.bz2 && sudo rm gnupg-$GNUPGVERSION.tar.bz2.sig && sudo rm -r gnupg-$GNUPGVERSION
 
-sudo wget https://www.gnupg.org/ftp/gcrypt/gpgme/gpgme-1.9.0.tar.bz2
-sudo wget https://www.gnupg.org/ftp/gcrypt/gpgme/gpgme-1.9.0.tar.bz2.sig
-gpg2 --verify **.sig **.bz2
-sudo tar xvjf **.tar.bz2
-cd gpgm**
+GPGMEVERSION=1.9.0
+wget https://www.gnupg.org/ftp/gcrypt/gpgme/gpgme-$GPGMEVERSION.tar.bz2
+wget https://www.gnupg.org/ftp/gcrypt/gpgme/gpgme-$GPGMEVERSION.tar.bz2.sig
+gpg2 --verify gpgme-$GPGMEVERSION.tar.bz2.sig gpgme-$GPGMEVERSION.tar.bz2
+if [ $? -eq 0 ]
+then
+    echo "GOOD SIGNATURE"
+else
+    echo "BAD SIGNATURE"
+    break
+fi
+tar xvjf gpgme-$GPGMEVERSION.tar.bz2
+cd gpgme-$GPGMEVERSION
 ./configure
-sudo make
+make
 sudo make install
 cd ..
-sudo rm **.bz2 && sudo rm **.sig && sudo rm -r gpgm**
+sudo rm gpgme-$GPGMEVERSION.tar.bz2 && sudo rm gpgme-$GPGMEVERSION.tar.bz2.sig && sudo rm -r gpgme-$GPGMEVERSION
 
-sudo wget https://www.gnupg.org/ftp/gcrypt/gpa/gpa-0.9.10.tar.bz2
-sudo wget https://www.gnupg.org/ftp/gcrypt/gpa/gpa-0.9.10.tar.bz2.sig
-gpg2 --verify **.sig **.bz2
-sudo tar xvjf **.tar.bz2
-cd gpa**
+GPAVERSION=0.9.10
+sudo wget https://www.gnupg.org/ftp/gcrypt/gpa/gpa-$GPAVERSION.tar.bz2
+sudo wget https://www.gnupg.org/ftp/gcrypt/gpa/gpa-$GPAVERSION.tar.bz2.sig
+gpg2 --verify gpa-$GPAVERSION.tar.bz2.sig gpa-$GPAVERSION.tar.bz2
+if [ $? -eq 0 ]
+then
+    echo "GOOD SIGNATURE"
+else
+    echo "BAD SIGNATURE"
+    break
+fi
+tar xvjf gpa-$GPAVERSION.tar.bz2
+cd gpa-$GPAVERSION
 ./configure
 sudo make
 sudo make install
 cd ..
-sudo rm **.bz2 && sudo rm **.sig && sudo rm -r gpa**
+sudo rm gpa-$GPAVERSION.tar.bz2 && sudo rm gpa-$GPAVERSION.tar.bz2.sig && sudo rm -r gpa-$GPAVERSION
 
 cd ..
 sudo rm -r gpg2
