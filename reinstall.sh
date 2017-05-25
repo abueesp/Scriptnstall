@@ -58,6 +58,7 @@ make
 make tests
 sudo make install
 cd ..
+sudo rm -r bash-$BASHVERSION
 
 #Kernel
 KERNELVERSION=4.11.2
@@ -80,7 +81,7 @@ make && make modules_install
 sudo make install
 sudo update-grub
 cd ..
-rm -r linux-KERNELVERSION
+sudo rm -r linux-KERNELVERSION
 
 #Minus
 sudo apt-get purge imagemagick fontforge geary whoopsie -y
@@ -120,7 +121,7 @@ tar xvf psad-$PSADVERSION.tar.gz
 cd psad-$PSADVERSION
 sudo ./install.pl
 cd
-rm psad-$PSADVERSION.tar.gz && rm psad-$PSADVERSION.tar.gz.asc && rm -r psad-$PSADVERSION
+rm psad-$PSADVERSION.tar.gz && rm psad-$PSADVERSION.tar.gz.asc && sudo rm -r psad-$PSADVERSION
 service psad start
 
 #fwsnort
@@ -142,7 +143,7 @@ cd fwsnort-$FWSNORTVERSION
 sudo make
 sudo make install
 cd
-rm fwsnort-$FWSNORTVERSION.tar.gz && rm fwsnort-$FWSNORTVERSION.tar.gz.asc && rm -r fwsnort-$FWSNORTVERSION
+rm fwsnort-$FWSNORTVERSION.tar.gz && rm fwsnort-$FWSNORTVERSION.tar.gz.asc && sudo rm -r fwsnort-$FWSNORTVERSION
 
 #Some tools
 sudo apt-get install tmux terminator -y
@@ -189,15 +190,19 @@ else
     echo "BAD SIGNATURE"
     break
 fi
-sudo apt-get purge gnupg -y #remove previous gnupg
+sudo pkill -9 gpg-agent #kill gpg-agent service
+sudo apt-get purge gnupg gnupg2 -y #remove previous gnupg
+if [ -f "/etc/init.d/gpg-agent" ] then sudo rm /etc/init.d/gpg-agent #remove previous gpg-agent from boot
+sudo sh -c "echo 'gpg-agent --daemon --verbose --sh --enable-ssh-support --pinentry-program pinentry-tty --no-allow-external-cache --no-allow-loopback-pinentry --allow-emacs-pinentry --log-file \"~/.gpg-agent-info\"' >> /etc/init.d/gpg-agent" #add gpg-agent with steroids
 tar xvjf gnupg-$GNUPGVERSION.tar.bz2
 cd gnupg-$GNUPGVERSION
 ./configure
 make
 sudo make install
+sudo cp /usr/bin/pinentry /usr/local/bin/pinentry #a new copy of pinentry (to introduce passwords) to local
 cd ..
-sudo rm gnupg-$GNUPGVERSION.bz2 && sudo rm gnupg-$GNUPGVERSION.sig && sudo rm -r gnupg-$GNUPGVERSION
-gpg2 --version
+rm gnupg-$GNUPGVERSION.bz2 && rm gnupg-$GNUPGVERSION.sig && sudo rm -r gnupg-$GNUPGVERSION
+gpg-agent --daemon --verbose --sh --enable-ssh-support --pinentry-program pinentry-tty --no-allow-external-cache --no-allow-loopback-pinentry --allow-emacs-pinentry --log-file \"~/.gpg-agent-info\"
 
 LIBGPGVERSION=1.27
 wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-$LIBGPGVERSION.tar.bz2
@@ -235,7 +240,7 @@ cd libgcrypt-$LIBGCRYPTVERSION
 make
 sudo make install
 cd ..
-sudo rm libgcrypt-$LIBGCRYPTVERSION.bz2 && sudo rm libgcrypt-$LIBGCRYPTVERSION.sig && sudo rm -r libgcrypt-$LIBGCRYPTVERSION
+rm libgcrypt-$LIBGCRYPTVERSION.bz2 && rm libgcrypt-$LIBGCRYPTVERSION.sig && sudo rm -r libgcrypt-$LIBGCRYPTVERSION
 
 LIBKSBAVERSION=1.3.5
 wget https://www.gnupg.org/ftp/gcrypt/libksba/libksba-$LIBKSBAVERSION.tar.bz2
@@ -254,7 +259,7 @@ cd libksba-$LIBKSBAVERSION
 make
 sudo make install
 cd ..
-sudo rm libksba-$LIBKSBAVERSION.tar.bz2 && sudo rm libksba-$LIBKSBAVERSION.tar.bz2.sig && sudo rm -r libksba-$LIBKSBAVERSION
+rm libksba-$LIBKSBAVERSION.tar.bz2 && rm libksba-$LIBKSBAVERSION.tar.bz2.sig && sudo rm -r libksba-$LIBKSBAVERSION
 
 LIBASSUANVERSION=2.4.3
 wget https://www.gnupg.org/ftp/gcrypt/libassuan/libassuan-$LIBASSUANVERSION.tar.bz2
@@ -273,7 +278,7 @@ cd libassuan-$LIBASSUANVERSION
 make
 sudo make install
 cd ..
-sudo rm libassuan-$LIBASSUANVERSION.tar.bz2 && sudo rm libassuan-$LIBASSUANVERSION.tar.bz2.sig && sudo rm -r libassuan-$LIBASSUANVERSION
+rm libassuan-$LIBASSUANVERSION.tar.bz2 && rm libassuan-$LIBASSUANVERSION.tar.bz2.sig && sudo rm -r libassuan-$LIBASSUANVERSION
 
 NPTHVERSION=1.4
 wget https://www.gnupg.org/ftp/gcrypt/npth/npth-$NPTHVERSION.tar.bz2
@@ -292,7 +297,7 @@ cd npth-$NPTHVERSION
 make
 sudo make install
 cd ..
-sudo rm npth-$NPTHVERSION.tar.bz2 && sudo rm npth-$NPTHVERSION.tar.bz2.sig && sudo npth-$NPTHVERSION
+rm npth-$NPTHVERSION.tar.bz2 && rm npth-$NPTHVERSION.tar.bz2.sig && sudo rm -r npth-$NPTHVERSION
 
 GNUPGVERSION=2.1.21
 wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-$GNUPGVERSION.tar.bz2
@@ -311,7 +316,7 @@ cd gnupg-$GNUPGVERSION
 make
 sudo make install
 cd ..
-sudo rm gnupg-$GNUPGVERSION.tar.bz2 && sudo rm gnupg-$GNUPGVERSION.tar.bz2.sig && sudo rm -r gnupg-$GNUPGVERSION
+rm gnupg-$GNUPGVERSION.tar.bz2 && rm gnupg-$GNUPGVERSION.tar.bz2.sig && sudo rm -r gnupg-$GNUPGVERSION
 
 GPGMEVERSION=1.9.0
 wget https://www.gnupg.org/ftp/gcrypt/gpgme/gpgme-$GPGMEVERSION.tar.bz2
@@ -330,7 +335,7 @@ cd gpgme-$GPGMEVERSION
 make
 sudo make install
 cd ..
-sudo rm gpgme-$GPGMEVERSION.tar.bz2 && sudo rm gpgme-$GPGMEVERSION.tar.bz2.sig && sudo rm -r gpgme-$GPGMEVERSION
+rm gpgme-$GPGMEVERSION.tar.bz2 && rm gpgme-$GPGMEVERSION.tar.bz2.sig && sudo rm -r gpgme-$GPGMEVERSION
 
 GPAVERSION=0.9.10
 sudo wget https://www.gnupg.org/ftp/gcrypt/gpa/gpa-$GPAVERSION.tar.bz2
@@ -349,17 +354,19 @@ cd gpa-$GPAVERSION
 sudo make
 sudo make install
 cd ..
-sudo rm gpa-$GPAVERSION.tar.bz2 && sudo rm gpa-$GPAVERSION.tar.bz2.sig && sudo rm -r gpa-$GPAVERSION
+rm gpa-$GPAVERSION.tar.bz2 && rm gpa-$GPAVERSION.tar.bz2.sig && sudo rm -r gpa-$GPAVERSION
 
 cd ..
 sudo rm -r gpg2
+gpg2 --version
+gpgconf --list-components
 
 #keybase
+sudo apt-get install libappindicator1 -y
 curl -O https://prerelease.keybase.io/keybase_amd64.deb
 sudo dpkg -i keybase_amd64.deb
-sudo apt-get install -f
-run_keybase
-rm keybase_amd64.deb
+gpg2 --list-secret-keys
+run_keybase; keybase pgp gen --multi; rm keybase_amd64.deb
 
 ##Fail2ban & logcheck
 sudo apt-get install fail2ban -y
@@ -518,6 +525,14 @@ while true; do
     git config --global merge.tool $diff
     break
 done
+gpg --list-secret-keys
+while true; do
+    read -p "Please set your user signingkey (open https://github.com/settings/keys): " key $key
+    git config --global user.signingkey $key
+    git config --global commit.gpgsign true
+    break
+done
+
 git config --list
 echo "Here you are an excellent Github cheatsheet https://raw.githubusercontent.com/hbons/git-cheat-sheet/master/preview.png You can also access as gitsheet"
 echo "If you get stuck, run ‘git branch -a’ and it will show you exactly what’s going on with your branches. You can see which are remotes and which are local."
@@ -604,9 +619,12 @@ wget https://addons.mozilla.org/thunderbird/downloads/latest/71/addon-71-latest.
 wget https://addons.mozilla.org/thunderbird/downloads/latest/210/addon-210-latest.xpi #viewheaders
 wget https://addons.mozilla.org/thunderbird/downloads/latest/875/addon-875-latest.xpi #tb header tools
 wget https://addons.mozilla.org/thunderbird/downloads/latest/1003/addon-1003-latest.xpi #header scroll extension
+wget https://addons.mozilla.org/thunderbird/downloads/latest/torbirdy/platform:2/addon-381417-latest.xpi #torbirdy
 cd ..
+
+##Opera
 sudo apt-get install libpangox-1.0-0  libpango1.0-0 -y
-wget https://ftp.opera.com/pub/opera-developer/41.0.2349.0/linux/opera-developer_41.0.2349.0_amd64.deb
+wget https://ftp.opera.com/pub/opera-developer/46.0.2602.0/linux/opera-developer_46.0.2602.0_amd64.deb
 sudo dpkg -i opera**.deb
 sudo rm opera**.deb
 
