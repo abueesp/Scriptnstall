@@ -42,11 +42,14 @@ gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 64EA74AB
 gpg2 --output bash-$VERZ.tar.gz --decrypt bash-$VERZ.tar.gz.sig
 read -p "Is correctly signed? (Ctrl+C if it is not)" PAUS
 tar -xvzf bash-$VERZ.tar.gz
+rm bash-$VERZ.tar.gz
+rm bash-$VERZ.tar.gz.sig
 cd bash-$VERZ
 ./configure
 make
 make tests
 sudo make install
+cd ..
 
 #Kernel
 VERSION=4.11.2
