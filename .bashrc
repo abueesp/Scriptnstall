@@ -216,9 +216,9 @@ gpg2 -v --verify $sign $file
 
 gpgexport() {
 sudo mkdir gpgexport
-sudo chmod 600 -r gpgexport
+sudo chmod 750 -r gpgexport
 cd gpgexport
-gpg2 --list-keys
+gpg2 --list-keys --show-photos
 read -p "Introduce the key username to export: " USN
 gpg2 --fingerprint -a $USN > fingerprint
 gpg2 --export -a $USN > public.key
@@ -233,29 +233,28 @@ echo "To see you private key, write cat private.key"
 }
 
 gpgimport() {
-gpg2 --list-keys
+gpg2 --list-keys --show-photos
 read -p "This will import a key from file. Rename as public.key and private.key. Then, introduce the key username: " USN
-gpg2 --import -a $USN > $public.key
-gpg2 --import-secret-key -a $USN > private.key
+gpg2 --import $public.key -a $USN
+gpg2 --import-secret-key private.key -a $USN
 echo "Your public and private keys have been imported. Remember to secure delete your private.key" 
 gpg2 --list-keys
 }
 
 gpgdelete() {
-gpg2 --list-keys
+gpg2 --list-keys --show-photos
 read -p "Introduce the key username to delete: " USN
-gpg2 --delete -a $USN
-gpg2 --delete-secret-key -a $USN
-echo "your public key and private have been deleted" 
-gpg2 --list-keys
+gpg2 --delete-secret-and-public-keys $USN
+echo "Your public key and private have been deleted" 
+gpg2 --list-keys --show-photos
 }
 
 gpglist() {
 echo "fingerprints"
 gpg2 --fingerprint
-echo "pubkeys list"
-gpg2 --list-keys
-read -p "Your privkeys are going to be listed. Exit with Ctrl+C otherwise" PAUSE
+echo "pubkeys"
+gpg2 --list-keys --show-photos
+read -p "privkeys" PAUSE
 gpg2 --list-secret-keys
 }
 
@@ -265,19 +264,65 @@ gpg2 --edit-key $ID
 }
 
 gpgencrypt() {
-read -p "Rename the public key as key.txt and the message as message.txt, and keep both on this folder. Then, push ENTER and you will see your encrypted message as ciphertext.txt." Done
-#read -p "enter your gpg username (sender username): " USNs
-#read -p "enter your gpg username (receiver username): " USNr
-#read -p "enter the route of the file" filegpge
-#gpg -e -u $USNs -r $USNr $filegpge
-gpg2 --batch --yes --passphrase-file "key.txt" -z 0 --cipher-algo AES256 --armor --output "ciphertext.txt" --symmetric "message.txt"
+gpg2 --list-secret-keys
+read -p "enter sender username: " USNs
+gpg2 --list-keys --show-photos
+read -p "enter receiver username: " USNr
+PS3='Are you encrypting files (1) or a mere plaintext (2)?'
+options=("1" "2")
+select opt in "${options[@]}"
+do
+    case $opt in
+        "1")
+		read -p "Introduce the files, click ENTER and you will encrypt them as cipherfile." ROUTEFILE
+		gpg2 --encrypt --cipher-algo AES256 --armor --sign --output "cipherfile" --multifile "$ROUTEFILE" -u $USNs -r $USNr
+            ;;
+        "2")
+		read -p "Write down your plaintext, click ENTER and you will encrypt them as ciphertext.txt: " TEXT
+		echo "$TEXT" | gpg2 --encrypt --armor --sign --output "ciphertext.txt" --display-charset -u $USNs -r $USNr
+            ;;
+        *) echo "invalid option";;
+    esac
+done 
+}
+
+gpgencryptwithpass() {
+gpg2 --list-secret-keys
+read -p "enter sender username: " USNs
+gpg2 --list-keys --show-photos
+read -p "enter receiver username: " USNr
+read -p 'Write down the paraphrasse' $PAZZ
+PS3='Are you encrypting a file (1) or a mere plaintext (2)?'
+options=("1" "2")
+select opt in "${options[@]}"
+do
+    case $opt in
+        "1")
+		read -p "Introduce the files, click ENTER and you will encrypt them as cipherfile." ROUTEFILE
+		gpg2 --encrypt --passphrase-file "$PAZZ"  --symmetric --cipher-algo AES256 --armor --sign --output "cipherfile" --multifile "$ROUTEFILE" -u $USNs -r $USNr
+            ;;
+        "2")
+		read -p "Write down your plaintext, click ENTER and you will encrypt them as ciphertext.txt: " TEXT
+		echo "$TEXT" | gpg2 --encrypt --passphrase-file "$PAZZ"  --symmetric --armor --sign --output "ciphertext.txt" --display-charset -u $USNs -r $USNr
+            ;;
+        *) echo "invalid option";;
+    esac
+done
 }
 
 gpgdecrypt() {
-read -p "Rename the key as key.txt and the ciphertext as ciphertext.txt. Then put both on this folder. Then, push ENTER and you will see your decrypted message as message.txt." Done
-#read -p "enter file.gpg to decrypt: " filegpgd
-#gpg -o $filegpg[-4] -d $filegpgd
-gpg2 --batch --yes --passphrase-file "key.txt" --output "message.txt" --decrypt "cp.txt"
+gpg2 --list-secret-keys
+read -p "enter receiver username: " USNs
+gpg2 --list-keys --show-photos
+read -p "enter sender username: " USNr
+read -p "Introduce the files, click ENTER and you will decrypt them." ROUTEFILE
+gpg2 --decrypt --multifile "$ROUTEFILE" -u $USNs -r $USNr
+}
+
+gpgdecryptwithpass() {
+read -p 'Write down the paraphrasse' $PAZZ
+read -p "Introduce the files, click ENTER and you will decrypt them." ROUTEFILE
+gpg2 --decrypt --multifile --symmetric --passphrase-file "$PAZZ" "$ROUTEFILE"
 }
 
 
@@ -507,7 +552,7 @@ do
             pico2wave -l=es-ES -w=/home/$USER/lectura.wav "$(cat $ezte)"
 	    aplay /home/$USER/lectura.wav
             ;;
-        *) echo opcion no reconocida;;
+        *) echo "opcion desreconocida";;
     esac
 done
 }
@@ -1225,7 +1270,7 @@ read -p 'Your disk '$sdjah' was mounted on /mnt/'$sdjah'. Do you want to open it
             findmnt; cd /mnt/$sdjah && ls;;
         "Q")
             break;;
-        *) echo invalid option;;
+        *) echo "invalid option";;
     esac
 }
 
@@ -1373,7 +1418,7 @@ do
 	    echo 'Good bye!'
             break
             ;;
-        *) echo invalid option;;
+        *) echo "invalid option";;
     esac
 done
 
