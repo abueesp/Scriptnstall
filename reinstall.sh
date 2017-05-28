@@ -6,10 +6,6 @@ sudo mv /usr/share/sounds/freedesktop/stereo/camera-shutter.oga /usr/share/sound
 #Bluetooth
 sudo vi /etc/bluetooth/main.conf -c ':%s/\<InitiallyPowered = true\>/<InitiallyPowered = false\>/gIc' -c ':wq'
 rfkill block bluetooth
-#Sudo on Files Eos
-echo "[Contractor Entry]\nName=Open folder as root\nIcon=gksu-root-terminal\nDescription=Open folder as root\nMimeType=inode;application/x-sh;application/x-executable;\nExec=gksudo pantheon-files -d %U\nGettext-Domain=pantheon-files" >> Open_as_admin.contract
-sudo mv Open_as_admin.contract /usr/share/contractor/Open_as_admin
-rm Open_as_admin.contract
 #Minus
 sudo apt-get purge imagemagick fontforge geary whoopsie -y
 
@@ -26,7 +22,7 @@ sudo chage -M -1 90 $USER #force to change password every 90 days (-M, -W only f
 chage -l $USER
 
 ##USB readonly
-echo 'SUBSYSTEM=="block",ATTRS{removable}=="1",RUN{program}="/sbin/blockdev --setro %N"' | sudo tee -a 80-readonly-removables.rules
+echo 'SUBSYSTEM=="block",ATTRS{removable}=="1",RUN{program}="/sbin/blockdev --setro %N"' | sudo tee -a  /etc/udev/rules.d/80-readonly-removables.rules
 sudo udevadm trigger
 sudo udevadm control --reload
 
@@ -95,7 +91,7 @@ sudo service cups-browsed stop
 
 #mirror
 sudo apt-get install apt-transport-https apt-transport-tor -y
-sudo sed -i 's/http:\/\/us.archive.ubuntu.com\/ubuntu/http:\/\/mirrors.mit.edu\/ubuntu/g' /etc/apt/sources.list
+sudo sed -i 's/http:\/\/us.archive.ubuntu.com\/ubuntu/https:\/\/mirrors.mit.edu\/ubuntu/g' /etc/apt/sources.list
 #sudo sed -i 's/http:\/\/us.archive.ubuntu.com\/ubuntu/https:\/\/mirror.cpsc.ucalgary.ca\/mirror\/ubuntu.com\/packages\//g' /etc/apt/sources.list
 mv .bashrc .previous-bashrc
 sudo wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.bashrc
@@ -143,14 +139,14 @@ if [$1]
     then
     while [ ! -f lastid_rsa$numberssh ] ;
         do
-             numberssh++
+             $numberssh++
         done
     while [ ! -f lastid_rsa$numberssh ] ;
         do
              numberssh1 = $numberssh+1
              sudo mv ~/.ssh/$1 ~/.ssh/lastid_rsa$numberssh ~/.ssh/lastid_rsa$numberssh1
              sudo mv ~/.ssh/$1 ~/.ssh/lastid_rsa$numberssh.pub ~/.ssh/lastid_rsa$numberssh1.pub
-             numberssh--
+             $numberssh--
         done 
     echo "-------------> Your last key is now lastid_rsa (priv) and lastid_rsa0.pub (pub). If you want to create a new one type mysshkey. If you want to copy the last one type mylastsshkey"
     sudo mv ~/.ssh/$1 ~/.ssh/id_rsa ~/.ssh/lastid_rsa0
@@ -270,8 +266,7 @@ cd
 rm fwsnort-$FWSNORTVERSION.tar.gz && rm fwsnort-$FWSNORTVERSION.tar.gz.asc && sudo rm -r fwsnort-$FWSNORTVERSION
 
 #Some tools
-sudo apt-get install tmux terminator -y
-
+sudo apt-get install tmux
 sudo rm ~/tmux.conf~
 cp ~/tmux.conf ~/tmux.conf~
 wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/tmux.conf -O ~/tmux.conf
@@ -286,7 +281,7 @@ sudo apt-get install unoconv -y
 sudo apt-get install detox -y
 sudo apt-get install autojump -y
 sudo apt-get install nmap arp-scan -y
-sudo apt-get install tmux -y
+sudo apt-get install terminator -y
 sudo apt-get install htop -y
 sudo apt-get install pandoc -y
 sudo apt-get install vnstat -y
@@ -318,7 +313,6 @@ else
     break
 fi
 sudo pkill -9 gpg-agent #kill gpg-agent service
-sudo apt-get purge gnupg gnupg2 -y #remove previous gnupg
 if [ -f "/etc/init.d/gpg-agent" ] then sudo rm /etc/init.d/gpg-agent #remove previous gpg-agent from boot
 sudo sh -c "echo 'gpg-agent --daemon --verbose --sh --enable-ssh-support --no-allow-external-cache --no-allow-loopback-pinentry --allow-emacs-pinentry --log-file \"~/.gpg-agent-info\"' >> /etc/init.d/gpg-agent" #add gpg-agent with steroids
 tar xvjf gnupg-$GNUPGVERSION.tar.bz2
@@ -687,7 +681,7 @@ wget https://raw.githubusercontent.com/Russell91/sshrc/master/sshrc && sudo chmo
 echo "ssh bashcr vimcr portability installed"
 
 ##Browsers
-sudo apt-get install firefox -y
+#sudo apt-get install firefox -y it is ready
 cd Downloads
 mkdir extensions
 cd extensions
