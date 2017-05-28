@@ -799,6 +799,8 @@ alias secfirefox="firejail --dns=8.8.8.8 --dns=8.8.4.4 firefox"
 alias dt='date "+%F %T"'
 alias pdf2txt='ls * | sudo xargs -n1 pdftotext'
 alias bashrc='~./bashrc'
+alias lowercase="echo $1 | tr '[:upper:]' '[:lower:]'"
+alias uppercase="echo $1 | tr '[:lower:]' '[:upper:]'"
 alias geditbash='sudo gedit ~/.bashrc'
 alias vimbash='sudo vim ~./bashrc'
 alias atombash='sudo atom ~/.bashrc'
