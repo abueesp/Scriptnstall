@@ -259,9 +259,7 @@ else
 fi
 tar xvf fwsnort-$FWSNORTVERSION.tar.gz
 cd fwsnort-$FWSNORTVERSION
-./configure
-sudo make
-sudo make install
+sudo perl install.pl
 cd
 rm fwsnort-$FWSNORTVERSION.tar.gz && rm fwsnort-$FWSNORTVERSION.tar.gz.asc && sudo rm -r fwsnort-$FWSNORTVERSION
 
