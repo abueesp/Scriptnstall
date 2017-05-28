@@ -81,25 +81,52 @@ firefox index.html
 cd ..
 
 
-##Electrum Wallet
-#from https://github.com/ethereum/mist/releases
-wget https://github.com/ethereum/mist/releases/download/v0.8.6/Ethereum-Wallet-linux64-0-8-6.zip
-sha1 = $(sha1sum Ethereum**.zip)
-if [ $sha1 "73499c9624518de0276e9894d8596c85adb6aded9c9d97f3ea3fbb3282ad115c" ]
+##Electrum
+ELECTRUMVERSION=2.8.2
+sudo apt-get install python-qt4 python-pip -y
+sudo -H pip install --upgrade pip
+wget https://download.electrum.org/$ELECTRUMVERSION/Electrum-$ELECTRUMVERSION.tar.gz 
+wget https://download.electrum.org/2.8.2/Electrum-2.8.2.tar.gz.asc
+gpg2 --recv-key 0x2BD5824B7F9470E6
+gpg2 --verify Electrum-$ELECTRUMVERSION.tar.gz.asc Electrum-$ELECTRUMVERSION.tar.gz
+if [ $? -eq 0 ]
 then
-    echo "PACKAGE VERIFIED"
+echo "GOOD SIGNATURE"
+gpg2 --delete-secret-and-public-keys --batch --yes 0x2BD5824B7F9470E6
 else
-    echo "PACKAGE NOT VERIFIED"
-    break
+echo "BAD SIGNATURE"
+break
 fi
-read -p "Please ENTER if PACKAGE VERIFIED. Otherwise Ctrl-C " pause
-unzip Ethereum-**
-sudo rm Ethereum-**.zip
-echo "This is your free space to download the blockchain. Last time it took 6GB and 3 hours."
-cd linux
-nohup ./Ethereum-Wallet
-cd ..
-df
+rm Electrum-$ELECTRUMVERSION.tar.gz.asc
+sudo -H pip2 install Electrum-$ELECTRUMVERSION.tar.gz
+rm Electrum-$ELECTRUMVERSION.tar.gz
+
+sudo apt-get install python-numpy portaudio19-dev -y
+pip install --user amodem
+sudo -H pip install matplotlib
+echo 'alias amodemviz="~/receiver $ amodem recv --plot -o data.rx"' | sudo tee -a ~/.bashrc
+
+echo "TIMES AND FEES:" 
+curl https://bitcoinfees.21.co/api/v1/fees/recommended
+read -p "These are the recommended fees per byte. If you want to fix it on Electrum by yourself according with your time flexibility, choose yours: " FEEPERBYTE
+echo "Your transaction fee per KB may be $(echo "$FEEPERBYTE*(10^-08)*1024" | bc -l) satoshis per KB"
+PS3='Do you want to 1) Create a new wallet 2) Restore from a privkey'
+options=("1" "2")
+select opt in "${options[@]}"
+do
+case $opt in
+"1")
+mv -r ~/.electrum ~/.electrum-backup
+electrum create
+;;
+"2")
+read -p -s "Introduce your priv key: " PRIVK
+electrum restore $PRIVK
+;;
+*) echo "invalid option";;
+esac
+done 
+
 
 
 #fwsnort
