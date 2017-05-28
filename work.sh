@@ -7,10 +7,7 @@ sudo mv /usr/share/sounds/freedesktop/stereo/camera-shutter.oga /usr/share/sound
 #Bluetooth
 sudo vi /etc/bluetooth/main.conf -c ':%s/\<InitiallyPowered = true\>/<InitiallyPowered = false\>/gIc' -c ':wq'
 rfkill block bluetooth
-#Sudo on Files Eos
-echo "[Contractor Entry]\nName=Open folder as root\nIcon=gksu-root-terminal\nDescription=Open folder as root\nMimeType=inode;application/x-sh;application/x-executable;\nExec=gksudo pantheon-files -d %U\nGettext-Domain=pantheon-files" >> Open_as_admin.contract
-sudo mv Open_as_admin.contract /usr/share/contractor/Open_as_admin
-rm Open_as_admin.contract
+
 #Minus
 sudo apt-get purge imagemagick fontforge geary whoopsie -y
 
@@ -27,7 +24,7 @@ sudo chage -M -1 90 $USER #force to change password every 90 days (-M, -W only f
 chage -l $USER
 
 ##USB readonly
-echo 'SUBSYSTEM=="block",ATTRS{removable}=="1",RUN{program}="/sbin/blockdev --setro %N"' | sudo tee -a 80-readonly-removables.rules
+echo 'SUBSYSTEM=="block",ATTRS{removable}=="1",RUN{program}="/sbin/blockdev --setro %N"' | sudo tee -a /etc/udev/rules.d/80-readonly-removables.rules
 sudo udevadm trigger
 sudo udevadm control --reload
 
@@ -96,7 +93,7 @@ sudo service cups-browsed stop
 
 #mirror
 sudo apt-get install apt-transport-https apt-transport-tor -y
-sudo sed -i 's/http:\/\/us.archive.ubuntu.com\/ubuntu/http:\/\/mirrors.mit.edu\/ubuntu/g' /etc/apt/sources.list
+sudo sed -i 's/http:\/\/us.archive.ubuntu.com\/ubuntu/https:\/\/mirrors.mit.edu\/ubuntu/g' /etc/apt/sources.list
 #sudo sed -i 's/http:\/\/us.archive.ubuntu.com\/ubuntu/https:\/\/mirror.cpsc.ucalgary.ca\/mirror\/ubuntu.com\/packages\//g' /etc/apt/sources.list
 mv .bashrc .previous-bashrc
 sudo wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.bashrc
@@ -105,16 +102,78 @@ sudo apt-get install apt-file
 sudo apt-file update
 
 #SSH
-sudo apt-get install ssh -y
-mkdir .ssh
-newsshkey
+sudo apt-get purge ssh -y
+SSHVERSION=7.5p1
+gpg2 --keyserver hkp://keys.gnupg.net --recv-keys CE8ECB0386FF9C48
+gpg2 --keyserver hkp://keys.gnupg.net --recv-keys A2B989F511B5748F
+gpg2 --keyserver hkp://keys.gnupg.net --recv-keys A819A2D8691EF8DA
+gpg2 --keyserver hkp://keys.gnupg.net --recv-keys D3E5F56B6D920D30
+wget https://mirrors.ucr.ac.cr/pub/OpenBSD/OpenSSH/portable/openssh-$SSHVERSION.tar.gz
+wget https://mirrors.ucr.ac.cr/pub/OpenBSD/OpenSSH/portable/openssh-$SSHVERSION.tar.gz.asc
+gpg2 --verify openssh-$SSHVERSION.tar.gz.asc openssh-$SSHVERSION.tar.gz
+if [ $? -eq 0 ]
+then
+    echo "GOOD SIGNATURE"
+    gpg2 --delete-secret-and-public-keys --batch --yes CE8ECB0386FF9C48
+    gpg2 --delete-secret-and-public-keys --batch --yes A2B989F511B5748F
+    gpg2 --delete-secret-and-public-keys --batch --yes A819A2D8691EF8DA
+    gpg2 --delete-secret-and-public-keys --batch --yes D3E5F56B6D920D30
+else
+    echo "BAD SIGNATURE"
+    break
+fi
+tar -xvzf openssh-$SSHVERSION.tar.gz
+rm openssh-$SSHVERSION.tar.gz
+rm openssh-$SSHVERSION.tar.gz.asc
+cd openssh-$SSHVERSION
+./configure
+make
+make tests
+sudo make install
+cd ..
+sudo rm -r openssh-$SSHVERSION
+sudo mkdir .ssh
+sudo chown -R $USER:$USER ~/.ssh
+sudo chmod -R 750 ~/.ssh
+sudo chmod +x ~/.ssh 
+numberssh = 0
+if [$1]
+    then
+    while [ ! -f lastid_rsa$numberssh ] ;
+        do
+             $numberssh++
+        done
+    while [ ! -f lastid_rsa$numberssh ] ;
+        do
+             numberssh1 = $numberssh+1
+             sudo mv ~/.ssh/$1 ~/.ssh/lastid_rsa$numberssh ~/.ssh/lastid_rsa$numberssh1
+             sudo mv ~/.ssh/$1 ~/.ssh/lastid_rsa$numberssh.pub ~/.ssh/lastid_rsa$numberssh1.pub
+             $numberssh--
+        done 
+    echo "-------------> Your last key is now lastid_rsa (priv) and lastid_rsa0.pub (pub). If you want to create a new one type mysshkey. If you want to copy the last one type mylastsshkey"
+    sudo mv ~/.ssh/$1 ~/.ssh/id_rsa ~/.ssh/lastid_rsa0
+    sudo mv ~/.ssh/$1 ~/.ssh/id_rsa.pub ~/.ssh/lastid_rsa0.pub
+    else
+    echo "-------------> Those are your current keys: "
+    ls -al -R ~/.ssh
+fi
+$emai = emai
+sudo mkdir ~/.ssh
+echo "-------------> Those are your keys up to now"
+sudo ls -al -R ~/.ssh # Lists the files in your .ssh directory, if they exist
+echo "Please, introduce 'youremail@server.com'"
+read emai
+echo "------------->Introduce this /home/$USER/.ssh/id_rsa as file, OTHERWISE YOU WONT BE ABLE TO USE MYSSHKEY AND THE REST OF SSH MANAGEMENT COMMANDS, and a password longer or equal to 5 caractheres"
+ssh-keygen -t rsa -b 4096 -C $emai
+eval "$(ssh-agent -s)" 
+sudo ssh-add ~/.ssh/id_rsa**
+sudo chmod -R 600 ~/.ssh
 sudo vi /etc/xdg/autostart/gnome-keyring-ssh.desktop -c ':%s/\<NoDisplay=true\>/<NoDisplay=false\>/gIc' -c ':wq'
 sudo vi /etc/ssh/sshd_config -c ':%s/\<PermitRootLogin without password\>/<PermitRootLogin no>/gIc' -c ':wq'  #noroot
 sudo vi /etc/ssh/sshd_config -c ':%s/\<Port **\>/<Port 1022\>/gIc' -c ':wq' #SSH PORT OTHER THAN 22, SET 1022
 sudo /etc/init.d/ssh restart
-sudo chown -R $USER:$USER .ssh
-sudo chmod -R 600 .ssh 
-sudo chmod +x .ssh
+man sshd_config | col -b | awk "/Ciphers/,/ClientAlive/"
+
 
 
 #Bash
@@ -230,7 +289,6 @@ else
     break
 fi
 sudo pkill -9 gpg-agent #kill gpg-agent service
-sudo apt-get purge gnupg gnupg2 -y #remove previous gnupg
 if [ -f "/etc/init.d/gpg-agent" ] then sudo rm /etc/init.d/gpg-agent #remove previous gpg-agent from boot
 sudo sh -c "echo 'gpg-agent --daemon --verbose --sh --enable-ssh-support --no-allow-external-cache --no-allow-loopback-pinentry --allow-emacs-pinentry --log-file \"~/.gpg-agent-info\"' >> /etc/init.d/gpg-agent" #add gpg-agent with steroids
 tar xvjf gnupg-$GNUPGVERSION.tar.bz2
@@ -417,7 +475,7 @@ git clone https://github.com/CISOfy/lynis
 #Some tools
 sudo apt-get install baobab -y
 sudo apt-get install brasero -y
-sudo apt-get install tmux terminator -y
+sudo apt-get install tmux -y
 
 sudo rm ~/tmux.conf~
 cp ~/tmux.conf ~/tmux.conf~
@@ -440,7 +498,7 @@ sudo apt-get install fish -y
 sudo apt-get install byobu -y
 sudo apt-get install autojump -y
 sudo apt-get install nmap arp-scan -y
-sudo apt-get install tmux -y
+sudo apt-get install terminator -y
 sudo apt-get install htop -y
 sudo apt-get install gtk-recordmydesktop recordmydesktop -y
 sudo apt-get install vnstat -y
@@ -1031,11 +1089,17 @@ rm firejail**
 sudo dpkg -i firetools**
 rm firetools**
 
+#sudo apt-get install firefox -y it is ready
 cd Downloads
 mkdir extensions
 cd extensions
+
+wget https://raw.githubusercontent.com/abueesp/Firefox-Security-Toolkit/master/firefox_security_toolkit.sh ## Cookie Manager # Copy as Plain Text # Crypto Fox # CSRF-Finder # Disable WebRTC # FireBug # Fireforce # FlagFox # Foxy Proxy # HackBar # Live HTTP Headers # Multi Fox # PassiveRecon # Right-Click XSS # Tamper Data # User Agent Switcher # Wappalyzer # Web Developer
+#chmod 777 firefox_security_toolkit.sh
+#bash firefox_security_toolkit.sh run
+#rm firefox_security_toolkit.sh
 wget https://addons.mozilla.org/firefox/downloads/latest/canvasblocker/addon-534930-latest.xpi #Avoid HTML5 Canvas
-wget https://addons.mozilla.org/firefox/downloads/file/229626/sql_inject_me-0.4.7-fx.xpi #SQL Inject Me
+#wget https://addons.mozilla.org/firefox/downloads/file/229626/sql_inject_me-0.4.7-fx.xpi #SQL Inject Me
 wget https://addons.mozilla.org/firefox/downloads/latest/521554/addon-521554-latest.xpi #DecentralEyes
 wget https://addons.mozilla.org/firefox/downloads/latest/607454/addon-607454-latest.xpi #UBlockOrigin
 wget https://addons.mozilla.org/firefox/downloads/latest/383235/addon-383235-latest.xpi #FlashDisable
@@ -1048,7 +1112,7 @@ wget https://addons.mozilla.org/firefox/downloads/latest/496120/addon-496120-lat
 wget https://addons.mozilla.org/firefox/downloads/latest/473878/addon-473878-latest.xpi #RandomAgentSpoofer
 wget https://addons.mozilla.org/firefox/downloads/latest/229918/addon-229918-latest.xpi #HTTPS Everywhere
 wget https://addons.mozilla.org/en-US/firefox/downloads/latest/2109/addon-2109-latest.xpi #FEBE Backups
-wget https://addons.mozilla.org/firefox/downloads/latest/363974/addon-363974-latest.xpi #Lightbeam
+#wget https://addons.mozilla.org/firefox/downloads/latest/363974/addon-363974-latest.xpi #Lightbeam
 wget https://addons.mozilla.org/firefox/downloads/latest/409964/addon-409964-latest.xpi #VideoDownloadHelper
 wget https://addons.mozilla.org/firefox/downloads/latest/export-to-csv/addon-364467-latest.xpi #Export Table to CSV
 wget https://addons.mozilla.org/firefox/downloads/latest/tabletools2/addon-296783-latest.xpi #TableTools2
@@ -1080,7 +1144,7 @@ wget https://addons.mozilla.org/firefox/downloads/latest/video-downloadhelper/ad
 wget https://addons.mozilla.org/firefox/downloads/latest/390151/addon-390151-latest.xpi #TOS
 wget https://addons.mozilla.org/firefox/downloads/latest/3456/addon-3456-latest.xpi #WOT
 wget https://addons.mozilla.org/firefox/downloads/latest/certificate-patrol/addon-6415-latest.xpi #certificate patrol
-wget https://addons.mozilla.org/firefox/downloads/latest/perspectives/addon-7974-latest.xpi #perspectivenetworknotaries
+#wget https://addons.mozilla.org/firefox/downloads/latest/perspectives/addon-7974-latest.xpi #perspectivenetworknotaries
 cd ..
 
 mkdir bctools
