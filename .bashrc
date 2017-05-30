@@ -766,7 +766,6 @@ alias portmon="sudo nc -l -6 -4 -u; sudo ss -o state established; sudo ss -l; su
 alias vpnmon="firefox -new-tab dimage.kali.org && firefox -new-tab https://www.dnsleaktest.com/results.html"
 alias webmon="firefox -new-tab https://who.is/ && firefox -new-tab https://searchdns.netcraft.com/ && firefox -new-tab https://www.shodan.io/ && firefox -new-tab web.archive.org && firefox -new-tab https://validator.w3.org/ && firefox -new-tab https://geekflare.com/online-scan-website-security-vulnerabilities/"
 alias hardwaremon="sudo lshw; cat /proc/cpuinfo"
-alias debug="sudo apt-get install apport-retrace apython-problem-report python-apport -y; apropos apport; apropos apport-retrace; read -p 'Write process name: ' PROCESSCRASH; sudo find /var | grep $PROCESSCRASH; ls /var/crash; read -p 'Copy the route of your log crash file: ' ROUTECRASH; sudo mkdir /var/dump$PROCESSNAME; apport-unpack $ROUTECRASH /var/dump$PROCESSNAME; apport-retrace $ROUTECRASH; cat /var/dump$PROCESSNAME; sudo apt-get purge apport-retrace python-problem-report python-apport"
 alias ccleaner="sudo apt-get install bleachbit -y; bleachbit -list; read -p 'Write the name of what you want to clean (f.i. firefox -e chromium.history -e password...)' CLEANN; bleachbit --list | grep -E "[a-z]+\.[a-z]+" | grep -e CLEANN | xargs sudo bleachbit --clean; sudo apt-get purge bleachbit -y"
 alias cleanall="echo 'Cleaning temp, presets, browsers data, memory, cache and so forth'; sudo sh -c $(which echo) 3 > sudo /proc/sys/vm/drop_caches; sudo apt-get install bleachbit -y; bleachbit --list | grep -E '[a-z]+\.[a-z]+' | xargs sudo bleachbit --clean; sudo apt-get purge bleachbit -y"
 alias clenexcept="sudo apt-get install bleachbit -y; bleachbit -list; read -p 'Write the name of what you DO NOT want to clean (f.i. firefox -e chromium.history -e password...)' UNCLEANN; bleachbit --list | grep -E "[a-z]+\.[a-z]+" | grep -v -e UNCLEANN | xargs sudo bleachbit --clean; sudo apt-get purge bleachbit -y"
@@ -1103,6 +1102,23 @@ read -p "Introduce name of the file" thisis
 read -p "Introduce name of the new fixed copy" thatone
 cat $thisis | tr "\n" " " >> $thatone
 cat $thatone
+}
+
+debug(){
+sudo apt-get install apport-retrace python-problem-report python-apport -y
+apropos apport
+apropos apport-retrace
+read -p 'Write the name of the process: ' PROCESS
+echo $PROCESS
+echo 'These are you crash logs routes related on that process'
+ROUTECRASH=$(echo /var/crash/$(sudo ls /var/crash | grep $PROCESS))
+echo $ROUTECRASH
+read -p 'Copy the route of your log crash file: ' ROUTECRASH
+ROUTEDUMP=/var/dump/$PROCESS
+echo $ROUTEDUMP
+sudo mkdir -p $ROUTEDUMP
+sudo apport-unpack $ROUTECRASH $ROUTEDUMP
+sudo apport-retrace --rebuild-package-info --confirm --timestamps --dynamic-origins  --verbose  --output $ROUTEDUMP/$PROCESS.crash $ROUTECRASH
 }
 
 
