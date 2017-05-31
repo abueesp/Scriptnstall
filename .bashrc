@@ -1130,81 +1130,53 @@ uninstall(){
   sudo apt-get remove --purge -y $1
 }
 
-mysshkey(){
-sudo chmod -R 750 ~/.ssh
-sudo chmod +x ~/.ssh 
+### SSH Functions ###
+sshcp(){
+sudo chmod -R 750 ~/.ssh 
 sudo apt-get install xclip
-sudo xclip -sel clip ~/.ssh/id_rsa.pub
-echo 'those are your keys up to now, id_rsa.pub is the default.'
 sudo ls -al -R ~/.ssh/
+read -p 'These are your ssh keys. Choose one: ' MYSSHKEY
+cat ~/.ssh/$MYSSHKEY | sudo xclip -selection clipboard
+sudo chmod -R 600 ~/.ssh
 echo "Now you may have your ssh key on your clipboard. If you have already set your app global configuration, now you should go to Settings -> New SSH key and paste it there"
-sudo chmod -R 600 ~/.ssh
 }
 
-uploadsshkey(){
-echo 'those are your keys up to now, id_rsa.pub is the default.'
-sudo ls -al -R ~/.ssh/
-read -p "introduce the user@r to upload id_rsa.pubs to the server and keeps them on its ~/.ssh/authorized_keys folder"
-ssh-copy-id -i ~/.ssh/id_rsa
-}
-
-mylastsshkey(){
-sudo chown -R $USER:$USER ~/.ssh
-sudo chmod -R 750 ~/.ssh
+sshdelete(){
+sudo chmod -R 750 ~/.ssh 
 sudo apt-get install xclip
-sudo chmod +x ~/.ssh  
-read -p "Introduce the ssh last key number (0 is the first)" numerossh 
-xclip -sel clip < ~/.ssh/lastid_rsa$numerossh.pub
-echo 'this is your last key, lastid_rsa'$numerossh'.pub is the default.'
-ls -al -R ~/.ssh
-echo "Now you may have your last ssh key on your clipboard. If you have already set your app global configuration, now you should go to Settings -> New SSH key and paste it there"
+sudo ls -al -R ~/.ssh/
+read -p 'These are your ssh keys. Choose one: ' MYSSHKEY
+sudo rm ~/.ssh/$MYSSHKEY
+sudo ls -al -R ~/.ssh
+echo "Those are your ssh current keys: "
 sudo chmod -R 600 ~/.ssh
 }
 
+sshupload(){
+sudo ls -al -R ~/.ssh/
+read -p 'These are your ssh keys. Choose one: ' MYSSHKEY
+read -p "introduce the user@server to upload id_rsa.pubs to the server where they will be stored on ~/.ssh/authorized_keys folder" SERV
+ssh-copy-id -i ~/.ssh/$MYSSHKEY $SERV
+}
 
-newsshkey(){
-sudo chown -R $USER:$USER ~/.ssh
-sudo chmod -R 750 ~/.ssh
-sudo chmod +x ~/.ssh 
-numberssh = 0
-if [$1]
-    then
-    while [ ! -f lastid_rsa$numberssh ] ;
-        do
-             numberssh++
-        done
-    while [ ! -f lastid_rsa$numberssh ] ;
-        do
-             numberssh1 = $numberssh+1
-             sudo mv ~/.ssh/$1 ~/.ssh/lastid_rsa$numberssh ~/.ssh/lastid_rsa$numberssh1
-             sudo mv ~/.ssh/$1 ~/.ssh/lastid_rsa$numberssh.pub ~/.ssh/lastid_rsa$numberssh1.pub
-             numberssh--
-        done 
-    echo "-------------> Your last key is now lastid_rsa (priv) and lastid_rsa0.pub (pub). If you want to create a new one type mysshkey. If you want to copy the last one type mylastsshkey"
-    sudo mv ~/.ssh/$1 ~/.ssh/id_rsa ~/.ssh/lastid_rsa0
-    sudo mv ~/.ssh/$1 ~/.ssh/id_rsa.pub ~/.ssh/lastid_rsa0.pub
-    else
-    echo "-------------> Those are your current keys: "
-    ls -al -R ~/.ssh
-fi
-$emai = emai
-sudo mkdir ~/.ssh
-echo "-------------> Those are your keys up to now"
-sudo ls -al -R ~/.ssh # Lists the files in your .ssh directory, if they exist
-echo "Please, introduce 'youremail@server.com'"
-read emai
-echo "------------->Introduce this /home/$USER/.ssh/id_rsa as file, OTHERWISE YOU WONT BE ABLE TO USE MYSSHKEY AND THE REST OF SSH MANAGEMENT COMMANDS, and a password longer or equal to 5 caractheres"
+sshlist(){
+sudo chmod -R 750 ~/.ssh 
+sudo ls -al -R ~/.ssh
+echo "Those are your ssh current keys: "
+sudo chmod -R 600 ~/.ssh
+}
+
+sshnewkey(){
+sudo mkdir -p ~/.ssh
+sudo chmod -R 750 ~/.ssh 
+sudo ls -al -R ~/.ssh
+echo "Those are your ssh current keys: "
+read -p "Please, introduce 'youremail@server.com'" emai
+echo "Use a password longer or equal to 5 caractheres"
 ssh-keygen -t rsa -b 4096 -C $emai
 eval "$(ssh-agent -s)" 
 sudo ssh-add ~/.ssh/id_rsa**
 sudo chmod -R 600 ~/.ssh
-}
-
-# mkmv - creates a new directory and moves the file into it, in 1 step
-# Usage: mkmv <file> <directory>
-mkmv() {
-  mkdir "$2"
-  mv "$1" "$2"
 }
 
 ### Bash Completion ###
