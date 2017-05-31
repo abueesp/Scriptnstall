@@ -1131,19 +1131,9 @@ uninstall(){
 }
 
 ### SSH Functions ###
-sshcp(){
-sudo chmod -R 750 ~/.ssh 
-sudo apt-get install xclip
-sudo ls -al -R ~/.ssh/
-read -p 'These are your ssh keys. Choose one: ' MYSSHKEY
-cat ~/.ssh/$MYSSHKEY | sudo xclip -selection clipboard
-sudo chmod -R 600 ~/.ssh
-echo "Now you may have your ssh key on your clipboard. If you have already set your app global configuration, now you should go to Settings -> New SSH key and paste it there"
-}
 
 sshdelete(){
 sudo chmod -R 750 ~/.ssh 
-sudo apt-get install xclip
 sudo ls -al -R ~/.ssh/
 read -p 'These are your ssh keys. Choose one: ' MYSSHKEY
 sudo rm ~/.ssh/$MYSSHKEY
@@ -1163,7 +1153,10 @@ sshlist(){
 sudo chmod -R 750 ~/.ssh 
 sudo ls -al -R ~/.ssh
 echo "Those are your ssh current keys: "
+read -p 'These are your ssh keys. Choose one: ' MYSSHKEY
+cat ~/.ssh/$MYSSHKEY | xclip -selection clipboard
 sudo chmod -R 600 ~/.ssh
+echo "Now you may have your ssh key on your clipboard. If you have already set your app global configuration, now you should go to Settings -> New SSH key and paste it there"
 }
 
 sshnewkey(){
