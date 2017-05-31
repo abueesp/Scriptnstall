@@ -484,11 +484,14 @@ gpgconf --list-components
 cd ..
 
 #keybase
+KEYBASEVERSION=_amd64
 sudo apt-get install libappindicator1 -y
-curl -O https://prerelease.keybase.io/keybase_amd64.deb
-sudo dpkg -i keybase_amd64.deb
+curl -O https://prerelease.keybase.io/keybase$KEYBASEVERSION.deb
+sudo dpkg -i keybase$KEYBASEVERSION.deb
 gpg2 --list-secret-keys
-run_keybase; keybase pgp gen --multi; rm keybase_amd64.deb
+run_keybase
+keybase pgp gen --multi
+rm keybase$KEYBASEVERSION.deb
 
 ##Fail2ban & logcheck
 sudo apt-get purge fail2ban -y
@@ -562,18 +565,15 @@ sudo usermod -G vboxusers -a $user3
 ##Emacs
 sudo rm -r /usr/local/stow
 set -e
-EMACSVERSION="25.2"
-
+EMACSVERSION=25.2
 # install dependencies
-sudo apt-get install stow build-essential libx11-dev xaw3dg-dev libjpeg-dev libpng12-dev libgif-dev libtiff5-dev libncurses5-dev libxft-dev librsvg2-dev libmagickcore-dev libmagick++-dev libxml2-dev libgpm-dev libotf-dev libm17n-dev  libgnutls-dev -y
-
+sudo apt-get install stow build-essential libx11-dev xaw3dg-dev libjpeg-dev libpng12-dev libgif-dev libtiff5-dev libncurses5-dev libxft-dev librsvg2-dev libmagickcore-dev libmagick++-dev libxml2-dev libgpm-dev libotf-dev libm17n-dev libgnutls-dev -y
 # download source package
 wget http://ftp.gnu.org/gnu/emacs/emacs-$EMACSVERSION.tar.xz
 tar xvf emacs-$EMACSVERSION.tar.xz
-
 # build and install
 sudo mkdir -p /usr/local/stow
-cd emacs-"$version"
+cd emacs-$EMACSVERSION
 ./configure \
     --with-xft \
     --with-x-toolkit=lucid
@@ -625,9 +625,10 @@ sudo apt-get install gedit -y
 sudo apt-get install sublime-text-installer -y
 sudo apt-get install libreoffice -y
 sudo apt-get install libgstreamer-plugins-base0.10-0 -y#for scrivener requirements libgstapp-0.10.so.0
-wget http://www.literatureandlatte.com/scrivenerforlinux/scrivener-1.9.0.1-amd64.deb
-sudo dpkg -i scrivener**
-sudo rm scrivener**
+SCRIVENERVERSION=1.9.0.1-amd64
+wget http://www.literatureandlatte.com/scrivenerforlinux/scrivener-$SCRIVENERVERSION.deb
+sudo dpkg -i scrivener-$SCRIVENERVERSION.deb
+sudo rm scrivener-$SCRIVENERVERSION.deb
 
 
 ##Github
@@ -777,13 +778,14 @@ echo "Icon=/bin/superbeam/icon.png" | tee -a ~/Desktop/superbeam.desktop
 echo "Type=Application" | tee -a ~/Desktop/superbeam.desktop
 
 ##firejail & firetools
+FIREVERSION=0.9.46_1_amd64
 sudo apt-get install libqtgui4  libqt4-svg libqtcore4 libmng2 libqt4-declarative libqt4-network libqt4-script  libqt4-sql libqt4-xmlpatterns libqtcore4 libqtdbus4 libqtdbus4  qtcore4-l10n libqt4-xml -y
-wget https://downloads.sourceforge.net/project/firejail/firejail/firejail_0.9.44_1_amd64.deb
-wget https://downloads.sourceforge.net/project/firejail/firetools/firetools_0.9.44_1_amd64.deb
-sudo dpkg -i firejail**
-rm firejail**
-sudo dpkg -i firetools**
-rm firetools**
+wget https://downloads.sourceforge.net/project/firejail/firejail/firejail_$FIREVERSION.deb
+wget https://downloads.sourceforge.net/project/firejail/firetools/firetools_$FIREVERSION.deb 
+sudo dpkg -i firejail_$FIREVERSION.deb
+rm firejail_$FIREVERSION.deb
+sudo dpkg -i firetools_$FIREVERSION.deb
+rm firetools_$FIREVERSION.deb
 
 ##blindlector
 sudo apt-get install libttspico** -y
