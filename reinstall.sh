@@ -96,7 +96,7 @@ sudo sed -i 's/http:\/\/us.archive.ubuntu.com\/ubuntu/https:\/\/mirrors.mit.edu\
 mv .bashrc .previous-bashrc
 sudo wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.bashrc
 sudo apt-get update
-sudo apt-get install apt-file
+sudo apt-get install apt-file -y
 sudo apt-file update
 
 #SSH
@@ -293,33 +293,10 @@ sudo chmod a+rx /usr/bin/youtube-dl
 sudo apt-get install libgtk2.0-dev -y
 mkdir gpg2
 cd gpg2
-GNUPGVERSION=2.1.16
-wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-$GNUPGVERSION.tar.bz2
-wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-$GNUPGVERSION.tar.bz2.sig
 gpg2 --recv-key D8692123C4065DEA5E0F3AB5249B39D24F25E3B6
 gpg2 --recv-key 46CC730865BB5C78EBABADCF04376F3EE0856959
 gpg2 --recv-key 031EC2536E580D8EA286A9F22071B08A33BD3F06
 gpg2 --recv-key D238EA65D64C67ED4C3073F28A861B1C7EFD60D9
-gpg2 --verify gnupg-$GNUPGVERSION.tar.bz2.sig gnupg-$GNUPGVERSION.tar.bz2
-if [ $? -eq 0 ]
-then
-    echo "GOOD SIGNATURE"
-else
-    echo "BAD SIGNATURE"
-    break
-fi
-sudo pkill -9 gpg-agent #kill gpg-agent service
-if [ -f "/etc/init.d/gpg-agent" ] then sudo rm /etc/init.d/gpg-agent #remove previous gpg-agent from boot
-sudo sh -c "echo 'gpg-agent --daemon --verbose --sh --enable-ssh-support --no-allow-external-cache --no-allow-loopback-pinentry --allow-emacs-pinentry --log-file \"~/.gpg-agent-info\"' >> /etc/init.d/gpg-agent" #add gpg-agent with steroids
-tar xvjf gnupg-$GNUPGVERSION.tar.bz2
-cd gnupg-$GNUPGVERSION
-./configure
-make
-sudo make install
-sudo cp /usr/bin/pinentry /usr/local/bin/pinentry #a new copy of pinentry (to introduce passwords) to local
-cd ..
-rm gnupg-$GNUPGVERSION.bz2 && rm gnupg-$GNUPGVERSION.sig && sudo rm -r gnupg-$GNUPGVERSION
-gpg-agent --daemon --verbose --sh --enable-ssh-support --pinentry-program pinentry-tty --no-allow-external-cache --no-allow-loopback-pinentry --allow-emacs-pinentry --log-file \"~/.gpg-agent-info\"
 
 LIBGPGVERSION=1.27
 wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-$LIBGPGVERSION.tar.bz2
@@ -338,7 +315,7 @@ cd libgpg-error-$LIBGPGVERSION
 make
 sudo make install
 cd ..
-sudo rm libgpg-error-$LIBGPGVERSION.bz2 && sudo rm libgpg-error-$LIBGPGVERSION.sig && sudo rm -r libgpg-error-$LIBGPGVERSION
+sudo rm libgpg-error-$LIBGPGVERSION.tar.bz2 && sudo rm libgpg-error-$LIBGPGVERSION.tar.bz2.sig && sudo rm -r libgpg-error-$LIBGPGVERSION
 
 LIBGCRYPTVERSION=1.7.6
 wget https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-$LIBGCRYPTVERSION.tar.bz2
@@ -357,7 +334,7 @@ cd libgcrypt-$LIBGCRYPTVERSION
 make
 sudo make install
 cd ..
-rm libgcrypt-$LIBGCRYPTVERSION.bz2 && rm libgcrypt-$LIBGCRYPTVERSION.sig && sudo rm -r libgcrypt-$LIBGCRYPTVERSION
+rm libgcrypt-$LIBGCRYPTVERSION.tar.bz2 && rm libgcrypt-$LIBGCRYPTVERSION.tar.bz2.sig && sudo rm -r libgcrypt-$LIBGCRYPTVERSION
 
 LIBKSBAVERSION=1.3.5
 wget https://www.gnupg.org/ftp/gcrypt/libksba/libksba-$LIBKSBAVERSION.tar.bz2
@@ -473,6 +450,29 @@ sudo make install
 cd ..
 rm gpa-$GPAVERSION.tar.bz2 && rm gpa-$GPAVERSION.tar.bz2.sig && sudo rm -r gpa-$GPAVERSION
 
+GNUPGVERSION=2.1.16
+wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-$GNUPGVERSION.tar.bz2
+wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-$GNUPGVERSION.tar.bz2.sig
+gpg2 --verify gnupg-$GNUPGVERSION.tar.bz2.sig gnupg-$GNUPGVERSION.tar.bz2
+if [ $? -eq 0 ]
+then
+    echo "GOOD SIGNATURE"
+else
+    echo "BAD SIGNATURE"
+    break
+fi
+if [ -f "/etc/init.d/gpg-agent" ] then sudo rm /etc/init.d/gpg-agent #remove previous gpg-agent from boot
+sudo sh -c "echo 'gpg-agent --daemon --verbose --sh --enable-ssh-support --no-allow-external-cache --no-allow-loopback-pinentry --allow-emacs-pinentry --log-file \"~/.gpg-agent-info\"' >> /etc/init.d/gpg-agent" #add gpg-agent with steroids
+tar xvjf gnupg-$GNUPGVERSION.tar.bz2
+cd gnupg-$GNUPGVERSION
+./configure
+make
+sudo make install
+sudo cp /usr/bin/pinentry /usr/local/bin/pinentry #a new copy of pinentry (to introduce passwords) to local
+cd ..
+rm gnupg-$GNUPGVERSION.tar.bz2 && rm gnupg-$GNUPGVERSION.tar.bz2.sig && sudo rm -r gnupg-$GNUPGVERSION
+gpg-agent --daemon --verbose --sh --enable-ssh-support --pinentry-program pinentry-tty --no-allow-external-cache --no-allow-loopback-pinentry --allow-emacs-pinentry --log-file \"~/.gpg-agent-info\"
+
 cd ..
 sudo rm -r gpg2
 gpg2 --delete-secret-and-public-keys --batch --yes D8692123C4065DEA5E0F3AB5249B39D24F25E3B6
@@ -481,6 +481,7 @@ gpg2 --delete-secret-and-public-keys --batch --yes 031EC2536E580D8EA286A9F22071B
 gpg2 --delete-secret-and-public-keys --batch --yes D238EA65D64C67ED4C3073F28A861B1C7EFD60D9
 gpg2 --version
 gpgconf --list-components
+cd ..
 
 #keybase
 sudo apt-get install libappindicator1 -y
@@ -493,15 +494,13 @@ run_keybase; keybase pgp gen --multi; rm keybase_amd64.deb
 sudo apt-get purge fail2ban -y
 FAIL2BANVERSION=0.10
 wget https://github.com/fail2ban/fail2ban/archive/$FAIL2BANVERSION.tar.gz
-tar -xJf $FAIL2BANVERSION.tar.gz
+tar -xf $FAIL2BANVERSION.tar.gz
 rm $FAIL2BANVERSION.tar.gz
-cd $FAIL2BANVERSION
+cd fail2ban-$FAIL2BANVERSION
 python setup.py install
 sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
-echo "Please write down an email to send you notifications when someone is attacking your ports: "
-read email
+read -p "Write down an email to send you notifications when someone is attacking your ports: " email
 echo "You entered: $email"
-
 sudo vi /etc/fail2ban/jail.local ':%s/\<destemail = your_email@domain.com\>/<destemail = $email\>/gIc' ':wq'
 cat /etc/fail2ban/jail.local | grep destemail
 sudo vi /etc/fail2ban/jail.local ':%s/\<action = %(action_)s\>/<action = %(action_mw)s\>/gIc' ':wq'
@@ -510,6 +509,7 @@ cp files/debian-initd /etc/init.d/fail2ban
 update-rc.d fail2ban defaults
 service fail2ban start
 cd ..
+rm -r fail2ban-$FAIL2BANVERSION
 
 sudo apt-get install zenmap logcheck logcheck-database -y
 logcheck -p -u -m -h $email
@@ -518,16 +518,17 @@ sudo apt-get dist-upgrade -y
 sudo apt-get upgrade -y 
 
 ##Virtualbox
+VIRTUALBOXVERSION=5.1.22
+VBOXVERSION=5.1_5.1.22-115126
 sudo apt-get purge virtualbox -y
 sudo apt-get build-dep virtualbox
 sudo apt-get -f install -y
-while true; do
-    read -p "Please introduce introduce OS Ubuntu 16.10 ('yaketty_amd64') Ubuntu 16.04 ('xenial_amd64') Ubuntu 15.10 ('wily_i386') or Ubuntu 14.04 ('trusty_amd64') / 14.10 Utopic/ 15.04 Vivid: " OS $OS
-    wget http://download.virtualbox.org/virtualbox/5.1.18/virtualbox-5.1_5.1.18-114002~Ubuntu~$OS.deb
-    break
-done
-sudo dpkg -i virtualbox**.deb
-sudo rm virtualbox**.deb
+echo "This is your version"
+uname -v
+read -p "Please introduce introduce OS Ubuntu 17.04 ('zesty_amd64') Ubuntu 16.10 ('yakkety_amd64') Ubuntu 16.04 ('xenial_amd64') Ubuntu 15.10 ('wily_i386') or Ubuntu 14.04 ('trusty_amd64') / 14.10 Utopic/ 15.04 Vivid: " OS
+wget http://download.virtualbox.org/virtualbox/$VIRTUALBOXVERSION/virtualbox-$VBOXVERSION~Ubuntu~$OS.deb
+sudo dpkg -i virtualbox-$VBOXVERSION~Ubuntu~$OS.deb
+sudo rm virtualbox-$VBOXVERSION~Ubuntu~$OS.deb
 sudo apt-get install vagrant -y
 vagrant box add precise64 http://files.vagrantup.com/precise64.box
 sudo apt-get -f install -y
@@ -546,9 +547,8 @@ sudo rm $file
 sudo apt-get install dkms
 sudo apt-get -f install -y
 vagrant plugin install vagrant-vbguest
-sudo rm VBoxGuestAdditions**
-wget http://download.virtualbox.org/virtualbox/5.1.0_RC1/VBoxGuestAdditions_5.1.0_RC1.iso
-sudo mv VBoxGuestAdditions**.iso /usr/share/Virtualbox/VBoxGuestAdditions.iso
+wget http://download.virtualbox.org/virtualbox/$VIRTUALBOXVERSION/VBoxGuestAdditions_$VIRTUALBOXVERSION.iso
+sudo mv VBoxGuestAdditions_$VIRTUALBOXVERSION.iso /usr/share/VBoxGuestAdditions_$VIRTUALBOXVERSION.iso
 echo "To insert iso additions, install first yout vm"
 virtualbox
 vboxmanage storageattach work --storagectl IDE --port 0 --device 0 --type dvddrive --medium "/home/$USER/VBox**.iso"
@@ -562,14 +562,14 @@ sudo usermod -G vboxusers -a $user3
 ##Emacs
 sudo rm -r /usr/local/stow
 set -e
-readonly version="25.1"
+EMACSVERSION="25.2"
 
 # install dependencies
 sudo apt-get install stow build-essential libx11-dev xaw3dg-dev libjpeg-dev libpng12-dev libgif-dev libtiff5-dev libncurses5-dev libxft-dev librsvg2-dev libmagickcore-dev libmagick++-dev libxml2-dev libgpm-dev libotf-dev libm17n-dev  libgnutls-dev -y
 
 # download source package
-wget http://ftp.gnu.org/gnu/emacs/emacs-"$version".tar.xz
-tar xvf emacs-"$version".tar.xz
+wget http://ftp.gnu.org/gnu/emacs/emacs-$EMACSVERSION.tar.xz
+tar xvf emacs-$EMACSVERSION.tar.xz
 
 # build and install
 sudo mkdir -p /usr/local/stow
@@ -579,9 +579,9 @@ cd emacs-"$version"
     --with-x-toolkit=lucid
 make
 sudo rm -r /usr/local/stow
-sudo make install prefix=/usr/local/stow/emacs-"$version" && cd /usr/local/stow
+sudo make install prefix=/usr/local/stow/emacs-$EMACSVERSION && cd /usr/local/stow
 sudo rm /usr/local/share/info/dir
-sudo stow emacs-"$version" 
+sudo stow emacs-$EMACSVERSION
 #spacemacs
 sudo apt-get install git -y
 git clone http://github.com/syl20bnr/spacemacs ~/.emacs.d
@@ -590,8 +590,8 @@ cd ~/.emacs.d
 wget http://github.com/ethereum/emacs-solidity/blob/master/solidity-mode.el ##solidity
 echo 'Carga los elementos de emacs con (add-to-list load-path "~/.emacs.d/") + (load "myplugin.el")'
 cd
-sudo rm emacs-"$version".tar.xz
-sudo rm -r emacs-**
+sudo rm emacs-$EMACSVERSION.tar.xz
+sudo rm -r emacs-$EMACSVERSION
 
 ##Utils
 sudo apt-get install gparted -y
