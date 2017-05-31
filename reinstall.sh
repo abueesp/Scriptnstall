@@ -94,7 +94,7 @@ sudo apt-get install apt-transport-https apt-transport-tor -y
 sudo sed -i 's/http:\/\/us.archive.ubuntu.com\/ubuntu/https:\/\/mirrors.mit.edu\/ubuntu/g' /etc/apt/sources.list
 #sudo sed -i 's/http:\/\/us.archive.ubuntu.com\/ubuntu/https:\/\/mirror.cpsc.ucalgary.ca\/mirror\/ubuntu.com\/packages\//g' /etc/apt/sources.list
 mv .bashrc .previous-bashrc
-sudo wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.bashrc
+wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.bashrc
 sudo apt-get update
 sudo apt-get install apt-file -y
 sudo apt-file update
