@@ -617,14 +617,14 @@ sudo -H pip3 install saltpack
 sudo apt-get install software-properties-common -y ##for add-apt-repository
 sudo add-apt-repository ppa:webupd8team/sublime-text-3 -y 
 sudo apt-get install vim vim-scripts -y
-git clone https://github.com/amix/vimrc.git ~/.vim_runtime
-sh ~/.vim_runtime/install_awesome_vimrc.sh
+git clone https://github.com/amix/vimrc.git ~/.vim
+sh ~/.vim/install_awesome_vimrc.sh
 mv ~/.vim/autoload/plug.vim ~/.vim/autoload/plug-backup.vim
 wget https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim -O ~/.vim/autoload/plug.vim
 sudo apt-get install gedit -y
 sudo apt-get install sublime-text-installer -y
 sudo apt-get install libreoffice -y
-sudo apt-get install libgstreamer-plugins-base0.10-0 -y#for scrivener requirements libgstapp-0.10.so.0
+sudo apt-get install libgstreamer-plugins-base0.10-0 -y #for scrivener requirements libgstapp-0.10.so.0
 SCRIVENERVERSION=1.9.0.1-amd64
 wget http://www.literatureandlatte.com/scrivenerforlinux/scrivener-$SCRIVENERVERSION.deb
 sudo dpkg -i scrivener-$SCRIVENERVERSION.deb
@@ -660,9 +660,9 @@ while true; do
 done
 while true; do
     gpg2 --list-secret-keys
-    read -p "Introduce the key Username (and open https://github.com/settings/keys): " keyusername
-    gpg2 --export -a $keyusername > githubpublic.key
-    git config --global user.signingkey $(cat githubpublic.key)
+    read -p "Introduce the key id (and open https://github.com/settings/keys): " keyusername
+    gpg2 --export -a $keyusername
+    git config --global user.signingkey $keyusername
     git config --global commit.gpgsign true
     break
 done
@@ -682,13 +682,10 @@ echo "ssh bashcr vimcr portability installed"
 cd Downloads
 mkdir extensions
 cd extensions
-
-wget https://raw.githubusercontent.com/abueesp/Firefox-Security-Toolkit/master/firefox_security_toolkit.sh ## Cookie Manager # Copy as Plain Text # Crypto Fox # CSRF-Finder # Disable WebRTC # FireBug # Fireforce # FlagFox # Foxy Proxy # HackBar # Live HTTP Headers # Multi Fox # PassiveRecon # Right-Click XSS # Tamper Data # User Agent Switcher # Wappalyzer # Web Developer
-#chmod 777 firefox_security_toolkit.sh
-#bash firefox_security_toolkit.sh run
-#rm firefox_security_toolkit.sh
-wget https://addons.mozilla.org/firefox/downloads/latest/canvasblocker/addon-534930-latest.xpi #Avoid HTML5 Canvas
-#wget https://addons.mozilla.org/firefox/downloads/file/229626/sql_inject_me-0.4.7-fx.xpi #SQL Inject Me
+wget https://addons.mozilla.org/firefox/downloads/latest/497366/addon-497366-latest.xpi #Disable WebRTC
+wget https://addons.mozilla.org/firefox/downloads/latest/1843/addon-1843-latest.xpi #Firebug
+wget https://addons.mozilla.org/firefox/downloads/latest/5791/addon-5791-latest.xpi #FlagFox
+wget https://addons.mozilla.org/firefox/downloads/latest/92079/addon-92079-latest.xpi #CookieManager
 wget https://addons.mozilla.org/firefox/downloads/latest/521554/addon-521554-latest.xpi #DecentralEyes
 wget https://addons.mozilla.org/firefox/downloads/latest/607454/addon-607454-latest.xpi #UBlockOrigin
 wget https://addons.mozilla.org/firefox/downloads/latest/383235/addon-383235-latest.xpi #FlashDisable
@@ -734,6 +731,22 @@ wget https://addons.mozilla.org/firefox/downloads/latest/390151/addon-390151-lat
 wget https://addons.mozilla.org/firefox/downloads/latest/3456/addon-3456-latest.xpi #WOT
 wget https://addons.mozilla.org/firefox/downloads/latest/certificate-patrol/addon-6415-latest.xpi #certificate patrol
 #wget https://addons.mozilla.org/firefox/downloads/latest/perspectives/addon-7974-latest.xpi #perspectivenetworknotaries
+mkdir extensionstools
+wget https://addons.mozilla.org/firefox/downloads/file/140447/cryptofox-2.2-fx.xpi #CryptoFox
+wget https://addons.mozilla.org/firefox/downloads/latest/copy-as-plain-text/addon-344925-latest.xpi #Copy as Plain Text
+wget https://addons.mozilla.org/firefox/downloads/latest/canvasblocker/addon-534930-latest.xpi #Avoid HTML5 Canvas
+wget https://addons.mozilla.org/firefox/downloads/file/229626/sql_inject_me-0.4.7-fx.xpi #SQL Inject Me
+wget https://addons.mozilla.org/firefox/downloads/latest/tamper-data/addon-966-latest.xpi #Tamper Data
+wget https://addons.mozilla.org/firefox/downloads/file/215802/rightclickxss-0.2.1-fx.xpi #Right Click XSS
+wget https://addons.mozilla.org/firefox/downloads/latest/3899/addon-3899-latest.xpi #HackBar
+wget https://addons.mozilla.org/firefox/downloads/latest/wappalyzer/addon-10229-latest.xpi #Wappanalyzer
+wget https://addons.mozilla.org/firefox/downloads/latest/6196/addon-6196-latest.xpi #PassiveRecon
+wget https://addons.mozilla.org/firefox/downloads/latest/344927/addon-344927-latest.xpi #CookieExportImport
+wet https://addons.mozilla.org/firefox/downloads/file/204186/fireforce-2.2-fx.xpi #Fireforce
+wget https://addons.mozilla.org/firefox/downloads/file/224182/csrf_finder-1.2-fx.xpi #CSRF-Finder
+wget https://addons.mozilla.org/firefox/downloads/file/345004/live_http_headers_fixed_by_danyialshahid-0.17.1-signed-sm+fx.xpi #Live HTTP Headers
+cd ..
+cd ..
 
 #thunderbird extensions
 mkdir thunderbird
@@ -755,11 +768,13 @@ wget https://addons.mozilla.org/thunderbird/downloads/latest/1003/addon-1003-lat
 wget https://addons.mozilla.org/thunderbird/downloads/latest/torbirdy/platform:2/addon-381417-latest.xpi #torbirdy
 cd ..
 
-##Opera
+## Opera ##
+OPERAVERSION=46.0.2573.0
+OPERADEVVERSION="developer_"$OPERAVERSION"_amd64"
 sudo apt-get install libpangox-1.0-0  libpango1.0-0 -y
-wget https://ftp.opera.com/pub/opera-developer/46.0.2602.0/linux/opera-developer_46.0.2602.0_amd64.deb
-sudo dpkg -i opera**.deb
-sudo rm opera**.deb
+wget https://ftp.opera.com/pub/opera-developer/$OPERAVERSION/linux/opera-$OPERADEVVERSION.deb
+sudo dpkg -i opera-$OPERADEVVERSION.deb
+sudo rm opera-$OPERADEVVERSION.deb
 
 ##Superbeam
 mkdir superbeam && cd superbeam
