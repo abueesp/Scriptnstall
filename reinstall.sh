@@ -133,9 +133,9 @@ sudo rm -r openssh-$SSHVERSION
 sudo mkdir .ssh
 sudo chown -R $USER:$USER ~/.ssh
 sudo chmod -R 750 ~/.ssh
-sudo chmod +x ~/.ssh 
-numberssh = 0
-if [$1]
+sudo chmod +x ~/.ssh
+numberssh=0
+if [numberssh]
     then
     while [ ! -f lastid_rsa$numberssh ] ;
         do
@@ -143,7 +143,7 @@ if [$1]
         done
     while [ ! -f lastid_rsa$numberssh ] ;
         do
-             numberssh1 = $numberssh+1
+             numberssh1=$numberssh+1
              sudo mv ~/.ssh/$1 ~/.ssh/lastid_rsa$numberssh ~/.ssh/lastid_rsa$numberssh1
              sudo mv ~/.ssh/$1 ~/.ssh/lastid_rsa$numberssh.pub ~/.ssh/lastid_rsa$numberssh1.pub
              $numberssh--
@@ -155,12 +155,10 @@ if [$1]
     echo "-------------> Those are your current keys: "
     ls -al -R ~/.ssh
 fi
-$emai = emai
 sudo mkdir ~/.ssh
 echo "-------------> Those are your keys up to now"
 sudo ls -al -R ~/.ssh # Lists the files in your .ssh directory, if they exist
-echo "Please, introduce 'youremail@server.com'"
-read emai
+read -p "Please, introduce 'youremail@server.com' for ssh: " emai
 echo "------------->Introduce this /home/$USER/.ssh/id_rsa as file, OTHERWISE YOU WONT BE ABLE TO USE MYSSHKEY AND THE REST OF SSH MANAGEMENT COMMANDS, and a password longer or equal to 5 caractheres"
 ssh-keygen -t rsa -b 4096 -C $emai
 eval "$(ssh-agent -s)" 
@@ -203,7 +201,7 @@ wget https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-$KERNELVERSION.tar.xz
 wget https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-$KERNELVERSION.tar.sign  
 gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 647F28654894E3BD457199BE38DBBDC86092693E #Greg
 gpg2 --keyserver hkp://keys.gnupg.net --recv-keys ABAF11C65A2970B130ABE3C479BE3E4300411886 #Torvalds
-xz -cd linux-*.tar.xz | gpg2 --verify linux-*.tar.sign -
+xz -cd linux-$KERNELVERSION.tar.xz | gpg2 --verify linux-$KERNELVERSION.tar.sign -
 if [ $? -eq 0 ]
 then
     echo "GOOD SIGNATURE"
@@ -220,7 +218,7 @@ make && make modules_install
 sudo make install
 sudo update-grub
 cd ..
-sudo rm -r linux-KERNELVERSION
+sudo rm -r linux-$KERNELVERSION
 
 ##psad
 PSADVERSION=2.4.4
