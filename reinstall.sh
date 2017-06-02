@@ -702,7 +702,6 @@ wget https://addons.mozilla.org/en-US/firefox/downloads/latest/2109/addon-2109-l
 wget https://addons.mozilla.org/firefox/downloads/latest/409964/addon-409964-latest.xpi #VideoDownloadHelper
 wget https://addons.mozilla.org/firefox/downloads/latest/export-to-csv/addon-364467-latest.xpi #Export Table to CSV
 wget https://addons.mozilla.org/firefox/downloads/latest/tabletools2/addon-296783-latest.xpi #TableTools2
-wget https://addons.mozilla.org/firefox/downloads/latest/261959/addon-261959-latest.xpi #Bloody Vikings Disposable Email
 wget https://addons.mozilla.org/firefox/downloads/latest/748/addon-748-latest.xpi #Greasemonkey
 wget https://addons.mozilla.org/firefox/downloads/latest/7447/addon-7447-latest.xpi #NetVideoHunter
 wget https://addons.mozilla.org/firefox/downloads/latest/1237/addon-1237-latest.xpi #QuickJava
@@ -710,7 +709,6 @@ wget https://addons.mozilla.org/firefox/downloads/latest/3497/addon-3497-latest.
 wget https://addons.mozilla.org/firefox/downloads/file/502726/colorfultabs-31.0.8-fx+sm.xpi #ColorfulTabs
 wget https://addons.mozilla.org/firefox/downloads/latest/193270/addon-193270-latest.xpi #PrintEdit
 wget https://addons.mozilla.org/firefox/downloads/latest/5791/addon-5791-latest.xpi #Flagfox
-wget https://addons.mozilla.org/firefox/downloads/latest/dummy-form-filler/addon-502178-latest.xpi #AutoFill DummyForms
 wget https://addons.mozilla.org/firefox/downloads/file/342774/tineye_reverse_image_search-1.2.1-fx.xpi #TinyEye Reverse ImageSearch
 wget https://addons.mozilla.org/firefox/downloads/latest/355192/addon-355192-latest.xpi #MindTheTime
 wget https://addons.mozilla.org/firefox/downloads/latest/1843/addon-1843-latest.xpi #Firebug
@@ -724,14 +722,14 @@ wget https://addons.mozilla.org/firefox/downloads/file/387220/text_to_voice-1.15
 wget https://addons.mozilla.org/firefox/downloads/latest/8661/addon-8661-latest.xpi #WorldIP
 wget https://addons.mozilla.org/firefox/downloads/latest/3829/addon-3829-latest.xpi #liveHTTPHeaders
 wget https://addons.mozilla.org/firefox/downloads/file/373868/soundcloud_downloader_soundgrab-0.98-fx.xpi #Soundcloud
-wget https://addons.mozilla.org/firefox/downloads/latest/387429/addon-387429-latest.xpi #Reddit Enhacenment Suit
 wget https://addons.mozilla.org/firefox/downloads/latest/695840/addon-695840-latest.xpi #FlashDebugger
 wget https://addons.mozilla.org/firefox/downloads/latest/video-downloadhelper/addon-3006-latest.xpi #VideoDownloadHelper
 wget https://addons.mozilla.org/firefox/downloads/latest/390151/addon-390151-latest.xpi #TOS
 wget https://addons.mozilla.org/firefox/downloads/latest/3456/addon-3456-latest.xpi #WOT
 wget https://addons.mozilla.org/firefox/downloads/latest/certificate-patrol/addon-6415-latest.xpi #certificate patrol
 #wget https://addons.mozilla.org/firefox/downloads/latest/perspectives/addon-7974-latest.xpi #perspectivenetworknotaries
-mkdir extensionstools
+wget https://www.roboform.com/dist/roboform-firefox.xpi
+mkdir moretools
 wget https://addons.mozilla.org/firefox/downloads/file/140447/cryptofox-2.2-fx.xpi #CryptoFox
 wget https://addons.mozilla.org/firefox/downloads/latest/copy-as-plain-text/addon-344925-latest.xpi #Copy as Plain Text
 wget https://addons.mozilla.org/firefox/downloads/latest/canvasblocker/addon-534930-latest.xpi #Avoid HTML5 Canvas
