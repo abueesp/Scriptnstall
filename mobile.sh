@@ -4,15 +4,26 @@
 echo 'Installing packages (specially Android Debugging Bridge)'
 sudo apt-get install android-tools-adb android-tools-fastboot mtp-tools mtpfs libusb-dev gmtp unzip -y
 ls -lah /usr/lib/libmtp*
-wget https://sourceforge.net/projects/libmtp/files/libmtp/1.1.12/libmtp-1.1.12.tar.gz
-gpg --verify libmtp**.asc
-tar xvf libmtp**.tar.gz
-cd libmtp**/
+LIBMTPVERSION=1.1.13
+wget https://sourceforge.net/projects/libmtp/files/libmtp/$LIBMTPVERSION/libmtp-$LIBMTPVERSION.tar.gz
+wget https://sourceforge.net/projects/libmtp/files/libmtp/$LIBMTPVERSION/libmtp-$LIBMTPVERSION.tar.gz.asc
+gpg2 --verify libmtp-$LIBMTPVERSION.tar.gz.asc libmtp-$LIBMTPVERSION.tar.gz
+if [ $? -eq 0 ]
+then
+    echo "GOOD SIGNATURE"
+    rm libmtp-$LIBMTPVERSION.tar.gz.asc
+else
+    echo "BAD SIGNATURE"
+    break
+fi
+tar xvf libmtp-$LIBMTPVERSION.tar.gz
+rm libmtp-$LIBMTPVERSION.tar.gz
+cd libmtp-$LIBMTPVERSION
 ./configure --prefix=/usr
 make
 sudo make install
 cd ..
-sudo rm -r libmtp**
+sudo rm -r libmtp-$LIBMTPVERSION
 ##mounting
 sudo lsusb
 sudo mkdir /mnt/mobile
@@ -57,38 +68,53 @@ read -p "insert *#06# on the phone and take note of the IMEI while this is downl
 firefox https://forum.xda-developers.com/z3-compact/general/how-to-root-backup-drm-keys-t3013343 && --new-tab -url https://encrypted.google.com/search?q=$read+ftf+spanish && --newtab -url https://forum.xda-developers.com/crossdevice-dev/sony/giefroot-rooting-tool-cve-2014-4322-t3011598 && --new-tab -url https://wiki.cyanogenmod.org/w/Install_CM_for_z3c --new-tab -url http://developer.sonymobile.com/unlockbootloader/ --new-tab -url https://wiki.cyanogenmod.org/w/Google_Apps && --new-tab -url https://www.movilzona.es/tutoriales/android/root/principales-comandos-para-adb-y-fastboot-guia-basica/
 mkdir downm
 cd downm
-wget https://ga1.androidfilehost.com/dl/a9h_hMJ8GbiEH0eZCxoRow/1475894608/24459283995301330/D5803_23.4.A.1.264_R8C_SLiM_5.0.zip
-wget https://download.cyanogenmod.org/get/jenkins/181764/cm-12.1-20161002-NIGHTLY-z3c-recovery.img
-wget https://download.cyanogenmod.org/get/jenkins/181764/cm-12.1-20161002-NIGHTLY-z3c.zip
+#wget https://download.cyanogenmod.org/get/jenkins/181764/cm-12.1-20161002-NIGHTLY-z3c-recovery.img
+#wget https://download.cyanogenmod.org/get/jenkins/181764/cm-12.1-20161002-NIGHTLY-z3c.zip
 ##TWRP
 read -p "check your TWRP img model. Then copy all downm and the files you also want to add to sdcard1, included opengapps, and if your device is Sony consider also TA partition." pause
 wget https://dl.twrp.me/z3c/twrp-3.0.2-1-z3c.img
+
 ##Gapps
 read -p "installing opengapps. Please select the correct version according to your model arch and cm base ROM version" pause
-wget https://github.com/opengapps/arm/releases/download/20161005/open_gapps-arm-4.4-aroma-20161005.zip
+wget https://github.com/opengapps/arm/releases/download/20170601/open_gapps-arm-7.1-aroma-20170601.zip
 ##Xposed
 read -p "installing Xposed. Please select the correct version according to your model arch and cm base ROM version" pause
 wget http://dl-xda.xposed.info/framework/sdk22/arm/xposed-v86-sdk22-arm.zip
 wget http://dl-xda.xposed.info/framework/sdk22/arm/xposed-v86-sdk22-arm.zip.asc
-gpg --verify xposed**.asc
-rm xposed**.asc
+gpg2 --verify xposed-v86-sdk22-arm.zip.asc xposed-v86-sdk22-arm.zip
+if [ $? -eq 0 ]
+then
+    echo "GOOD SIGNATURE"
+    rm xposed-v86-sdk22-arm.zip.asc
+else
+    echo "BAD SIGNATURE"
+    break
+fi
 wget http://dl-xda.xposed.info/framework/sdk23/arm/xposed-v87-sdk23-arm.zip
 wget http://dl-xda.xposed.info/framework/sdk23/arm/xposed-v87-sdk23-arm.zip.asc
+gpg2 --verify xposed-v86-sdk23-arm.zip.asc xposed-v86-sdk23-arm.zip
+if [ $? -eq 0 ]
+then
+    echo "GOOD SIGNATURE"
+    rm xposed-v86-sdk23-arm.zip.asc
+else
+    echo "BAD SIGNATURE"
+    break
+fi
 gpg --verify xposed**.asc
-rm xposed**.asc
 wget https://forum.xda-developers.com/attachment.php?attachmentid=3921508&d=1477916609 -O Xposed.apk
 echo "Downloading SuperSu"
-wget https://s3-us-west-2.amazonaws.com/supersu/download/zip/SuperSU-v2.78-20160831113855.apk
+wget https://s3-us-west-2.amazonaws.com/supersu/download/zip/SuperSU-v2.79-20161205182033.apk
 cd ..
 
-#Official versions and twrp
+#Official versions
 firefox http://forum.xda-developers.com/attachment.php?attachmentid=3752944&d=1463432738
 sudo apt-get install mono-complete
 cd Downloads
-unzip XperiFirm**.zip
+wget http://www-support-downloads.sonymobile.com/Software%20Downloads/Xperia%20Companion/XperiaCompanion.exe
 sudo mozroots --import --machine --sync
 sudo certmgr -ssl -m https://software.sonymobile.com
-mono XperiFirm.exe
+mono XperiaCompanion.exe
 sudo rm -r XperiFirm**
 cd ..
 
@@ -132,7 +158,7 @@ firefox http://developer.sonymobile.com/unlockbootloader/unlock-yourboot-loader/
 read -p "Introduce 0x oem to unlock. You can get it using your IMEI on the http://developer.sonymobile.com/unlockbootloader/unlock-yourboot-loader/ Warranty is not lost by default only when you unlock properly, but you can lock again" $0xnumber
 fastboot -i 0x0fce oem unlock $0xnumber
 sudo fastboot flash recovery twrp**.img
-sudo fastboot flash boot cm**z3c-recovery.img
+#sudo fastboot flash boot cm**z3c-recovery.img
 sudo fastboot reboot 
 echo "Once the device boots into CyanogenMod Recovery, use the physical volume buttons to move up and down. Select wipe data/factory reset. Then Apply Update from sdcard1 (I suppose you already copied imgs and zips from /downm to SD card)." pause
 #adb sideload update.zip #this options is to load directly from adb
@@ -145,7 +171,7 @@ cd ..
 adb reboot recovery
 fusermount -u /mnt/mobile
 sudo rm -r /mnt/mobile
-sudo sed -i 's/user_allow_other/#user_allow_other/g' /etc/fuse.conf
+sudo sed -i 's/user_allow_other/#user_al/low_other/g' /etc/fuse.conf
 sudo rm -r /downm
 
 ##Installing Android Studio SDK
