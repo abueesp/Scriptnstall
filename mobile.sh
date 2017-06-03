@@ -37,6 +37,7 @@ sudo service udev restart
 sudo sed -i 's/#user_allow_other/user_allow_other/g' /etc/fuse.conf
 sudo chmod a+rwx /etc/fuse.conf
 sudo adduser $USER fuse
+echo 'check your permissions for usb connection on settings'
 sudo apt-get install xterm -y
 sudo xterm -e sudo gmtp #you can also use xterm -e mtpfs -o allow_other /mnt/mobile/
 sudo apt-get purge xterm -y
@@ -65,11 +66,12 @@ cd ..
 
 ##Second preparation
 read -p "insert *#06# on the phone and take note of the IMEI while this is downloading. Also USB debugging enabled, Settings => About phone => Click 7 times on Android Build (Numero de Compilacion) and Model Number (en mi caso D5803) to unlock developer options and check it for later, and Settings => Developer Settings Allow mock locations (ubicaciones simuladas). IF YOU HAVE A SONY DEVICE INTO ACCOUNT YOU MAY ALSO BACKUP TA PARTITION WITH DMR KEYS FOR Z3C ON WINDOWS WITH git clone https://github.com/DevShaft/Backup-TA and http://forum.xda-developers.com/showthread.php?t=2292598" pause
-firefox https://forum.xda-developers.com/z3-compact/general/how-to-root-backup-drm-keys-t3013343 && --new-tab -url https://encrypted.google.com/search?q=$read+ftf+spanish && --newtab -url https://forum.xda-developers.com/crossdevice-dev/sony/giefroot-rooting-tool-cve-2014-4322-t3011598 && --new-tab -url https://wiki.cyanogenmod.org/w/Install_CM_for_z3c --new-tab -url http://developer.sonymobile.com/unlockbootloader/ --new-tab -url https://wiki.cyanogenmod.org/w/Google_Apps && --new-tab -url https://www.movilzona.es/tutoriales/android/root/principales-comandos-para-adb-y-fastboot-guia-basica/
+firefox https://forum.xda-developers.com/z3-compact/general/how-to-root-backup-drm-keys-t3013343 --new-tab -url https://encrypted.google.com/search?q=$read+ftf+spanish && --newtab -url https://forum.xda-developers.com/crossdevice-dev/sony/giefroot-rooting-tool-cve-2014-4322-t3011598 && --new-tab -url https://wiki.cyanogenmod.org/w/Install_CM_for_z3c --new-tab -url http://developer.sonymobile.com/unlockbootloader/ --new-tab -url https://wiki.cyanogenmod.org/w/Google_Apps --new-tab -url https://www.movilzona.es/tutoriales/android/root/principales-comandos-para-adb-y-fastboot-guia-basica/
 mkdir downm
 cd downm
 #wget https://download.cyanogenmod.org/get/jenkins/181764/cm-12.1-20161002-NIGHTLY-z3c-recovery.img
 #wget https://download.cyanogenmod.org/get/jenkins/181764/cm-12.1-20161002-NIGHTLY-z3c.zip
+wget https://qc3.androidfilehost.com/dl/O_Bsxmg6z3Fh2XCNdtKocQ/1496703767/961840155545567567/lineage-14.1-20170525-tomascus-z3c.zip
 ##TWRP
 read -p "check your TWRP img model. Then copy all downm and the files you also want to add to sdcard1, included opengapps, and if your device is Sony consider also TA partition." pause
 wget https://dl.twrp.me/z3c/twrp-3.0.2-1-z3c.img
@@ -107,7 +109,7 @@ echo "Downloading SuperSu"
 wget https://s3-us-west-2.amazonaws.com/supersu/download/zip/SuperSU-v2.79-20161205182033.apk
 cd ..
 
-#Official versions
+#Official firmware
 firefox http://forum.xda-developers.com/attachment.php?attachmentid=3752944&d=1463432738
 sudo apt-get install mono-complete
 cd Downloads
@@ -117,33 +119,6 @@ sudo certmgr -ssl -m https://software.sonymobile.com
 mono XperiaCompanion.exe
 sudo rm -r XperiFirm**
 cd ..
-
-
-
-##ROOT
-##METHOD1
-#wget http://d.kingoapp.com/default/KingoRoot.apk
-#adb install KingRoot.apk
-#read -p "search kingoroot on your phone and root it. Then check root with root checker on play storage"
-#sudo rm KingRoot.apk
-##METHOD2
-###Flashtool to up/downgrade
-#wget http://dl-developer.sonymobile.com/code/copylefts/23.0.A.2.93.tar.bz2
-#wget http://spflashtool.com/download/SP_Flash_Tool_exe_Linux_64Bit_v5.1520.00.100.zip
-#unzip SP**.zip
-#sudo rm SP**.zip
-#cd SP
-#sudo sh flash_tool.sh
-#cd ..
-#sudo rm -r SP**
-###Root 
-#mv Downloads/giefroot**.zip /home/$USER/downm/
-#mv /home/$USER/giefroot**.zip /home/$USER/downm/
-#unzip giefroot**.zip
-#cd files 
-#sh install.sh
-#cd ..
-#sudo rm -r giefroot**.zip files
 
 ##Root & Fastboot
 cd downm
