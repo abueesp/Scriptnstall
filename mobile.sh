@@ -118,7 +118,7 @@ wget http://www-support-downloads.sonymobile.com/Software%20Downloads/Xperia%20C
 sudo mozroots --import --machine --sync
 sudo certmgr -ssl -m https://software.sonymobile.com
 mono XperiaCompanion.exe
-sudo rm -r XperiFirm**
+sudo rm -r XperiaCompanion**
 cd ..
 
 ##Root & Fastboot
