@@ -69,6 +69,7 @@ read -p "insert *#06# on the phone and take note of the IMEI while this is downl
 firefox https://forum.xda-developers.com/z3-compact/general/how-to-root-backup-drm-keys-t3013343 --new-tab -url https://encrypted.google.com/search?q=$read+ftf+spanish && --newtab -url https://forum.xda-developers.com/crossdevice-dev/sony/giefroot-rooting-tool-cve-2014-4322-t3011598 && --new-tab -url https://wiki.cyanogenmod.org/w/Install_CM_for_z3c --new-tab -url http://developer.sonymobile.com/unlockbootloader/ --new-tab -url https://wiki.cyanogenmod.org/w/Google_Apps --new-tab -url https://www.movilzona.es/tutoriales/android/root/principales-comandos-para-adb-y-fastboot-guia-basica/
 mkdir downm
 cd downm
+read -p "check your ROM kernel version at https://cve.lineageos.org/ " 
 #wget https://download.cyanogenmod.org/get/jenkins/181764/cm-12.1-20161002-NIGHTLY-z3c-recovery.img
 #wget https://download.cyanogenmod.org/get/jenkins/181764/cm-12.1-20161002-NIGHTLY-z3c.zip
 wget https://qc3.androidfilehost.com/dl/O_Bsxmg6z3Fh2XCNdtKocQ/1496703767/961840155545567567/lineage-14.1-20170525-tomascus-z3c.zip
