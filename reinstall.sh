@@ -268,7 +268,7 @@ fi
 tar -xJf linux-$KERNELVERSION.tar.xz
 cd linux-$KERNELVERSION
 make menuconfig
-make && make modules_install
+make && sudo make modules_install
 sudo make install
 sudo update-grub
 cd ..
