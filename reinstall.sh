@@ -461,7 +461,6 @@ else
     echo "BAD SIGNATURE"
     break
 fi
-if [ -f "/etc/init.d/gpg-agent" ] then sudo rm /etc/init.d/gpg-agent #remove previous gpg-agent from boot
 sudo sh -c "echo 'gpg-agent --daemon --verbose --sh --enable-ssh-support --no-allow-external-cache --no-allow-loopback-pinentry --allow-emacs-pinentry --log-file \"~/.gpg-agent-info\"' >> /etc/init.d/gpg-agent" #add gpg-agent with steroids
 tar xvjf gnupg-$GNUPGVERSION.tar.bz2
 cd gnupg-$GNUPGVERSION
