@@ -1247,9 +1247,9 @@ sudo mount /dev/$sdjah /mnt/$sdjah
 read -p 'Your disk '$sdjah' was mounted on /mnt/'$sdjah'. Do you want to open it with sudo or without? 1=Sudo 2=Notsudo 3=Goterminal; Q=Do nothing: ' opt
     case $opt in
         "1")
-            echo "You were sudo"; findmnt; sudo pantheon-files /mnt/$sdjah || sudo nemo /mnt/$sdjah || sudo /mnt/nautilus $sdjah; break;;
+            echo "You were sudo"; findmnt; sudo nemo /mnt/$sdjah || sudo /mnt/nautilus $sdjah || sudo pantheon-files /mnt/$sdjah; break;;
         "2")
-            echo "You were not sudo"; findmnt; pantheon-files /mnt/$sdjah || nemo /mnt/$sdjah || /mnt/nautilus $sdjah; break;;
+            echo "You were not sudo"; findmnt; nemo /mnt/$sdjah || /mnt/nautilus $sdjah || pantheon-files /mnt/$sdjah; break;;
         "3")
             findmnt; cd /mnt/$sdjah && ls;;
         "Q")
