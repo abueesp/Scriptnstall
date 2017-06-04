@@ -197,6 +197,7 @@ sudo rm -r bash-$BASHVERSION
 
 #Kernel
 KERNELVERSION=4.11.3
+sudo apt-get install libncurses5-dev libncursesw5-dev -y
 wget https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-$KERNELVERSION.tar.xz
 wget https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-$KERNELVERSION.tar.sign  
 gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 647F28654894E3BD457199BE38DBBDC86092693E #Greg
