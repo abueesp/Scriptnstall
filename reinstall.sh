@@ -33,7 +33,7 @@ sudo udevadm control --reload
 ##To prevent sudo from SFTP: echo "auth   required   /lib/security/pam_listfile.so   item=user sense=deny file=/etc/vsftpd.ftpusers onerr=succeed" | sudo tee -a /etc/pam.d/vsftpd
 ##Similar line can be added to the PAM configuration files, such as /etc/pam.d/pop and /etc/pam.d/imap for mail clients, or /etc/pam.d/sshd for SSH clients.
 
-echo "export TMOUT=120" | sudo tee -a /etc/profile #root out after 120s inactivity
+echo "tty | grep tty >/dev/null && export TMOUT=10" | sudo tee -a /etc/profile #log out virtual /dev/tty consoles out after 5s inactivity
 echo "readonly TMOUT" | sudo tee -a /etc/profile
 
 #Do not use rlogin, rsh, and telnet
