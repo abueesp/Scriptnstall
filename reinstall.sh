@@ -34,7 +34,6 @@ sudo udevadm control --reload
 ##Similar line can be added to the PAM configuration files, such as /etc/pam.d/pop and /etc/pam.d/imap for mail clients, or /etc/pam.d/sshd for SSH clients.
 
 echo "tty | grep tty >/dev/null && export TMOUT=10" | sudo tee -a /etc/profile #log out virtual /dev/tty consoles out after 5s inactivity
-echo "readonly TMOUT" | sudo tee -a /etc/profile
 
 #Do not use rlogin, rsh, and telnet
 #Take care of securing sftp, auth, nfs, rpc, postfix, samba and sql https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Security_Guide/sec-Securing_Services.html
