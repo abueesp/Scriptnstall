@@ -1,6 +1,7 @@
 
 ### OpenSSL ###
-OPENSSLVERSION=1.1.0f
+#OPENSSLVERSION=1.1.0f #Not compatible with OpenSSH till 2.5
+OPENSSLVERSION=openssl-1.0.2l.tar.gz
 wget https://www.openssl.org/source/openssl-$OPENSSLVERSION.tar.gz
 wget https://www.openssl.org/source/openssl-$OPENSSLVERSION.tar.gz.asc
 gpg --keyserver hkp://keys.gnupg.net --recv-keys 8657ABB260F056B1E5190839D9C4D26D0E604491 #Matt Caswell
