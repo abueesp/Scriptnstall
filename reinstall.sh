@@ -92,10 +92,12 @@ sudo service cups-browsed stop
 SCRIPTPLACE=https://raw.githubusercontent.com/abueesp/Scriptnstall/master
 wget $SCRIPTPLACE/shs/gpg2.sh
 source ./gpg2.sh
+rm gpg2.sh
 
 ### OPENSSL ###
 wget $SCRIPTPLACE/shs/openssl.sh
 source ./openssl.sh
+rm openssl.sh
 
 #mirror
 sudo apt-get install apt-transport-https apt-transport-tor -y
