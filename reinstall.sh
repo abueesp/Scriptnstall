@@ -212,12 +212,14 @@ wget https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-$KERNELVERSION.tar.xz
 wget https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-$KERNELVERSION.tar.sign  
 gpg --keyserver hkp://keys.gnupg.net --recv-keys 647F28654894E3BD457199BE38DBBDC86092693E #Greg
 gpg --keyserver hkp://keys.gnupg.net --recv-keys ABAF11C65A2970B130ABE3C479BE3E4300411886 #Torvalds
+gpg --keyserver hkp://keys.gnupg.net --recv-keys 38DBBDC86092693E #Greg
 xz -cd linux-$KERNELVERSION.tar.xz | gpg2 --verify linux-$KERNELVERSION.tar.sign -
 if [ $? -eq 0 ]
 then
     echo "GOOD SIGNATURE"
-    gpg2 --delete-secret-and-public-keys --batch --yes 647F28654894E3BD457199BE38DBBDC86092693E
-    gpg2 --delete-secret-and-public-keys --batch --yes ABAF11C65A2970B130ABE3C479BE3E4300411886
+    gpg --delete-secret-and-public-keys --batch --yes 647F28654894E3BD457199BE38DBBDC86092693E
+    gpg --delete-secret-and-public-keys --batch --yes ABAF11C65A2970B130ABE3C479BE3E4300411886
+    gpg --delete-secret-and-public-keys --batch --yes 38DBBDC86092693E 
 else
     echo "BAD SIGNATURE"
     break
