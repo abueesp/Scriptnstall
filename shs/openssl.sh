@@ -1,6 +1,6 @@
 
 ### OpenSSL ###
-#OPENSSLVERSION=1.1.0f #Not compatible with OpenSSH till 2.5
+#OPENSSLVERSION=1.1.0f #Not compatible with OpenVPN till 2.5
 OPENSSLVERSION=1.0.2l
 wget https://www.openssl.org/source/openssl-$OPENSSLVERSION.tar.gz
 wget https://www.openssl.org/source/openssl-$OPENSSLVERSION.tar.gz.asc
