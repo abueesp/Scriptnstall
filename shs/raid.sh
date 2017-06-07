@@ -49,10 +49,11 @@ You can also stop raid with stopraid command, add a device with add2raid, and ma
 
 read -p "Add aliases? y/n" yn
     case $yn in
-        [Yy]* ) sudo kill -9 $camm; sudo pkill $camm; echo "Proceso eliminado";break;;
-        [Nn]* ) echo "Proceso mantenido";break;;
+        [Yy]* )
+          sudo tee -a 'alias stopraid="cat /proc/mdstat; read -p '/Introduce raid name /dev/md0: '/ RAIDNAME; sudo mdadm --stop $RAIDNAME"' ~/.bashrc;
+          sudo tee -a 'alias stopraid="cat /proc/mdstat; read -p '/Introduce raid name /dev/md0: '/ RAIDNAME; sudo mdadm --manage $RAIDNAME"' ~/.bashrc;
+          sudo tee -a 'alias add2raid="sudo fdisk -l; cat /proc/mdstat; echo '/Using sudo mdam --grow /dev/md0 you can grow instead of using mdadm --assemble --scan, using mdadm --incremental'/"' ~/.bashrc;
+          break;;
+        [Nn]* ) break;;
         * ) echo "Answer y/n";;
     esac
-sudo tee -a 'alias stopraid="cat /proc/mdstat; read -p '/Introduce raid name /dev/md0: '/ RAIDNAME; sudo mdadm --stop $RAIDNAME"' ~/.bashrc
-sudo tee -a 'alias stopraid="cat /proc/mdstat; read -p '/Introduce raid name /dev/md0: '/ RAIDNAME; sudo mdadm --manage $RAIDNAME"' ~/.bashrc
-sudo tee -a 'alias add2raid="sudo fdisk -l; cat /proc/mdstat; echo '/Using sudo mdam --grow /dev/md0 you can grow instead of using mdadm --assemble --scan, using mdadm --incremental'/"' ~/.bashrc
