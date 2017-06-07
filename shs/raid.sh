@@ -24,9 +24,9 @@ D) 4 or 5 or 6 : You have three or more devices (four or more for RAID-6) of rou
     RAID 6 with 6 disks (no spares): 4 data disks (n-2) 
 " LEVELDISK
 read -p "If you want 1 spare device /dev/sd1 to leave out write --spare-devices=1 /dev/sde1 Otherwise leave intro: " SPAREDISK
-sudo mdadm --create --verbose $RAIDNAME --metadata=$RAIDMETADA --level=$LEVELDISK --raid-devices=$NUMDISKS $DEVDISKS $SPAREDISK
+sudo mdadm --create --verbose $RAIDNAME --metadata=$RAIDMETADA --level=$LEVELDISK --raid-devices=$NUMDISKS '$DEVDISKS' $SPAREDISK
 sudo mdadm --assemble --scan 
-sudo mdadm --assemble $RAIDNAME $DEVDISKS
+sudo mdadm --assemble $RAIDNAME '$DEVDISKS'
 cat /proc/mdstat
 sudo mdadm --monitor $DEVDISK
 sudo mdadm --detail --scan
