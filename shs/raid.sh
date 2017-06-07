@@ -1,9 +1,9 @@
- sudo apt-get install xfsprogs -y
-git clone git://neil.brown.name/mdadm
+sudo apt-get install xfsprogs -y
+git clone https://github.com/neilbrown/mdadm
 cd mdadm
 modprobe raid456
 cat /proc/mdstat
-read -p "Introduce raid name /dev/md0: " RAIDNAME
+read -p "Introduce name for new raid, f.i. /dev/md0: " RAIDNAME
 xfs_info $RAIDNAME
 sudo mdadm --detail-platform
 read -p "If Intel Matrix Storage Manager write imsm, other options is 1.0 and 1.1 but 1.2 is default (pulse Intro if so): " $RAIDMETADA
@@ -46,6 +46,13 @@ For optimal performance, you should experiment with the chunk-size, as well as w
     mkfs -t xfs -d sunit=128 -d swidth=384 /dev/md0
 
 You can also stop raid with stopraid command, add a device with add2raid, and manage with manageraid"
-alias stopraid="cat /proc/mdstat; read -p "Introduce raid name /dev/md0: " RAIDNAME; sudo mdadm --stop $RAIDNAME"
-alias stopraid="cat /proc/mdstat; read -p "Introduce raid name /dev/md0: " RAIDNAME; sudo mdadm --manage $RAIDNAME"
-alias add2raid="sudo fdisk -l; cat /proc/mdstat; 'Using sudo mdam --grow /dev/md0 you can grow instead of using mdadm --assemble --scan, using mdadm --incremental"
+
+read -p "Add aliases? y/n" yn
+    case $yn in
+        [Yy]* ) sudo kill -9 $camm; sudo pkill $camm; echo "Proceso eliminado";break;;
+        [Nn]* ) echo "Proceso mantenido";break;;
+        * ) echo "Answer y/n";;
+    esac
+sudo tee -a 'alias stopraid="cat /proc/mdstat; read -p '/Introduce raid name /dev/md0: '/ RAIDNAME; sudo mdadm --stop $RAIDNAME"' ~/.bashrc
+sudo tee -a 'alias stopraid="cat /proc/mdstat; read -p '/Introduce raid name /dev/md0: '/ RAIDNAME; sudo mdadm --manage $RAIDNAME"' ~/.bashrc
+sudo tee -a 'alias add2raid="sudo fdisk -l; cat /proc/mdstat; echo '/Using sudo mdam --grow /dev/md0 you can grow instead of using mdadm --assemble --scan, using mdadm --incremental'/"' ~/.bashrc
