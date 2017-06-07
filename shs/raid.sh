@@ -1,6 +1,4 @@
-sudo apt-get install xfsprogs -y
-git clone https://github.com/neilbrown/mdadm
-cd mdadm
+sudo apt-get install xfsprogs mdadm -y
 modprobe raid456
 cat /proc/mdstat
 read -p "Introduce name for new raid, f.i. /dev/md0: " RAIDNAME
@@ -31,7 +29,8 @@ sudo mdadm --assemble --scan
 sudo mdadm --assemble $RAIDNAME $DEVDISKS
 cat /proc/mdstat
 sudo mdadm --monitor $DEVDISK
-sudo mdadm --detail --scan >> /etc/mdadm/mdadm.conf
+sudo mdadm --detail --scan
+sudo mdadm --detail --scan | sudo tee -a /etc/mdadm/mdadm.conf
 xfs_info $RAIDNAME
 echo "The chunk-size deserves an explanation. You can never write completely parallel to a set of disks. If you had two disks and wanted to write a byte, you would have to write four bits on each disk.  Thus, for large writes, you may see lower overhead by having fairly large chunks, whereas arrays that are primarily holding small files may benefit more from a smaller chunk size. 
 For optimal performance, you should experiment with the chunk-size, as well as with the block-size of the filesystem. A 32 kB chunk-size is a reasonable starting point for RAID0 (linear) and RAID4. A reasonable chunk-size for RAID-5 is 128 kB. A study showed that with 4 drives (even-number-of-drives might make a difference) that large chunk sizes of 512-2048 kB gave superior results. RAID1 (stripe) the chunk-size doesn't affect the array.
