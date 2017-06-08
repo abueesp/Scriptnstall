@@ -541,6 +541,7 @@ sudo apt-get -f install -y
 echo "This is your version"
 uname -v
 read -p "Please introduce introduce OS Ubuntu 17.04 ('zesty_amd64') Ubuntu 16.10 ('yakkety_amd64') Ubuntu 16.04 ('xenial_amd64') Ubuntu 15.10 ('wily_i386') or Ubuntu 14.04 ('trusty_amd64') / 14.10 Utopic/ 15.04 Vivid: " OS
+read -p "For 32 bits version open another terminal and write: wget http://security.ubuntu.com/ubuntu/pool/main/libv/libvpx/libvpx1_1.0.0-1_i386.deb && sudo dpkg -i libvpx1_1.0.0-1_i386.deb && rm libvpx1_1.0.0-1_i386.deb && sudo apt-get install libcurl3 -y"
 wget http://download.virtualbox.org/virtualbox/$VIRTUALBOXVERSION/virtualbox-$VBOXVERSION~Ubuntu~$OS.deb
 sudo dpkg -i virtualbox-$VBOXVERSION~Ubuntu~$OS.deb
 sudo rm virtualbox-$VBOXVERSION~Ubuntu~$OS.deb
