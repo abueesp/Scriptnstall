@@ -624,6 +624,7 @@ pip3 install --upgrade pip
 
 #Saltpack
 sudo apt-get install libffi-dev python-cffi -y
+sudo -H pip3 install setuptools
 sudo -H pip3 install saltpack
 
 #Text Edition Tools
