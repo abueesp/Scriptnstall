@@ -673,9 +673,9 @@ while true; do
     break
 done
 while true; do
-    gpg2 --list-secret-keys
+    gpg --list-secret-keys
     read -p "Introduce the key id (and open https://github.com/settings/keys): " keyusername
-    gpg2 --export -a $keyusername
+    gpg --export -a $keyusername
     git config --global user.signingkey $keyusername
     git config --global commit.gpgsign true
     break
