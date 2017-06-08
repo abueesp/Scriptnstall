@@ -33,7 +33,7 @@ sudo udevadm control --reload
 ##To prevent sudo from SFTP: echo "auth   required   /lib/security/pam_listfile.so   item=user sense=deny file=/etc/vsftpd.ftpusers onerr=succeed" | sudo tee -a /etc/pam.d/vsftpd
 ##Similar line can be added to the PAM configuration files, such as /etc/pam.d/pop and /etc/pam.d/imap for mail clients, or /etc/pam.d/sshd for SSH clients.
 
-echo "tty | grep tty >/dev/null && export TMOUT=10" | sudo tee -a /etc/profile #log out virtual /dev/tty consoles out after 5s inactivity
+echo "tty | grep tty && export TMOUT=10 >/dev/null" | sudo tee -a /etc/profile #log out virtual /dev/tty consoles out after 5s inactivity
 
 #Do not use rlogin, rsh, and telnet
 #Take care of securing sftp, auth, nfs, rpc, postfix, samba and sql https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Security_Guide/sec-Securing_Services.html
@@ -512,7 +512,7 @@ wget https://github.com/fail2ban/fail2ban/archive/$FAIL2BANVERSION.tar.gz
 tar -xf $FAIL2BANVERSION.tar.gz
 rm $FAIL2BANVERSION.tar.gz
 cd fail2ban-$FAIL2BANVERSION
-python setup.py install
+sudo python setup.py install
 sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 read -p "Write down an email to send you notifications when someone is attacking your ports: " email
 echo "You entered: $email"
