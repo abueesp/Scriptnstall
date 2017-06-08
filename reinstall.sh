@@ -330,7 +330,7 @@ sudo make install
 cd ..
 sudo rm libgpg-error-$LIBGPGVERSION.tar.bz2 && sudo rm libgpg-error-$LIBGPGVERSION.tar.bz2.sig && sudo rm -r libgpg-error-$LIBGPGVERSION
 
-LIBGCRYPTVERSION=1.7.6
+LIBGCRYPTVERSION=1.7.7
 wget https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-$LIBGCRYPTVERSION.tar.bz2
 wget https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-$LIBGCRYPTVERSION.tar.bz2.sig
 gpg2 --verify libgcrypt-$LIBGCRYPTVERSION.tar.bz2.sig libgcrypt-$LIBGCRYPTVERSION.bz2
