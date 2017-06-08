@@ -844,7 +844,7 @@ wget http://phodd.net/gnu-bc/code/factorial.bc
 wget http://phodd.net/gnu-bc/code/intdiff.bc      
 wget http://phodd.net/gnu-bc/code/logic.bc      
 wget http://phodd.net/gnu-bc/code/output_formatting.bc      
-wget http://phodd.net/gnu-bc/code/rand.bc
+wget https://raw.githubusercontent.com/sevo/Calc/master/bc/rand.bc
 cd ..
 
 git clone https://github.com/ntpsec/ntpsec
