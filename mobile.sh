@@ -66,7 +66,7 @@ cd ..
 
 ##Second preparation
 read -p "insert *#06# on the phone and take note of the IMEI while this is downloading. Also USB debugging enabled, Settings => About phone => Click 7 times on Android Build (Numero de Compilacion) and Model Number (en mi caso D5803) to unlock developer options and check it for later, and Settings => Developer Settings Allow mock locations (ubicaciones simuladas). IF YOU HAVE A SONY DEVICE INTO ACCOUNT YOU MAY ALSO BACKUP TA PARTITION WITH DMR KEYS FOR Z3C ON WINDOWS WITH git clone https://github.com/DevShaft/Backup-TA and http://forum.xda-developers.com/showthread.php?t=2292598" pause
-firefox https://forum.xda-developers.com/z3-compact/general/how-to-root-backup-drm-keys-t3013343 --new-tab -url https://encrypted.google.com/search?q=$read+ftf+spanish && --newtab -url https://forum.xda-developers.com/crossdevice-dev/sony/giefroot-rooting-tool-cve-2014-4322-t3011598 && --new-tab -url https://wiki.cyanogenmod.org/w/Install_CM_for_z3c --new-tab -url http://developer.sonymobile.com/unlockbootloader/ --new-tab -url https://wiki.cyanogenmod.org/w/Google_Apps --new-tab -url https://www.movilzona.es/tutoriales/android/root/principales-comandos-para-adb-y-fastboot-guia-basica/
+firefox https://forum.xda-developers.com/z3-compact/general/how-to-root-backup-drm-keys-t3013343 --new-tab https://encrypted.google.com/search?q=$read+ftf+spanish && --newtab -url https://forum.xda-developers.com/crossdevice-dev/sony/giefroot-rooting-tool-cve-2014-4322-t3011598 && --new-tab -url https://wiki.cyanogenmod.org/w/Install_CM_for_z3c --new-tab -url http://developer.sonymobile.com/unlockbootloader/ --new-tab -url https://wiki.cyanogenmod.org/w/Google_Apps --new-tab -url https://www.movilzona.es/tutoriales/android/root/principales-comandos-para-adb-y-fastboot-guia-basica/
 mkdir downm
 cd downm
 read -p "check your ROM kernel version at https://cve.lineageos.org/ " 
@@ -75,7 +75,17 @@ read -p "check your ROM kernel version at https://cve.lineageos.org/ "
 wget https://qc3.androidfilehost.com/dl/O_Bsxmg6z3Fh2XCNdtKocQ/1496703767/961840155545567567/lineage-14.1-20170525-tomascus-z3c.zip
 ##TWRP
 read -p "check your TWRP img model. Then copy all downm and the files you also want to add to sdcard1, included opengapps, and if your device is Sony consider also TA partition." pause
-wget https://dl.twrp.me/z3c/twrp-3.0.2-1-z3c.img
+wget --referer=https://eu.dl.twrp.me/z3c/twrp-3.0.2-1-z3c.img.html https://eu.dl.twrp.me/z3c/twrp-3.0.2-1-z3c.img
+wget https://eu.dl.twrp.me/public.asc
+gpg2 --verify public.asc twrp*.img
+if [ $? -eq 0 ]
+then
+    echo "GOOD SIGNATURE"
+    rm xposed-v86-sdk22-arm.zip.asc
+else
+    echo "BAD SIGNATURE"
+    break
+fi
 
 ##Gapps
 read -p "installing opengapps. Please select the correct version according to your model arch and cm base ROM version" pause
