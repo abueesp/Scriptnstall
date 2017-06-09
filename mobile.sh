@@ -72,9 +72,29 @@ cd downm
 read -p "check your ROM kernel version at https://cve.lineageos.org/ " 
 #wget https://download.cyanogenmod.org/get/jenkins/181764/cm-12.1-20161002-NIGHTLY-z3c-recovery.img
 #wget https://download.cyanogenmod.org/get/jenkins/181764/cm-12.1-20161002-NIGHTLY-z3c.zip
-wget https://qc3.androidfilehost.com/dl/O_Bsxmg6z3Fh2XCNdtKocQ/1496703767/961840155545567567/lineage-14.1-20170525-tomascus-z3c.zip
+##LineageOS from https://forum.xda-developers.com/z3-compact/orig-development/rom-unofficial-lineageos-14-1-t3577224
+LINEAGEVERSION=14.1-20170607-UNOFFICIAL-z3c
+wget http://tx2.androidfilehost.com/dl/X8zHn75ah6jBrWg1NaSWnw/1497255668/673368273298961502/lineage-$LINEAGEVERSION.zip
+echo "0fdf63424bfc7096995ed12eef38d262  lineage-$LINEAGEVERSION.zip" >> lineage-$LINEAGEVERSION.zip.md5
+if md5sum -c lineage-$LINEAGEVERSION.zip; then
+    echo 'The MD5 sum matched'
+else
+    echo 'The MD5 sum didnt match'
+    break
+fi
+TWRPVERSION=z3c_2017-04-26
+wget http://qc4.androidfilehost.com/dl/4MuIdRKPljkRgKwdqXSKhg/1497255775/961840155545571844/twrp_$TWRPVERSION.img
+echo "52d7a1caf4b22e43fa165e3b640d29e0  twrp_$TWRPVERSION.img" >> twrp_$TWRPVERSION.img.md5
+if md5sum -c twrp_$TWRPVERSION.img; then
+    echo 'The MD5 sum matched'
+else
+    echo 'The MD5 sum didnt match'
+    break
+fi
+echo 'Please notice this TWRP already includes FOTAKernel'
+
 ##TWRP
-read -p "check your TWRP img model. Then copy all downm and the files you also want to add to sdcard1, included opengapps, and if your device is Sony consider also TA partition." pause
+read -p "Check your TWRP img model. Then copy all downm and the files you also want to add to sdcard1, included opengapps, and if your device is Sony consider also TA partition." pause
 wget --referer=https://eu.dl.twrp.me/z3c/twrp-3.0.2-1-z3c.img.html https://eu.dl.twrp.me/z3c/twrp-3.0.2-1-z3c.img
 wget https://eu.dl.twrp.me/public.asc
 gpg2 --verify public.asc twrp*.img
