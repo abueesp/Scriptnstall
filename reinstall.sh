@@ -128,7 +128,7 @@ then
     gpg --delete-secret-and-public-keys --batch --yes D3E5F56B6D920D30
 else
     echo "BAD SIGNATURE"
-    break
+    exit
 fi
 tar -xvzf openssh-$SSHVERSION.tar.gz
 rm openssh-$SSHVERSION.tar.gz
@@ -192,7 +192,7 @@ then
     gpg --delete-secret-and-public-keys --batch --yes 64EA74AB
 else
     echo "BAD SIGNATURE"
-    break
+    exit
 fi
 tar -xvzf bash-$BASHVERSION.tar.gz
 rm bash-$BASHVERSION.tar.gz
@@ -206,33 +206,84 @@ cd ..
 sudo rm -r bash-$BASHVERSION
 
 #Kernel
-KERNELVERSION=4.11.3
-sudo apt-get install libncurses5-dev libncursesw5-dev -y
-wget https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-$KERNELVERSION.tar.xz
-wget https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-$KERNELVERSION.tar.sign  
-gpg --keyserver hkp://keys.gnupg.net --recv-keys 647F28654894E3BD457199BE38DBBDC86092693E #Greg
-gpg --keyserver hkp://keys.gnupg.net --recv-keys ABAF11C65A2970B130ABE3C479BE3E4300411886 #Torvalds
-gpg --keyserver hkp://keys.gnupg.net --recv-keys 38DBBDC86092693E #Greg
-xz -cd linux-$KERNELVERSION.tar.xz | gpg2 --verify linux-$KERNELVERSION.tar.sign -
-if [ $? -eq 0 ]
-then
-    echo "GOOD SIGNATURE"
-    gpg --delete-secret-and-public-keys --batch --yes 647F28654894E3BD457199BE38DBBDC86092693E
-    gpg --delete-secret-and-public-keys --batch --yes ABAF11C65A2970B130ABE3C479BE3E4300411886
-    gpg --delete-secret-and-public-keys --batch --yes 38DBBDC86092693E 
-else
-    echo "BAD SIGNATURE"
-    break
-fi
-tar -xJf linux-$KERNELVERSION.tar.xz
-cd linux-$KERNELVERSION
-make menuconfig
-make && sudo make modules_install
-sudo make install
-sudo update-grub
-cd ..
-sudo rm -r linux-$KERNELVERSION
-
+KERNELVERSION=4.11.4
+KERNELVDATA=4.11.4-041104_4.11.4-041104.201706071003
+KERNELVTD=4.11.4-041104-generic_4.11.4-041104.201706071003
+while true; do
+    read -p "Do you want 1) Install directly from package kernel.deb? 2) Compile the kernel by yourself? " 12
+    case $12 in
+        [1]* )
+            #-lowlatency kernel - very similar to the -preempt kernel and based on the -generic kernel source tree, but uses a more aggressive configuration to further reduce latency. Also known as a soft real-time kernel.
+            #-realtime kernel - is based on the vanilla kernel source tree with Ingo Molnar maintained PREEMPT_RT patch applied to it. Also known as a hard real-time kernel. 
+            ARCHIT=amd64 #i386 for 32bits
+            wget --referer=http://kernel.ubuntu.com/~kernel-ppa/mainline/v$KERNELVERSION/ http://kernel.ubuntu.com/~kernel-ppa/mainline/v"$KERNELVERSION"/linux-headers-"$KERNELVDATA"_all.deb
+            wget --referer=http://kernel.ubuntu.com/~kernel-ppa/mainline/v$KERNELVERSION/ http://kernel.ubuntu.com/~kernel-ppa/mainline/v"$KERNELVERSION"/linux-headers-"$KERNELVTD"_"$ARCHIT".deb
+            wget --referer=http://kernel.ubuntu.com/~kernel-ppa/mainline/v"$KERNELVERSION"/ http://kernel.ubuntu.com/~kernel-ppa/mainline/v"$KERNELVERSION"/linux-image-"$KERNELVTD"_"$ARCHIT".deb
+            wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v"$KERNELVERSION"/CHECKSUMS
+            wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v"$KERNELVERSION"/CHECKSUMS.gpg
+            gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 60AA7B6F30434AE68E569963E50C6A0917C622B0
+            sha256sum -c CHECKSUMS 2>&1 | grep 'OK\|coincide'
+            read -p "Press INTRO if you read 3 OK coincidences, otherwise press Ctrl+C to exit"
+            gpg --verify CHECKSUMS.gpg linux-headers-"$KERNELVDATA"_all.deb
+            if [ $? -eq 0 ]
+            then
+                echo "GOOD SIGNATURE"
+            else
+                echo "BAD SIGNATURE"
+                exit
+            fi
+            gpg --verify CHECKSUMS.gpg linux-headers-"$KERNELVTD"_"$ARCHIT".deb
+            if [ $? -eq 0 ]
+            then
+                echo "GOOD SIGNATURE"
+            else
+                echo "BAD SIGNATURE"
+                exit
+            fi
+            gpg --verify CHECKSUMS.gpg linux-image-"$KERNELVTD"_"$ARCHIT".deb
+            if [ $? -eq 0 ]
+            then
+                echo "GOOD SIGNATURE"
+                gpg --delete-secret-and-public-keys --batch --yes 60AA7B6F30434AE68E569963E50C6A0917C622B0
+            else
+                echo "BAD SIGNATURE"
+                exit
+            fi
+            sudo dpkg -i linux-headers-"$KERNELVDATA"_all.deb
+            rm linux-headers-"$KERNELVDATA"_all.deb
+            sudo dpkg -i linux-headers-"$KERNELVTD"_"$ARCHIT".deb
+            rm linux-headers-"$KERNELVTD"_"$ARCHIT".deb
+            sudo dpkg -i linux-image-"$KERNELVTD"_"$ARCHIT".deb
+            rm linux-image-"$KERNELVTD"_"$ARCHIT".deb
+            sudo update-grub;;
+        [2]* ) 
+            sudo apt-get install libncurses5-dev libncursesw5-dev -y
+            wget https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-$KERNELVERSION.tar.xz
+            wget https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-$KERNELVERSION.tar.sign  
+            gpg --keyserver hkp://keys.gnupg.net --recv-keys 647F28654894E3BD457199BE38DBBDC86092693E #Greg
+            gpg --keyserver hkp://keys.gnupg.net --recv-keys ABAF11C65A2970B130ABE3C479BE3E4300411886 #Torvalds
+            gpg --keyserver hkp://keys.gnupg.net --recv-keys 38DBBDC86092693E #Greg
+            xz -cd linux-$KERNELVERSION.tar.xz | gpg --verify linux-$KERNELVERSION.tar.sign -
+            if [ $? -eq 0 ]
+            then
+                echo "GOOD SIGNATURE"
+                gpg --delete-secret-and-public-keys --batch --yes 647F28654894E3BD457199BE38DBBDC86092693E
+                gpg --delete-secret-and-public-keys --batch --yes ABAF11C65A2970B130ABE3C479BE3E4300411886
+                gpg --delete-secret-and-public-keys --batch --yes 38DBBDC86092693E 
+            else
+                echo "BAD SIGNATURE"
+                exit
+            fi
+            tar -xJf linux-$KERNELVERSION.tar.xz
+            cd linux-$KERNELVERSION
+            make menuconfig
+            make && sudo make modules_install
+            sudo make install
+            sudo update-grub
+            cd ..
+            sudo rm -r linux-$KERNELVERSION;;
+                    * ) echo "Wrong answer. Installation continues." break;; 
+        esac 
 ##psad
 PSADVERSION=2.4.4
 service psad stop
@@ -246,7 +297,7 @@ then
     echo "GOOD SIGNATURE"
 else
     echo "BAD SIGNATURE"
-    break
+    exit
 fi
 tar xvf psad-$PSADVERSION.tar.gz
 cd psad-$PSADVERSION
@@ -266,7 +317,7 @@ then
     echo "GOOD SIGNATURE"
 else
     echo "BAD SIGNATURE"
-    break
+    exit
 fi
 tar xvf fwsnort-$FWSNORTVERSION.tar.gz
 cd fwsnort-$FWSNORTVERSION
@@ -320,7 +371,7 @@ then
     echo "GOOD SIGNATURE"
 else
     echo "BAD SIGNATURE"
-    break
+    exit
 fi
 tar xvjf libgpg-error-$LIBGPGVERSION.tar.bz2
 cd libgpg-error-$LIBGPGVERSION
@@ -339,7 +390,7 @@ then
     echo "GOOD SIGNATURE"
 else
     echo "BAD SIGNATURE"
-    break
+    exit
 fi
 tar xvjf libgcrypt-$LIBGCRYPTVERSION.tar.bz2
 cd libgcrypt-$LIBGCRYPTVERSION
@@ -358,7 +409,7 @@ then
     echo "GOOD SIGNATURE"
 else
     echo "BAD SIGNATURE"
-    break
+    exit
 fi
 tar xvjf libksba-$LIBKSBAVERSION.tar.bz2
 cd libksba-$LIBKSBAVERSION
@@ -377,7 +428,7 @@ then
     echo "GOOD SIGNATURE"
 else
     echo "BAD SIGNATURE"
-    break
+    exit
 fi
 tar xvjf libassuan-$LIBASSUANVERSION.tar.bz2
 cd libassuan-$LIBASSUANVERSION
@@ -396,7 +447,7 @@ then
     echo "GOOD SIGNATURE"
 else
     echo "BAD SIGNATURE"
-    break
+    exit
 fi
 tar xvjf npth-$NPTHVERSION.tar.bz2
 cd npth-$NPTHVERSION
@@ -415,7 +466,7 @@ then
     echo "GOOD SIGNATURE"
 else
     echo "BAD SIGNATURE"
-    break
+    exit
 fi
 tar xvjf gnupg-$GNUPGVERSION.tar.bz2
 cd gnupg-$GNUPGVERSION
@@ -434,7 +485,7 @@ then
     echo "GOOD SIGNATURE"
 else
     echo "BAD SIGNATURE"
-    break
+    exit
 fi
 tar xvjf gpgme-$GPGMEVERSION.tar.bz2
 cd gpgme-$GPGMEVERSION
@@ -453,7 +504,7 @@ then
     echo "GOOD SIGNATURE"
 else
     echo "BAD SIGNATURE"
-    break
+    exit
 fi
 tar xvjf gpa-$GPAVERSION.tar.bz2
 cd gpa-$GPAVERSION
@@ -472,7 +523,7 @@ then
     echo "GOOD SIGNATURE"
 else
     echo "BAD SIGNATURE"
-    break
+    exit
 fi
 sudo sh -c "echo 'gpg-agent --daemon --verbose --sh --enable-ssh-support --no-allow-external-cache --no-allow-loopback-pinentry --allow-emacs-pinentry --log-file \"~/.gpg-agent-info\"' >> /etc/init.d/gpg-agent" #add gpg-agent with steroids
 tar xvjf gnupg-$GNUPGVERSION.tar.bz2
@@ -654,23 +705,23 @@ git config --global credential.helper 'cache --timeout=3600'
 while true; do
     read -p "Please set your username: " username
     git config --global user.name $username
-    break
+    exit
 done
 while true; do
     read -p "Please set your email: " mail
     git config --global user.email $mail
-    break
+    exit
 done
 
 while true; do
     read -p "Please set your core editor: " editor
     git config --global core.editor $editor
-    break
+    exit
 done
 while true; do
     read -p "Please set your diff app: " diff
     git config --global merge.tool $diff
-    break
+    exit
 done
 while true; do
     gpg --list-secret-keys
@@ -678,7 +729,7 @@ while true; do
     gpg --export -a $keyusername
     git config --global user.signingkey $keyusername
     git config --global commit.gpgsign true
-    break
+    exit
 done
 rm githubpublic.key
 git config --list
