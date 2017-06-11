@@ -929,6 +929,50 @@ echo 'if [ -e /var/lib/ntp/ntp.conf.dhcp ]; then
 fi' | sudo tee -a /etc/init.d/ntp
 
 
+###WeeChat###
+WEECHATVERSION=devel
+sudo apt-get install cmake libncurses5 libcurl3 zlib libgcrypt20 libcurl4-openssl-dev -y
+gpg --keyserver ha.pool.sks-keyservers.net --recv-keys A9AB5AB778FA5C3522FD0378F82F4B16DEC408F8
+wget https://weechat.org/files/src/weechat-$WEECHATVERSION.tar.xz
+wget https://weechat.org/files/src/weechat-$WEECHATVERSION.tar.xz.asc
+gpg --verify weechat-$WEECHATVERSION.tar.xz.asc weechat-$WEECHATVERSION.tar.xz
+if [ $? -eq 0 ]
+then
+echo "GOOD SIGNATURE"
+gpg --delete-secret-and-public-keys --batch --yes A9AB5AB778FA5C3522FD0378F82F4B16DEC408F8
+else
+echo "BAD SIGNATURE"
+exit
+fi
+rm weechat-$WEECHATVERSION.tar.xz.asc
+wget https://weechat.org/download/checksums/weechat-$WEECHATVERSION-sha512.txt
+sha512sum -c weechat-$WEECHATVERSION-sha512.txt 2>&1 | grep 'OK\|coincide'
+if [ $? -eq 0 ]
+then
+echo "GOOD MD5 512"
+else
+echo "BAD MD5 512"
+exit
+fi
+rm weechat-$WEECHATVERSION-sha512.txt
+tar xf weechat-$WEECHATVERSION.tar.xz
+rm weechat-$WEECHATVERSION.tar.xz
+cd weechat-$WEECHATVERSION
+bash autogen.sh
+mkdir build
+cd build
+cmake ..
+cd ..
+./configure
+make
+sudo make install
+cd ..
+sudo rm -r weechat-$WEECHATVERSION
+
+
+
+
+
 sudo apt-get autoremove -y
 
 EOF
