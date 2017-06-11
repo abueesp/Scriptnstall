@@ -903,7 +903,8 @@ sudo ./buildprep
 sudo ./waf configure
 sudo ./waf build
 sudo ./waf install
-sudo rm -r netpsec
+cd ..
+sudo rm -r ntpsec
 echo '#Logs
 driftfile /var/lib/ntp/ntp.drift
 statsdir /var/log/ntpstats/
