@@ -625,6 +625,9 @@ read -p "Introduce otro usuario de vbox " user2 $user2
 sudo usermod -G vboxusers -a $user2
 read -p "Introduce otro usuario de vbox " user2 $user3
 sudo usermod -G vboxusers -a $user3
+openssl req -new -x509 -newkey rsa:4096 -keyout MOK.priv -outform DER -out MOK.der -nodes -days 365 -subj "/CN=VirtualboxSSL/"
+sudo /usr/src/linux-headers-$(uname -r)/scripts/sign-file sha256 ./MOK.priv ./MOK.der $(modinfo -n vboxdrv)
+sudo mokutil --import MOK.der
 
 ##Emacs
 sudo rm -r /usr/local/stow
