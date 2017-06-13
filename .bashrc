@@ -2494,3 +2494,18 @@ echo "Usage: cconv AMOUNT FROMC TOC"
   wget -qO- "http://www.google.com/finance/converter?a=$1&from=$2&to=$3" | sed '/res/!d;s/<[^>]*>//g';
 }
 
+## IRC aliases ##
+alias newircchannel='read -p "Introduce name of channel: " CHANN && read -p "Introduce description of channel: " DESCCHAN && weechat -r "/msg ChanServ REGISTER #$CHANN #DESCCHAN" FloodServ on"'
+alias killircghost='read -p "User: " IRCUSER && read -p "Password: " IRCPASS && weechat -r "/msg NickServ GHOST $IRCUSER $IRCPASS"'
+alias recoverircuser='read -p "User: " IRCUSER && read -p "Password: " IRCPASS && weechat -r "/msg NickServ RECOVER $IRCUSER $IRCPASS" -r "/msg NickServ REGAIN $IRCUSER $IRCPASS" -r "/nickserv release $IRCUSER $IRCPASS" -r "/msg NickServ IDENTIFY $IRCUSER $IRCPASS" -r "/msg nickserv set enforce on" -r "/msg nickserv set secure on"'
+alias identifyirc='read -p "User: " IRCUSER && read -p "Password: " IRCPASS && weechat -r "/user $IRCUSER" -r "/msg NickServ IDENTIFY $IRCUSER $IRCPASS" -r "/msg nickserv set enforce on" -r "/msg nickserv set secure on"'
+newircuser(){ 
+read -p "User: " IRCUSER
+read -p "Password: " IRCPASS
+read -p "Email (to create new account): " IRCMAIL
+weechat -r "/msg NickServ IDENTIFY $IRCUSER" -r "/msg NickServ REGISTER $IRCPASS $IRCMAIL" -r "/quit"
+read -p "Go to email and introduce code: " IRCAUTH
+weechat -r /msg NickServ AUTH $IRCAUTH
+weechat -r "/msg NickServ IDENTIFY $IRCUSER $IRCPASS"
+}
+alias changeircpass='read -p "User: " IRCUSER && weechat -r "/msg NickServ SENDPASS $IRCUSER" && read -p "Go to email and introduce key: " IRCKEY && read -p "New password: " IRCNEWPASS &&  weechat -r "/msg NickServ SETPASS $IRCUSER $IRCKEY $IRCNEWPASS"'
