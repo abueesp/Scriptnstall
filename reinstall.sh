@@ -972,11 +972,42 @@ make
 sudo make install
 cd ..
 sudo rm -r weechat-$WEECHATVERSION
+#weechat -r "/script install vimode.py" script not installed to avoid conflicts
+weechat -r "/key bind meta-g /go"
+weechat -r "/set weechat.bar.status.color_bg 0" "/set weechat.bar.title.color_bg 0" "/set weechat.color.chat_nick_colors 1,2,3,4,5,6" "/set buffers.color.hotlist_message_fg 7" "/set weechat.bar.buffers.position top" "/set weechat.bar.buffers.items buffers" "/set weechat.look.prefix_same_nick '⤷'" "/set weechat.look.prefix_error '⚠'" "/set weechat.look.prefix_network 'ℹ'" "/set weechat.look.prefix_action '⚡'" "/set weechat.look.bar_more_down '▼▼'" "/set weechat.look.bar_more_left '◀◀'" "/set weechat.look.bar_more_right '▶▶'" "/set weechat.look.bar_more_up '▲▲'" "/set weechat.look.prefix_suffix '╡'" "/set weechat.look.prefix_align_max '15'"  -r "/quit"
 
-
-
-
-
+#Whatsapp and axolotl
+sudo pip install wheel --upgrade
+sudo pip3 install wheel --upgrade
+sudo -H pip install python-dateutil protobuf pycrypto python-axolotl-curve25519 argparse readline pillow pyaxo
+sudo -H pip3 install python-dateutil protobuf pycrypto python-axolotl-curve25519 argparse readline pillow pyaxo
+sudo -H pip install yowsup2
+sudo -H pip3 install yowsup2
+weechat -r "/script install whatsapp.py axolotl.py" -r "/quit"
+#Plugins
+sudo -H pip install python-potr
+sudo -H pip3 install python-potr
+weechat -r "/script install arespond.py atcomplete.py auth.rb auto_away.py autoauth.py autoconf.py autoconnet.py autojoin.py autjoinem.py awaylog.pl bandwidth.py bufsave.py bufsize.py chanmon.pl colorize_nicks.py  completion.py correction_completion.py fish.py go.py gribble.py highmon.pl ircrypt.py iset.pl notifo.py  otr.py queryman.py seeks.pl responsive_layout.py screen_away.py urlbuf.py urlgrab.py urlhinter.py weefish.rb yaaa.pl yaurls.pl weerock.pl whatismyip.py whowas_timeago.py whoissource.py whois_on_query.py windicate.py"  -r "/quit"
+#Slack
+sudo -H pip install websocket-client
+sudo -H pip3 install websocket-client
+wget https://raw.githubusercontent.com/wee-slack/wee-slack/master/wee_slack.py
+cp wee_slack.py ~/.weechat/python/autoload
+read -p "Introduce a secure pass to protect tokens: " PAZWE
+weechat -r "/secure passphrase $PAZWE"
+read -p "Introduce your Slack token. For connected groups introduce tokens separated by commas: " SLACKTOKEN
+weechat -r "/set plugins.var.python.slack.slack_api_token $SLACKTOKEN"
+weechat -r "/secure set slack_token $SLACKTOKEN"
+weechat -r "/set plugins.var.python.slack.slack_api_token ${sec.data.slack_token}"
+weechat -r "/save"
+weechat -r "/python reload"
+weechat -r "/set plugins.var.python.slack.server_aliases 'my-slack-subdomain:mysub,other-domain:coolbeans'" -r "/set plugins.var.python.slack.show_reaction_nicks on"
+#As a relay host server
+#read -p "Introduce password for relay host: " PRHOST
+#mkdir -p ~/.weechat/ssl && cd ~/.weechat/ssl && openssl req -nodes -newkey rsa:4096 -keyout relay.pem -x509 -days 365 -out relay.pem -sha256 -subj "/CN=localhost/"
+#weechat -r "/relay add weechat 9001" -r "/set relay.network.password $PRHOST" -r "/relay sslcertkey" -r "/relay add ssl.weechat 9001"  -r "/quit"
+#echo "You need to verify the certificate at ~/.weechat/ssl first"
+#firefox --new-tab https://www.glowing-bear.org/
 sudo apt-get autoremove -y
 
 EOF
