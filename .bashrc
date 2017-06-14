@@ -623,20 +623,6 @@ securedelete() {
   sudo srm -vrzd $route
   }
   
-secureformat() {
-sudo df -dh
-sudo fdisk -l 
-read -p 'Introduce the name of the unit to format: CAUTION: ' UNIT
-read -p 'You are going to FORMAT THIS DISK. THIS WILL MAKE ALL FILES IRRECUPERABLE. ARE YOU SURE? Press INTRO to continue' 
-sudo shred -uvzn 3 /dev/$UNIT
-rin="/dev/$UNIT""/**"
-sudo shred -uvzn 3 $rin
-sudo srm -vrzd $route
-sudo sgdisk --zap /dev/$UNIT
-sudo dd if=/dev/zero of=/dev/$UNIT & pid=$!
-echo " Select disk, Delete, Create new partition table, and Reformat" 
-sudo gparted
-}
   
 tmuxts() {
 tmux new-session -s 'MyTS' -n 'w1' -d 'vim'
