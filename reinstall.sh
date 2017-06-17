@@ -934,7 +934,7 @@ fi' | sudo tee -a /etc/init.d/ntp
 
 
 ###WeeChat###
-WEECHATVERSION=devel
+WEECHATVERSION=1.8
 sudo apt-get install cmake libncurses5 libcurl3 zlib libgcrypt20 libcurl4-openssl-dev -y
 gpg --keyserver ha.pool.sks-keyservers.net --recv-keys A9AB5AB778FA5C3522FD0378F82F4B16DEC408F8
 wget https://weechat.org/files/src/weechat-$WEECHATVERSION.tar.xz
