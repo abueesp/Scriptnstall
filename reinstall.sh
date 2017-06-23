@@ -630,6 +630,7 @@ sudo /usr/src/linux-headers-$(uname -r)/scripts/sign-file sha256 ./MOK.priv ./MO
 sudo mokutil --import MOK.der
 
 ##Emacs
+sudo apt-get install texlive-latex-base -y
 sudo rm -r /usr/local/stow
 set -e
 EMACSVERSION=25.2
