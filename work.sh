@@ -89,6 +89,7 @@ sudo apt-get install asciinema
 
 
 #spacemacs & plugins
+sudo apt-get install texlive-latex-base -y
 mkdir .emacs.d
 mkdir .emacs
 git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
