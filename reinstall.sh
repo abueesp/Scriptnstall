@@ -975,7 +975,14 @@ sudo rm -r weechat-$WEECHATVERSION
 weechat -r "/key bind meta-g /go"  -r "/quit"
 weechat -r "/set weechat.bar.status.color_bg 0" "/set weechat.bar.title.color_bg 0" "/set weechat.color.chat_nick_colors 1,2,3,4,5,6" "/set buffers.color.hotlist_message_fg 7" "/set weechat.bar.buffers.position top" "/set weechat.bar.buffers.items buffers" "/set weechat.look.prefix_same_nick '⤷'" "/set weechat.look.prefix_error '⚠'" "/set weechat.look.prefix_network 'ℹ'" "/set weechat.look.prefix_action '⚡'" "/set weechat.look.bar_more_down '▼▼'" "/set weechat.look.bar_more_left '◀◀'" "/set weechat.look.bar_more_right '▶▶'" "/set weechat.look.bar_more_up '▲▲'" "/set weechat.look.prefix_suffix '╡'" "/set weechat.look.prefix_align_max '15'"  -r "/quit"
 weechat -r "/mouse enable" -r "/quit"
-weechat -r "add freenode chat.freenode.net/6697 -ssl -autoconnect" -r "/quit"
+
+/set irc.server.freenode.username "Mi nombre de usuario"
+/set irc.server.freenode.realname "Mi nombre real"
+read -p "Username: " UNAME
+read -p "Real name: " RNAME
+read -p "Server: " RNAME
+weechat -r '/set irc.server.freenode.username "$UNAME"' 
+weechat -r "/server add freenode chat.freenode.net/6697 -ssl -autoconnect" -r '/set irc.server.freenode.addresses "chat.freenode.net/6697"' -r "/set irc.server.freenode.ssl on" -r "/quit"
 
 #Whatsapp and axolotl
 sudo pip install wheel --upgrade
@@ -995,7 +1002,7 @@ sudo -H pip3 install websocket-client
 wget https://raw.githubusercontent.com/wee-slack/wee-slack/master/wee_slack.py
 cp wee_slack.py ~/.weechat/python/autoload
 read -p "Introduce a secure pass to protect tokens: " PAZWE
-weechat -r "/secure passphrase $PAZWE"
+weechat -r "/secure passphrase $PAZWE" -r "/quit"
 read -p "Introduce your Slack token. For connected groups introduce tokens separated by commas: " SLACKTOKEN
 weechat -r "/set plugins.var.python.slack.slack_api_token $SLACKTOKEN" -r "/secure set slack_token $SLACKTOKEN" -r "/set plugins.var.python.slack.slack_api_token ${sec.data.slack_token}" -r "/save" -r "/python reload" -r "/set plugins.var.python.slack.server_aliases 'my-slack-subdomain:mysub,other-domain:coolbeans'" -r "/set plugins.var.python.slack.show_reaction_nicks on" -r "/quit"
 #As a relay host server
