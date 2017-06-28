@@ -671,15 +671,17 @@ docsthemagic() {
 }
 
 updateallbash() {
-sudo wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/bash.bashrc
-sudo rm /etc/bash.bashrc~
-sudo cp /etc/bash.bashrc /etc/bash.bashrc~
-sudo rm /etc/bash.bashrc
-sudo mv bash.bashrc /etc/bash.bashrc
+sudo rm ~/.bashrc-bu
+sudo rm /etc/.bashrc-bu
+sudo cp ~/.bashrc /etc/.bashrc-bu
+sudo wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.bashrc
+sudo cp /etc/.bashrc /etc/.bashrc-bu
+sudo rm /etc/.bashrc
+sudo cp bash.bashrc /etc/bash.bashrc
 }
 
 updatebash() {
-wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/bash.bashrc -O ~/.bashrc
+wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.bashrc -O ~/.bashrc
 }
 
 updatetmux() {
