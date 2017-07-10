@@ -674,16 +674,18 @@ updateallbash() {
 sudo rm ~/.bashrc-bu
 sudo rm /etc/.bashrc-bu
 sudo cp ~/.bashrc /etc/.bashrc-bu
-sudo wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.bashrc
+sudo wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.bashrc-d
 sudo cp /etc/.bashrc /etc/.bashrc-bu
 sudo rm /etc/.bashrc
-sudo cp bash.bashrc /etc/bash.bashrc
+mv .bashrc-d ~/.bashrc
+sudo cp ~/.bashrc /etc/bash.bashrc
 }
 
 updatebash() {
-sudo cp ~/.bashrc .bashrc~
+sudo cp ~/.bashrc ~/.bashrc-bu
+wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.bashrc -O ~/.bashrc-d
 sudo rm ~/.bashrc
-wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.bashrc -O ~/.bashrc
+mv ~/.bashrc-d ~/.bashrc
 }
 
 updatetmux() {
