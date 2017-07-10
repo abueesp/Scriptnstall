@@ -681,6 +681,8 @@ sudo cp bash.bashrc /etc/bash.bashrc
 }
 
 updatebash() {
+sudo cp ~/.bashrc .bashrc~
+sudo rm ~/.bashrc
 wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.bashrc -O ~/.bashrc
 }
 
