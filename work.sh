@@ -531,4 +531,45 @@ coqc -v
 echo "Write down Check True to test coqide"
 coqide &
 
+##Dyagrams/Knowledge/Concepts/Ontology
+#MySQLWorkbench
+sudo apt-get remove iodbc -y
+sudo apt-get install build-essential cmake cmake-data autoconf automake pkg-config libtool libzip-dev libxml2-dev libsigc++-2.0-dev libglade2-dev libgtkmm-2.4-dev libglu1-mesa-dev libgl1-mesa-glx mesa-common-dev libmysqlclient-dev libmysqlcppconn-dev uuid-dev libpixman-1-dev libpcre3-dev \libgnome2-dev libgnome-keyring-dev libgtk2.0-dev libpango1.0-dev libcairo2-dev python-dev libboost-dev libctemplate-dev mysql-client python-pysqlite2 libsqlite3-dev \swig libvsqlitepp-dev libgdal-dev -y
+sudo apt-get install mysql-workbench-community -y
+echo "filetype: mwb|sql"
+#sqlitebrowser
+sudo apt-get install sqlitebrowser -y
+echo "filetype: csv|db"
+#dia
+sudo apt-get install dia dia2code -y
+echo "filetype: dia"
+#uml
+sudo apt-get install umbrello
+echo "filetype: xmi mdl zargo"
+sudo apt-get install umlet
+echo "filetype:uxf"
+#algos
+wget http://ankara.lti.cs.cmu.edu/thtools/TagHelperTools2.zip
+unzip TagHelperTools2.zip
+rm TagHelperTools2.zip
+cd TagHelper*
+sudo chmod +x runtht.sh
+sudo chmod +x portal.sh
+echo "alias algos='/home/$USER/./runtht.sh'" | tee -a ~/.bashrc
+echo "Run algos"
+cd ..
+#Hozo ont
+read -p "Introduce test mail: " YML
+read -p "Introduce password: " PZZ
+wget http://download.hozo.jp/downloadfile.php?username=$YML&password=$PZZ&filename=oe55en.zip
+unzip oe55en.zip
+rm oe55en.zip
+mv -r oe55en ontolotool
+cd ontolotool
+sudo chmod +x me4.jar
+sudo chmod +x oe5.jar
+echo "alias ontolotool='java -jar /home/$USER/ontolotool/me4.jar'" | tee -a ~/.bashrc
+
+
+
 EOF
