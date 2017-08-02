@@ -11,7 +11,7 @@ gpg2 --recv-key D238EA65D64C67ED4C3073F28A861B1C7EFD60D9
 LIBGPGVERSION=1.27
 wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-$LIBGPGVERSION.tar.bz2
 wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-$LIBGPGVERSION.tar.bz2.sig
-gpg2 --verify libgpg-error-$LIBGPGVERSION.tar.bz2.sig libgpg-error-$LIBGPGVERSION.bz2
+gpg2 --verify libgpg-error-$LIBGPGVERSION.tar.bz2.sig libgpg-error-$LIBGPGVERSION.tar.bz2
 if [ $? -eq 0 ]
 then
     echo "GOOD SIGNATURE"
