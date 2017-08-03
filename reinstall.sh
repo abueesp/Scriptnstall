@@ -692,6 +692,10 @@ mv ~/.vim/autoload/plug.vim ~/.vim/autoload/plug-backup.vim
 wget https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim -O ~/.vim/autoload/plug.vim
 mkdir -p ~/.vim/vim-snippets
 cd ~/.vim/vim-snippets
+sh -c "curl -fsSL https://raw.githubusercontent.com/skwp/dotfiles/master/install.sh"
+echo "installed vimcr"
+wget https://raw.githubusercontent.com/Russell91/sshrc/master/sshrc && sudo chmod -R 600 sshrc && chmod +x sshrc && sudo mv sshrc /usr/local/bin
+echo "ssh bashcr vimcr portability installed"
 git clone https://github.com/SirVer/ultisnips
 cd
 sudo apt-get install libreoffice-gnome -y
@@ -714,45 +718,25 @@ git config --global credential.helper cache
 # Set git to use the credential memory cache
 git config --global credential.helper 'cache --timeout=3600'
 # Set the cache to timeout after 1 hour (setting is in seconds)
-while true; do
-    read -p "Please set your username: " username
-    git config --global user.name $username
-    exit
-done
-while true; do
-    read -p "Please set your email: " mail
-    git config --global user.email $mail
-    exit
-done
-
-while true; do
-    read -p "Please set your core editor: " editor
-    git config --global core.editor $editor
-    exit
-done
-while true; do
-    read -p "Please set your diff app: " diff
-    git config --global merge.tool $diff
-    exit
-done
-while true; do
-    gpg --list-secret-keys
-    read -p "Introduce the key id (and open https://github.com/settings/keys): " keyusername
-    gpg --export -a $keyusername
-    git config --global user.signingkey $keyusername
-    git config --global commit.gpgsign true
-    exit
-done
-rm githubpublic.key
+read -p "Please set your username: " username
+git config --global user.name $username
+read -p "Please set your email: " mail
+git config --global user.email $mail
+read -p "Please set your core editor: " editor
+git config --global core.editor $editor
+read -p "Please set your diff app: " diff
+git config --global merge.tool $diff
+gpg --list-secret-keys
+read -p "Introduce the key id (and open https://github.com/settings/keys): " keyusername
+gpg --export -a $keyusername
+git config --global user.signingkey $keyusername
+git config --global commit.gpgsign true
 git config --list
 echo "Here you are an excellent Github cheatsheet https://raw.githubusercontent.com/hbons/git-cheat-sheet/master/preview.png You can also access as gitsheet"
 echo "If you get stuck, run ‘git branch -a’ and it will show you exactly what’s going on with your branches. You can see which are remotes and which are local."
 echo "Do not forget to add a newsshkey or clipboard your mysshkey or mylastsshkey (if you switchsshkey before) and paste it on Settings -> New SSH key and paste it there." 
 
-sh -c "curl -fsSL https://raw.githubusercontent.com/skwp/dotfiles/master/install.sh"
-echo "installed vimcr"
-wget https://raw.githubusercontent.com/Russell91/sshrc/master/sshrc && sudo chmod -R 600 sshrc && chmod +x sshrc && sudo mv sshrc /usr/local/bin
-echo "ssh bashcr vimcr portability installed"
+
 
 ##Browsers
 #sudo apt-get install firefox -y it is ready
@@ -993,13 +977,8 @@ sudo rm -r weechat-$WEECHATVERSION
 weechat -r "/key bind meta-g /go"  -r "/quit"
 weechat -r "/set weechat.bar.status.color_bg 0" "/set weechat.bar.title.color_bg 0" "/set weechat.color.chat_nick_colors 1,2,3,4,5,6" "/set buffers.color.hotlist_message_fg 7" "/set weechat.bar.buffers.position top" "/set weechat.bar.buffers.items buffers" "/set weechat.look.prefix_same_nick '⤷'" "/set weechat.look.prefix_error '⚠'" "/set weechat.look.prefix_network 'ℹ'" "/set weechat.look.prefix_action '⚡'" "/set weechat.look.bar_more_down '▼▼'" "/set weechat.look.bar_more_left '◀◀'" "/set weechat.look.bar_more_right '▶▶'" "/set weechat.look.bar_more_up '▲▲'" "/set weechat.look.prefix_suffix '╡'" "/set weechat.look.prefix_align_max '15'"  -r "/quit"
 weechat -r "/mouse enable" -r "/quit"
-
-/set irc.server.freenode.username "Mi nombre de usuario"
-/set irc.server.freenode.realname "Mi nombre real"
-read -p "Username: " UNAME
-read -p "Real name: " RNAME
-read -p "Server: " RNAME
-weechat -r '/set irc.server.freenode.username "$UNAME"' 
+read -p "Introduce Weechat username: " UNAME
+weechat -r '/set irc.server.freenode.username "$UNAME"'  -r "/quit"'
 weechat -r "/server add freenode chat.freenode.net/6697 -ssl -autoconnect" -r '/set irc.server.freenode.addresses "chat.freenode.net/6697"' -r "/set irc.server.freenode.ssl on" -r "/quit"
 
 #Whatsapp and axolotl
