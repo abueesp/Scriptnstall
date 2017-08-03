@@ -270,22 +270,25 @@ sudo apt-get install unoconv -y
 sudo apt-get install detox -y
 sudo add-apt-repository ppa:webupd8team/sublime-text-3 -y 
 sudo apt-get update -y
-sudo apt-get install vim vim-scripts -y
+sudo apt-get install vim vim-gui-common -y
 mv ~/.vim/autoload/plug.vim ~/.vim/autoload/plug-backup.vim
 wget https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim -O ~/.vim/autoload/plug.vim
 mkdir -p ~/.vim/vim-snippets
 cd ~/.vim/vim-snippets
 git clone https://github.com/SirVer/ultisnips
 cd
-git clone https://github.com/amix/vimrc.git ~/.vim_runtime
-sh ~/.vim_runtime/install_awesome_vimrc.sh
-sudo apt-get install gedit -y
-sudo apt-get install sublime-text-installer -y
-sudo apt-get install libreoffice -y
+sudo apt-get install libreoffice-gnome -y
+sudo apt-get install nano gedit -y
+SUBLIMEVERSION=3_build_3126_x64
+wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+sudo apt-get update
+sudo apt-get install sublime-text -y
 sudo apt-get install libgstreamer-plugins-base0.10-0 -y #for scrivener requirements libgstapp-0.10.so.0
-wget http://www.literatureandlatte.com/scrivenerforlinux/scrivener-1.9.0.1-amd64.deb
-sudo dpkg -i scrivener**
-sudo rm scrivener**
+SCRIVENERVERSION=1.9.0.1-amd64
+wget http://www.literatureandlatte.com/scrivenerforlinux/scrivener-$SCRIVENERVERSION.deb
+sudo dpkg -i scrivener-$SCRIVENERVERSION.deb
+sudo rm scrivener-$SCRIVENERVERSION.deb
 
 ##Python 2.7 & 3 + readthedocs + saltpack
 sudo apt-get install build-essential python-dev python-setuptools python-virtualenv libxml2-dev libxslt1-dev zlib1g-dev -y
