@@ -13,20 +13,24 @@ sudo rm -r gedit**
 sudo apt-get install python3-markdown gir1.2-webkit-3.0
 wget https://github.com/jpfleury/gedit-markdown/archive/master.zip
 sudo unzip master.zip
-cd master 
+cd gedit-markdown-master
 sudo ./gedit-markdown.sh install
 cd ..
-sudo rm -r master**
-cd  /usr/lib/x86_64-linux-gnu/gedit/plugins/snippets
+rm master.zip
+sudo rm -r gedit-markdown-master
+sudo chmod 750 /usr/share/gedit/plugins/snippets
+cd /usr/share/gedit/plugins/snippets
 git clone https://github.com/Kilian/gedit-jshint
+cd gedit-jshint
+git clean -xdf
+cd ..
 git clone https://github.com/fenrrir/geditpycompletion
-for (( ${1:i = 0}; ${2:i < 10}; ${3:i++} )); do
-done
-for ((${g**:i++})); do 
-        cd && git clean -xdf cd.. && cd ..
-done
+cd geditpycompletion
+git clean -xdf
+cd
 ##Dicts
+sudo chmod 750 /usr/share/gtksourceview-3.0/language-specs
 cd /usr/share/gtksourceview-3.0/language-specs
-wget https://gist.githubusercontent.com/shamansir/1164574/raw/28e2795966fea04b850b5c93712246afbc70ff56/lisp.lang.xml
+wget https://gist.githubusercontent.com/shamansir/1164574/raw/28e2795966fea04b850b5c93712246afbc70ff56/lisp.lang.xml -O lisp.lang
 cd
 
