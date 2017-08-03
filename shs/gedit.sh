@@ -28,9 +28,13 @@ git clone https://github.com/fenrrir/geditpycompletion
 cd geditpycompletion
 git clean -xdf
 cd
-##Dicts
+##Dicts apart from 
 sudo chmod 750 /usr/share/gtksourceview-3.0/language-specs
 cd /usr/share/gtksourceview-3.0/language-specs
 wget https://gist.githubusercontent.com/shamansir/1164574/raw/28e2795966fea04b850b5c93712246afbc70ff56/lisp.lang.xml -O lisp.lang
+wget https://raw.githubusercontent.com/ilogue/docker.lang/master/docker.lang
+wget https://raw.githubusercontent.com/izazueta/gedit-lang/master/python3.lang
+wget https://raw.githubusercontent.com/izazueta/gedit-lang/master/python.lang
+wget 
 cd
 
