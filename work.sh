@@ -1,4 +1,29 @@
 
+
+##Github
+sudo apt-get install git -y 
+git config --global credential.helper cache
+# Set git to use the credential memory cache
+git config --global credential.helper 'cache --timeout=3600'
+# Set the cache to timeout after 1 hour (setting is in seconds)
+read -p "Please set your username: " username
+git config --global user.name $username
+read -p "Please set your email: " mail
+git config --global user.email $mail
+read -p "Please set your core editor: " editor
+git config --global core.editor $editor
+read -p "Please set your diff app: " diff
+git config --global merge.tool $diff
+gpg --list-secret-keys
+read -p "Introduce the key id (and open https://github.com/settings/keys): " keyusername
+gpg --export -a $keyusername
+git config --global user.signingkey $keyusername
+git config --global commit.gpgsign true
+git config --list
+echo "Here you are an excellent Github cheatsheet https://raw.githubusercontent.com/hbons/git-cheat-sheet/master/preview.png You can also access as gitsheet"
+echo "If you get stuck, run ‘git branch -a’ and it will show you exactly what’s going on with your branches. You can see which are remotes and which are local."
+echo "Do not forget to add a newsshkey or clipboard your mysshkey or mylastsshkey (if you switchsshkey before) and paste it on Settings -> New SSH key and paste it there." 
+
 #Docker 
 sudo wget -qO- https://get.docker.com/ | sh
 sudo usermod -aG docker $USER
@@ -276,6 +301,10 @@ wget https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim -O ~/.v
 mkdir -p ~/.vim/vim-snippets
 cd ~/.vim/vim-snippets
 git clone https://github.com/SirVer/ultisnips
+sh -c "curl -fsSL https://raw.githubusercontent.com/skwp/dotfiles/master/install.sh"
+echo "installed vimcr"
+wget https://raw.githubusercontent.com/Russell91/sshrc/master/sshrc && sudo chmod -R 600 sshrc && chmod +x sshrc && sudo mv sshrc /usr/local/bin
+echo "ssh bashcr vimcr portability installed"
 cd
 sudo apt-get install libreoffice-gnome -y
 sudo apt-get install nano gedit -y
