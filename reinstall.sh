@@ -759,6 +759,7 @@ echo "ssh bashcr vimcr portability installed"
 cd Downloads
 mkdir extensions
 cd extensions
+mkdir Firefox
 wget https://addons.mozilla.org/firefox/downloads/latest/497366/addon-497366-latest.xpi #Disable WebRTC
 wget https://addons.mozilla.org/firefox/downloads/latest/1843/addon-1843-latest.xpi #Firebug
 wget https://addons.mozilla.org/firefox/downloads/latest/5791/addon-5791-latest.xpi #FlagFox
@@ -822,8 +823,12 @@ wget https://addons.mozilla.org/firefox/downloads/file/224182/csrf_finder-1.2-fx
 wget https://addons.mozilla.org/firefox/downloads/file/345004/live_http_headers_fixed_by_danyialshahid-0.17.1-signed-sm+fx.xpi #Live HTTP Headers
 cd ..
 cd ..
+cd ..
 
 #thunderbird extensions
+cd Downloads
+mkdir -p extensions
+cd extensions
 mkdir thunderbird
 cd thunderbird
 wget https://addons.mozilla.org/thunderbird/downloads/latest/611/addon-611-latest.xpi #Signature Switch
@@ -841,6 +846,8 @@ wget https://addons.mozilla.org/thunderbird/downloads/latest/210/addon-210-lates
 wget https://addons.mozilla.org/thunderbird/downloads/latest/875/addon-875-latest.xpi #tb header tools
 wget https://addons.mozilla.org/thunderbird/downloads/latest/1003/addon-1003-latest.xpi #header scroll extension
 wget https://addons.mozilla.org/thunderbird/downloads/latest/torbirdy/platform:2/addon-381417-latest.xpi #torbirdy
+cd ..
+cd ..
 cd ..
 
 ## Opera ##
@@ -891,6 +898,7 @@ echo "alias iron='/bin/iron/./chrome'" | tee -a ~/.bashrc
 /bin/iron/./chrome https://chrome.google.com/webstore/detail/m-i-m/jlppachnphenhdidmmpnbdjaipfigoic
 
 ### Calc Tools ###
+cd Documents
 mkdir bctools
 cd bctools
 wget http://phodd.net/gnu-bc/code/array.bc
@@ -909,7 +917,9 @@ wget http://phodd.net/gnu-bc/code/logic.bc
 wget http://phodd.net/gnu-bc/code/output_formatting.bc      
 wget https://raw.githubusercontent.com/sevo/Calc/master/bc/rand.bc
 cd ..
+cd ..
 
+#NTPSpec
 git clone https://github.com/ntpsec/ntpsec
 sudo ./buildprep
 sudo ./waf configure
@@ -944,7 +954,7 @@ fi' | sudo tee -a /etc/init.d/ntp
 
 ###WeeChat###
 WEECHATVERSION=1.8
-sudo apt-get install cmake libncurses5 libcurl3 zlib libgcrypt20 libcurl4-openssl-dev -y
+sudo apt-get install cmake libcurl4-gnutls-dev libncurses5 libcurl3 dh-autoreconf libgcrypt20 libcurl4-openssl-dev -y
 gpg --keyserver ha.pool.sks-keyservers.net --recv-keys A9AB5AB778FA5C3522FD0378F82F4B16DEC408F8
 wget https://weechat.org/files/src/weechat-$WEECHATVERSION.tar.xz
 wget https://weechat.org/files/src/weechat-$WEECHATVERSION.tar.xz.asc
