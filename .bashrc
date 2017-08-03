@@ -1198,6 +1198,11 @@ read -p "Introduce the string to remove whitespaces: " STRIN
 echo ${STRIN//[[:blank:]]/}
 }
 
+nomultiplespaces (){
+read -p "Introduce the string to remove whitespaces: " STRIN
+echo $STRIN | tr [A-Z] [a-z]|sed -e "s/\ \ */\ /g"
+}
+
 ### Extract Archives ###
 extract() {
   if [ -f $1 ] ; then
