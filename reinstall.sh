@@ -685,7 +685,7 @@ sudo -H pip3 install saltpack
 #Text Edition Tools
 sudo apt-get install software-properties-common -y ##for add-apt-repository
 sudo add-apt-repository ppa:webupd8team/sublime-text-3 -y 
-sudo apt-get install vim vim-scripts -y
+sudo apt-get install vim -y
 git clone https://github.com/amix/vimrc.git ~/.vim
 sh ~/.vim/install_awesome_vimrc.sh
 mv ~/.vim/autoload/plug.vim ~/.vim/autoload/plug-backup.vim
@@ -694,9 +694,13 @@ mkdir -p ~/.vim/vim-snippets
 cd ~/.vim/vim-snippets
 git clone https://github.com/SirVer/ultisnips
 cd
-sudo apt-get install gedit -y
-sudo apt-get install sublime-text-installer -y
-sudo apt-get install libreoffice -y
+sudo apt-get install libreoffice-gnome -y
+sudo apt-get install nano gedit -y
+SUBLIMEVERSION=3_build_3126_x64
+wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+sudo apt-get update
+sudo apt-get install sublime-text -y
 sudo apt-get install libgstreamer-plugins-base0.10-0 -y #for scrivener requirements libgstapp-0.10.so.0
 SCRIVENERVERSION=1.9.0.1-amd64
 wget http://www.literatureandlatte.com/scrivenerforlinux/scrivener-$SCRIVENERVERSION.deb
