@@ -572,6 +572,7 @@ cd ..
 
 
 ##Dyagrams/Knowledge/Concepts/Ontology
+mkdir know
 #MySQLWorkbench
 sudo apt-get remove iodbc -y
 sudo apt-get install build-essential cmake cmake-data autoconf automake pkg-config libtool libzip-dev libxml2-dev libsigc++-2.0-dev libglade2-dev libgtkmm-2.4-dev libglu1-mesa-dev libgl1-mesa-glx mesa-common-dev libmysqlclient-dev libmysqlcppconn-dev uuid-dev libpixman-1-dev libpcre3-dev \libgnome2-dev libgnome-keyring-dev libgtk2.0-dev libpango1.0-dev libcairo2-dev python-dev libboost-dev libctemplate-dev mysql-client python-pysqlite2 libsqlite3-dev \swig libvsqlitepp-dev libgdal-dev -y
@@ -588,6 +589,10 @@ sudo apt-get install umbrello
 echo "filetype: xmi mdl zargo"
 sudo apt-get install umlet
 echo "filetype:uxf"
+#owl
+wget http://www.modelfutures.com/file_download/1/OwlEditor.zip
+unzip OwlEditor.zip
+rm OwlEditor.zip
 #algos
 wget http://ankara.lti.cs.cmu.edu/thtools/TagHelperTools2.zip
 unzip TagHelperTools2.zip
@@ -610,6 +615,7 @@ sudo chmod +x me4.jar
 sudo chmod +x oe5.jar
 echo "alias ontolotool='java -jar /home/$USER/ontolotool/me4.jar'" | tee -a ~/.bashrc
 
+cd ..
 
 
 EOF
