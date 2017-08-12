@@ -82,8 +82,9 @@ else
     echo 'The MD5 sum didnt match'
     break
 fi
+echo 'Please notice this TWRP already includes FOTAKernel' #Source https://www.androidfilehost.com/?fid=961840155545571844
 TWRPVERSION=z3c_2017-04-26
-wget http://qc4.androidfilehost.com/dl/4MuIdRKPljkRgKwdqXSKhg/1497255775/961840155545571844/twrp_$TWRPVERSION.img
+wget https://tx4.androidfilehost.com/dl/sXOv1na6Id2t2Ssy4v3mqA/1502726807/961840155545571844/twrp_z3c_2017-04-26.img
 echo "52d7a1caf4b22e43fa165e3b640d29e0  twrp_$TWRPVERSION.img" >> twrp_$TWRPVERSION.img.md5
 if md5sum -c twrp_$TWRPVERSION.img; then
     echo 'The MD5 sum matched'
@@ -91,7 +92,6 @@ else
     echo 'The MD5 sum didnt match'
     break
 fi
-echo 'Please notice this TWRP already includes FOTAKernel'
 
 ##TWRP
 read -p "Check your TWRP img model. Then copy all downm and the files you also want to add to sdcard1, included opengapps, and if your device is Sony consider also TA partition." pause
@@ -137,7 +137,19 @@ fi
 gpg --verify xposed**.asc
 wget https://forum.xda-developers.com/attachment.php?attachmentid=3921508&d=1477916609 -O Xposed.apk
 echo "Downloading SuperSu"
+#normal supersu
 wget https://s3-us-west-2.amazonaws.com/supersu/download/zip/SuperSU-v2.79-20161205182033.apk
+#lineageos supersu 
+wget https://mirrorbits.lineageos.org/su/addonsu-14.1-arm-signed.zip
+wget https://mirrorbits.lineageos.org/su/addonsu-remove-14.1-arm-signed.zip
+wget https://mirrorbits.lineageos.org/su/addonsu-remove-14.1-arm-signed.zip?sha256
+sha256sum -c addonsu-14.1-arm-signed.zip?sha256 | grep 'OK\|coincide'
+sha256sum -c addonsu-remove-14.1-arm-signed.zip?sha256 | grep 'OK\|coincide'
+read -p "Were the two checks 0K?"
+rm addonsu-14.1-arm-signed.zip?sha256
+rm addonsu-remove-14.1-arm-signed.zip?sha256
+echo "Download the latest magisk app, remover and manager"
+firefox https://forum.xda-developers.com/apps/magisk
 cd ..
 
 #Official firmware
@@ -153,11 +165,12 @@ cd ..
 
 ##Root & Fastboot
 cd downm
-read -p "now device will be on fastboot mode. can you see the blue light of the corner?"
+adb kill-server
 adb reboot bootloader
+read -p "now device will be on fastboot mode. you will see a blue light of the corner."
+sudo adb start-server
 sudo fastboot getvar version
-read -p " SONY Xperia Z To enter  into  Fastboot : (while turned off) Press and hold the  Volume Up button, at the same time plug in the micro USB cable which is already connected to PC. To enter  into  Flash Mode : (while turned off) Press and hold the  Volume Down button, at the same time plug in the micro USB cable which is already connected to PC. To enter  into Recovery: (while turned off) Power on or plug into charger and keep pressing Volume Up repeatedly. More on : http://www.droidviews.com/how-to-boot-android-devices-in-fastboot-download-bootloader-or-recovery-mode/
-If you dont see the bluelight, shut down the device, start it while you are holding Volume Up and then connect the USB cable. The notification light should turn blue to indicate you are in fastboot mode. If you receive the message waiting for device fastboot is not configured properly. If you see the blue light then now you must know you are going to UNLOCK THE BOOTLOADER of your phone. If you have a Z3C iF YOU ARE A SONY DO NOT FORGET TO MAKE FIRST A BACKUP OF YOUR TA PARTITION FOR DRM FILES. YOU CAN DOWNLOAD git clone https://github.com/DevShaft/Backup-TA FROM WINDOWS AND THEN BACKUP IF YOU ARE ROOTED. IT DOES NOT WORK WITH WINE. LINUX VERSION ON GITHUB DOES NOT WORK EITHER. BACKUP TA FIRST!!!" pause 
+read -p " SONY Xperia Z To enter  into  Fastboot : (while turned off) Press and hold the  Volume Up button, at the same time plug in the micro USB cable which is already connected to PC. To enter  into  Flash Mode : (while turned off) Press and hold the  Volume Down button, at the same time plug in the micro USB cable which is already connected to PC. To enter  into Recovery: (while turned off) Power on or plug into charger and keep pressing Volume Up repeatedly. More on : http://www.droidviews.com/how-to-boot-android-devices-in-fastboot-download-bootloader-or-recovery-mode/ If you dont see the bluelight, shut down the device, start it while you are holding Volume Up and then connect the USB cable. The notification light should turn blue to indicate you are in fastboot mode. If you receive the message waiting for device fastboot is not configured properly. If you see the blue light then now you must know you are going to UNLOCK THE BOOTLOADER of your phone. If you have a Z3C iF YOU ARE A SONY DO NOT FORGET TO MAKE FIRST A BACKUP OF YOUR TA PARTITION FOR DRM FILES. YOU CAN DOWNLOAD git clone https://github.com/DevShaft/Backup-TA FROM WINDOWS AND THEN BACKUP IF YOU ARE ROOTED. IT DOES NOT WORK WITH WINE. LINUX VERSION ON GITHUB DOES NOT WORK EITHER. BACKUP TA FIRST!!!" pause 
 read -p "Unlocking the bootloader on a Sony device may automatically wipe internal storage; a backup of the sdcard is suggested. It will also irreversibly erase the DRM keys stored in the TA partition of some devices, which will result in the loss of certain proprietary features that may have been included. LAST WARNING" pause
 sudo fastboot devices
 firefox http://developer.sonymobile.com/unlockbootloader/unlock-yourboot-loader/
