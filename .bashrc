@@ -82,7 +82,7 @@ ${lightblue} - nanobash|geditbash
 ${blue} - alias powered
 ${purple} - tmuxts full
 
-${script_color} coding for good - $USER command line $nc | You are in $(curl ipinfo.io/country)
+${script_color} coding for good - $USER command line $nc 
 ${command_color} Ƀe ℋuman, be κinđ, be ωise $nc
 
 EOF
@@ -807,6 +807,7 @@ alias pdf2txt='ls * | sudo xargs -n1 pdftotext'
 alias bashrc='~./bashrc'
 alias lowercase="echo $1 | tr '[:upper:]' '[:lower:]'"
 alias uppercase="echo $1 | tr '[:lower:]' '[:upper:]'"
+alias whereami='curl ipinfo.io/country'
 alias geditbash='sudo gedit ~/.bashrc'
 alias vimbash='sudo vim ~./bashrc'
 alias atombash='sudo atom ~/.bashrc'
