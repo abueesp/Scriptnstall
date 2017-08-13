@@ -82,7 +82,7 @@ ${lightblue} - nanobash|geditbash
 ${blue} - alias powered
 ${purple} - tmuxts full
 
-${script_color} coding for good - node command line $nc 
+${script_color} coding for good - $USER command line $nc | You are in $(curl ipinfo.io/country)
 ${command_color} Ƀe ℋuman, be κinđ, be ωise $nc
 
 EOF
