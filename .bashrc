@@ -60,35 +60,32 @@ reset_screen() {
 }
 reset_screen
  
-
-usage()
+ usage()
 {
+#Default colors are:
+#${level_color}- shell level color:cyan$nc
+#${script_color}- script name: yellow$nc
+#${linenum_color}- line number: red$nc
+#${funcname_color}- function name: green$nc
+#${command_color}- command executed: white$nc
+#- Other colors options are: ${darkgrey}darkgrey$nc, ${lightgrey}light grey$nc, ${lightred}light red,${lightgreen}light green, ${blue}blue, ${lightblue}light blue, ${purple}purple, ${pink}pink, ${lightcyan}light cyan$nc.
 cat <<EOF
-Default colors are:
-${level_color}- shell level color:cyan$nc
-${script_color}- script name: yellow$nc
-${linenum_color}- line number: red$nc
-${funcname_color}- function name: green$nc
-${command_color}- command executed: white$nc
-- Other colors options are: ${darkgrey}darkgrey$nc, ${lightgrey}light grey$nc, ${lightred}light red,${lightgreen}light green, ${blue}blue, ${lightblue}light blue, ${purple}purple, ${pink}pink, ${lightcyan}light cyan$nc.
+${darkgrey}A better command line$nc
+${script_color} coding for good - $USER command line $(tty) $nc
+${command_color}  Ƀe ℋuman, be κinđ, be ωise $nc
 
 Usage: debug 
-${lightgrey} - help|usage: print this screen
-${pink} - lynx web browser
-${lightred} - verbose: sets -xv flags | noexec: sets -xvn flags
-${lightgreen} - vim completion: C-n C-p words, C-x C-l lines, C-x C-k dictionaries
-${lightcyan} - no parameter sets -x flags | C-x ! | C-x $ | M-x / | M-x @ | C-x C-e | fc -lnr | !!
-${lightblue} - nanobash|geditbash
-${blue} - alias powered
-${purple} - tmuxts full
-
-${script_color} coding for good - $USER command line $nc 
-${command_color} Ƀe ℋuman, be κinđ, be ωise $nc
+${lightgrey} - help|usage: print this screen | cleanall | cleanmem | cleanexcept $nc
+${pink} - lynx web browser | tmuxts full | fxf $nc
+${lightred} - verbose: sets -xv flags | noexec: sets -xvn flags $nc
+${lightgreen} - vim completion: C-n C-p words, C-x C-l lines, C-x C-k dictionaries $nc
+${lightcyan} - no parameter sets -x flags | C-x ! | C-x $ | M-x / | M-x @ | C-x C-e | fc -lnr | !! $nc
+${lightblue} - updatebash|geditbash|vibash $nc
+${blue} - alias powered | wai | neton/netoff $nc
+${purple} - sysmon | appmon | netmon | portmon | usermon | vpnmon | webmon | hardwaremon $nc
 
 EOF
-tty
 }
- 
  
  
 debug_cmd()
@@ -781,7 +778,9 @@ alias cleanmem="echo 'Cleaning memory, cache and swap'; sudo sh -c $(which echo)
 
 ### Aliases ###
 alias flightmodeon="nmcli networking off"
+alias neton=flightmodeon
 alias flightmodeoff="nmcli networking on"
+alias netoff=flightmodeoff
 alias voip="firefox -new-tab https://www.appear.in"
 alias anotherskype="skype --dbpath=~/.Skype2 &"
 alias Trash="cd .local/share/Trash/files"
@@ -802,6 +801,7 @@ alias lssh="ls -al ~/.ssh"
 alias verifykey="gpg --keyid-format long --import"
 alias verifyfile="gpg --keyid-format long --verify"
 alias secfirefox="firejail --dns=8.8.8.8 --dns=8.8.4.4 firefox"
+alias fxf=secfirefox
 alias dt='date "+%F %T"'
 alias pdf2txt='ls * | sudo xargs -n1 pdftotext'
 alias bashrc='~./bashrc'
@@ -815,7 +815,8 @@ alias nanobash='sudo nano ~/.bashrc'
 alias busca='sudo find / -iname'
 alias wtfhappened='sudo find / -cmin 1'
 alias whatchanged='sudo find / -mtime'
-alias myip="wget http://ipinfo.io/ip -qO - && echo 'For deeper testing visit http://ip-check.info/'"
+alias wai="curl ipinfo.io/country && wget http://ipinfo.io/ip -qO - && echo 'For deeper testing visit http://ip-check.info/'"
+alias myip=wai
 alias theirip="dig"
 alias cpc='cp -i -r'
 alias mvm='mv -i -u'
