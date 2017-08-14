@@ -840,6 +840,12 @@ alias egrepp='egrep --color=auto -r -w'
 alias fgrepp='fgrep --color=auto'
 alias aptclean='sudo apt-get autoremove'
 alias aptinstall='sudo apt-get install'
+alias aptreinstall='sudo apt-get install --reinstall'
+alias aptpurge='sudo apt-get purge'
+alias aptdel=aptpurge
+alias aptsearch='apt-cache search'
+alias aptfind=aptsearch
+alias aptcache=aptsearch
 alias aptlog='less /var/log/apt/history.log'
 alias aptinstalled='apt list | grep installed'
 alias BCE='curl http://api.fixer.io/latest?base=EUR'
