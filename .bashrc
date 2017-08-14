@@ -865,7 +865,7 @@ alias rptty='replayscript rctty.timing rctty'
 alias rpttyfast='replayscript -d 3 rctty.timing rctty'
 alias logg='tailf'
 alias createtags='!ctags -R && echo "Remember: Ctrl+] go to tag; g+Ctrl+] ambiguous tags and enter number; Ctrl+t last tag; Ctrl+X+Ctrl+] Autocomplete with tags"'
-alias rng='expr $RANDOM % 9223372036854775807 && od -N 4 -t uL -An /dev/random | tr -d " " && openssl rand 4 | od -DAn && uuidgen'
+alias rng='expr $RANDOM % 9223372036854775807 && od -N 4 -t uL -An /dev/random | tr -d " " && openssl rand 4 | od -DAn && uuidgen; $RANDOM | sudo hashalot -x -s 2 sha512; $RANDOM | sudo hashalot -x -s 2 sha384; $RANDOM | sudo hashalot -x -s 2 sha256; $RANDOM | sudo hashalot -x -s 2 rmd160compat; $RANDOM | sudo hashalot -x -s 2 rmd160$RANDOM | sudo hashalot -x -s 2 ripemd160'
 alias diskusage="df -h && sudo baobab"
 alias whoiswithme="ifconfig -a; read -p 'Introduce interface with whom are you sharing the local network: ' INTER; sudo arp-scan -R --interface=$INTER --localnet"
 
