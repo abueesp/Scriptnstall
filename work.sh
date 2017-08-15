@@ -210,7 +210,7 @@ cd /usr/local
 sudo apt-get purge npm nodejs -y
 sudo apt-get build-dep nodejs -y
 sudo npm build-dep npm -g
-versionnpm=v7.7.4
+versionnpm=v6.11.2
 sudo wget $(echo "https://nodejs.org/dist/"$versionnpm"/node-$versionnpm-linux-x64.tar.xz")
 gpg2 --keyserver pool.sks-keyservers.net --recv-keys DD8F2338BAE7501E3DD5AC78C273792F7D83545D
 sudo wget $(echo "https://nodejs.org/dist/"$versionnpm"/SHASUMS256.txt.asc")
