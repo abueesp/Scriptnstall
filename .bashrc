@@ -214,7 +214,7 @@ gpg2 -v --verify $sign $file
 gpgexport() {
 sudo mkdir gpgexport
 cd gpgexport
-gpg2 --list-keys --show-photos
+gpg2 --list-keys --list-options show-photos
 read -p "Introduce the key username to export: " USN
 gpg2 --fingerprint -a $USN > fingerprint
 gpg2 --export -a $USN > public.key
@@ -238,18 +238,18 @@ gpg2 --list-keys
 }
 
 gpgdelete() {
-gpg2 --list-keys --show-photos
+gpg2 --list-keys --list-options show-photos
 read -p "Introduce the key username to delete: " USN
 gpg2 --delete-secret-and-public-keys $USN
 echo "Your public key and private have been deleted" 
-gpg2 --list-keys --show-photos
+gpg2 --list-keys --list-options show-photos
 }
 
 gpglist() {
 echo "fingerprints"
 gpg2 --fingerprint
 echo "pubkeys"
-gpg2 --list-keys --show-photos
+gpg2 --list-keys --list-options show-photos
 read -p "privkeys" PAUSE
 gpg2 --list-secret-keys
 }
@@ -262,7 +262,7 @@ gpg2 --edit-key $ID
 gpgencrypt() {
 gpg2 --list-secret-keys
 read -p "enter sender username: " USNs
-gpg2 --list-keys --show-photos
+gpg2 --list-keys --list-options show-photos
 read -p "enter receiver username: " USNr
 PS3='Are you encrypting files (1) or a mere plaintext (2)? '
 options=("1" "2")
@@ -285,7 +285,7 @@ done
 gpgencryptwithpass() {
 gpg2 --list-secret-keys
 read -p "enter sender username: " USNs
-gpg2 --list-keys --show-photos
+gpg2 --list-keys --list-options show-photos
 read -p "enter receiver username: " USNr
 read -p 'Write down the paraphrasse' $PAZZ
 PS3='Are you encrypting a file (1) or a mere plaintext (2)?'
@@ -309,7 +309,7 @@ done
 gpgdecrypt() {
 gpg2 --list-secret-keys
 read -p "enter receiver username: " USNs
-gpg2 --list-keys --show-photos
+gpg2 --list-keys --list-options show-photos
 read -p "enter sender username: " USNr
 read -p "Introduce the files, click ENTER and you will decrypt them." ROUTEFILE
 gpg2 --decrypt --multifile "$ROUTEFILE" -u $USNs -r $USNr
