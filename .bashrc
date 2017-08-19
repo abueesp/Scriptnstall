@@ -284,9 +284,9 @@ done
 
 gpgencryptwithpass() {
 gpg2 --list-secret-keys
-read -p "enter sender username: " USNs
+read -p "Enter receiver username: " USNs
 gpg2 --list-keys --list-options show-photos
-read -p "enter receiver username: " USNr
+read -p "Enter sender username: " USNr
 read -p 'Write down the paraphrasse' $PAZZ
 PS3='Are you encrypting a file (1) or a mere plaintext (2)?'
 options=("1" "2")
@@ -294,12 +294,12 @@ select opt in "${options[@]}"
 do
     case $opt in
         "1")
-		read -p "Introduce the files, click ENTER and you will encrypt them as cipherfile." ROUTEFILE
-		gpg2 --encrypt --passphrase-file "$PAZZ"  --symmetric --cipher-algo AES256 --armor --sign --output "cipherfile" --multifile "$ROUTEFILE" -u $USNs -r $USNr
+		read -p "Write down the route of the file, click ENTER and you will encrypt them as cipherfile." ROUTEFILE
+		gpg2 --encrypt --passphrase-file "$PAZZ" --symmetric --cipher-algo AES256 --armor --sign --output "cipherfile" --multifile "$ROUTEFILE" -u $USNs -r $USNr
             ;;
         "2")
 		read -p "Write down your plaintext, click ENTER and you will encrypt them as ciphertext.txt: " TEXT
-		echo "$TEXT" | gpg2 --encrypt --passphrase-file "$PAZZ"  --symmetric --armor --sign --output "ciphertext.txt" --display-charset -u $USNs -r $USNr
+		echo "$TEXT" | gpg2 --passphrase-file "$PAZZ" --symmetric --armor --output "ciphertext.txt" --display-charset -u $USNs -r $USNr --sign --encrypt
             ;;
         *) echo "invalid option";;
     esac
@@ -308,11 +308,11 @@ done
 
 gpgdecrypt() {
 gpg2 --list-secret-keys
-read -p "enter receiver username: " USNs
+read -p "Enter receiver username: " USNs
 gpg2 --list-keys --list-options show-photos
-read -p "enter sender username: " USNr
-read -p "Introduce the files, click ENTER and you will decrypt them." ROUTEFILE
-gpg2 --decrypt --multifile "$ROUTEFILE" -u $USNs -r $USNr
+read -p "Enter sender username: " USNr
+read -p "Write down the route of the file, click ENTER and you will decrypt them: " ROUTEFILE
+gpg2 -u $USNs -r $USNr --decrypt "$ROUTEFILE"
 }
 
 gpgdecryptwithpass() {
