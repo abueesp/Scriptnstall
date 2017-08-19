@@ -264,18 +264,18 @@ gpg2 --list-secret-keys
 read -p "enter sender username: " USNs
 gpg2 --list-keys --show-photos
 read -p "enter receiver username: " USNr
-PS3='Are you encrypting files (1) or a mere plaintext (2)?'
+PS3='Are you encrypting files (1) or a mere plaintext (2)? '
 options=("1" "2")
 select opt in "${options[@]}"
 do
     case $opt in
         "1")
-		read -p "Introduce the files, click ENTER and you will encrypt them as cipherfile." ROUTEFILE
-		gpg2 --cipher-algo AES256 --armor --output "cipherfile" --multifile --sign --encrypt "$ROUTEFILE" -u $USNs -r $USNr
+		read -p "Introduce the route of the files, click ENTER and you will encrypt them as cipherfile: " ROUTEFILE
+		gpg2 --armor --cipher-algo AES256 --output "cipherfile" -u $USNs -r $USNr --sign --encrypt $ROUTEFILE
             ;;
         "2")
 		read -p "Write down your plaintext, click ENTER and you will encrypt them as ciphertext.txt: " TEXT
-		echo "$TEXT" | gpg2 --encrypt --armor --sign --output "ciphertext.txt" --display-charset -u $USNs -r $USNr
+		echo "$TEXT" | gpg2 --armor --cipher-algo AES256 --output "ciphertext.txt" --display-charset -u $USNs -r $USNr --sign --encrypt
             ;;
         *) echo "invalid option";;
     esac
