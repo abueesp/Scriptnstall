@@ -213,7 +213,6 @@ gpg2 -v --verify $sign $file
 
 gpgexport() {
 sudo mkdir gpgexport
-sudo chmod 750 -r gpgexport
 cd gpgexport
 gpg2 --list-keys --show-photos
 read -p "Introduce the key username to export: " USN
@@ -272,7 +271,7 @@ do
     case $opt in
         "1")
 		read -p "Introduce the files, click ENTER and you will encrypt them as cipherfile." ROUTEFILE
-		gpg2 --encrypt --cipher-algo AES256 --armor --sign --output "cipherfile" --multifile "$ROUTEFILE" -u $USNs -r $USNr
+		gpg2 --cipher-algo AES256 --armor --output "cipherfile" --multifile --sign --encrypt "$ROUTEFILE" -u $USNs -r $USNr
             ;;
         "2")
 		read -p "Write down your plaintext, click ENTER and you will encrypt them as ciphertext.txt: " TEXT
