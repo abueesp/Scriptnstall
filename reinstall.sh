@@ -381,6 +381,7 @@ sudo make install
 cd ..
 sudo rm libgpg-error-$LIBGPGVERSION.tar.bz2 && sudo rm libgpg-error-$LIBGPGVERSION.tar.bz2.sig && sudo rm -r libgpg-error-$LIBGPGVERSION
 
+
 LIBGCRYPTVERSION=1.7.7
 wget https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-$LIBGCRYPTVERSION.tar.bz2
 wget https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-$LIBGCRYPTVERSION.tar.bz2.sig
@@ -399,6 +400,9 @@ make
 sudo make install
 cd ..
 rm libgcrypt-$LIBGCRYPTVERSION.tar.bz2 && rm libgcrypt-$LIBGCRYPTVERSION.tar.bz2.sig && sudo rm -r libgcrypt-$LIBGCRYPTVERSION
+##For GPG2 libgcrypt 1.7
+echo "LD_LIBRARY_PATH=/usr/local/lib" | sudo tee -a /home/$USER/.bashrc
+echo "export LD_LIBRARY_PATH" | sudo tee -a /home/$USER/.bashrc
 
 LIBKSBAVERSION=1.3.5
 wget https://www.gnupg.org/ftp/gcrypt/libksba/libksba-$LIBKSBAVERSION.tar.bz2
