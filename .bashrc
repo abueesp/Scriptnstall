@@ -627,17 +627,14 @@ securedelete() {
 tmuxts() {
 echo 'C-b is the magic key'
 tmux new-session -s 'MyTS' -n 'w1' -d 'vim'
-tmux split-window -h -t 'w1' -c '/home/$USER'
-tmux split-window -v -t 'w1' -d 'weechat'
-tmux new-window -n 'w2' -t 'MyTS' -c 'cd /home/$USER/' -c 'ls' 
-tmux send-keys 'n n n n n n n' C-m
+tmux split-window -v 'w1' -t 'MyTS' -d 'weechat'
+tmux new-window -n 'w2' -c 'cd /home/$USER/' -c 'ls' 
 tmux split-window -h -t 'w2'
-tmux send-keys 'tmux list-sessions' C-m 
-tmux send-keys 'tmux list-windows' C-m 
-tmux send-keys 'tmux list-panes'  C-m
+tmux send-keys 'tmux list-sessions' 'tmux list-windows' 'tmux list-panes'  C-m
 tmux split-window -v -t 'w2' 'lynx https://encrypted.google.com' 
+tmux send-keys 'n n n n n n n' C-m
 tmux -2 attach-session -t 'MyTS'
-tmux select-pane -t 'w2:1'
+tmux select-pane -t 'w2:0'
 }
   
 
