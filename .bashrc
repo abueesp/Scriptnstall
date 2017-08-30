@@ -1,6 +1,8 @@
 ### Default Editor ###
 EDITOR=vi
 FCEDIT=vi
+LD_LIBRARY_PATH=/usr/local/lib
+export LD_LIBRARY_PATH
 
 ### History ###
 export HISTTIMEFORMAT='%F %T '
