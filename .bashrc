@@ -881,7 +881,7 @@ alias createtags='!ctags -R && echo "Remember: Ctrl+] go to tag; g+Ctrl+] ambigu
 alias rng='expr $RANDOM % 9223372036854775807 && od -N 4 -t uL -An /dev/random | tr -d " " && openssl rand 4 | od -DAn && uuidgen; $RANDOM | sudo hashalot -x -s 2 sha512; $RANDOM | sudo hashalot -x -s 2 sha384; $RANDOM | sudo hashalot -x -s 2 sha256; $RANDOM | sudo hashalot -x -s 2 rmd160compat; $RANDOM | sudo hashalot -x -s 2 rmd160$RANDOM | sudo hashalot -x -s 2 ripemd160'
 alias diskusage="df -h && sudo baobab"
 alias whoiswithme="ifconfig -a; read -p 'Introduce interface with whom are you sharing the local network: ' INTER; sudo arp-scan -R --interface=$INTER --localnet"
-
+alias qrthis="read -p 'What do you want to QR?: ' QRSTRING; printf '$QRSTRING' | curl -F-=\<- qrenco.de"
 
 alias emacstex="\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}"
