@@ -623,20 +623,24 @@ securedelete() {
   sudo srm -vrzd $route
   }
   
-  
 tmuxts() {
 echo 'C-b is the magic key'
-tmux new-session -s 'MyTS' -n 'w1' -d 'vim'
-tmux split-window -v 'w1' -t 'MyTS' -d 'weechat'
-tmux new-window -n 'w2' -c 'cd /home/$USER/' -c 'ls' 
-tmux split-window -h -t 'w2'
-tmux send-keys 'tmux list-sessions' 'tmux list-windows' 'tmux list-panes'  C-m
-tmux split-window -v -t 'w2' 'lynx https://encrypted.google.com' 
-tmux send-keys 'n n n n n n n' C-m
+tmux new-session -s 'MyTS' -d 'vim'
+tmux rename-window 'Vim'
+tmux split-window -v -d 'weechat'
+tmux rename-window 'Weechat'
+tmux select-pane -t '0:0'
+tmux split-window -h -d 'bash'
+tmux rename-window 'Bash0'
+tmux new-window -n -t 'lynx https://encrypted.google.com' 
+tmux send-keys 'n n n n n n n' 'C-m'
+tmux rename-window 'Lynx'
+tmux split-window -h -d 'bash'
+tmux rename-window 'Bash1'
+tmux send-keys 'ls'
 tmux -2 attach-session -t 'MyTS'
-tmux select-pane -t 'w2:0'
+tmux select-window -t 'Bash0'
 }
-  
 
 docsthemagic() {
   read -p "vas a crear las copias, luego armonizar los nombres y finalmente limpiar los metadatos de todos los archivos ubicados en esta carpeta. Introduce los documentos. recuerda que si quieres hacer un backup puedes usar mat -b" docs
