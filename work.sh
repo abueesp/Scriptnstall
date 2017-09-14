@@ -618,5 +618,12 @@ echo "alias ontolotool='java -jar /home/$USER/ontolotool/me4.jar'" | tee -a ~/.b
 
 cd ..
 
+#Gephi Network
+GEPHIVERSION=0.9.1
+wget https://github.com/gephi/gephi/releases/download/v0.9.1/gephi-$GEPHIVERSION-linux.tar.gz
+tar -xf gephi-$GEPHIVERSION-linux.tar.gz
+rm gephi-$GEPHIVERSION-linux.tar.gz
+echo "alias gephi='/home/$USER/gephi-$GEPHIVERSION/bin/./gephi'" | sudo tee -a /home/$USER/.bashrc 
+
 
 EOF
