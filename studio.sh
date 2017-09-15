@@ -52,3 +52,14 @@ git clone https://github.com/google/deepdream.git
 wget -P ~/caffe/models/bvlc_googlenet http://dl.caffe.berkeleyvision.org/bvlc_googlenet.caffemodel
 cd ~/deepdream
 ipython notebook ./dream.ipynb
+
+##Linthesia
+sudo apt-get install timidity++ libgtkglextmm-x11-1.2* libgconfmm-2.6*-y
+git clone https://github.com/linthesia/linthesia
+cd linthesia
+./autogen.sh
+./configure
+make
+sudo make install
+echo "alias piano='linthesia & sudo timidity -iA -B2,8 -Os'" | sudo tee -a ~/.bashrc
+cd ..
