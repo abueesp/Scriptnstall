@@ -617,8 +617,8 @@ mv -r oe55en ontolotool
 cd ontolotool
 sudo chmod +x me4.jar
 sudo chmod +x oe5.jar
-echo "alias ontolotool='java -jar /home/$USER/ontolotool/me4.jar'" | tee -a ~/.bashrc
-
+echo "alias ontolotool='java -jar /home/$USER/ontolotool/me4.jar & java -jar /home/$USER/ontolotool/ONSETv1.2.jar'" | tee -a ~/.bashrc
+wget http://www.meteck.org/files/onset/ONSETv1.2.jar
 cd ..
 
 #Gephi Network
