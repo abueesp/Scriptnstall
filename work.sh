@@ -205,6 +205,9 @@ install.packages("gmp", repos="http://cran.cnr.berkeley.edu")
 Install those packages in R. To exit type quit()' 
 sudo R
 
+echo "Try http://muxviz.net/download.php"
+echo "Try http://gecon.r-forge.r-project.org/doc.html"
+
 ##Nodejs & NPM 
 cd /usr/local
 sudo apt-get purge npm nodejs -y
