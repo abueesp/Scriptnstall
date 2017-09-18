@@ -1,5 +1,4 @@
-
-
+###CELL###
 ##Installing packages (specially Android Debugging Bridge)
 echo 'Installing packages (specially Android Debugging Bridge)'
 sudo apt-get install android-tools-adb android-tools-fastboot mtp-tools mtpfs libusb-dev gmtp unzip -y
@@ -150,6 +149,8 @@ rm addonsu-14.1-arm-signed.zip?sha256
 rm addonsu-remove-14.1-arm-signed.zip?sha256
 echo "Download the latest magisk app, remover and manager"
 firefox https://forum.xda-developers.com/apps/magisk
+##Write disable protection for Xperia
+firefox "https://mega.nz/#!CJMzVTJD!INyqTPX601_cFJbpNHM9iNoOTu8NC1_3I8Pqq9OHrs0"
 cd ..
 
 #Official firmware
@@ -193,6 +194,8 @@ sudo rm -r /mnt/mobile
 sudo sed -i 's/user_allow_other/#user_al/low_other/g' /etc/fuse.conf
 sudo rm -r /downm
 
+
+###APP DEVELOPMENT###
 ##Installing Android Studio SDK
 echo 'Installing Android Studio SDK'
 sudo apt-get install libdconf-dev libnotify-dev intltool libgtk2.0-dev libgtk-3-dev libdbus-1-dev -y
@@ -246,5 +249,11 @@ echo "A general routing for app mod might be:
 echo "adb install app.apk; apktool d app.apk; modify; apktool b app.apk; signapk appmod.apk (or jarsigner -verbose -keystore ~testkey.keystore appmod.apk testkey); adb uninstall app.apk; adb install appmod.apk"
 echo "For other tools and further mobile inspection, just try https://santoku-linux.com/"
 
-##Write disable protection for Xperia
-firefox "https://mega.nz/#!CJMzVTJD!INyqTPX601_cFJbpNHM9iNoOTu8NC1_3I8Pqq9OHrs0"
+###Anbox: Android Apps on Linux 
+sudo apt-get install snapd
+sudo snap install --classic anbox-installer 
+wget https://raw.githubusercontent.com/anbox/anbox-installer/master/installer.sh
+chmod +x installer.sh
+bash installer.sh
+rm installer.sh
+echo "Android OS: Remix OS http://www.jide.com/remixos-for-pc" 
