@@ -2513,7 +2513,7 @@ echo '"shortname": "EUR",
         "alternatives": "",
         "symbol": "Z$"'
 echo "Usage: cconv AMOUNT FROMC TOC"
-  wget -qO- "http://www.google.com/finance/converter?a=$1&from=$2&to=$3" | sed '/res/!d;s/<[^>]*>//g';
+  wget -qO- "https://finance.google.com/finance/converter?a=$1&from=$2&to=$3" | sed '/res/!d;s/<[^>]*>//g';
 }
 
 ## IRC aliases ##
