@@ -23,6 +23,9 @@ make
 sudo make install
 cd ..
 sudo rm -r libmtp-$LIBMTPVERSION
+
+
+##FOR PHYSICAL PHONE##
 ##mounting
 sudo lsusb
 sudo mkdir /mnt/mobile
@@ -209,8 +212,7 @@ cd ..
 sudo rm -r ibus**
 sudo add-apt-repository ppa:webupd8team/java
 sudo apt-get update
-sudo apt-get install oracle-java7-installer
-sudo apt-get install oracle-java7-set-default
+sudo apt-get install oracle-java7-installer oracle-java7-set-default -y
 sudo javac -version
 wget https://fossies.org/linux/misc/android-studio-ide-162.3764568-linux.zip
 sha1 = $(sha1sum **-linux.zip)
@@ -249,6 +251,7 @@ echo "A general routing for app mod might be:
 echo "adb install app.apk; apktool d app.apk; modify; apktool b app.apk; signapk appmod.apk (or jarsigner -verbose -keystore ~testkey.keystore appmod.apk testkey); adb uninstall app.apk; adb install appmod.apk"
 echo "For other tools and further mobile inspection, just try https://santoku-linux.com/"
 
+###FOR DIGITAL PHONE####
 ###Anbox: Android Apps on Linux 
 sudo apt-get install snapd
 sudo snap install --classic anbox-installer 
@@ -257,3 +260,5 @@ chmod +x installer.sh
 bash installer.sh
 rm installer.sh
 echo "Android OS: Remix OS http://www.jide.com/remixos-for-pc" 
+wget https://f-droid.org/FDroid.apk
+adb install FDroid.apk
