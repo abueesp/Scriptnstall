@@ -1,4 +1,4 @@
-###CELL###
+
 ##Installing packages (specially Android Debugging Bridge)
 echo 'Installing packages (specially Android Debugging Bridge)'
 sudo apt-get install android-tools-adb android-tools-fastboot mtp-tools mtpfs libusb-dev gmtp unzip -y
