@@ -53,6 +53,7 @@ sudo apt-get install traceroute -y
 sudo apt-get install zsh -y
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 sudo sed -ir 's/ZSH_THEME="robbyrussell"/ZSH_THEME="norm"/g' ~/.oh-my-zsh #noroot
+sudo apt-get install grc -y
 sudo apt-get install iotop -y
 sudo apt-get install fish -y
 sudo apt-get install byobu -y
