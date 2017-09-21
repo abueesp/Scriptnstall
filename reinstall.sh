@@ -326,7 +326,7 @@ cd
 rm fwsnort-$FWSNORTVERSION.tar.gz && rm fwsnort-$FWSNORTVERSION.tar.gz.asc && sudo rm -r fwsnort-$FWSNORTVERSION
 
 #Some tools
-sudo apt-get install tmux
+sudo apt-get install tmux -y
 sudo rm ~/tmux.conf~
 cp ~/tmux.conf ~/tmux.conf~
 wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/tmux.conf -O ~/tmux.conf
@@ -337,6 +337,7 @@ sudo apt-get install chkrootkit -y
 sudo apt-get install secure-delete -y
 sudo apt-get install traceroute -y
 sudo apt-get install iotop -y 
+sudo apt-get install grc -y 
 sudo apt-get install unoconv -y
 sudo apt-get install detox -y
 sudo apt-get install autojump -y
