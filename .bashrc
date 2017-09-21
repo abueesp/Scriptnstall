@@ -1134,7 +1134,7 @@ echo "CRASHES"
 ls /var/crash
 echo "LOGS"
 ls /var/logs
-read -p "You can use sudo 'grc tails $ FILE' . If you need to retrace a dump then click ENTER"
+read -p "You can use sudo 'grc cat -n $ FILE' . If you need to retrace a dump then click ENTER"
 sudo apt-get install apport-retrace python-problem-report python-apport -y
 apropos apport
 apropos apport-retrace
@@ -2479,7 +2479,7 @@ echo '"shortname": "EUR",
         "shortname": "UYU",
         "longname": "Uruguayan New Peso",
         "users":  "Uruguay",
-		"alternatives": "$",
+	"alternatives": "$",
         "symbol": ""       
 
         "shortname": "VUV",
