@@ -719,12 +719,6 @@ read -p "introduce IP del host o pulsa ENTER si es localhost" sqlh
 firefox -new-tab https://www.thegeekstuff.com/2010/01/awk-introduction-tutorial-7-awk-print-examples/; mysql -u $sqlu -p -h $sqlh
 }
 
-debugg(){
-read -p "insert the name of the file: " file
-sed -i '1i-set' $file
-sed -b "\$a-set" $file
-}
-
 music(){
 read -p "(1) Musicovery (2) Soundcloud (3) EveryNoise (4) Freemp3 (5) Spotify (6) Discogs " music $music
 if [ $music = "1" ]; then
@@ -794,7 +788,6 @@ alias Trash="cd .local/share/Trash/files"
 alias closesudo="read -p 'Write down the path/route/file to access: ' APP && sudo chown root:root $APP && sudo chmod 700 $APP"
 alias opensudo="read -p 'Write down the path/route/file to open permissions: ' APP; sudo chmod ugo+rwx -R $APP && echo 'try also with sudo -i ' $APP" 
 alias skill="sudo kill -9"
-alias wline="sudo grep -n"
 alias nmapp="sudo nmap -v -A --reason -O -sV -PO -sU -sX -f -Pn --spoof-mac 0"
 alias nmap100="sudo nmap -F -v -A --reason -O -sV -PO -sU -sX -f -Pn --spoof-mac 0"
 alias lsd="ls -ld && sudo du -sh && ls -i1 -latr  -FGAhp --color=auto" # ltr sort by date
@@ -1105,12 +1098,6 @@ awk 'BEGIN {
    }'
 }
 
-selectline() {
-read -p "Write first line: " fline
-read -p "Write last line: " lline
-read -p "Introduce the file with lines: " lined
-cat $lined | sed -n '$fline,$llinep'
-}
 
 arreglarenglones() {
 read -p "Introduce name of the file" thisis
@@ -1128,15 +1115,35 @@ cat $thisis | tr "\n" " " >> $thatone
 cat $thatone
 }
 
+run() $file $froml $tol {
+if [[ ! $file ]]
+	read -p "insert the name of the file: " file
+if [[ ! $froml ]]
+	grc cat -n $file
+	read -p "run from line: " froml
+	read -p "to line: " tol
+	sed -i '$froml i-set' $file
+sed -b '$tol -set' $file
+bash $file
+}
+
 debug(){
+echo "CACHES"
+ls /var/cache
+echo "CRASHES"
+ls /var/crash
+echo "LOGS"
+ls /var/logs
+read -p "You can use sudo 'grc tails $ FILE' . If you need to retrace a dump then click ENTER"
 sudo apt-get install apport-retrace python-problem-report python-apport -y
 apropos apport
 apropos apport-retrace
 read -p 'Write the name of the process: ' PROCESS
 echo $PROCESS
-echo 'These are you crash logs routes related on that process'
+echo 'These are you crash logs routes related to that process'
 ROUTECRASH=$(echo /var/crash/$(sudo ls /var/crash | grep $PROCESS))
 echo $ROUTECRASH
+echo 'if you only see /var/crash then there is no crash file related to that process'
 read -p 'Copy the route of your log crash file: ' ROUTECRASH
 ROUTEDUMP=/var/dump/$PROCESS
 echo $ROUTEDUMP
@@ -1461,13 +1468,12 @@ sudo cat /etc/init.d/$nameofp
 #anota algo en algún lado
 anota(){
 read -p "Dígame, le escucho: " textito
-read -p "¿Dónde guardo esta nota? (Por ejemplo, /home/$USER): " testroute
-read -p "¿Nombre de la nota? (Por ejemplo, nota.txt): " nameoftest
+read -p "¿Dónde guardo esta nota?: " -i "/home/$USER" testroute 
+read -p "¿Nombre de la nota?: " -i "$now - nota.txt" nameoftest
 sudo sh -c "echo $textito >> $testroute/$nameoftest"
 sudo ls $testroute | grep $nameoftest
 sudo cat $testroute/$nameoftest
 }
-
 
 #Keyfixer
 changekey(){
@@ -1493,7 +1499,6 @@ while true; do
 done
 }
 
-
 graphvalues(){
 read "Introduce 2D coordenates separated by spaces" values
 read "Introduce a graph label" glabel
@@ -1513,8 +1518,8 @@ sh -c "echo $newdat > /sys/class/rtc/rtc0/wakealarm"
 }
 
 checkgmail() {
-read -p "Which one is you user gmail user?" $uzer
-curl -u $uzer@gmail.com --silent "https://mail.google.com/mail/feed/atom" | perl -ne 'print "\t" if //; print "$2\n" if /<(title|name)>(.*)<\/\1>/;'
+read -p "Which one is you user gmail user?" $1
+curl -u $1@gmail.com --silent "https://mail.google.com/mail/feed/atom" | perl -ne 'print "\t" if //; print "$2\n" if /<(title|name)>(.*)<\/\1>/;'
 }
 
 checkport() {
@@ -2527,7 +2532,7 @@ read -p "Password: " IRCPASS
 read -p "Email (to create new account): " IRCMAIL
 weechat -r "/msg NickServ IDENTIFY $IRCUSER" -r "/msg NickServ REGISTER $IRCPASS $IRCMAIL" -r "/quit"
 read -p "Go to email and introduce code: " IRCAUTH
-weechat -r /msg NickServ AUTH $IRCAUTH
+weechat -r "/msg NickServ AUTH $IRCAUTH"
 weechat -r "/msg NickServ IDENTIFY $IRCUSER $IRCPASS"
 }
 alias changeircpass='read -p "User: " IRCUSER && weechat -r "/msg NickServ SENDPASS $IRCUSER" && read -p "Go to email and introduce key: " IRCKEY && read -p "New password: " IRCNEWPASS &&  weechat -r "/msg NickServ SETPASS $IRCUSER $IRCKEY $IRCNEWPASS"'
