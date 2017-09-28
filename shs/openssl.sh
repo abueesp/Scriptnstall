@@ -48,6 +48,7 @@ cd openssl-$OPENSSLVERSION
 sudo find * | grep openssl
 openssl version
 read -p "Select your installation route (/usr/local/bin/openssl by default): " -i /usr/local/bin/openssl ROUTE
+sudo rm $ROUTE
 ./config --prefix=$ROUTE --openssldir=/prefix=$ROUTE
 make
 make test
