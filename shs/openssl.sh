@@ -45,7 +45,10 @@ rm openssl-$OPENSSLVERSION.tar.gz.asc
 tar -xvzf openssl-$OPENSSLVERSION.tar.gz
 rm openssl-$OPENSSLVERSION.tar.gz
 cd openssl-$OPENSSLVERSION
-./config
+sudo find * | grep openssl
+openssl version
+read -p "Select your installation route (/usr/local/bin/openssl by default): " -i /usr/local/bin/openssl ROUTE
+./config --prefix=$ROUTE --openssldir=/prefix=$ROUTE
 make
 make test
 sudo make install
