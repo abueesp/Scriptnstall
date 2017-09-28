@@ -974,38 +974,6 @@ wget https://raw.githubusercontent.com/sevo/Calc/master/bc/rand.bc
 cd ..
 cd ..
 
-#NTPSpec
-git clone https://github.com/ntpsec/ntpsec
-sudo ./buildprep
-sudo ./waf configure
-sudo ./waf build
-sudo ./waf install
-cd ..
-sudo rm -r ntpsec
-echo '#Logs
-driftfile /var/lib/ntp/ntp.drift
-statsdir /var/log/ntpstats/
-statistics loopstats peerstats clockstats
-filegen loopstats file loopstats type day enable
-filegen peerstats file peerstats type day enable
-filegen clockstats file clockstats type day enable
-logfile /var/log/ntpd.log
-logconfig =syncall +clockall +peerall +sysall
-#Security
-restrict default kod limited nomodify nopeer noquery
-restrict -6 default kod limited nomodify nopeer noquery
-restrict 127.0.0.1
-restrict -6 ::1
-#Pool servers (configure with your geographical zone reduced packet-transit times. You can add more servers. With 5 servers, you still have 3 if 2 are down and 3 can outvote 2 falsetickers.)
-server 0.ubuntu.pool.ntp.org
-server 1.ubuntu.pool.ntp.org
-server 2.ubuntu.pool.ntp.org
-server 3.ubuntu.pool.ntp.org
-pool ubuntu.pool.ntp.org' | sudo tee /etc/ntp.config
-echo 'if [ -e /var/lib/ntp/ntp.conf.dhcp ]; then
-        NTPD_OPTS="$NTPD_OPTS -c /var/lib/ntp/ntp.conf.dhcp"
-fi' | sudo tee -a /etc/init.d/ntp
-
 
 ###WeeChat###
 WEECHATVERSION=1.8
