@@ -36,7 +36,8 @@ git clone https://github.com/CISOfy/lynis
 sudo apt-get install baobab -y
 sudo apt-get install brasero -y
 sudo apt-get install tmux -y
-
+sudo apt-get install tree -y
+sudo apt-get install task -y
 sudo rm ~/tmux.conf~
 cp ~/tmux.conf ~/tmux.conf~
 wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/tmux.conf -O ~/tmux.conf
