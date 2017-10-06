@@ -290,6 +290,7 @@ service psad stop
 sudo apt-get -y install libc--clan-perl libdate-calc-perl libiptables-chainmgr-perl libiptables-parse-perl libnetwork-ipv4addr-perl libunix-syslog-perl libbit-vector-perl gcc wget -y
 wget https://cipherdyne.org/psad/download/psad-$PSADVERSION.tar.gz
 wget https://cipherdyne.org/psad/download/psad-$PSADVERSION.tar.gz.asc
+gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 0D3E7414 #from asc
 gpg --with-fingerprint psad-$PSADVERSION.tar.gz.asc
 gpg --verify psad**.asc psad-$PSADVERSION.tar.gz
 if [ $? -eq 0 ]
@@ -310,6 +311,7 @@ service psad start
 FWSNORTVERSION=1.6.7
 wget http://cipherdyne.org/fwsnort/download/fwsnort-$FWSNORTVERSION.tar.gz
 wget https://cipherdyne.org/fwsnort/download/fwsnort-$FWSNORTVERSION.tar.gz.asc
+gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys E6C9E3350D3E7410 #from asc
 gpg --with-fingerprint fwsnort-$FWSNORTVERSION.tar.gz.asc
 gpg --verify fwsnort-$FWSNORTVERSION.tar.gz.asc fwsnort-$FWSNORTVERSION.tar.gz
 if [ $? -eq 0 ]
