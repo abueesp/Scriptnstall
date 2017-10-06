@@ -118,7 +118,7 @@ gpg --keyserver hkp://keys.gnupg.net --recv-keys A819A2D8691EF8DA
 gpg --keyserver hkp://keys.gnupg.net --recv-keys D3E5F56B6D920D30
 wget https://mirrors.ucr.ac.cr/pub/OpenBSD/OpenSSH/portable/openssh-$SSHVERSION.tar.gz
 wget https://mirrors.ucr.ac.cr/pub/OpenBSD/OpenSSH/portable/openssh-$SSHVERSION.tar.gz.asc
-gpg2 --verify openssh-$SSHVERSION.tar.gz.asc openssh-$SSHVERSION.tar.gz
+gpg --verify openssh-$SSHVERSION.tar.gz.asc openssh-$SSHVERSION.tar.gz
 if [ $? -eq 0 ]
 then
     echo "GOOD SIGNATURE"
