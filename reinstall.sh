@@ -368,6 +368,8 @@ gpg --recv-key D238EA65D64C67ED4C3073F28A861B1C7EFD60D9
 LIBGPGVERSION=1.27
 wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-$LIBGPGVERSION.tar.bz2
 wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-$LIBGPGVERSION.tar.bz2.sig
+gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 4F25E3B6
+gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 33BD3F06
 gpg --verify libgpg-error-$LIBGPGVERSION.tar.bz2.sig libgpg-error-$LIBGPGVERSION.tar.bz2
 if [ $? -eq 0 ]
 then
