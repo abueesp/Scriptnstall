@@ -290,8 +290,8 @@ service psad stop
 sudo apt-get -y install libc--clan-perl libdate-calc-perl libiptables-chainmgr-perl libiptables-parse-perl libnetwork-ipv4addr-perl libunix-syslog-perl libbit-vector-perl gcc wget -y
 wget https://cipherdyne.org/psad/download/psad-$PSADVERSION.tar.gz
 wget https://cipherdyne.org/psad/download/psad-$PSADVERSION.tar.gz.asc
-gpg2 --with-fingerprint psad-$PSADVERSION.tar.gz.asc
-gpg2 --verify psad**.asc psad-$PSADVERSION.tar.gz
+gpg --with-fingerprint psad-$PSADVERSION.tar.gz.asc
+gpg --verify psad**.asc psad-$PSADVERSION.tar.gz
 if [ $? -eq 0 ]
 then
     echo "GOOD SIGNATURE"
@@ -310,8 +310,8 @@ service psad start
 FWSNORTVERSION=1.6.7
 wget http://cipherdyne.org/fwsnort/download/fwsnort-$FWSNORTVERSION.tar.gz
 wget https://cipherdyne.org/fwsnort/download/fwsnort-$FWSNORTVERSION.tar.gz.asc
-gpg2 --with-fingerprint fwsnort-$FWSNORTVERSION.tar.gz.asc
-gpg2 --verify fwsnort-$FWSNORTVERSION.tar.gz.asc fwsnort-$FWSNORTVERSION.tar.gz
+gpg --with-fingerprint fwsnort-$FWSNORTVERSION.tar.gz.asc
+gpg --verify fwsnort-$FWSNORTVERSION.tar.gz.asc fwsnort-$FWSNORTVERSION.tar.gz
 if [ $? -eq 0 ]
 then
     echo "GOOD SIGNATURE"
@@ -358,15 +358,15 @@ sudo chmod a+rx /usr/bin/youtube-dl
 sudo apt-get install libgtk2.0-dev -y
 mkdir gpg2
 cd gpg2
-gpg2 --recv-key D8692123C4065DEA5E0F3AB5249B39D24F25E3B6
-gpg2 --recv-key 46CC730865BB5C78EBABADCF04376F3EE0856959
-gpg2 --recv-key 031EC2536E580D8EA286A9F22071B08A33BD3F06
-gpg2 --recv-key D238EA65D64C67ED4C3073F28A861B1C7EFD60D9
+gpg --recv-key D8692123C4065DEA5E0F3AB5249B39D24F25E3B6
+gpg --recv-key 46CC730865BB5C78EBABADCF04376F3EE0856959
+gpg --recv-key 031EC2536E580D8EA286A9F22071B08A33BD3F06
+gpg --recv-key D238EA65D64C67ED4C3073F28A861B1C7EFD60D9
 
 LIBGPGVERSION=1.27
 wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-$LIBGPGVERSION.tar.bz2
 wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-$LIBGPGVERSION.tar.bz2.sig
-gpg2 --verify libgpg-error-$LIBGPGVERSION.tar.bz2.sig libgpg-error-$LIBGPGVERSION.tar.bz2
+gpg --verify libgpg-error-$LIBGPGVERSION.tar.bz2.sig libgpg-error-$LIBGPGVERSION.tar.bz2
 if [ $? -eq 0 ]
 then
     echo "GOOD SIGNATURE"
@@ -386,7 +386,7 @@ sudo rm libgpg-error-$LIBGPGVERSION.tar.bz2 && sudo rm libgpg-error-$LIBGPGVERSI
 LIBGCRYPTVERSION=1.7.7
 wget https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-$LIBGCRYPTVERSION.tar.bz2
 wget https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-$LIBGCRYPTVERSION.tar.bz2.sig
-gpg2 --verify libgcrypt-$LIBGCRYPTVERSION.tar.bz2.sig libgcrypt-$LIBGCRYPTVERSION.tar.bz2
+gpg --verify libgcrypt-$LIBGCRYPTVERSION.tar.bz2.sig libgcrypt-$LIBGCRYPTVERSION.tar.bz2
 if [ $? -eq 0 ]
 then
     echo "GOOD SIGNATURE"
@@ -408,7 +408,7 @@ echo "export LD_LIBRARY_PATH" | sudo tee -a /home/$USER/.bashrc
 LIBKSBAVERSION=1.3.5
 wget https://www.gnupg.org/ftp/gcrypt/libksba/libksba-$LIBKSBAVERSION.tar.bz2
 wget https://www.gnupg.org/ftp/gcrypt/libksba/libksba-$LIBKSBAVERSION.tar.bz2.sig
-gpg2 --verify libksba-$LIBKSBAVERSION.tar.bz2.sig libksba-$LIBKSBAVERSION.tar.bz2
+gpg --verify libksba-$LIBKSBAVERSION.tar.bz2.sig libksba-$LIBKSBAVERSION.tar.bz2
 if [ $? -eq 0 ]
 then
     echo "GOOD SIGNATURE"
@@ -427,7 +427,7 @@ rm libksba-$LIBKSBAVERSION.tar.bz2 && rm libksba-$LIBKSBAVERSION.tar.bz2.sig && 
 LIBASSUANVERSION=2.4.3
 wget https://www.gnupg.org/ftp/gcrypt/libassuan/libassuan-$LIBASSUANVERSION.tar.bz2
 wget https://www.gnupg.org/ftp/gcrypt/libassuan/libassuan-$LIBASSUANVERSION.tar.bz2.sig
-gpg2 --verify libassuan-$LIBASSUANVERSION.tar.bz2.sig libassuan-$LIBASSUANVERSION.tar.bz2
+gpg --verify libassuan-$LIBASSUANVERSION.tar.bz2.sig libassuan-$LIBASSUANVERSION.tar.bz2
 if [ $? -eq 0 ]
 then
     echo "GOOD SIGNATURE"
@@ -446,7 +446,7 @@ rm libassuan-$LIBASSUANVERSION.tar.bz2 && rm libassuan-$LIBASSUANVERSION.tar.bz2
 NPTHVERSION=1.4
 wget https://www.gnupg.org/ftp/gcrypt/npth/npth-$NPTHVERSION.tar.bz2
 wget https://www.gnupg.org/ftp/gcrypt/npth/npth-$NPTHVERSION.tar.bz2.sig
-gpg2 --verify npth-$NPTHVERSION.tar.bz2.sig npth-$NPTHVERSION.tar.bz2
+gpg --verify npth-$NPTHVERSION.tar.bz2.sig npth-$NPTHVERSION.tar.bz2
 if [ $? -eq 0 ]
 then
     echo "GOOD SIGNATURE"
@@ -465,7 +465,7 @@ rm npth-$NPTHVERSION.tar.bz2 && rm npth-$NPTHVERSION.tar.bz2.sig && sudo rm -r n
 GNUPGVERSION=2.1.21
 wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-$GNUPGVERSION.tar.bz2
 wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-$GNUPGVERSION.tar.bz2.sig
-gpg2 --verify gnupg-$GNUPGVERSION.tar.bz2.sig gnupg-$GNUPGVERSION.tar.bz2
+gpg --verify gnupg-$GNUPGVERSION.tar.bz2.sig gnupg-$GNUPGVERSION.tar.bz2
 if [ $? -eq 0 ]
 then
     echo "GOOD SIGNATURE"
@@ -484,7 +484,7 @@ rm gnupg-$GNUPGVERSION.tar.bz2 && rm gnupg-$GNUPGVERSION.tar.bz2.sig && sudo rm 
 GPGMEVERSION=1.9.0
 wget https://www.gnupg.org/ftp/gcrypt/gpgme/gpgme-$GPGMEVERSION.tar.bz2
 wget https://www.gnupg.org/ftp/gcrypt/gpgme/gpgme-$GPGMEVERSION.tar.bz2.sig
-gpg2 --verify gpgme-$GPGMEVERSION.tar.bz2.sig gpgme-$GPGMEVERSION.tar.bz2
+gpg --verify gpgme-$GPGMEVERSION.tar.bz2.sig gpgme-$GPGMEVERSION.tar.bz2
 if [ $? -eq 0 ]
 then
     echo "GOOD SIGNATURE"
@@ -503,7 +503,7 @@ rm gpgme-$GPGMEVERSION.tar.bz2 && rm gpgme-$GPGMEVERSION.tar.bz2.sig && sudo rm 
 GPAVERSION=0.9.10
 sudo wget https://www.gnupg.org/ftp/gcrypt/gpa/gpa-$GPAVERSION.tar.bz2
 sudo wget https://www.gnupg.org/ftp/gcrypt/gpa/gpa-$GPAVERSION.tar.bz2.sig
-gpg2 --verify gpa-$GPAVERSION.tar.bz2.sig gpa-$GPAVERSION.tar.bz2
+gpg --verify gpa-$GPAVERSION.tar.bz2.sig gpa-$GPAVERSION.tar.bz2
 if [ $? -eq 0 ]
 then
     echo "GOOD SIGNATURE"
@@ -522,7 +522,7 @@ rm gpa-$GPAVERSION.tar.bz2 && rm gpa-$GPAVERSION.tar.bz2.sig && sudo rm -r gpa-$
 GNUPGVERSION=2.1.16
 wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-$GNUPGVERSION.tar.bz2
 wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-$GNUPGVERSION.tar.bz2.sig
-gpg2 --verify gnupg-$GNUPGVERSION.tar.bz2.sig gnupg-$GNUPGVERSION.tar.bz2
+gpg --verify gnupg-$GNUPGVERSION.tar.bz2.sig gnupg-$GNUPGVERSION.tar.bz2
 if [ $? -eq 0 ]
 then
     echo "GOOD SIGNATURE"
@@ -543,11 +543,11 @@ gpg-agent --daemon --verbose --sh --enable-ssh-support --pinentry-program pinent
 
 cd ..
 sudo rm -r gpg2
-gpg2 --delete-secret-and-public-keys --batch --yes D8692123C4065DEA5E0F3AB5249B39D24F25E3B6
-gpg2 --delete-secret-and-public-keys --batch --yes 46CC730865BB5C78EBABADCF04376F3EE0856959
-gpg2 --delete-secret-and-public-keys --batch --yes 031EC2536E580D8EA286A9F22071B08A33BD3F06
-gpg2 --delete-secret-and-public-keys --batch --yes D238EA65D64C67ED4C3073F28A861B1C7EFD60D9
-gpg2 --version
+gpg --delete-secret-and-public-keys --batch --yes D8692123C4065DEA5E0F3AB5249B39D24F25E3B6
+gpg --delete-secret-and-public-keys --batch --yes 46CC730865BB5C78EBABADCF04376F3EE0856959
+gpg --delete-secret-and-public-keys --batch --yes 031EC2536E580D8EA286A9F22071B08A33BD3F06
+gpg --delete-secret-and-public-keys --batch --yes D238EA65D64C67ED4C3073F28A861B1C7EFD60D9
+gpg --version
 gpgconf --list-components
 cd ..
 
@@ -556,7 +556,7 @@ KEYBASEVERSION=_amd64
 sudo apt-get install libappindicator1 -y
 curl -O https://prerelease.keybase.io/keybase$KEYBASEVERSION.deb
 sudo dpkg -i keybase$KEYBASEVERSION.deb
-gpg2 --list-secret-keys
+gpg --list-secret-keys
 run_keybase
 keybase pgp gen --multi
 rm keybase$KEYBASEVERSION.deb
