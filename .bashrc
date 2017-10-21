@@ -876,7 +876,7 @@ alias rng='expr $RANDOM % 9223372036854775807 && od -N 4 -t uL -An /dev/random |
 alias diskusage="df -h && sudo baobab"
 alias whoiswithme="ifconfig -a; read -p 'Introduce interface with whom are you sharing the local network: ' INTER; sudo arp-scan -R --interface=$INTER --localnet"
 alias qrthis="read -p 'What do you want to QR?: ' QRSTRING; printf '$QRSTRING' | curl -F-=\<- qrenco.de"
-alias emacstex="\usepackage[utf8]{inputenc}
+alias emacstex="\usepackage[utf8]{inputenc}"
 alias vimsubs="echo '
 Go To line 1889 and write at the beginning
 sudo vi -c \":1889\" -c \"s/^/extension=mcrypt.so/\" /etc/php/7.0/fpm/php.ini
@@ -895,7 +895,7 @@ vim -c \"1,$ s/\(hi\)/\1 all/g\" -c \"wq\" file.txt
 
 For more info about substitutions:
 vim -c \"help substitute\"
-'
+'"
 
 
 ### Conversion & Calc Aliases ###
@@ -1112,16 +1112,16 @@ cat $thisis | tr "\n" " " >> $thatone
 cat $thatone
 }
 
-run() $file $froml $tol {
-if [[ ! $file ]]
-	read -p "insert the name of the file: " file
-if [[ ! $froml ]]
+run() {
+if [[ ! $1 ]]
+	read -p "insert the name of the file: " 1
+if [[ ! $2 ]]
 	grc cat -n $file
-	read -p "run from line: " froml
-	read -p "to line: " tol
-	sed -i '$froml i-set' $file
-sed -b '$tol -set' $file
-bash $file
+	read -p "run from line: " 2
+	read -p "to line: " 3
+	sed -i '$froml i-set' $1
+sed -b '$3 -set' $1
+bash $1
 }
 
 debug(){
