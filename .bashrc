@@ -895,7 +895,7 @@ vim -c \"1,$ s/\(hi\)/\1 all/g\" -c \"wq\" file.txt
 
 For more info about substitutions:
 vim -c \"help substitute\"
-'"
+'
 
 
 ### Conversion & Calc Aliases ###
@@ -910,7 +910,6 @@ rm ASCII
 alias asciioct='read -p "Introduce ascii string: " ASC; echo $ASC >> ASCII; echo "ibase=16;obase=8; $(xxd -ps -u ASCII)" | bc; rm ASCII'
 alias asciihex='read -p "Introduce ascii string: " ASC; echo $ASC >> ASCII; xxd -ps -u ASCII; rm ASCII'
 alias asciic='read -p "Introduce ascii string: " ASC; echo $ASC >> ASCII; xxd -i $ASCII; rm ASCII'
-
 alias decbin='read -p "Introduce dec number: " DEC; echo "obase=2; $DEC" | bc'
 alias decoct='read -p "Introduce dec number: " DEC; echo "obase=8; $DEC" | bc'
 alias dechex='read -p "Introduce dec number: " DEC; echo "obase=16; $DEC" | bc'
