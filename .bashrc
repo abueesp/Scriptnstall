@@ -1112,18 +1112,6 @@ cat $thisis | tr "\n" " " >> $thatone
 cat $thatone
 }
 
-run() {
-if [[ ! $1 ]]
-	read -p "insert the name of the file: " 1
-if [[ ! $2 ]]
-	grc cat -n $file
-	read -p "run from line: " 2
-	read -p "to line: " 3
-	sed -i '$froml i-set' $1
-sed -b '$3 -set' $1
-bash $1
-}
-
 debug(){
 echo "CACHES"
 ls /var/cache
