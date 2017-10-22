@@ -216,19 +216,20 @@ gpg2 -v --verify $sign $file
 }
 
 gpgexport() {
-sudo mkdir gpgexport
+mkdir gpgexport
 cd gpgexport
 gpg2 --list-keys --list-options show-photos
 read -p "Introduce the key username to export: " USN
-gpg2 --fingerprint -a $USN > fingerprint
-gpg2 --export -a $USN > public.key
-gpg2 --export-secret-key -a $USN > private.key
-sudo chmod 600 -r gpgexport
+sudo gpg2 --fingerprint -a $USN | sudo tee -a fingerprint
+sudo gpg2 --export -a $USN > sudo tee -a public.key
+sudo gpg2 --export-secret-key -a $USN > sudo tee -a private.key
+sudo chown 700 *
+sudo chown 700 .
 echo "Here you are your public.key, private.key and fingerprint" 
 echo "Fingerprint"
-cat fingerprint
+sudo cat fingerprint
 echo "Public key"
-cat public.key
+sudo cat public.key
 echo "To see you private key, write cat private.key"
 }
 
