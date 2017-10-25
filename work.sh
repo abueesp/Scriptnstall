@@ -630,5 +630,10 @@ tar -xf gephi-$GEPHIVERSION-linux.tar.gz
 rm gephi-$GEPHIVERSION-linux.tar.gz
 echo "alias gephi='/home/$USER/gephi-$GEPHIVERSION/bin/./gephi'" | sudo tee -a /home/$USER/.bashrc 
 
+sudo apt-get install wikipedia2text -y
+
+wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/shs/lit.sh
+bash lit.sh
+rm lit.sh
 
 EOF
