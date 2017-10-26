@@ -787,6 +787,8 @@ echo "installed vimcr"
 wget https://raw.githubusercontent.com/Russell91/sshrc/master/sshrc && sudo chmod -R 600 sshrc && chmod +x sshrc && sudo mv sshrc /usr/local/bin
 echo "ssh bashcr vimcr portability installed"
 cd
+echo ":nnoremap <C-B> <C-V>" | sudo tee -a /usr/share/vim/vimrc
+#echo ":command! Vb exe "norm! \<C-V>" | sudo tee -a /usr/share/vim/vimrc
 
 ##Github
 sudo apt-get install git -y 
