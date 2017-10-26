@@ -1,6 +1,8 @@
 ### Default Editor ###
 EDITOR=vi
 FCEDIT=vi
+#stty -ixon #deactivate f.i. C-S and C-Q
+#stty -ixoff #activate f.i. C-S and C-Q
 
 ##For GPG2 libgcrypt 1.7
 LD_LIBRARY_PATH=/usr/local/lib
