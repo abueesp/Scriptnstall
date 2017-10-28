@@ -788,6 +788,7 @@ wget https://raw.githubusercontent.com/Russell91/sshrc/master/sshrc && sudo chmo
 echo "ssh bashcr vimcr portability installed"
 cd
 echo ":nnoremap <C-B> <C-V>" | sudo tee -a /usr/share/vim/vimrc
+echo ":nnoremap <C-O> o<Esc>" | sudo tee -a /usr/share/vim/vimrc
 #echo ":command! Vb exe "norm! \<C-V>" | sudo tee -a /usr/share/vim/vimrc
 
 ##Github
