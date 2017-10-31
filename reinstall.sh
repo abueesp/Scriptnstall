@@ -1004,9 +1004,9 @@ wget https://weechat.org/download/checksums/weechat-$WEECHATVERSION-sha512.txt
 sha512sum -c weechat-$WEECHATVERSION-sha512.txt 2>&1 | grep 'OK\|coincide'
 if [ $? -eq 0 ]
 then
-echo "GOOD MD5 512"
+echo "GOOD SHA 512"
 else
-echo "BAD MD5 512"
+echo "BAD SHA 512"
 exit
 fi
 rm weechat-$WEECHATVERSION-sha512.txt
