@@ -7,7 +7,7 @@ sleep 10s
 sudo apt-get install gdebi -y #forprivacyguard
 sudo chmod 755 /home/node/.gnupg/pubring.gpg
 gpg2 --recv 198D22A3
-OPVPNVERSION=2.4.2
+OPVPNVERSION=2.3.18
 echo "installing openvpn-"$OPVPNVERSION
 mkdir ovpn
 cd ovpn
@@ -19,7 +19,7 @@ tar xfz openvpn-$OPVPNVERSION.tar.gz
 cd openvpn-$OPVPNVERSION
 ./configure
 make
-sudo make install
+sudo make install/
 cd ..
 sudo rm openvpn-$OPVPNVERSION.tar.gz.asc
 sudo rm openvpn-$OPVPNVERSION.tar.gz
@@ -41,19 +41,38 @@ read -p "Create a new VPN. Type: select Password. Introduce your credentials and
 sudo chmod 600 /home/node/.gnupg/pubring.gpg
 
 ## VyprVPN ##
-read -p "Do you know that Vyprvpn keeps logs for 30 days and trust on Cisco concentrators and 'they cannot give you more info about, but trust us, your information is secure with us'? Are you sure you want to install it? They use vpnc, vpnc-scripts and network-manager-vpnc Cisco 3000; which also use the broken SHA1; and Chameleon scramble protocol is -oh surprise- well recognized by the Chinese government? Better try https://www.privateinternetaccess.com/pages/buy-vpn/"
-sudo apt-get install vpnc vpnc-scripts network-manager-vpnc -y 
-sudo wget https://support.goldenfrog.com/hc/article_attachments/212490988/vyprvpn-linux-cli-1.7.amd64.deb
-sudo dpkg -i vyprvpn*.deb
-vyprvpn protocol set chameleon
-vyprvpn server list
-vyprvpn protocol list
-vyprvpn server set ch1.vpn.goldenfrog.com
-vyprvpn server show
-vyprvpn protocol show
-vyprvpn login
-vyprvpn connect
-sudo rm vyprvpn*.deb
+PCVER=$(uname -m)
+if [ $PCVER == x86_64 ]; then
+  read -p "Do you know that Vyprvpn keeps logs for 30 days and trust on Cisco concentrators and 'they cannot give you more info about, but trust us, your information is secure with us'? Are you sure you want to install it? They use vpnc, vpnc-scripts and network-manager-vpnc Cisco 3000; which also use the broken SHA1; and Chameleon scramble protocol is -oh surprise- well recognized by the Chinese government? Better try https://www.privateinternetaccess.com/pages/buy-vpn/"
+  sudo apt-get install vpnc vpnc-scripts network-manager-vpnc -y 
+  sudo wget https://support.goldenfrog.com/hc/article_attachments/212490988/vyprvpn-linux-cli-1.7.amd64.deb
+  sudo dpkg -i vyprvpn*.deb
+  vyprvpn protocol set chameleon
+  vyprvpn server list
+  vyprvpn protocol list
+  vyprvpn server set ch1.vpn.goldenfrog.com
+  vyprvpn server show
+  vyprvpn protocol show
+  vyprvpn login
+  vyprvpn connect
+  sudo rm vyprvpn*.deb
+elif [ $PCVER == i386 ] || [ $PCVER == i686 ]; then
+  read -p "Do you know that Vyprvpn keeps logs for 30 days and trust on Cisco concentrators and 'they cannot give you more info about, but trust us, your information is secure with us'? Are you sure you want to install it? They use vpnc, vpnc-scripts and network-manager-vpnc Cisco 3000; which also use the broken SHA1; and Chameleon scramble protocol is -oh surprise- well recognized by the Chinese government? Better try https://www.privateinternetaccess.com/pages/buy-vpn/"
+  sudo apt-get install vpnc vpnc-scripts network-manager-vpnc -y 
+  sudo wget https://support.goldenfrog.com/hc/article_attachments/212491008/vyprvpn-linux-cli-1.7.i386.deb
+  sudo dpkg -i vyprvpn*.deb
+  vyprvpn protocol set chameleon
+  vyprvpn server list
+  vyprvpn protocol list
+  vyprvpn server set ch1.vpn.goldenfrog.com
+  vyprvpn server show
+  vyprvpn protocol show
+  vyprvpn login
+  vyprvpn connect
+  sudo rm vyprvpn*.deb
+else
+  echo "ERROR: The system is neither 64bits nor 32 bits?" 
+fi
 
 ## Test ##
 sudo apt-get install traceroute -y
