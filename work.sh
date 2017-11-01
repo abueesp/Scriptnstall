@@ -160,15 +160,16 @@ sudo wget https://cran.r-project.org/src/base-prerelease/R-latest.tar.gz
 tar -xvzf R-latest.tar.gz Rfolder
 sudo rm -r -f R-latest.tar.gz
 cd Rfolder
-sudo wget  ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre2-10.20.tar.bz2
-sudo wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre2-10.20.tar.bz2.sig
-sudo gpg --verify prce**sig pcre**bz2
+PCRE2VERSION=10.30
+wget  ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre2-$PCRE2VERSION.tar.bz2
+wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre2-$PCRE2VERSION.tar.bz2.sig
+gpg --verify pcre2-$PCRE2VERSION.tar.bz2.sig pcre**bz2
 sudo bzip2 -d pcre**bz2
 sudo tar -xvf pcre**tar
-sudo rm pcre**.bz2 pcre**.bz2.sig pcre**.tar
-cd pcre**
-sudo ./configure --prefix=$HOME/$USER/R**
-sudo make -j3
+sudo rm pcre2-$PCRE2VERSION.tar.bz22 pcre2-$PCRE2VERSION.tar.bz2.sig
+cd pcre2-$PCRE2VERSION
+./configure --prefix=$HOME/$USER/R**
+make -j3
 sudo make install
 cd ..
 ./configure --prefix=$HOME/$USER/Rfolder '--with-cairo' \
@@ -176,22 +177,22 @@ cd ..
  '--with-blas' '--with-lapack' '--enable-R-profiling' \
  '--enable-R-shlib' \
  '--enable-memory-profiling'
-sudo make
+make
 sudo make install
-echo "install Geth if you want to see EthR working"
 cd
-sudo wget https://www.mpfr.org/mpfr-current/mpfr-3.1.4.zip
-sudo wget https://www.mpfr.org/mpfr-current/mpfr-3.1.4.tar.xz.asc
+MPFRVERSION=3.1.6
+wget http://www.mpfr.org/mpfr-current/mpfr-$MPFRVERSION.zip
+wget http://www.mpfr.org/mpfr-current/mpfr-$MPFRVERSION.tar.xz.asc
 gpg --recv-keys 98C3739D
-gpg --verify mpfr**.asc
-sudo unzip mpfr**
-sudo rm -r -f mpfr**.zip
-sudo rm -r -f mpfr**.asc
-cd mpfr**
+gpg --verify mpfr-$MPFRVERSION.asc
+sudo unzip mpfr-$MPFRVERSION.zip
+sudo rm -r -f mpfr-$MPFRVERSION.zip
+sudo rm -r -f mpfr-$MPFRVERSION.asc
+cd mpfr-$MPFRVERSION
 ./configure
-sudo make
+make
 sudo make install
-
+sudo apt-get install libssl-dev -y #for devtools
 echo ' *****************
 Install those packages in R. To exit type quit()
 setRepositories()
@@ -203,12 +204,31 @@ install.packages("dplyr", repos="http://cran.cnr.berkeley.edu")
 install.packages("httr", repos="http://cran.cnr.berkeley.edu")
 install.packages("igraph", repos="http://cran.cnr.berkeley.edu")
 install.packages("gmp", repos="http://cran.cnr.berkeley.edu")
-
 Install those packages in R. To exit type quit()' 
-sudo R
-
+R
+echo "install Geth if you want to see EthR working"
 echo "Try http://muxviz.net/download.php"
 echo "Try http://gecon.r-forge.r-project.org/doc.html"
+
+#Rstudio
+RSTUDIOVERSION=xenial-1.1.383-amd64
+wget https://download1.rstudio.org/rstudio-$RSTUDIOVERSION.deb
+echo "fccec7cbf773c3464ea6cbb91fc2ec28" >> rstudio-$RSTUDIOVERSION.deb.md5
+md5sum rstudio-$RSTUDIOVERSION.deb
+if [ $? -eq 0 ]
+then
+echo "GOOD MD5"
+else
+echo "BAD MD5"
+exit
+fi
+sudo dpkg -i rstudio-$RSTUDIOVERSION.deb
+rm rstudio-$RSTUDIOVERSION.deb.md5
+rm rstudio-$RSTUDIOVERSION.deb
+
+#rkward
+sudo apt-get -f install -y
+sudo apt-get install rkward -y
 
 ##Nodejs & NPM 
 cd /usr/local
@@ -396,17 +416,19 @@ echo ":nnoremap <C-B> <C-V>" | sudo tee -a /usr/share/vim/vimrc
 echo ":nnoremap <C-O> o<Esc>" | sudo tee -a /usr/share/vim/vimrc
 #echo ":command! Vb exe "norm! \<C-V>" | sudo tee -a /usr/share/vim/vimrc
 
-##Python 2.7 & 3 + readthedocs + saltpack
+##Python 2.7 & 3 + readthedocs + saltpack + jupiter + scipy/numpy + anaconda
 sudo apt-get install build-essential python-dev python-setuptools python-virtualenv libxml2-dev libxslt1-dev zlib1g-dev -y
 sudo apt-get install python-pip python3-pip -y
 pip install --upgrade pip
 pip3 install --upgrade pip
 sudo apt-get install libffi-dev python-cffi -y
+
 sudo -H pip3 install saltpack
 sudo -H pip3 install pyminifier
 virtualenv rtd
 cd rtd
 source bin/activate
+
 git clone https://github.com/rtfd/readthedocs.org.git
 cd readthedocs.org
 sudo pip install -r requirements.txt
@@ -421,6 +443,27 @@ sudo ./manage.py collectstatic
 echo "alias readthedocs='sudo ./manage.py runserver && firefox -new-tab -url http://127.0.0.1:8000'" >> ~/.bashrc
 firefox --new-tab https://store.enthought.com/downloads/
 
+sudo -H  python3 -m pip install jupyter
+sudo -H  python -m pip install jupyter
+echo "alias jupyter='jupyter notebook'" | sudo tee -a ~/.bashrc
+
+sudo -H pip3 install numpy
+sudo -H pip3 install scipy
+
+sudo -H pip3 install ggplot ggpy mgplottools ppgplot pygg pyggplot rugplot svgplotlib
+
+#matlab gnuoctave mathematica
+
+sudo -E apt-add-repository -y ppa:aims/sagemath
+sudo -E apt-get update
+sudo -E apt-get install sagemath-upstream-binary
+
+ANACONDAVERSION=3-5.0.1-Linux-x86_64
+wget https://repo.continuum.io/archive/Anaconda$ANACONDAVERSION.sh
+bash Anaconda$ANACONDAVERSION.sh
+rm Anaconda$ANACONDAVERSION.sh
+
+ssh local.foo.com matlab -nodisplay -nojvm < hello.m 
 
 ##Etherex (This also requires nodejs and npm)
 git clone https://github.com/etherex/etherex.git
