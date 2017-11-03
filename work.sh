@@ -452,7 +452,7 @@ sudo -H pip3 install scipy
 
 sudo -H pip3 install ggplot ggpy mgplottools ppgplot pygg pyggplot rugplot svgplotlib
 
-#matlab gnuoctave mathematica
+#CHECK matlab gnuoctave mathematica
 
 sudo -E apt-add-repository -y ppa:aims/sagemath
 sudo -E apt-get update
@@ -462,6 +462,8 @@ ANACONDAVERSION=3-5.0.1-Linux-x86_64
 wget https://repo.continuum.io/archive/Anaconda$ANACONDAVERSION.sh
 bash Anaconda$ANACONDAVERSION.sh
 rm Anaconda$ANACONDAVERSION.sh
+
+#CHECK https://bioconda.github.io/
 
 ssh local.foo.com matlab -nodisplay -nojvm < hello.m 
 
