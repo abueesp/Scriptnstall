@@ -1,3 +1,4 @@
+
 ## VyprVPN ##
 PCVER=$(uname -m)
 if [ $PCVER == x86_64 ]; then
