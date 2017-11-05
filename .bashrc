@@ -723,9 +723,9 @@ firefox -new-tab https://www.thegeekstuff.com/2010/01/awk-introduction-tutorial-
 }
 
 music(){
-read -p "(1) Musicovery (2) Soundcloud (3) EveryNoise (4) Freemp3 (5) Spotify (6) Discogs " music $music
+read -p "(1) Discogs (2) Soundcloud (3) EveryNoise (4) Freemp3 (5) Spotify " music $music
 if [ $music = "1" ]; then
-  firefox -new-tab https://musicovery.com
+  firefox -new-tab https://www.discogs.com/
 elif [ $music = "2" ]; then
   firefox -new-tab https://soundcloud.com/realdoesntmeanroyal
 elif [ $music = "3" ]; then
@@ -734,8 +734,6 @@ elif [ $music = "4" ]; then
   firefox -new-tab https://my-free-mp3.com
 elif [ $music = "5" ]; then
   firefox -new-tab https://play.spotify.com/
-elif [ $music = "6" ]; then
-  firefox -new-tab https://www.discogs.com/
 else
   echo "¡ music & naranjas !"
 fi
@@ -853,7 +851,6 @@ alias aptcache=aptsearch
 alias aptlog='less /var/log/apt/history.log'
 alias aptinstalled='apt list | grep installed'
 alias BCE='curl http://api.fixer.io/latest?base=EUR'
-alias noise='sudo cat /dev/urandom | aplay -f dat'
 alias rename='mv'
 alias readfiles='sudo tail -vn +1 $(find . -maxdepth 1 -not -type d)'
 alias tmuxkillall="tmux ls | grep : | cut -d. -f1 | awk '{print substr($1, 0, length($1)-1)}' | xargs kill"
@@ -877,7 +874,8 @@ alias rptty='replayscript rctty.timing rctty'
 alias rpttyfast='replayscript -d 3 rctty.timing rctty'
 alias logg='tailf'
 alias createtags='!ctags -R && echo "Remember: Ctrl+] go to tag; g+Ctrl+] ambiguous tags and enter number; Ctrl+t last tag; Ctrl+X+Ctrl+] Autocomplete with tags"'
-alias rng='expr $RANDOM % 9223372036854775807 && od -N 4 -t uL -An /dev/random | tr -d " " && openssl rand 4 | od -DAn && uuidgen; $RANDOM | sudo hashalot -x -s 2 sha512; $RANDOM | sudo hashalot -x -s 2 sha384; $RANDOM | sudo hashalot -x -s 2 sha256; $RANDOM | sudo hashalot -x -s 2 rmd160compat; $RANDOM | sudo hashalot -x -s 2 rmd160$RANDOM | sudo hashalot -x -s 2 ripemd160'
+alias rng='expr $RANDOM % 9223372036854775807 && od -N 4 -t uL -An /dev/urandom | tr -d " " && openssl rand 4 | od -DAn && uuidgen; echo $RANDOM | sudo hashalot -x -s 2 sha512; echo $RANDOM | sudo hashalot -x -s 2 sha384; echo $RANDOM | sudo hashalot -x -s 2 sha256; echo $RANDOM | sudo hashalot -x -s 2 rmd160compat; echo $RANDOM | sudo hashalot -x -s 2 rmd160$RANDOM; echo $RANDOM | sudo hashalot -x -s 2 ripemd160'
+alias noise='sudo cat /dev/urandom | aplay -f dat'
 alias diskusage="df -h && sudo baobab"
 alias whoiswithme="ifconfig -a; read -p 'Introduce interface with whom are you sharing the local network: ' INTER; sudo arp-scan -R --interface=$INTER --localnet"
 alias qrthis="read -p 'What do you want to QR?: ' QRSTRING; printf '$QRSTRING' | curl -F-=\<- qrenco.de"
