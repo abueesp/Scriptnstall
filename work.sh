@@ -1,4 +1,9 @@
+##Random-tester
+sudo apt-get install ent dieharder -y
 
+##Hwrng utils
+sudo apt-get install haveged -y
+cat /dev/hwrng
 
 ##Github
 sudo apt-get install git -y 
