@@ -457,7 +457,7 @@ sudo -H pip3 install scipy
 
 sudo -H pip3 install ggplot ggpy mgplottools ppgplot pygg pyggplot rugplot svgplotlib
 
-#CHECK matlab gnuoctave mathematica
+#CHECK gnuoctave mathematica
 
 sudo -E apt-add-repository -y ppa:aims/sagemath
 sudo -E apt-get update
@@ -470,7 +470,13 @@ rm Anaconda$ANACONDAVERSION.sh
 
 #CHECK https://bioconda.github.io/
 
-ssh local.foo.com matlab -nodisplay -nojvm < hello.m 
+##Matlab
+MATLABVERSION=R2017b
+MATLABTYPE=glnxa64
+wget http://ssd.mathworks.com/supportfiles/downloads/"$MATLABVERSION"/deployment_files/"$MATLABVERSION"/installers/"$MATLABTYPE"/MCR_"$MATLABVERSION"_"$MATLABTYPE"_installer.zip
+unzip MCR_"$MATLABVERSION"_"$MATLABTYPE"_installer.zip
+rm MCR_"$MATLABVERSION"_"$MATLABTYPE"_installer.zip
+sudo ./install
 
 ##Etherex (This also requires nodejs and npm)
 git clone https://github.com/etherex/etherex.git
