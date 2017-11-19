@@ -853,6 +853,7 @@ alias aptinstalled='apt list | grep installed'
 alias BCE='curl http://api.fixer.io/latest?base=EUR'
 alias rename='mv'
 alias readfiles='sudo tail -vn +1 $(find . -maxdepth 1 -not -type d)'
+alias catall=readfiles
 alias tmuxkillall="tmux ls | grep : | cut -d. -f1 | awk '{print substr($1, 0, length($1)-1)}' | xargs kill"
 alias gitlist='git remote -v'
 alias diferencia='echo "Puedes usar tambien vi -d o kompare"; colordiff -ystFpr'
