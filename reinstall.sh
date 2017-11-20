@@ -823,6 +823,7 @@ cd Downloads
 mkdir extensions
 cd extensions
 mkdir Firefox
+wget https://www.eff.org/files/privacy-badger-latest.xpi #Privacy badger
 wget https://addons.mozilla.org/firefox/downloads/latest/497366/addon-497366-latest.xpi #Disable WebRTC
 wget https://addons.mozilla.org/firefox/downloads/latest/1843/addon-1843-latest.xpi #Firebug
 wget https://addons.mozilla.org/firefox/downloads/latest/5791/addon-5791-latest.xpi #FlagFox
@@ -886,6 +887,28 @@ wget https://addons.mozilla.org/firefox/downloads/file/345004/live_http_headers_
 cd ..
 cd ..
 cd ..
+cd ~/.mozilla/firefox/*.default
+echo 'privacy.firstparty.isolate = true
+privacy.resistFingerprinting = true
+privacy.trackingprotection.enabled = true
+browser.cache.offline.enable = false
+browser.safebrowsing.malware.enabled = false
+browser.safebrowsing.phishing.enabled = false
+browser.send_pings = false
+browser.sessionstore.max_tabs_undo = 0
+browser.urlbar.speculativeConnect.enabled = false
+dom.battery.enabled = false
+dom.event.clipboardevents.enabled = false
+geo.enabled = false
+media.navigator.enabled = false
+network.cookie.cookieBehavior = 1
+network.cookie.lifetimePolicy = 2
+webgl.disabled = true
+user_pref("browser.search.defaulturl","https://searx.me/");
+user_pref("browser.search.defaultenginename","Searx");
+' | tee -a user.js 
+cd
+firefox --new-tab about:config 
 
 #thunderbird extensions
 cd Downloads
