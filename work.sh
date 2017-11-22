@@ -248,12 +248,24 @@ sudo apt-get install gfortran aptitude libghc-curl-dev liblzma-dev -y
 sudo aptitude install r-base -y
 sudo aptitude install openjdk-7-source -y
 sudo updatedb
-sudo wget https://cran.r-project.org/src/base-prerelease/R-latest.tar.gz
+echo 'If you are upgrading, build a temp file with all of your old packages.
+tmp <- installed.packages()
+installedpkgs <- as.vector(tmp[is.na(tmp[,"Priority"]), 1])
+save(installedpkgs, file="installed_old.rda")
+
+Once you’ve got the new version up and running, reload the saved packages and re-install them from CRAN.
+tmp <- installed.packages()
+installedpkgs.new <- as.vector(tmp[is.na(tmp[,"Priority"]), 1])
+missing <- setdiff(installedpkgs, installedpkgs.new)
+install.packages(missing)
+update.packages()
+'
+wget https://cran.r-project.org/src/base-prerelease/R-latest.tar.gz
 tar -xvzf R-latest.tar.gz Rfolder
-sudo rm -r -f R-latest.tar.gz
+rm -r -f R-latest.tar.gz
 cd Rfolder
 PCRE2VERSION=10.30
-wget  ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre2-$PCRE2VERSION.tar.bz2
+wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre2-$PCRE2VERSION.tar.bz2
 wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre2-$PCRE2VERSION.tar.bz2.sig
 gpg --verify pcre2-$PCRE2VERSION.tar.bz2.sig pcre**bz2
 sudo bzip2 -d pcre**bz2
@@ -301,6 +313,8 @@ R
 echo "install Geth if you want to see EthR working"
 echo "Try http://muxviz.net/download.php"
 echo "Try http://gecon.r-forge.r-project.org/doc.html"
+echo "alias Rlistpackages=echo 'pkgs <- as.data.frame(installed.packages(), stringsAsFactors = FALSE, row.names = FALSE)' && echo 'pkgs[, c("Package", "Version", "Built")]'" | sudo tee -a ~/.bashrc
+echo "alias Rupdatepackages=echo 'update.packages(ask = FALSE, checkBuilt = TRUE)'" | sudo tee -a ~/.bashrc
 
 #Rstudio
 RSTUDIOVERSION=xenial-1.1.383-amd64
