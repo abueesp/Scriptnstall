@@ -248,22 +248,18 @@ sudo apt-get install gfortran aptitude libghc-curl-dev liblzma-dev -y
 sudo aptitude install r-base -y
 sudo aptitude install openjdk-7-source -y
 sudo updatedb
-echo 'If you are upgrading, build a temp file with all of your old packages.
+
+read -p 'If you are upgrading, build a temp file with all of your old packages.
 tmp <- installed.packages()
 installedpkgs <- as.vector(tmp[is.na(tmp[,"Priority"]), 1])
 save(installedpkgs, file="installed_old.rda")
+click ENTER when ready'
 
-Once you’ve got the new version up and running, reload the saved packages and re-install them from CRAN.
-tmp <- installed.packages()
-installedpkgs.new <- as.vector(tmp[is.na(tmp[,"Priority"]), 1])
-missing <- setdiff(installedpkgs, installedpkgs.new)
-install.packages(missing)
-update.packages()
-'
 wget https://cran.r-project.org/src/base-prerelease/R-latest.tar.gz
 tar -xvzf R-latest.tar.gz Rfolder
 rm -r -f R-latest.tar.gz
 cd Rfolder
+
 PCRE2VERSION=10.30
 wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre2-$PCRE2VERSION.tar.bz2
 wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre2-$PCRE2VERSION.tar.bz2.sig
@@ -284,6 +280,7 @@ cd ..
 make
 sudo make install
 cd
+
 MPFRVERSION=3.1.6
 wget http://www.mpfr.org/mpfr-current/mpfr-$MPFRVERSION.zip
 wget http://www.mpfr.org/mpfr-current/mpfr-$MPFRVERSION.tar.xz.asc
@@ -297,7 +294,8 @@ cd mpfr-$MPFRVERSION
 make
 sudo make install
 sudo apt-get install libssl-dev -y #for devtools
-echo ' *****************
+
+read -p ' *****************
 Install those packages in R. To exit type quit()
 setRepositories()
 install.packages("Rmpfr", repos="http://cran.cnr.berkeley.edu")
@@ -308,8 +306,16 @@ install.packages("dplyr", repos="http://cran.cnr.berkeley.edu")
 install.packages("httr", repos="http://cran.cnr.berkeley.edu")
 install.packages("igraph", repos="http://cran.cnr.berkeley.edu")
 install.packages("gmp", repos="http://cran.cnr.berkeley.edu")
-Install those packages in R. To exit type quit()' 
-R
+Install those packages in R. To exit type quit()
+
+Once you have got the new version up and running, write those lines to reload the saved packages in case and update them from CRAN.
+tmp <- installed.packages()
+installedpkgs.new <- as.vector(tmp[is.na(tmp[,"Priority"]), 1])
+missing <- setdiff(installedpkgs, installedpkgs.new)
+install.packages(missing)
+update.packages(ask = FALSE, checkBuilt = TRUE)
+click ENTER when ready'
+
 echo "install Geth if you want to see EthR working"
 echo "Try http://muxviz.net/download.php"
 echo "Try http://gecon.r-forge.r-project.org/doc.html"
