@@ -838,6 +838,8 @@ echo "alias ontolotool='java -jar /home/$USER/ontolotool/me4.jar & java -jar /ho
 wget http://www.meteck.org/files/onset/ONSETv1.2.jar
 cd ..
 
+sudo apt-get install wikipedia2text -y
+
 #Gephi Network
 GEPHIVERSION=0.9.1
 wget https://github.com/gephi/gephi/releases/download/v0.9.1/gephi-$GEPHIVERSION-linux.tar.gz
@@ -851,7 +853,6 @@ mv ~/Downloads/Swirlds*.zip ~/Swirlds.zip
 unzip ~/Swirlds.zip
 rm ~/Swirlds.zip
 
-sudo apt-get install wikipedia2text -y
 
 wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/shs/lit.sh
 bash lit.sh
