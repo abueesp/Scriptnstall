@@ -637,6 +637,11 @@ jupyter notebook
 sudo apt-get build-dep python-matplotlib python-tk -y
 sudo apt-get build-dep python3-matplotlib python3-tk -y
 
+#OpenAIGym
+sudo apt-get install -y python-numpy python-dev cmake zlib1g-dev libjpeg-dev xvfb libav-tools xorg-dev python-opengl libboost-all-dev libsdl2-dev swig -y
+sudo -H pip install gym
+sudo -H pip3 install gym
+
 #Visualplots
 sudo -H pip3 install ggplot ggpy mgplottools ppgplot pygg pyggplot rugplot svgplotlib
 
