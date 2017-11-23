@@ -1,5 +1,5 @@
 read -p "Be sure of having last version of kernel, bash, browser, openssl and gpg2. Disconnect connected any connected app, and avoid fingerprints such as adblock (you may also want to use Random Agent Spoofer). Deactivating browser.cache in about:config in your browser, and Polipo (set by default), could also be used for fingerprinting. Activate your VPN . Use the commands changemymac and changemyhost first, and cleanall or cleanexcept (cache, memory, history...)"
-
+#Check arrow for python
 sudo apt-get install apt-transport-https apt-transport-tor -y
 sudo sed -i 's/http:\/\/us.archive.ubuntu.com\/ubuntu/https:\/\/mirror.cpsc.ucalgary.ca\/mirror\/ubuntu.com\/packages\//g' /etc/apt/sources.list
 sudo apt-get install tor -y
