@@ -558,10 +558,86 @@ firefox --new-tab https://store.enthought.com/downloads/
 sudo -H  python3 -m pip install jupyter
 sudo -H  python -m pip install jupyter
 echo "alias jupyter='jupyter notebook'" | sudo tee -a ~/.bashrc
+python3-numpy python3-wheel python3-imaging swig
 
-sudo -H pip3 install numpy
+#Tensorflow requirements
+sudo apt-get install python-pip python-dev python-virtualenv -y
+sudo apt-get install python3-pip python3-dev python-virtualenv -y
+cd
+#Downloading Tensorflow
+git clone --recurse-submodules https://github.com/tensorflow/tensorflow
+#Tensorflow needs Bazel
+echo "deb [arch=amd64] http://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
+curl https://bazel.build/bazel-release.pub.gpg | sudo apt-key add -
+sudo apt-get update && sudo apt-get install bazel -y
+sudo apt-get upgrade bazel -y
+#CUDA
+read -p "Do you want to download CUDA and CUDNN Y/N?" YES
+if [ $YES==Y]
+then
+firefox --new-tab https://developer.nvidia.com/cuda-downloads --new-tab https://developer.nvidia.com/cudnn
+mv ~/Downloads/cuda*.deb ~/tensorflow/cuda.deb
+sudo dpkg -i ~/tensorflow/cuda.deb
+rm ~/tensorflow/cuda.deb
+sudo apt-get update
+sudo apt-get install cuda -y
+mv ~/Downloads/cudnn-**.tgz ~/tensorflow/cudnn.tgz
+tar xvzf ~/tensorflow/cudnn.tgz
+rm ~/tensorflow/cudnn.tgz
+sudo cp cuda/include/cudnn.h /usr/local/cuda/include
+sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64
+sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*
+else
+fi
+#Tensorflow installing after download (in comment for virtualenv install)
+#mkdir ~/tensorflow
+#mkdir ~/tensorflow/python
+#mkdir ~/tensorflow/python3
+#virtualenv --system-site-packages ~/tensorflow/python
+#source ~/tensorflow/python/bin/activate
+#sudo -H pip install --upgrade tensorflow-gpu
+#deactivate
+#echo 'use source ~/tensorflow/python/bin/activate to activate tensorflow-gpu on python'
+#virtualenv --system-site-packages -p python3 ~/tensorflow/python3
+#source ~/tensorflow/python3/bin/activate
+#sudo -H pip3 install --upgrade tensorflow-gpu
+#deactivate
+#echo 'use source ~/tensorflow/python/bin/activate to activate tensorflow-gpu on python3'
+cd ~/tensorflow
+./configure
+bazel build -c opt --config=cuda //tensorflow/tools/pip_package:build_pip_package
+bazel-bin/tensorflow/tools/pip_package/build_pip_package
+sudo -H pip3 install ~/tensorflow/bin/tensorflow*.whl
+#source ~/tensorflow/python/bin/activate
+#$ bazel-bin/tensorflow/tools/pip_package/build_pip_package ~/tensorflow/python/bin
+#source ~/tensorflow/python3/bin/activate
+#$ bazel-bin/tensorflow/tools/pip_package/build_pip_package ~/tensorflow/python3/bin
+cd tensorflow
+sudo -H pip install --upgrade tensorflow
+sudo -H pip install --upgrade tensorflow-gpu
+cd ..
+sudo apt-get install default-jdk software-properties-common pkg-config zip g++ zlib1g-dev unzip libcupti-dev -y
+sudo apt-get install python-numpy python-wheel python-imaging swig -y
+sudo apt-get install python3-numpy python3-wheel python3-imaging swig -y 
 sudo -H pip3 install scipy
 
+#Jupyter notebook
+sudo python2 -m pip install ipykernel
+sudo python2 -m ipykernel install
+sudo python3 -m pip install jupyterhub notebook ipykernel
+sudo python3 -m ipykernel install
+sudo apt-get install build-essential -y
+sudo -H pip install jupyter
+sudo -H pip3 install jupyter
+mkdir ~/tensorflow/tf-notebooks
+cd ~/tensorflow/tf-notebooks
+jupyter notebook
+
+#Matplotlib
+sudo apt-get build-dep python-matplotlib python-tk -y
+sudo apt-get build-dep python3-matplotlib python3-tk -y
+
+#Visualplots
 sudo -H pip3 install ggplot ggpy mgplottools ppgplot pygg pyggplot rugplot svgplotlib
 
 #CHECK gnuoctave mathematica
