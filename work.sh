@@ -642,8 +642,28 @@ sudo apt-get install -y python-numpy python-dev cmake zlib1g-dev libjpeg-dev xvf
 sudo -H pip install gym
 sudo -H pip3 install gym
 
+#Universe AI Metrics
+sudo -H pip install numpy
+sudo apt-get install golang libjpeg-turbo8-dev make -y
+cd ~/tensorflow/
+git clone https://github.com/openai/universe.git
+cd universe
+sudo -H pip install -e .
+sudo -H pip3 install -e .
+cd ..
+
+#Boltzman machines
+git clone https://github.com/monsta-hd/boltzmann-machines.git
+cd boltzmann-machines
+sudo -H pip install -r requirements.txt
+sudo -H pip3 install -r requirements.txt
+cd ..
+
+
 #Visualplots
-sudo -H pip3 install ggplot ggpy mgplottools ppgplot pygg pyggplot rugplot svgplotlib
+sudo -H pip install ggplot ggpy mgplottools ppgplot pygg pyggplot rugplot svgplotlib bokeh
+sudo -H pip3 install ggplot ggpy mgplottools ppgplot pygg pyggplot rugplot svgplotlib bokeh
+conda install bokeh
 
 #CHECK gnuoctave mathematica
 
