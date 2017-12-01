@@ -1054,6 +1054,10 @@ read -p "Introduce Weechat username: " UNAME
 weechat -r '/set irc.server.freenode.username "$UNAME"  -r "/quit"'
 weechat -r "/server add freenode chat.freenode.net/6697 -ssl -autoconnect" -r '/set irc.server.freenode.addresses "chat.freenode.net/6697"' -r "/set irc.server.freenode.ssl on" -r "/quit"
 
+#Conf file
+rm ~/.weechat/weechat.conf
+wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/weechat.conf -O ~/.weechat/weechat.conf
+
 #Whatsapp and axolotl
 sudo pip install wheel --upgrade
 sudo pip3 install wheel --upgrade
