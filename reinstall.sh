@@ -1,4 +1,14 @@
 #!/bin/bash
+PCVER=$(uname -m)
+if [ $PCVER == x86_64 ]; then
+    then
+    ARCHIT=amd64
+elif [ $PCVER == i386 ] || [ $PCVER == i686 ]; then
+    PCVER=i686
+    ARCHIT=i386
+else
+  echo "ERROR: The system is neither 64bits nor 32 bits?"
+fi
 
 ##OS mods
 #Prntscreensound
@@ -8,6 +18,16 @@ sudo vi /etc/bluetooth/main.conf -c ':%s/\<InitiallyPowered = true\>/<InitiallyP
 rfkill block bluetooth
 #Minus
 sudo apt-get purge imagemagick fontforge geary whoopsie -y
+
+#mirror
+sudo apt-get install apt-transport-https apt-transport-tor -y
+sudo sed -i 's/http:\/\/us.archive.ubuntu.com\/ubuntu/https:\/\/mirrors.mit.edu\/ubuntu/g' /etc/apt/sources.list
+#sudo sed -i 's/http:\/\/us.archive.ubuntu.com\/ubuntu/https:\/\/mirror.cpsc.ucalgary.ca\/mirror\/ubuntu.com\/packages\//g' /etc/apt/sources.list
+mv .bashrc .previous-bashrc
+wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.bashrc
+sudo apt-get update
+sudo apt-get install apt-file -y
+sudo apt-file update
 
 ##Password management
 sudo apt-get install libpwquality-tools -y
@@ -98,16 +118,6 @@ rm gpg2.sh
 wget $SCRIPTPLACE/shs/openssl.sh
 source ./openssl.sh
 rm openssl.sh
-
-#mirror
-sudo apt-get install apt-transport-https apt-transport-tor -y
-sudo sed -i 's/http:\/\/us.archive.ubuntu.com\/ubuntu/https:\/\/mirrors.mit.edu\/ubuntu/g' /etc/apt/sources.list
-#sudo sed -i 's/http:\/\/us.archive.ubuntu.com\/ubuntu/https:\/\/mirror.cpsc.ucalgary.ca\/mirror\/ubuntu.com\/packages\//g' /etc/apt/sources.list
-mv .bashrc .previous-bashrc
-wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.bashrc
-sudo apt-get update
-sudo apt-get install apt-file -y
-sudo apt-file update
 
 #SSH
 sudo apt-get purge ssh -y
@@ -215,7 +225,6 @@ while true; do
         [1]* )
             #-lowlatency kernel - very similar to the -preempt kernel and based on the -generic kernel source tree, but uses a more aggressive configuration to further reduce latency. Also known as a soft real-time kernel.
             #-realtime kernel - is based on the vanilla kernel source tree with Ingo Molnar maintained PREEMPT_RT patch applied to it. Also known as a hard real-time kernel. 
-            ARCHIT=amd64 #i386 for 32bits
             wget --referer=http://kernel.ubuntu.com/~kernel-ppa/mainline/v$KERNELVERSION/ http://kernel.ubuntu.com/~kernel-ppa/mainline/v"$KERNELVERSION"/linux-headers-"$KERNELVDATA"_all.deb
             wget --referer=http://kernel.ubuntu.com/~kernel-ppa/mainline/v$KERNELVERSION/ http://kernel.ubuntu.com/~kernel-ppa/mainline/v"$KERNELVERSION"/linux-headers-"$KERNELVTD"_"$ARCHIT".deb
             wget --referer=http://kernel.ubuntu.com/~kernel-ppa/mainline/v"$KERNELVERSION"/ http://kernel.ubuntu.com/~kernel-ppa/mainline/v"$KERNELVERSION"/linux-image-"$KERNELVTD"_"$ARCHIT".deb
@@ -556,7 +565,7 @@ gpgconf --list-components
 cd ..
 
 #keybase
-KEYBASEVERSION=_amd64
+KEYBASEVERSION=_$ARCHIT
 sudo apt-get install libappindicator1 -y
 curl -O https://prerelease.keybase.io/keybase$KEYBASEVERSION.deb
 sudo dpkg -i keybase$KEYBASEVERSION.deb
@@ -598,15 +607,29 @@ VBOXVERSION=5.1_5.1.22-115126
 sudo apt-get purge virtualbox -y
 sudo apt-get build-dep virtualbox
 sudo apt-get -f install -y
-echo "This is your version"
-uname -v
-read -p "Please introduce introduce OS Ubuntu 17.04 ('zesty_amd64') Ubuntu 16.10 ('yakkety_amd64') Ubuntu 16.04 ('xenial_amd64') Ubuntu 15.10 ('wily_i386') or Ubuntu 14.04 ('trusty_amd64') / 14.10 Utopic/ 15.04 Vivid: " OS
-read -p "For 32 bits version open another terminal and write: wget http://security.ubuntu.com/ubuntu/pool/main/libv/libvpx/libvpx1_1.0.0-1_i386.deb && sudo dpkg -i libvpx1_1.0.0-1_i386.deb && rm libvpx1_1.0.0-1_i386.deb && sudo apt-get install libcurl3 -y"
+PCVER=$(uname -m)
+if [ $PCVER == x86_64 ]; then
+    then
+    ARCHIT=amd64
+    ARCHITECTURE=64
+elif [ $PCVER == i386 ] || [ $PCVER == i686 ]; then
+    ARCHIT=i386
+    ARCHITECTURE=32
+    wget http://security.ubuntu.com/ubuntu/pool/main/libv/libvpx/libvpx1_1.0.0-1_i386.deb
+    sudo dpkg -i libvpx1_1.0.0-1_i386.deb
+    rm libvpx1_1.0.0-1_i386.deb
+    sudo apt-get install libcurl3 -y
+else
+  echo "ERROR: The system is neither 64bits nor 32 bits?"
+fi
+echo "This is your version:"
+cat /etc/issue
+read -p "Introduce 'zesty_$ARCHIT' for Ubuntu 17.04, 'yakkety_$ARCHIT' for Ubuntu 16.10, xenial_$ARCHIT for Ubuntu 16.04, wily_$ARCHIT for Ubuntu 15.10, Vivid_$ARCHIT for Ubuntu 15.04, Utopic_$ARCHIT for Ubuntu 14.10 or trusty_$ARCHIT for Ubuntu 14.04: " OS
 wget http://download.virtualbox.org/virtualbox/$VIRTUALBOXVERSION/virtualbox-$VBOXVERSION~Ubuntu~$OS.deb
 sudo dpkg -i virtualbox-$VBOXVERSION~Ubuntu~$OS.deb
 sudo rm virtualbox-$VBOXVERSION~Ubuntu~$OS.deb
 sudo apt-get install vagrant -y
-vagrant box add precise64 http://files.vagrantup.com/precise64.box
+vagrant box add precise64 http://files.vagrantup.com/precise64.box #always64
 sudo apt-get -f install -y
 version=$(vboxmanage -v)
 echo $version
@@ -694,16 +717,16 @@ sudo -H pip3 install saltpack
 
 #Text Edition Tools
 sudo apt-get install software-properties-common -y ##for add-apt-repository
-sudo add-apt-repository ppa:webupd8team/sublime-text-3 -y 
 sudo apt-get install libreoffice-gnome -y
 sudo apt-get install nano gedit -y
-SUBLIMEVERSION=3_build_3126_x64
+
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
 echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
 sudo apt-get update
 sudo apt-get install sublime-text -y
+
 sudo apt-get install libgstreamer-plugins-base0.10-0 -y #for scrivener requirements libgstapp-0.10.so.0
-SCRIVENERVERSION=1.9.0.1-amd64
+SCRIVENERVERSION="1.9.0.1-"$ARCHIT
 wget http://www.literatureandlatte.com/scrivenerforlinux/scrivener-$SCRIVENERVERSION.deb
 sudo dpkg -i scrivener-$SCRIVENERVERSION.deb
 sudo rm scrivener-$SCRIVENERVERSION.deb
@@ -822,14 +845,11 @@ echo "Do not forget to add a newsshkey or clipboard your mysshkey or mylastsshke
 cd Downloads
 mkdir extensions
 cd extensions
-mkdir Firefox
+mkdir privacy
+cd privacy
 wget https://www.eff.org/files/privacy-badger-latest.xpi #Privacy badger
 wget https://addons.mozilla.org/firefox/downloads/latest/497366/addon-497366-latest.xpi #Disable WebRTC
-wget https://addons.mozilla.org/firefox/downloads/latest/1843/addon-1843-latest.xpi #Firebug
-wget https://addons.mozilla.org/firefox/downloads/latest/5791/addon-5791-latest.xpi #FlagFox
 wget https://addons.mozilla.org/firefox/downloads/latest/92079/addon-92079-latest.xpi #CookieManager
-wget https://addons.mozilla.org/firefox/downloads/latest/521554/addon-521554-latest.xpi #DecentralEyes
-wget https://addons.mozilla.org/firefox/downloads/latest/607454/addon-607454-latest.xpi #UBlockOrigin
 wget https://addons.mozilla.org/firefox/downloads/latest/383235/addon-383235-latest.xpi #FlashDisable
 wget https://addons.mozilla.org/firefox/downloads/file/281702/google_privacy-0.2.4-sm+fx.xpi #GooglePriv
 wget https://addons.mozilla.org/firefox/downloads/latest/415846/addon-415846-latest.xpi #SelfDestructing Cookies
@@ -839,6 +859,17 @@ wget https://addons.mozilla.org/firefox/downloads/latest/1865/addon-1865-latest.
 wget https://addons.mozilla.org/firefox/downloads/latest/496120/addon-496120-latest.xpi #LocationGuard
 wget https://addons.mozilla.org/firefox/downloads/latest/473878/addon-473878-latest.xpi #RandomAgentSpoofer
 wget https://addons.mozilla.org/firefox/downloads/latest/229918/addon-229918-latest.xpi #HTTPS Everywhere
+wget https://addons.mozilla.org/firefox/downloads/latest/607454/addon-607454-latest.xpi #UBlockOrigin
+wget https://addons.mozilla.org/firefox/downloads/latest/canvasblocker/addon-534930-latest.xpi #Avoid HTML5 Canvas
+wget https://addons.mozilla.org/firefox/downloads/file/790214/umatrix-1.1.12-an+fx.xpi #UMatrix
+mkdir otherprivacy
+wget https://addons.mozilla.org/firefox/downloads/latest/certificate-patrol/addon-6415-latest.xpi #certificate patrol
+wget https://addons.mozilla.org/firefox/downloads/latest/6196/addon-6196-latest.xpi #PassiveRecon
+wget https://addons.mozilla.org/firefox/downloads/latest/521554/addon-521554-latest.xpi #DecentralEyes
+cd ..
+cd ..
+wget https://addons.mozilla.org/firefox/downloads/latest/1843/addon-1843-latest.xpi #Firebug
+wget https://addons.mozilla.org/firefox/downloads/latest/5791/addon-5791-latest.xpi #FlagFox
 wget https://addons.mozilla.org/en-US/firefox/downloads/latest/2109/addon-2109-latest.xpi #FEBE Backups
 #wget https://addons.mozilla.org/firefox/downloads/latest/363974/addon-363974-latest.xpi #Lightbeam
 wget https://addons.mozilla.org/firefox/downloads/latest/409964/addon-409964-latest.xpi #VideoDownloadHelper
@@ -850,7 +881,6 @@ wget https://addons.mozilla.org/firefox/downloads/latest/1237/addon-1237-latest.
 wget https://addons.mozilla.org/firefox/downloads/latest/3497/addon-3497-latest.xpi #EnglishUSDict
 wget https://addons.mozilla.org/firefox/downloads/file/502726/colorfultabs-31.0.8-fx+sm.xpi #ColorfulTabs
 wget https://addons.mozilla.org/firefox/downloads/latest/193270/addon-193270-latest.xpi #PrintEdit
-wget https://addons.mozilla.org/firefox/downloads/latest/5791/addon-5791-latest.xpi #Flagfox
 wget https://addons.mozilla.org/firefox/downloads/file/342774/tineye_reverse_image_search-1.2.1-fx.xpi #TinyEye Reverse ImageSearch
 wget https://addons.mozilla.org/firefox/downloads/latest/355192/addon-355192-latest.xpi #MindTheTime
 wget https://addons.mozilla.org/firefox/downloads/latest/1843/addon-1843-latest.xpi #Firebug
@@ -868,22 +898,20 @@ wget https://addons.mozilla.org/firefox/downloads/latest/695840/addon-695840-lat
 wget https://addons.mozilla.org/firefox/downloads/latest/video-downloadhelper/addon-3006-latest.xpi #VideoDownloadHelper
 wget https://addons.mozilla.org/firefox/downloads/latest/390151/addon-390151-latest.xpi #TOS
 wget https://addons.mozilla.org/firefox/downloads/latest/3456/addon-3456-latest.xpi #WOT
-wget https://addons.mozilla.org/firefox/downloads/latest/certificate-patrol/addon-6415-latest.xpi #certificate patrol
 #wget https://addons.mozilla.org/firefox/downloads/latest/perspectives/addon-7974-latest.xpi #perspectivenetworknotaries
 wget https://www.roboform.com/dist/roboform-firefox.xpi
-mkdir moretools
+mkdir extratools
 wget https://addons.mozilla.org/firefox/downloads/file/140447/cryptofox-2.2-fx.xpi #CryptoFox
 wget https://addons.mozilla.org/firefox/downloads/latest/copy-as-plain-text/addon-344925-latest.xpi #Copy as Plain Text
-wget https://addons.mozilla.org/firefox/downloads/latest/canvasblocker/addon-534930-latest.xpi #Avoid HTML5 Canvas
 wget https://addons.mozilla.org/firefox/downloads/file/229626/sql_inject_me-0.4.7-fx.xpi #SQL Inject Me
 wget https://addons.mozilla.org/firefox/downloads/file/215802/rightclickxss-0.2.1-fx.xpi #Right Click XSS
 wget https://addons.mozilla.org/firefox/downloads/latest/3899/addon-3899-latest.xpi #HackBar
 wget https://addons.mozilla.org/firefox/downloads/latest/wappalyzer/addon-10229-latest.xpi #Wappanalyzer
-wget https://addons.mozilla.org/firefox/downloads/latest/6196/addon-6196-latest.xpi #PassiveRecon
 wget https://addons.mozilla.org/firefox/downloads/latest/344927/addon-344927-latest.xpi #CookieExportImport
 wet https://addons.mozilla.org/firefox/downloads/file/204186/fireforce-2.2-fx.xpi #Fireforce
 wget https://addons.mozilla.org/firefox/downloads/file/224182/csrf_finder-1.2-fx.xpi #CSRF-Finder
 wget https://addons.mozilla.org/firefox/downloads/file/345004/live_http_headers_fixed_by_danyialshahid-0.17.1-signed-sm+fx.xpi #Live HTTP Headers
+wget https://addons.mozilla.org/firefox/downloads/file/782839/recap-1.1.8-an+fx.xpi #RECAP for searching US Law DB
 cd ..
 cd ..
 cd ..
@@ -937,11 +965,156 @@ cd ..
 
 ## Opera ##
 OPERAVERSION=46.0.2573.0
-OPERADEVVERSION="developer_"$OPERAVERSION"_amd64"
+OPERADEVVERSION="developer_"$OPERAVERSION"_"$ARCHIT
 sudo apt-get install libpangox-1.0-0  libpango1.0-0 -y
 wget https://ftp.opera.com/pub/opera-developer/$OPERAVERSION/linux/opera-$OPERADEVVERSION.deb
 sudo dpkg -i opera-$OPERADEVVERSION.deb
 sudo rm opera-$OPERADEVVERSION.deb
+
+#ironchrome
+PCVER=$(uname -m)
+if [ $PCVER == x86_64 ]; then
+    then
+    wget http://www.srware.net/downloads/iron64.deb
+    sudo dpkg -i iron64.deb
+    sudo rm iron64.deb
+elif [ $PCVER == i386 ] || [ $PCVER == i686 ]; then
+    wget http://www.srware.net/downloads/iron.deb
+    sudo dpkg -i iron.deb
+    sudo rm iron.deb
+else
+  echo "ERROR: The system is neither 64bits nor 32 bits?"
+fi
+sudo mv /usr/share/iron /opt/iron/
+echo "alias iron='/opt/iron/./chrome'" | tee -a ~/.bashrc
+/bin/iron/./chrome https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm
+/bin/iron/./chrome https://chrome.google.com/webstore/detail/form-filler/bnjjngeaknajbdcgpfkgnonkmififhfo
+/bin/iron/./chrome https://chrome.google.com/webstore/detail/autoform/fdedjnkmcijdhgbcmmjdogphnmfdjjik
+/bin/iron/./chrome https://chrome.google.com/webstore/detail/m-i-m/jlppachnphenhdidmmpnbdjaipfigoic
+/bin/iron/./chrome https://chrome.google.com/webstore/detail/librarian-for-arxiv-ferma/ddoflfjcbemgfgpgbnlmaedfkpkfffbm
+/bin/iron/./chrome https://chrome.google.com/webstore/detail/noiszy/immakaidhkcddagdjmedphlnamlcdcbg
+
+#chromium
+sudo add-apt-repository ppa:canonical-chromium-builds/stage
+sudo apt-get update
+sudo apt-get install chromium-browser chromium-browser-l10n chromium-codecs-ffmpeg chromium-codecs-ffmpeg-extra -y
+chromium-browser https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm
+chromium-browser https://chrome.google.com/webstore/detail/form-filler/bnjjngeaknajbdcgpfkgnonkmififhfo
+chromium-browser https://chrome.google.com/webstore/detail/autoform/fdedjnkmcijdhgbcmmjdogphnmfdjjik
+chromium-browser https://chrome.google.com/webstore/detail/m-i-m/jlppachnphenhdidmmpnbdjaipfigoic
+chromium-browser https://chrome.google.com/webstore/detail/librarian-for-arxiv-ferma/ddoflfjcbemgfgpgbnlmaedfkpkfffbm
+chromium-browser https://chrome.google.com/webstore/detail/noiszy/immakaidhkcddagdjmedphlnamlcdcbg
+
+#icecat
+PCVER=$(uname -m)
+if [ $PCVER == x86_64 ]; then
+elif [ $PCVER == i386 ] || [ $PCVER == i686 ]; then
+    PCVER=i686
+else
+  echo "ERROR: The system is neither 64bits nor 32 bits?"
+fi
+ICECATVERSION=52.3.0
+wget http://gnuftp.uib.no/gnuzilla/$ICECATVERSION/icecat-$ICECATVERSION.en-US.linux-$PCVER.tar.bz2
+wget http://gnuftp.uib.no/gnuzilla/$ICECATVERSION/icecat-$ICECATVERSION.en-US.linux-$PCVER.tar.bz2.sig
+gpg --keyserver ha.pool.sks-keyservers.net --recv-keys A57369A8BABC2542B5A0368C3C76EED7D7E04784
+gpg --verify icecat-$ICECATVERSION.en-US.linux-$PCVER.tar.bz2.sig icecat-$ICECATVERSION.en-US.linux-$PCVER.tar.bz2
+if [ $? -eq 0 ]
+then
+echo "GOOD SIGNATURE"
+gpg --delete-secret-and-public-keys --batch --yes A57369A8BABC2542B5A0368C3C76EED7D7E04784
+rm icecat-$ICECATVERSION.en-US.linux-$PCVER.tar.bz2.sig
+else
+echo "BAD SIGNATURE"
+exit
+fi
+tar xfvj icecat-$ICECATVERSION.en-US.linux-$PCVER.tar.bz2
+rm icecat-$ICECATVERSION.en-US.linux-$PCVER.tar.bz2
+sudo mv /icecat /opt/icecat
+echo "alias icecat='cd /opt/icecat/ && bash run-icecat.sh && cd'" | tee -a ~/.bashrc
+
+##Tor
+TORVERSION=7.0.10
+TORLANG=en-US
+PCVER=$(uname -m)
+if [ $PCVER == x86_64 ]; then
+    LINUXVER=64
+elif [ $PCVER == i386 ] || [ $PCVER == i686 ]; then
+    LINUXVER=32
+else
+  echo "ERROR: The system is neither 64bits nor 32 bits?"
+fi
+wget https://www.torproject.org/dist/torbrowser/$TORVERSION/tor-browser-linux$LINUXVER-"$TORVERSION"_$TORLANG.tar.xz
+wget https://www.torproject.org/dist/torbrowser/$TORVERSION/tor-browser-linux$LINUXVER-"$TORVERSION"_$TORLANG.tar.xz.asc
+gpg --keyserver ha.pool.sks-keyservers.net --recv-keys B1172656DFF983C3042BC699EB5A896A28988BF5
+gpg --keyserver ha.pool.sks-keyservers.net --recv-keys F65CE37F04BA5B360AE6EE17C218525819F78451
+gpg --keyserver ha.pool.sks-keyservers.net --recv-keys 2133BC600AB133E1D826D173FE43009C4607B1FB
+gpg --keyserver ha.pool.sks-keyservers.net --recv-keys B35BF85BF19489D04E28C33C21194EBB165733EA
+gpg --keyserver ha.pool.sks-keyservers.net --recv-keys 8738A680B84B3031A630F2DB416F061063FEE659
+gpg --keyserver ha.pool.sks-keyservers.net --recv-keys C2E34CFC13C62BD92C7579B56B8AAEB1F1F5C9B5
+gpg --keyserver ha.pool.sks-keyservers.net --recv-keys A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89
+gpg --keyserver ha.pool.sks-keyservers.net --recv-keys 68278CC5DD2D1E85C4E45AD90445B7AB9ABBEEC6
+gpg --keyserver ha.pool.sks-keyservers.net --recv-keys C963C21D63564E2B10BB335B29846B3C683686CC
+gpg --keyserver ha.pool.sks-keyservers.net --recv-keys 261C5FBE77285F88FB0C343266C8C2D7C5AA446D
+gpg --keyserver ha.pool.sks-keyservers.net --recv-keys 25FC1614B8F87B52FF2F99B962AF4031C82E0039
+gpg --keyserver ha.pool.sks-keyservers.net --recv-keys AD1AB35C674DF572FBCE8B0A6BC758CBC11F6276
+gpg --keyserver ha.pool.sks-keyservers.net --recv-keys 8C4CD511095E982EB0EFBFA21E8BF34923291265
+gpg --keyserver ha.pool.sks-keyservers.net --recv-keys 35CD74C24A9B15A19E1A81A194373AA94B7C3223
+gpg --keyserver ha.pool.sks-keyservers.net --recv-keys 4A90646C0BAED9D456AB3111E5B81856D0220E4B
+gpg --keyserver ha.pool.sks-keyservers.net --recv-keys D6A948CF297F753930B4756AFA7F0E44D487F03F
+gpg --keyserver ha.pool.sks-keyservers.net --recv-keys EF6E286DDA85EA2A4BA7DE684E2C6E8793298290
+gpg --keyserver ha.pool.sks-keyservers.net --recv-keys B74417EDDF22AC9F9E90F49142E86A2A11F48D36
+gpg --keyserver ha.pool.sks-keyservers.net --recv-keys E4ACD3975427A5BA8450A1BEB01C8B006DA77FAA
+gpg --keyserver ha.pool.sks-keyservers.net --recv-keys A490D0F4D311A4153E2BB7CADBB802B258ACD84F
+gpg --verify tor-browser-linux$LINUXVER-"$TORVERSION"_$TORLANG.tar.xz.asc tor-browser-linux$LINUXVER-"$TORVERSION"_$TORLANG.tar.xz
+if [ $? -eq 0 ]
+then
+echo "GOOD SIGNATURE"
+gpg --delete-secret-and-public-keys --batch --yes B1172656DFF983C3042BC699EB5A896A28988BF5
+gpg --delete-secret-and-public-keys --batch --yes F65CE37F04BA5B360AE6EE17C218525819F78451
+gpg --delete-secret-and-public-keys --batch --yes 2133BC600AB133E1D826D173FE43009C4607B1FB
+gpg --delete-secret-and-public-keys --batch --yes B35BF85BF19489D04E28C33C21194EBB165733EA
+gpg --delete-secret-and-public-keys --batch --yes 8738A680B84B3031A630F2DB416F061063FEE659
+gpg --delete-secret-and-public-keys --batch --yes C2E34CFC13C62BD92C7579B56B8AAEB1F1F5C9B5
+gpg --delete-secret-and-public-keys --batch --yes A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89
+gpg --delete-secret-and-public-keys --batch --yes 68278CC5DD2D1E85C4E45AD90445B7AB9ABBEEC6
+gpg --delete-secret-and-public-keys --batch --yes C963C21D63564E2B10BB335B29846B3C683686CC
+gpg --delete-secret-and-public-keys --batch --yes 261C5FBE77285F88FB0C343266C8C2D7C5AA446D
+gpg --delete-secret-and-public-keys --batch --yes 25FC1614B8F87B52FF2F99B962AF4031C82E0039
+gpg --delete-secret-and-public-keys --batch --yes AD1AB35C674DF572FBCE8B0A6BC758CBC11F6276
+gpg --delete-secret-and-public-keys --batch --yes 8C4CD511095E982EB0EFBFA21E8BF34923291265
+gpg --delete-secret-and-public-keys --batch --yes 35CD74C24A9B15A19E1A81A194373AA94B7C3223
+gpg --delete-secret-and-public-keys --batch --yes 4A90646C0BAED9D456AB3111E5B81856D0220E4B
+gpg --delete-secret-and-public-keys --batch --yes D6A948CF297F753930B4756AFA7F0E44D487F03F
+gpg --delete-secret-and-public-keys --batch --yes EF6E286DDA85EA2A4BA7DE684E2C6E8793298290
+gpg --delete-secret-and-public-keys --batch --yes B74417EDDF22AC9F9E90F49142E86A2A11F48D36
+gpg --delete-secret-and-public-keys --batch --yes E4ACD3975427A5BA8450A1BEB01C8B006DA77FAA
+gpg --delete-secret-and-public-keys --batch --yes A490D0F4D311A4153E2BB7CADBB802B258ACD84F
+rm tor-browser-linux$LINUXVER-"$TORVERSION"_en-US.tar.xz.asc
+else
+echo "BAD SIGNATURE"
+exit
+fi
+tar -xvJf tor-browser-linux$LINUXVER-"$TORVERSION"_$TORLANG.tar.xz
+rm tor-browser-linux$LINUXVER-"$TORVERSION"_$TORLANG.tar.xz
+echo "alias toro='firejail tor'" | tee -a ~/.bashrc
+sudo apt-get install tor-dbg apt-transport-tor onionshare -y
+
+##firejail & firetools
+if [ $PCVER == x86_64 ]; then
+    ARCH=amd64
+elif [ $PCVER == i386 ] || [ $PCVER == i686 ]; then
+    ARCH=i386
+else
+  echo "ERROR: The system is neither 64bits nor 32 bits?"
+fi
+FIREVERSION=0.9.50
+sudo apt-get install libqtgui4  libqt4-svg libqtcore4 libmng2 libqt4-declarative libqt4-network libqt4-script  libqt4-sql libqt4-xmlpatterns libqtcore4 libqtdbus4 libqtdbus4  qtcore4-l10n libqt4-xml -y
+wget https://downloads.sourceforge.net/project/firejail/firejail/firejail_$FIREVERSION_$ARCH.deb
+wget https://downloads.sourceforge.net/project/firejail/firetools/firetools_$FIREVERSION_$ARCH.deb 
+sudo dpkg -i firejail_$FIREVERSION_$ARCH.deb
+rm firejail_$FIREVERSION_$ARCH.deb
+sudo dpkg -i firetools_$FIREVERSION_$ARCH.deb
+rm firetools_$FIREVERSION_$ARCH.deb
 
 ##Superbeam
 mkdir superbeam && cd superbeam
@@ -959,32 +1132,8 @@ echo "Exec=gnome-terminal -e sh '/bin/superbeam/start-superbeam.sh'" | tee -a ~/
 echo "Icon=/bin/superbeam/icon.png" | tee -a ~/Desktop/superbeam.desktop
 echo "Type=Application" | tee -a ~/Desktop/superbeam.desktop
 
-##firejail & firetools
-FIREVERSION=0.9.46_1_amd64
-sudo apt-get install libqtgui4  libqt4-svg libqtcore4 libmng2 libqt4-declarative libqt4-network libqt4-script  libqt4-sql libqt4-xmlpatterns libqtcore4 libqtdbus4 libqtdbus4  qtcore4-l10n libqt4-xml -y
-wget https://downloads.sourceforge.net/project/firejail/firejail/firejail_$FIREVERSION.deb
-wget https://downloads.sourceforge.net/project/firejail/firetools/firetools_$FIREVERSION.deb 
-sudo dpkg -i firejail_$FIREVERSION.deb
-rm firejail_$FIREVERSION.deb
-sudo dpkg -i firetools_$FIREVERSION.deb
-rm firetools_$FIREVERSION.deb
-
 ##blindlector
 sudo apt-get install libttspico** -y
-
-#ironchrome
-wget http://www.srware.net/downloads/iron64.deb
-sudo dpkg -i iron64.deb
-sudo rm iron64.deb
-sudo mv /usr/share/iron /bin/iron/
-echo "alias iron='/bin/iron/./chrome'" | tee -a ~/.bashrc
-/bin/iron/./chrome ttps://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm
-/bin/iron/./chrome https://chrome.google.com/webstore/detail/form-filler/bnjjngeaknajbdcgpfkgnonkmififhfo
-/bin/iron/./chrome https://chrome.google.com/webstore/detail/autoform/fdedjnkmcijdhgbcmmjdogphnmfdjjik
-/bin/iron/./chrome https://chrome.google.com/webstore/detail/m-i-m/jlppachnphenhdidmmpnbdjaipfigoic
-/bin/iron/./chrome https://chrome.google.com/webstore/detail/librarian-for-arxiv-ferma/ddoflfjcbemgfgpgbnlmaedfkpkfffbm
-/bin/iron/./chrome https://chrome.google.com/webstore/detail/noiszy/immakaidhkcddagdjmedphlnamlcdcbg
-
 
 ### Calc Tools ###
 cd Documents
@@ -1007,7 +1156,6 @@ wget http://phodd.net/gnu-bc/code/output_formatting.bc
 wget https://raw.githubusercontent.com/sevo/Calc/master/bc/rand.bc
 cd ..
 cd ..
-
 
 ###WeeChat###
 WEECHATVERSION=1.8
