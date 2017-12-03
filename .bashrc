@@ -82,7 +82,7 @@ ${command_color}  Ƀe ℋuman, be κinđ, be ωise $nc
 
 Usage: debug 
 ${lightgrey} - help|usage: print this screen | cleanall | cleanmem | cleanexcept $nc
-${pink} - lynx web browser | tmuxts full | fxf $nc
+${pink} - lynx web browser | tmuxts full | browsers fxf chm iron opera icecat $nc
 ${lightred} - verbose: sets -xv flags | noexec: sets -xvn flags $nc
 ${lightgreen} - vim completion: C-n C-p words, C-x C-l lines, C-x C-k dictionaries $nc
 ${lightcyan} - no parameter sets -x flags | C-x ! | C-x $ | M-x / | M-x @ | C-x C-e | fc -lnr | !! $nc
@@ -801,8 +801,6 @@ function cdn(){ for i in 'seq $1'; do cd ..; done;}
 alias lssh="ls -al ~/.ssh"
 alias verifykey="gpg --keyid-format long --import"
 alias verifyfile="gpg --keyid-format long --verify"
-alias secfirefox="firejail --dns=8.8.8.8 --dns=8.8.4.4 firefox"
-alias fxf=secfirefox
 alias dt='date "+%F %T"'
 alias pdf2txt='ls * | sudo xargs -n1 pdftotext'
 alias bashrc='~./bashrc'
@@ -867,8 +865,6 @@ alias shist="history | grep"
 alias vectorize="xargs"
 alias cuenta="wc"
 alias countlines="awk '/a/{++cnt} END {print \"Count = \", cnt}'"
-alias iron="/bin/iron/./chrome"
-alias ffx='/home/$USER/icecat/./icecat'
 alias rctty='script -t 2>rctty.timing rctty'
 alias mtty='more rctty'
 alias rptty='replayscript rctty.timing rctty'
@@ -900,7 +896,12 @@ vim -c \"1,$ s/\(hi\)/\1 all/g\" -c \"wq\" file.txt
 For more info about substitutions:
 vim -c \"help substitute\"
 '"
-
+### Browser aliases ###
+alias securefirefox="firejail --dns=8.8.8.8 --dns=8.8.4.4 firefox"
+alias fxf=securefirefox
+alias securechrome="firejail --dns=8.8.8.8 --dns=8.8.4.4 chromium-browser"
+alias chm=securechrome
+#iron and icecat are added on code
 
 ### Conversion & Calc Aliases ###
 alias calc="ls home/$USER/Documents/bctools/; read -p 'Introduce special tool (if so): ' TOOL; echo -e 'Remember: \n A) For arrays use a[1]=x ... for (i=0;i<=3;i++) {print a[i]} \n B) For conversions use X2Y or ibase and obase \n C) For decimals scale= \n D) Bitwise, boolean and conditional operators & | ^ && || &= |= ^= &&= ||= << >> <<= >>= ?: \n E) Mathematical operators + - * / += -= *= /= ++ -- < > sqrt() lenght() s() c() a() l() e() j() \n F) Clauses: if(cond)..., while(cond)... and for(init;cond;inc)... \n G) pi=4*a(1)  \n H) For strings use quotes \n I) For functions use define f(x){}'; bc -l home/$USER/Documents/bctools/"
