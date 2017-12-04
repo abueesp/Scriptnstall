@@ -3,7 +3,8 @@
 ##Check alias ##Linux container set on bash.bashrc
 #! /bin/bash
 read -e -p "Set a hard limit for kernel memory to fix fork bomb attack for cgroups (1000MB by default): " -i "1000" memm
-read -e -p "And swap? (0MB by default): " -i "0" swapp
+read -e -p "And swap? (0MB by default): " swapp
+SWAPP="${swapp:=0}"
 echo "lxc.cgroup.memory.limit_in_bytes = $memmM" >> sudo tee /var/lib/lxc/$namecont/config
 summ=$(expr $swapp + $memm)
 "lxc.cgroup.memory.memsw.limit_in_bytes = $summM; " >> tee /var/lib/lxc/$namecont/config
