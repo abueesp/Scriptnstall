@@ -540,7 +540,8 @@ fi
 
 leeme() {
 read -p "Hola amigo :) Introduce el nombre del archivo que quieres que te lea: " ezte
-read -p "Introduce el idioma del texto (en-EN, fr-FR, pt-PT... por defecto es-ES)" -i "es-ES" lang
+read -p "Introduce el idioma del texto (en-EN, fr-FR, pt-PT... por defecto es-ES)" lang
+lang="${lang:=es-ES}"
 PS3='Desea solo leer (1) o guardar como lectura.wav (2): '
 options=("1" "2")
 select opt in "${options[@]}"
@@ -562,25 +563,29 @@ done
 
 
 ssign(){
-read -p "Message to sign (~/message by default): " -i ~/message -e messg
+read -p "Message to sign (~/message by default): " -e messg
+messg="${messg:=~/message}"
 saltpack sign --message $messg | tee ~/signed_message
 echo "The signed message was saved as signed_message"
 }
 
 sverify(){
-read -p "Message to verify (~/signedmessage by default): " -i ~/signedmessage -e messg 
+read -p "Message to verify (~/signedmessage by default): " -e messg 
+messg="${messg:=~/signedmessage}"
 saltpack verify $messg
 }
 
 sencrypt(){
-read -p "Message to encrypt (~/message by default): " -i ~/message -e messg
+read -p "Message to encrypt (~/message by default): " -e messg
+messg="${messg:=~/message}"
 MESIG=$(cat $messg)
 saltpack encrypt --message $MESIG | tee ~/encrypted_message
 echo "The encrypted message was saved as ~/encrypted_message"
 }
 
 sdecrypt(){
-read -p "Message to decrypt (~/encrypted_message by default): " -i ~/message -e messg
+read -p "Message to decrypt (~/encrypted_message by default): " -e messg
+messg="${messg:=~/message}"
 MESIG=$(cat $messg)
 saltpack decrypt < MESIG
 }
@@ -1458,11 +1463,13 @@ sudo cat /etc/init.d/$nameofp
 #anota algo en algún lado
 anota(){
 read -p "Dígame, le escucho: " textito
-read -p "¿Dónde guardo esta nota?: " -i "/home/$USER" testroute 
-read -p "¿Nombre de la nota?: " -i "$now - nota.txt" nameoftest
-sudo sh -c "echo $textito >> $testroute/$nameoftest"
-sudo ls $testroute | grep $nameoftest
-sudo cat $testroute/$nameoftest
+read -p "¿Dónde guardo esta nota?: " testroute 
+testroute="${testroute:=/home/$USER}"
+read -p "¿Nombre de la nota?: " nameofnote
+nameofnote="${nameofnote:=$now - nota.txt}"
+sudo sh -c "echo $textito >> $testroute/$nameofnote"
+sudo ls $testroute | grep $nameofnote
+sudo cat $testroute/$nameofnote
 }
 
 #Keyfixer
@@ -1513,9 +1520,12 @@ curl -u $1@gmail.com --silent "https://mail.google.com/mail/feed/atom" | perl -n
 }
 
 checkport() {
-read -e -p "Port Range: Enter your starting port (80 by default): " -i "80" PORTZS
-read -e -p "Port Range: Enter your last port (8080 by default): " -i "8080" PORTZF
-read -e -p "Enter your IP (localhost by default): " -i "localhost" IPZ
+read -e -p "Port Range: Enter your starting port (80 by default): " PORTZS
+PORTZS="${PORTZS:=80}"
+read -e -p "Port Range: Enter your last port (8080 by default): " PORTZF
+PORTZF="${PORTZF:=8080}"
+read -e -p "Enter your IP (localhost by default): " IPZ
+IPZ="${IPZ:=localhost}"
 for i in $(seq $PORTZS $PORTZF); do nc -zv $IPZ $i; done
 read -p "Do you want to test which process is listening to that port (only for host system)? If so, write down the port: " PORTZC
 lsof -iTCP:$PORTZC -sTCP:LISTEN
@@ -2511,7 +2521,7 @@ echo "Usage: cconv AMOUNT FROMC TOC"
   wget -qO- "https://finance.google.com/finance/converter?a=$1&from=$2&to=$3" | sed '/res/!d;s/<[^>]*>//g';
 }
 
-tracker() {
+cmkcap() {
 curl https://api.coinmarketcap.com/v1/ticker/$1/?convert=EUR
 }
 
