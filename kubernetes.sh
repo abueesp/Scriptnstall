@@ -1,3 +1,5 @@
+#Install
+echo "Pick your right solution and follow the instructions to install https://kubernetes.io/docs/setup/pick-right-solution/"
 #Choose app
 read -p "Write down the route of your app to create it: " ROUTEAPP
 kubectl run app --image $ROUTEAPP
