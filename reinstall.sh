@@ -47,10 +47,19 @@ sudo udevadm trigger
 sudo udevadm control --reload
 
 ##Vulnerability assessment https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Security_Guide/sec-Vulnerability_Assessment.html
-
 ##To prevent sudo from certains ttys: Disable on /etc/securetty. However, a blank /etc/securetty file does not prevent the root user from logging in remotely using the OpenSSH suite of tools because the console is not opened until after authentication.
-##To prevent sudo from SSH: sudo vi /etc/ssh/sshd_config -c ':%s/\<PermitRootLogin without password\>/<PermitRootLogin no>/gIc' -c ':wq'
-##To prevent sudo from SFTP: echo "auth   required   /lib/security/pam_listfile.so   item=user sense=deny file=/etc/vsftpd.ftpusers onerr=succeed" | sudo tee -a /etc/pam.d/vsftpd
+##To prevent sudo from SSH: 
+if [ -s /etc/ssh/sshd_config ]
+then
+    echo "PermitRootLogin no" | sudo tee -a /etc/ssh/sshd_config
+    echo "Protocol 2" | sudo tee -a /etc/ssh/sshd_config
+else
+    sudo vi /etc/ssh/sshd_config -c ':%s/PermitRootLogin without password/PermitRootLogin no/g' -c ':wq'
+    sudo vi /etc/ssh/sshd_config -c ':%s/Protocol 2,1/Protocol 2/g' -c ':wq'
+fi
+/etc/init.d/sshd restart
+##To prevent sudo from SFTP: 
+echo "auth   required   /lib/security/pam_listfile.so   item=user sense=deny file=/etc/vsftpd.ftpusers onerr=succeed" | sudo tee -a /etc/pam.d/vsftpd
 ##Similar line can be added to the PAM configuration files, such as /etc/pam.d/pop and /etc/pam.d/imap for mail clients, or /etc/pam.d/sshd for SSH clients.
 
 echo "tty | grep tty && TMOUT=10 >/dev/null" | sudo tee -a /etc/profile #log out virtual /dev/tty consoles out after 5s inactivity
@@ -1234,6 +1243,15 @@ weechat -r "/set plugins.var.python.slack.slack_api_token $SLACKTOKEN" -r "/secu
 #echo "You need to verify the certificate at ~/.weechat/ssl first"
 #firefox --new-tab https://www.glowing-bear.org/
 
+##Last vulnerability assessment https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Security_Guide/sec-Vulnerability_Assessment.html
 sudo apt-get autoremove -y
+sudo vi -c "s/if $ssh -G 2>&1 | grep -e illegal -e unknow >/if $ssh -G 2>&1 | grep -e illegal -e unknown -e Gg >/g" -c "wq" /usr/sbin/chkrootkit
+sudo /usr/sbin/./chkrootkit -x
+sudo /usr/sbin/./chkrootkit
+sudo apt-get install rkhunter -y
+echo "PKGMGR=DPKG" | sudo tee -a /etc/rkhunter.conf.local
+sudo rkhunter --propupd
+sudo rkhunter --update
+rkhunter --check --rwo --vl -x
 
-EOF
+echo "EOF" 
