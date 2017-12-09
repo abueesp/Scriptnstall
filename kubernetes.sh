@@ -18,3 +18,9 @@ echo "Watch your running pods using 'watch -n 1 kubectl get pods'"
 #Update app
 read -p "Write down the route of the update of your app: " UPDATER
 kubectl set image deployment app $UPDATER
+#Create daemon
+read -p "Write down the route of a daemon.yaml: " DAEMON
+kuberctl create -f $DAEMON
+#Create pod
+read -p "Write down the route of you pod.yaml: " POD
+kubectl create -f $POD
