@@ -42,9 +42,9 @@ sudo chage -M -1 90 $USER #force to change password every 90 days (-M, -W only f
 chage -l $USER
 
 ##USB readonly
-echo 'SUBSYSTEM=="block",ATTRS{removable}=="1",RUN{program}="/sbin/blockdev --setro %N"' | sudo tee -a  /etc/udev/rules.d/80-readonly-removables.rules
-sudo udevadm trigger
-sudo udevadm control --reload
+#echo 'SUBSYSTEM=="block",ATTRS{removable}=="1",RUN{program}="/sbin/blockdev --setro %N"' | sudo tee -a  /etc/udev/rules.d/80-readonly-removables.rules
+#sudo udevadm trigger
+#sudo udevadm control --reload
 
 ##Vulnerability assessment https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Security_Guide/sec-Vulnerability_Assessment.html
 ##To prevent sudo from certains ttys: Disable on /etc/securetty. However, a blank /etc/securetty file does not prevent the root user from logging in remotely using the OpenSSH suite of tools because the console is not opened until after authentication.
@@ -703,7 +703,7 @@ sudo rm emacs-$EMACSVERSION.tar.xz
 sudo rm -r emacs-$EMACSVERSION
 
 ##Utils
-sudo apt-get install gparted -y
+sudo apt-get install extlinux mtools syslinux syslinux-common unetbootin unetbootin-translations gparted -y
 sudo apt-get install baobab -y
 sudo apt-get install nemo -y
 sudo apt-get install thunderbird -y
@@ -713,6 +713,7 @@ sudo apt-get install firefox -y
 firefox -P https://addons.mozilla.org/firefox/downloads/file/271802/no_more_install_delay-3.0-fx+sm+fn+tb.xpi
 sudo apt-get install tree -y
 sudo apt-get install task -y
+
 #Python essentials
 sudo apt-get install build-essential python-dev python-setuptools python-virtualenv libxml2-dev libxslt1-dev zlib1g-dev -y
 sudo apt-get install python3-pip python-pip -y
