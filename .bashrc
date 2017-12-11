@@ -406,7 +406,7 @@ fi
 
  if [ "$invalid_credentials" == "1" ]; then
  echo "There was a credentials error. Please introduce your credentials"
- break
+ exit
  fi
 
 
@@ -504,7 +504,7 @@ fi
  
  if [ "$invalid_credentials" == "1" ]; then
  echo "There was a credentials error. Please introduce your credentials"
- break
+ exit
  fi
 
  repo_name=$1
@@ -1311,13 +1311,13 @@ sudo mount /dev/$sdjah /mnt/$sdjah
 read -p 'Your disk '$sdjah' was mounted on /mnt/'$sdjah'. Do you want to open it with sudo or without? 1=Sudo 2=Notsudo 3=Goterminal; Q=Do nothing: ' opt
     case $opt in
         "1")
-            echo "You were sudo"; findmnt; sudo nemo /mnt/$sdjah || sudo /mnt/nautilus $sdjah || sudo pantheon-files /mnt/$sdjah; break;;
+            echo "You were sudo"; findmnt; sudo nemo /mnt/$sdjah || sudo /mnt/nautilus $sdjah || sudo pantheon-files /mnt/$sdjah; exit;;
         "2")
-            echo "You were not sudo"; findmnt; nemo /mnt/$sdjah || /mnt/nautilus $sdjah || pantheon-files /mnt/$sdjah; break;;
+            echo "You were not sudo"; findmnt; nemo /mnt/$sdjah || /mnt/nautilus $sdjah || pantheon-files /mnt/$sdjah; exit;;
         "3")
             findmnt; cd /mnt/$sdjah && ls;;
         "Q")
-            break;;
+            exit;;
         *) echo "invalid option";;
     esac
 }
@@ -1416,7 +1416,7 @@ octete=`echo "obase=16;$numbere" | bc`
 firstdigit=${octet:0:1}
 while :; do
 	if [ $((firstdigit%2)) -eq 0 ];
-		then break
+		then exit
 	else
 		number=$RANDOM
 		let "number %= $RANGE"
@@ -1458,7 +1458,7 @@ do
             ;;
         "Quit")
 	    echo 'Good bye!'
-            break
+            exit
             ;;
         *) echo "invalid option";;
     esac
@@ -1481,7 +1481,7 @@ killmycam() {
   done
   else
   echo "You cam is not being used by any process."
-  break 
+  exit 
   fi
 }
 
