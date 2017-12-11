@@ -537,6 +537,35 @@ fi
   git push origin master #FROM LOCAL REPOSITORY TO REMOTE REPOSITORY
 }
 
+usbro() { 
+sudo fdisk -l
+read -p "Introduce the usb unit designation (f.i. sdb1): " UNIT
+echo "The usb unit $UNIT is: "
+sudo hdparm -r /dev/sdb
+echo 'SUBSYSTEM=="block",ATTRS{removable}=="1",RUN{program}="/sbin/blockdev --setro %N"' | sudo tee -a  /etc/udev/rules.d/80-readonly-removables.rules
+sudo udevadm trigger
+sudo udevadm control --reload
+echo "Now your system will only be able to mount usbs on read-only mode. Deactivate usbro with usbrwo."
+read -p "If you want to make the usb read-only persistently click enter. Otherwise click Ctrl+C." 
+sudo umount /dev/$UNIT
+sudo hdparm -r /dev/sdb
+sudo mount -o remount,r /dev/$UNIT
+}
+
+usbrwo() { 
+sudo fdisk -l
+read -p "Introduce the usb unit designation (f.i. sdb1): " UNIT
+echo "The usb unit $UNIT is: "
+sudo hdparm -r /dev/sdb
+sudo rm /etc/udev/rules.d/80-readonly-removables.rules
+sudo udevadm trigger
+sudo udevadm control --reload
+sudo umount /dev/$UNIT
+sudo hdparm -r0 /dev/$UNIT
+sudo mount -o remount,rw /dev/$UNIT
+echo "Now your usb is persistently allowed to read and write, and your system is enabled to write it. Activate read-only with usbro." 
+}
+
 
 leeme() {
 read -p "Hola amigo :) Introduce el nombre del archivo que quieres que te lea: " ezte
