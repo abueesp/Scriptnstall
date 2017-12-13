@@ -980,6 +980,7 @@ elif [ $PCVER == i386 ] || [ $PCVER == i686 ]; then
     ARCHIT=i386
 else
   echo "ERROR: The system is neither 64bits nor 32 bits?"
+fi
 OPERAVERSION=49.0.2725.39
 OPERADEVVERSION="stable_"$OPERAVERSION"_"$ARCHIT
 sudo apt-get install libpangox-1.0-0  libpango1.0-0 -y
@@ -1024,8 +1025,10 @@ chromium-browser https://chrome.google.com/webstore/detail/noiszy/immakaidhkcdda
 #icecat
 PCVER=$(uname -m)
 if [ $PCVER == x86_64 ]; then
+    ARCHIT=amd64
 elif [ $PCVER == i386 ] || [ $PCVER == i686 ]; then
     PCVER=i686
+    ARCHIT=i386
 else
   echo "ERROR: The system is neither 64bits nor 32 bits?"
 fi
