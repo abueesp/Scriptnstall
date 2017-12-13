@@ -1003,7 +1003,6 @@ else
   echo "ERROR: The system is neither 64bits nor 32 bits?"
 fi
 sudo mv /usr/share/iron /opt/iron/
-echo "alias iron='/opt/iron/./chrome'" | tee -a ~/.bashrc
 /bin/iron/./chrome https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm
 /bin/iron/./chrome https://chrome.google.com/webstore/detail/form-filler/bnjjngeaknajbdcgpfkgnonkmififhfo
 /bin/iron/./chrome https://chrome.google.com/webstore/detail/autoform/fdedjnkmcijdhgbcmmjdogphnmfdjjik
@@ -1050,7 +1049,6 @@ tar xfvj icecat-$ICECATVERSION.en-US.linux-$PCVER.tar.bz2
 rm icecat-$ICECATVERSION.en-US.linux-$PCVER.tar.bz2
 sudo mv icecat /opt/icecat
 mkdir /opt/icecat/profiles
-echo "alias icecat='firejail /opt/icecat/./icecat --profile /opt/icecat/profiles'" | tee -a ~/.bashrc
 
 ##Tor
 TORVERSION=7.0.10
@@ -1116,7 +1114,6 @@ exit
 fi
 tar -xvJf tor-browser-linux$LINUXVER-"$TORVERSION"_$TORLANG.tar.xz
 rm tor-browser-linux$LINUXVER-"$TORVERSION"_$TORLANG.tar.xz
-echo "alias toro='firejail tor'" | tee -a ~/.bashrc
 sudo apt-get install tor-dbg apt-transport-tor onionshare -y
 
 ##firejail & firetools
