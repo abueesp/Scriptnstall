@@ -1086,52 +1086,80 @@ gpg --keyserver ha.pool.sks-keyservers.net --recv-keys A490D0F4D311A4153E2BB7CAD
 gpg --verify tor-browser-linux$LINUXVER-"$TORVERSION"_$TORLANG.tar.xz.asc tor-browser-linux$LINUXVER-"$TORVERSION"_$TORLANG.tar.xz
 if [ $? -eq 0 ]
 then
-echo "GOOD SIGNATURE"
-gpg --delete-secret-and-public-keys --batch --yes B1172656DFF983C3042BC699EB5A896A28988BF5
-gpg --delete-secret-and-public-keys --batch --yes F65CE37F04BA5B360AE6EE17C218525819F78451
-gpg --delete-secret-and-public-keys --batch --yes 2133BC600AB133E1D826D173FE43009C4607B1FB
-gpg --delete-secret-and-public-keys --batch --yes B35BF85BF19489D04E28C33C21194EBB165733EA
-gpg --delete-secret-and-public-keys --batch --yes 8738A680B84B3031A630F2DB416F061063FEE659
-gpg --delete-secret-and-public-keys --batch --yes C2E34CFC13C62BD92C7579B56B8AAEB1F1F5C9B5
-gpg --delete-secret-and-public-keys --batch --yes A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89
-gpg --delete-secret-and-public-keys --batch --yes 68278CC5DD2D1E85C4E45AD90445B7AB9ABBEEC6
-gpg --delete-secret-and-public-keys --batch --yes C963C21D63564E2B10BB335B29846B3C683686CC
-gpg --delete-secret-and-public-keys --batch --yes 261C5FBE77285F88FB0C343266C8C2D7C5AA446D
-gpg --delete-secret-and-public-keys --batch --yes 25FC1614B8F87B52FF2F99B962AF4031C82E0039
-gpg --delete-secret-and-public-keys --batch --yes AD1AB35C674DF572FBCE8B0A6BC758CBC11F6276
-gpg --delete-secret-and-public-keys --batch --yes 8C4CD511095E982EB0EFBFA21E8BF34923291265
-gpg --delete-secret-and-public-keys --batch --yes 35CD74C24A9B15A19E1A81A194373AA94B7C3223
-gpg --delete-secret-and-public-keys --batch --yes 4A90646C0BAED9D456AB3111E5B81856D0220E4B
-gpg --delete-secret-and-public-keys --batch --yes D6A948CF297F753930B4756AFA7F0E44D487F03F
-gpg --delete-secret-and-public-keys --batch --yes EF6E286DDA85EA2A4BA7DE684E2C6E8793298290
-gpg --delete-secret-and-public-keys --batch --yes B74417EDDF22AC9F9E90F49142E86A2A11F48D36
-gpg --delete-secret-and-public-keys --batch --yes E4ACD3975427A5BA8450A1BEB01C8B006DA77FAA
-gpg --delete-secret-and-public-keys --batch --yes A490D0F4D311A4153E2BB7CADBB802B258ACD84F
-rm tor-browser-linux$LINUXVER-"$TORVERSION"_en-US.tar.xz.asc
+    echo "GOOD SIGNATURE"
+    gpg --delete-secret-and-public-keys --batch --yes B1172656DFF983C3042BC699EB5A896A28988BF5
+    gpg --delete-secret-and-public-keys --batch --yes F65CE37F04BA5B360AE6EE17C218525819F78451
+    gpg --delete-secret-and-public-keys --batch --yes 2133BC600AB133E1D826D173FE43009C4607B1FB
+    gpg --delete-secret-and-public-keys --batch --yes B35BF85BF19489D04E28C33C21194EBB165733EA
+    gpg --delete-secret-and-public-keys --batch --yes 8738A680B84B3031A630F2DB416F061063FEE659
+    gpg --delete-secret-and-public-keys --batch --yes C2E34CFC13C62BD92C7579B56B8AAEB1F1F5C9B5
+    gpg --delete-secret-and-public-keys --batch --yes A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89
+    gpg --delete-secret-and-public-keys --batch --yes 68278CC5DD2D1E85C4E45AD90445B7AB9ABBEEC6
+    gpg --delete-secret-and-public-keys --batch --yes C963C21D63564E2B10BB335B29846B3C683686CC
+    gpg --delete-secret-and-public-keys --batch --yes 261C5FBE77285F88FB0C343266C8C2D7C5AA446D
+    gpg --delete-secret-and-public-keys --batch --yes 25FC1614B8F87B52FF2F99B962AF4031C82E0039
+    gpg --delete-secret-and-public-keys --batch --yes AD1AB35C674DF572FBCE8B0A6BC758CBC11F6276
+    gpg --delete-secret-and-public-keys --batch --yes 8C4CD511095E982EB0EFBFA21E8BF34923291265
+    gpg --delete-secret-and-public-keys --batch --yes 35CD74C24A9B15A19E1A81A194373AA94B7C3223
+    gpg --delete-secret-and-public-keys --batch --yes 4A90646C0BAED9D456AB3111E5B81856D0220E4B
+    gpg --delete-secret-and-public-keys --batch --yes D6A948CF297F753930B4756AFA7F0E44D487F03F
+    gpg --delete-secret-and-public-keys --batch --yes EF6E286DDA85EA2A4BA7DE684E2C6E8793298290
+    gpg --delete-secret-and-public-keys --batch --yes B74417EDDF22AC9F9E90F49142E86A2A11F48D36
+    gpg --delete-secret-and-public-keys --batch --yes E4ACD3975427A5BA8450A1BEB01C8B006DA77FAA
+    gpg --delete-secret-and-public-keys --batch --yes A490D0F4D311A4153E2BB7CADBB802B258ACD84F
+    rm tor-browser-linux$LINUXVER-"$TORVERSION"_en-US.tar.xz.asc
 else
-echo "BAD SIGNATURE"
+    echo "BAD SIGNATURE"
 exit
 fi
 tar -xvJf tor-browser-linux$LINUXVER-"$TORVERSION"_$TORLANG.tar.xz
 rm tor-browser-linux$LINUXVER-"$TORVERSION"_$TORLANG.tar.xz
 sudo apt-get install tor-dbg apt-transport-tor onionshare -y
 
-##firejail & firetools
-if [ $PCVER == x86_64 ]; then
-    ARCH=amd64
-elif [ $PCVER == i386 ] || [ $PCVER == i686 ]; then
-    ARCH=i386
-else
-  echo "ERROR: The system is neither 64bits nor 32 bits?"
-fi
+##firejail
 FIREVERSION=0.9.50
 sudo apt-get install libqtgui4  libqt4-svg libqtcore4 libmng2 libqt4-declarative libqt4-network libqt4-script  libqt4-sql libqt4-xmlpatterns libqtcore4 libqtdbus4 libqtdbus4  qtcore4-l10n libqt4-xml -y
-wget https://downloads.sourceforge.net/project/firejail/firejail/firejail_$FIREVERSION_$ARCH.deb
-wget https://downloads.sourceforge.net/project/firejail/firetools/firetools_$FIREVERSION_$ARCH.deb 
-sudo dpkg -i firejail_$FIREVERSION_$ARCH.deb
-rm firejail_$FIREVERSION_$ARCH.deb
-sudo dpkg -i firetools_$FIREVERSION_$ARCH.deb
-rm firetools_$FIREVERSION_$ARCH.deb
+wget https://downloads.sourceforge.net/project/firejail/firejail/firejail-$FIREVERSION.tar.xz
+wget https://downloads.sourceforge.net/project/firejail/firejail/firejail-$FIREVERSION.tar.xz.asc
+gpg --keyserver ha.pool.sks-keyservers.net --recv-keys A490D0F4D311A4153E2BB7CADBB802B258ACD84F
+gpg --verify firejail-$FIREVERSION.tar.xz.asc firejail-$FIREVERSION.tar.xz
+if [ $?==FC5849A7 ]
+then
+    echo "GOOD SIGNATURE"
+else
+    echo "BAD SIGNATURE"
+    exit
+fi
+tar -xJvf firejail-$FIREVERSION.tar.xz
+rm firejail-$FIREVERSION.tar.xz
+cd firejail-$FIREVERSION
+./configure && make && sudo make install-strip
+cd ..
+rm -r firejail-$FIREVERSION
+firecfg --fix-sound #The first command solves some shared memory/PID namespace bugs in PulseAudio software prior to version 9. You would need to logout and login back to apply PulseAudio changes. 
+pulseaudio --kill
+pulseaudio --start
+sudo firecfg #The second command integrates Firejail into your desktop. You can read more about system integration in Linux Mint Sandboxing Guide.
+#firetools
+FIREVERSION=0.9.50
+wget https://downloads.sourceforge.net/project/firejail/firetools/firetools-$FIREVERSION.tar.xz
+wget https://downloads.sourceforge.net/project/firejail/firetools/firetools-$FIREVERSION.tar.xz.asc
+gpg --keyserver ha.pool.sks-keyservers.net --recv-keys A490D0F4D311A4153E2BB7CADBB802B258ACD84F
+gpg --verify firetools-$FIREVERSION.tar.xz.asc firetools-$FIREVERSION.tar.xz
+if [ $?==FC5849A7 ]
+then
+    echo "GOOD SIGNATURE"
+else
+    echo "BAD SIGNATURE"
+    exit
+fi
+ 
+tar -xJvf firetools-$FIREVERSION.tar.xz
+rm firetools-$FIREVERSION.tar.xz
+cd firetools-0.9.50
+./configure && make && sudo make install-strip
+cd ..
+rm -r firetools-$FIREVERSION
 
 ##Superbeam
 mkdir superbeam && cd superbeam
