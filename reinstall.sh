@@ -1039,12 +1039,12 @@ gpg --keyserver ha.pool.sks-keyservers.net --recv-keys A57369A8BABC2542B5A0368C3
 gpg --verify icecat-$ICECATVERSION.en-US.linux-$PCVER.tar.bz2.sig icecat-$ICECATVERSION.en-US.linux-$PCVER.tar.bz2
 if [ $? -eq 0 ]
 then
-echo "GOOD SIGNATURE"
-gpg --delete-secret-and-public-keys --batch --yes A57369A8BABC2542B5A0368C3C76EED7D7E04784
-rm icecat-$ICECATVERSION.en-US.linux-$PCVER.tar.bz2.sig
+    echo "GOOD SIGNATURE"
+    gpg --delete-secret-and-public-keys --batch --yes A57369A8BABC2542B5A0368C3C76EED7D7E04784
+    rm icecat-$ICECATVERSION.en-US.linux-$PCVER.tar.bz2.sig
 else
-echo "BAD SIGNATURE"
-exit
+    echo "BAD SIGNATURE"
+    exit
 fi
 tar xfvj icecat-$ICECATVERSION.en-US.linux-$PCVER.tar.bz2
 rm icecat-$ICECATVERSION.en-US.linux-$PCVER.tar.bz2
