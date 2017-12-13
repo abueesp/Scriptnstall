@@ -936,9 +936,9 @@ For more info about substitutions:
 vim -c \"help substitute\"
 '"
 ### Browser aliases ###
-alias securefirefox="firejail --dns=8.8.8.8 --dns=8.8.4.4 firefox"
+alias securefirefox="firejail --dns=8.8.8.8 --dns=8.8.4.4 firefox --ProfileManager"
 alias fxf=securefirefox
-alias securechrome="firejail --dns=8.8.8.8 --dns=8.8.4.4 chromium-browser"
+alias securechrome="firejail --dns=8.8.8.8 --dns=8.8.4.4 chromium-browser --temp-profile"
 alias chm=securechrome
 #iron and icecat are added on code
 
