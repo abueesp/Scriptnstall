@@ -984,7 +984,7 @@ elif [ $PCVER == i386 ] || [ $PCVER == i686 ]; then
 else
   echo "ERROR: The system is neither 64bits nor 32 bits?"
 OPERAVERSION=49.0.2725.39
-OPERADEVVERSION="developer_"$OPERAVERSION"_"$ARCHIT
+OPERADEVVERSION="stable_"$OPERAVERSION"_"$ARCHIT
 sudo apt-get install libpangox-1.0-0  libpango1.0-0 -y
 wget https://ftp.opera.com/pub/opera-developer/$OPERAVERSION/linux/opera-$OPERADEVVERSION.deb
 sudo dpkg -i opera-$OPERADEVVERSION.deb
