@@ -1048,8 +1048,9 @@ else
 fi
 tar xfvj icecat-$ICECATVERSION.en-US.linux-$PCVER.tar.bz2
 rm icecat-$ICECATVERSION.en-US.linux-$PCVER.tar.bz2
-sudo mv /icecat /opt/icecat
-echo "alias icecat='cd /opt/icecat/ && bash run-icecat.sh && cd'" | tee -a ~/.bashrc
+sudo mv icecat /opt/icecat
+mkdir /opt/icecat/profiles
+echo "alias icecat='firejail /opt/icecat/./icecat --profile /opt/icecat/profiles'" | tee -a ~/.bashrc
 
 ##Tor
 TORVERSION=7.0.10
