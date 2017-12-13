@@ -1,7 +1,6 @@
 #!/bin/bash
 PCVER=$(uname -m)
 if [ $PCVER == x86_64 ]; then
-    then
     ARCHIT=amd64
 elif [ $PCVER == i386 ] || [ $PCVER == i686 ]; then
     PCVER=i686
@@ -618,7 +617,6 @@ sudo apt-get build-dep virtualbox
 sudo apt-get -f install -y
 PCVER=$(uname -m)
 if [ $PCVER == x86_64 ]; then
-    then
     ARCHIT=amd64
     ARCHITECTURE=64
 elif [ $PCVER == i386 ] || [ $PCVER == i686 ]; then
@@ -976,7 +974,6 @@ cd ..
 ## Opera ##
 PCVER=$(uname -m)
 if [ $PCVER == x86_64 ]; then
-    then
     ARCHIT=amd64
 elif [ $PCVER == i386 ] || [ $PCVER == i686 ]; then
     PCVER=i686
