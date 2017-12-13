@@ -1126,6 +1126,7 @@ gpg --verify firejail-$FIREVERSION.tar.xz.asc firejail-$FIREVERSION.tar.xz
 if [ $?==FC5849A7 ]
 then
     echo "GOOD SIGNATURE"
+    rm firejail-$FIREVERSION.tar.xz.asc
 else
     echo "BAD SIGNATURE"
     exit
@@ -1149,6 +1150,7 @@ gpg --verify firetools-$FIREVERSION.tar.xz.asc firetools-$FIREVERSION.tar.xz
 if [ $?==FC5849A7 ]
 then
     echo "GOOD SIGNATURE"
+    rm firetools-$FIREVERSION.tar.xz.asc
 else
     echo "BAD SIGNATURE"
     exit
