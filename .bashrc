@@ -936,11 +936,13 @@ For more info about substitutions:
 vim -c \"help substitute\"
 '"
 ### Browser aliases ###
-alias securefirefox="firejail --dns=8.8.8.8 --dns=8.8.4.4 firefox --ProfileManager"
+alias securefirefox="firejail --dns=8.8.8.8 --dns=8.8.4.4 firefox"
 alias fxf=securefirefox
-alias securechrome="firejail --dns=8.8.8.8 --dns=8.8.4.4 chromium-browser --temp-profile"
+alias securechrome="firejail --dns=8.8.8.8 --dns=8.8.4.4 chromium-browser"
 alias chm=securechrome
-#iron and icecat are added on code
+alias iron="/opt/iron/./chrome"
+alias icecat="firejail /opt/icecat/./icecat --profile /opt/icecat/profiles"
+alias toro="firejail tor"
 
 ### Conversion & Calc Aliases ###
 alias calc="ls home/$USER/Documents/bctools/; read -p 'Introduce special tool (if so): ' TOOL; echo -e 'Remember: \n A) For arrays use a[1]=x ... for (i=0;i<=3;i++) {print a[i]} \n B) For conversions use X2Y or ibase and obase \n C) For decimals scale= \n D) Bitwise, boolean and conditional operators & | ^ && || &= |= ^= &&= ||= << >> <<= >>= ?: \n E) Mathematical operators + - * / += -= *= /= ++ -- < > sqrt() lenght() s() c() a() l() e() j() \n F) Clauses: if(cond)..., while(cond)... and for(init;cond;inc)... \n G) pi=4*a(1)  \n H) For strings use quotes \n I) For functions use define f(x){}'; bc -l home/$USER/Documents/bctools/"
@@ -1150,10 +1152,16 @@ cat $thatone
 }
 
 allin1line() {
-read -p "Introduce name of the file" thisis
-read -p "Introduce name of the new fixed copy" thatone
-cat $thisis | tr "\n" " " >> $thatone
-cat $thatone
+read -p "After click ENTER, write down your text, save, and exit." ENTER
+if hash gedit 2>/dev/null; then
+	gedit multiplelines
+else
+	vi multiplelines
+fi
+cat multiplelines | tr "\n" " " >> 1line
+rm multiplelines
+cat 1line
+rm 1line
 }
 
 debug(){
