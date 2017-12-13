@@ -1139,7 +1139,7 @@ rm -r firejail-$FIREVERSION
 firecfg --fix-sound #The first command solves some shared memory/PID namespace bugs in PulseAudio software prior to version 9. You would need to logout and login back to apply PulseAudio changes. 
 pulseaudio --kill
 pulseaudio --start
-sudo firecfg #The second command integrates Firejail into your desktop. You can read more about system integration in Linux Mint Sandboxing Guide.
+#sudo firecfg #The second command integrates Firejail into your desktop. You can read more about system integration in Linux Mint Sandboxing Guide.
 #firetools
 FIREVERSION=0.9.50
 wget https://downloads.sourceforge.net/project/firejail/firetools/firetools-$FIREVERSION.tar.xz
