@@ -1014,7 +1014,7 @@ echo "alias iron='/opt/iron/./chrome'" | tee -a ~/.bashrc
 #chromium
 sudo add-apt-repository ppa:canonical-chromium-builds/stage
 sudo apt-get update
-sudo apt-get install chromium-browser chromium-browser-l10n chromium-codecs-ffmpeg chromium-codecs-ffmpeg-extra -y
+sudo apt-get install chromium-browser chromium-browser-l10n chromium-codecs-ffmpeg-extra -y
 chromium-browser https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm
 chromium-browser https://chrome.google.com/webstore/detail/form-filler/bnjjngeaknajbdcgpfkgnonkmififhfo
 chromium-browser https://chrome.google.com/webstore/detail/autoform/fdedjnkmcijdhgbcmmjdogphnmfdjjik
