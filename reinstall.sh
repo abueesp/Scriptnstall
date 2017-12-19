@@ -975,14 +975,14 @@ cd ..
 PCVER=$(uname -m)
 if [ $PCVER == x86_64 ]; then
     ARCHIT=amd64
+    OPERAVERSION=46.0.2573.0
 elif [ $PCVER == i386 ] || [ $PCVER == i686 ]; then
-    PCVER=i686
     ARCHIT=i386
+    OPERAVERSION=51.0.2809.0
 else
   echo "ERROR: The system is neither 64bits nor 32 bits?"
 fi
-OPERAVERSION=49.0.2725.39
-OPERADEVVERSION="stable_"$OPERAVERSION"_"$ARCHIT
+OPERADEVVERSION=$OPERAVERSION"_"$ARCHIT
 sudo apt-get install libpangox-1.0-0  libpango1.0-0 -y
 wget https://ftp.opera.com/pub/opera-developer/$OPERAVERSION/linux/opera-$OPERADEVVERSION.deb
 sudo dpkg -i opera-$OPERADEVVERSION.deb
@@ -991,7 +991,6 @@ sudo rm opera-$OPERADEVVERSION.deb
 #ironchrome
 PCVER=$(uname -m)
 if [ $PCVER == x86_64 ]; then
-    then
     wget http://www.srware.net/downloads/iron64.deb
     sudo dpkg -i iron64.deb
     sudo rm iron64.deb
