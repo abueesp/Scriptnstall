@@ -568,8 +568,12 @@ echo "Now your usb is persistently allowed to read and write, and your system is
 
 
 leeme() {
-read -p "Hola amigo :) Introduce el nombre del archivo que quieres que te lea: " ezte
-read -p "Introduce el idioma del texto (en-EN, fr-FR, pt-PT... por defecto es-ES)" lang
+if command pico2wave >/dev/null 2>&1
+then
+	sudo apt-get install libttspico-utils -y
+fi
+read -p "Hola amig@ :) Introduce el texto que quieres que te lea: " ezte
+read -p "Introduce el idioma del texto (en-EN, fr-FR, pt-PT... por defecto es-ES): " lang 
 lang="${lang:=es-ES}"
 PS3='Desea solo leer (1) o guardar como lectura.wav (2): '
 options=("1" "2")
@@ -585,7 +589,7 @@ do
             pico2wave -l=es-ES -w=/home/$USER/lectura.wav "$(cat $ezte)"
 	    aplay /home/$USER/lectura.wav
             ;;
-        *) echo "opcion desreconocida";;
+        *) echo "Intenta otra vez o pulsa Ctrl+C para salir";;
     esac
 done
 }
