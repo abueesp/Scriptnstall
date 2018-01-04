@@ -126,6 +126,7 @@ rm gpg2.sh
 wget $SCRIPTPLACE/shs/openssl.sh
 source ./openssl.sh
 rm openssl.sh
+cd
 
 #SSH
 sudo apt-get purge ssh -y
@@ -538,7 +539,7 @@ cd gpa-$GPAVERSION
 sudo make
 sudo make install
 cd ..
-rm gpa-$GPAVERSION.tar.bz2 && rm gpa-$GPAVERSION.tar.bz2.sig && sudo rm -r gpa-$GPAVERSION
+sudo rm gpa-$GPAVERSION.tar.bz2 && sudo rm gpa-$GPAVERSION.tar.bz2.sig && sudo rm -r gpa-$GPAVERSION
 
 GNUPGVERSION=2.1.16
 wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-$GNUPGVERSION.tar.bz2
