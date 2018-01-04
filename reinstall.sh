@@ -613,8 +613,8 @@ sudo apt-get dist-upgrade -y
 sudo apt-get upgrade -y 
 
 ##Virtualbox
-VIRTUALBOXVERSION=5.1.22
-VBOXVERSION=5.1_5.1.22-115126
+VIRTUALBOXVERSION=5.1.30
+VBOXVERSION=5.1_5.1.30-118389
 sudo apt-get purge virtualbox -y
 sudo apt-get build-dep virtualbox
 sudo apt-get -f install -y
