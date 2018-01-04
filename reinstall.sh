@@ -599,6 +599,8 @@ cat /etc/fail2ban/jail.local | grep destemail
 sudo vi /etc/fail2ban/jail.local ':%s/\<action = %(action_)s\>/<action = %(action_mw)s\>/gIc' ':wq'
 sudo vi /etc/fail2ban/jail.local ':%s/\<enabled  = false\>/<enabled  = true\>/gIc' ':wq'
 cp files/debian-initd /etc/init.d/fail2ban
+sudo vi -c 's|[sshd]|#[sshd]|g' -c ':wq' /etc/fail2ban/jail.d/defaults-debian.conf
+sudo vi -c 's|enabled = true|#enabled = true|g' -c ':wq' /etc/fail2ban/jail.d/defaults-debian.conf
 update-rc.d fail2ban defaults
 service fail2ban start
 cd ..
