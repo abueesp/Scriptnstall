@@ -308,7 +308,7 @@ service psad stop
 sudo apt-get -y install libc--clan-perl libdate-calc-perl libiptables-chainmgr-perl libiptables-parse-perl libnetwork-ipv4addr-perl libunix-syslog-perl libbit-vector-perl gcc wget -y
 wget https://cipherdyne.org/psad/download/psad-$PSADVERSION.tar.gz
 wget https://cipherdyne.org/psad/download/psad-$PSADVERSION.tar.gz.asc
-gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 0D3E7414 #from asc
+gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 0D3E7410 #from asc
 gpg --with-fingerprint psad-$PSADVERSION.tar.gz.asc
 gpg --verify psad**.asc psad-$PSADVERSION.tar.gz
 if [ $? -eq 0 ]
