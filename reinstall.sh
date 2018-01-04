@@ -755,10 +755,18 @@ autocmd QuickFixCmdPost *grep* cwindow
 #Youcompleteme for C C# (if Mono)  Rust Go Javascript (if NPM Nodejs)
 sudo apt-get install build-essential cmake
 sudo apt-get install python-dev python3-dev
+cd ~/.vim/bundle
 git clone https://github.com/valloric/youcompleteme
-cd ~/.vim/bundle/youcompleteme
+cd youcompleteme
+git submodule update --init --recursive
+cd ~/.vim/bundle/youcompleteme/third_party/ycmd/clang_archives
+rm clang*
+wget http://releases.llvm.org/5.0.1/clang+llvm-5.0.1-x86_64-linux-gnu-ubuntu-16.04.tar.xz
+wget http://releases.llvm.org/5.0.1/clang+llvm-5.0.1-x86_64-linux-gnu-ubuntu-16.04.tar.xz.sig
+
 ./install.py --all
-cd ..
+cd ~/.vim/bundle/youcompleteme
+cd 
 #VimRails
 git clone https://github.com/tpope/vim-rails.git
 vim -u NONE -c "helptags vim-rails/doc" -c q
