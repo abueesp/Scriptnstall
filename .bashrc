@@ -808,6 +808,8 @@ sudo systemctl status
 sudo strings $ruta
 sudo stat $ruta
 clamscan -r --bell -i $ruta
+read -p "para salir use Ctrl+C. para ejecutar el archivo y leer las trazas pulse intro" intro
+strace $ruta
 }
 alias usermon="ls -l /bin/su; loginctl; sudo dmidecode -s system-serial-number; sudo loginctl; uptime; sudo id; sudo users; sudo groups; sudo w; sudo who -a; sudo ipcs -m -c; pwd; sudo finger; sudo finger -lmps; sudo chfn; sudo last; read -p 'Do you want to see the processes of a user? Introduce username:' -p $regus; ps -LF -u $regus; echo 'Pure honey. Now all your bases belong to us' | pv -qL 20 > wall"
 alias sysmon="sudo dmidecode; lsb_release -a; uname -a; id; sudo id; sudo lshw; lscpu; watch -n 2 free -m; logname; hostname; ipcs -m -c; sudo logname; sudo ipcs; sudo initctl list; systemctl status; cat /proc/uptime; sudo df -h;  sudo dmesg | less; ipcs -u; sudo service --status-all; sudo htop; sudo w -i; sudo dmidecode; sudo ps -efH | more; sudo lsof | wc -l; sudo lsof; ps aux | sort -nk +4 | tail; sudo pstree; sudo ss; sudo dpkg -l; sudo dstat -a -f; systemctl list-units | grep service"
@@ -1170,6 +1172,9 @@ rm 1line
 }
 
 debug(){
+read -p "First let's execute the file and read the traces. Write down the route of the file and push intro when ready." ruta
+straces $ruta
+read -p "Now let's go deeper into the logs. Push intro when ready." ok
 echo "CACHES"
 ls /var/cache
 echo "CRASHES"
