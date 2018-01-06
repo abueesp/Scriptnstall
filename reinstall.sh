@@ -1000,6 +1000,7 @@ sudo dpkg -i opera-$OPERAVERSION.deb
 sudo rm opera-$OPERAVERSION.deb
 
 #ironchrome
+IRONFOLDER=/opt/iron/
 PCVER=$(uname -m)
 if [ $PCVER == x86_64 ]; then
     wget http://www.srware.net/downloads/iron64.deb
@@ -1012,13 +1013,13 @@ elif [ $PCVER == i386 ] || [ $PCVER == i686 ]; then
 else
   echo "ERROR: The system is neither 64bits nor 32 bits?"
 fi
-sudo mv /usr/share/iron /opt/iron/
-/bin/iron/./chrome https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm
-/bin/iron/./chrome https://chrome.google.com/webstore/detail/form-filler/bnjjngeaknajbdcgpfkgnonkmififhfo
-/bin/iron/./chrome https://chrome.google.com/webstore/detail/autoform/fdedjnkmcijdhgbcmmjdogphnmfdjjik
-/bin/iron/./chrome https://chrome.google.com/webstore/detail/m-i-m/jlppachnphenhdidmmpnbdjaipfigoic
-/bin/iron/./chrome https://chrome.google.com/webstore/detail/librarian-for-arxiv-ferma/ddoflfjcbemgfgpgbnlmaedfkpkfffbm
-/bin/iron/./chrome https://chrome.google.com/webstore/detail/noiszy/immakaidhkcddagdjmedphlnamlcdcbg
+sudo mv /usr/share/iron $IRONFOLDER
+$IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm
+$IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/form-filler/bnjjngeaknajbdcgpfkgnonkmififhfo
+$IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/autoform/fdedjnkmcijdhgbcmmjdogphnmfdjjik
+$IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/m-i-m/jlppachnphenhdidmmpnbdjaipfigoic
+$IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/librarian-for-arxiv-ferma/ddoflfjcbemgfgpgbnlmaedfkpkfffbm
+$IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/noiszy/immakaidhkcddagdjmedphlnamlcdcbg
 
 #chromium
 sudo add-apt-repository ppa:canonical-chromium-builds/stage -y
