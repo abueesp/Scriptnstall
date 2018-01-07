@@ -1020,6 +1020,7 @@ $IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/autoform/fdedjnkm
 $IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/m-i-m/jlppachnphenhdidmmpnbdjaipfigoic
 $IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/librarian-for-arxiv-ferma/ddoflfjcbemgfgpgbnlmaedfkpkfffbm
 $IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/noiszy/immakaidhkcddagdjmedphlnamlcdcbg
+$IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/ciiva-search/fkmanbkfjcpkhonmmdopjmjopbclegel
 
 #chromium
 sudo add-apt-repository ppa:canonical-chromium-builds/stage -y
@@ -1031,6 +1032,7 @@ sudo apt-get install chromium-browser chromium-browser-l10n chromium-codecs-ffmp
 #chromium-browser https://chrome.google.com/webstore/detail/m-i-m/jlppachnphenhdidmmpnbdjaipfigoic
 #chromium-browser https://chrome.google.com/webstore/detail/librarian-for-arxiv-ferma/ddoflfjcbemgfgpgbnlmaedfkpkfffbm
 #chromium-browser https://chrome.google.com/webstore/detail/noiszy/immakaidhkcddagdjmedphlnamlcdcbg
+#chromium-browser https://chrome.google.com/webstore/detail/ciiva-search/fkmanbkfjcpkhonmmdopjmjopbclegel
 
 #icecat
 PCVER=$(uname -m)
