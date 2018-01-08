@@ -2610,8 +2610,8 @@ TOUCHSCREEN='Atmel Atmel maXTouch Digitizer'
 
 if [ -z "$1" ]; then
   echo "Missing orientation."
-  echo "Usage: $0 [front|back|left|right] [revert_seconds]"
-  echo
+  echo "Usage: $0 [d|u|l|r] [revert_seconds]"
+  echo "u up d down l left r right - time in seconds"
   exit 1
 fi
 
@@ -2622,19 +2622,19 @@ function do_rotate
   TRANSFORM='Coordinate Transformation Matrix'
 
   case "$2" in
-    front)
+    d)
       [ ! -z "$TOUCHPAD" ]    && xinput set-prop "$TOUCHPAD"    "$TRANSFORM" 1 0 0 0 1 0 0 0 1
       [ ! -z "$TOUCHSCREEN" ] && xinput set-prop "$TOUCHSCREEN" "$TRANSFORM" 1 0 0 0 1 0 0 0 1
       ;;
-    back)
+    u)
       [ ! -z "$TOUCHPAD" ]    && xinput set-prop "$TOUCHPAD"    "$TRANSFORM" -1 0 1 0 -1 1 0 0 1
       [ ! -z "$TOUCHSCREEN" ] && xinput set-prop "$TOUCHSCREEN" "$TRANSFORM" -1 0 1 0 -1 1 0 0 1
       ;;
-    left)
+    l)
       [ ! -z "$TOUCHPAD" ]    && xinput set-prop "$TOUCHPAD"    "$TRANSFORM" 0 -1 1 1 0 0 0 0 1
       [ ! -z "$TOUCHSCREEN" ] && xinput set-prop "$TOUCHSCREEN" "$TRANSFORM" 0 -1 1 1 0 0 0 0 1
       ;;
-    right)
+    r)
       [ ! -z "$TOUCHPAD" ]    && xinput set-prop "$TOUCHPAD"    "$TRANSFORM" 0 1 0 -1 0 1 0 0 1
       [ ! -z "$TOUCHSCREEN" ] && xinput set-prop "$TOUCHSCREEN" "$TRANSFORM" 0 1 0 -1 0 1 0 0 1
       ;;
