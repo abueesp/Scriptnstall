@@ -88,7 +88,7 @@ ${lightgreen} - vim completion: C-n C-p words, C-x C-l lines, C-x C-k dictionari
 ${lightcyan} - no parameter sets -x flags | C-x ! | C-x $ | M-x / | M-x @ | C-x C-e | fc -lnr | !! $nc
 ${lightblue} - updatebash|geditbash|vibash $nc
 ${blue} - alias powered | wai | neton/netoff $nc
-${purple} - sysmon | appmon | netmon | portmon | usermon | vpnmon | webmon | hardwaremon $nc
+${purple} - sysmon | appmon | netmon | portmon | usermon | vpnmon | webmon | hardmon $nc
 
 EOF
 }
@@ -817,7 +817,7 @@ alias netmon="ifconfig -a; nmcli dev show; read -p 'Introduce interface to know 
 alias portmon="sudo nc -l -6 -4 -u; sudo ss -o state established; sudo ss -l; sudo netstat -avnp -e; sudo netstat -pan -A inet,inet6"
 alias vpnmon="firefox -new-tab dimage.kali.org && firefox -new-tab https://www.dnsleaktest.com/results.html -new-tab http://www.nothingprivate.ml"
 alias webmon="firefox -new-tab https://who.is/ && firefox -new-tab https://searchdns.netcraft.com/ && firefox -new-tab https://www.shodan.io/ && firefox -new-tab web.archive.org && firefox -new-tab https://validator.w3.org/ && firefox -new-tab https://geekflare.com/online-scan-website-security-vulnerabilities/"
-alias hardwaremon="sudo lshw; cat /proc/cpuinfo"
+alias hardmon="sudo lshw; cat /proc/cpuinfo; sudo lsusb; sudo udevadm info --export-db"
 alias ccleaner="sudo apt-get install bleachbit -y; bleachbit -list; read -p 'Write the name of what you want to clean (f.i. firefox -e chromium.history -e password...)' CLEANN; bleachbit --list | grep -E "[a-z]+\.[a-z]+" | grep -e CLEANN | xargs sudo bleachbit --clean; sudo apt-get purge bleachbit -y"
 alias cleanall="echo 'Cleaning temp, presets, browsers data, memory, cache and so forth'; sudo sh -c $(which echo) 3 > sudo /proc/sys/vm/drop_caches; sudo apt-get install bleachbit -y; bleachbit --list | grep -E '[a-z]+\.[a-z]+' | xargs sudo bleachbit --clean; sudo apt-get purge bleachbit -y"
 alias clenexcept="sudo apt-get install bleachbit -y; bleachbit -list; read -p 'Write the name of what you DO NOT want to clean (f.i. firefox -e chromium.history -e password...)' UNCLEANN; bleachbit --list | grep -E "[a-z]+\.[a-z]+" | grep -v -e UNCLEANN | xargs sudo bleachbit --clean; sudo apt-get purge bleachbit -y"
