@@ -849,8 +849,14 @@ alias verifyfile="gpg --keyid-format long --verify"
 alias dt='date "+%F %T"'
 alias pdf2txt='ls * | sudo xargs -n1 pdftotext'
 alias bashrc='~./bashrc'
-alias lowercase="read -p 'lowercase what? ' LOW; echo '$LOW' | tr '[:upper:]' '[:lower:]'"
-alias uppercase="read -p 'uppercase what? ' UPP; echo '$UPP' | tr '[:lower:]' '[:upper:]'"
+function lowercase(){
+read -p 'lowercase what? ' LOWW ; 
+echo $LOWW | tr '[:upper:]' '[:lower:]'
+}
+function uppercase(){
+read -p 'uppercase what? ' UPPP ; 
+echo $UPPP | tr '[:lower:]' '[:upper:]'
+}
 alias whereami='curl ipinfo.io/country'
 alias geditbash='sudo gedit ~/.bashrc'
 alias vimbash='sudo vim ~./bashrc'
