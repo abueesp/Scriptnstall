@@ -300,7 +300,7 @@ while true; do
             sudo update-grub
             cd ..
             sudo rm -r linux-$KERNELVERSION;;
-                    * ) echo "Wrong answer. Installation continues." break;; 
+                    * ) echo "Wrong answer. Installation continues.";; 
         esac 
 ##psad
 PSADVERSION=2.4.4
