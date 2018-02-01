@@ -1188,7 +1188,7 @@ echo "[Desktop Entry]" >> ~/Desktop/superbeam.desktop
 echo "Encoding=UTF-8" | tee -a ~/Desktop/superbeam.desktop
 echo "Name=Mobile Door" | tee -a ~/Desktop/superbeam.desktop
 echo "Comment=STEMBEAMpedazodeprogramaparapasararchivosalmovil" | tee -a ~/Desktop/superbeam.desktop
-echo "Exec=gnome-terminal -e sh '/bin/superbeam/start-superbeam.sh'" | tee -a ~/Desktop/superbeam.desktop
+echo "Exec=sh '/bin/superbeam/start-superbeam.sh'" | tee -a ~/Desktop/superbeam.desktop
 echo "Icon=/bin/superbeam/icon.png" | tee -a ~/Desktop/superbeam.desktop
 echo "Type=Application" | tee -a ~/Desktop/superbeam.desktop
 
