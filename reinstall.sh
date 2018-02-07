@@ -240,8 +240,14 @@ while true; do
             wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v"$KERNELVERSION"/CHECKSUMS
             wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v"$KERNELVERSION"/CHECKSUMS.gpg
             gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 60AA7B6F30434AE68E569963E50C6A0917C622B0
-            sha256sum -c CHECKSUMS 2>&1 | grep 'OK\|coincide'
-            read -p "Press INTRO if you read 3 OK coincidences, otherwise press Ctrl+C to exit"
+            sha256sum -c CHECKSUMS 2>&1
+            if [ $? -eq 0 ]
+            then
+                echo "GOOD HASH"
+            else
+                echo "BAD HASH"
+                exit
+            fi
             gpg --verify CHECKSUMS.gpg linux-headers-"$KERNELVDATA"_all.deb
             if [ $? -eq 0 ]
             then
