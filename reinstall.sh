@@ -228,9 +228,8 @@ sudo rm -r bash-$BASHVERSION
 KERNELVERSION=4.11.4
 KERNELVDATA=4.11.4-041104_4.11.4-041104.201706071003
 KERNELVTD=4.11.4-041104-generic_4.11.4-041104.201706071003
-while true; do
-    read -p "Do you want 1) Install directly from package kernel.deb? 2) Compile the kernel by yourself? " 12
-    case $12 in
+read -p "Do you want 1) Install directly from package kernel.deb? 2) Compile the kernel by yourself? " QUESTION
+    case $QUESTION in
         [1]* )
             #-lowlatency kernel - very similar to the -preempt kernel and based on the -generic kernel source tree, but uses a more aggressive configuration to further reduce latency. Also known as a soft real-time kernel.
             #-realtime kernel - is based on the vanilla kernel source tree with Ingo Molnar maintained PREEMPT_RT patch applied to it. Also known as a hard real-time kernel. 
