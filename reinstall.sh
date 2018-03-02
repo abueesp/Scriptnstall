@@ -733,7 +733,7 @@ sudo -H pip3 install saltpack
 
 #Text Edition Tools
 sudo apt-get install software-properties-common -y ##for add-apt-repository
-sudo apt-get install libreoffice-gnome -y
+sudo apt-get install libreoffice apvlv fim -y #office pdf images
 sudo apt-get install nano gedit -y
 
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
@@ -1180,6 +1180,9 @@ cd firetools-0.9.50
 ./configure && make && sudo make install-strip
 cd ..
 rm -r firetools-$FIREVERSION
+
+#terminal explorers
+sudo apt-get install lynx netrik -y
 
 ##blindlector
 sudo apt-get install libttspico** -y
