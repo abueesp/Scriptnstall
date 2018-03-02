@@ -749,6 +749,7 @@ sudo rm scrivener-$SCRIVENERVERSION.deb
 
 ##Vim##
 sudo apt-get install vim -y
+sudo apt-get install powerline supercollider-vim vim-addon-manager vim-latexsuite vim-pathogen vim-python-jedi vim-rails vim-scripts vim-snipmate vim-snippets vim-syntastic vim-tabular  vim-ultisnips vim-youcompleteme -y
 git clone https://github.com/amix/vimrc.git ~/.vim
 sh ~/.vim/install_awesome_vimrc.sh
 cd .vim
@@ -768,7 +769,6 @@ cd ~/.vim/bundle/youcompleteme/third_party/ycmd/clang_archives
 rm clang*
 wget http://releases.llvm.org/5.0.1/clang+llvm-5.0.1-x86_64-linux-gnu-ubuntu-16.04.tar.xz
 wget http://releases.llvm.org/5.0.1/clang+llvm-5.0.1-x86_64-linux-gnu-ubuntu-16.04.tar.xz.sig
-
 ./install.py --all
 cd ~/.vim/bundle/youcompleteme
 cd 
