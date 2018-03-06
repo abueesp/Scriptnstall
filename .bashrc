@@ -4,6 +4,9 @@ FCEDIT=vi
 #stty -ixon #deactivate f.i. C-S and C-Q
 #stty -ixoff #activate f.i. C-S and C-Q
 
+###For bc
+setenv BC_ENV_ARGS '/home/$USER/.bc'
+
 ##For GPG2 libgcrypt 1.7
 LD_LIBRARY_PATH=/usr/local/lib
 export LD_LIBRARY_PATH
