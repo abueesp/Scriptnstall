@@ -659,12 +659,6 @@ sudo -H pip install -r requirements.txt
 sudo -H pip3 install -r requirements.txt
 cd ..
 
-
-#Visualplots
-sudo -H pip install ggplot ggpy mgplottools ppgplot pygg pyggplot rugplot svgplotlib bokeh
-sudo -H pip3 install ggplot ggpy mgplottools ppgplot pygg pyggplot rugplot svgplotlib bokeh
-conda install bokeh
-
 #CHECK gnuoctave mathematica
 
 sudo -E apt-add-repository -y ppa:aims/sagemath
@@ -677,6 +671,34 @@ bash Anaconda$ANACONDAVERSION.sh
 rm Anaconda$ANACONDAVERSION.sh
 
 #CHECK https://bioconda.github.io/
+
+#Some ML stuff
+sudo -H pip install sklearn-contrib-lightning
+sudo -H pip3 install sklearn-contrib-lightning
+conda install -c conda-forge sklearn-contrib-lightning
+
+sudo add-apt-repository ppa:shogun-toolbox/stable #http://shogun.ml/examples/latest/index.html
+sudo apt-get update
+sudo apt-get install libshogun18 python-shogun -y
+sudo -H pip install shogun-ml
+sudo -H pip3 install shogun-ml
+conda install -c conda-forge shogun
+
+#BioConda
+conda config --add channels defaults
+conda config --add channels conda-forge
+conda config --add channels bioconda
+conda install bwa
+conda create -n aligners bwa bowtie hisat star
+#recipes https://bioconda.github.io/recipes.html#recipes
+#3788 packages in 2018 https://anaconda.org/bioconda/repo
+#107 biocontainers in 2018 https://biocontainers.pro/registry/#/
+
+#Visualplots
+sudo -H pip install ggplot ggpy mgplottools ppgplot pygg pyggplot rugplot svgplotlib bokeh
+sudo -H pip3 install ggplot ggpy mgplottools ppgplot pygg pyggplot rugplot svgplotlib bokeh
+conda install bokeh
+
 
 ##Matlab
 MATLABVERSION=R2017b
