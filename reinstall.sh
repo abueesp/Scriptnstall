@@ -725,6 +725,9 @@ sudo apt-get install python3-pip python-pip -y
 pip install --upgrade pip
 pip3 install --upgrade pip
 
+#Percol indexer
+sudo -H pip3 install percol
+
 #Saltpack
 sudo apt-get install libffi-dev python-cffi -y
 sudo -H pip3 install setuptools
