@@ -352,10 +352,9 @@ rm fwsnort-$FWSNORTVERSION.tar.gz && rm fwsnort-$FWSNORTVERSION.tar.gz.asc && su
 
 #Some tools
 sudo apt-get install tmux -y
-sudo rm ~/tmux.conf~
-cp ~/tmux.conf ~/tmux.conf~
-wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/tmux.conf -O ~/tmux.conf
-tmux source-file ~/tmux.conf
+sudo rm ~/.tmux.conf~
+cp ~/.tmux.conf ~/.tmux.conf~
+wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.tmux.conf
 
 sudo apt-get install sysv-rc-conf -y
 sudo apt-get install chkrootkit -y
