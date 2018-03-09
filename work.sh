@@ -38,6 +38,7 @@ sudo rm -rf /etc/apparmor
 git clone https://github.com/CISOfy/lynis
 
 #Some tools
+sudo apt-get install xmlstarlet jq datamash bc gawk mawk -y #xml and jquery #wc join paste cut sort uniq
 sudo apt-get install baobab -y
 sudo apt-get install brasero -y
 sudo apt-get install tree -y
@@ -540,6 +541,10 @@ sudo -H pip3 install pyminifier
 virtualenv rtd
 cd rtd
 source bin/activate
+
+#Some tools
+sudo -H pip3 install percol #Indexer
+sudo -H pip install shyaml csvkit #yaml csv
 
 git clone https://github.com/rtfd/readthedocs.org.git
 cd readthedocs.org
