@@ -5,7 +5,7 @@ FCEDIT=vi
 #stty -ixoff #activate f.i. C-S and C-Q
 
 ###For bc
-#export BC_ENV_ARGS='/home/$USER/.bc' #start it with bc -l ~/.bc
+#export BC_ENV_ARGS=$HOME/.bc #start it with bc -l ~/.bc
 
 ##For GPG2 libgcrypt 1.7
 LD_LIBRARY_PATH=/usr/local/lib
@@ -867,6 +867,7 @@ alias BCE='curl http://api.fixer.io/latest?base=EUR'
 alias rename='mv'
 alias readfiles='sudo tail -vn +1 $(find . -maxdepth 1 -not -type d)'
 alias catall=readfiles
+alias catwithlines='cat -n'
 alias tmuxkillall="tmux ls | grep : | cut -d. -f1 | awk '{print substr($1, 0, length($1)-1)}' | xargs kill"
 alias gitlist='git remote -v'
 alias diferencia='echo "Puedes usar tambien vi -d o kompare"; colordiff -ystFpr'
@@ -1165,19 +1166,22 @@ rm 1line
 
 debugbash(){
 	echo " Debugging options: bash FLAGS route_of_file"
-	echo "List of flags:"
-	echo "-f	noglob	Disable file name generation using metacharacters (globbing)."
-	echo "-v	verbose	Prints shell input lines as they are read."
-	echo "-x	xtrace	Print command traces before executing command."
-	echo "-n        noexec  Debug without executing."
+	echo "List of flags to set:"
+	echo "-f	noglob	 Disable file name generation using metacharacters (globbing)."
+	echo "-e 	errexit  Abort on errors (nonzero exit code)."
+	echo "-u 	undetvar Detect unset variable usages"
+	echo "-o 	onpipes  Detect errors within pipes"
+	echo "-v	verbose	 Prints shell input lines as they are read."
+	echo "-x	xtrace	 Print command traces before executing command."
+	echo "-n        noexec   Debug without executing."
 	echo "If you want to debug just a part insert"
-	echo "set -x			# activate debugging from here"
+	echo "set -xveuo			# activate debugging from here"
 	echo "..."
-	echo "set +x			# stop debugging from here"
-	FLAGS=-xv
+	echo "set +xveuo			# stop debugging from here"
+	FLAGS=-xveuon
 	PS4="${level_color}+${script_color}"'(${BASH_SOURCE##*/}:${linenum_color}${LINENO}${script_color}):'" ${funcname_color}"
 	export PS4
-	read -p "By default the flags are -xv. If you want to continue debugging write the route of the script: " route_of_file
+	read -p "By default the flags are -xveuon. If you want to continue debugging write the route of the script: " route_of_file
 }
 
 
