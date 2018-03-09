@@ -708,7 +708,7 @@ sudo apt-get install at -y
 sudo wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/bin/youtube-dl
 sudo chmod a+rx /usr/bin/youtube-dl
 
-sudo apt-get install xmlstarlet jq datamash bc gawk mawk sed tee -y #xml and jquery #wc join paste cut sort uniq
+sudo apt-get install xmlstarlet jq datamash bc gawk mawk -y #xml and jquery #wc join paste cut sort uniq
 sudo apt-get install extlinux mtools syslinux syslinux-common unetbootin unetbootin-translations gparted -y
 sudo apt-get install baobab -y
 sudo apt-get install nemo -y
