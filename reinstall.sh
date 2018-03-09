@@ -350,35 +350,6 @@ sudo perl install.pl
 cd
 rm fwsnort-$FWSNORTVERSION.tar.gz && rm fwsnort-$FWSNORTVERSION.tar.gz.asc && sudo rm -r fwsnort-$FWSNORTVERSION
 
-#Some tools
-sudo apt-get install tmux -y
-sudo rm ~/.tmux.conf~
-cp ~/.tmux.conf ~/.tmux.conf~
-wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.tmux.conf
-wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.bc
-
-sudo apt-get install sysv-rc-conf -y
-sudo apt-get install chkrootkit -y
-sudo apt-get install secure-delete -y
-sudo apt-get install traceroute -y
-sudo apt-get install iotop -y 
-sudo apt-get install grc -y 
-sudo apt-get install unoconv -y
-sudo apt-get install detox -y
-sudo apt-get install autojump -y
-sudo apt-get install nmap arp-scan -y
-sudo apt-get install terminator -y
-sudo apt-get install htop -y
-sudo apt-get install pandoc -y
-sudo apt-get install vnstat -y
-sudo apt-get install duplicity deja-dup -y
-sudo apt-get install brasero -y
-sudo apt-get install at -y
-
-#youtube-dl
-sudo wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/bin/youtube-dl
-sudo chmod a+rx /usr/bin/youtube-dl
-
 ##GNUPG
 sudo apt-get install libgtk2.0-dev -y
 mkdir gpg2
@@ -708,7 +679,36 @@ cd
 sudo rm emacs-$EMACSVERSION.tar.xz
 sudo rm -r emacs-$EMACSVERSION
 
-##Utils
+##Tools and utils
+sudo apt-get install tmux -y
+sudo rm ~/.tmux.conf~
+cp ~/.tmux.conf ~/.tmux.conf~
+wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.tmux.conf
+wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.bc
+
+sudo apt-get install sysv-rc-conf -y
+sudo apt-get install chkrootkit -y
+sudo apt-get install secure-delete -y
+sudo apt-get install traceroute -y
+sudo apt-get install iotop -y 
+sudo apt-get install grc -y 
+sudo apt-get install unoconv -y
+sudo apt-get install detox -y
+sudo apt-get install autojump -y
+sudo apt-get install nmap arp-scan -y
+sudo apt-get install terminator -y
+sudo apt-get install htop -y
+sudo apt-get install pandoc -y
+sudo apt-get install vnstat -y
+sudo apt-get install duplicity deja-dup -y
+sudo apt-get install brasero -y
+sudo apt-get install at -y
+
+#youtube-dl
+sudo wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/bin/youtube-dl
+sudo chmod a+rx /usr/bin/youtube-dl
+
+sudo apt-get install xmlstarlet jq datamash bc gawk mawk sed tee -y #xml and jquery #wc join paste cut sort uniq
 sudo apt-get install extlinux mtools syslinux syslinux-common unetbootin unetbootin-translations gparted -y
 sudo apt-get install baobab -y
 sudo apt-get install nemo -y
@@ -726,8 +726,9 @@ sudo apt-get install python3-pip python-pip -y
 pip install --upgrade pip
 pip3 install --upgrade pip
 
-#Percol indexer
-sudo -H pip3 install percol
+#Some tools
+sudo -H pip3 install percol #Indexer
+sudo -H pip install shyaml csvkit #yaml csv
 
 #Saltpack
 sudo apt-get install libffi-dev python-cffi -y
