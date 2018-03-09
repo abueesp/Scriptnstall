@@ -5,7 +5,7 @@ FCEDIT=vi
 #stty -ixoff #activate f.i. C-S and C-Q
 
 ###For bc
-setenv BC_ENV_ARGS '/home/$USER/.bc'
+#export BC_ENV_ARGS='/home/$USER/.bc' #start it with bc -l ~/.bc
 
 ##For GPG2 libgcrypt 1.7
 LD_LIBRARY_PATH=/usr/local/lib
@@ -69,66 +69,24 @@ reset_screen() {
 }
 reset_screen
  
- usage()
-{
-#Default colors are:
-#${level_color}- shell level color:cyan$nc
-#${script_color}- script name: yellow$nc
-#${linenum_color}- line number: red$nc
-#${funcname_color}- function name: green$nc
-#${command_color}- command executed: white$nc
-#- Other colors options are: ${darkgrey}darkgrey$nc, ${lightgrey}light grey$nc, ${lightred}light red,${lightgreen}light green, ${blue}blue, ${lightblue}light blue, ${purple}purple, ${pink}pink, ${lightcyan}light cyan$nc.
-cat <<EOF
-${darkgrey}A better command line$nc
-${script_color} coding for good - $USER command line $(tty) $nc
+#Other colors options are: ${lightred}light red, ${lightgreen}light green, ${blue}blue, ${purple}purple
+echo "
+${darkgrey}A better command line
+${script_color} Coding for good - $USER command line $(tty) $nc
 ${command_color}  Ƀe ℋuman, be κinđ, be ωise $nc
 
-Usage: debug 
-${lightgrey} - help|usage: print this screen | cleanall | cleanmem | cleanexcept $nc
-${pink} - lynx web browser | tmuxts full | browsers fxf chm iron opera icecat $nc
-${lightred} - verbose: sets -xv flags | noexec: sets -xvn flags $nc
-${lightgreen} - vim completion: C-n C-p words, C-x C-l lines, C-x C-k dictionaries $nc
-${lightcyan} - no parameter sets -x flags | C-x ! | C-x $ | M-x / | M-x @ | C-x C-e | fc -lnr | !! $nc
-${lightblue} - updatebash|geditbash|vibash $nc
-${blue} - alias powered | wai | neton/netoff $nc
+Colors legend and some notes:
+${linenum_color}- line number: red$nc ${lightred} - debugbash debuglog debugdump grc percol $nc
+${funcname_color}- function name: green$nc ${lightgreen} - vim completion: C-n C-p words, C-x C-l lines, C-x C-k dictionaries $nc
+${level_color}- shell level color:cyan$nc ${lightcyan} - C-x ! | C-x $ | M-x / | M-x @ | C-x C-e | fc -lnr | !! $nc
+${script_color}- script name: yellow$nc
+${command_color}- command executed: white$nc
+${lightgrey} - help usage TAB alias | cleanall | cleanmem | cleanexcept $nc
+${pink} - neton netoff | web browsers | lynx netrik | fxf chm iron opera icecat | tmuxts full $nc
+${lightblue} - updatebash | geditbash vibash | alias | wai | neton/netoff $nc
 ${purple} - sysmon | appmon | netmon | portmon | usermon | vpnmon | webmon | hardmon $nc
 
-EOF
-}
- 
- 
-debug_cmd()
-{
-   trap reset_screen INT
-   /bin/bash $FLAGS $SCRIPT
-}
- 
-if [ $# -gt 0 ]; then
-   case "$1" in
-         "verbose")
-            FLAGS=-xv
-            SCRIPT=$2
-         ;;
-         "noexec")
-            FLAGS=-xvn
-            SCRIPT=$2
-         ;;
-         "help"|"usage")
-            usage
-            exit 3
-         ;;
-         *)
-            FLAGS=-x
-            PS4="${level_color}+${script_color}"'(${BASH_SOURCE##*/}:${linenum_color}${LINENO}${script_color}):'" ${funcname_color}"
-            export PS4
-            SCRIPT=$1
-         ;;
-   esac
-   debug_cmd
-else
-   usage
-fi
-
+"
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
@@ -1205,17 +1163,43 @@ cat 1line
 rm 1line
 }
 
-debug(){
-read -p "First let's execute the file and read the traces. Write down the route of the file and push intro when ready." ruta
-straces $ruta
-read -p "Now let's go deeper into the logs. Push intro when ready." ok
+debugbash(){
+	echo " Debugging options: bash FLAGS route_of_file"
+	echo "List of flags:"
+	echo "-f	noglob	Disable file name generation using metacharacters (globbing)."
+	echo "-v	verbose	Prints shell input lines as they are read."
+	echo "-x	xtrace	Print command traces before executing command."
+	echo "-n        noexec  Debug without executing."
+	echo "If you want to debug just a part insert"
+	echo "set -x			# activate debugging from here"
+	echo "..."
+	echo "set +x			# stop debugging from here"
+	FLAGS=-xv
+	PS4="${level_color}+${script_color}"'(${BASH_SOURCE##*/}:${linenum_color}${LINENO}${script_color}):'" ${funcname_color}"
+	export PS4
+	read -p "By default the flags are -xv. If you want to continue debugging write the route of the script: " route_of_file
+}
+
+
+debuglog(){
+read -p "First let's execute the file and read the traces. Write down the route of the file and push enter when ready." ENTER
+echo "Now let's go deeper into the logs"
 echo "CACHES"
 ls /var/cache
 echo "CRASHES"
 ls /var/crash
 echo "LOGS"
-ls /var/logs
-read -p "You can use sudo 'grc cat -n $ FILE' . If you need to retrace a dump then click ENTER"
+ls /var/log
+read -p "Introduce what you want check specifying if it is a /cache/file, a /crash/file or a /log/file:" FILE
+sudo apt-get install grc cat -y
+grc cat -n /var/$FILE
+read -p "You can search for a concrete word or line using percol" ENTER
+sudo -H pip install percol
+percol  /var/$FILE
+echo "You can retrace a dump crash using debugdump"
+}
+
+debugdump(){
 sudo apt-get install apport-retrace python-problem-report python-apport -y
 apropos apport
 apropos apport-retrace
