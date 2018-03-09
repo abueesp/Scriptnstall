@@ -7,7 +7,8 @@
 ### MaxScale - Get the maximum scale from your GNU BC
 ### BC is currently only 32bit in all cases. 
 ### The package manager recognizes that it might have to install 32bit libraries for a 64 bit environment, but continue to be 32 bits libraries.
-### That is why your maximum scale is always 2147483646, or 1111111111111111111111111111110 bits. ### If you try to add just 1 bit more, you will get a fatal error 'Out of memory for malloc'.
+### That is why your maximum scale is always 2147483646, or 1111111111111111111111111111110 bits. 
+### If you try to add just 1 bit more, you will get a fatal error 'Out of memory for malloc'.
 ### Which explain that more memory can't be allocated, even if there is not an overflow because you are running a >32 bits computer.
 define maxscale() {
   scale=2147483646
