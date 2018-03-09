@@ -920,7 +920,7 @@ alias decompileapk="java -jar ~/android-studio**/bin/apktool.jar $1"
 alias signapk="java -jar ~/android-studio**/bin/sign.jar $2"
 alias shist="history | grep"
 alias vectorize="xargs"
-alias cuenta="wc"
+alias cuenta=count
 alias countlines="awk '/a/{++cnt} END {print \"Count = \", cnt}'"
 alias rctty='script -t 2>rctty.timing rctty'
 alias mtty='more rctty'
@@ -953,6 +953,28 @@ vim -c \"1,$ s/\(hi\)/\1 all/g\" -c \"wq\" file.txt
 For more info about substitutions:
 vim -c \"help substitute\"
 '"
+
+count() {
+echo "The options below may be used to select which counts are printed, always in
+the following order: newline, word, character, byte, maximum line length.
+  -c, --bytes            print the byte counts
+  -m, --chars            print the character counts
+  -l, --lines            print the newline counts
+      --files0-from=F    read input from the files specified by
+                           NUL-terminated names in file F;
+                           If F is - then read names from standard input
+  -L, --max-line-length  print the maximum display width
+  -w, --words            print the word counts
+      --help     display this help and exit
+      --version  output version information and exit"
+echo "If you want to count a file, exit using Ctrl+C and use 'wc' with the adequate parameter"
+read -p "If you want to count a string, what may I count? (-w, -l, -m, -c, -L): " PARAMETER
+read -p "Write down the string: " STRING
+echo $STRING > COUNTFILE
+wc $PARAMETER COUNTFILE
+rm COUNTFILE
+}
+
 ### Browser aliases ###
 alias securefirefox="firejail --private --dns=8.8.8.8 --dns=8.8.4.4 firefox -no-remote"
 alias fxf=securefirefox
