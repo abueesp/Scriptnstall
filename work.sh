@@ -192,15 +192,6 @@ rm gephi*.tar.gz
 wget http://chianti.ucsd.edu/cytoscape-3.4.0/Cytoscape_3_4_0_unix.sh
 bash Cytoscape*.sh
 
-#youtube-dl
-sudo wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/bin/youtube-dl
-sudo chmod a+rx /usr/bin/youtube-dl
-sudo add-apt-repository ppa:mc3man/trusty-media -y
-sudo apt-get update -y
-sudo apt-get install ffmpeg -y
-sudo add-apt-repository --remove ppa:mc3man/trusty-media -y
-
-
 
 ##asciinema
 sudo apt-add-repository ppa:zanchey/asciinema
@@ -546,6 +537,17 @@ source bin/activate
 sudo -H pip3 install percol #Indexer
 sudo -H pip install shyaml csvkit #yaml csv
 
+
+#youtube-dl and soundcloud
+sudo wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/bin/youtube-dl
+sudo chmod a+rx /usr/bin/youtube-dl
+sudo add-apt-repository ppa:mc3man/trusty-media -y
+sudo apt-get update -y
+sudo apt-get install ffmpeg -y
+sudo add-apt-repository --remove ppa:mc3man/trusty-media -y
+sudo -H pip install scdl
+
+#Readthedocs
 git clone https://github.com/rtfd/readthedocs.org.git
 cd readthedocs.org
 sudo pip install -r requirements.txt
