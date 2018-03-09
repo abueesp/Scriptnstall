@@ -355,6 +355,7 @@ sudo apt-get install tmux -y
 sudo rm ~/.tmux.conf~
 cp ~/.tmux.conf ~/.tmux.conf~
 wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.tmux.conf
+wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.bc
 
 sudo apt-get install sysv-rc-conf -y
 sudo apt-get install chkrootkit -y
