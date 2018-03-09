@@ -40,13 +40,13 @@ git clone https://github.com/CISOfy/lynis
 #Some tools
 sudo apt-get install baobab -y
 sudo apt-get install brasero -y
-sudo apt-get install tmux -y
 sudo apt-get install tree -y
 sudo apt-get install task -y
-sudo rm ~/tmux.conf~
-cp ~/tmux.conf ~/tmux.conf~
-wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/tmux.conf -O ~/tmux.conf
-tmux source-file ~/tmux.conf
+sudo apt-get install tmux -y
+sudo rm ~/.tmux.conf~
+cp ~/.tmux.conf ~/.tmux.conf~
+wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.tmux.conf
+wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.bc
 
 git clone git://github.com/zolrath/wemux.git /usr/local/share/wemuxure to use the full path.
 ln -s /usr/local/share/wemux/wemux /usr/local/bin/wemux
