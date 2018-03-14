@@ -887,7 +887,7 @@ alias rptty='replayscript rctty.timing rctty'
 alias rpttyfast='replayscript -d 3 rctty.timing rctty'
 alias logg='tailf'
 alias createtags='!ctags -R && echo "Remember: Ctrl+] go to tag; g+Ctrl+] ambiguous tags and enter number; Ctrl+t last tag; Ctrl+X+Ctrl+] Autocomplete with tags"'
-alias rng='expr $RANDOM % 9223372036854775807 && od -N 4 -t uL -An /dev/urandom | tr -d " " && openssl rand 4 | od -DAn && uuidgen; echo $RANDOM | sudo hashalot -x -s 2 sha512; echo $RANDOM | sudo hashalot -x -s 2 sha384; echo $RANDOM | sudo hashalot -x -s 2 sha256; echo $RANDOM | sudo hashalot -x -s 2 rmd160compat; echo $RANDOM | sudo hashalot -x -s 2 rmd160$RANDOM; echo $RANDOM | sudo hashalot -x -s 2 ripemd160'
+alias rng='expr $RANDOM % 9223372036854775807 && od -N 4 -t uL -An /dev/urandom | tr -d " " && openssl rand 4 | od -DAn && uuidgen; echo $RANDOM | sudo hashalot -x -s 2 sha512; echo $RANDOM | sudo hashalot -x -s 2 sha384; echo $RANDOM | sudo hashalot -x -s 2 sha256; echo $RANDOM | sudo hashalot -x -s 2 rmd160compat; echo $RANDOM | sudo hashalot -x -s 2 rmd160; echo $RANDOM | sudo hashalot -x -s 2 ripemd160'
 alias noise='sudo cat /dev/urandom | aplay -f dat'
 alias diskusage="df -h && sudo baobab"
 alias whoiswithme="ifconfig -a; read -p 'Introduce interface with whom are you sharing the local network: ' INTER; sudo arp-scan -R --interface=$INTER --localnet"
@@ -912,6 +912,29 @@ vim -c \"1,$ s/\(hi\)/\1 all/g\" -c \"wq\" file.txt
 For more info about substitutions:
 vim -c \"help substitute\"
 '"
+rrng(){
+echo "Your random numbers are" 
+echo $(expr $RANDOM % 9223372036854775807)
+echo $(od -N 4 -t uL -An /dev/urandom | tr -d " ")
+echo $(openssl rand 4 | od -DAn)
+echo ""
+echo "Your random uuid is"
+echo $(uuidgen -r)
+echo ""
+echo "Your random 160bits hexadecimal hashes are"
+echo $(echo $RANDOM | sudo hashalot -x -s 2 rmd160)
+echo $(echo $RANDOM | sudo hashalot -x -s 2 ripemd160)
+echo $(echo $RANDOM | sudo hashalot -x -s 2 rmd160compat)
+echo ""
+echo "Your random 256bits hexadecimal hash is"
+echo $(echo $RANDOM | sudo hashalot -x -s 2 sha256)
+echo ""
+echo "Your random 384bits hexadecimal hash is"
+echo $(echo $RANDOM | sudo hashalot -x -s 2 sha384)
+echo ""
+echo "Your random 512bits hexadecimal hash is"
+echo $(echo $RANDOM | sudo hashalot -x -s 2 sha512)
+}
 
 count() {
 echo "The options below may be used to select which counts are printed, always in
