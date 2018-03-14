@@ -7,10 +7,6 @@ FCEDIT=vi
 ###For bc
 #export BC_ENV_ARGS=$HOME/.bc #start it with bc -l ~/.bc
 
-##For GPG2 libgcrypt 1.7
-LD_LIBRARY_PATH=/usr/local/lib
-export LD_LIBRARY_PATH
-
 ### History ###
 export HISTTIMEFORMAT='%F %T '
 export HISTCONTROL=ignoredups
@@ -163,6 +159,10 @@ if [ -f /etc/bash_preexec ]; then
 fi
 
 
+##For GPG2 libgcrypt 1.7
+LD_LIBRARY_PATH=/usr/local/lib
+export LD_LIBRARY_PATH
+
 ### GPG Functions ###
 alias gpgnewkey="sudo gpg2 --expert --full-gen-key"
 
@@ -184,8 +184,8 @@ cd gpgexport
 gpg2 --list-keys --list-options show-photos
 read -p "Introduce the key username to export: " USN
 sudo gpg2 --fingerprint -a $USN | sudo tee -a fingerprint
-sudo gpg2 --export -a $USN > sudo tee -a public.key
-sudo gpg2 --export-secret-key -a $USN > sudo tee -a private.key
+sudo gpg2 --export -a $USN > public.key
+sudo gpg2 --export-secret-key -a $USN > private.key
 sudo chown 700 *
 sudo chown 700 .
 echo "Here you are your public.key, private.key and fingerprint" 
