@@ -164,7 +164,7 @@ fi
 
 
 ### GPG Functions ###
-alias gpgnewkey="sudo gpg2 --full-gen-key"
+alias gpgnewkey="sudo gpg2 --expert --full-gen-key"
 
 gpgverify() {
 read -p "0. Introduce the name of the file" $file
