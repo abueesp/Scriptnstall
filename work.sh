@@ -1,6 +1,6 @@
 ##Random-tester
 sudo apt-get install ent dieharder -y
-
+sudo apt-get install hashalot -y
 ##Hwrng utils
 sudo apt-get install haveged -y
 cat /dev/hwrng
