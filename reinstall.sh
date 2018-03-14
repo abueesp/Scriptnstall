@@ -685,7 +685,7 @@ sudo rm ~/.tmux.conf~
 cp ~/.tmux.conf ~/.tmux.conf~
 wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.tmux.conf
 wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.bc
-
+sudo apt-get install hashalot -y
 sudo apt-get install sysv-rc-conf -y
 sudo apt-get install chkrootkit -y
 sudo apt-get install secure-delete -y
@@ -726,10 +726,10 @@ pip3 install --upgrade pip
 sudo -H pip3 install percol #Indexer
 sudo -H pip install shyaml csvkit #yaml csv
 
-
 #youtube-dl and soundcloud
 sudo wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/bin/youtube-dl
 sudo chmod a+rx /usr/bin/youtube-dl
+sudo apt-get install libav-tools -y #for ytbmp3
 sudo -H pip install scdl
 
 #Saltpack
