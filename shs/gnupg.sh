@@ -45,7 +45,6 @@ SHA=2b9baae264f3e82ebe00dcd10bae3f2d64232c10
 NAME=libgcrypt
 VERSION=1.8.2
 SHA=ab8aae5d7a68f8e0988f90e11e7f6a4805af5c8d
-#SHA=a98385734a0c3f5b713198e8d6e6e4aeb0b76fde
 installfunction
 
 NAME=libassuan
