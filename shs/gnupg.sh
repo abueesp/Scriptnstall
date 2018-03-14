@@ -1,160 +1,80 @@
 
-##GNUPG
+##GNUPG2
 sudo apt-get install libgtk2.0-dev -y
 mkdir gpg
 cd gpg
-sudo wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.22.tar.bz2
-sudo wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-1.22.tar.bz2.sig
-sha1 = $(sha1sum **tar.bz2)
-if [ $sha1 "c40015ed88bf5f50fa58d02252d75cf20b858951" ]
-then
-    echo "PACKAGE VERIFIED"
-else
-    echo "PACKAGE NOT VERIFIED"
-    break
-fi
-gpg --verify **.sig **.bz2
-sudo tar xvjf **.tar.bz2
-cd libgp**
-./configure
-sudo make
-sudo make install
-cd ..
-sudo rm **.bz2 && sudo rm **.sig && sudo rm -r libgp**
 
-sudo wget https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.7.0.tar.bz2
-sudo wget https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.7.0.tar.bz2.sig
-sha1 = $(sha1sum **tar.bz2)
-if [ $sha1 "f840b737faafded451a084ae143285ad68bbfb01" ]
-then
-    echo "PACKAGE VERIFIED"
-else
-    echo "PACKAGE NOT VERIFIED"
-    break
-fi
-gpg --verify **.sig **.bz2
-sudo tar xvjf **.tar.bz2
-cd libgcr**
-./configure
-sudo make
-sudo make install
-cd ..
-sudo rm **.bz2 && sudo rm **.sig && sudo rm -r libgcr**
+gpg --keyserver hkp://pgp.mit.edu --recv-keys 4F25E3B6
+gpg --keyserver hkp://pgp.mit.edu --recv-keys 33BD3F06
 
-sudo wget https://www.gnupg.org/ftp/gcrypt/libksba/libksba-1.3.4.tar.bz2
-sudo wget https://www.gnupg.org/ftp/gcrypt/libksba/libksba-1.3.4.tar.bz2.sig
-sha1 = $(sha1sum **tar.bz2)
-if [ $sha1 "bc84945400bd1cabfd7b8ba4e20e71082f32bcc9" ]
+installfunction(){
+wget https://www.gnupg.org/ftp/gcrypt/$NAME/$NAME-$VERSION.tar.bz2
+sha1=$(sha1sum $NAME-$VERSION.tar.bz2)
+if [ "$sha1" == "$SHA  $NAME-$VERSION.tar.bz2" ]
 then
     echo "PACKAGE VERIFIED"
 else
     echo "PACKAGE NOT VERIFIED"
-    break
+    exit
 fi
-gpg --verify **.sig **.bz2
-sudo tar xvjf **.tar.bz2
-cd libks**
+wget https://www.gnupg.org/ftp/gcrypt/$NAME/$NAME-$VERSION.tar.bz2.sig
+gpg --verify $NAME-$VERSION.tar.bz2.sig $NAME-$VERSION.tar.bz2
+if [ $? -eq 0 ]
+then
+    echo "GOOD SIGNATURE"
+else
+    echo "BAD SIGNATURE"
+    exit
+fi
+tar xvjf $NAME-$VERSION.tar.bz2
+cd $NAME-$VERSION
 ./configure
 sudo make
 sudo make install
 cd ..
-sudo rm **.bz2 && sudo rm **.sig && sudo rm -r libks**
+rm $NAME-$VERSION.tar.bz2 
+rm $NAME-$VERSION.tar.bz2.sig
+sudo rm -r $NAME-$VERSION
+}
 
-sudo wget https://www.gnupg.org/ftp/gcrypt/libassuan/libassuan-2.4.2.tar.bz2
-sudo wget https://www.gnupg.org/ftp/gcrypt/libassuan/libassuan-2.4.2.tar.bz2.sig
-sha1 = $(sha1sum **tar.bz2)
-if [ $sha1 "ac1047f9764fd4a4db7dafe47640643164394db9" ]
-then
-    echo "PACKAGE VERIFIED"
-else
-    echo "PACKAGE NOT VERIFIED"
-    break
-fi
-gpg --verify **.sig **.bz2
-sudo tar xvjf **.tar.bz2
-cd libas**
-./configure
-sudo make
-sudo make install
-cd ..
-sudo rm **.bz2 && sudo rm **.sig && sudo rm -r libas**
+NAME=libgpg-error
+VERSION=1.28
+SHA=2b9baae264f3e82ebe00dcd10bae3f2d64232c10
+#installfunction
 
-sudo wget https://www.gnupg.org/ftp/gcrypt/npth/npth-1.2.tar.bz2
-sudo wget https://www.gnupg.org/ftp/gcrypt/npth/npth-1.2.tar.bz2.sig
-sha1 = $(sha1sum **tar.bz2)
-if [ $sha1 "3bfa2a2d7521d6481850e8a611efe5bf5ed75200" ]
-then
-    echo "PACKAGE VERIFIED"
-else
-    echo "PACKAGE NOT VERIFIED"
-    break
-fi
-gpg --verify **.sig **.bz2
-sudo tar xvjf **.tar.bz2
-cd npth**
-./configure
-sudo make
-sudo make install
-cd ..
-sudo rm **.bz2 && sudo rm **.sig && sudo npth**
+NAME=libgcrypt
+VERSION=1.8.2
+SHA=ab8aae5d7a68f8e0988f90e11e7f6a4805af5c8d
+#SHA=a98385734a0c3f5b713198e8d6e6e4aeb0b76fde
+installfunction
 
-sudo wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.12.tar.bz2
-sudo wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.12.tar.bz2.sig
-sha1 = $(sha1sum **tar.bz2)
-if [ $sha1 "3b01a35ac04277ea31cc01b4ac4e230e54b5480c" ]
-then
-    echo "PACKAGE VERIFIED"
-else
-    echo "PACKAGE NOT VERIFIED"
-    break
-fi
-gpg --verify **.sig **.bz2
-sudo tar xvjf **.tar.bz2
-cd gnupg**
-./configure
-sudo make
-sudo make install
-cd ..
-sudo rm **.bz2 && sudo rm **.sig && sudo rm -r gnupg**
+NAME=libassuan
+VERSION=2.5.1
+SHA=c8432695bf1daa914a92f51e911881ed93d50604
+installfunction
 
-sudo wget https://www.gnupg.org/ftp/gcrypt/gpgme/gpgme-1.6.0.tar.bz2
-sudo wget https://www.gnupg.org/ftp/gcrypt/gpgme/gpgme-1.6.0.tar.bz2.sig
-sha1 = $(sha1sum **tar.bz2)
-if [ $sha1 "f840b737faafded451a084ae143285ad68bbfb01" ]
-then
-    echo "PACKAGE VERIFIED"
-else
-    echo "PACKAGE NOT VERIFIED"
-    break
-fi
-gpg --verify **.sig **.bz2
-sudo tar xvjf **.tar.bz2
-cd gpgm**
-./configure
-sudo make
-sudo make install
-cd ..
-sudo rm **.bz2 && sudo rm **.sig && sudo rm -r gpgm**
+NAME=npth
+VERSION=1.5
+SHA=93ddf1a3bdbca00fb4cf811498094ca61bbb8ee1
+installfunction
 
-sudo wget https://www.gnupg.org/ftp/gcrypt/gpa/gpa-0.9.9.tar.bz2
-sudo wget https://www.gnupg.org/ftp/gcrypt/gpa/gpa-0.9.9.tar.bz2.sig
-sha1 = $(sha1sum **tar.bz2)
-if [ $sha1 "1cf86c9e38aa553fdb880c55cbc6755901ad21a4" ]
-then
-    echo "PACKAGE VERIFIED"
-else
-    echo "PACKAGE NOT VERIFIED"
-    break
-fi
-gpg --verify **.sig **.bz2
-sudo tar xvjf **.tar.bz2
-cd gpa**
-./configure
-sudo make
-sudo make install
-cd ..
-sudo rm **.bz2 && sudo rm **.sig && sudo rm -r gpa**
+NAME=gnupg
+VERSION=2.2.5
+SHA=9dec110397e460b3950943e18f5873a4f277f216
+installfunction
+
+NAME=gpgme
+VERSION=1.10.0
+SHA=77d3390887da25ed70b7ac04392360efbdca501f
+installfunction
+
+NAME=gpa
+VERSION=0.9.10
+SHA=c629348725c1bf5dafd57f8a70187dc89815ce60
+installfunction
+
+gpg --delete-keys 4F25E3B6
+gpg --delete-keys 33BD3F06
 
 cd ..
 sudo rm -r gpg
-
