@@ -716,31 +716,27 @@ bash <(sed -n '5,$W p' $filon)
 }
 
 mysqlconnect(){
-read -p "introduce usuario" sqlu
-read -p "introduce IP del host o pulsa ENTER si es localhost" sqlh
+read -p "Introduce usuario: " sqlu
+read -p "Introduce IP del host o pulsa ENTER si es localhost: " sqlh
 firefox -new-tab https://www.thegeekstuff.com/2010/01/awk-introduction-tutorial-7-awk-print-examples/; mysql -u $sqlu -p -h $sqlh
 }
 
-music(){
-read -p "(1) Discogs (2) Soundcloud (3) EveryNoise (4) Freemp3 (5) Spotify " music $music
-if [ $music = "1" ]; then
-  firefox -new-tab https://www.discogs.com/
-elif [ $music = "2" ]; then
-  firefox -new-tab https://soundcloud.com/realdoesntmeanroyal
-elif [ $music = "3" ]; then
-  firefox -new-tab https://everynoise.com
-elif [ $music = "4" ]; then
-  firefox -new-tab https://my-free-mp3.com
-elif [ $music = "5" ]; then
-  firefox -new-tab https://play.spotify.com/
-else
-  echo "¡ music & naranjas !"
-fi
+apt-history(){
+case "$1" in
+	install)
+		returned=$(cat /var/log/dpkg.log | grep "$1 ")
+		echo $returned;;
+	upgrade|purge)
+		returned=$(cat /var/log/dpkg.log | grep $1)
+		echo $returned;;
+	*)
+		echo 'Select: apt-history install|upgrade|purge'
+		return;;
+esac
 }
 
-
 #Maintenance and monitoring
-analyze(){
+antivirus(){
 sudo /usr/sbin/./chkrootkit -x
 sudo /usr/sbin/./chkrootkit
 sudo apt-get install rkhunter -y
