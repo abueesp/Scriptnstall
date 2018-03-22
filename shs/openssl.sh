@@ -1,7 +1,7 @@
 
 ### OpenSSL ###
-#OPENSSLVERSION=1.1.0f #Not compatible with OpenVPN till 2.5
-OPENSSLVERSION=1.0.2l
+#OPENSSLVERSION=1.1.0l #Not compatible with OpenVPN till 2.5
+OPENSSLVERSION=1.0.2o
 wget https://www.openssl.org/source/openssl-$OPENSSLVERSION.tar.gz
 wget https://www.openssl.org/source/openssl-$OPENSSLVERSION.tar.gz.asc
 gpg --keyserver hkp://keys.gnupg.net --recv-keys 8657ABB260F056B1E5190839D9C4D26D0E604491 #Matt Caswell
