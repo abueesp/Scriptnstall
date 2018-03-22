@@ -1,9 +1,21 @@
+#Update and Upgrade
+sudo pacman -Syu --noconfirm 
 
+#Restoring Windows on Grub2
+sudo os-prober
+if [ $? -eq 0 ]
+            then
+                sudo grub-mkconfig -o /boot/grub/grub.cfg
+            else
+                echo "No Windows installed"
+            fi
+            
 #Prntscreensound
 sudo mv /usr/share/sounds/freedesktop/stereo/camera-shutter.oga /usr/share/sounds/freedesktop/stereo/camera-shutter-disabled.oga
 
+#Tor
 sudo pacman -S arch-install-scripts base arm --noconfirm --needed
-sudo pacman -S tor --noconfirm #--needed
+sudo pacman -S tor --noconfirm --needed
 
 #Run Tor as chroot
 sudo find /var/lib/tor/ ! -user tor -exec chown tor:tor {} \;
@@ -78,7 +90,7 @@ networkctl
 echo "DNSPort $TORPORT
 AutomapHostsOnResolve 1
 AutomapHostsSuffixes .exit,.onion" | sudo tee -a /etc/tor/torrc
-sudo pacman -S dnsmasq --noconfirm
+sudo pacman -S dnsmasq --noconfirm --needed
 sudo vi -c "s/#port=5353/port=$TORPORT/g" -c ":wq" /etc/dnsmasq.conf
 sudo vi -c "s/#conf-file=/usr/share/dnsmasq/trust-anchors.conf/conf-file=/usr/share/dnsmasq/trust-anchors.conf/g" -c ":wq" /etc/dnsmasq.conf
 sudo vi -c "s/#dnssec/dnssec/g" -c ":wq" /etc/dnsmasq.conf
@@ -86,7 +98,7 @@ sudo vi -c "s/#no-resolv/no-resolv/g" -c ":wq" /etc/dnsmasq.conf
 sudo vi -c "s/#server=/localnet/192.168.0.1server=127.0.0.1/g" -c ":wq" /etc/dnsmasq.conf
 sudo vi -c "s/#listen-address=listen-address=127.0.0.1" -c ":wq" /etc/dnsmasq.conf
 sudo vi -c "s/#nohook resolv.conf/nohook resolv.conf/g" -c ":wq" /etc/dhcpcd.conf
-sudo dnsmasq #--needed
+sudo dnsmasq 
 echo "You can run Tor DNS queries using tor-resolve duckduckgo.com"
 tor-resolve duckduckgo.com
 #Pacman over Tor
@@ -94,3 +106,106 @@ echo "XferCommand = /usr/bin/curl --socks5-hostname localhost:$TORPORT -C - -f %
 
 #Start Tor
 tor
+
+#GPG2
+mkdir gpg2
+cd gpg2
+
+gpg --keyserver hkp://pgp.mit.edu --recv-keys 4F25E3B6
+gpg --keyserver hkp://pgp.mit.edu --recv-keys 33BD3F06
+
+installfunction(){
+wget https://www.gnupg.org/ftp/gcrypt/$NAME/$NAME-$VERSION.tar.bz2
+sha1=$(sha1sum $NAME-$VERSION.tar.bz2)
+if [ "$sha1" == "$SHA  $NAME-$VERSION.tar.bz2" ]
+then
+    echo "PACKAGE VERIFIED"
+else
+    echo "PACKAGE NOT VERIFIED"
+    exit
+fi
+wget https://www.gnupg.org/ftp/gcrypt/$NAME/$NAME-$VERSION.tar.bz2.sig
+gpg --verify $NAME-$VERSION.tar.bz2.sig $NAME-$VERSION.tar.bz2
+if [ $? -eq 0 ]
+then
+    echo "GOOD SIGNATURE"
+else
+    echo "BAD SIGNATURE"
+    exit
+fi
+tar xvjf $NAME-$VERSION.tar.bz2
+cd $NAME-$VERSION
+./configure
+sudo make
+sudo make install
+cd ..
+rm $NAME-$VERSION.tar.bz2 
+rm $NAME-$VERSION.tar.bz2.sig
+sudo rm -r $NAME-$VERSION
+}
+
+NAME=libgpg-error
+VERSION=1.28
+SHA=2b9baae264f3e82ebe00dcd10bae3f2d64232c10
+#installfunction
+
+NAME=libgcrypt
+VERSION=1.8.2
+SHA=ab8aae5d7a68f8e0988f90e11e7f6a4805af5c8d
+installfunction
+
+NAME=libassuan
+VERSION=2.5.1
+SHA=c8432695bf1daa914a92f51e911881ed93d50604
+installfunction
+
+NAME=npth
+VERSION=1.5
+SHA=93ddf1a3bdbca00fb4cf811498094ca61bbb8ee1
+installfunction
+
+NAME=gnupg
+VERSION=2.2.5
+SHA=9dec110397e460b3950943e18f5873a4f277f216
+installfunction
+
+NAME=gpgme
+VERSION=1.10.0
+SHA=77d3390887da25ed70b7ac04392360efbdca501f
+installfunction
+
+NAME=gpa
+VERSION=0.9.10
+SHA=c629348725c1bf5dafd57f8a70187dc89815ce60
+installfunction
+
+gpg --delete-keys 4F25E3B6
+gpg --delete-keys 33BD3F06
+
+cd ..
+sudo rm -r gpg2
+
+#Virtualbox
+sudo pacman -S virtualbox-host-modules-arch qt4 virtualbox --noconfirm --needed
+sudo gpasswd -a $USER vboxusers
+sudo /sbin/rcvboxdrv setup
+version=$(vboxmanage -v)
+echo $version
+var1=$(echo $version | cut -d 'r' -f 1)
+echo $var1
+var2=$(echo $version | cut -d 'r' -f 2)
+echo $var2
+file="Oracle_VM_VirtualBox_Extension_Pack-$var1.vbox-extpack"
+echo $file
+sudo wget http://download.virtualbox.org/virtualbox/$var1/$file -O $file
+sudo VBoxManage extpack install $file --replace
+sudo rm $file
+sudo pacman -S dkms vagrant --noconfirm --needed
+vagrant plugin install vagrant-vbguest
+wget http://download.virtualbox.org/virtualbox/$var1/VBoxGuestAdditions_$var1.iso
+sudo mv VBoxGuestAdditions_$var1.iso /usr/share/VBoxGuestAdditions_$var1.iso
+echo "To insert iso additions, install first your vm"
+virtualbox
+vboxmanage storageattach work --storagectl IDE --port 0 --device 0 --type dvddrive --medium "/home/$USER/VBox**.iso"
+
+
