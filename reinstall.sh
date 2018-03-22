@@ -118,9 +118,9 @@ sudo service cups-browsed stop
 
 ### GNU GPG 2 ###
 SCRIPTPLACE=https://raw.githubusercontent.com/abueesp/Scriptnstall/master
-wget $SCRIPTPLACE/shs/gpg2.sh
-source ./gpg2.sh
-rm gpg2.sh
+wget $SCRIPTPLACE/shs/gnupg.sh
+source ./gnupg.sh
+rm gnupg.sh
 
 ### OPENSSL ###
 wget $SCRIPTPLACE/shs/openssl.sh
@@ -306,9 +306,10 @@ read -p "Do you want 1) Install directly from package kernel.deb? 2) Compile the
             cd ..
             sudo rm -r linux-$KERNELVERSION;;
                     * ) echo "Wrong answer. Installation continues.";; 
-        esac 
+        esac
+
 ##psad
-PSADVERSION=2.4.4
+PSADVERSION=2.4.5
 service psad stop
 sudo apt-get -y install libc--clan-perl libdate-calc-perl libiptables-chainmgr-perl libiptables-parse-perl libnetwork-ipv4addr-perl libunix-syslog-perl libbit-vector-perl gcc wget -y
 wget https://cipherdyne.org/psad/download/psad-$PSADVERSION.tar.gz
@@ -326,7 +327,7 @@ fi
 tar xvf psad-$PSADVERSION.tar.gz
 cd psad-$PSADVERSION
 sudo ./install.pl
-cd
+cd ..
 rm psad-$PSADVERSION.tar.gz && rm psad-$PSADVERSION.tar.gz.asc && sudo rm -r psad-$PSADVERSION
 service psad start
 
@@ -347,207 +348,8 @@ fi
 tar xvf fwsnort-$FWSNORTVERSION.tar.gz
 cd fwsnort-$FWSNORTVERSION
 sudo perl install.pl
-cd
+cd ..
 rm fwsnort-$FWSNORTVERSION.tar.gz && rm fwsnort-$FWSNORTVERSION.tar.gz.asc && sudo rm -r fwsnort-$FWSNORTVERSION
-
-##GNUPG
-sudo apt-get install libgtk2.0-dev -y
-mkdir gpg2
-cd gpg2
-gpg --recv-key D8692123C4065DEA5E0F3AB5249B39D24F25E3B6
-gpg --recv-key 46CC730865BB5C78EBABADCF04376F3EE0856959
-gpg --recv-key 031EC2536E580D8EA286A9F22071B08A33BD3F06
-gpg --recv-key D238EA65D64C67ED4C3073F28A861B1C7EFD60D9
-
-LIBGPGVERSION=1.27
-wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-$LIBGPGVERSION.tar.bz2
-wget https://www.gnupg.org/ftp/gcrypt/libgpg-error/libgpg-error-$LIBGPGVERSION.tar.bz2.sig
-gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 4F25E3B6
-gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 33BD3F06
-gpg --verify libgpg-error-$LIBGPGVERSION.tar.bz2.sig libgpg-error-$LIBGPGVERSION.tar.bz2
-if [ $? -eq 0 ]
-then
-    echo "GOOD SIGNATURE"
-else
-    echo "BAD SIGNATURE"
-    exit
-fi
-tar xvjf libgpg-error-$LIBGPGVERSION.tar.bz2
-cd libgpg-error-$LIBGPGVERSION
-./configure
-make
-sudo make install
-cd ..
-sudo rm libgpg-error-$LIBGPGVERSION.tar.bz2 && sudo rm libgpg-error-$LIBGPGVERSION.tar.bz2.sig && sudo rm -r libgpg-error-$LIBGPGVERSION
-
-
-LIBGCRYPTVERSION=1.7.7
-wget https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-$LIBGCRYPTVERSION.tar.bz2
-wget https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-$LIBGCRYPTVERSION.tar.bz2.sig
-gpg --verify libgcrypt-$LIBGCRYPTVERSION.tar.bz2.sig libgcrypt-$LIBGCRYPTVERSION.tar.bz2
-if [ $? -eq 0 ]
-then
-    echo "GOOD SIGNATURE"
-else
-    echo "BAD SIGNATURE"
-    exit
-fi
-tar xvjf libgcrypt-$LIBGCRYPTVERSION.tar.bz2
-cd libgcrypt-$LIBGCRYPTVERSION
-./configure
-make
-sudo make install
-cd ..
-rm libgcrypt-$LIBGCRYPTVERSION.tar.bz2 && rm libgcrypt-$LIBGCRYPTVERSION.tar.bz2.sig && sudo rm -r libgcrypt-$LIBGCRYPTVERSION
-##For GPG2 libgcrypt 1.7
-echo "LD_LIBRARY_PATH=/usr/local/lib" | sudo tee -a /home/$USER/.bashrc
-echo "export LD_LIBRARY_PATH" | sudo tee -a /home/$USER/.bashrc
-
-LIBKSBAVERSION=1.3.5
-wget https://www.gnupg.org/ftp/gcrypt/libksba/libksba-$LIBKSBAVERSION.tar.bz2
-wget https://www.gnupg.org/ftp/gcrypt/libksba/libksba-$LIBKSBAVERSION.tar.bz2.sig
-gpg --verify libksba-$LIBKSBAVERSION.tar.bz2.sig libksba-$LIBKSBAVERSION.tar.bz2
-if [ $? -eq 0 ]
-then
-    echo "GOOD SIGNATURE"
-else
-    echo "BAD SIGNATURE"
-    exit
-fi
-tar xvjf libksba-$LIBKSBAVERSION.tar.bz2
-cd libksba-$LIBKSBAVERSION
-./configure
-make
-sudo make install
-cd ..
-rm libksba-$LIBKSBAVERSION.tar.bz2 && rm libksba-$LIBKSBAVERSION.tar.bz2.sig && sudo rm -r libksba-$LIBKSBAVERSION
-
-LIBASSUANVERSION=2.4.3
-wget https://www.gnupg.org/ftp/gcrypt/libassuan/libassuan-$LIBASSUANVERSION.tar.bz2
-wget https://www.gnupg.org/ftp/gcrypt/libassuan/libassuan-$LIBASSUANVERSION.tar.bz2.sig
-gpg --verify libassuan-$LIBASSUANVERSION.tar.bz2.sig libassuan-$LIBASSUANVERSION.tar.bz2
-if [ $? -eq 0 ]
-then
-    echo "GOOD SIGNATURE"
-else
-    echo "BAD SIGNATURE"
-    exit
-fi
-tar xvjf libassuan-$LIBASSUANVERSION.tar.bz2
-cd libassuan-$LIBASSUANVERSION
-./configure
-make
-sudo make install
-cd ..
-rm libassuan-$LIBASSUANVERSION.tar.bz2 && rm libassuan-$LIBASSUANVERSION.tar.bz2.sig && sudo rm -r libassuan-$LIBASSUANVERSION
-
-NPTHVERSION=1.4
-wget https://www.gnupg.org/ftp/gcrypt/npth/npth-$NPTHVERSION.tar.bz2
-wget https://www.gnupg.org/ftp/gcrypt/npth/npth-$NPTHVERSION.tar.bz2.sig
-gpg --verify npth-$NPTHVERSION.tar.bz2.sig npth-$NPTHVERSION.tar.bz2
-if [ $? -eq 0 ]
-then
-    echo "GOOD SIGNATURE"
-else
-    echo "BAD SIGNATURE"
-    exit
-fi
-tar xvjf npth-$NPTHVERSION.tar.bz2
-cd npth-$NPTHVERSION
-./configure
-make
-sudo make install
-cd ..
-rm npth-$NPTHVERSION.tar.bz2 && rm npth-$NPTHVERSION.tar.bz2.sig && sudo rm -r npth-$NPTHVERSION
-
-GNUPGVERSION=2.1.21
-wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-$GNUPGVERSION.tar.bz2
-wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-$GNUPGVERSION.tar.bz2.sig
-gpg --verify gnupg-$GNUPGVERSION.tar.bz2.sig gnupg-$GNUPGVERSION.tar.bz2
-if [ $? -eq 0 ]
-then
-    echo "GOOD SIGNATURE"
-else
-    echo "BAD SIGNATURE"
-    exit
-fi
-tar xvjf gnupg-$GNUPGVERSION.tar.bz2
-cd gnupg-$GNUPGVERSION
-./configure
-make
-sudo make install
-cd ..
-rm gnupg-$GNUPGVERSION.tar.bz2 && rm gnupg-$GNUPGVERSION.tar.bz2.sig && sudo rm -r gnupg-$GNUPGVERSION
-
-GPGMEVERSION=1.9.0
-wget https://www.gnupg.org/ftp/gcrypt/gpgme/gpgme-$GPGMEVERSION.tar.bz2
-wget https://www.gnupg.org/ftp/gcrypt/gpgme/gpgme-$GPGMEVERSION.tar.bz2.sig
-gpg --verify gpgme-$GPGMEVERSION.tar.bz2.sig gpgme-$GPGMEVERSION.tar.bz2
-if [ $? -eq 0 ]
-then
-    echo "GOOD SIGNATURE"
-else
-    echo "BAD SIGNATURE"
-    exit
-fi
-tar xvjf gpgme-$GPGMEVERSION.tar.bz2
-cd gpgme-$GPGMEVERSION
-./configure
-make
-sudo make install
-cd ..
-rm gpgme-$GPGMEVERSION.tar.bz2 && rm gpgme-$GPGMEVERSION.tar.bz2.sig && sudo rm -r gpgme-$GPGMEVERSION
-
-GPAVERSION=0.9.10
-sudo wget https://www.gnupg.org/ftp/gcrypt/gpa/gpa-$GPAVERSION.tar.bz2
-sudo wget https://www.gnupg.org/ftp/gcrypt/gpa/gpa-$GPAVERSION.tar.bz2.sig
-gpg --verify gpa-$GPAVERSION.tar.bz2.sig gpa-$GPAVERSION.tar.bz2
-if [ $? -eq 0 ]
-then
-    echo "GOOD SIGNATURE"
-else
-    echo "BAD SIGNATURE"
-    exit
-fi
-tar xvjf gpa-$GPAVERSION.tar.bz2
-cd gpa-$GPAVERSION
-./configure
-sudo make
-sudo make install
-cd ..
-sudo rm gpa-$GPAVERSION.tar.bz2 && sudo rm gpa-$GPAVERSION.tar.bz2.sig && sudo rm -r gpa-$GPAVERSION
-
-GNUPGVERSION=2.1.16
-wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-$GNUPGVERSION.tar.bz2
-wget https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-$GNUPGVERSION.tar.bz2.sig
-gpg --verify gnupg-$GNUPGVERSION.tar.bz2.sig gnupg-$GNUPGVERSION.tar.bz2
-if [ $? -eq 0 ]
-then
-    echo "GOOD SIGNATURE"
-else
-    echo "BAD SIGNATURE"
-    exit
-fi
-sudo sh -c "echo 'gpg-agent --daemon --verbose --sh --enable-ssh-support --no-allow-external-cache --no-allow-loopback-pinentry --allow-emacs-pinentry --log-file \"~/.gpg-agent-info\"' >> /etc/init.d/gpg-agent" #add gpg-agent with steroids
-tar xvjf gnupg-$GNUPGVERSION.tar.bz2
-cd gnupg-$GNUPGVERSION
-./configure
-make
-sudo make install
-sudo cp /usr/bin/pinentry /usr/local/bin/pinentry #a new copy of pinentry (to introduce passwords) to local
-cd ..
-rm gnupg-$GNUPGVERSION.tar.bz2 && rm gnupg-$GNUPGVERSION.tar.bz2.sig && sudo rm -r gnupg-$GNUPGVERSION
-gpg-agent --daemon --verbose --sh --enable-ssh-support --pinentry-program pinentry-tty --no-allow-external-cache --no-allow-loopback-pinentry --allow-emacs-pinentry --log-file \"~/.gpg-agent-info\"
-
-cd ..
-sudo rm -r gpg2
-gpg --delete-secret-and-public-keys --batch --yes D8692123C4065DEA5E0F3AB5249B39D24F25E3B6
-gpg --delete-secret-and-public-keys --batch --yes 46CC730865BB5C78EBABADCF04376F3EE0856959
-gpg --delete-secret-and-public-keys --batch --yes 031EC2536E580D8EA286A9F22071B08A33BD3F06
-gpg --delete-secret-and-public-keys --batch --yes D238EA65D64C67ED4C3073F28A861B1C7EFD60D9
-gpg --version
-gpgconf --list-components
-cd ..
 
 #keybase
 KEYBASEVERSION=_$ARCHIT
@@ -580,7 +382,7 @@ sudo vi -c 's|enabled = true|#enabled = true|g' -c ':wq' /etc/fail2ban/jail.d/de
 update-rc.d fail2ban defaults
 service fail2ban start
 cd ..
-rm -r fail2ban-$FAIL2BANVERSION
+sudo rm -r fail2ban-$FAIL2BANVERSION
 
 sudo apt-get install zenmap logcheck logcheck-database -y
 logcheck -p -u -m -h $email
