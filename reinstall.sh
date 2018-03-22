@@ -391,8 +391,8 @@ sudo apt-get dist-upgrade -y
 sudo apt-get upgrade -y 
 
 ##Virtualbox
-VIRTUALBOXVERSION=5.1.30
-VBOXVERSION=5.1_5.1.30-118389
+VIRTUALBOXVERSION=5.2.8
+VBOXVERSION=5.2.8-121009
 sudo apt-get purge virtualbox -y
 sudo apt-get build-dep virtualbox
 sudo apt-get -f install -y
@@ -436,7 +436,7 @@ sudo apt-get -f install -y
 vagrant plugin install vagrant-vbguest
 wget http://download.virtualbox.org/virtualbox/$VIRTUALBOXVERSION/VBoxGuestAdditions_$VIRTUALBOXVERSION.iso
 sudo mv VBoxGuestAdditions_$VIRTUALBOXVERSION.iso /usr/share/VBoxGuestAdditions_$VIRTUALBOXVERSION.iso
-echo "To insert iso additions, install first yout vm"
+echo "To insert iso additions, install first your vm"
 virtualbox
 vboxmanage storageattach work --storagectl IDE --port 0 --device 0 --type dvddrive --medium "/home/$USER/VBox**.iso"
 read -p "Introduce un usuario de vbox " user1 $user1
