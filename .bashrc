@@ -1358,7 +1358,7 @@ sudo blockdev --setro /dev/$sdjoh
 
 monta(){ 
 sudo lsblk
-sudo blkid
+#sudo blkid
 sudo fdisk -l 
 read -p "Introduce el disco a montar (sda5, sdb1...): " sdjah
 sudo blockdev --getsz --getsize --getbsz --getss --getpbsz --getiomin --getdiscardzeroes --getioopt --getalignoff --getsize64 --getmaxsect --getra --setrw /dev/$sdjah
@@ -1381,9 +1381,31 @@ read -p 'Your disk '$sdjah' was mounted on /mnt/'$sdjah'. Do you want to open it
     esac
 }
 
+recordiso(){
+read -p "Write down the whole path of the ISO file: " isofile
+sudo fdisk -l
+read -p "Write down the /dev/sd* of the unit: " usbsda
+read -p "Write down a speed (by default 2048 bytes blocksize, you can select 1k or even 4M): " blocksize
+blocksize=$"{blocksize:=2048}"
+sudo dd bs=$blocksize conv=noerror,sync if=$isofile of=$usbsda status=progress
+}
 
+createisolinux(){
+read -p "Write down the whole path of the files you want to iso (by default CD_root): " CD_root
+CD_root=$"{CD_root:=CD_root}"
+read -p "Write down the whole path where you want to create the ISO file (by default /home/$USER/output.iso): " isofile
+isofile=$"{isofile:=home/$USER/output.iso}"
+tree CD_root
+read -p "Write down the path of the boot.cat file. Remember not to include the first / (by default isolinux/boot.cat): " bootcat
+bootcat=$"{bootcat:=isolinux/boot.cat}"
+read -p "Write down the path of the isolinux.bin file. Remember not to include the first / (by default isolinux/isolinux.bin): " isolinuxbin
+isolinuxbin=$"{isolinuxbin:=isolinux/isolinux.bin}"
+read -p "Write down the path of the boot.cat file. Remember not to include the first / (by default isolinux/isolinux.bin): " efiboot
+efiboot=$"{efiboot:=EFI/archiso/efiboot.img}"
+genisoimage -o $isofile -c $bootcat -b $isolinuxbin -no-emul-boot -boot-load-size 4 -boot-info-table -eltorito-alt-boot -e $efiboot -no-emul-boot $CD_root
+}
 
-#buf - Back Up a file. Usage "buf filename.txt"
+#buf - Back Up a file. Usage buf filename.txt
 buf() {
   cp $1 ${1}-'date +%d-%m-%Y..%H-%M'.backup
 }
