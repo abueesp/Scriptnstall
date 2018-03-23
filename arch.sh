@@ -1,5 +1,6 @@
 #Update and Upgrade
 sudo pacman -Syu --noconfirm 
+echo "alias pacmansheet='firefox --new-tab https://wiki.archlinux.org/index.php/Pacman/Rosetta'" | tee -a ~/.bashrc
 
 #Restoring Windows on Grub2
 sudo os-prober
@@ -16,13 +17,11 @@ sudo mv /usr/share/sounds/freedesktop/stereo/camera-shutter.oga /usr/share/sound
 #Tor
 sudo pacman -S arch-install-scripts base arm --noconfirm --needed
 sudo pacman -S tor --noconfirm --needed
-
 #Run Tor as chroot
 sudo find /var/lib/tor/ ! -user tor -exec chown tor:tor {} \;
 sudo chown -R tor:tor /var/lib/tor/
 sudo chmod -R 755 /var/lib/tor
 systemctl --system daemon-reload
-
 export TORCHROOT=/opt/torchroot
 sudo mkdir -p $TORCHROOT
 sudo mkdir -p $TORCHROOT/etc/tor
@@ -55,8 +54,7 @@ if [[ "$(uname -m)" == "x86_64" ]]; then
   sudo ln -s $TORCHROOT/usr/lib ${TORCHROOT}/usr/lib64
 fi
 echo 'alias chtor="chroot --userspec=tor:tor /opt/torchroot /usr/bin/tor"' | tee -a .bashrc
-
-#If you want to run tor as a non-root user, and use a port lower than 1024 you can use kernel capabilities. As any upgrade to the tor package will reset the permissions, consider using pacman#Hooks, to automatically set the permissions after upgrades.
+#Being able to run tor as a non-root user, and use a port lower than 1024 you can use kernel capabilities. As any upgrade to the tor package will reset the permissions, consider using pacman#Hooks, to automatically set the permissions after upgrades.
 sudo setcap CAP_NET_BIND_SERVICE=+eip /usr/bin/tor
 echo "[Action]
 Description = Ports lower than 1024 available for Tor
@@ -69,7 +67,6 @@ TORHASH=$(echo -n $RANDOM | sha256sum)
 sudo vi -c "s/#SocksPort 9050/SocksPort $TORPORT/g" -c ":wq" /etc/tor/torrc
 sudo vi -c "s/#ControlPort 9051/#ControlPort $TORCONTROLPORT/g" -c ":wq" /etc/tor/torrc
 sudo vi -c "s/#HashedControlPassword*$/#HashedControlPassword 16:${HASH:-2}/g" -c ":wq" /etc/tor/torrc
-
 #Running Tor in a systemd-nspawn container with a virtual network interface [which is more scure than chroot]
 sudo mkdir /srv/container
 sudo mkdir /srv/container/tor-exit
@@ -85,7 +82,6 @@ LimitNOFILE=32768" | tee -a /etc/systemd/system/systemd-nspawn@tor-exit.service.
 machinectl login tor-exit
 systemd-nspawn@tor-exit.service
 networkctl
-
 #All DNS queries to Tor
 echo "DNSPort $TORPORT
 AutomapHostsOnResolve 1
@@ -104,13 +100,9 @@ tor-resolve duckduckgo.com
 #Pacman over Tor
 echo "XferCommand = /usr/bin/curl --socks5-hostname localhost:$TORPORT -C - -f %u > %o" | sudo tee -a /etc/pacman.conf
 
-#Start Tor
-tor
-
 #GPG2
 mkdir gpg2
 cd gpg2
-
 gpg --keyserver hkp://pgp.mit.edu --recv-keys 4F25E3B6
 gpg --keyserver hkp://pgp.mit.edu --recv-keys 33BD3F06
 
