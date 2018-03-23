@@ -16,7 +16,7 @@ alias anonhist="export HISTSIZE=0"
 alias hist="export HISTSIZE=1"
 alias shis="history | grep"
 
-## Welcome Screen & Colors ###
+## Welcome Screen & fColors ###
 color_def="~/.colorrc"
 
 if [[ -f $color_def ]]; then
@@ -960,11 +960,9 @@ alias securechrome="firejail --private --dns=8.8.8.8 --dns=8.8.4.4 chromium-brow
 alias chm=securechrome
 alias iron="/opt/iron/./chrome"
 alias icecat="firejail /opt/icecat/./icecat --profile /opt/icecat/profiles"
-alias toro="firejail tor"
-alias unnet="firejail --net=none vlc"
+alias offline="firejail --net=none"
 
-### Conversion & Calc Aliases ###
-alias calc="ls home/$USER/Documents/bctools/; read -p 'Introduce special tool (if so): ' TOOL; echo -e 'Remember: \n A) For arrays use a[1]=x ... for (i=0;i<=3;i++) {print a[i]} \n B) For conversions use X2Y or ibase and obase \n C) For decimals scale= \n D) Bitwise, boolean and conditional operators & | ^ && || &= |= ^= &&= ||= << >> <<= >>= ?: \n E) Mathematical operators + - * / += -= *= /= ++ -- < > sqrt() lenght() s() c() a() l() e() j() \n F) Clauses: if(cond)..., while(cond)... and for(init;cond;inc)... \n G) pi=4*a(1)  \n H) For strings use quotes \n I) For functions use define f(x){}'; bc -l home/$USER/Documents/bctools/"
+### Conversion Aliases ###
 asciibin () {
 read -p "Introduce ascii string: " ASC
 echo $ASCII | perl -lpe '$_=join " ", unpack"(B8)*"'
@@ -978,7 +976,6 @@ alias asciic='read -p "Introduce ascii string: " ASC; echo $ASC >> ASCII; xxd -i
 alias decbin='read -p "Introduce dec number: " DEC; echo "obase=2; $DEC" | bc'
 alias decoct='read -p "Introduce dec number: " DEC; echo "obase=8; $DEC" | bc'
 alias dechex='read -p "Introduce dec number: " DEC; echo "obase=16; $DEC" | bc'
-
 binascii () {
 read -p "Introduce bin number: " BIN; 
 echo $BIN | perl -lape '$_=pack"(B8)*",@F'
@@ -997,7 +994,6 @@ alias hexdec='read -p "Introduce hex number: " HEX; echo "ibase=16; $HEX" | bc'
 alias hexbin='read -p "Introduce hex number: " HEX; echo "ibase=16;obase=2; $HEX" | bc; echo $((0x$HEX))'
 alias hexoct='read -p "Introduce hex number: " HEX; echo "ibase=16;obase=8; $HEX" | bc'
 
-
 ### Ethereum Aliases ###
 routegeth="/home/$USER/linux/geth**"
 alias ethertweet="firefox -new-tab -url https://github.com/yep/eth-tweet -new-tab -url https://ethertweet.net/ui && geth --rpc --rpccorsdomain='http://ethertweet.net'"
@@ -1012,7 +1008,6 @@ alias gethupgrade='cd $routegeth && ./geth upgradedb --fast console'
 alias gethsheet="https://github.com/ethereum/go-ethereum/wiki/Command-Line-Options"
 alias ethstats="sudo pm2 start /home/$USER/eth-net-intelligence-api/app.json && firefox -new-tab https://ethstats.net/ && parity --max-peers 100 --peers 100 --min-peers 100"
 alias meteor="firefox -new-tab -url http://localhost:3000 && cd /home/$USER/linux && ./geth --rpc --rpccorsdomain='http://localhost:3000'"
-
 
 ### Some cheatsheets ###
 alias subst='echo "vi filename.txt -c \":Ubuntu%s/\<tmux\>/Linux/gIc \" -c \":wq \" meaning (:code) (tres after the first apparition of Ubuntu) (% make changes in all lines, use {START-n},{END-n} instead) (s/ search) (\<\> exact word) (UNIX/ old word) (Linux/ new word) (g global – each occurrence in the line is changed, rather than just the first) (I case sensitive) (c confirm signal)"'
