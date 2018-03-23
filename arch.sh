@@ -197,7 +197,7 @@ var2=$(echo $version | cut -d 'r' -f 2)
 echo $var2
 file="Oracle_VM_VirtualBox_Extension_Pack-$var1.vbox-extpack"
 echo $file
-sudo wget http://download.virtualbox.org/virtualbox/$var1/$file -O $file
+wget http://download.virtualbox.org/virtualbox/$var1/$file -O $file
 sudo VBoxManage extpack install $file --replace
 sudo rm $file
 sudo pacman -S dkms vagrant --noconfirm --needed
