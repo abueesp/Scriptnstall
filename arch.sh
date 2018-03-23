@@ -208,4 +208,29 @@ echo "To insert iso additions, install first your vm"
 virtualbox
 vboxmanage storageattach work --storagectl IDE --port 0 --device 0 --type dvddrive --medium "/home/$USER/VBox**.iso"
 
+#Emacs
+sudo pacman -S emacs --noconfirm --needed
+sudo pacman -S git --noconfirm --needed
+git clone http://github.com/syl20bnr/spacemacs ~/.emacs.d
+cd ~/.emacs.d
+wget http://github.com/ethereum/emacs-solidity/blob/master/solidity-mode.el
+echo 'Carga los elementos de emacs con (add-to-list load-path "~/.emacs.d/") + (load "myplugin.el")' >> README
+cd ..
 
+#Tmux
+sudo pacman -S tmux  --noconfirm --needed
+sudo rm ~/.tmux.conf~
+cp ~/.tmux.conf ~/.tmux.conf~
+wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.tmux.conf
+
+#Office
+wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.bc
+sudo pacman -S libreoffice grc unoconv detox pandoc duplicity deja-dup --noconfirm --needed
+sudo pacman -S  xmlstarlet jq datamash bc gawk mawk --noconfirm --needed #xml and jquery #wc join paste cut sort uniq
+sudo pacman -S blender --noconfirm --needed
+
+#Other Tools
+sudo pacman -S traceroute nmap arp-scan -noconfirm --needed
+sudo pacman -S terminator htop autojump iotop vnstat at nemo task tree recordmydesktop --noconfirm --needed
+
+#Explorers
