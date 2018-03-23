@@ -226,11 +226,12 @@ wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.tmux.conf
 #Office
 wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.bc
 sudo pacman -S libreoffice grc unoconv detox pandoc duplicity deja-dup --noconfirm --needed
-sudo pacman -S  xmlstarlet jq datamash bc gawk mawk --noconfirm --needed #xml and jquery #wc join paste cut sort uniq
+sudo pacman -S xmlstarlet jq datamash bc gawk mawk --noconfirm --needed #xml and jquery #wc join paste cut sort uniq
 sudo pacman -S blender --noconfirm --needed
 
 #Other Tools
-sudo pacman -S traceroute nmap arp-scan -noconfirm --needed
+sudo pacman -S brasero qemu archiso --noconfirm --needed
+sudo pacman -S traceroute nmap arp-scan --noconfirm --needed
 sudo pacman -S terminator htop autojump iotop vnstat at nemo task tree recordmydesktop --noconfirm --needed
 
 #Explorers
