@@ -679,7 +679,8 @@ cd extensions
 mkdir privacy
 cd privacy
 wget https://www.eff.org/files/privacy-badger-latest.xpi
-wget https://addons.mozilla.org/firefox/downloads/latest/497366/addon-497366-latest.xpi -O Disable WebRTC.xpi
+wget https://addons.mozilla.org/firefox/downloads/file/808841/addon-808841-latest.xpi -O AdblockPlus.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/497366/addon-497366-latest.xpi -O DisableWebRTC.xpi
 wget https://addons.mozilla.org/firefox/downloads/latest/92079/addon-92079-latest.xpi -O CookieManager.xpi
 wget https://addons.mozilla.org/firefox/downloads/latest/383235/addon-383235-latest.xpi -O FlashDisable.xpi
 wget https://addons.mozilla.org/firefox/downloads/file/281702/google_privacy-0.2.4-sm+fx.xpi -O GooglePriv.xpi
@@ -839,7 +840,8 @@ $IRONFOLDER/./chrome https://blockchain-dns.info/files/BDNS-1.0.8.crx
 sudo add-apt-repository ppa:canonical-chromium-builds/stage -y
 sudo apt-get update
 sudo apt-get install chromium-browser chromium-browser-l10n chromium-codecs-ffmpeg-extra -y
-#chromium-browser https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm
+chromium-browser https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm
+chromium-browser https://chrome.google.com/webstore/detail/adblock/gighmmpiobklfepjocnamgkkbiglidom
 #chromium-browser https://chrome.google.com/webstore/detail/form-filler/bnjjngeaknajbdcgpfkgnonkmififhfo
 #chromium-browser https://chrome.google.com/webstore/detail/autoform/fdedjnkmcijdhgbcmmjdogphnmfdjjik
 #chromium-browser https://chrome.google.com/webstore/detail/m-i-m/jlppachnphenhdidmmpnbdjaipfigoic
@@ -847,6 +849,7 @@ sudo apt-get install chromium-browser chromium-browser-l10n chromium-codecs-ffmp
 #chromium-browser https://chrome.google.com/webstore/detail/noiszy/immakaidhkcddagdjmedphlnamlcdcbg
 #chromium-browser https://chrome.google.com/webstore/detail/ciiva-search/fkmanbkfjcpkhonmmdopjmjopbclegel
 #chromium-browser https://blockchain-dns.info/files/BDNS-1.0.8.crx
+#chromium-browser https://chrome.google.com/webstore/detail/video-downloadhelper/lmjnegcaeklhafolokijcfjliaokphfk
 
 #icecat
 PCVER=$(uname -m)
