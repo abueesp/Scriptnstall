@@ -476,8 +476,8 @@ git clone http://github.com/syl20bnr/spacemacs ~/.emacs.d
 ##plugins
 cd ~/.emacs.d
 wget http://github.com/ethereum/emacs-solidity/blob/master/solidity-mode.el ##solidity
-echo 'Carga los elementos de emacs con (add-to-list load-path "~/.emacs.d/") + (load "myplugin.el")'
-cd
+echo 'Carga los elementos de emacs con (add-to-list load-path "~/.emacs.d/") + (load "myplugin.el")' >> README
+cd ..
 sudo rm emacs-$EMACSVERSION.tar.xz
 sudo rm -r emacs-$EMACSVERSION
 
@@ -505,18 +505,17 @@ sudo apt-get install vnstat -y
 sudo apt-get install duplicity deja-dup -y
 sudo apt-get install brasero -y
 sudo apt-get install at -y
-
 sudo apt-get install xmlstarlet jq datamash bc gawk mawk -y #xml and jquery #wc join paste cut sort uniq
-sudo apt-get install extlinux mtools syslinux syslinux-common unetbootin unetbootin-translations gparted -y
+sudo apt-get install gparted -y
 sudo apt-get install baobab -y
 sudo apt-get install nemo -y
-sudo apt-get install thunderbird -y
-thunderbird https://addons.mozilla.org/thunderbird/downloads/latest/775/addon-775-latest.xpi
 sudo apt-get install gtk-recordmydesktop recordmydesktop -y
-sudo apt-get install firefox -y
-firefox -P https://addons.mozilla.org/firefox/downloads/file/271802/no_more_install_delay-3.0-fx+sm+fn+tb.xpi
 sudo apt-get install tree -y
 sudo apt-get install task -y
+sudo apt-get install thunderbird -y
+thunderbird https://addons.mozilla.org/thunderbird/downloads/latest/775/addon-775-latest.xpi
+sudo apt-get install firefox -y
+firefox -P https://addons.mozilla.org/firefox/downloads/file/271802/no_more_install_delay-3.0-fx+sm+fn+tb.xpi
 
 #Python essentials
 sudo apt-get install build-essential python-dev python-setuptools python-virtualenv libxml2-dev libxslt1-dev zlib1g-dev -y
@@ -524,7 +523,7 @@ sudo apt-get install python3-pip python-pip -y
 pip install --upgrade pip
 pip3 install --upgrade pip
 
-#Some tools
+#Some Python tools
 sudo -H pip3 install percol #Indexer
 sudo -H pip install shyaml csvkit #yaml csv
 
