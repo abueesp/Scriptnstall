@@ -228,7 +228,7 @@ sh ~/.vim_runtime/install_awesome_vimrc.sh
 
 #PATHOGENFOLDER="~/.vim/build"
 #mkdir $PATHOGENFOLDER
-PATHOGENFOLDER="~/.vim_runtime/sources_non_forked/"
+PATHOGENFOLDER="~/.vim_runtime/sources_forked"
 echo "PATHOGENFOLDER=$PATHOGENFOLDER" | tee -a .bashrc
 echo 'alias pathogen="read -p \"Name of the plugin: \" PLUGINNAME && read -p \"Plugin Git link: \" PLUGINGIT && git clone $PLUGINGIT $PATHOGENFOLDER/$PLUGINNAME"' | tee -a .bashrc
 echo 'alias installvimplugin="pathogen"' | tee -a .bashrc
@@ -240,12 +240,11 @@ git clone https://github.com/OmniSharp/omnisharp-vim $PATHOGENFOLDER/omnisharp-v
 git clone https://github.com/rust-lang/rust.vim $PATHOGENFOLDER/rust
 git clone https://github.com/kballard/vim-swift.git $PATHOGENFOLDER/swift
 git clone --recursive https://github.com/python-mode/python-mode $PATHOGENFOLDER/python-mode
-git clone https://github.com/eagletmt/ghcmod-vim $PATHOGENFOLDER/python-mode
 git clone https://github.com/eagletmt/ghcmod-vim $PATHOGENFOLDER/ghcmod-vim
 git clone https://github.com/eagletmt/neco-ghc $PATHOGENFOLDER/neco-ghc
 
 vimfunctions(){
-echo "Tools"
+echo "### Tools ###"    
 echo "ack: Search tool, :grep=:ack :grepadd=:ackadd, :lgrep=LAck, and :lgrepadd=:LAckAdd (see all options with :ack ?)"
 echo "bufexplorer: See and manage the current buffers(,o)"
 echo "mru: Recently open files (,f)"
@@ -260,9 +259,10 @@ echo "vim-expand-region: (+ to expand the visual selection and _ to shrink it)"
 echo "commentary-vim: Comments management (gcc for a line and gcap for a paragraph and gc in visual mode and :7,17Commentary)"
 echo "pathogen: Install plugins and manage your vim runtimepath (use 'installvimplugin' or 'git clone https://github.com/yourplugin ~/.vim_runtime/sources_non_forked/nameofplugin' for example"
 echo ""
-echo "Indenters"
+echo "### Indenters ###"
 echo "vim-indent-object: Python indenter (ai and ii and al and il)"
-echo "Snippers"
+echo ""
+echo "### Snippers ###"
 echo "snipmate: Alternative to ultisnips for snippers depending the filetype (forTAB for example)" 
 echo "Syntastics and linters"
 echo ":setlocal spell! (,ss)"
@@ -276,7 +276,7 @@ echo "vim-swift: Swift syntastic (:help ft-swift)"
 echo "python-mode: Python syntastic (:help pymode)"
 echo "ghcmod-vim: Haskell syntastic (:help :filetype-overview and ghc-mod type and ghc-mod check or ghc-mod lint and ghc-mod expand and ghc-mod split)"
 echo ""
-echo "Completions"
+echo "### Completions ###"
 echo "neco-ghc: Haskell ghc-mod completion for neocomplcache/neocomplete/deoplete (:help compl-omni)"
 }
 echo vimfunctions >> $PATHOGENFOLDER/README
