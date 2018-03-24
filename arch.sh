@@ -302,4 +302,4 @@ sudo pacman -S traceroute nmap arp-scan --noconfirm --needed
 sudo pacman -S terminator htop autojump iotop vnstat at nemo task tree recordmydesktop --noconfirm --needed
 
 
-### Web explorers ###
+### Browsers ###
