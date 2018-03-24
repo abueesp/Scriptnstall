@@ -556,16 +556,15 @@ sudo rm scrivener-$SCRIVENERVERSION.deb
 
 ##Vim##
 sudo apt-get install vim -y
+git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
+sh ~/.vim_runtime/install_awesome_vimrc.sh
 sudo apt-get install powerline supercollider-vim vim-addon-manager vim-latexsuite vim-pathogen vim-python-jedi vim-rails vim-scripts vim-snipmate vim-snippets vim-syntastic vim-tabular  vim-ultisnips vim-youcompleteme -y
-git clone https://github.com/amix/vimrc.git ~/.vim
-sh ~/.vim/install_awesome_vimrc.sh
 cd .vim
 mkdir bundle
 cd bundle
 git clone git://github.com/tpope/vim-fugitive.git
 vim -u NONE -c "helptags vim-fugitive/doc" -c q
 autocmd QuickFixCmdPost *grep* cwindow
-#Youcompleteme for C C# (if Mono)  Rust Go Javascript (if NPM Nodejs)
 sudo apt-get install build-essential cmake
 sudo apt-get install python-dev python3-dev
 cd ~/.vim/bundle
@@ -577,9 +576,7 @@ rm clang*
 wget http://releases.llvm.org/5.0.1/clang+llvm-5.0.1-x86_64-linux-gnu-ubuntu-16.04.tar.xz
 wget http://releases.llvm.org/5.0.1/clang+llvm-5.0.1-x86_64-linux-gnu-ubuntu-16.04.tar.xz.sig
 ./install.py --all
-cd ~/.vim/bundle/youcompleteme
-cd 
-#VimRails
+cd ~/.vim/bundle
 git clone https://github.com/tpope/vim-rails.git
 vim -u NONE -c "helptags vim-rails/doc" -c q
 git clone https://github.com/plasticboy/vim-markdown.git
@@ -587,37 +584,7 @@ git clone https://github.com/elzr/vim-json
 git clone --recursive https://github.com/davidhalter/jedi-vim.git
 git clone https://github.com/mxw/vim-jsx.git ~/.vim/bundle/vim-jsx
 git clone https://github.com/othree/html5.vim
-#VimSEnsible: 
-# 'backspace': Backspace through anything in insert mode.
-#'incsearch': Start searching before pressing enter.
-#'listchars': Makes :set list (visible whitespace) prettier.
-#'scrolloff': Always show at least one line above/below the cursor.
-#'autoread': Autoload file changes. You can undo by pressing u.
-#runtime! macros/matchit.vim: Load the version of matchit.vim that ships with Vim
 git clone git://github.com/tpope/vim-sensible.git
-#VimTEsts
-#Use :! and :Dispatch :makegreen terminal...
-#Provides texts with
-#Language 	Frameworks 	Identifiers
-#C# 	.NET 	dotnettest
-# Clojure 	Fireplace.vim 	fireplacetest
-#Crystal 	Crystal 	crystalspec
-#Elixir 	ESpec, ExUnit 	espec, exunit
-#Elm 	elm-test 	elmtest
-#Erlang 	CommonTest 	commontest
-#Go 	Ginkgo, Go 	ginkgo, gotest
-#Java 	Maven 	maventest
-#JavaScript 	Intern, Jasmine, Jest, Karma, Lab, Mocha, TAP, 	intern, jasmine, jest, karma, lab, mocha, tap
-#Lua 	Busted 	busted
-#PHP 	Behat, Codeception, Kahlan, Peridot, PHPUnit, PHPSpec, Dusk 	behat, codeception, kahlan, peridot, phpunit, phpspec, dusk
-#Perl 	Prove 	prove
-#Python 	Django, Nose, Nose2, PyTest, PyUnit 	djangotest, djangonose nose, nose2, pytest, pyunit
-#Racket 	RackUnit 	rackunit
-#Ruby 	Cucumber, M, Minitest, Rails, RSpec 	cucumber, m, minitest, rails, rspec
-#Rust 	Cargo 	cargotest
-#Shell 	Bats 	bats
-#Swift 	Swift Package Manager 	swiftpm
-#VimScript 	Vader.vim, VSpec 	vader, vspec"
 git clone https://github.com/janko-m/vim-test
 git clone https://github.com/StanAngeloff/php.vim.git
 git clone https://github.com/vim-scripts/grep.vim
