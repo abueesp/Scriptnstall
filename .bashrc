@@ -67,7 +67,7 @@ reset_screen
  
 #Other colors options are: ${lightred}light red, ${lightgreen}light green, ${blue}blue, ${purple}purple
 echo "
-${darkgrey}A better command line
+${darkgrey} A better command line 
 ${script_color} Coding for good - $USER command line $(tty) $nc
 ${command_color}  Ƀe ℋuman, be κinđ, be ωise $nc
 
@@ -75,12 +75,10 @@ Colors legend and some notes:
 ${linenum_color}- line number: red$nc ${lightred} - debugbash debuglog debugdump grc percol $nc
 ${funcname_color}- function name: green$nc ${lightgreen} - vim completion: C-n C-p words, C-x C-l lines, C-x C-k dictionaries $nc
 ${level_color}- shell level color:cyan$nc ${lightcyan} - C-x ! | C-x $ | M-x / | M-x @ | C-x C-e | fc -lnr | !! $nc
-${script_color}- script name: yellow$nc
-${command_color}- command executed: white$nc
-${lightgrey} - help usage TAB alias | cleanall | cleanmem | cleanexcept $nc
-${pink} - neton netoff | web browsers | lynx netrik | fxf chm iron opera icecat | tmuxts full $nc
-${lightblue} - updatebash | geditbash vibash | alias | wai | neton/netoff $nc
-${purple} - sysmon | appmon | netmon | portmon | usermon | vpnmon | webmon | hardmon $nc
+${script_color}- script name: yellow$nc ${lightblue} - updatebash geditbash vibash | wai $nc
+${command_color}- command executed: white$nc ${lightgrey} - help usage <tab> alias | cleanall cleanmem cleanexcept $nc
+${pink} - neton netoff | web browsers: lynx netrik fxf chm iron opera icecat | tmuxts full $nc
+${purple} - sysmon appmon netmon portmon usermon vpnmon webmon hardmon $nc
 
 "
 
