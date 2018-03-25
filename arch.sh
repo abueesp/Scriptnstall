@@ -5,7 +5,7 @@ echo "alias pacmansheet='firefox --new-tab https://wiki.archlinux.org/index.php/
 
 ### Restoring Windows on Grub2 ###
 sudo os-prober
-if [ $? -eq 0 ]
+if [ $? -eq 1 ]
             then
                 sudo grub-mkconfig -o /boot/grub/grub.cfg
             else
