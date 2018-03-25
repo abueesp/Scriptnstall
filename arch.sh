@@ -1,18 +1,20 @@
 ### Update and Upgrade ###
 sudo pacman -Syu --noconfirm 
-echo "alias pacmansheet='firefox --new-tab https://wiki.archlinux.org/index.php/Pacman/Rosetta'" | tee -a ~/.bashrc
 
+## .bashrc ##
+mv ~/.bashrc ~/.previous-bashrc
+wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.bashrc
+echo "alias pacmansheet='firefox --new-tab https://wiki.archlinux.org/index.php/Pacman/Rosetta'" | tee -a ~/.bashrc
 
 ### Restoring Windows on Grub2 ###
 sudo os-prober
-if [ $? -eq 1 ]
+if [ $? -ne 1 ]
             then
                 sudo grub-mkconfig -o /boot/grub/grub.cfg
             else
                 echo "No Windows installed"
             fi
- 
- 
+
 ### Prntscreensound ###
 sudo mv /usr/share/sounds/freedesktop/stereo/camera-shutter.oga /usr/share/sounds/freedesktop/stereo/camera-shutter-disabled.oga
 
@@ -25,7 +27,7 @@ sudo pacman -S tor --noconfirm --needed
 sudo find /var/lib/tor/ ! -user tor -exec chown tor:tor {} \;
 sudo chown -R tor:tor /var/lib/tor/
 sudo chmod -R 755 /var/lib/tor
-systemctl --system daemon-reload
+sudo systemctl --system daemon-reload
 export TORCHROOT=/opt/torchroot
 sudo mkdir -p $TORCHROOT
 sudo mkdir -p $TORCHROOT/etc/tor
@@ -47,11 +49,11 @@ sudo cp /lib/libnss* /lib/libnsl* /lib/ld-linux-*.so* /lib/libresolv* /lib/libgc
 sudo cp $(ldd /usr/bin/tor | awk '{print $3}'|grep --color=never "^/") $TORCHROOT/usr/lib/
 sudo cp -r /var/lib/tor      $TORCHROOT/var/lib/
 sudo chown -R tor:tor $TORCHROOT/var/lib/tor
-sh -c "grep --color=never ^tor /etc/passwd > $TORCHROOT/etc/passwd"
-sh -c "grep --color=never ^tor /etc/group > $TORCHROOT/etc/group"
-mknod -m 644 $TORCHROOT/dev/random c 1 8
-mknod -m 644 $TORCHROOT/dev/urandom c 1 9
-mknod -m 666 $TORCHROOT/dev/null c 1 3
+sh -c "grep --color=never ^tor /etc/passwd | sudo tee -a $TORCHROOT/etc/passwd"
+sh -c "grep --color=never ^tor /etc/group | sudo tee -a $TORCHROOT/etc/group"
+sudo mknod -m 644 $TORCHROOT/dev/random c 1 8
+sudo mknod -m 644 $TORCHROOT/dev/urandom c 1 9
+sudo mknod -m 666 $TORCHROOT/dev/null c 1 3
 if [[ "$(uname -m)" == "x86_64" ]]; then
   sudo cp /usr/lib/ld-linux-x86-64.so* $TORCHROOT/usr/lib/.
   sudo ln -sr /usr/lib64 $TORCHROOT/lib64
@@ -106,8 +108,7 @@ echo "You can run Tor DNS queries using tor-resolve duckduckgo.com"
 tor-resolve duckduckgo.com
 
 #Pacman over Tor
-echo "XferCommand = /usr/bin/curl --socks5-hostname localhost:$TORPORT -C - -f %u > %o" | sudo tee -a /etc/pacman.conf
-
+sed "s,-c -O %o %u,-c -O %o %u \nXferCommand = /usr/bin/curl --socks5-hostname localhost:$TORPORT -C - -f %u > %o,g" /etc/pacman.conf
 
 ### GPG2 ###
 mkdir gpg2
