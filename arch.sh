@@ -108,7 +108,7 @@ echo "You can run Tor DNS queries using tor-resolve duckduckgo.com"
 tor-resolve duckduckgo.com
 
 #Pacman over Tor
-sed "s,-c -O %o %u,-c -O %o %u \nXferCommand = /usr/bin/curl --socks5-hostname localhost:$TORPORT -C - -f %u > %o,g" /etc/pacman.conf
+sed -i "s,-c -O %o %u,-c -O %o %u \nXferCommand = /usr/bin/curl --socks5-hostname localhost:$TORPORT -C - -f %u > %o,g" /etc/pacman.conf
 
 ### GPG2 ###
 mkdir gpg2
