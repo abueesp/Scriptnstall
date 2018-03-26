@@ -339,3 +339,6 @@ echo "alias repeatmouse= java -jar /usr/src/repeat.jar" | tee -a ~/.bashrc
 
 ### Autoremove ###
 sudo pacman -Rns $(pacman -Qtdq) --noconfirm
+
+wget http://www13.frugalware.org/pub/frugalware/frugalware-stable-iso/fvbe-2.1-gnome-x86_64.iso
+firefox --new-tab https://rubygems.org/
