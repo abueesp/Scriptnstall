@@ -4,10 +4,10 @@ echo "check Parabola OS. it's free as in freedom!"
 sudo os-prober
 if [ $? -ne 1 ]
             then
-                sudo grub-mkconfig -o /boot/grub/grub.cfg
+                        sudo grub-mkconfig -o /boot/grub/grub.cfg
             else
-                echo "No Windows installed"
-            fi
+                        echo "No Windows installed"
+fi
 
 ### Update and Upgrade ###
 sudo pacman -Syu --noconfirm 
@@ -194,8 +194,7 @@ echo "alias pacmansheet='firefox --new-tab https://wiki.archlinux.org/index.php/
 echo "alias purgearchrepo=echo 'aurman --stats && read -p \"Name of repo: \" REPO && paclist $REPO && sudo pacman -Rnsc $(pacman -Sl $REPO | grep \"\[installed\]\" | cut -f2 -d\' \')'" | tee -a ~/.bashrc
 printf "alias kalifyarch='printf /"[archstrike] \n Server = https://mirror.archstrike.org/$arch/$repo/ /" | sudo tee -a /etc/pacman.conf && sudo pacman-key --recv-keys 9D5F1C051D146843CDA4858BDE64825E7CBC0D51 && sudo pacman-key --finger 9D5F1C051D146843CDA4858BDE64825E7CBC0D51 && sudo pacman-key --lsign-key 9D5F1C051D146843CDA4858BDE64825E7CBC0D51' | sudo tee -a ~/.bashrc"
 printf "alias haskellfyarch='printf /"[haskell-core] \n Server = http://xsounds.org/~haskell/core/$arch /" | sudo tee -a /etc/pacman.conf && sudo pacman-key --recv-keys F3104992EBF24EB872B97B9C32B0B4534209170B && sudo pacman-key --finger F3104992EBF24EB872B97B9C32B0B4534209170B && sudo pacman-key --lsign-key F3104992EBF24EB872B97B9C32B0B4534209170B' | sudo tee -a ~/.bashrc"
-#https://rubygems.org/gems
-#https://www.reddit.com/r/linuxmasterrace/comments/3du6ia/slackware_linux_vs_arch_linux/
+printf "alias haskellfyarch='printf /"[quarry] \n Server = https://pkgbuild.com/~anatolik/quarry/x86_64/ /" | sudo tee -a /etc/pacman.conf && echo /"This repo has not key!/"' | sudo tee -a ~/.bashrc"
 
 # Auto-screen rotate
 #sudo pacman -S autoconf-archive gtk-doc --noconfirm -needed
