@@ -1,5 +1,3 @@
-echo "check Parabola OS. it's free as in freedom!"
-
 ### Restoring Windows on Grub2 ###
 sudo os-prober
 if [ $? -ne 1 ]
