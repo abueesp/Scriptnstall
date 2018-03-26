@@ -201,6 +201,7 @@ sudo mv checkmagick64 /usr/bin/checkmagick64
 sudo cp 62-magick.rules /etc/udev/rules.d/62-magick.rules
 sudo groupadd magick
 sudo gpasswd -a $USER magick #works after reboot
+rm -r magick-rotation-$VERSIONMAGICKROTATION
 
 
 ### Virtualbox ###
