@@ -1,7 +1,3 @@
-### Update and Upgrade ###
-sudo pacman -Syu --noconfirm 
-sudo pacman -S yaourt --noconfirm
-
 ### Restoring Windows on Grub2 ###
 sudo os-prober
 if [ $? -ne 1 ]
@@ -13,6 +9,10 @@ if [ $? -ne 1 ]
 
 ### Prntscreensound ###
 sudo mv /usr/share/sounds/freedesktop/stereo/camera-shutter.oga /usr/share/sounds/freedesktop/stereo/camera-shutter-disabled.oga
+
+### Update and Upgrade ###
+sudo pacman -Syu --noconfirm 
+sudo pacman -S yaourt --noconfirm
 
 ### Tor ###
 sudo pacman -S arch-install-scripts base arm --oconfirm --needed
@@ -317,7 +317,10 @@ sudo pacman -S blender --noconfirm --needed
 sudo pacman -S brasero qemu archiso --noconfirm --needed
 sudo pacman -S traceroute nmap arp-scan --noconfirm --needed
 sudo pacman -S terminator htop autojump iotop vnstat at nemo task tree recordmydesktop --noconfirm --needed
-
+REPEATVERSION=4.0.1
+REPEATVER=4_0_1
+wget https://github.com/repeats/Repeat/releases/download/v$REPEATVERSION/Repeat_$REPEATVER.jar -O /usr/src/repeat.jar && pacman -S jdk8-openjdk --noconfirm --needed
+echo "alias repeatmouse= java -jar /usr/src/repeat.jar" | tee -a ~/.bashrc
 
 ### Browsers ###
 
