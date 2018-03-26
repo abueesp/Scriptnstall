@@ -194,14 +194,14 @@ echo "alias pacmansheet='firefox --new-tab https://wiki.archlinux.org/index.php/
 echo "alias pacmanpurgerepo='yaourt --stats && read -p \"Name of repo: \" REPO && paclist $REPO && sudo pacman -Rnsc $(pacman -Sl $REPO | grep \"\[installed\]\" | cut -f2 -d\' \')'" | tee -a ~/.bashrc
 
 # Auto-screen rotate
-sudo pacman -S autoconf-archive gtk-doc --noconfirm -needed
-git clone https://github.com/hadess/iio-sensor-proxy
-cd iio-sensor-proxy
-bash autogen.sh
-./configure --prefix=/usr --sysconfdir=/etc
-make
-sudo make install
-cd .. && rm -r iio-sensor-proxy
+#sudo pacman -S autoconf-archive gtk-doc --noconfirm -needed
+#git clone https://github.com/hadess/iio-sensor-proxy
+#cd iio-sensor-proxy
+#bash autogen.sh
+#./configure --prefix=/usr --sysconfdir=/etc
+#make
+#sudo make install
+#cd .. && rm -r iio-sensor-proxy
 
 # Fixing bugs
 sudo pacman -S deepin-api --noconfirm -needed
