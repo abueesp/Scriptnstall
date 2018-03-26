@@ -1,10 +1,6 @@
 ### Update and Upgrade ###
 sudo pacman -Syu --noconfirm 
-
-## .bashrc ##
-mv ~/.bashrc ~/.previous-bashrc
-wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.bashrc
-echo "alias pacmansheet='firefox --new-tab https://wiki.archlinux.org/index.php/Pacman/Rosetta'" | tee -a ~/.bashrc
+sudo pacman -S yaourt --noconfirm
 
 ### Restoring Windows on Grub2 ###
 sudo os-prober
@@ -18,9 +14,8 @@ if [ $? -ne 1 ]
 ### Prntscreensound ###
 sudo mv /usr/share/sounds/freedesktop/stereo/camera-shutter.oga /usr/share/sounds/freedesktop/stereo/camera-shutter-disabled.oga
 
-
 ### Tor ###
-sudo pacman -S arch-install-scripts base arm --noconfirm --needed
+sudo pacman -S arch-install-scripts base arm --oconfirm --needed
 sudo pacman -S tor --noconfirm --needed
 
 #Run Tor as chroot
@@ -188,6 +183,26 @@ cd ..
 sudo rm -r gpg2
 
 
+## .bashrc ##
+mv ~/.bashrc ~/.previous-bashrc
+wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.bashrc
+echo "alias pacmansheet='firefox --new-tab https://wiki.archlinux.org/index.php/Pacman/Rosetta'" | tee -a ~/.bashrc
+echo "alias pacmanpurgerepo='yaourt --stats && read -p \"Name of repo: \" REPO && paclist $REPO && sudo pacman -Rnsc $(pacman -Sl $REPO | grep \"\[installed\]\" | cut -f2 -d\' \')'" | tee -a ~/.bashrc
+
+
+### Auto-screen rotate ###
+VERSIONMAGICKROTATION=1.6.2
+wget https://launchpad.net/magick-rotation/trunk/1.6/+download/magick-rotation-$VERSIONMAGICKROTATION.tar.bz2
+tar -xvf magick-rotation-$VERSIONMAGICKROTATION.tar.bz2
+rm magick-rotation-$VERSIONMAGICKROTATION.tar.bz2
+cd magick-rotation-$VERSIONMAGICKROTATION
+gcc check.c -o checkmagick64 -lX11 -lXrandr
+sudo mv checkmagick64 /usr/bin/checkmagick64
+sudo cp 62-magick.rules /etc/udev/rules.d/62-magick.rules
+sudo groupadd magick
+sudo gpasswd -a $USER magick #works after reboot
+
+
 ### Virtualbox ###
 sudo pacman -S virtualbox-host-modules-arch qt4 virtualbox --noconfirm --needed
 sudo gpasswd -a $USER vboxusers
@@ -304,3 +319,7 @@ sudo pacman -S terminator htop autojump iotop vnstat at nemo task tree recordmyd
 
 
 ### Browsers ###
+
+
+### Autoremove ###
+sudo pacman -Rns $(pacman -Qtdq) --noconfirm
