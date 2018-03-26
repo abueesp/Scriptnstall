@@ -858,7 +858,6 @@ alias aptfind=aptsearch
 alias aptcache=aptsearch
 alias aptlog='less /var/log/apt/history.log'
 alias aptinstalled='apt list | grep installed'
-alias BCE='curl http://api.fixer.io/latest?base=EUR'
 alias rename='mv'
 alias readfiles='sudo tail -vn +1 $(find . -maxdepth 1 -not -type d)'
 alias catall=readfiles
@@ -876,11 +875,7 @@ alias shist="history | grep"
 alias vectorize="xargs"
 alias cuenta=count
 alias countlines="awk '/a/{++cnt} END {print \"Count = \", cnt}'"
-alias rctty='script -t 2>rctty.timing rctty'
-alias mtty='more rctty'
-alias rptty='replayscript rctty.timing rctty'
-alias rpttyfast='replayscript -d 3 rctty.timing rctty'
-alias logg='tailf'
+alias startlocalserver='python3 -m http.server 8000'
 alias createtags='!ctags -R && echo "Remember: Ctrl+] go to tag; g+Ctrl+] ambiguous tags and enter number; Ctrl+t last tag; Ctrl+X+Ctrl+] Autocomplete with tags"'
 alias rng='expr $RANDOM % 9223372036854775807 && od -N 4 -t uL -An /dev/urandom | tr -d " " && openssl rand 4 | od -DAn && uuidgen; echo $RANDOM | sudo hashalot -x -s 2 sha512; echo $RANDOM | sudo hashalot -x -s 2 sha384; echo $RANDOM | sudo hashalot -x -s 2 sha256; echo $RANDOM | sudo hashalot -x -s 2 rmd160compat; echo $RANDOM | sudo hashalot -x -s 2 rmd160; echo $RANDOM | sudo hashalot -x -s 2 ripemd160'
 alias noise='sudo cat /dev/urandom | aplay -f dat'
@@ -1701,6 +1696,7 @@ alias lxcrun='read -e -p "Name of the container (MYC by default): " -i MYC namec
 alias lxcpull='echo "Remember that your source route -> destination route may be something like -my_container/route .-"; lxc file pull'
 alias lxcpush='echo "Remember that your destination route -> source route may be  something like  -hosts my_container/route-"; lxc file push'
 
+alias BCE='curl http://api.fixer.io/latest?base=EUR'
 cconv() {
 echo '"shortname": "EUR",
         "longname": "Euro",
