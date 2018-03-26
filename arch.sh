@@ -11,7 +11,6 @@ if [ $? -ne 1 ]
 
 ### Update and Upgrade ###
 sudo pacman -Syu --noconfirm 
-sudo pacman -S yaourt --noconfirm
 
 ### Tor ###
 sudo pacman -S arch-install-scripts base arm --oconfirm --needed
@@ -184,14 +183,17 @@ gpg --delete-keys 33BD3F06 -y
 cd ..
 sudo rm -r gpg2
 
-
 ### Tweaks ###
-
 #.bashrc
 mv ~/.bashrc ~/.previous-bashrc
 wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.bashrc
+
+#AUR-helper and repositories
+sudo pacman -S aurman --noconfirm #https://wiki.archlinux.org/index.php/AUR_helpers
 echo "alias pacmansheet='firefox --new-tab https://wiki.archlinux.org/index.php/Pacman/Rosetta'" | tee -a ~/.bashrc
-echo "alias pacmanpurgerepo='yaourt --stats && read -p \"Name of repo: \" REPO && paclist $REPO && sudo pacman -Rnsc $(pacman -Sl $REPO | grep \"\[installed\]\" | cut -f2 -d\' \')'" | tee -a ~/.bashrc
+echo "alias purgearchrepo=echo 'aurman --stats && read -p \"Name of repo: \" REPO && paclist $REPO && sudo pacman -Rnsc $(pacman -Sl $REPO | grep \"\[installed\]\" | cut -f2 -d\' \')'" | tee -a ~/.bashrc
+printf "alias kalifyarch='printf /"[archstrike] \n Server = https://mirror.archstrike.org/$arch/$repo/ /" | sudo tee -a /etc/pacman.conf && sudo pacman-key --recv-keys 9D5F1C051D146843CDA4858BDE64825E7CBC0D51 && sudo pacman-key --finger 9D5F1C051D146843CDA4858BDE64825E7CBC0D51 && sudo pacman-key --lsign-key 9D5F1C051D146843CDA4858BDE64825E7CBC0D51' | sudo tee -a ~/.bashrc"
+printf "alias haskellfyarch='printf /"[haskell-core] \n Server = http://xsounds.org/~haskell/core/$arch /" | sudo tee -a /etc/pacman.conf && sudo pacman-key --recv-keys F3104992EBF24EB872B97B9C32B0B4534209170B && sudo pacman-key --finger F3104992EBF24EB872B97B9C32B0B4534209170B && sudo pacman-key --lsign-key F3104992EBF24EB872B97B9C32B0B4534209170B' | sudo tee -a ~/.bashrc"
 
 # Auto-screen rotate
 #sudo pacman -S autoconf-archive gtk-doc --noconfirm -needed
