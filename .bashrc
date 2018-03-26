@@ -2649,62 +2649,21 @@ weechat -r "/msg NickServ IDENTIFY $IRCUSER $IRCPASS"
 }
 alias changeircpass='read -p "User: " IRCUSER && weechat -r "/msg NickServ SENDPASS $IRCUSER" && read -p "Go to email and introduce key: " IRCKEY && read -p "New password: " IRCNEWPASS &&  weechat -r "/msg NickServ SETPASS $IRCUSER $IRCKEY $IRCNEWPASS"'
 
-turn(){
-# rotate_desktop.sh
+rotate(){
 # All credits to: https://gist.githubusercontent.com/mildmojo/48e9025070a2ba40795c/raw/e9ca16e9ce472f642db2a13e72f79d3b99931773/rotate_desktop.sh
-# Rotates modern Linux desktop screen and input devices to match. Handy for
-# convertible notebooks. Call this script from panel launchers, keyboard
-# shortcuts, or touch gesture bindings (xSwipe, touchegg, etc.).
-#
-# Using transformation matrix bits taken from:
-#   https://wiki.ubuntu.com/X/InputCoordinateTransformation
-#
-
 # Configure these to match your hardware (names taken from `xinput` output).
-TOUCHPAD='SynPS/2 Synaptics TouchPad'
-TOUCHSCREEN='Atmel Atmel maXTouch Digitizer'
-
-if [ -z "$1" ]; then
+if [ $1 -eq 0 ]; then
   echo "Missing orientation."
   echo "Usage: $0 [d|u|l|r] [revert_seconds]"
   echo "u up d down l left r right - time in seconds"
-  exit 1
+fi
+if [ $1 -eq up ]; then
+  $1=inverted
 fi
 
-function do_rotate
-{
-  xrandr --output $1 --rotate $2
-
-  TRANSFORM='Coordinate Transformation Matrix'
-
-  case "$2" in
-    d)
-      [ ! -z "$TOUCHPAD" ]    && xinput set-prop "$TOUCHPAD"    "$TRANSFORM" 1 0 0 0 1 0 0 0 1
-      [ ! -z "$TOUCHSCREEN" ] && xinput set-prop "$TOUCHSCREEN" "$TRANSFORM" 1 0 0 0 1 0 0 0 1
-      ;;
-    u)
-      [ ! -z "$TOUCHPAD" ]    && xinput set-prop "$TOUCHPAD"    "$TRANSFORM" -1 0 1 0 -1 1 0 0 1
-      [ ! -z "$TOUCHSCREEN" ] && xinput set-prop "$TOUCHSCREEN" "$TRANSFORM" -1 0 1 0 -1 1 0 0 1
-      ;;
-    l)
-      [ ! -z "$TOUCHPAD" ]    && xinput set-prop "$TOUCHPAD"    "$TRANSFORM" 0 -1 1 1 0 0 0 0 1
-      [ ! -z "$TOUCHSCREEN" ] && xinput set-prop "$TOUCHSCREEN" "$TRANSFORM" 0 -1 1 1 0 0 0 0 1
-      ;;
-    r)
-      [ ! -z "$TOUCHPAD" ]    && xinput set-prop "$TOUCHPAD"    "$TRANSFORM" 0 1 0 -1 0 1 0 0 1
-      [ ! -z "$TOUCHSCREEN" ] && xinput set-prop "$TOUCHSCREEN" "$TRANSFORM" 0 1 0 -1 0 1 0 0 1
-      ;;
-  esac
-}
-
-XDISPLAY=`xrandr --current | grep primary | sed -e 's/ .*//g'`
-XROT=`xrandr --current --verbose | grep primary | egrep -o ' (normal|left|inverted|right) '`
-
-do_rotate $XDISPLAY $1
-
-if [ ! -z "$2" ]; then
-  sleep $2
-  do_rotate $XDISPLAY $XROT
-  exit 0
+if [ $1 -eq down ]; then
+  $1=normal
 fi
+xrandr --output $1 
 }
+rotatescreen=rotate
