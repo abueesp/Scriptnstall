@@ -2647,20 +2647,28 @@ weechat -r "/msg NickServ IDENTIFY $IRCUSER $IRCPASS"
 alias changeircpass='read -p "User: " IRCUSER && weechat -r "/msg NickServ SENDPASS $IRCUSER" && read -p "Go to email and introduce key: " IRCKEY && read -p "New password: " IRCNEWPASS &&  weechat -r "/msg NickServ SETPASS $IRCUSER $IRCKEY $IRCNEWPASS"'
 
 rotate(){
-# All credits to: https://gist.githubusercontent.com/mildmojo/48e9025070a2ba40795c/raw/e9ca16e9ce472f642db2a13e72f79d3b99931773/rotate_desktop.sh
-# Configure these to match your hardware (names taken from `xinput` output).
-if [ $1 -eq 0 ]; then
+if [ -z "$1" ]; then
   echo "Missing orientation."
-  echo "Usage: $0 [d|u|l|r] [revert_seconds]"
-  echo "u up d down l left r right - time in seconds"
-fi
-if [ $1 -eq up ]; then
-  $1=inverted
+  echo "Usage: $0 [normal|inverted|left|right] [revert_seconds]"
+  echo
+  exit 1
 fi
 
-if [ $1 -eq down ]; then
-  $1=normal
+function do_rotate
+{
+  xrandr --output $1 --rotate $2
+
+}
+
+XDISPLAY=`xrandr --current | grep primary | sed -e 's/ .*//g'`
+XROT=`xrandr --current --verbose | grep primary | egrep -o ' (normal|left|inverted|right) '`
+
+do_rotate $XDISPLAY $1
+
+if [ ! -z "$2" ]; then
+  sleep $2
+  do_rotate $XDISPLAY $XROT
+  exit 0
 fi
-xrandr --output $1 
 }
 rotatescreen=rotate
