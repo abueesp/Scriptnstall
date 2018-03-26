@@ -1,4 +1,4 @@
-echo "check Parabola OS, it's free as in freedom!"
+echo "check Parabola OS. it's free as in freedom!"
 
 ### Restoring Windows on Grub2 ###
 sudo os-prober
@@ -238,6 +238,7 @@ sudo pacman -S emacs --noconfirm --needed
 sudo pacman -S git --noconfirm --needed
 git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 cd ~/.emacs.d
+git clone https://github.com/EnigmaCurry/emacs/find/ancient-history
 wget https://github.com/ethereum/emacs-solidity/blob/master/solidity-mode.el
 echo 'Carga los elementos de emacs con (add-to-list load-path "~/.emacs.d/") + (load "myplugin.el")' >> README
 cd ..
