@@ -7,9 +7,6 @@ if [ $? -ne 1 ]
                 echo "No Windows installed"
             fi
 
-### Prntscreensound ###
-sudo mv /usr/share/sounds/freedesktop/stereo/camera-shutter.oga /usr/share/sounds/freedesktop/stereo/camera-shutter-disabled.oga
-
 ### Update and Upgrade ###
 sudo pacman -Syu --noconfirm 
 sudo pacman -S yaourt --noconfirm
@@ -105,6 +102,9 @@ tor-resolve duckduckgo.com
 #Pacman over Tor
 sed -i "s,-c -O %o %u,-c -O %o %u \nXferCommand = /usr/bin/curl --socks5-hostname localhost:$TORPORT -C - -f %u > %o,g" /etc/pacman.conf
 
+### Shadowsocks ###
+sudo pacman -S shadowsocks-qt5 shadowsocks --noconfirm --needed
+
 ### GPG2 ###
 mkdir gpg2
 cd gpg2
@@ -183,26 +183,29 @@ cd ..
 sudo rm -r gpg2
 
 
-## .bashrc ##
+### Tweaks ###
+
+#.bashrc
 mv ~/.bashrc ~/.previous-bashrc
 wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.bashrc
 echo "alias pacmansheet='firefox --new-tab https://wiki.archlinux.org/index.php/Pacman/Rosetta'" | tee -a ~/.bashrc
 echo "alias pacmanpurgerepo='yaourt --stats && read -p \"Name of repo: \" REPO && paclist $REPO && sudo pacman -Rnsc $(pacman -Sl $REPO | grep \"\[installed\]\" | cut -f2 -d\' \')'" | tee -a ~/.bashrc
 
+# Auto-screen rotate
+sudo pacman -S autoconf-archive gtk-doc --noconfirm -needed
+git clone https://github.com/hadess/iio-sensor-proxy
+cd iio-sensor-proxy
+bash autogen.sh
+./configure --prefix=/usr --sysconfdir=/etc
+make
+sudo make install
+cd .. && rm -r iio-sensor-proxy
 
-### Auto-screen rotate ###
-VERSIONMAGICKROTATION=1.6.2
-wget https://launchpad.net/magick-rotation/trunk/1.6/+download/magick-rotation-$VERSIONMAGICKROTATION.tar.bz2
-tar -xvf magick-rotation-$VERSIONMAGICKROTATION.tar.bz2
-rm magick-rotation-$VERSIONMAGICKROTATION.tar.bz2
-cd magick-rotation-$VERSIONMAGICKROTATION
-gcc check.c -o checkmagick64 -lX11 -lXrandr
-sudo mv checkmagick64 /usr/bin/checkmagick64
-sudo cp 62-magick.rules /etc/udev/rules.d/62-magick.rules
-sudo groupadd magick
-sudo gpasswd -a $USER magick #works after reboot
-rm -r magick-rotation-$VERSIONMAGICKROTATION
+# Fixing bugs
+sudo pacman -S deepin-api --noconfirm -needed
 
+# Prntscreensound
+sudo mv /usr/share/sounds/freedesktop/stereo/camera-shutter.oga /usr/share/sounds/freedesktop/stereo/camera-shutter-disabled.oga
 
 ### Virtualbox ###
 sudo pacman -S virtualbox-host-modules-arch qt4 virtualbox --noconfirm --needed
@@ -298,7 +301,6 @@ echo "neco-ghc: Haskell ghc-mod completion for neocomplcache/neocomplete/deoplet
 }
 echo vimfunctions >> $PATHOGENFOLDER/README
 
-
 ### Tmux ###
 sudo pacman -S tmux  --noconfirm --needed
 sudo rm ~/.tmux.conf~
@@ -311,6 +313,12 @@ wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.bc #My progr
 sudo pacman -S libreoffice grc unoconv detox pandoc duplicity deja-dup --noconfirm --needed #Text tools
 sudo pacman -S xmlstarlet jq datamash bc gawk mawk --noconfirm --needed #XML and jquery #wc join paste cut sort uniq
 sudo pacman -S blender --noconfirm --needed
+sudo pacman -S krita --noconfirm --needed
+
+sudo pacman -S xournal --noconfirm --needed && sudo pacman -Rs xournal --noconfirm
+wget http://www.styluslabs.com/download/write-tgz -O write.tar.gz
+tar -xf write.tar.gz && rm write.tar.gz
+sudo mv /Write/Write /usr/bin/notes && rm -r Write
 
 
 ### Other Tools ###
