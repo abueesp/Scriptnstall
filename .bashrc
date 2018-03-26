@@ -779,6 +779,7 @@ alias clenexcept="sudo apt-get install bleachbit -y; bleachbit -list; read -p 'W
 alias cleanmem="echo 'Cleaning memory, cache and swap'; sudo sh -c $(which echo) 3 > sudo /proc/sys/vm/drop_caches; sudo free"
 
 ### Aliases ###
+alias handmath="firefox --new-tab http://webdemo.myscript.com/views/math.html"
 alias visiblemodeon="sudo hciconfig hci0 piscan"
 alias visiblemodeoff="sudo hciconfig hci0 noscan"
 alias flightmodeon="nmcli networking off"
