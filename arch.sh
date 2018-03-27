@@ -193,6 +193,7 @@ echo "alias purgearchrepo=echo 'aurman --stats && read -p \"Name of repo: \" REP
 printf "alias kalifyarch='printf /"[archstrike] \n Server = https://mirror.archstrike.org/$arch/$repo/ /" | sudo tee -a /etc/pacman.conf && sudo pacman-key --recv-keys 9D5F1C051D146843CDA4858BDE64825E7CBC0D51 && sudo pacman-key --finger 9D5F1C051D146843CDA4858BDE64825E7CBC0D51 && sudo pacman-key --lsign-key 9D5F1C051D146843CDA4858BDE64825E7CBC0D51' | sudo tee -a ~/.bashrc"
 printf "alias haskellfyarch='printf /"[haskell-core] \n Server = http://xsounds.org/~haskell/core/$arch /" | sudo tee -a /etc/pacman.conf && sudo pacman-key --recv-keys F3104992EBF24EB872B97B9C32B0B4534209170B && sudo pacman-key --finger F3104992EBF24EB872B97B9C32B0B4534209170B && sudo pacman-key --lsign-key F3104992EBF24EB872B97B9C32B0B4534209170B' | sudo tee -a ~/.bashrc"
 printf "alias haskellfyarch='printf /"[quarry] \n Server = https://pkgbuild.com/~anatolik/quarry/x86_64/ /" | sudo tee -a /etc/pacman.conf && echo /"This repo has not key!/"' | sudo tee -a ~/.bashrc"
+echo "Haskwell WAIs: Yesod Framework brings Wrap Server. It is better than Happstack. For small projects try Scotty that also comes with Wrap, or maybe Snap's snaplets" # https://wiki.haskell.org/Web
 
 # Auto-screen rotate
 #sudo pacman -S autoconf-archive gtk-doc --noconfirm -needed
