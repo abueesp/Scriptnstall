@@ -1,6 +1,6 @@
 ### Restoring Windows on Grub2 ###
 sudo os-prober
-if [ $? -ne 1 ]
+if [ $? -ne 0 ]
             then
                         sudo grub-mkconfig -o /boot/grub/grub.cfg
             else
