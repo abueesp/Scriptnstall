@@ -72,12 +72,19 @@ sudo pacstrap -i -c -d /srv/container/tor-exit base tor arm
 sudo mkdir /var/lib/container
 sudo ln -s /srv/container/tor-exit /var/lib/container/tor-exit
 sudo mkdir /etc/systemd/system/systemd-nspawn@tor-exit.service.d
-echo "[Service]
+sudo ifconfig #adding vlan
+read -p "Write network interface to create VLAN (wlp2s0 by default): " INTERFACE 
+INTERFACE="${INTERFACE:=wlp2s0}"
+VLANINTERFACE="${INTERFACE:0:2}.tor"
+sudo ip link add link $INTERFACE name $VLANINTERFACE type vlan id $(((RANDOM%4094)+1))
+printf "[Service] 
 ExecStart=
-ExecStart=/usr/bin/systemd-nspawn --quiet --keep-unit --boot --link-journal=guest --network-macvlan=$INTERFACE --private-network --directory=/var/lib/container/%i
-LimitNOFILE=32768" | tee -a /etc/systemd/system/systemd-nspawn@tor-exit.service.d/tor-exit.conf
+ExecStart=/usr/bin/systemd-nspawn --quiet --keep-unit --boot --link-journal=guest --network-macvlan=$VLANINTERFACE --private-network --directory=/var/lib/container/%i
+LimitNOFILE=32768" | sudo tee -a /etc/systemd/system/systemd-nspawn@tor-exit.service.d/tor-exit.conf #conf
 
 #Checking conf
+sudo systemctl daemon-reload
+systemctl start systemd-nspawn@tor-exit.service
 machinectl login tor-exit
 systemd-nspawn@tor-exit.service
 networkctl
