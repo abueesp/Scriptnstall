@@ -353,6 +353,187 @@ wget https://github.com/repeats/Repeat/releases/download/v$REPEATVERSION/Repeat_
 echo "alias repeatmouse= java -jar /usr/src/repeat.jar" | tee -a ~/.bashrc
 
 ### Browsers ###
+sudo pacman -S firefox --noconfirm --needed
+cd Downloads
+mkdir -p extensions
+cd extensions
+mkdir privacy
+cd privacy
+wget https://www.eff.org/files/privacy-badger-latest.xpi
+wget https://addons.mozilla.org/firefox/downloads/file/808841/addon-808841-latest.xpi -O AdblockPlus.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/497366/addon-497366-latest.xpi -O DisableWebRTC.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/92079/addon-92079-latest.xpi -O CookieManager.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/383235/addon-383235-latest.xpi -O FlashDisable.xpi
+wget https://addons.mozilla.org/firefox/downloads/file/281702/google_privacy-0.2.4-sm+fx.xpi -O GooglePriv.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/415846/addon-415846-latest.xpi -O SelfDestructing Cookies.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/387051/addon-387051-latest.xpi -O RemoveGoogleTracking.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/722/addon-722-latest.xpi -O NoScript.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/1865/addon-1865-latest.xpi  -O AdBlock Plus.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/496120/addon-496120-latest.xpi -O LocationGuard.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/473878/addon-473878-latest.xpi -O RandomAgentSpoofer.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/229918/addon-229918-latest.xpi -O HTTPSEverywhere.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/607454/addon-607454-latest.xpi -O UBlockOrigin.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/canvasblocker/addon-534930-latest.xpi -O Avoid HTML5 Canvas.xpi
+wget https://addons.mozilla.org/firefox/downloads/file/790214/umatrix-1.1.12-an+fx.xpi -O UMatrix.xpi
+mkdir otherprivacy
+wget https://addons.mozilla.org/firefox/downloads/latest/certificate-patrol/addon-6415-latest.xpi -O certificate patrol.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/6196/addon-6196-latest.xpi -O PassiveRecon.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/521554/addon-521554-latest.xpi -O DecentralEyes.xpi
+cd ..
+wget https://addons.mozilla.org/firefox/downloads/file/769143/blockchain_dns-1.0.9-an+fx.xpi -O Blockchaindns.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/1843/addon-1843-latest.xpi -O Firebug.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/5791/addon-5791-latest.xpi -O FlagFox.xpi
+wget https://addons.mozilla.org/en-US/firefox/downloads/latest/2109/addon-2109-latest.xpi -O FEBEBackups.xpi
+#wget https://addons.mozilla.org/firefox/downloads/latest/363974/addon-363974-latest.xpi -O Lightbeam.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/409964/addon-409964-latest.xpi -O VideoDownloadHelper.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/export-to-csv/addon-364467-latest.xpi -O ExportTabletoCSV.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/tabletools2/addon-296783-latest.xpi -O TableTools2.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/748/addon-748-latest.xpi -O Greasemonkey.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/7447/addon-7447-latest.xpi -O NetVideoHunter.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/1237/addon-1237-latest.xpi -O QuickJava.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/3497/addon-3497-latest.xpi -O EnglishUSDict.xpi
+wget https://addons.mozilla.org/firefox/downloads/file/502726/colorfultabs-31.0.8-fx+sm.xpi -O ColorfulTabs.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/193270/addon-193270-latest.xpi -O PrintEdit.xpi
+wget https://addons.mozilla.org/firefox/downloads/file/342774/tineye_reverse_image_search-1.2.1-fx.xpi -O TinyEyeReverseImageSearch.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/355192/addon-355192-latest.xpi -O MindTheTime.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/1843/addon-1843-latest.xpi -O Firebug.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/161670/addon-161670-latest.xpi -O FlashFirebug.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/tab-groups-panorama/addon-671381-latest.xpi -O Tabgroups.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/532/addon-532-latest.xpi -O LinkChecker.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/5523/addon-5523-latest.xpi -O guiconfigextraoptions.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/10586/addon-10586-latest.xpi -O URLShortener.xpi
+wget https://addons.mozilla.org/firefox/downloads/file/387220/text_to_voice-1.15-fx.xpi -O TextToVoice.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/8661/addon-8661-latest.xpi -O WorldIP.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/3829/addon-3829-latest.xpi -O liveHTTPHeaders.xpi
+wget https://addons.mozilla.org/firefox/downloads/file/373868/soundcloud_downloader_soundgrab-0.98-fx.xpi -O Soundcloud.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/695840/addon-695840-latest.xpi -O FlashDebugger.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/video-downloadhelper/addon-3006-latest.xpi -O VideoDownloadHelper.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/390151/addon-390151-latest.xpi -O TOS.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/3456/addon-3456-latest.xpi -O WOT.xpi
+#wget https://addons.mozilla.org/firefox/downloads/latest/perspectives/addon-7974-latest.xpi -O perspectivenetworknotaries.xpi
+wget https://www.roboform.com/dist/roboform-firefox.xpi
+mkdir extratools
+wget https://addons.mozilla.org/firefox/downloads/file/140447/cryptofox-2.2-fx.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/copy-as-plain-text/addon-344925-latest.xpi -O CopyasPlainText.xpi
+wget https://addons.mozilla.org/firefox/downloads/file/229626/sql_inject_me-0.4.7-fx.xpi 
+wget https://addons.mozilla.org/firefox/downloads/file/215802/rightclickxss-0.2.1-fx.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/3899/addon-3899-latest.xpi -O HackBar.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/wappalyzer/addon-10229-latest.xpi -O Wappanalyzer.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/344927/addon-344927-latest.xpi -O CookieExportImport.xpi
+wet https://addons.mozilla.org/firefox/downloads/file/204186/fireforce-2.2-fx.xpi 
+wget https://addons.mozilla.org/firefox/downloads/file/224182/csrf_finder-1.2-fx.xpi 
+wget https://addons.mozilla.org/firefox/downloads/file/345004/live_http_headers_fixed_by_danyialshahid-0.17.1-signed-sm+fx.xpi
+wget https://addons.mozilla.org/firefox/downloads/file/782839/recap-1.1.8-an+fx.xpi -O RECAPforsearchingUSLawDB.xpi
+cd ..
+cd ..
+cd ~/.mozilla/firefox/*.default
+echo 'privacy.firstparty.isolate = true
+privacy.resistFingerprinting = true
+privacy.trackingprotection.enabled = true
+browser.cache.offline.enable = false
+browser.safebrowsing.malware.enabled = false
+browser.safebrowsing.phishing.enabled = false
+browser.send_pings = false
+browser.sessionstore.max_tabs_undo = 0
+browser.urlbar.speculativeConnect.enabled = false
+dom.battery.enabled = false
+dom.event.clipboardevents.enabled = false
+geo.enabled = false
+media.navigator.enabled = false
+network.cookie.cookieBehavior = 1
+network.cookie.lifetimePolicy = 2
+webgl.disabled = true
+user_pref("browser.search.defaulturl","https://searx.me/");
+user_pref("browser.search.defaultenginename","Searx");
+' | tee -a user.js 
+cd
+firefox --new-tab about:config 
+
+#thunderbird extensions
+cd Downloads
+mkdir -p extensions
+cd extensions
+mkdir thunderbird
+cd thunderbird
+wget https://addons.mozilla.org/thunderbird/downloads/latest/611/addon-611-latest.xpi -O Signature Switch.xpi
+wget https://addons.mozilla.org/thunderbird/downloads/latest/1339/addon-1339-latest.xpi -O ExpressionSearchGmail.xpi
+wget https://addons.mozilla.org/thunderbird/downloads/latest/556/addon-556-latest.xpi -O attachmentextractor.xpi
+wget https://addons.mozilla.org/thunderbird/downloads/latest/4003/addon-4003-latest.xpi -O autozipattachments.xpi
+wget https://addons.mozilla.org/thunderbird/downloads/latest/1556/addon-1556-latest.xpi -O allowhtmltemp.xpi
+wget https://addons.mozilla.org/thunderbird/downloads/latest/550/addon-550-latest.xpi -O mailredirect.xpi
+wget https://addons.mozilla.org/thunderbird/downloads/latest/2313/platform:2/addon-2313-latest.xpi -O sm+tblinux.xpi
+wget https://addons.mozilla.org/thunderbird/downloads/latest/4631/addon-4631-latest.xpi -O providerforgooglecalendar.xpi
+wget https://addons.mozilla.org/thunderbird/downloads/latest/2199/addon-2199-latest.xpi -O withattach.xpi
+wget https://addons.mozilla.org/thunderbird/downloads/latest/550/addon-550-latest.xpi -O mailredirect.xpi
+wget https://addons.mozilla.org/thunderbird/downloads/latest/71/addon-71-latest.xpi -O enigmail.xpi
+wget https://addons.mozilla.org/thunderbird/downloads/latest/210/addon-210-latest.xpi -O viewheaders.xpi
+wget https://addons.mozilla.org/thunderbird/downloads/latest/875/addon-875-latest.xpi -O tb header tools.xpi
+wget https://addons.mozilla.org/thunderbird/downloads/latest/1003/addon-1003-latest.xpi -O headerscrollextension.xpi
+wget https://addons.mozilla.org/thunderbird/downloads/latest/torbirdy/platform:2/addon-381417-latest.xpi -O torbirdy.xpi
+cd ..
+cd ..
+cd ..
+
+#Opera
+sudo pacman -S opera opera-developer --noconfirm --needed
+
+#Ironchrome
+IRONFOLDER=/opt/iron/
+PCVER=$(uname -m)
+if [ $PCVER == x86_64 ]; then
+    wget http://www.srware.net/downloads/iron64.deb
+    sudo dpkg -i iron64.deb
+    sudo rm iron64.deb
+elif [ $PCVER == i386 ] || [ $PCVER == i686 ]; then
+    wget http://www.srware.net/downloads/iron.deb
+    sudo dpkg -i iron.deb
+    sudo rm iron.deb
+else
+  echo "ERROR: The system is neither 64bits nor 32 bits?"
+fi
+sudo mv /usr/share/iron $IRONFOLDER
+$IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm
+$IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/form-filler/bnjjngeaknajbdcgpfkgnonkmififhfo
+$IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/autoform/fdedjnkmcijdhgbcmmjdogphnmfdjjik
+$IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/m-i-m/jlppachnphenhdidmmpnbdjaipfigoic
+$IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/librarian-for-arxiv-ferma/ddoflfjcbemgfgpgbnlmaedfkpkfffbm
+$IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/noiszy/immakaidhkcddagdjmedphlnamlcdcbg
+$IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/ciiva-search/fkmanbkfjcpkhonmmdopjmjopbclegel
+$IRONFOLDER/./chrome https://blockchain-dns.info/files/BDNS-1.0.8.crx
+
+#chromium
+sudo pacman -S chromium --noconfirm --needed
+chromium-browser https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm
+chromium-browser https://chrome.google.com/webstore/detail/adblock/gighmmpiobklfepjocnamgkkbiglidom
+#chromium-browser https://chrome.google.com/webstore/detail/form-filler/bnjjngeaknajbdcgpfkgnonkmififhfo
+#chromium-browser https://chrome.google.com/webstore/detail/autoform/fdedjnkmcijdhgbcmmjdogphnmfdjjik
+#chromium-browser https://chrome.google.com/webstore/detail/m-i-m/jlppachnphenhdidmmpnbdjaipfigoic
+#chromium-browser https://chrome.google.com/webstore/detail/librarian-for-arxiv-ferma/ddoflfjcbemgfgpgbnlmaedfkpkfffbm
+#chromium-browser https://chrome.google.com/webstore/detail/noiszy/immakaidhkcddagdjmedphlnamlcdcbg
+#chromium-browser https://chrome.google.com/webstore/detail/ciiva-search/fkmanbkfjcpkhonmmdopjmjopbclegel
+#chromium-browser https://blockchain-dns.info/files/BDNS-1.0.8.crx
+#chromium-browser https://chrome.google.com/webstore/detail/video-downloadhelper/lmjnegcaeklhafolokijcfjliaokphfks
+
+#Icecat
+sudo pacman -S icecat --noconfirm --needed
+
+
+### Python ###
+sudo pacman -S python python3 --noconfirm --needed
+sudo pacman -S python-pip --nonconfirm --needed
+
+#Some Python tools
+sudo -H pip install percol #Indexer
+sudo -H pip install shyaml csvkit #yaml csv
+
+#youtube-dl and soundcloud
+sudo wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/bin/youtube-dl
+sudo chmod a+rx /usr/bin/youtube-dl
+sudo -H pip install scdl
+
+#Saltpack
+sudo -H pip install setuptools
+sudo -H pip install saltpack
 
 
 ### Autoremove ###
