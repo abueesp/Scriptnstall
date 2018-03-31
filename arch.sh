@@ -192,8 +192,8 @@ VERSION=0.9.10
 SHA=c629348725c1bf5dafd57f8a70187dc89815ce60
 installfunction
 
-gpg --delete-keys 4F25E3B6 -y
-gpg --delete-keys 33BD3F06 -y
+gpg --delete-keys 4F25E3B6 --yes
+gpg --delete-keys 33BD3F06 --yes
 
 cd ..
 sudo rm -r gpg2
