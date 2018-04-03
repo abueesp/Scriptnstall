@@ -353,7 +353,9 @@ wget https://github.com/repeats/Repeat/releases/download/v$REPEATVERSION/Repeat_
 echo "alias repeatmouse= java -jar /usr/src/repeat.jar" | tee -a ~/.bashrc
 
 ### Browsers ###
+#Firefox
 sudo pacman -S firefox --noconfirm --needed
+sudo pacman -S firefox-developer --noconfirm --needed
 cd Downloads
 mkdir -p extensions
 cd extensions
@@ -449,70 +451,24 @@ user_pref("browser.search.defaultenginename","Searx");
 cd
 firefox --new-tab about:config 
 
-#thunderbird extensions
-cd Downloads
-mkdir -p extensions
-cd extensions
-mkdir thunderbird
-cd thunderbird
-wget https://addons.mozilla.org/thunderbird/downloads/latest/611/addon-611-latest.xpi -O Signature Switch.xpi
-wget https://addons.mozilla.org/thunderbird/downloads/latest/1339/addon-1339-latest.xpi -O ExpressionSearchGmail.xpi
-wget https://addons.mozilla.org/thunderbird/downloads/latest/556/addon-556-latest.xpi -O attachmentextractor.xpi
-wget https://addons.mozilla.org/thunderbird/downloads/latest/4003/addon-4003-latest.xpi -O autozipattachments.xpi
-wget https://addons.mozilla.org/thunderbird/downloads/latest/1556/addon-1556-latest.xpi -O allowhtmltemp.xpi
-wget https://addons.mozilla.org/thunderbird/downloads/latest/550/addon-550-latest.xpi -O mailredirect.xpi
-wget https://addons.mozilla.org/thunderbird/downloads/latest/2313/platform:2/addon-2313-latest.xpi -O sm+tblinux.xpi
-wget https://addons.mozilla.org/thunderbird/downloads/latest/4631/addon-4631-latest.xpi -O providerforgooglecalendar.xpi
-wget https://addons.mozilla.org/thunderbird/downloads/latest/2199/addon-2199-latest.xpi -O withattach.xpi
-wget https://addons.mozilla.org/thunderbird/downloads/latest/550/addon-550-latest.xpi -O mailredirect.xpi
-wget https://addons.mozilla.org/thunderbird/downloads/latest/71/addon-71-latest.xpi -O enigmail.xpi
-wget https://addons.mozilla.org/thunderbird/downloads/latest/210/addon-210-latest.xpi -O viewheaders.xpi
-wget https://addons.mozilla.org/thunderbird/downloads/latest/875/addon-875-latest.xpi -O tb header tools.xpi
-wget https://addons.mozilla.org/thunderbird/downloads/latest/1003/addon-1003-latest.xpi -O headerscrollextension.xpi
-wget https://addons.mozilla.org/thunderbird/downloads/latest/torbirdy/platform:2/addon-381417-latest.xpi -O torbirdy.xpi
-cd ..
-cd ..
-cd ..
-
 #Opera
 sudo pacman -S opera opera-developer --noconfirm --needed
 
-#Ironchrome
-IRONFOLDER=/opt/iron/
-PCVER=$(uname -m)
-if [ $PCVER == x86_64 ]; then
-    wget http://www.srware.net/downloads/iron64.deb
-    sudo dpkg -i iron64.deb
-    sudo rm iron64.deb
-elif [ $PCVER == i386 ] || [ $PCVER == i686 ]; then
-    wget http://www.srware.net/downloads/iron.deb
-    sudo dpkg -i iron.deb
-    sudo rm iron.deb
-else
-  echo "ERROR: The system is neither 64bits nor 32 bits?"
-fi
-sudo mv /usr/share/iron $IRONFOLDER
-$IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm
-$IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/form-filler/bnjjngeaknajbdcgpfkgnonkmififhfo
-$IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/autoform/fdedjnkmcijdhgbcmmjdogphnmfdjjik
-$IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/m-i-m/jlppachnphenhdidmmpnbdjaipfigoic
-$IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/librarian-for-arxiv-ferma/ddoflfjcbemgfgpgbnlmaedfkpkfffbm
-$IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/noiszy/immakaidhkcddagdjmedphlnamlcdcbg
-$IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/ciiva-search/fkmanbkfjcpkhonmmdopjmjopbclegel
-$IRONFOLDER/./chrome https://blockchain-dns.info/files/BDNS-1.0.8.crx
+#Vivaldi
+sudo pacman -S vivaldi --noconfirm --needed
 
-#chromium
+#Chromium
 sudo pacman -S chromium --noconfirm --needed
 chromium-browser https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm
 chromium-browser https://chrome.google.com/webstore/detail/adblock/gighmmpiobklfepjocnamgkkbiglidom
-#chromium-browser https://chrome.google.com/webstore/detail/form-filler/bnjjngeaknajbdcgpfkgnonkmififhfo
-#chromium-browser https://chrome.google.com/webstore/detail/autoform/fdedjnkmcijdhgbcmmjdogphnmfdjjik
-#chromium-browser https://chrome.google.com/webstore/detail/m-i-m/jlppachnphenhdidmmpnbdjaipfigoic
-#chromium-browser https://chrome.google.com/webstore/detail/librarian-for-arxiv-ferma/ddoflfjcbemgfgpgbnlmaedfkpkfffbm
-#chromium-browser https://chrome.google.com/webstore/detail/noiszy/immakaidhkcddagdjmedphlnamlcdcbg
-#chromium-browser https://chrome.google.com/webstore/detail/ciiva-search/fkmanbkfjcpkhonmmdopjmjopbclegel
-#chromium-browser https://blockchain-dns.info/files/BDNS-1.0.8.crx
-#chromium-browser https://chrome.google.com/webstore/detail/video-downloadhelper/lmjnegcaeklhafolokijcfjliaokphfks
+chromium-browser https://chrome.google.com/webstore/detail/form-filler/bnjjngeaknajbdcgpfkgnonkmififhfo
+chromium-browser https://chrome.google.com/webstore/detail/autoform/fdedjnkmcijdhgbcmmjdogphnmfdjjik
+chromium-browser https://chrome.google.com/webstore/detail/m-i-m/jlppachnphenhdidmmpnbdjaipfigoic
+chromium-browser https://chrome.google.com/webstore/detail/librarian-for-arxiv-ferma/ddoflfjcbemgfgpgbnlmaedfkpkfffbm
+chromium-browser https://chrome.google.com/webstore/detail/noiszy/immakaidhkcddagdjmedphlnamlcdcbg
+chromium-browser https://chrome.google.com/webstore/detail/ciiva-search/fkmanbkfjcpkhonmmdopjmjopbclegel
+chromium-browser https://blockchain-dns.info/files/BDNS-1.0.8.crx
+chromium-browser https://chrome.google.com/webstore/detail/video-downloadhelper/lmjnegcaeklhafolokijcfjliaokphfks
 
 #Icecat
 sudo pacman -S icecat --noconfirm --needed
@@ -539,5 +495,7 @@ sudo -H pip install saltpack
 ### Autoremove ###
 sudo pacman -Rns $(pacman -Qtdq) --noconfirm
 
+### Frugalware Stable ISO
 wget http://www13.frugalware.org/pub/frugalware/frugalware-stable-iso/fvbe-2.1-gnome-x86_64.iso
-firefox --new-tab https://rubygems.org/
+
+
