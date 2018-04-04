@@ -351,6 +351,7 @@ REPEATVERSION=4.0.1
 REPEATVER=4_0_1
 wget https://github.com/repeats/Repeat/releases/download/v$REPEATVERSION/Repeat_$REPEATVER.jar -O /usr/src/repeat.jar && pacman -S jdk8-openjdk --noconfirm --needed
 echo "alias repeatmouse= java -jar /usr/src/repeat.jar" | tee -a ~/.bashrc
+#Blindlector: Orca
 
 ### Browsers ###
 #Firefox
@@ -473,6 +474,33 @@ chromium-browser https://chrome.google.com/webstore/detail/video-downloadhelper/
 #Icecat
 sudo pacman -S icecat --noconfirm --needed
 
+#Terminal explorers: Elinks
+
+#Firejail
+sudo pacman -S firejail  --noconfirm --needed
+
+### Calc Tools ###
+cd Documents
+mkdir bctools
+cd bctools
+wget http://phodd.net/gnu-bc/code/array.bc
+wget http://phodd.net/gnu-bc/code/collatz.bc    
+wget http://phodd.net/gnu-bc/code/digits.bc    
+wget http://phodd.net/gnu-bc/code/funcs.bc   
+wget http://phodd.net/gnu-bc/code/interest.bc      
+wget http://phodd.net/gnu-bc/code/melancholy.bc      
+wget http://phodd.net/gnu-bc/code/primes.bc      
+wget http://phodd.net/gnu-bc/code/thermometer.bc      
+wget http://phodd.net/gnu-bc/code/cf.bc       
+wget http://phodd.net/gnu-bc/code/complex.bc     
+wget http://phodd.net/gnu-bc/code/factorial.bc      
+wget http://phodd.net/gnu-bc/code/intdiff.bc      
+wget http://phodd.net/gnu-bc/code/logic.bc      
+wget http://phodd.net/gnu-bc/code/output_formatting.bc      
+wget https://raw.githubusercontent.com/sevo/Calc/master/bc/rand.bc
+cd ..
+cd ..
+
 
 ### Python ###
 sudo pacman -S python python3 --noconfirm --needed
@@ -496,6 +524,6 @@ sudo -H pip install saltpack
 sudo pacman -Rns $(pacman -Qtdq) --noconfirm
 
 ### Frugalware Stable ISO
-wget http://www13.frugalware.org/pub/frugalware/frugalware-stable-iso/fvbe-2.1-gnome-x86_64.iso
+#wget http://www13.frugalware.org/pub/frugalware/frugalware-stable-iso/fvbe-2.1-gnome-x86_64.iso
 
 
