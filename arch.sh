@@ -212,6 +212,18 @@ printf "alias haskellfyarch='printf /"[haskell-core] \n Server = http://xsounds.
 printf "alias haskellfyarch='printf /"[quarry] \n Server = https://pkgbuild.com/~anatolik/quarry/x86_64/ /" | sudo tee -a /etc/pacman.conf && echo /"This repo has not key!/"' | sudo tee -a ~/.bashrc"
 echo "Haskwell WAIs: Yesod Framework brings Wrap Server. It is better than Happstack. For small projects try Scotty that also comes with Wrap, or maybe Snap's snaplets" # https://wiki.haskell.org/Web
 
+#unmute sound
+amixer sset Master unmute
+amixer cset numid=11,iface=MIXER,name='Capture Switch' off
+
+#less sounds
+sudo mv /usr/share/sounds/deepin/stereo/camera-shutter.ogg /usr/share/sounds/deepin/stereo/camera-shutter2.ogg
+sudo mv /usr/share/sounds/deepin/stereo/desktop-login.ogg /usr/share/sounds/deepin/stereo/desktop-login2.ogg
+sudo mv /usr/share/sounds/deepin/stereo/dialog-error.ogg /usr/share/sounds/deepin/stereo/dialog-error2.ogg
+sudo mv /usr/share/sounds/deepin/stereo/suspend-resume.ogg /usr/share/sounds/deepin/stereo/suspend-resume2.ogg
+
+#LANGUAGE=$(locale | grep LANG | cut -d'=' -f 2 | cut -d'_' -f 1)
+
 # Auto-screen rotate
 #sudo pacman -S autoconf-archive gtk-doc --noconfirm -needed
 #git clone https://github.com/hadess/iio-sensor-proxy
@@ -363,6 +375,8 @@ cd extensions
 mkdir privacy
 cd privacy
 wget https://www.eff.org/files/privacy-badger-latest.xpi
+wget https://addons.mozilla.org/firefox/downloads/file/706680/google_redirects_fixer_tracking_remover-3.0.0-an+fx.xpi GoogleRedirectFixer.xpi
+wget https://addons.mozilla.org/firefox/downloads/file/727843/skip_redirect-2.2.1-fx.xpi SkipRedirect.xpi
 wget https://addons.mozilla.org/firefox/downloads/file/808841/addon-808841-latest.xpi -O AdblockPlus.xpi 
 wget https://addons.mozilla.org/firefox/downloads/latest/497366/addon-497366-latest.xpi -O DisableWebRTC.xpi
 wget https://addons.mozilla.org/firefox/downloads/latest/92079/addon-92079-latest.xpi -O CookieManager.xpi
@@ -438,6 +452,7 @@ browser.safebrowsing.malware.enabled = false
 browser.safebrowsing.phishing.enabled = false
 browser.send_pings = false
 browser.sessionstore.max_tabs_undo = 0
+accessibility.blockautorefresh = 1
 browser.urlbar.speculativeConnect.enabled = false
 dom.battery.enabled = false
 dom.event.clipboardevents.enabled = false
@@ -460,6 +475,14 @@ sudo pacman -S vivaldi --noconfirm --needed
 
 #Chromium
 sudo pacman -S chromium --noconfirm --needed
+#LANGUAGE=$(locale | grep LANG | cut -d'=' -f 2 | cut -d'_' -f 1)
+#vi -c "s/google.com/google.jp/search?q=%s&pws=0&hl=$LANGUAGE&ei=#cns=0&gws_rd=ssl/g" -c ":wq" ~/.config/chromium/Default/Preferences
+#CREATEHASH=$(sha256sum ~/.config/chromium/Default/Preferences)
+#HASH=$(echo $CREATEHASH | head -n1 | sed -e 's/\s.*$//')
+#HASHPREF=$(echo $HASH | awk '{print toupper($0)}')
+#vi -c 's/"super_mac":".*"}}/"super_mac":"$HASHPREF"}}/g' -c ":wq" ~/.config/chromium/Default/'Secure Preferences'
+chromium-browser https://chrome.google.com/webstore/detail/url-tracking-stripper-red/flnagcobkfofedknnnmofijmmkbgfamf
+chromium-browser https://chrome.google.com/webstore/detail/dont-track-me-google/gdbofhhdmcladcmmfjolgndfkpobecpg
 chromium-browser https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm
 chromium-browser https://chrome.google.com/webstore/detail/adblock/gighmmpiobklfepjocnamgkkbiglidom
 chromium-browser https://chrome.google.com/webstore/detail/form-filler/bnjjngeaknajbdcgpfkgnonkmififhfo
