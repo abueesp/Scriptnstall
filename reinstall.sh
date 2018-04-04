@@ -646,6 +646,8 @@ cd extensions
 mkdir privacy
 cd privacy
 wget https://www.eff.org/files/privacy-badger-latest.xpi
+wget https://addons.mozilla.org/firefox/downloads/file/706680/google_redirects_fixer_tracking_remover-3.0.0-an+fx.xpi GoogleRedirectFixer.xpi
+wget https://addons.mozilla.org/firefox/downloads/file/727843/skip_redirect-2.2.1-fx.xpi SkipRedirect.xpi
 wget https://addons.mozilla.org/firefox/downloads/file/808841/addon-808841-latest.xpi -O AdblockPlus.xpi 
 wget https://addons.mozilla.org/firefox/downloads/latest/497366/addon-497366-latest.xpi -O DisableWebRTC.xpi
 wget https://addons.mozilla.org/firefox/downloads/latest/92079/addon-92079-latest.xpi -O CookieManager.xpi
@@ -725,6 +727,7 @@ browser.send_pings = false
 browser.sessionstore.max_tabs_undo = 0
 browser.urlbar.speculativeConnect.enabled = false
 dom.battery.enabled = false
+accessibility.blockautorefresh = 1
 dom.event.clipboardevents.enabled = false
 geo.enabled = false
 media.navigator.enabled = false
@@ -794,6 +797,8 @@ else
   echo "ERROR: The system is neither 64bits nor 32 bits?"
 fi
 sudo mv /usr/share/iron $IRONFOLDER
+$IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/url-tracking-stripper-red/flnagcobkfofedknnnmofijmmkbgfamf
+$IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/dont-track-me-google/gdbofhhdmcladcmmfjolgndfkpobecpg
 $IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm
 $IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/form-filler/bnjjngeaknajbdcgpfkgnonkmififhfo
 $IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/autoform/fdedjnkmcijdhgbcmmjdogphnmfdjjik
@@ -807,6 +812,8 @@ $IRONFOLDER/./chrome https://blockchain-dns.info/files/BDNS-1.0.8.crx
 sudo add-apt-repository ppa:canonical-chromium-builds/stage -y
 sudo apt-get update
 sudo apt-get install chromium-browser chromium-browser-l10n chromium-codecs-ffmpeg-extra -y
+chromium-browser https://chrome.google.com/webstore/detail/url-tracking-stripper-red/flnagcobkfofedknnnmofijmmkbgfamf
+chromium-browser https://chrome.google.com/webstore/detail/dont-track-me-google/gdbofhhdmcladcmmfjolgndfkpobecpg
 chromium-browser https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm
 chromium-browser https://chrome.google.com/webstore/detail/adblock/gighmmpiobklfepjocnamgkkbiglidom
 #chromium-browser https://chrome.google.com/webstore/detail/form-filler/bnjjngeaknajbdcgpfkgnonkmififhfo
