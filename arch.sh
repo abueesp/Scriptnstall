@@ -1,3 +1,5 @@
+#machinectl? next4 snapper? listpkgsbysize? journalctl -p err..alert?
+
 
 ### Restoring Windows on Grub2 ###
 sudo os-prober 
