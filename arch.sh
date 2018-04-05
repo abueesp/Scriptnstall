@@ -319,7 +319,8 @@ pcm.!default {
     slave.pcm plugequal;
 }" | sudo tee -a /etc/asound.conf
 cd ..
-sudo rm -r alsaequal
+sudo rm -r alsaequal #configure with alsamixer -D equal and alsaequal-mgr save myequalization
+#for advanced sound tools (Jack, Midis, etc) check my ubuntumusic script and https://wiki.archlinux.org/index.php/JACK_Audio_Connection_Kit and https://wiki.archlinux.org/index.php/Professional_audio and https://wiki.archlinux.org/index.php/USB_MIDI_keyboards
 
 #Search
 sudo pacman -S mlocate recoll --noconfirm --needed
