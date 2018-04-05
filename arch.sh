@@ -1,5 +1,6 @@
+
 ### Restoring Windows on Grub2 ###
-sudo os-prober
+sudo os-prober 
 if [ $? -ne 0 ]
             then
                         sudo grub-mkconfig -o /boot/grub/grub.cfg
@@ -7,8 +8,13 @@ if [ $? -ne 0 ]
                         echo "No Windows installed"
 fi
 
-### Update and Upgrade ###
-sudo pacman -Syu --noconfirm 
+### Optimize Pacman, Update, Upgrade, Snapshot ###
+sudo pacman -S snap-pac --noconfirm --needed #Installing snapper
+sudo snapper -c root create-config / #Create snapshot folder
+snapper -c preupgrade create --description preupgrade -c number 1 #Make snapshot preupgrade
+pacman -Sc --noconfirm && pacman-optimize --noconfirm #Improving pacman database access speeds reduces the time taken in database-related tasks
+pacman -Syu #select a fastest mirrors
+sudo pacman -Syu --noconfirm #update & upgrade
 
 ### Tor ###
 sudo pacman -S arch-install-scripts base arm --oconfirm --needed
@@ -203,14 +209,54 @@ sudo rm -r gpg2
 mv ~/.bashrc ~/.previous-bashrc
 wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.bashrc
 
+# Snapshots configuration
+snapper -c original create --description original #Make snapshot original
+printf 'TIMELINE_MIN_AGE="1800"
+TIMELINE_LIMIT_HOURLY="0"
+TIMELINE_LIMIT_DAILY="0"
+TIMELINE_LIMIT_WEEKLY="0"
+TIMELINE_LIMIT_MONTHLY="6"
+TIMELINE_LIMIT_YEARLY="0"' >> /etc/snapper/configs/mysnapshots
+git clone https://aur.archlinux.org/grub-btrfs.git #Snapshots on grub
+cd grub-btrfs
+makepkg -si --noconfirm
+cd ..
+sudo rm -r grub-btrfs
+git clone https://aur.archlinux.org/packages/snap-pac-grub/
+cd snap-pac-grub
+gpg2 --keyserver hkp://keys.gnupg.net --recv EB4F9E5A60D32232BB52150C12C87A28FEAC6B20
+makepkg -si --noconfirm
+gpg2 --batch --delete-key EB4F9E5A60D32232BB52150C12C87A28FEAC6B20
+cd ..
+sudo rm -r snap-pac-grub
+
 #AUR-helper and repositories
-sudo pacman -S aurman --noconfirm #https://wiki.archlinux.org/index.php/AUR_helpers
-echo "alias pacmansheet='firefox --new-tab https://wiki.archlinux.org/index.php/Pacman/Rosetta'" | tee -a ~/.bashrc
-echo "alias purgearchrepo=echo 'aurman --stats && read -p \"Name of repo: \" REPO && paclist $REPO && sudo pacman -Rnsc $(pacman -Sl $REPO | grep \"\[installed\]\" | cut -f2 -d\' \')'" | tee -a ~/.bashrc
-printf "alias kalifyarch='printf /"[archstrike] \n Server = https://mirror.archstrike.org/$arch/$repo/ /" | sudo tee -a /etc/pacman.conf && sudo pacman-key --recv-keys 9D5F1C051D146843CDA4858BDE64825E7CBC0D51 && sudo pacman-key --finger 9D5F1C051D146843CDA4858BDE64825E7CBC0D51 && sudo pacman-key --lsign-key 9D5F1C051D146843CDA4858BDE64825E7CBC0D51' | sudo tee -a ~/.bashrc"
-printf "alias haskellfyarch='printf /"[haskell-core] \n Server = http://xsounds.org/~haskell/core/$arch /" | sudo tee -a /etc/pacman.conf && sudo pacman-key --recv-keys F3104992EBF24EB872B97B9C32B0B4534209170B && sudo pacman-key --finger F3104992EBF24EB872B97B9C32B0B4534209170B && sudo pacman-key --lsign-key F3104992EBF24EB872B97B9C32B0B4534209170B' | sudo tee -a ~/.bashrc"
-printf "alias haskellfyarch='printf /"[quarry] \n Server = https://pkgbuild.com/~anatolik/quarry/x86_64/ /" | sudo tee -a /etc/pacman.conf && echo /"This repo has not key!/"' | sudo tee -a ~/.bashrc"
+sudo pacman -S pacgraph pacutils --noconfirm --needed 
+sudo pacman -S aurman --noconfirm --needed #https://wiki.archlinux.org/index.php/AUR_helpers
+paccheck --md5sum --quiet
+printf "bupkgs(){
+for i in \$( pacman -Qq ); do
+	bacman \$i
+done}" | tee -a ~/.bashrc
+echo "alias listpkgsbysize='pacgraph -c && expac -H M '%m\t%n' | sort -h && echo \"ONLY INSTALLED (NO BASE OR BASE-DEVEL)\" && expac -H M \"%011m\t%-20n\t%10d\" \$(comm -23 <(pacman -Qqen | sort) <(pacman -Qqg base base-devel | sort)) | sort -n'" | tee -a ~/.bashrc
+echo "alias listpkgsbysize='expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort && echo \"ONLY INSTALLED (NO BASE OR BASE-DEVEL)\" && expac -HM \"%-20n\t%10d\" \$(comm -23 <(pacman -Qqt | sort) <(pacman -Qqg base base-devel | sort))" | tee -a ~/.bashrc
+echo "alias pacmansheet='firefox --new-tab https://wiki.archlinux.org/index.php/Pacman/Rosetta --new-tab https://wiki.archlinux.org/index.php/Pacman/Tips_and_tricks'" | tee -a ~/.bashrc
+echo "alias purgearchrepo='echo \"aurman --stats && read -p \"Name of repo: \" REPO && paclist \$REPO && sudo pacman -Rnsc \$(pacman -Sl \$REPO | grep \"\[installed\]\" | cut -f2 -d\' \")\" " | tee -a ~/.bashrc
+printf "alias kalifyarch='printf \"[archstrike] \n Server = https://mirror.archstrike.org/\$arch/\$repo/ \" | sudo tee -a /etc/pacman.conf && sudo pacman-key --recv-keys 9D5F1C051D146843CDA4858BDE64825E7CBC0D51 && sudo pacman-key --finger 9D5F1C051D146843CDA4858BDE64825E7CBC0D51 && sudo pacman-key --lsign-key 9D5F1C051D146843CDA4858BDE64825E7CBC0D51'" | sudo tee -a ~/.bashrc
+printf "alias haskellfyarch='printf \"[haskell-core] \n Server = http://xsounds.org/~haskell/core/\$arch \" | sudo tee -a /etc/pacman.conf && sudo pacman-key --recv-keys F3104992EBF24EB872B97B9C32B0B4534209170B && sudo pacman-key --finger F3104992EBF24EB872B97B9C32B0B4534209170B && sudo pacman-key --lsign-key F3104992EBF24EB872B97B9C32B0B4534209170B'" | sudo tee -a ~/.bashrc
+printf "alias haskellfyarch='printf \"[quarry] \n Server = https://pkgbuild.com/~anatolik/quarry/x86_64/ \" | sudo tee -a /etc/pacman.conf && echo \"This repo has not key!\"'" | sudo tee -a ~/.bashrc
 echo "Haskwell WAIs: Yesod Framework brings Wrap Server. It is better than Happstack. For small projects try Scotty that also comes with Wrap, or maybe Snap's snaplets" # https://wiki.haskell.org/Web
+
+wget https://raw.githubusercontent.com/graysky2/lostfiles/master/lostfiles #Script that identifies files not owned and not created by any Arch Linux package.
+sudo mv lostfiles /usr/bin/lostfiles
+git clone https://github.com/Daenyth/pkgtools #newpkg - spec2arch - pkgconflict - whoneeds - pkgclean - maintpkg - pip2arch
+cd pkgtools/scripts/pip2arch
+wget https://raw.githubusercontent.com/lclarkmichalek/pip2arch/master/pip2arch.py
+cd ..
+cd ..
+sudo make install 
+cd ..
+sudo rm -r pkgtools
 
 #unmute sound
 amixer sset Master unmute
@@ -223,7 +269,7 @@ sudo mv /usr/share/sounds/deepin/stereo/dialog-error.ogg /usr/share/sounds/deepi
 sudo mv /usr/share/sounds/deepin/stereo/suspend-resume.ogg /usr/share/sounds/deepin/stereo/suspend-resume2.ogg
 
 #Search
-sudo pacman -S mlocate recoll -y
+sudo pacman -S mlocate recoll --noconfirm --needed
 sudo updatedb
 
 #LANGUAGE=$(locale | grep LANG | cut -d'=' -f 2 | cut -d'_' -f 1)
@@ -547,8 +593,10 @@ sudo -H pip install setuptools
 sudo -H pip install saltpack
 
 
-### Autoremove ###
+### Autoremove and Snapshot ###
 sudo pacman -Rns $(pacman -Qtdq) --noconfirm
+snapper -c initial create --description initial #Make snapshot initial
+
 
 ### Frugalware Stable ISO
 #wget http://www13.frugalware.org/pub/frugalware/frugalware-stable-iso/fvbe-2.1-gnome-x86_64.iso
