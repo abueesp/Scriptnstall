@@ -482,7 +482,7 @@ sudo rm emacs-$EMACSVERSION.tar.xz
 sudo rm -r emacs-$EMACSVERSION
 
 ##Tools and utils
-sudo apt-get install mlocate -y
+sudo apt-get install mlocate recoll -y #Searchtools
 sudo updatedb
 sudo apt-get install tmux -y
 sudo rm ~/.tmux.conf~
