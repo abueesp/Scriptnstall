@@ -3,6 +3,9 @@
 #next4 snapper? 
 #different results on listpkgsbysize? 
 #journalctl -p err..alert journalctl -p 3 -xb?
+#own repo
+#create pkgbuild from deb
+#customizerom
 
 ### Restoring Windows on Grub2 ###
 sudo os-prober 
@@ -236,13 +239,18 @@ wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.bashrc
 #sudo rm -r snap-pac-grub
 
 #AUR-helper and repositories
-sudo pacman -S pacgraph pacutils --noconfirm --needed 
-sudo pacman -S aurman --noconfirm --needed #https://wiki.archlinux.org/index.php/AUR_helpers
-paccheck --md5sum --quiet
+sudo pacman -S pacgraph pacutils yaourt --noconfirm --needed 
+git clone https://aur.archlinux.org/aurman.git #https://wiki.archlinux.org/index.php/AUR_helpers
+cd aurman
+makepkg -si --noconfirm
+cd ..
+sudo rm -r aurman
 printf "bupkgs(){
 for i in \$( pacman -Qq ); do
 	bacman \$i
-done}" | tee -a ~/.bashrc
+done
+}" | tee -a ~/.bashrc
+echo "alias checkpkgs='pacman -Qq | sudo paccheck --sha256sum --quiet'" | tee -a ~/.bashrc
 echo "alias listpkgsbysize='pacgraph -c && expac -H M '%m\t%n' | sort -h && echo \"ONLY INSTALLED (NO BASE OR BASE-DEVEL)\" && expac -H M \"%011m\t%-20n\t%10d\" \$(comm -23 <(pacman -Qqen | sort) <(pacman -Qqg base base-devel | sort)) | sort -n'" | tee -a ~/.bashrc
 echo "alias listpkgsbysize='expac --timefmt='%Y-%m-%d %T' '%l\t%n' | sort && echo \"ONLY INSTALLED (NO BASE OR BASE-DEVEL)\" && expac -HM \"%-20n\t%10d\" \$(comm -23 <(pacman -Qqt | sort) <(pacman -Qqg base base-devel | sort))" | tee -a ~/.bashrc
 echo "alias pacmansheet='firefox --new-tab https://wiki.archlinux.org/index.php/Pacman/Rosetta --new-tab https://wiki.archlinux.org/index.php/Pacman/Tips_and_tricks'" | tee -a ~/.bashrc
