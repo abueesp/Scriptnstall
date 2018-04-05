@@ -10,8 +10,8 @@ fi
 
 ### Optimize Pacman, Update, Upgrade, Snapshot ###
 sudo pacman -S snap-pac --noconfirm --needed #Installing snapper
-sudo snapper -c root create-config / #Create snapshot folder
-snapper -c preupgrade create --description preupgrade -c number 1 #Make snapshot preupgrade
+#sudo snapper -c root create-config / #Create snapshot folder (no chsnap for ext4)
+#snapper -c preupgrade create --description preupgrade -c number 1 #Make snapshot preupgrade  (no chsnap for ext4)
 pacman -Sc --noconfirm && pacman-optimize --noconfirm #Improving pacman database access speeds reduces the time taken in database-related tasks
 pacman -Syu #select a fastest mirrors
 sudo pacman -Syu --noconfirm #update & upgrade
@@ -209,26 +209,26 @@ sudo rm -r gpg2
 mv ~/.bashrc ~/.previous-bashrc
 wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.bashrc
 
-# Snapshots configuration
-snapper -c original create --description original #Make snapshot original
-printf 'TIMELINE_MIN_AGE="1800"
-TIMELINE_LIMIT_HOURLY="0"
-TIMELINE_LIMIT_DAILY="0"
-TIMELINE_LIMIT_WEEKLY="0"
-TIMELINE_LIMIT_MONTHLY="6"
-TIMELINE_LIMIT_YEARLY="0"' >> /etc/snapper/configs/mysnapshots
-git clone https://aur.archlinux.org/grub-btrfs.git #Snapshots on grub
-cd grub-btrfs
-makepkg -si --noconfirm
-cd ..
-sudo rm -r grub-btrfs
-git clone https://aur.archlinux.org/packages/snap-pac-grub/
-cd snap-pac-grub
-gpg2 --keyserver hkp://keys.gnupg.net --recv EB4F9E5A60D32232BB52150C12C87A28FEAC6B20
-makepkg -si --noconfirm
-gpg2 --batch --delete-key EB4F9E5A60D32232BB52150C12C87A28FEAC6B20
-cd ..
-sudo rm -r snap-pac-grub
+# Snapshots configuration (no chsnap for ext4)
+#snapper -c original create --description original #Make snapshot original
+#printf 'TIMELINE_MIN_AGE="1800"
+#TIMELINE_LIMIT_HOURLY="0"
+#TIMELINE_LIMIT_DAILY="0"
+#TIMELINE_LIMIT_WEEKLY="0"
+#TIMELINE_LIMIT_MONTHLY="6"
+#TIMELINE_LIMIT_YEARLY="0"' >> /etc/snapper/configs/mysnapshots
+#git clone https://aur.archlinux.org/grub-btrfs.git #Snapshots on grub
+#cd grub-btrfs
+#makepkg -si --noconfirm
+#cd ..
+#sudo rm -r grub-btrfs
+#git clone https://aur.archlinux.org/packages/snap-pac-grub/
+#cd snap-pac-grub
+#gpg2 --keyserver hkp://keys.gnupg.net --recv EB4F9E5A60D32232BB52150C12C87A28FEAC6B20
+#makepkg -si --noconfirm
+#gpg2 --batch --delete-key EB4F9E5A60D32232BB52150C12C87A28FEAC6B20
+#cd ..
+#sudo rm -r snap-pac-grub
 
 #AUR-helper and repositories
 sudo pacman -S pacgraph pacutils --noconfirm --needed 
@@ -595,7 +595,7 @@ sudo -H pip install saltpack
 
 ### Autoremove and Snapshot ###
 sudo pacman -Rns $(pacman -Qtdq) --noconfirm
-snapper -c initial create --description initial #Make snapshot initial
+#snapper -c initial create --description initial #Make snapshot initial (no chsnap for ext4)
 
 
 ### Frugalware Stable ISO
