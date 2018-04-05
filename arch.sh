@@ -222,6 +222,10 @@ sudo mv /usr/share/sounds/deepin/stereo/desktop-login.ogg /usr/share/sounds/deep
 sudo mv /usr/share/sounds/deepin/stereo/dialog-error.ogg /usr/share/sounds/deepin/stereo/dialog-error2.ogg
 sudo mv /usr/share/sounds/deepin/stereo/suspend-resume.ogg /usr/share/sounds/deepin/stereo/suspend-resume2.ogg
 
+#Search
+sudo pacman -S mlocate recoll -y
+sudo updatedb
+
 #LANGUAGE=$(locale | grep LANG | cut -d'=' -f 2 | cut -d'_' -f 1)
 
 # Auto-screen rotate
