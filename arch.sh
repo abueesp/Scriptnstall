@@ -1,10 +1,10 @@
-### Questions ###
+### Questions ### https://www.archlinux.org/feeds/news/ https://wiki.archlinux.org/index.php/IRC_channel (add to weechat) https://www.archlinux.org/feeds/ 
 #machinectl? 
 #next4 snapper? 
 #different results on listpkgsbysize? 
 #journalctl -p err..alert journalctl -p 3 -xb?
 #own repo
-#create pkgbuild from deb
+#create pkgbuild from deb ^https://wiki.archlinux.org/index.php/Trusted_Users#How_do_I_become_a_TU.3F
 #customizerom
 
 ### Restoring Windows on Grub2 ###
