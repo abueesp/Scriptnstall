@@ -217,6 +217,9 @@ sudo rm -r gpg2
 mv ~/.bashrc ~/.previous-bashrc
 wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.bashrc
 
+#dock
+dconf write /com/deepin/dde/dock/docked-apps "['/S@deepin-toggle-desktop', '/S@dde-file-manager', '/S@deepin-music', '/S@chromium', '/S@deepin-screen-recorder', '/S@deepin-voice-recorder', '/S@deepin-system-monitor', '/S@gnome-calculator', '/S@recoll']"
+
 # Snapshots configuration (no chsnap for ext4)
 #snapper -c original create --description original #Make snapshot original
 #printf 'TIMELINE_MIN_AGE="1800"
@@ -595,6 +598,7 @@ chromium-browser https://chrome.google.com/webstore/detail/url-tracking-stripper
 chromium-browser https://chrome.google.com/webstore/detail/dont-track-me-google/gdbofhhdmcladcmmfjolgndfkpobecpg
 chromium-browser https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm
 chromium-browser https://chrome.google.com/webstore/detail/adblock/gighmmpiobklfepjocnamgkkbiglidom
+chromium-browser https://chrome.google.com/webstore/detail/project-naptha/molncoemjfmpgdkbdlbjmhlcgniigdnf
 chromium-browser https://chrome.google.com/webstore/detail/form-filler/bnjjngeaknajbdcgpfkgnonkmififhfo
 chromium-browser https://chrome.google.com/webstore/detail/autoform/fdedjnkmcijdhgbcmmjdogphnmfdjjik
 chromium-browser https://chrome.google.com/webstore/detail/m-i-m/jlppachnphenhdidmmpnbdjaipfigoic
