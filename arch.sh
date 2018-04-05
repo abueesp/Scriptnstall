@@ -1,5 +1,8 @@
-#machinectl? next4 snapper? listpkgsbysize? journalctl -p err..alert?
-
+### Questions ###
+#machinectl? 
+#next4 snapper? 
+#different results on listpkgsbysize? 
+#journalctl -p err..alert journalctl -p 3 -xb?
 
 ### Restoring Windows on Grub2 ###
 sudo os-prober 
@@ -249,6 +252,7 @@ printf "alias haskellfyarch='printf \"[haskell-core] \n Server = http://xsounds.
 printf "alias haskellfyarch='printf \"[quarry] \n Server = https://pkgbuild.com/~anatolik/quarry/x86_64/ \" | sudo tee -a /etc/pacman.conf && echo \"This repo has not key!\"'" | sudo tee -a ~/.bashrc
 echo "Haskwell WAIs: Yesod Framework brings Wrap Server. It is better than Happstack. For small projects try Scotty that also comes with Wrap, or maybe Snap's snaplets" # https://wiki.haskell.org/Web
 
+#Pkgtools
 wget https://raw.githubusercontent.com/graysky2/lostfiles/master/lostfiles #Script that identifies files not owned and not created by any Arch Linux package.
 sudo mv lostfiles /usr/bin/lostfiles
 git clone https://github.com/Daenyth/pkgtools #newpkg - spec2arch - pkgconflict - whoneeds - pkgclean - maintpkg - pip2arch
@@ -270,6 +274,53 @@ sudo mv /usr/share/sounds/deepin/stereo/desktop-login.ogg /usr/share/sounds/deep
 sudo mv /usr/share/sounds/deepin/stereo/dialog-error.ogg /usr/share/sounds/deepin/stereo/dialog-error2.ogg
 sudo mv /usr/share/sounds/deepin/stereo/suspend-resume.ogg /usr/share/sounds/deepin/stereo/suspend-resume2.ogg
 
+#equalizer
+git clone https://aur.archlinux.org/alsaequal.git
+cd alsaequal
+makepkg -si --noconfirm
+printf "# Use PulseAudio by default
+pcm.!default {
+  type pulse
+  fallback "sysdefault"
+  hint {
+    show on
+    description "Default ALSA Output (currently PulseAudio Sound Server)"
+  }
+}
+
+ctl.!default {
+  type pulse
+  fallback "sysdefault"
+}
+
+# vim:set ft=alsaconf:
+
+ctl.equal {
+    type equal;
+}
+
+pcm.plugequal {
+    type equal;
+    # Modify the line below if you do not
+    # want to use sound card 0.
+    #slave.pcm "plughw:0,0";
+    # by default we want to play from more sources at time:
+    slave.pcm "plug:dmix";
+}
+
+# pcm.equal {
+# If you do not want the equalizer to be your
+# default soundcard comment the following
+# line and uncomment the above line. (You can
+# choose it as the output device by addressing
+# it with specific apps,eg mpg123 -a equal 06.Back_In_Black.mp3)
+pcm.!default {
+    type plug;
+    slave.pcm plugequal;
+}" | sudo tee -a /etc/asound.conf
+cd ..
+sudo rm -r alsaequal
+
 #Search
 sudo pacman -S mlocate recoll --noconfirm --needed
 sudo updatedb
@@ -289,8 +340,6 @@ sudo updatedb
 # Fixing bugs
 sudo pacman -S deepin-api --noconfirm -needed
 
-# Prntscreensound
-sudo mv /usr/share/sounds/freedesktop/stereo/camera-shutter.oga /usr/share/sounds/freedesktop/stereo/camera-shutter-disabled.oga
 
 ### Virtualbox ###
 sudo pacman -S virtualbox-host-modules-arch qt4 virtualbox --noconfirm --needed
@@ -410,7 +459,7 @@ sudo mv /Write/Write /usr/bin/notes && rm -r Write
 ### Other Tools ###
 sudo pacman -S brasero qemu archiso --noconfirm --needed
 sudo pacman -S traceroute nmap arp-scan --noconfirm --needed
-sudo pacman -S terminator htop autojump iotop vnstat at nemo task tree recordmydesktop --noconfirm --needed
+sudo pacman -S terminator d-feet htop autojump iotop vnstat at nemo task tree recordmydesktop --noconfirm --needed
 REPEATVERSION=4.0.1
 REPEATVER=4_0_1
 wget https://github.com/repeats/Repeat/releases/download/v$REPEATVERSION/Repeat_$REPEATVER.jar -O /usr/src/repeat.jar && pacman -S jdk8-openjdk --noconfirm --needed
