@@ -561,7 +561,7 @@ sudo dpkg -i scrivener-$SCRIVENERVERSION.deb
 sudo rm scrivener-$SCRIVENERVERSION.deb
 
 ### Vim ###
-sudo pacman -S vim --noconfirm --needed
+sudo apt-get install vim -y
 git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
 sh ~/.vim_runtime/install_awesome_vimrc.sh
 echo ":nnoremap <C-B> <C-V>" | sudo tee -a /usr/share/vim/vimrc
@@ -637,7 +637,7 @@ echo "vim-hooks: (:ListVimHooks :ExecuteHookFiles :StopExecutingHooks :StartExec
 echo vimfunctions >> $PATHOGENFOLDER/README
 
 ### Tmux ###
-sudo pacman -S tmux  --noconfirm --needed
+sudo apt-get install tmux -y
 sudo rm ~/.tmux.conf~
 cp ~/.tmux.conf ~/.tmux.conf~
 wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.tmux.conf
@@ -669,7 +669,8 @@ echo "Do not forget to add a newsshkey or clipboard your mysshkey or mylastsshke
 
 
 ##Browsers
-#sudo apt-get install firefox -y it is ready
+sudo apt-get install firefox -y 
+#firefox -P https://addons.mozilla.org/firefox/downloads/file/271802/no_more_install_delay-3.0-fx+sm+fn+tb.xpi #before
 cd Downloads
 mkdir extensions
 cd extensions
