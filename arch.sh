@@ -212,6 +212,7 @@ gpg --delete-keys 33BD3F06 --yes
 cd ..
 sudo rm -r gpg2
 
+
 ### Security ###
 ##Password management
 #sudo authconfig --passalgo=sha512 --update #pass sha512 $6 by default 
@@ -237,8 +238,10 @@ sudo vi -c "s/auth       required   pam_tally.so/#auth       required   pam_tall
 sudo vi -c "s/#@faculty        soft    nproc           20/@faculty        soft    nproc           1000/g" -c ":wq" 
 sudo vi -c "s/#@faculty        hard    nproc           50/@faculty        hard    nproc           2000/g" -c ":wq" 
 
+##Prevent sudo from X11
+echo "/etc/X11/Xwrapper.config" | sudo tee -a /etc/X11/Xwrapper.config
 
-##To prevent sudo from SSH: 
+##Prevent sudo from SSH 
 if [ -s /etc/ssh/sshd_config ]
 then
     echo "PermitRootLogin no" | sudo tee -a /etc/ssh/sshd_config
@@ -262,7 +265,6 @@ echo "tty | grep tty && TMOUT=10 >/dev/null" | sudo tee -a /etc/profile #log out
 echo "Hello. All activity on this server is logged. Inappropriate uses and access will result in defensive counter-actions." | sudo tee -a /etc/banners/sshd
 echo "ALL : ALL : spawn /bin/echo `date` %c %d >> /var/log/intruder_alert" | sudo tee -a /etc/hosts.deny ##log any connection attempt from any IP and send the date to intruder_alert logfile
 echo "in.telnetd : ALL : severity emerg" | sudo tee -a /etc/hosts.deny ##log any attempt to connect to in.telnetd posting emergency log messages directly to the console
-
 
 
 ### Tweaks ###
