@@ -29,21 +29,21 @@ sudo apt-get install apt-file -y
 sudo apt-file update
 
 ##Password management
-sudo chage -W 365 $USER #warningdays for password changing
 sudo authconfig --passalgo=sha512 --update
-sudo chage -d 0 tiwary
+#sudo chage -d 0 tiwary #To force new password in next login, but unnecessary as we are going to renew it now
 sudo apt-get install libpwquality-tools -y
-pwmake 256
 #As the root user is the one who enforces the rules for password creation, they can set any password for themselves or for a regular user, despite the warning messages, so this is only for users.
 echo "password    required    pam_pwquality.so retry=3" | sudo tee -a /etc/pam.d/passwd #max 3 tries
 echo "minlen = 8" | sudo tee -a  /etc/security/pwquality.conf #min 8 characteres
 echo "minclass = 4" | sudo tee -a  /etc/security/pwquality.conf #min all kind of characteres
 echo "maxsequence = 3" | sudo tee -a  /etc/security/pwquality.conf #min strength-check for character sequences (no abcd)
 echo "maxrepeat = 3" | sudo tee -a  /etc/security/pwquality.conf #min strength-check for  same consecutive characters (no 1111)
-sudo chage -M -1 90 $USER #force to change password every 90 days (-M, -W only for warning) but without password expiration (-1, -I will set a different days for password expiration, and -E a data where account will be locked)
+#sudo chage -M -1 90 $USER #force to change password every 90 days (-M, -W only for warning) but without password expiration (-1, -I will set a different days for password expiration, and -E a data where account will be locked)
+sudo chage -W 365 $USER #warningdays for password changing
+pwmake 256
 chage -l $USER
 
-##USB readonly
+##USB readonly (-noexec --rw included on alias monta)
 #echo 'SUBSYSTEM=="block",ATTRS{removable}=="1",RUN{program}="/sbin/blockdev --setro %N"' | sudo tee -a  /etc/udev/rules.d/80-readonly-removables.rules
 #sudo udevadm trigger
 #sudo udevadm control --reload
