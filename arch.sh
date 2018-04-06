@@ -1,5 +1,6 @@
 ### Questions ### https://www.archlinux.org/feeds/news/ https://wiki.archlinux.org/index.php/IRC_channel (add to weechat) https://www.archlinux.org/feeds/ 
 #create encfs alias
+#gdb vs strace vs perf trace vs reptyr vs sysdig vs dtrace http://www.brendangregg.com/blog/2015-07-08/choosing-a-linux-tracer.html https://www.slideshare.net/brendangregg/velocity-2015-linux-perf-tools/105
 #machinectl? 
 #next4 snapper? 
 #different results on listpkgsbysize? 
@@ -270,6 +271,16 @@ echo "in.telnetd : ALL : severity emerg" | sudo tee -a /etc/hosts.deny ##log any
 #Encryption of filesystems 
 sudo pacman -S encfs pam_encfs --noconfirm --needed #Check https://wiki.archlinux.org/index.php/Disk_encryption#Comparison_table
 
+#Kernel hardening
+sudo pacman -S linux-hardened --needed --noconfig
+echo "kernel.dmesg_restrict = 1" | sudo tee -a /etc/sysctl.d/50-dmesg-restrict.conf #Restricting access to kernel logs
+echo "kernel.kptr_restrict = 1" | sudo tee -a /etc/sysctl.d/50-kptr-restrict.conf #Restricting access to kernel pointers in the proc filesystem
+
+#Sandbox tools
+sudo pacman -S firejail --noconfirm --needed
+sudo pacman -S bubblewrap --noconfirm --needed
+sudo pacman -S lxc arch-install-scripts --noconfirm --needed
+
 
 ### Tweaks ###
 #.bashrc
@@ -333,6 +344,13 @@ cd ..
 sudo make install 
 cd ..
 sudo rm -r pkgtools
+
+#Search
+sudo pacman -S mlocate recoll --noconfirm --needed
+vi -c "s|topdirs = / ~|topdirs = / ~|g" -c ":wq" /home/$USER/.recoll/recoll.conf
+sudo updatedb
+
+#LANGUAGE=$(locale | grep LANG | cut -d'=' -f 2 | cut -d'_' -f 1)
 
 #deepin
 dconf write /com/deepin/dde/touchpad/horiz-scroll-enabled "false"
@@ -404,22 +422,6 @@ pcm.!default {
 cd ..
 sudo rm -r alsaequal #configure with alsamixer -D equal and alsaequal-mgr save myequalization
 #for more advanced sound tools (Jack, Midis, etc) check my studio/multimedia script and https://wiki.archlinux.org/index.php/JACK_Audio_Connection_Kit and https://wiki.archlinux.org/index.php/Professional_audio and https://wiki.archlinux.org/index.php/USB_MIDI_keyboards and https://github.com/nodiscc/awesome-linuxaudio
-
-#Search
-sudo pacman -S mlocate recoll --noconfirm --needed
-sudo updatedb
-
-#LANGUAGE=$(locale | grep LANG | cut -d'=' -f 2 | cut -d'_' -f 1)
-
-# Auto-screen rotate
-#sudo pacman -S autoconf-archive gtk-doc --noconfirm -needed
-#git clone https://github.com/hadess/iio-sensor-proxy
-#cd iio-sensor-proxy
-#bash autogen.sh
-#./configure --prefix=/usr --sysconfdir=/etc
-#make
-#sudo make install
-#cd .. && rm -r iio-sensor-proxy
 
 # Fixing bugs
 sudo pacman -S deepin-api --noconfirm -needed
@@ -660,8 +662,7 @@ sudo pacman -S vivaldi --noconfirm --needed
 
 #Chromium
 sudo pacman -S chromium --noconfirm --needed
-#LANGUAGE=$(locale | grep LANG | cut -d'=' -f 2 | cut -d'_' -f 1)
-#vi -c "s/google.com/google.jp/search?q=%s&pws=0&hl=$LANGUAGE&ei=#cns=0&gws_rd=ssl/g" -c ":wq" ~/.config/chromium/Default/Preferences
+#vi -c "s/google.com/google.jp/search?q=%s&pws=0&ei=#cns=0&gws_rd=ssl/g" -c ":wq" ~/.config/chromium/Default/Preferences
 #CREATEHASH=$(sha256sum ~/.config/chromium/Default/Preferences)
 #HASH=$(echo $CREATEHASH | head -n1 | sed -e 's/\s.*$//')
 #HASHPREF=$(echo $HASH | awk '{print toupper($0)}')
@@ -685,8 +686,6 @@ sudo pacman -S icecat --noconfirm --needed
 
 #Terminal explorers: Elinks
 
-#Firejail
-sudo pacman -S firejail  --noconfirm --needed
 
 ### Calc Tools ###
 cd Documents
