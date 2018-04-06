@@ -1355,7 +1355,7 @@ sudo blockdev --getsz --getsize --getbsz --getss --getpbsz --getiomin --getdisca
 sudo blkid /dev/$sdjah 
 sudo mkdir -p /mnt/$sdjah
 echo "Cell /mnt/$sdjah created"
-sudo mount /dev/$sdjah /mnt/$sdjah
+sudo mount /dev/$sdjah /mnt/$sdjah -noexec --rw
 ##OPEN IT
 read -p 'Your disk '$sdjah' was mounted on /mnt/'$sdjah'. Do you want to open it with sudo or without? 1=Sudo 2=Notsudo 3=Goterminal; Q=Do nothing: ' opt
     case $opt in
