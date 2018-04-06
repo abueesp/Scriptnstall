@@ -560,66 +560,91 @@ wget http://www.literatureandlatte.com/scrivenerforlinux/scrivener-$SCRIVENERVER
 sudo dpkg -i scrivener-$SCRIVENERVERSION.deb
 sudo rm scrivener-$SCRIVENERVERSION.deb
 
-##Vim##
-sudo apt-get install vim -y
+### Vim ###
+sudo pacman -S vim --noconfirm --needed
 git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
 sh ~/.vim_runtime/install_awesome_vimrc.sh
-sudo apt-get install powerline supercollider-vim vim-addon-manager vim-latexsuite vim-pathogen vim-python-jedi vim-rails vim-scripts vim-snipmate vim-snippets vim-syntastic vim-tabular  vim-ultisnips vim-youcompleteme -y
-cd .vim
-mkdir bundle
-cd bundle
-git clone git://github.com/tpope/vim-fugitive.git
-vim -u NONE -c "helptags vim-fugitive/doc" -c q
-autocmd QuickFixCmdPost *grep* cwindow
-sudo apt-get install build-essential cmake
-sudo apt-get install python-dev python3-dev
-cd ~/.vim/bundle
-git clone https://github.com/valloric/youcompleteme
-cd youcompleteme
-git submodule update --init --recursive
-cd ~/.vim/bundle/youcompleteme/third_party/ycmd/clang_archives
-rm clang*
-wget http://releases.llvm.org/5.0.1/clang+llvm-5.0.1-x86_64-linux-gnu-ubuntu-16.04.tar.xz
-wget http://releases.llvm.org/5.0.1/clang+llvm-5.0.1-x86_64-linux-gnu-ubuntu-16.04.tar.xz.sig
-./install.py --all
-cd ~/.vim/bundle
-git clone https://github.com/tpope/vim-rails.git
-vim -u NONE -c "helptags vim-rails/doc" -c q
-git clone https://github.com/plasticboy/vim-markdown.git
-git clone https://github.com/elzr/vim-json
-git clone --recursive https://github.com/davidhalter/jedi-vim.git
-git clone https://github.com/mxw/vim-jsx.git ~/.vim/bundle/vim-jsx
-git clone https://github.com/othree/html5.vim
-git clone git://github.com/tpope/vim-sensible.git
-git clone https://github.com/janko-m/vim-test
-git clone https://github.com/StanAngeloff/php.vim.git
-git clone https://github.com/vim-scripts/grep.vim
-git clone https://github.com/chrisbra/csv.vim
-git clone https://github.com/sirver/ultisnips
-#Vimpolyglot
-#ansible (syntax, indent, ftplugin)apiblueprint (syntax)applescript (syntax)arduino (syntax, indent)asciidoc (syntax)blade (syntax, indent, ftplugin)c++11 (syntax)c/c++ (syntax)caddyfile (syntax, indent, ftplugin)cjsx (syntax, ftplugin)clojure (syntax, indent, autoload, ftplugin)coffee-script (syntax, indent, compiler, autoload, ftplugin)cql (syntax)cryptol (syntax, compiler, ftplugin)crystal (syntax, indent, autoload, ftplugin)css (syntax)cucumber (syntax, indent, compiler, ftplugin)dart (syntax, indent, autoload, ftplugin)dockerfile (syntax)elixir (syntax, indent, compiler, autoload, ftplugin)elm (syntax, indent, autoload, ftplugin)emberscript (syntax, indent, ftplugin)emblem (syntax, indent, ftplugin)erlang (syntax, indent)fish (syntax, indent, compiler, autoload, ftplugin)git (syntax, indent, ftplugin)glsl (syntax, indent)gnuplot (syntax)go (syntax, compiler, indent)graphql (syntax, ftplugin)groovy (syntax)haml (syntax, indent, compiler, ftplugin)handlebars (syntax, indent, ftplugin)haskell (syntax, indent, ftplugin)haxe (syntax)html5 (syntax, indent, autoload, ftplugin)i3 (syntax, ftplugin)jasmine (syntax)javascript (syntax, indent, compiler, ftplugin, extras)json (syntax, indent, ftplugin)jst (syntax, indent)jsx (after)julia (syntax, indent)kotlin (syntax, indent)latex (syntax, indent, ftplugin)less (syntax, indent, ftplugin)liquid (syntax, indent, ftplugin)livescript (syntax, indent, compiler, ftplugin)lua (syntax, indent)mako (syntax, indent, ftplugin)markdown (syntax)mathematica (syntax, ftplugin)nginx (syntax, indent, ftplugin)nim (syntax, compiler, indent)nix (syntax, ftplugin)objc (ftplugin, syntax, indent)ocaml (syntax, indent, ftplugin)octave (syntax)opencl (syntax, indent, ftplugin)perl (syntax, indent, ftplugin)pgsql (syntax)php (syntax)plantuml (syntax, indent, ftplugin)powershell (syntax, indent, ftplugin)protobuf (syntax, indent)pug (syntax, indent, ftplugin)puppet (syntax, indent, ftplugin)purescript (syntax, indent, ftplugin)python-compiler (compiler, autoload)python (syntax, indent)qml (syntax, indent, ftplugin)r-lang (syntax, ftplugin)racket (syntax, indent, autoload, ftplugin)ragel (syntax)raml (syntax, ftplugin)rspec (syntax)ruby (syntax, indent, compiler, autoload, ftplugin)rust (syntax, indent, compiler, autoload, ftplugin)sbt (syntax)scala (syntax, indent, compiler, ftplugin)scss (syntax, autoload, ftplugin)slim (syntax, indent, ftplugin)solidity (syntax, indent)stylus (syntax, indent, ftplugin)swift (syntax, indent, ftplugin)sxhkd (syntax)systemd (syntax)terraform (syntax, indent, ftplugin)textile (syntax, ftplugin)thrift (syntax)tmux (syntax, ftplugin)tomdoc (syntax)toml (syntax, ftplugin)twig (syntax, indent, ftplugin)typescript (syntax, indent, compiler, ftplugin)vala (syntax, indent)vbnet (syntax)vcl (syntax)vm (syntax, indent)vue (syntax, indent, ftplugin)xls (syntax)yaml (syntax, ftplugin)yard (syntax)
-git clone https://github.com/sheerun/vim-polyglot
-git clone https://github.com/tomlion/vim-solidity.git ~/.vim/bundle/vim-solidity
-#Vimux for tmux
-wget https://github.com/benmills/vimux/tarball/master -O benmill-vimux.tar.gz
-tar -xf benmill-vimux.tar.gz
-rm benmill-vimux.tar.gz
-cd
-mv ~/.vim/autoload/plug.vim ~/.vim/autoload/plug-backup.vim
-wget https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim -O ~/.vim/autoload/plug.vim
-mkdir -p ~/.vim/vim-snippets
-cd ~/.vim/vim-snippets
-sh -c "curl -fsSL https://raw.githubusercontent.com/skwp/dotfiles/master/install.sh"
-echo "installed vimcr"
-wget https://raw.githubusercontent.com/Russell91/sshrc/master/sshrc && sudo chmod -R 600 sshrc && chmod +x sshrc && sudo mv sshrc /usr/local/bin
-echo "ssh bashcr vimcr portability installed"
-cd
 echo ":nnoremap <C-B> <C-V>" | sudo tee -a /usr/share/vim/vimrc
 echo ":nnoremap <C-O> o<Esc>" | sudo tee -a /usr/share/vim/vimrc
 #echo ":command! Vb exe "norm! \<C-V>" | sudo tee -a /usr/share/vim/vimrc
 
+#PATHOGENFOLDER="~/.vim/build"
+#mkdir $PATHOGENFOLDER
+PATHOGENFOLDER="~/.vim_runtime/sources_forked"
+echo "PATHOGENFOLDER=$PATHOGENFOLDER" | tee -a .bashrc
+echo 'alias pathogen="read -p \"Name of the plugin: \" PLUGINNAME && read -p \"Plugin Git link: \" PLUGINGIT && git clone $PLUGINGIT $PATHOGENFOLDER/$PLUGINNAME"' | tee -a .bashrc
+echo 'alias installvimplugin="pathogen"' | tee -a .bashrc
+
+git clone https://github.com/ocaml/merlin $PATHOGENFOLDER/merlin
+git clone https://github.com/OmniSharp/omnisharp-vim $PATHOGENFOLDER/omnisharp-vim && cd $PATHOGENFOLDER/omnisharp-vim && git submodule update --init --recursive && cd server && xbuild && cd
+#git clone https://github.com/rhysd/vim-crystal/ $PATHOGENFOLDER/vim-crystal
+#git clone https://github.com/venantius/vim-eastwood.git $PATHOGENFOLDER/vim-eastwood
+git clone https://github.com/rust-lang/rust.vim $PATHOGENFOLDER/rust
+git clone https://github.com/kballard/vim-swift.git $PATHOGENFOLDER/swift
+git clone --recursive https://github.com/python-mode/python-mode $PATHOGENFOLDER/python-mode
+git clone https://github.com/eagletmt/ghcmod-vim $PATHOGENFOLDER/ghcmod-vim
+git clone https://github.com/eagletmt/neco-ghc $PATHOGENFOLDER/neco-ghc
+git clone https://github.com/ahw/vim-hooks
+echo ":nnoremap gh :StartExecutingHooks<cr>:ExecuteHookFiles BufWritePost<cr>:StopExecutingHooks<cr>" | sudo tee -a /usr/share/vim/vimrc
+echo ":noremap ghl :StartExecutingHooks<cr>:ExecuteHookFiles VimLeave<cr>:StopExecutingHooks<cr>" | sudo tee -a /usr/share/vim/vimrc
+https://github.com/sheerun/vim-polyglot
+echo "syntax on" | sudo tee -a /usr/share/vim/vimrc
+
+#Vim portability for ssh (sshrc)
+wget https://raw.githubusercontent.com/Russell91/sshrc/master/sshrc && sudo chmod -R 600 sshrc && chmod +x sshrc && sudo mv sshrc /usr/local/bin
+
+vimfunctions(){
+echo "### Tools ###"    
+echo "ack: Search tool, :grep=:ack :grepadd=:ackadd, :lgrep=LAck, and :lgrepadd=:LAckAdd (see all options with :ack ?)"
+echo "bufexplorer: See and manage the current buffers(,o)"
+echo "mru: Recently open files (,f)"
+echo "ctrlp: Find file or a buffer(,j or c-f)" 
+echo "Nerdtree and openfile under cursor: Treemaps (,nn toggle and ,nb bookmark and ,nf find, gf go open file under cursor)"
+echo "Goyo.vim and vim-zenroom2: Removes all the distractions (,z)"
+echo ":w (,w)"
+echo "vim-yankstack: Maintains a history of previous yanks :yanks :registers (meta-p, meta-shift-p)"
+echo "vim-multiple-cursors: Select multiple cursors (c-n next and c-p previous and c-x skip)"
+echo "vim-fugitive: Git wrapper (:Gbrowse and :Gstatus and - for reset and p for patch and :Gcommit and :Gedit and :Gslipt and :Gvslipt and :Gtabedit and :Gdiff and :Gmove and :Ggrep and :Glog and :Gdelete and :Gread and :Gwrite)"
+echo "vim-expand-region: (+ to expand the visual selection and _ to shrink it)"
+echo "commentary-vim: Comments management (gcc for a line and gcap for a paragraph and gc in visual mode and :7,17Commentary)"
+echo "pathogen: Install plugins and manage your vim runtimepath (use 'installvimplugin' or 'git clone https://github.com/yourplugin ~/.vim_runtime/sources_non_forked/nameofplugin' for example"
+echo "sshrc: vim portability for ssh (use it in terminal)"
+echo ""
+echo "### Indenters ###"
+echo "vim-indent-object: Python indenter (ai and ii and al and il)"
+echo ""
+echo "### Syntax ###"
+echo "vim-polyglot: (you can deactivate some using echo \"let g:polyglot_disabled = ['css']\"| sudo tee -a /usr/share/vim/vimrc) syntax, indent, ftplugin and other tools for ansible apiblueprint applescript arduino asciidoc blade c++11 c/c++ caddyfile cjsx clojure coffee-script cql cryptol crystal css cucumber dart dockerfile elixir elm emberscript emblem erlang fish git glsl gnuplot go graphql groovy haml handlebars haskell haxe html5 i3 jasmine javascript json  jst jsx julia kotlin  latex  less  liquid  livescript  lua  mako  markdown  mathematica nginx  nim  nix  objc ocaml octave opencl perl pgsql php plantuml powershell protobuf pug puppet purescript python-compiler python  qml  r-lang racket  ragel raml rspec ruby rust sbt scala scss slim solidity stylus swift sxhkd systemd terraform textile thrift tmux tomdoc toml twig typescript vala vbnet vcl vm vue xls yaml yard"
+echo ""
+echo "### Snippers ###"
+echo "snipmate: Alternative to ultisnips for snippers depending the filetype (forTAB for example)" 
+echo "Syntastics and linters"
+echo ":setlocal spell! (,ss)"
+echo "vim-syntastic : Common interface to syntax checkers for as many languages as possible (ACPI Source Language, ActionScript, Ada, Ansible configurations, API Blueprint, AppleScript, AsciiDoc, Assembly languages, BEMHTML, Bro, Bourne shell, C, C++, C#, Cabal, Chef, CMake, CoffeeScript, Coco, Coq, CSS, Cucumber, CUDA, D, Dart, DocBook, Dockerfile, Dust, Elixir, Erlang, eRuby, Fortran, Gentoo metadata, GLSL, Go, Haml, Haskell, Haxe, Handlebars, HSS, HTML, Java, JavaScript, JSON, JSX, Julia, LESS, Lex, Limbo, LISP, LLVM intermediate language, Lua, Markdown, MATLAB, Mercury, NASM, Nix, Objective-C, Objective-C++, OCaml, Perl, Perl 6, Perl POD, PHP, gettext Portable Object, OS X and iOS property lists, Pug (formerly Jade), Puppet, Python, QML, R, Racket, RDF TriG, RDF Turtle, Relax NG, reStructuredText, RPM spec, Ruby, SASS/SCSS, Scala, Slim, SML, Solidity, Sphinx, SQL, Stylus, Tcl, TeX, Texinfo, Twig, TypeScript, Vala, Verilog, VHDL, Vim help, VimL, Vue.js, xHtml, XML, XSLT, XQuery, YACC, YAML, YANG data models, YARA rules, z80, Zope page templates, and Zsh)"
+echo "merlin: Ocaml syntastic"
+echo "omnisharp: C# syntastic"
+#echo "vim-crystal: C but with Ruby syntax syntastic"
+#echo "vim-eastwood: Clojure linter syntastic"
+echo "rust: Rust syntastic (:RustFmt and :Rustplay)"
+echo "vim-swift: Swift syntastic (:help ft-swift)"
+echo "python-mode: Python syntastic (:help pymode)"
+echo "ghcmod-vim: Haskell syntastic (:help :filetype-overview and ghc-mod type and ghc-mod check or ghc-mod lint and ghc-mod expand and ghc-mod split)"
+echo ""
+echo "### Hooks and Completes ###"
+echo "neco-ghc: Haskell ghc-mod completion for neocomplcache/neocomplete/deoplete (:help compl-omni)"
+echo "vim-hooks: (:ListVimHooks :ExecuteHookFiles :StopExecutingHooks :StartExecutingHooks)"
+}
+echo vimfunctions >> $PATHOGENFOLDER/README
+
+### Tmux ###
+sudo pacman -S tmux  --noconfirm --needed
+sudo rm ~/.tmux.conf~
+cp ~/.tmux.conf ~/.tmux.conf~
+wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.tmux.conf
+
+
 ##Github
-sudo pacman -S git --noconfirm --needed
+sudo apt-get install git -y
 git config --global credential.helper cache
 # Set git to use the credential memory cache
 git config --global credential.helper 'cache --timeout=3600'
@@ -641,7 +666,6 @@ git config --list
 echo "Here you are an excellent Github cheatsheet https://raw.githubusercontent.com/hbons/git-cheat-sheet/master/preview.png You can also access as gitsheet"
 echo "If you get stuck, run ‘git branch -a’ and it will show you exactly what’s going on with your branches. You can see which are remotes and which are local."
 echo "Do not forget to add a newsshkey or clipboard your mysshkey or mylastsshkey (if you switchsshkey before) and paste it on Settings -> New SSH key and paste it there." 
-
 
 
 ##Browsers
