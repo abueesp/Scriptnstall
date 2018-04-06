@@ -275,15 +275,18 @@ sudo make install
 cd ..
 sudo rm -r pkgtools
 
+#less sounds
+dconf write /com/deepin/dde/sound-effect/camera-shutter "false"
+dconf write /com/deepin/dde/sound-effect/desktop-login "false"
+dconf write /com/deepin/dde/sound-effect/enabled "false"
+dconf write /com/deepin/dde/sound-effect/dialog-error "false"
+dconf write /com/deepin/dde/sound-effect/dialog-error-serious "false"
+dconf write /com/deepin/dde/sound-effect/dialog-error-critical "false"
+dconf write /com/deepin/dde/sound-effect/suspend-resume "false"
+
 #unmute sound
 amixer sset Master unmute
 amixer cset numid=11,iface=MIXER,name='Capture Switch' off
-
-#less sounds
-sudo mv /usr/share/sounds/deepin/stereo/camera-shutter.ogg /usr/share/sounds/deepin/stereo/camera-shutter2.ogg
-sudo mv /usr/share/sounds/deepin/stereo/desktop-login.ogg /usr/share/sounds/deepin/stereo/desktop-login2.ogg
-sudo mv /usr/share/sounds/deepin/stereo/dialog-error.ogg /usr/share/sounds/deepin/stereo/dialog-error2.ogg
-sudo mv /usr/share/sounds/deepin/stereo/suspend-resume.ogg /usr/share/sounds/deepin/stereo/suspend-resume2.ogg
 
 #equalizer
 git clone https://aur.archlinux.org/alsaequal.git
