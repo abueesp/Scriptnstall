@@ -212,6 +212,59 @@ gpg --delete-keys 33BD3F06 --yes
 cd ..
 sudo rm -r gpg2
 
+### Security ###
+##Password management
+#sudo authconfig --passalgo=sha512 --update #pass sha512 $6 by default 
+#sudo chage -d 0 tiwary #To force new password in next login, but unnecessary as we are going to renew it now
+sudo pacman -S libpwquality --noconfirm --needed
+#Activate password requirements (Activate password required pam_cracklib.so retry=2 minlen=10 difok=6 dcredit=-1 ucredit=-1 ocredit=-1 lcredit=-1 and password required pam_unix.so use_authtok sha512 shadow and deactivate password required pam_unix.so sha512 shadow nullok)
+#sudo vi -c "1,2s/#password/password" -c ":wq" /etc/pam.d/passwd 
+#sudo vi -c "3s/password/#password" -c ":wq" /etc/pam.d/passwd
+#sudo chage -M -1 90 $USER #force to change password every 90 days (-M, -W only for warning) but without password expiration (-1, -I will set a different days for password expiration, and -E a data where account will be locked)
+sudo chage -W 365 $USER #Warning days for password changing
+pwmake 512 #Create a secure 512 bits password
+chage -l $USER #Change password
+
+#Increase delay in case of failed password (in this case, decreased, time in ms)
+echo "auth optional pam_faildelay.so delay=1" | sudo tee -a /etc/pam.d/system-login
+
+#Lockout user after three failed login attempts (pam_tally is deprecated and superseded by pam_tally2, time in ms
+echo "auth required pam_tally2.so deny=3 unlock_time=5000 onerr=succeed" | sudo tee -a /etc/pam.d/system-login
+echo "account required pam_tally2.so" | sudo tee -a /etc/pam.d/system-login
+sudo vi -c "s/auth       required   pam_tally.so/#auth       required   pam_tally.so/g" -c ":wq" /etc/pam.d/system-login
+
+#Avoid fork bombs
+sudo vi -c "s/#@faculty        soft    nproc           20/@faculty        soft    nproc           1000/g" -c ":wq" 
+sudo vi -c "s/#@faculty        hard    nproc           50/@faculty        hard    nproc           2000/g" -c ":wq" 
+
+
+##To prevent sudo from SSH: 
+if [ -s /etc/ssh/sshd_config ]
+then
+    echo "PermitRootLogin no" | sudo tee -a /etc/ssh/sshd_config
+    echo "Protocol 2" | sudo tee -a /etc/ssh/sshd_config
+else
+    sudo vi /etc/ssh/sshd_config -c ':%s/PermitRootLogin without password/PermitRootLogin no/g' -c ':wq'
+    sudo vi /etc/ssh/sshd_config -c ':%s/Protocol 2,1/Protocol 2/g' -c ':wq'
+fi
+/etc/init.d/sshd restart
+##To prevent sudo from SFTP: 
+echo "auth   required   /lib/security/pam_listfile.so   item=user sense=deny file=/etc/vsftpd.ftpusers onerr=succeed" | sudo tee -a /etc/pam.d/vsftpd
+##Similar line can be added to the PAM configuration files, such as /etc/pam.d/pop and /etc/pam.d/imap for mail clients, or /etc/pam.d/sshd for SSH clients.
+
+echo "tty | grep tty && TMOUT=10 >/dev/null" | sudo tee -a /etc/profile #log out virtual /dev/tty consoles out after 5s inactivity
+
+#Do not use rlogin, rsh, and telnet
+#Take care of securing sftp, auth, nfs, rpc, postfix, samba and sql https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Security_Guide/sec-Securing_Services.html
+#Take care of securing Docker https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_atomic_host/7/html-single/getting_started_with_containers/
+
+#TCP Wrappers
+echo "Hello. All activity on this server is logged. Inappropriate uses and access will result in defensive counter-actions." | sudo tee -a /etc/banners/sshd
+echo "ALL : ALL : spawn /bin/echo `date` %c %d >> /var/log/intruder_alert" | sudo tee -a /etc/hosts.deny ##log any connection attempt from any IP and send the date to intruder_alert logfile
+echo "in.telnetd : ALL : severity emerg" | sudo tee -a /etc/hosts.deny ##log any attempt to connect to in.telnetd posting emergency log messages directly to the console
+
+
+
 ### Tweaks ###
 #.bashrc
 mv ~/.bashrc ~/.previous-bashrc
