@@ -275,6 +275,16 @@ sudo make install
 cd ..
 sudo rm -r pkgtools
 
+#deepin
+dconf write /com/deepin/dde/touchpad/horiz-scroll-enabled "false"
+dconf write /com/deepin/dde/mouse/locate-pointer "false"
+dconf write /com/deepin/dde/desktop/show-computer-icon "true"
+dconf write /com/deepin/dde/desktop/show-home-icon "true"
+dconf write /com/deepin/dde/desktop/show-trash-icon "true"
+dconf write /com/deepin/dde/daemon/calltrace "true"
+dconf write /com/deepin/dde/daemon/debug "true"
+dconf write /com/deepin/dde/audio/auto-switch-port "true"
+
 #less sounds
 dconf write /com/deepin/dde/sound-effect/camera-shutter "false"
 dconf write /com/deepin/dde/sound-effect/desktop-login "false"
