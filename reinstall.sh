@@ -29,6 +29,9 @@ sudo apt-get install apt-file -y
 sudo apt-file update
 
 ##Password management
+sudo chage -W 365 $USER #warningdays for password changing
+sudo authconfig --passalgo=sha512 --update
+sudo chage -d 0 tiwary
 sudo apt-get install libpwquality-tools -y
 pwmake 256
 #As the root user is the one who enforces the rules for password creation, they can set any password for themselves or for a regular user, despite the warning messages, so this is only for users.
