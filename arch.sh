@@ -1,4 +1,5 @@
 ### Questions ### https://www.archlinux.org/feeds/news/ https://wiki.archlinux.org/index.php/IRC_channel (add to weechat) https://www.archlinux.org/feeds/ 
+#create encfs alias
 #machinectl? 
 #next4 snapper? 
 #different results on listpkgsbysize? 
@@ -265,6 +266,9 @@ echo "tty | grep tty && TMOUT=10 >/dev/null" | sudo tee -a /etc/profile #log out
 echo "Hello. All activity on this server is logged. Inappropriate uses and access will result in defensive counter-actions." | sudo tee -a /etc/banners/sshd
 echo "ALL : ALL : spawn /bin/echo `date` %c %d >> /var/log/intruder_alert" | sudo tee -a /etc/hosts.deny ##log any connection attempt from any IP and send the date to intruder_alert logfile
 echo "in.telnetd : ALL : severity emerg" | sudo tee -a /etc/hosts.deny ##log any attempt to connect to in.telnetd posting emergency log messages directly to the console
+
+#Encryption of filesystems 
+sudo pacman -S encfs pam_encfs --noconfirm --needed #Check https://wiki.archlinux.org/index.php/Disk_encryption#Comparison_table
 
 
 ### Tweaks ###
