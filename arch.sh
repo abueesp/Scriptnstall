@@ -465,8 +465,12 @@ cd ..
 
 ### Vim ###
 sudo pacman -S vim --noconfirm --needed
+sudo pacman -S git --noconfirm --needed
 git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
 sh ~/.vim_runtime/install_awesome_vimrc.sh
+echo ":nnoremap <C-B> <C-V>" | sudo tee -a /usr/share/vim/vimrc
+echo ":nnoremap <C-O> o<Esc>" | sudo tee -a /usr/share/vim/vimrc
+#echo ":command! Vb exe "norm! \<C-V>" | sudo tee -a /usr/share/vim/vimrc
 
 #PATHOGENFOLDER="~/.vim/build"
 #mkdir $PATHOGENFOLDER
@@ -484,6 +488,14 @@ git clone https://github.com/kballard/vim-swift.git $PATHOGENFOLDER/swift
 git clone --recursive https://github.com/python-mode/python-mode $PATHOGENFOLDER/python-mode
 git clone https://github.com/eagletmt/ghcmod-vim $PATHOGENFOLDER/ghcmod-vim
 git clone https://github.com/eagletmt/neco-ghc $PATHOGENFOLDER/neco-ghc
+git clone https://github.com/ahw/vim-hooks
+echo ":nnoremap gh :StartExecutingHooks<cr>:ExecuteHookFiles BufWritePost<cr>:StopExecutingHooks<cr>" | sudo tee -a /usr/share/vim/vimrc
+echo ":noremap ghl :StartExecutingHooks<cr>:ExecuteHookFiles VimLeave<cr>:StopExecutingHooks<cr>" | sudo tee -a /usr/share/vim/vimrc
+https://github.com/sheerun/vim-polyglot
+echo "syntax on" | sudo tee -a /usr/share/vim/vimrc
+
+#Vim portability for ssh (sshrc)
+wget https://raw.githubusercontent.com/Russell91/sshrc/master/sshrc && sudo chmod -R 600 sshrc && chmod +x sshrc && sudo mv sshrc /usr/local/bin
 
 vimfunctions(){
 echo "### Tools ###"    
@@ -500,9 +512,13 @@ echo "vim-fugitive: Git wrapper (:Gbrowse and :Gstatus and - for reset and p for
 echo "vim-expand-region: (+ to expand the visual selection and _ to shrink it)"
 echo "commentary-vim: Comments management (gcc for a line and gcap for a paragraph and gc in visual mode and :7,17Commentary)"
 echo "pathogen: Install plugins and manage your vim runtimepath (use 'installvimplugin' or 'git clone https://github.com/yourplugin ~/.vim_runtime/sources_non_forked/nameofplugin' for example"
+echo "sshrc: vim portability for ssh (use it in terminal)"
 echo ""
 echo "### Indenters ###"
 echo "vim-indent-object: Python indenter (ai and ii and al and il)"
+echo ""
+echo "### Syntax ###"
+echo "vim-polyglot: (you can deactivate some using echo \"let g:polyglot_disabled = ['css']\"| sudo tee -a /usr/share/vim/vimrc) syntax, indent, ftplugin and other tools for ansible apiblueprint applescript arduino asciidoc blade c++11 c/c++ caddyfile cjsx clojure coffee-script cql cryptol crystal css cucumber dart dockerfile elixir elm emberscript emblem erlang fish git glsl gnuplot go graphql groovy haml handlebars haskell haxe html5 i3 jasmine javascript json  jst jsx julia kotlin  latex  less  liquid  livescript  lua  mako  markdown  mathematica nginx  nim  nix  objc ocaml octave opencl perl pgsql php plantuml powershell protobuf pug puppet purescript python-compiler python  qml  r-lang racket  ragel raml rspec ruby rust sbt scala scss slim solidity stylus swift sxhkd systemd terraform textile thrift tmux tomdoc toml twig typescript vala vbnet vcl vm vue xls yaml yard"
 echo ""
 echo "### Snippers ###"
 echo "snipmate: Alternative to ultisnips for snippers depending the filetype (forTAB for example)" 
@@ -518,10 +534,36 @@ echo "vim-swift: Swift syntastic (:help ft-swift)"
 echo "python-mode: Python syntastic (:help pymode)"
 echo "ghcmod-vim: Haskell syntastic (:help :filetype-overview and ghc-mod type and ghc-mod check or ghc-mod lint and ghc-mod expand and ghc-mod split)"
 echo ""
-echo "### Completions ###"
+echo "### Hooks and Completes ###"
 echo "neco-ghc: Haskell ghc-mod completion for neocomplcache/neocomplete/deoplete (:help compl-omni)"
+echo "vim-hooks: (:ListVimHooks :ExecuteHookFiles :StopExecutingHooks :StartExecutingHooks)"
 }
 echo vimfunctions >> $PATHOGENFOLDER/README
+
+##Github
+sudo pacman -S git --noconfirm --needed
+git config --global credential.helper cache
+# Set git to use the credential memory cache
+git config --global credential.helper 'cache --timeout=3600'
+# Set the cache to timeout after 1 hour (setting is in seconds)
+read -p "Please set your username: " username
+git config --global user.name $username
+read -p "Please set your email: " mail
+git config --global user.email $mail
+read -p "Please set your core editor: " editor
+git config --global core.editor $editor
+read -p "Please set your diff app: " diff
+git config --global merge.tool $diff
+gpg --list-secret-keys
+read -p "Introduce the key id (and open https://github.com/settings/keys): " keyusername
+gpg --export -a $keyusername
+git config --global user.signingkey $keyusername
+git config --global commit.gpgsign true
+git config --list
+echo "Here you are an excellent Github cheatsheet https://raw.githubusercontent.com/hbons/git-cheat-sheet/master/preview.png You can also access as gitsheet"
+echo "If you get stuck, run ‘git branch -a’ and it will show you exactly what’s going on with your branches. You can see which are remotes and which are local."
+echo "Do not forget to add a newsshkey or clipboard your mysshkey or mylastsshkey (if you switchsshkey before) and paste it on Settings -> New SSH key and paste it there." 
+
 
 ### Tmux ###
 sudo pacman -S tmux  --noconfirm --needed
@@ -731,13 +773,48 @@ sudo -H pip install scdl
 sudo -H pip install setuptools
 sudo -H pip install saltpack
 
+### WeeChat ###
+sudo pacman -S weechat --noconfirm --yes
+rm ~/.weechat/weechat.conf
+wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/weechat.conf -O ~/.weechat/weechat.conf
+#weechat -r "/script install vimode.py" script not installed to avoid conflicts
+weechat -r "/key bind meta-g /go"  -r "/quit -yes"
+weechat -r "/set weechat.bar.status.color_bg 0" "/set weechat.bar.title.color_bg 0" "/set weechat.color.chat_nick_colors 1,2,3,4,5,6" "/set buffers.color.hotlist_message_fg 7" "/set weechat.bar.buffers.position top" "/set weechat.bar.buffers.items buffers" "/set weechat.look.prefix_same_nick '⤷'" "/set weechat.look.prefix_error '⚠'" "/set weechat.look.prefix_network 'ℹ'" "/set weechat.look.prefix_action '⚡'" "/set weechat.look.bar_more_down '▼▼'" "/set weechat.look.bar_more_left '◀◀'" "/set weechat.look.bar_more_right '▶▶'" "/set weechat.look.bar_more_up '▲▲'" "/set weechat.look.prefix_suffix '╡'" "/set weechat.look.prefix_align_max '15'"  -r "/quit -yes"
+weechat -r "/mouse enable" -r "/quit -yes"
+read -p "Introduce Weechat username: " UNAME
+weechat -r '/set irc.server.freenode.username "$UNAME"  -r "/quit -yes"'
+weechat -r "/server add freenode chat.freenode.net/6697 -ssl -autoconnect" -r '/set irc.server.freenode.addresses "chat.freenode.net/6697"' -r "/set irc.server.freenode.ssl on" -r "/quit -yes"
+#Whatsapp and axolotl
+sudo pip install wheel --upgrade
+sudo -H pip install python-dateutil protobuf pycrypto python-axolotl-curve25519 argparse readline pillow pyaxo
+sudo -H pip install yowsup2
+weechat -r "/script install whatsapp.py axolotl.py" -r "/quit"
+#Plugins
+sudo -H pip install python-potr
+weechat -r "/script install arespond.py atcomplete.py auth.rb auto_away.py autoauth.py autoconf.py autoconnet.py autojoin.py autjoinem.py awaylog.pl bandwidth.py bufsave.py bufsize.py chanmon.pl colorize_nicks.py  completion.py correction_completion.py fish.py go.py gribble.py highmon.pl ircrypt.py iset.pl notifo.py  otr.py queryman.py seeks.pl responsive_layout.py screen_away.py urlbuf.py urlgrab.py urlhinter.py weefish.rb yaaa.pl yaurls.pl weerock.pl whatismyip.py whowas_timeago.py whoissource.py whois_on_query.py windicate.py"  -r "/quit"
+#Slack
+sudo -H pip install websocket-client
+wget https://raw.githubusercontent.com/wee-slack/wee-slack/master/wee_slack.py
+cp wee_slack.py ~/.weechat/python/autoload
+read -p "Introduce a secure pass to protect tokens: " PAZWE
+weechat -r "/secure passphrase $PAZWE" -r "/quit"
+read -p "Introduce your Slack token. For connected groups introduce tokens separated by commas: " SLACKTOKEN
+weechat -r "/set plugins.var.python.slack.slack_api_token $SLACKTOKEN" -r "/secure set slack_token $SLACKTOKEN" -r "/set plugins.var.python.slack.slack_api_token ${sec.data.slack_token}" -r "/save" -r "/python reload" -r "/set plugins.var.python.slack.server_aliases 'my-slack-subdomain:mysub,other-domain:coolbeans'" -r "/set plugins.var.python.slack.show_reaction_nicks on" -r "/quit"
+#As a relay host server
+#read -p "Introduce password for relay host: " PRHOST
+#mkdir -p ~/.weechat/ssl && cd ~/.weechat/ssl && openssl req -nodes -newkey rsa:4096 -keyout relay.pem -x509 -days 365 -out relay.pem -sha256 -subj "/CN=localhost/" && cd
+#weechat -r "/relay add weechat 9001" -r "/set relay.network.password $PRHOST" -r "/relay sslcertkey" -r "/relay add ssl.weechat 9001"  -r "/quit"
+#echo "You need to verify the certificate at ~/.weechat/ssl first"
+#firefox --new-tab https://www.glowing-bear.org/
+
 
 ### Autoremove and Snapshot ###
 sudo pacman -Rns $(pacman -Qtdq) --noconfirm
 #snapper -c initial create --description initial #Make snapshot initial (no chsnap for ext4)
 
 
+
 ### Frugalware Stable ISO
 #wget http://www13.frugalware.org/pub/frugalware/frugalware-stable-iso/fvbe-2.1-gnome-x86_64.iso
 
-
+echo "EOF"
