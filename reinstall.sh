@@ -55,9 +55,12 @@ if [ -s /etc/ssh/sshd_config ]
 then
     echo "PermitRootLogin no" | sudo tee -a /etc/ssh/sshd_config
     echo "Protocol 2" | sudo tee -a /etc/ssh/sshd_config
+    MaxAuthTries 3 | sudo tee -a etc/ssh/sshd_config
 else
     sudo vi /etc/ssh/sshd_config -c ':%s/PermitRootLogin without password/PermitRootLogin no/g' -c ':wq'
     sudo vi /etc/ssh/sshd_config -c ':%s/Protocol 2,1/Protocol 2/g' -c ':wq'
+    sudo vi etc/ssh/sshd_config -c ":%s|MaxAuthTries 6|MaxAuthTries 3|g" -c ":wq" 
+
 fi
 /etc/init.d/sshd restart
 ##To prevent sudo from SFTP: 
