@@ -10,6 +10,32 @@
 #create pkgbuild from deb ^https://wiki.archlinux.org/index.php/Trusted_Users#How_do_I_become_a_TU.3F
 #customizerom
 
+### Make questions ###
+question(){
+question="${question:=$defaultvar}"
+questionvar="${questionvar:=$defaultvar}"
+questionvar="${questionvar:=$defaultvar}"
+total=15  # total wait time in seconds
+count=0  # counter
+while [ ${count} -lt ${total} ] ; do
+    tlimit=$(( $total - $count ))
+    echo -e "\rYou have ${tlimit} seconds to enter your name: \c"
+    read -p "$question" questionvar
+    if [ -z "$defaultvar" ];
+        then
+        questionvar="${questionvar:=$defaultvar}"
+    fi
+    test ! -z "$questionvar" && { break ; }
+    count=$((count+1))
+done
+if [ ! -z "$questionvar" ] ; then
+    echo -e "\nyYour answer was $questionvar"
+else
+    echo -e "\ntime out"
+fi
+declare "$(echo "$nameofvar")=$questionvar"
+}
+
 ### Restoring Windows on Grub2 ###
 sudo os-prober 
 if [ $? -ne 0 ]
@@ -94,8 +120,11 @@ sudo ln -s $SVRCONTAINERS/$TORCONTAINER $VARCONTAINERS/$TORCONTAINER
 sudo mkdir /etc/systemd/system/systemd-nspawn@$TORCONTAINER.service.d
 
 sudo ifconfig #adding container ad-hoc vlan
-read -p "Write network interface to create VLAN (wlp2s0 by default): " INTERFACE 
-INTERFACE="${INTERFACE:=wlp2s0}"
+time=10
+question="Write network interface to create VLAN (wlp2s0 by default): "
+nameofvar="INTERFACE"
+defaultvar=wlp2s0
+question()
 VLANINTERFACE="${INTERFACE:0:2}.tor"
 sudo ip link add link $INTERFACE name $VLANINTERFACE type vlan id $(((RANDOM%4094)+1))
 networkctl
@@ -282,14 +311,73 @@ sudo pacman -S firejail --noconfirm --needed
 sudo pacman -S bubblewrap --noconfirm --needed
 sudo pacman -S lxc arch-install-scripts --noconfirm --needed
 
+#Network
+sudo pacman -S traceroute nmap arp-scan conntrack-tools gufw nftables --noconfirm --needed #for iptables gui use also gufw
+sudo pacman -S nftables --noconfirm --needed
+printf "flush ruleset
+table inet filter {
+        chain input {
+                type filter hook input priority 0;
+
+                # accept any localhost traffic
+                iif lo accept
+
+                # accept traffic originated from us
+                ct state established,related accept
+
+                # activate the following line to accept common local services
+                #tcp dport { 22, 80, 443 } ct state new accept
+
+                # accept neighbour discovery otherwise IPv6 connectivity breaks.
+                ip6 nexthdr icmpv6 icmpv6 type { nd-neighbor-solicit,  nd-router-advert, nd-neighbor-advert } accept
+
+                # count and drop any other traffic
+                counter drop
+        }
+}" | sudo tee -a /etc/nftables.conf #other examples https://wiki.archlinux.org/index.php/Nftables#Examples
+
+nft flush ruleset #Flush the current ruleset:
+nft add table inet filter #Add a table:
+#Add the input, forward, and output base chains. The policy for input and forward will be to drop. The policy for output will be to accept.
+nft add chain inet filter input { type filter hook input priority 0 \; policy drop \; }
+nft add chain inet filter forward { type filter hook forward priority 0 \; policy drop \; }
+nft add chain inet filter output { type filter hook output priority 0 \; policy accept \; }
+#Add two regular chains that will be associated with tcp and udp:
+nft add chain inet filter TCP
+nft add chain inet filter UDP
+nft add rule inet filter input ct state related,established accept #Related and established traffic will be accepted:
+nft add rule inet filter input iif lo accept #All loopback interface traffic will be accepted:
+nft add rule inet filter input ct state invalid drop #Drop any invalid traffic:
+nft add rule inet filter input ip protocol icmp icmp type echo-request ct state new accept #New echo requests (pings) will be accepted:
+nft add rule inet filter input ip protocol udp ct state new jump UDP #New upd traffic will jump to the UDP chain:
+nft add rule inet filter input ip protocol tcp tcp flags \& \(fin\|syn\|rst\|ack\) == syn ct state new jump TCP #New tcp traffic will jump to the TCP chain:
+#Reject all traffic that was not processed by other rules:
+nft add rule inet filter input ip protocol udp reject
+nft add rule inet filter input ip protocol tcp reject with tcp reset
+nft add rule inet filter input counter reject with icmp type prot-unreachable
+#Ports
+time=15
+question="At this point you should decide what ports you want to open to incoming connections, which are handled by the TCP and UDP chains. For example to open connections for a web server add, without commas: 80 web, 443 https, 22 ssh, 5353 chrome, $TORPORT tor... by default 443 and all of them udp and tcp): "
+nameofvar="manftports"
+defaultvar=443
+question()
+nftports=$(echo "$manftports" | tr '\n' ' ' | sed -e 's/[^0-9]/ /g' -e 's/^ *//g' -e 's/ *$//g' | tr -s ' ' | sed 's/ /\n/g')
+for i in $nftports; do
+	nft add rule inet filter TCP tcp dport $i accept
+done
+
+#nft add rule inet filter TCP tcp dport 80 accept
+nft add rule inet filter TCP tcp dport 443 accept #To accept HTTPS connections for a webserver on port 443:
+#nft add rule inet filter TCP tcp dport 22 accept #To accept SSH traffic on port 22:
+To accept incoming DNS requests:
+
+# nft add rule inet filter TCP tcp dport 53 accept
+# nft add rule inet filter UDP tcp dport 53 accept
 
 ### Tweaks ###
-#.bashrc
+# .bashrc
 mv ~/.bashrc ~/.previous-bashrc
 wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.bashrc
-
-#dock
-dconf write /com/deepin/dde/dock/docked-apps "['/S@deepin-toggle-desktop', '/S@dde-file-manager', '/S@deepin-music', '/S@chromium', '/S@deepin-screen-recorder', '/S@deepin-voice-recorder', '/S@deepin-system-monitor', '/S@gnome-calculator', '/S@recoll']"
 
 # Snapshots configuration (no chsnap for ext4)
 #snapper -c original create --description original #Make snapshot original
@@ -312,7 +400,7 @@ dconf write /com/deepin/dde/dock/docked-apps "['/S@deepin-toggle-desktop', '/S@d
 #cd ..
 #sudo rm -r snap-pac-grub
 
-#AUR-helper and repositories
+# AUR-helper and repositories
 sudo pacman -S pacgraph pacutils yaourt --noconfirm --needed 
 git clone https://aur.archlinux.org/aurman.git #https://wiki.archlinux.org/index.php/AUR_helpers
 cd aurman
@@ -334,7 +422,7 @@ printf "alias haskellfyarch='printf \"[haskell-core] \n Server = http://xsounds.
 printf "alias haskellfyarch='printf \"[quarry] \n Server = https://pkgbuild.com/~anatolik/quarry/x86_64/ \" | sudo tee -a /etc/pacman.conf && echo \"This repo has not key!\"'" | sudo tee -a ~/.bashrc
 echo "Haskwell WAIs: Yesod Framework brings Wrap Server. It is better than Happstack. For small projects try Scotty that also comes with Wrap, or maybe Snap's snaplets" # https://wiki.haskell.org/Web
 
-#Pkgtools
+# PKGtools
 wget https://raw.githubusercontent.com/graysky2/lostfiles/master/lostfiles #Script that identifies files not owned and not created by any Arch Linux package.
 sudo mv lostfiles /usr/bin/lostfiles
 git clone https://github.com/Daenyth/pkgtools #newpkg - spec2arch - pkgconflict - whoneeds - pkgclean - maintpkg - pip2arch
@@ -346,14 +434,15 @@ sudo make install
 cd ..
 sudo rm -r pkgtools
 
-#Search
+# Search tools
 sudo pacman -S mlocate recoll --noconfirm --needed
 vi -c "s|topdirs = / ~|topdirs = / ~|g" -c ":wq" /home/$USER/.recoll/recoll.conf
 sudo updatedb
 
-#LANGUAGE=$(locale | grep LANG | cut -d'=' -f 2 | cut -d'_' -f 1)
+# Dock conf
+dconf write /com/deepin/dde/dock/docked-apps "['/S@deepin-toggle-desktop', '/S@dde-file-manager', '/S@deepin-music', '/S@chromium', '/S@deepin-screen-recorder', '/S@deepin-voice-recorder', '/S@deepin-system-monitor', '/S@gnome-calculator', '/S@recoll']"
 
-#deepin
+# Deepin conf
 dconf write /com/deepin/dde/touchpad/horiz-scroll-enabled "false"
 dconf write /com/deepin/dde/mouse/locate-pointer "false"
 dconf write /com/deepin/dde/desktop/show-computer-icon "true"
@@ -362,9 +451,7 @@ dconf write /com/deepin/dde/desktop/show-trash-icon "true"
 dconf write /com/deepin/dde/daemon/calltrace "true"
 dconf write /com/deepin/dde/daemon/debug "true"
 dconf write /com/deepin/dde/audio/auto-switch-port "true"
-
-#less sounds
-dconf write /com/deepin/dde/sound-effect/camera-shutter "false"
+dconf write /com/deepin/dde/sound-effect/camera-shutter "false" #Less sounds
 dconf write /com/deepin/dde/sound-effect/desktop-login "false"
 dconf write /com/deepin/dde/sound-effect/enabled "false"
 dconf write /com/deepin/dde/sound-effect/dialog-error "false"
@@ -372,11 +459,11 @@ dconf write /com/deepin/dde/sound-effect/dialog-error-serious "false"
 dconf write /com/deepin/dde/sound-effect/dialog-error-critical "false"
 dconf write /com/deepin/dde/sound-effect/suspend-resume "false"
 
-#unmute sound
+# Unmute sound
 amixer sset Master unmute
 amixer cset numid=11,iface=MIXER,name='Capture Switch' off
 
-#equalizer
+# Equalizer
 git clone https://aur.archlinux.org/alsaequal.git
 cd alsaequal
 makepkg -si --noconfirm
@@ -540,30 +627,71 @@ echo "vim-hooks: (:ListVimHooks :ExecuteHookFiles :StopExecutingHooks :StartExec
 }
 echo vimfunctions >> $PATHOGENFOLDER/README
 
+
 ##Github
 sudo pacman -S git --noconfirm --needed
 git config --global credential.helper cache
 # Set git to use the credential memory cache
 git config --global credential.helper 'cache --timeout=3600'
 # Set the cache to timeout after 1 hour (setting is in seconds)
-read -p "Please set your username: " username
-git config --global user.name $username
-read -p "Please set your email: " mail
-git config --global user.email $mail
-read -p "Please set your core editor: " editor
-git config --global core.editor $editor
-read -p "Please set your diff app: " diff
-git config --global merge.tool $diff
-gpg --list-secret-keys
-read -p "Introduce the key id (and open https://github.com/settings/keys): " keyusername
+
+time=10
+question="Please set your git username: "
+nameofvar="gitusername"
+defaultvar=$USER
+question()
+git config --global user.name $gitusername
+
+time=10
+question="Please set your git mail: "
+nameofvar="gitmail"
+defaultvar=$USER
+question()
+git config --global user.email $gitmail
+
+time=10
+question="Please set your core editor: "
+nameofvar="giteditor"
+defaultvar="vim"
+question()
+git config --global core.editor $giteditor
+
+time=10
+question="Please set your gitdiff: "
+nameofvar="gitdiff"
+defaultvar="vim-diff"
+question()
+git config --global merge.tool $gitdiff
+
+time=10
+question="Do you want to create a new gpg key for Git?: "
+nameofvar="creategitkey"
+defaultvar="N"
+case "$creategitkey" in
+    [yY][eE][sS]|[yY]) 
+        gpg2 --full-gen-key --expert
+	gpg --list-secret-keys
+        ;;
+    *)
+        echo "So you already created a key"
+	gpg --list-secret-keys
+        ;;
+esac
+question()
+
+time=30
+question="Introduce the key username (and open https://github.com/settings/keys): "
+nameofvar="keyusername"
+defaultvar=""
+question()
 gpg --export -a $keyusername
 git config --global user.signingkey $keyusername
 git config --global commit.gpgsign true
 git config --list
+time 10
 echo "Here you are an excellent Github cheatsheet https://raw.githubusercontent.com/hbons/git-cheat-sheet/master/preview.png You can also access as gitsheet"
 echo "If you get stuck, run ‘git branch -a’ and it will show you exactly what’s going on with your branches. You can see which are remotes and which are local."
 echo "Do not forget to add a newsshkey or clipboard your mysshkey or mylastsshkey (if you switchsshkey before) and paste it on Settings -> New SSH key and paste it there." 
-
 
 ### Tmux ###
 sudo pacman -S tmux  --noconfirm --needed
@@ -579,15 +707,9 @@ sudo pacman -S xmlstarlet jq datamash bc gawk mawk --noconfirm --needed #XML and
 sudo pacman -S blender --noconfirm --needed
 sudo pacman -S krita --noconfirm --needed
 
-sudo pacman -S xournal --noconfirm --needed && sudo pacman -Rs xournal --noconfirm
-wget http://www.styluslabs.com/download/write-tgz -O write.tar.gz
-tar -xf write.tar.gz && rm write.tar.gz
-sudo mv /Write/Write /usr/bin/notes && rm -r Write
-
 
 ### Other Tools ###
 sudo pacman -S brasero qemu archiso --noconfirm --needed
-sudo pacman -S traceroute nmap arp-scan --noconfirm --needed
 sudo pacman -S terminator d-feet htop autojump iotop vnstat at nemo task tree recordmydesktop --noconfirm --needed
 REPEATVERSION=4.0.1
 REPEATVER=4_0_1
@@ -781,7 +903,12 @@ wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/weechat.conf 
 weechat -r "/key bind meta-g /go"  -r "/quit -yes"
 weechat -r "/set weechat.bar.status.color_bg 0" "/set weechat.bar.title.color_bg 0" "/set weechat.color.chat_nick_colors 1,2,3,4,5,6" "/set buffers.color.hotlist_message_fg 7" "/set weechat.bar.buffers.position top" "/set weechat.bar.buffers.items buffers" "/set weechat.look.prefix_same_nick '⤷'" "/set weechat.look.prefix_error '⚠'" "/set weechat.look.prefix_network 'ℹ'" "/set weechat.look.prefix_action '⚡'" "/set weechat.look.bar_more_down '▼▼'" "/set weechat.look.bar_more_left '◀◀'" "/set weechat.look.bar_more_right '▶▶'" "/set weechat.look.bar_more_up '▲▲'" "/set weechat.look.prefix_suffix '╡'" "/set weechat.look.prefix_align_max '15'"  -r "/quit -yes"
 weechat -r "/mouse enable" -r "/quit -yes"
-read -p "Introduce Weechat username: " UNAME
+time=10
+question="Introduce Weechat username: "
+nameofvar="UNAME"
+defaultvar=""
+question()
+
 weechat -r '/set irc.server.freenode.username "$UNAME"  -r "/quit -yes"'
 weechat -r "/server add freenode chat.freenode.net/6697 -ssl -autoconnect" -r '/set irc.server.freenode.addresses "chat.freenode.net/6697"' -r "/set irc.server.freenode.ssl on" -r "/quit -yes"
 #Whatsapp and axolotl
@@ -796,9 +923,19 @@ weechat -r "/script install arespond.py atcomplete.py auth.rb auto_away.py autoa
 sudo -H pip install websocket-client
 wget https://raw.githubusercontent.com/wee-slack/wee-slack/master/wee_slack.py
 cp wee_slack.py ~/.weechat/python/autoload
-read -p "Introduce a secure pass to protect tokens: " PAZWE
+
+time=10
+question="Introduce a secure pass to protect tokens: "
+nameofvar="PAZWE"
+defaultvar="$USER"
+question()
 weechat -r "/secure passphrase $PAZWE" -r "/quit"
-read -p "Introduce your Slack token. For connected groups introduce tokens separated by commas: " SLACKTOKEN
+
+time=10
+question="Introduce your Slack token. For connected groups introduce tokens separated by commas: "
+nameofvar="SLACKTOKEN"
+defaultvar=""
+question()
 weechat -r "/set plugins.var.python.slack.slack_api_token $SLACKTOKEN" -r "/secure set slack_token $SLACKTOKEN" -r "/set plugins.var.python.slack.slack_api_token ${sec.data.slack_token}" -r "/save" -r "/python reload" -r "/set plugins.var.python.slack.server_aliases 'my-slack-subdomain:mysub,other-domain:coolbeans'" -r "/set plugins.var.python.slack.show_reaction_nicks on" -r "/quit"
 #As a relay host server
 #read -p "Introduce password for relay host: " PRHOST
