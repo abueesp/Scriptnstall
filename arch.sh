@@ -311,9 +311,43 @@ sudo pacman -S firejail --noconfirm --needed
 sudo pacman -S bubblewrap --noconfirm --needed
 sudo pacman -S lxc arch-install-scripts --noconfirm --needed
 
-#Network
-sudo pacman -S traceroute nmap arp-scan conntrack-tools gufw nftables --noconfirm --needed #for iptables gui use also gufw
+### Network ###
+#Tools
+sudo pacman -S traceroute nmap arp-scan conntrack-tools --noconfirm --needed
+
+# Ports
+time=15
+question="At this point you should decide what ports you want to open to incoming connections, which are handled by the TCP and UDP chains. For example to open connections for a web server add, without commas: 80 web, 443 https, 22 ssh, 5353 chrome, $TORPORT tor... by default 443 and all of them udp and tcp): "
+nameofvar="ports"
+defaultvar=443
+question()
+
+# Iptables
+sudo pacman -S iptables gufw --noconfirm --needed
+sudo iptables -F
+sudo iptables -A INPUT -i lo -j ACCEPT
+for i in $ipports; do
+	sudo iptables -A INPUT -p tcp --dport $i accept
+done
+sudo iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+sudo iptables -P INPUT DROP
+sudo iptables -P OUTPUT ACCEPT ##If you are a server change this to DROP OUTPUT connections by default too
+sudo iptables -P FORWARD DROP
+sudo iptables restart
+
+# Avahi daemon
+#sudo service avahi-daemon stop #avahi-daemon
+
+# No cups
+sudo cupsctl -E --no-remote-any
+sudo service cups-browsed stop
+
+#Nftables
 sudo pacman -S nftables --noconfirm --needed
+nftports=$(echo "$ports" | tr '\n' ' ' | sed -e 's/[^0-9]/ /g' -e 's/^ *//g' -e 's/ *$//g' | tr -s ' ' | sed 's/ /\n/g')
+for i in $nftports; do
+	nft add rule inet filter TCP tcp dport $i accept
+done
 printf "flush ruleset
 table inet filter {
         chain input {
@@ -335,7 +369,6 @@ table inet filter {
                 counter drop
         }
 }" | sudo tee -a /etc/nftables.conf #other examples https://wiki.archlinux.org/index.php/Nftables#Examples
-
 nft flush ruleset #Flush the current ruleset:
 nft add table inet filter #Add a table:
 #Add the input, forward, and output base chains. The policy for input and forward will be to drop. The policy for output will be to accept.
@@ -355,24 +388,7 @@ nft add rule inet filter input ip protocol tcp tcp flags \& \(fin\|syn\|rst\|ack
 nft add rule inet filter input ip protocol udp reject
 nft add rule inet filter input ip protocol tcp reject with tcp reset
 nft add rule inet filter input counter reject with icmp type prot-unreachable
-#Ports
-time=15
-question="At this point you should decide what ports you want to open to incoming connections, which are handled by the TCP and UDP chains. For example to open connections for a web server add, without commas: 80 web, 443 https, 22 ssh, 5353 chrome, $TORPORT tor... by default 443 and all of them udp and tcp): "
-nameofvar="manftports"
-defaultvar=443
-question()
-nftports=$(echo "$manftports" | tr '\n' ' ' | sed -e 's/[^0-9]/ /g' -e 's/^ *//g' -e 's/ *$//g' | tr -s ' ' | sed 's/ /\n/g')
-for i in $nftports; do
-	nft add rule inet filter TCP tcp dport $i accept
-done
 
-#nft add rule inet filter TCP tcp dport 80 accept
-nft add rule inet filter TCP tcp dport 443 accept #To accept HTTPS connections for a webserver on port 443:
-#nft add rule inet filter TCP tcp dport 22 accept #To accept SSH traffic on port 22:
-To accept incoming DNS requests:
-
-# nft add rule inet filter TCP tcp dport 53 accept
-# nft add rule inet filter UDP tcp dport 53 accept
 
 ### Tweaks ###
 # .bashrc
