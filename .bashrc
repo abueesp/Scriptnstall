@@ -1350,12 +1350,18 @@ sudo blockdev --setro /dev/$sdjoh
 
 
 monta(){ 
+if [ ! -e /etc/udev/rules.d/80-readonly-removables.rules ]; then
+    sudo rm /etc/udev/rules.d/80-readonly-removables.rules
+    sudo udevadm trigger
+    sudo udevadm control --reload
+else
+   echo "USB unit not blocked"
+fi
 sudo lsblk
-#sudo blkid
 sudo fdisk -l 
 read -p "Introduce el disco a montar (sda5, sdb1...): " sdjah
 sudo blockdev --getsz --getsize --getbsz --getss --getpbsz --getiomin --getdiscardzeroes --getioopt --getalignoff --getsize64 --getmaxsect --getra --setrw /dev/$sdjah
-sudo blkid /dev/$sdjah 
+sudo blkid /dev/$sdjah
 sudo mkdir -p /mnt/$sdjah
 echo "Cell /mnt/$sdjah created"
 sudo mount /dev/$sdjah /mnt/$sdjah -noexec --rw
