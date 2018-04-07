@@ -1,4 +1,6 @@
-### Questions ### https://www.archlinux.org/feeds/news/ https://wiki.archlinux.org/index.php/IRC_channel (add to weechat) https://www.archlinux.org/feeds/ 
+###Revisar password management
+
+### Questions ### https://www.archlinux.org/feeds/news/ https://wiki.archlinux.org/index.php/IRC_channel (add to weechat) https://www.archlinux.org/feeds/  https://security.archlinux.org/
 #create encfs alias
 #gdb vs strace vs perf trace vs reptyr vs sysdig vs dtrace http://www.brendangregg.com/blog/2015-07-08/choosing-a-linux-tracer.html https://www.slideshare.net/brendangregg/velocity-2015-linux-perf-tools/105
 # https://kernelnewbies.org/KernelGlossary https://0xax.gitbooks.io/linux-insides/content/Booting/
@@ -6,8 +8,11 @@
 #next4 snapper? 
 #different results on listpkgsbysize? 
 #journalctl -p err..alert journalctl -p 3 -xb?
+#UsbGuard requires lrelease-qt4 but not on qt4-4.8.7-23, only qt4-4.8.7-24?
+#lyns? "Minimal of 2 responsive nameservers" and audit port
 #own repo
 #create pkgbuild from deb ^https://wiki.archlinux.org/index.php/Trusted_Users#How_do_I_become_a_TU.3F
+#torchat i2p freenet   Tomb Keyloggers (also HW Keyloggers) srm
 #customizerom
 
 ### Make questions ###
@@ -57,7 +62,7 @@ sudo pacman -Syu --noconfirm #update & upgrade
 sudo pacman -S arch-install-scripts base arm --oconfirm --needed
 sudo pacman -S tor --noconfirm --needed
 
-#Run Tor as chroot
+# Run Tor as chroot
 sudo find /var/lib/tor/ ! -user tor -exec chown tor:tor {} \;
 sudo chown -R tor:tor /var/lib/tor/
 sudo chmod -R 755 /var/lib/tor
@@ -94,7 +99,8 @@ if [[ "$(uname -m)" == "x86_64" ]]; then
   sudo ln -s $TORCHROOT/usr/lib ${TORCHROOT}/usr/lib64
 fi
 echo 'alias chtor="chroot --userspec=tor:tor /opt/torchroot /usr/bin/tor"' | tee -a .bashrc
-#Being able to run tor as a non-root user, and use a port lower than 1024 you can use kernel capabilities. As any upgrade to the tor package will reset the permissions, consider using pacman#Hooks, to automatically set the permissions after upgrades.
+
+# Being able to run tor as a non-root user, and use a port lower than 1024 you can use kernel capabilities. As any upgrade to the tor package will reset the permissions, consider using pacman#Hooks, to automatically set the permissions after upgrades.
 sudo setcap CAP_NET_BIND_SERVICE=+eip /usr/bin/tor
 echo "[Action]
 Description = Ports lower than 1024 available for Tor
@@ -108,7 +114,7 @@ sudo vi -c "s/#SocksPort 9050/SocksPort $TORPORT/g" -c ":wq" /etc/tor/torrc
 sudo vi -c "s/#ControlPort 9051/#ControlPort $TORCONTROLPORT/g" -c ":wq" /etc/tor/torrc
 sudo vi -c "s/#HashedControlPassword*$/#HashedControlPassword 16:${HASH:-2}/g" -c ":wq" /etc/tor/torrc
 
-#Running Tor in a systemd-nspawn container with a virtual network interface [which is more secure than chroot]
+# Running Tor in a systemd-nspawn container with a virtual network interface [which is more secure than chroot]
 TORCONTAINER=tor-exit #creating container and systemd service
 SVRCONTAINERS=/srv/container
 VARCONTAINERS=/var/lib/container
@@ -118,7 +124,6 @@ sudo pacstrap -i -c -d $SVRCONTAINERS/$TORCONTAINER base tor arm --noconfirm --n
 sudo mkdir $VARCONTAINERS
 sudo ln -s $SVRCONTAINERS/$TORCONTAINER $VARCONTAINERS/$TORCONTAINER
 sudo mkdir /etc/systemd/system/systemd-nspawn@$TORCONTAINER.service.d
-
 sudo ifconfig #adding container ad-hoc vlan
 time=10
 question="Write network interface to create VLAN (wlp2s0 by default): "
@@ -128,7 +133,6 @@ question()
 VLANINTERFACE="${INTERFACE:0:2}.tor"
 sudo ip link add link $INTERFACE name $VLANINTERFACE type vlan id $(((RANDOM%4094)+1))
 networkctl
-
 printf "[Service] 
 ExecStart=
 ExecStart=/usr/bin/systemd-nspawn --quiet --keep-unit --boot --link-journal=guest --network-macvlan=$VLANINTERFACE --private-network --directory=$VARCONTAINERS/$TORCONTAINER LimitNOFILE=32768" | sudo tee -a /etc/systemd/system/systemd-nspawn@tor-exit.service.d/tor-exit.conf #config file [yes, first empty ExecStart is required]
@@ -137,7 +141,7 @@ echo $(tty)
 #ExecStop
 #https://wiki.archlinux.org/index.php/Systemd-nspawn#root_login_fails
 
-#Checking conf
+# Checking conf
 sudo systemctl daemon-reload
 systemctl start systemd-nspawn@tor-exit.service
 machinectl -a
@@ -145,7 +149,7 @@ machinectl login tor-exit
 networkctl
 machine enable $TORCONTAINER #enable at boot
 
-#All DNS queries to Tor
+# All DNS queries to Tor
 echo "DNSPort $TORPORT
 AutomapHostsOnResolve 1
 AutomapHostsSuffixes .exit,.onion" | sudo tee -a /etc/tor/torrc
@@ -161,7 +165,7 @@ sudo dnsmasq
 echo "You can run Tor DNS queries using tor-resolve duckduckgo.com"
 tor-resolve duckduckgo.com
 
-#Pacman over Tor
+# Pacman over Tor
 sed -i "s,-c -O %o %u,-c -O %o %u \nXferCommand = /usr/bin/curl --socks5-hostname localhost:$TORPORT -C - -f %u > %o,g" /etc/pacman.conf
 
 ### Shadowsocks ###
@@ -170,8 +174,8 @@ sudo pacman -S shadowsocks-qt5 shadowsocks --noconfirm --needed
 ### GPG2 ###
 mkdir gpg2
 cd gpg2
-gpg --keyserver hkp://pgp.mit.edu --recv-keys 4F25E3B6
-gpg --keyserver hkp://pgp.mit.edu --recv-keys 33BD3F06
+gpg2 --keyserver hkp://pgp.mit.edu --recv-keys 249B39D24F25E3B6
+gpg2 --keyserver hkp://pgp.mit.edu --recv-keys 2071B08A33BD3F06
 
 installfunction(){
 wget https://www.gnupg.org/ftp/gcrypt/$NAME/$NAME-$VERSION.tar.bz2
@@ -238,82 +242,187 @@ VERSION=0.9.10
 SHA=c629348725c1bf5dafd57f8a70187dc89815ce60
 installfunction
 
-gpg --delete-keys 4F25E3B6 --yes
-gpg --delete-keys 33BD3F06 --yes
+gpg2 --delete-secret-and-public-keys --batch --yes  249B39D24F25E3B6
+gpg2 --delete-secret-and-public-keys --batch --yes  2071B08A33BD3F06
 
 cd ..
 sudo rm -r gpg2
 
 
 ### Security ###
-##Password management
+# Password management
 #sudo authconfig --passalgo=sha512 --update #pass sha512 $6 by default 
 #sudo chage -d 0 tiwary #To force new password in next login, but unnecessary as we are going to renew it now
 sudo pacman -S libpwquality --noconfirm --needed
-#Activate password requirements (Activate password required pam_cracklib.so retry=2 minlen=10 difok=6 dcredit=-1 ucredit=-1 ocredit=-1 lcredit=-1 and password required pam_unix.so use_authtok sha512 shadow and deactivate password required pam_unix.so sha512 shadow nullok)
+##########Activate password requirements (Activate password required pam_cracklib.so retry=2 minlen=10 difok=6 dcredit=-1 ucredit=-1 ocredit=-1 lcredit=-1 and password required pam_unix.so use_authtok sha512 shadow and deactivate password required pam_unix.so sha512 shadow nullok)
 #sudo vi -c "1,2s/#password/password" -c ":wq" /etc/pam.d/passwd 
 #sudo vi -c "3s/password/#password" -c ":wq" /etc/pam.d/passwd
-#sudo chage -M -1 90 $USER #force to change password every 90 days (-M, -W only for warning) but without password expiration (-1, -I will set a different days for password expiration, and -E a data where account will be locked)
-sudo chage -W 365 $USER #Warning days for password changing
+sudo chage -M -1 365 $USER #force to change password every 90 days (-M, -W only for warning) but without password expiration (-1, -I will set a different days for password expiration, and -E a data where account will be locked)
+sudo chage -W 90 $USER #Warning days for password changing
 pwmake 512 #Create a secure 512 bits password
 chage -l $USER #Change password
-
-#Increase delay in case of failed password (in this case, decreased, time in ms)
-echo "auth optional pam_faildelay.so delay=1" | sudo tee -a /etc/pam.d/system-login
-
-#Lockout user after three failed login attempts (pam_tally is deprecated and superseded by pam_tally2, time in ms
-echo "auth required pam_tally2.so deny=3 unlock_time=5000 onerr=succeed" | sudo tee -a /etc/pam.d/system-login
+###ALL DOWN!
+echo "auth optional pam_faildelay.so delay=1" | sudo tee -a /etc/pam.d/system-login #Increase delay in case of failed password (in this case, decreased, time in ms)
+echo "auth required pam_tally2.so deny=3 unlock_time=5000 onerr=succeed" | sudo tee -a /etc/pam.d/system-login #Lockout user after three failed login attempts (pam_tally is deprecated and superseded by pam_tally2, time in ms
 echo "account required pam_tally2.so" | sudo tee -a /etc/pam.d/system-login
 sudo vi -c "s/auth       required   pam_tally.so/#auth       required   pam_tally.so/g" -c ":wq" /etc/pam.d/system-login
+#echo "MENU MASTER PASSWD $syspass" | sudo tee -a syslinux.cfg #Syslinux bootloader security master password
+# TAKE BETWEEN root: AND : FROM $(sudo cat /etc/shadow | grep root)
+#https://wiki.archlinux.org/index.php/GRUB/Tips_and_tricks#Password_protection_of_GRUB_menu
 
-#Avoid fork bombs
+#BIOS lock down
+echo "Please lock down your BIOS" 
+
+# Avoid fork bombs
 sudo vi -c "s/#@faculty        soft    nproc           20/@faculty        soft    nproc           1000/g" -c ":wq" 
 sudo vi -c "s/#@faculty        hard    nproc           50/@faculty        hard    nproc           2000/g" -c ":wq" 
 
-##Prevent sudo from X11
-echo "/etc/X11/Xwrapper.config" | sudo tee -a /etc/X11/Xwrapper.config
-
-##Prevent sudo from SSH 
-if [ -s /etc/ssh/sshd_config ]
-then
-    echo "PermitRootLogin no" | sudo tee -a /etc/ssh/sshd_config
-    echo "Protocol 2" | sudo tee -a /etc/ssh/sshd_config
-else
-    sudo vi /etc/ssh/sshd_config -c ':%s/PermitRootLogin without password/PermitRootLogin no/g' -c ':wq'
-    sudo vi /etc/ssh/sshd_config -c ':%s/Protocol 2,1/Protocol 2/g' -c ':wq'
-fi
-/etc/init.d/sshd restart
-##To prevent sudo from SFTP: 
+# Prevent sudo from SFTP: 
 echo "auth   required   /lib/security/pam_listfile.so   item=user sense=deny file=/etc/vsftpd.ftpusers onerr=succeed" | sudo tee -a /etc/pam.d/vsftpd
-##Similar line can be added to the PAM configuration files, such as /etc/pam.d/pop and /etc/pam.d/imap for mail clients, or /etc/pam.d/sshd for SSH clients.
+#Similar line can be added to the PAM configuration files, such as /etc/pam.d/pop and /etc/pam.d/imap for mail clients, or /etc/pam.d/sshd for SSH clients.
 
-echo "tty | grep tty && TMOUT=10 >/dev/null" | sudo tee -a /etc/profile #log out virtual /dev/tty consoles out after 5s inactivity
-
-#Do not use rlogin, rsh, and telnet
-#Take care of securing sftp, auth, nfs, rpc, postfix, samba and sql https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Security_Guide/sec-Securing_Services.html
-#Take care of securing Docker https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_atomic_host/7/html-single/getting_started_with_containers/
-
-#TCP Wrappers
+# TCP Wrappers
 echo "Hello. All activity on this server is logged. Inappropriate uses and access will result in defensive counter-actions." | sudo tee -a /etc/banners/sshd
 echo "ALL : ALL : spawn /bin/echo `date` %c %d >> /var/log/intruder_alert" | sudo tee -a /etc/hosts.deny ##log any connection attempt from any IP and send the date to intruder_alert logfile
 echo "in.telnetd : ALL : severity emerg" | sudo tee -a /etc/hosts.deny ##log any attempt to connect to in.telnetd posting emergency log messages directly to the console
 
-#Encryption of filesystems 
+# Encrypt disk to avoid init=/bin/sh
+
+# Encryption of filesystems 
 sudo pacman -S encfs pam_encfs --noconfirm --needed #Check https://wiki.archlinux.org/index.php/Disk_encryption#Comparison_table
 
-#Kernel hardening
+# Kernel hardening
 sudo pacman -S linux-hardened --needed --noconfig
 echo "kernel.dmesg_restrict = 1" | sudo tee -a /etc/sysctl.d/50-dmesg-restrict.conf #Restricting access to kernel logs
 echo "kernel.kptr_restrict = 1" | sudo tee -a /etc/sysctl.d/50-kptr-restrict.conf #Restricting access to kernel pointers in the proc filesystem
 
-#Sandbox tools
+# Sandbox tools
 sudo pacman -S firejail --noconfirm --needed
 sudo pacman -S bubblewrap --noconfirm --needed
 sudo pacman -S lxc arch-install-scripts --noconfirm --needed
 
+# Bluetooth
+sudo vi /etc/bluetooth/main.conf -c ':%s|#AutoEnable=false|AutoEnable=false|g' -c ':wq'
+rfkill block bluetooth
+
+# USBGuard and USB readonly (previous checker -noexec and --rw included on alias monta)
+#git clone https://aur.archlinux.org/usbguard.git
+#cd usbguard
+#git clone git://github.com/ClusterLabs/libqb.git #dependencies
+#cd libqb
+#./autogen.sh
+#./configure
+#make
+#sudo make install
+#sudo pacman -S libsodium libgcrypt asciidoctor protobuf libseccomp libcap-ng qt4 --noconfirm --needed
+#cd ..
+#gpg2 --keyserver hkp://pgp.mit.edu --recv-keys AA06120530AE0466
+#makepkg -si --nodeps --noconfirm --needed
+#gpg2 --delete-secret-and-public-keys --batch --yes AA06120530AE0466
+#cd ..
+#sudo rm -r usbguard
+echo 'SUBSYSTEM=="block",ATTRS{removable}=="1",RUN{program}="/sbin/blockdev --setro %N"' | sudo tee -a  /etc/udev/rules.d/80-readonly-removables.rules
+sudo udevadm trigger
+sudo udevadm control --reload
+
+# Log out virtual /dev/tty consoles out after 10s inactivity and prevent sudo from X11
+echo "export TMOUT=\"\$(( 60*10 ))\"; #to exclude X11 from this rule, delete export word
+[ -z \"\$DISPLAY\" ] && export TMOUT;
+case \$( /usr/bin/tty ) in
+	/dev/tty[0-9]*) export TMOUT;;
+esac" | sudo tee -a /etc/profile.d/shell-timeout.sh
+echo 'Section "ServerFlags"
+    Option "DontVTSwitch" "True"
+EndSection' | sudo tee -a /usr/share/X11/xorg.conf.d/ 50-notsudo.conf
+
+# Extra recommendations
+echo "Do not use rlogin, rsh, and telnet"
+echo "Take care of securing sftp, auth, nfs, rpc, postfix, samba and sql https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Security_Guide/sec-Securing_Services.html"
+echo "Take care of securing Docker https://wiki.archlinux.org/index.php/Docker#Insecure_registries https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux_atomic_host/7/html-single/getting_started_with_containers/"
+
+
 ### Network ###
-#Tools
+# Tools
 sudo pacman -S traceroute nmap arp-scan conntrack-tools --noconfirm --needed
+
+# SSH
+if [ -s /etc/ssh/sshd_config ]
+then
+    echo "PermitRootLogin no" | sudo tee -a /etc/ssh/sshd_config
+    echo "Protocol 2" | sudo tee -a /etc/ssh/sshd_config
+    MaxAuthTries 3 | sudo tee -a etc/ssh/sshd_config
+else
+    sudo vi /etc/ssh/sshd_config -c ':%s/PermitRootLogin without password/PermitRootLogin no/g' -c ':wq'
+    sudo vi /etc/ssh/sshd_config -c ':%s/Protocol 2,1/Protocol 2/g' -c ':wq'
+    sudo vi etc/ssh/sshd_config -c ":%s|MaxAuthTries 6|MaxAuthTries 3|g" -c ":wq" 
+
+fi
+
+# SSHguard (prefered over Fail2ban)
+sudo pacman -S sshguard --noconfirm --needed
+sudo vi -c ":%s|BLACKLIST_FILE=120:/var/db/sshguard/blacklist.db|BLACKLIST_FILE=50:/var/db/sshguard/blacklist.db|g" -c ":wq" /etc/sshguard.conf #Danger level: 5 failed logins -> banned
+sudo vi -c ":%s|THRESHOLD=30|THRESHOLD=10|g" -c ":wq"  /etc/sshguard.conf 
+sudo systemctl enable --now sshguard.service --restart
+
+# OpenSSL and NSS
+sudo pacman -S openssl nss --noconfirm --needed
+cat $(locate ca-certificates) #check all certificates
+#blacklist ssl symanteccertificate
+wget https://crt.sh/?d=19538258 -O /etc/ca-certificates/trust-source/blacklist/19538258-Symantec.crt  #Blacklist Symantec SSL Cert
+etc/ca-certificates/trust-source/blacklist/
+sudo update-ca-trust
+
+# Suricata IDS/IPS (prefered over Snort https://www.aldeid.com/wiki/Suricata-vs-snort)
+gpg2 --keyserver hkp://pgp.mit.edu --recv-keys 801C7171DAC74A6D3A61ED81F7F9B0A300C1B70D
+git clone https://aur.archlinux.org/suricata.git
+cd suricata
+makepkg -si --noconfirm
+cd ..
+sudo rm -r suricata
+gpg2 --delete-secret-and-public-keys --batch --yes 801C7171DAC74A6D3A61ED81F7F9B0A300C1B70D
+#vi /etc/suricata/suricata.yaml -c ":%s|HOME_NET: \"[192.168.0.0/16,10.0.0.0/8,172.16.0.0/12]\"|HOME_NET: \"[$myip]\"|g" -c ":wq"
+sudo vi -c ":%s|# -|-|g" -c ":wq" /etc/suricata/suricata.yaml #activate all rules
+suricatasslrule(){ #blacklistsslcertificates
+wget https://sslbl.abuse.ch/blacklist/$SSLRULES -O /etc/suricata/rules/$SSLRULES
+wget https://sslbl.abuse.ch/blacklist/$SSLRULES_aggressive.rules -O /etc/suricata/rules/$SSLRULES_aggressive.rules
+echo " - $SSLRULES    # available in suricata sources under rules dir" | sudo tee /etc/suricata/suricata.yaml #activate ssl blacklist rules
+#echo " - $SSLRULES_aggresive.rules    # available in suricata sources under rules dir" | sudo tee /etc/suricata/suricata.yaml #activate ssl aggressive blacklist
+#notice that aggresive rules are not activated
+}
+SSLRULES=sslblacklist.rules
+suricatasslrule
+SSLRULES=sslipblacklist.rules
+suricatasslrule
+SSLRULES=dyre_sslblacklist.rules
+suricatasslrule
+SSLRULES=dyre_sslipblacklist.rules
+suricatasslrule
+sudo suricata -c /etc/suricata/suricata.yaml -s signatures.rules -i $INTERFACE -D #start suricata and enable interfaces
+echo "[Unit]
+Description=Suricata Intrusion Detection Service listening on '%I'
+After=network.target
+ 
+[Service]
+Type=forking
+ExecStart=/usr/bin/suricata -c /etc/suricata/suricata.yaml -i %i -D
+ExecReload=/bin/kill -HUP $MAINPID
+ 
+[Install]
+WantedBy=multi-user.target" | sudo tee -a /usr/lib/systemd/system/suricata@$INTERFACE.service
+sudo systemctl enable --now suricata@$INTERFACE.service
+
+echo "[Unit]
+Description=Suricata Intrusion Detection Service listening on '%I'
+After=network.target
+ 
+[Service]
+Type=forking
+ExecStart=/usr/bin/suricata -c /etc/suricata/suricata.yaml -i %i -D
+ExecReload=/bin/kill -HUP $MAINPID
+ 
+[Install]
+WantedBy=multi-user.target" | sudo tee -a /usr/lib/systemd/system/suricata@$VLANINTERFACE.service
+sudo systemctl enable --now suricata@$VLANINTERFACE.service
 
 # Ports
 time=15
@@ -389,6 +498,11 @@ nft add rule inet filter input ip protocol udp reject
 nft add rule inet filter input ip protocol tcp reject with tcp reset
 nft add rule inet filter input counter reject with icmp type prot-unreachable
 
+# Rootkit checking and Audits (see at the EOF)
+
+# Antivirus and Cleaners
+sudo pacman -S clamav bleachbit --noconfirm --needed
+
 
 ### Tweaks ###
 # .bashrc
@@ -416,8 +530,23 @@ wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.bashrc
 #cd ..
 #sudo rm -r snap-pac-grub
 
-# AUR-helper and repositories
-sudo pacman -S pacgraph pacutils yaourt --noconfirm --needed 
+# Pacman tools
+sudo pacman -S arch-audit pacgraph pacutils --noconfirm --needed 
+
+# PKGtools
+wget https://raw.githubusercontent.com/graysky2/lostfiles/master/lostfiles #Script that identifies files not owned and not created by any Arch Linux package.
+sudo mv lostfiles /usr/bin/lostfiles
+git clone https://github.com/Daenyth/pkgtools #newpkg - spec2arch - pkgconflict - whoneeds - pkgclean - maintpkg - pip2arch
+cd pkgtools/scripts/pip2arch
+wget https://raw.githubusercontent.com/lclarkmichalek/pip2arch/master/pip2arch.py
+cd ..
+cd ..
+sudo make install 
+cd ..
+sudo rm -r pkgtools
+
+# AUR-helpers and repositories
+sudo pacman -S yaourt --noconfirm --needed 
 git clone https://aur.archlinux.org/aurman.git #https://wiki.archlinux.org/index.php/AUR_helpers
 cd aurman
 makepkg -si --noconfirm
@@ -438,21 +567,9 @@ printf "alias haskellfyarch='printf \"[haskell-core] \n Server = http://xsounds.
 printf "alias haskellfyarch='printf \"[quarry] \n Server = https://pkgbuild.com/~anatolik/quarry/x86_64/ \" | sudo tee -a /etc/pacman.conf && echo \"This repo has not key!\"'" | sudo tee -a ~/.bashrc
 echo "Haskwell WAIs: Yesod Framework brings Wrap Server. It is better than Happstack. For small projects try Scotty that also comes with Wrap, or maybe Snap's snaplets" # https://wiki.haskell.org/Web
 
-# PKGtools
-wget https://raw.githubusercontent.com/graysky2/lostfiles/master/lostfiles #Script that identifies files not owned and not created by any Arch Linux package.
-sudo mv lostfiles /usr/bin/lostfiles
-git clone https://github.com/Daenyth/pkgtools #newpkg - spec2arch - pkgconflict - whoneeds - pkgclean - maintpkg - pip2arch
-cd pkgtools/scripts/pip2arch
-wget https://raw.githubusercontent.com/lclarkmichalek/pip2arch/master/pip2arch.py
-cd ..
-cd ..
-sudo make install 
-cd ..
-sudo rm -r pkgtools
-
 # Search tools
 sudo pacman -S mlocate recoll --noconfirm --needed
-vi -c "s|topdirs = / ~|topdirs = / ~|g" -c ":wq" /home/$USER/.recoll/recoll.conf
+vi -c ":%s|topdirs = / ~|topdirs = / ~|g" -c ":wq" /home/$USER/.recoll/recoll.conf
 sudo updatedb
 
 # Dock conf
@@ -960,11 +1077,71 @@ weechat -r "/set plugins.var.python.slack.slack_api_token $SLACKTOKEN" -r "/secu
 #echo "You need to verify the certificate at ~/.weechat/ssl first"
 #firefox --new-tab https://www.glowing-bear.org/
 
+# Rootkit checking and Audits
+#Unhide
+sudo pacman unhide -S --noconfirm --needed #Rkhunter instead of chkrootkit
+sudo unhide -m -d sys procall brute reverse
+printf'[Unit]
+Unit sudo unhide -m -d sys procall brute reverse
+Description=Run unhide weekly and on boot
+
+[Timer]
+#OnBootSec=15min
+#OnUnitActiveSec=1w
+OnCalendar=weekly
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+#for mail check https://wiki.archlinux.org/index.php/Systemd/Timers#MAILTO' | sudo tee /etc/systemd/system/unhide.timer
+sudo chmod u+rwx /etc/systemd/system/unhide.timer 
+sudo chmod go-rwx /etc/systemd/system/unhide.timer 
+sudo chmod go-rwx /etc/rkhunter.conf
+
+#Rkhunter
+sudo pacman rkhunter -S --noconfirm --needed #Rkhunter instead of chkrootkit
+echo 'SCRIPTWHITELIST="/usr/bin/egrep"' | sudo tee -a /etc/rkhunter.conf #false positive In Arch it is a bash script not a binary
+echo 'SCRIPTWHITELIST="/usr/bin/fgrep"' | sudo tee -a /etc/rkhunter.conf #false positive In Arch it is a bash script not a binary
+echo 'SCRIPTWHITELIST="/usr/bin/ldd"' | sudo tee -a /etc/rkhunter.conf #false positive In Arch it is a bash script not a binary
+echo 'EXISTWHITELIST="/usr/bin/vendor_perl/GET"' | sudo tee -a /etc/rkhunter.conf #false positive Not in Arch installations
+echo 'ALLOWHIDDENFILE="/etc/.updated"' | sudo tee -a /etc/rkhunter.conf #false positive This file was created by systemd-update-done. Its only purpose is to hold a timestamp of the time this directory was updated. See man:systemd-update-done.service(8).
+echo 'ALLOWHIDDENFILE="/usr/share/man/man5/.k5login.5.gz"' | sudo tee -a /etc/rkhunter.conf #false positive duplicated for krb5 package
+echo 'ALLOWHIDDENFILE="/usr/share/man/man5/.k5login.5.gz"' | sudo tee -a  /etc/rkhunter.conf #false positive duplicated for krb5 package
+echo 'ALLOWDEVFILE="/dev/dsp"' | sudo tee -a  /etc/rkhunter.conf #false positive https://wiki.archlinux.org/index.php/Open_Sound_System
+printf'[Unit]
+Unit=sudo rkhunter --skip-keypress --summary --check --hash sha256 -x
+Description=Run unhide weekly and on boot
+
+[Timer]
+#OnBootSec=15min
+#OnUnitActiveSec=1w
+OnCalendar=weekly
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+#for mail check https://wiki.archlinux.org/index.php/Systemd/Timers#MAILTO' |  sudo tee /etc/systemd/system/unhide.timer
+sudo chmod u+rwx /etc/systemd/system/unhide.timer 
+sudo chmod go-rwx /etc/systemd/system/unhide.timer 
+sudo chmod go-rwx /etc/rkhunter.conf 
+sudo rkhunter --skip-keypress --summary --check --hash sha256 -x
+
+#Lynis
+sudo pacman -S lynis --noconfirm --needed
+sudo lynis audit system
+
 
 ### Autoremove and Snapshot ###
 sudo pacman -Rns $(pacman -Qtdq) --noconfirm
+pacman -Qq | sudo paccheck --sha256sum --quiet
+if [ $? -eq 0 ]
+then
+    echo "sha256 sum of pkgs validated"
+else
+    echo "bad sha256 sum!"
+    exit
+fi
 #snapper -c initial create --description initial #Make snapshot initial (no chsnap for ext4)
-
 
 
 ### Frugalware Stable ISO
