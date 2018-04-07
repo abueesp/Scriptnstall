@@ -2675,3 +2675,39 @@ if [ ! -z "$2" ]; then
 fi
 }
 rotatescreen=rotate
+
+importusbgpg(){
+read -p "Name of the stick: " LABEL
+# The DOS label of your USB stick
+LABEL="${LABEL:=$mystick}"
+
+# The pathname to the file containing your private keys
+# on that stick
+KEYFILE=/mykeys/mykey.gpg
+
+# Identify the device file corresponding to your USB stick
+device=$(/sbin/findfs LABEL=$LABEL)
+
+if [ -n "$device" ]; then
+    # Mount the stick
+    udisksctl mount --block-device $device
+
+    # Create temporary GnuPG home directory
+    tmpdir=$(mktemp -d -p $XDG_RUNTIME_DIR gpg.XXXXXX)
+
+    # Import the private keys
+    gpg2 --homedir $tmpdir --import /run/media/$USER/$LABEL/$KEYFILE
+
+    # Unmount the stick
+    udisksctl unmount --block-device $device
+
+    # Launch GnuPG from the temporary directory,
+    # with the default public keyring
+    # and with any arguments given to us on the command line
+    gpg2 --homedir $tmpdir --keyring ${GNUPGHOME:-$HOME/.gnupg}/pubring.kbx $@
+
+    # Cleaning up
+    [ -f $tmpdir/S.gpg-agent ] && gpg-connect-agent --homedir $tmpdir KILLAGENT /bye
+    rm -rf $tmpdir
+fi
+}
