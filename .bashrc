@@ -828,6 +828,7 @@ alias wtfhappened='sudo find / -cmin 1'
 alias whatchanged='sudo find / -mtime'
 alias wai="nmcli dev show && curl ipinfo.io/country && wget http://ipinfo.io/ip -qO - && echo 'For deeper testing visit http://ip-check.info/'"
 alias myip=wai
+alias bannedips="iptables --list sshguard --line-numbers --numeric"
 alias whatip="dig"
 alias cpc='cp -i -r'
 alias mvm='mv -i -u'
