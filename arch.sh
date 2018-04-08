@@ -716,6 +716,7 @@ echo "syntax on" | sudo tee -a /usr/share/vim/vimrc
 
 #Vim portability for ssh (sshrc)
 wget https://raw.githubusercontent.com/Russell91/sshrc/master/sshrc && sudo chmod -R 600 sshrc && chmod +x sshrc && sudo mv sshrc /usr/local/bin
+ln -s ~/.vimrc ~/.sshrc #symblink .sshrc to .vimrc
 
 vimfunctions(){
 echo "### Tools ###"    
