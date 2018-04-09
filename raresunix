@@ -1,15 +1,11 @@
 
 fuser
-dmesg -x --facility=daemon dice systemd-hostnamed: Warning: nss-myhostname is not installed
-cflow ctags cxref ipcrm localdef logger m4 mkfifo
+cflow ctags cxref ipcrm
  od, initctl
  patch pathchk
 torque-client grindengine slurm qmsg qstat
-nice renice chrt 
 sact sccs delta prs
-getty stty
 ulimit, umask
-xargs
 uucp uustat uux uudecode uuencode 
 getopt
 lex yacc
