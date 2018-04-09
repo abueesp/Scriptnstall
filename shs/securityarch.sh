@@ -1,5 +1,6 @@
 echo "Security Apps: For detailed guides, see the main ArchWiki page, Security https://wiki.archlinux.org/index.php/List_of_applications/Security"
 
+
 echo "### Network security ###"
 echo "Network security"
 echo "Arpwatch — Tool that monitors ethernet activity and keeps a database of Ethernet/IP address pairings. http://ee.lbl.gov/" 
@@ -26,8 +27,6 @@ echo "Spectools — A set of utilities for spectrum analyzer hardware including 
 sudo pacman -S spectools --needed --noconfirm
 echo "Sshguard — Daemon that protects SSH and other services against brute-force attacts, similar to Fail2ban. https://www.sshguard.net/" 
 sudo pacman -S sshguard --needed --noconfirm
-
-
 echo "Wireshark — Network protocol analyzer that lets you capture and interactively browse the traffic running on a computer network. https://www.wireshark.org/" 
 sudo pacman -S wireshark-cli wireshark-qt --needed --noconfirm #QT prefered over GTK, iptraf, kismet and tcpdump
 echo "Metasploit Framework — An advanced open-source platform for developing, testing, and using exploit code. https://www.metasploit.com/ 
@@ -106,8 +105,6 @@ sudo chmod u+rwx /etc/systemd/system/unhide.timer
 sudo chmod go-rwx /etc/systemd/system/unhide.timer 
 sudo chmod go-rwx /etc/rkhunter.conf 
 sudo rkhunter --skip-keypress --summary --check --hash sha256 -x
-echo "Hostsblock — A script that downloads, sorts, and compiles multiple ad- and malware-blocking hosts files. http://gaenserich.github.io/hostsblock/" 
-sudo pacman -S hostsblock --needed --noconfirm
 
 
 echo "### Hash checkers ###"
@@ -123,6 +120,7 @@ make --ignore-errors
 sudo make install --ignore-errors
 cd ..
 sudo rm -r hashalot
+
 
 echo "### Encryption, signing, steganography ###"
 echo "ccrypt — A command-line utility for encrypting and decrypting files and streams. http://ccrypt.sourceforge.net/ 
