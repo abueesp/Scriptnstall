@@ -113,9 +113,9 @@ echo "TORPORT $TORPORT"
 TORCONTROLPORT=$(shuf -i 2000-65000 -n 1)
 echo "TORCONTROLPORT $TORCONTROLPORT"
 TORHASH=$(echo -n $RANDOM | sha256sum)
-sudo vi -c "s/#SocksPort 9050/SocksPort $TORPORT/g" -c ":wq" /etc/tor/torrc
-sudo vi -c "s/#ControlPort 9051/#ControlPort $TORCONTROLPORT/g" -c ":wq" /etc/tor/torrc
-sudo vi -c "s/#HashedControlPassword*$/#HashedControlPassword 16:${HASH:-2}/g" -c ":wq" /etc/tor/torrc
+sudo vim -c ":%s/#SocksPort 9050/SocksPort $TORPORT/g" -c ":wq" /etc/tor/torrc
+sudo vim -c ":%s/#ControlPort 9051/#ControlPort $TORCONTROLPORT/g" -c ":wq" /etc/tor/torrc
+sudo vim -c ":%s/#HashedControlPassword*$/#HashedControlPassword 16:${HASH:-2}/g" -c ":wq" /etc/tor/torrc
 
 # Running Tor in a systemd-nspawn container with a virtual network interface [which is more secure than chroot]
 TORCONTAINER=tor-exit #creating container and systemd service
@@ -157,13 +157,13 @@ echo "DNSPort $TORPORT
 AutomapHostsOnResolve 1
 AutomapHostsSuffixes .exit,.onion" | sudo tee -a /etc/tor/torrc
 sudo pacman -S dnsmasq --noconfirm --needed
-sudo vi -c "s/#port=5353/port=$TORPORT/g" -c ":wq" /etc/dnsmasq.conf
-sudo vi -c "s/#conf-file=/usr/share/dnsmasq/trust-anchors.conf/conf-file=/usr/share/dnsmasq/trust-anchors.conf/g" -c ":wq" /etc/dnsmasq.conf
-sudo vi -c "s/#dnssec/dnssec/g" -c ":wq" /etc/dnsmasq.conf
-sudo vi -c "s/#no-resolv/no-resolv/g" -c ":wq" /etc/dnsmasq.conf
-sudo vi -c "s/#server=/localnet/192.168.0.1server=127.0.0.1/g" -c ":wq" /etc/dnsmasq.conf
-sudo vi -c "s/#listen-address=listen-address=127.0.0.1" -c ":wq" /etc/dnsmasq.conf
-sudo vi -c "s/#nohook resolv.conf/nohook resolv.conf/g" -c ":wq" /etc/dhcpcd.conf
+sudo vim -c ":%s/#port=5353/port=$TORPORT/g" -c ":wq" /etc/dnsmasq.conf
+sudo vim -c ":%s/#conf-file=/usr/share/dnsmasq/trust-anchors.conf/conf-file=/usr/share/dnsmasq/trust-anchors.conf/g" -c ":wq" /etc/dnsmasq.conf
+sudo vim -c ":%s/#dnssec/dnssec/g" -c ":wq" /etc/dnsmasq.conf
+sudo vim -c ":%s/#no-resolv/no-resolv/g" -c ":wq" /etc/dnsmasq.conf
+sudo vim -c ":%s/#server=/localnet/192.168.0.1server=127.0.0.1/g" -c ":wq" /etc/dnsmasq.conf
+sudo vim -c ":%s/#listen-address=listen-address=127.0.0.1" -c ":wq" /etc/dnsmasq.conf
+sudo vim -c ":%s/#nohook resolv.conf/nohook resolv.conf/g" -c ":wq" /etc/dhcpcd.conf
 sudo dnsmasq 
 echo "You can run Tor DNS queries using tor-resolve duckduckgo.com"
 tor-resolve duckduckgo.com
@@ -258,8 +258,8 @@ sudo rm -r gpg2
 #sudo chage -d 0 tiwary #To force new password in next login, but unnecessary as we are going to renew it now
 sudo pacman -S libpwquality --noconfirm --needed
 ##########Activate password requirements (Activate password required pam_cracklib.so retry=2 minlen=10 difok=6 dcredit=-1 ucredit=-1 ocredit=-1 lcredit=-1 and password required pam_unix.so use_authtok sha512 shadow and deactivate password required pam_unix.so sha512 shadow nullok)
-#sudo vi -c "1,2s/#password/password" -c ":wq" /etc/pam.d/passwd 
-#sudo vi -c "3s/password/#password" -c ":wq" /etc/pam.d/passwd
+#sudo vim -c ":%1,2s/#password/password" -c ":wq" /etc/pam.d/passwd 
+#sudo vim -c ":%3s/password/#password" -c ":wq" /etc/pam.d/passwd
 sudo chage -M -1 365 $USER #force to change password every 90 days (-M, -W only for warning) but without password expiration (-1, -I will set a different days for password expiration, and -E a data where account will be locked)
 sudo chage -W 90 $USER #Warning days for password changing
 pwmake 512 #Create a secure 512 bits password
@@ -268,7 +268,7 @@ chage -l $USER #Change password
 echo "auth optional pam_faildelay.so delay=1" | sudo tee -a /etc/pam.d/system-login #Increase delay in case of failed password (in this case, decreased, time in ms)
 echo "auth required pam_tally2.so deny=3 unlock_time=5000 onerr=succeed" | sudo tee -a /etc/pam.d/system-login #Lockout user after three failed login attempts (pam_tally is deprecated and superseded by pam_tally2, time in ms
 echo "account required pam_tally2.so" | sudo tee -a /etc/pam.d/system-login
-sudo vi -c "s/auth       required   pam_tally.so/#auth       required   pam_tally.so/g" -c ":wq" /etc/pam.d/system-login
+sudo vim -c ":%s/auth       required   pam_tally.so/#auth       required   pam_tally.so/g" -c ":wq" /etc/pam.d/system-login
 #echo "MENU MASTER PASSWD $syspass" | sudo tee -a syslinux.cfg #Syslinux bootloader security master password
 # TAKE BETWEEN root: AND : FROM $(sudo cat /etc/shadow | grep root)
 #https://wiki.archlinux.org/index.php/GRUB/Tips_and_tricks#Password_protection_of_GRUB_menu
@@ -277,8 +277,8 @@ sudo vi -c "s/auth       required   pam_tally.so/#auth       required   pam_tall
 echo "Please lock down your BIOS" 
 
 # Avoid fork bombs
-sudo vi -c "s/#@faculty        soft    nproc           20/@faculty        soft    nproc           1000/g" -c ":wq" 
-sudo vi -c "s/#@faculty        hard    nproc           50/@faculty        hard    nproc           2000/g" -c ":wq" 
+sudo vim -c ":%s/#@faculty        soft    nproc           20/@faculty        soft    nproc           1000/g" -c ":wq" 
+sudo vim -c ":%s/#@faculty        hard    nproc           50/@faculty        hard    nproc           2000/g" -c ":wq" 
 
 # Prevent sudo from SFTP: 
 echo "auth   required   /lib/security/pam_listfile.so   item=user sense=deny file=/etc/vsftpd.ftpusers onerr=succeed" | sudo tee -a /etc/pam.d/vsftpd
@@ -363,8 +363,8 @@ fi
 
 # SSHguard (prefered over Fail2ban)
 sudo pacman -S sshguard --noconfirm --needed
-sudo vi -c ":%s|BLACKLIST_FILE=120:/var/db/sshguard/blacklist.db|BLACKLIST_FILE=50:/var/db/sshguard/blacklist.db|g" -c ":wq" /etc/sshguard.conf #Danger level: 5 failed logins -> banned
-sudo vi -c ":%s|THRESHOLD=30|THRESHOLD=10|g" -c ":wq"  /etc/sshguard.conf 
+sudo vim -c ":%s ":%s|BLACKLIST_FILE=120:/var/db/sshguard/blacklist.db|BLACKLIST_FILE=50:/var/db/sshguard/blacklist.db|g" -c ":wq" /etc/sshguard.conf #Danger level: 5 failed logins -> banned
+sudo vim -c ":%s ":%s|THRESHOLD=30|THRESHOLD=10|g" -c ":wq"  /etc/sshguard.conf 
 sudo systemctl enable --now sshguard.service --restart
 
 # OpenSSL and NSS
@@ -385,7 +385,7 @@ sudo rm -r suricata
 gpg2 --delete-secret-and-public-keys --batch --yes 801C7171DAC74A6D3A61ED81F7F9B0A300C1B70D
 
 #vi /etc/suricata/suricata.yaml -c ":%s|HOME_NET: \"[192.168.0.0/16,10.0.0.0/8,172.16.0.0/12]\"|HOME_NET: \"[$myip]\"|g" -c ":wq"
-sudo vi -c ":%s|# -|-|g" -c ":wq" /etc/suricata/suricata.yaml #activate all rules
+sudo vim -c ":%s ":%s|# -|-|g" -c ":wq" /etc/suricata/suricata.yaml #activate all rules
 suricatasslrule(){ #blacklistsslcertificates
 wget https://sslbl.abuse.ch/blacklist/$SSLRULES -O /etc/suricata/rules/$SSLRULES
 wget https://sslbl.abuse.ch/blacklist/$SSLRULES_aggressive.rules -O /etc/suricata/rules/$SSLRULES_aggressive.rules
@@ -573,7 +573,7 @@ echo "Haskwell WAIs: Yesod Framework brings Wrap Server. It is better than Happs
 
 # Search tools
 sudo pacman -S mlocate recoll --noconfirm --needed
-vi -c ":%s|topdirs = / ~|topdirs = / ~|g" -c ":wq" /home/$USER/.recoll/recoll.conf
+vim -c ":%s ":%s|topdirs = / ~|topdirs = / ~|g" -c ":wq" /home/$USER/.recoll/recoll.conf
 sudo updatedb
 
 # Dock conf
@@ -967,11 +967,11 @@ sudo pacman -S vivaldi --noconfirm --needed
 
 #Chromium
 sudo pacman -S chromium --noconfirm --needed
-#vi -c "s/google.com/google.jp/search?q=%s&pws=0&ei=#cns=0&gws_rd=ssl/g" -c ":wq" ~/.config/chromium/Default/Preferences
+#vim -c ":%s/google.com/google.jp/search?q=%s&pws=0&ei=#cns=0&gws_rd=ssl/g" -c ":wq" ~/.config/chromium/Default/Preferences
 #CREATEHASH=$(sha256sum ~/.config/chromium/Default/Preferences)
 #HASH=$(echo $CREATEHASH | head -n1 | sed -e 's/\s.*$//')
 #HASHPREF=$(echo $HASH | awk '{print toupper($0)}')
-#vi -c 's/"super_mac":".*"}}/"super_mac":"$HASHPREF"}}/g' -c ":wq" ~/.config/chromium/Default/'Secure Preferences'
+#vim -c ":%s 's/"super_mac":".*"}}/"super_mac":"$HASHPREF"}}/g' -c ":wq" ~/.config/chromium/Default/'Secure Preferences'
 chromium-browser https://chrome.google.com/webstore/detail/url-tracking-stripper-red/flnagcobkfofedknnnmofijmmkbgfamf
 chromium-browser https://chrome.google.com/webstore/detail/dont-track-me-google/gdbofhhdmcladcmmfjolgndfkpobecpg
 chromium-browser https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm
