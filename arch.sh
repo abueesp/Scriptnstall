@@ -2,7 +2,6 @@
 ###Revisar password management
 ##Awesome Linux
 
-
 ### Questions ### https://www.archlinux.org/feeds/news/ https://wiki.archlinux.org/index.php/IRC_channel (add to weechat) https://www.archlinux.org/feeds/  https://security.archlinux.org/
 #create encfs alias
 #gdb vs strace vs perf trace vs reptyr vs sysdig vs dtrace http://www.brendangregg.com/blog/2015-07-08/choosing-a-linux-tracer.html https://www.slideshare.net/brendangregg/velocity-2015-linux-perf-tools/105
@@ -1082,8 +1081,9 @@ weechat -r "/set plugins.var.python.slack.slack_api_token $SLACKTOKEN" -r "/secu
 #echo "You need to verify the certificate at ~/.weechat/ssl first"
 #firefox --new-tab https://www.glowing-bear.org/
 
-# Rootkit checking and Audits
+### Rootkit checking and Audits ###
 #Unhide
+echo "Unhide — A forensic tool to find processes hidden by rootkits, LKMs or by other techniques. "
 sudo pacman unhide -S --noconfirm --needed #Rkhunter instead of chkrootkit
 sudo unhide -m -d sys procall brute reverse
 printf'[Unit]
@@ -1104,6 +1104,7 @@ sudo chmod go-rwx /etc/systemd/system/unhide.timer
 sudo chmod go-rwx /etc/rkhunter.conf
 
 #Rkhunter
+echo "Rkhunter — Checks machines for the presence of rootkits and other unwanted tools."
 sudo pacman rkhunter -S --noconfirm --needed #Rkhunter instead of chkrootkit
 echo 'SCRIPTWHITELIST="/usr/bin/egrep"' | sudo tee -a /etc/rkhunter.conf #false positive In Arch it is a bash script not a binary
 echo 'SCRIPTWHITELIST="/usr/bin/fgrep"' | sudo tee -a /etc/rkhunter.conf #false positive In Arch it is a bash script not a binary
@@ -1132,13 +1133,19 @@ sudo chmod go-rwx /etc/rkhunter.conf
 sudo rkhunter --skip-keypress --summary --check --hash sha256 -x
 
 #Lynis
+echo "Lynis — Security and system auditing tool to harden Unix/Linux systems. https://cisofy.com/lynis/"
 sudo pacman -S lynis --noconfirm --needed
 sudo lynis audit system
+
+#Tiger
+echo "Tiger — Security tool that can be use both as a security audit and intrusion detection system. http://www.nongnu.org/tiger/" 
+aurman -S tiger --needed --noconfirm --noedit
+sudo tiger
 
 
 ### Autoremove and Snapshot ###
 sudo pacman -Rns $(pacman -Qtdq) --noconfirm
-pacman -Qq | sudo paccheck --sha256sum --quiet
+sudo pacman -Qq | sudo paccheck --sha256sum --quiet
 if [ $? -eq 0 ]
 then
     echo "sha256 sum of pkgs validated"
