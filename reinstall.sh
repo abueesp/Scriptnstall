@@ -383,8 +383,8 @@ cat /etc/fail2ban/jail.local | grep destemail
 sudo vi /etc/fail2ban/jail.local ':%s/\<action = %(action_)s\>/<action = %(action_mw)s\>/gIc' ':wq'
 sudo vi /etc/fail2ban/jail.local ':%s/\<enabled  = false\>/<enabled  = true\>/gIc' ':wq'
 cp files/debian-initd /etc/init.d/fail2ban
-sudo vi -c 's|[sshd]|#[sshd]|g' -c ':wq' /etc/fail2ban/jail.d/defaults-debian.conf
-sudo vi -c 's|enabled = true|#enabled = true|g' -c ':wq' /etc/fail2ban/jail.d/defaults-debian.conf
+sudo vim -c 's|[sshd]|#[sshd]|g' -c ':wq' /etc/fail2ban/jail.d/defaults-debian.conf
+sudo vim -c 's|enabled = true|#enabled = true|g' -c ':wq' /etc/fail2ban/jail.d/defaults-debian.conf
 update-rc.d fail2ban defaults
 service fail2ban start
 cd ..
@@ -1115,7 +1115,7 @@ weechat -r "/set plugins.var.python.slack.slack_api_token $SLACKTOKEN" -r "/secu
 
 ##Last vulnerability assessment https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Security_Guide/sec-Vulnerability_Assessment.html
 sudo apt-get autoremove -y
-sudo vi -c "s/if $ssh -G 2>&1 | grep -e illegal -e unknow >/if $ssh -G 2>&1 | grep -e illegal -e unknown -e Gg >/g" -c "wq" /usr/sbin/chkrootkit
+sudo vim -c ":%s/if $ssh -G 2>&1 | grep -e illegal -e unknow >/if $ssh -G 2>&1 | grep -e illegal -e unknown -e Gg >/g" -c "wq" /usr/sbin/chkrootkit
 sudo /usr/sbin/./chkrootkit -x
 sudo /usr/sbin/./chkrootkit
 sudo apt-get install rkhunter -y
