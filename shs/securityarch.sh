@@ -1,44 +1,40 @@
 echo "Security Apps: For detailed guides, see the main ArchWiki page, Security https://wiki.archlinux.org/index.php/List_of_applications/Security"
-
+sudo pacman -S aurman --needed --noconfirm --noedit
 
 echo "### Network security ###"
 echo "Network security"
 echo "Arpwatch — Tool that monitors ethernet activity and keeps a database of Ethernet/IP address pairings. http://ee.lbl.gov/" 
 sudo pacman -S arpwatch --needed --noconfirm 
 echo "Bro — Powerful network analysis framework that is much different from the typical IDS you may know. https://www.bro.org/" 
-sudo pacman -S bro-git --needed --noconfirm
+aurman -S bro-git --needed --noconfirm --noedit
 git clone https://github.com/bro/package-manager
 cd package-manager
 sudo python setup.py install
-cd ..
+cd .. 
 sudo rm -r package-manager
-#bro-pkg install bro_bitcoin
+#bro-pkg install bro_bitcoin/
 echo "EtherApe — Graphical network monitor for Unix modeled after etherman. Featuring link layer, IP and TCP modes, it displays network activity graphically. Hosts and links change in size with traffic. Color coded protocols display. http://etherape.sourceforge.net/" 
 sudo pacman -S etherape --needed --noconfirm
 echo "Honeyd — Tool that allows the user to set up and run multiple virtual hosts on a computer network. http://www.honeyd.org/" 
-sudo pacman -S honeyd --needed --noconfirm
+aurman -S honeyd --needed --noconfirm --noedit --noedit
 echo "vnStat — Console-based network traffic monitor that keeps a log of network traffic for the selected interfaces. http://humdi.net/vnstat/" 
-sudo pacman -S vnstat --needed --noconfirm
+sudo pacman -S vnstat --needed --noconfirm --noedit
 echo "Nmap — Security scanner used to discover hosts and services on a computer network, thus creating a map of the network. https://nmap.org/" 
-sudo pacman -S nmap --needed --noconfirm
+aurman -S nmap --needed --noconfirm --noedit
 echo "Ntop — Network probe that shows network usage in a way similar to what top does for processes. http://www.ntop.org/" 
 sudo pacman -S ntop --needed --noconfirm
-echo "Spectools — A set of utilities for spectrum analyzer hardware including Wi-Spy devices. https://www.kismetwireless.net/spectools/" 
-sudo pacman -S spectools --needed --noconfirm
+
 echo "Sshguard — Daemon that protects SSH and other services against brute-force attacts, similar to Fail2ban. https://www.sshguard.net/" 
-sudo pacman -S sshguard --needed --noconfirm
+sudo pacman -S sshguard --noconfirm --needed
+sudo vim -c ":%s ":%s|BLACKLIST_FILE=120:/var/db/sshguard/blacklist.db|BLACKLIST_FILE=50:/var/db/sshguard/blacklist.db|g" -c ":wq" /etc/sshguard.conf #Danger level: 5 failed logins -> banned
+sudo vim -c ":%s ":%s|THRESHOLD=30|THRESHOLD=10|g" -c ":wq"  /etc/sshguard.conf 
+sudo systemctl enable --now sshguard.service --restart
+
 echo "Wireshark — Network protocol analyzer that lets you capture and interactively browse the traffic running on a computer network. https://www.wireshark.org/" 
 sudo pacman -S wireshark-cli wireshark-qt --needed --noconfirm #QT prefered over GTK, iptraf, kismet and tcpdump
 echo "Metasploit Framework — An advanced open-source platform for developing, testing, and using exploit code. https://www.metasploit.com/ "
-sudo pacman -S metasploit --needed --noconfirm
-echo "Nessus — Comprehensive vulnerability scanning program. http://www.nessus.org/products/nessus" 
-sudo pacman -S nessus --needed --noconfirm
-echo "OSSEC — Open Source Host-based Intrusion Detection System that performs log analysis, file integrity checking, policy monitoring, rootkit detection, real-time alerting and active response. https://ossec.github.io/" 
-sudo pacman -S sec-agent ossec-local ossec --needed --noconfirm
-echo "Samhain — Host-based intrusion detection system (HIDS) provides file integrity checking and log file monitoring/analysis, as well as rootkit detection, port monitoring, detection of rogue SUID executables, and hidden processes. http://www.la-samhna.de/samhain/index.html" 
-sudo pacman -S samhain --needed --noconfirm
-echo "Tiger — Security tool that can be use both as a security audit and intrusion detection system. http://www.nongnu.org/tiger/" 
-sudo pacman -S tiger --needed --noconfirm
+/var/log/tiger/security.report.node.180409-08:55
+
 echo "Tripwire — Intrusion detection system. https://github.com/Tripwire/tripwire-open-source"
 sudo pacman -S tripwire --needed --noconfirm
 
@@ -48,21 +44,22 @@ echo "### File Security  ###"
 #sudo pacman -S logcheck --needed --noconfirm
 #echo "Logwatch — Customizable log analysis system. https://sourceforge.net/projects/logwatch/ 
 #sudo pacman -S logwatch --needed --noconfirm
-echo "File security AIDE — File and directory integrity checker. http://aide.sourceforge.net/" 
-sudo pacman -S aide --needed --noconfirm
+#echo "File security AIDE — File and directory integrity checker. http://aide.sourceforge.net/" 
+#sudo pacman -S aide --needed --noconfirm
 echo "Package integrity"
 sudo pacman -S paccheck --needed --noconfirm
 sudo pacman -Qq | sudo paccheck --sha256sum --quiet
 
 
-
 echo "### Anti Malware ###"
-echo "Lynis — Security and system auditing tool to harden Unix/Linux systems. https://cisofy.com/lynis/ 
+echo "Tiger — Security tool that can be use both as a security audit and intrusion detection system. http://www.nongnu.org/tiger/" 
+aurman -S tiger --needed --noconfirm --noedit
+sudo tiger
+echo "Lynis — Security and system auditing tool to harden Unix/Linux systems. https://cisofy.com/lynis/ "
 sudo pacman -S lynis --needed --noconfirm
 sudo lynis audit system
-#Unhide
-sudo pacman unhide -S --noconfirm --needed #Rkhunter instead of chkrootkit
-echo "Unhide — A forensic tool to find processes hidden by rootkits, LKMs or by other techniques." 
+echo "Unhide — A forensic tool to find processes hidden by rootkits, LKMs or by other techniques. "
+sudo pacman unhide -S --noconfirm --needed
 sudo unhide -m -d sys procall brute reverse
 printf'[Unit]
 Unit sudo unhide -m -d sys procall brute reverse
@@ -81,7 +78,7 @@ sudo chmod u+rwx /etc/systemd/system/unhide.timer
 sudo chmod go-rwx /etc/systemd/system/unhide.timer
 sudo chmod go-rwx /etc/rkhunter.conf
 
-echo "Rootkit Hunter — Checks machines for the presence of rootkits and other unwanted tools. http://rkhunter.sourceforge.net/ 
+echo "Rkhunter — Checks machines for the presence of rootkits and other unwanted tools."
 sudo pacman rkhunter -S --noconfirm --needed #Rkhunter instead of chkrootkit
 echo 'SCRIPTWHITELIST="/usr/bin/egrep"' | sudo tee -a /etc/rkhunter.conf #false positive In Arch it is a bash script not a binary
 echo 'SCRIPTWHITELIST="/usr/bin/fgrep"' | sudo tee -a /etc/rkhunter.conf #false positive In Arch it is a bash script not a binary
@@ -130,13 +127,13 @@ echo "ccrypt — A command-line utility for encrypting and decrypting files and 
 sudo pacman -S ccrypt --needed --noconfirm
 echo "Enigmail — A security extension to Mozilla Thunderbird and Seamonkey. It enables you to write and receive email messages signed and/or encrypted with the OpenPGP standard. https://enigmail.net thunderbird-
 sudo pacman -S enigmail --needed --noconfirm
-echo "Keybase — Key directory mapping social media identities, with cross platform encrypted chat, cloud storage, and git repositories. https://keybase.io/ keybase or keybase-
-sudo pacman -S bin --needed --noconfirm
-echo "KGpg — a simple interface for GnuPG for KDE. https://www.kde.org/applications/utilities/kgpg/ 
+echo "Keybase — Key directory mapping social media identities, with cross platform encrypted chat, cloud storage, and git repositories."
+sudo pacman -S keybase --needed --noconfirm
+echo "KGpg — a simple interface for GnuPG for KDE. https://www.kde.org/applications/utilities/kgpg/"
 sudo pacman -S kgpg --needed --noconfirm
-echo "Seahorse — GNOME application for managing encryption keys and passwords in the GnomeKeyring. http://library.gnome.org/users/seahorse/stable/ 
+echo "Seahorse — GNOME application for managing encryption keys and passwords in the GnomeKeyring. http://library.gnome.org/users/seahorse/stable/" 
 sudo pacman -S seahorse --needed --noconfirm
-echo "steghide — A steganography utility that is able to hide data in various kinds of image and audio files. http://steghide.sourceforge.net 
+echo "steghide — A steganography utility that is able to hide data in various kinds of image and audio files. http://steghide.sourceforge.net "
 sudo pacman -S steghide --needed --noconfirm
 
 
