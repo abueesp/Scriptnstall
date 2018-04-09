@@ -48,7 +48,7 @@ echo "### File Security  ###"
 #sudo pacman -S logcheck --needed --noconfirm
 #echo "Logwatch — Customizable log analysis system. https://sourceforge.net/projects/logwatch/ 
 #sudo pacman -S logwatch --needed --noconfirm
-echo "File security AIDE — File and directory integrity "checker. http://aide.sourceforge.net/" 
+echo "File security AIDE — File and directory integrity checker. http://aide.sourceforge.net/" 
 sudo pacman -S aide --needed --noconfirm
 echo "Package integrity"
 sudo pacman -S paccheck --needed --noconfirm
