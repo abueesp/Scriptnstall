@@ -32,11 +32,30 @@ sudo systemctl enable --now sshguard.service --restart
 
 echo "Wireshark — Network protocol analyzer that lets you capture and interactively browse the traffic running on a computer network. https://www.wireshark.org/" 
 sudo pacman -S wireshark-cli wireshark-qt --needed --noconfirm #QT prefered over GTK, iptraf, kismet and tcpdump
-echo "Metasploit Framework — An advanced open-source platform for developing, testing, and using exploit code. https://www.metasploit.com/ "
-/var/log/tiger/security.report.node.180409-08:55
 
-echo "Tripwire — Intrusion detection system. https://github.com/Tripwire/tripwire-open-source"
-sudo pacman -S tripwire --needed --noconfirm
+echo "Metasploit Framework — An advanced open-source platform for developing, testing, and using exploit code. https://www.metasploit.com/ "
+aurman -S metasploit-git armitage  jdk10-openjdk jre10-openjdk jre10-openjdk-headless --noconfirm --noedit --needed
+echo 'alias msfconsole="echo \"Run msfconsole and write \'db_connect $USER@msf\' and \'db_rebuild_cache\'\" && msfconsole --quiet -x \"db_connect $USER@msf\""' | tee -a /home/$USER/.bashrc
+cp /usr/share/metasploit/database.yml.sample ~/.msf4/database.yml
+read -p "Introduce msf user: " MSFUSER
+vim -c ":%s/#username here/$MSFUSER/g" -c ":wq" ~/.msf4/database.yml
+  read -p "Introduce msf password: " MSFPASSWORD
+vim -c ":%s/#password here/$MSFPASSWORD/g" -c ":wq" ~/.msf4/database.yml
+
+curl -L get.rvm.io > rvm-install #for msfconsole you need RVM
+bash < ./rvm-install
+rm rvm-install
+echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && export rvm_ignore_gemrc_issues=1 && source "$HOME/.rvm/scripts/rvm' | tee -a /home/$USER/.bashrc
+source /home/$USER/.bashrc
+rvm list known
+RVMVERSION=$(rvm list known | awk 'NR==12{print $1}' | cut -d ']' -f 2 | rev | cut -c4- | rev)
+rvm install $RVMVERSION
+rvm use $RVMVERSION --default
+gem install bundler
+echo "PATH=\"$PATH:$(ruby -e 'print Gem.user_dir\')bin\"" | tee -a /home/$USER/.bashrc
+echo 'export GEM_HOME=$HOME/.gem' | tee -a /home/$USER/.bashrc
+gem env
+gem list
 
 
 echo "### File Security  ###"
@@ -123,36 +142,25 @@ sudo rm -r hashalot
 
 
 echo "### Encryption, signing, steganography ###"
-echo "ccrypt — A command-line utility for encrypting and decrypting files and streams. http://ccrypt.sourceforge.net/ 
-sudo pacman -S ccrypt --needed --noconfirm
-echo "Enigmail — A security extension to Mozilla Thunderbird and Seamonkey. It enables you to write and receive email messages signed and/or encrypted with the OpenPGP standard. https://enigmail.net thunderbird-
-sudo pacman -S enigmail --needed --noconfirm
-echo "Keybase — Key directory mapping social media identities, with cross platform encrypted chat, cloud storage, and git repositories."
-sudo pacman -S keybase --needed --noconfirm
+echo "ccrypt — A command-line utility for encrypting and decrypting files and streams. http://ccrypt.sourceforge.net/"
+aurman -S ccrypt --needed --noconfirm --noedit
+echo "Keybase-bin — Key directory mapping social media identities, with cross platform encrypted chat, cloud storage, and git repositories."
+aurman -S keybase-bin --noconfirm --noedit --needed #better than keybase
+run_keybase
 echo "KGpg — a simple interface for GnuPG for KDE. https://www.kde.org/applications/utilities/kgpg/"
-sudo pacman -S kgpg --needed --noconfirm
-echo "Seahorse — GNOME application for managing encryption keys and passwords in the GnomeKeyring. http://library.gnome.org/users/seahorse/stable/" 
-sudo pacman -S seahorse --needed --noconfirm
+sudo pacman -S gnupg kgpg --needed --noconfirm
 echo "steghide — A steganography utility that is able to hide data in various kinds of image and audio files. http://steghide.sourceforge.net "
 sudo pacman -S steghide --needed --noconfirm
 
 
 echo "### Password managers ###"
-echo "Encryptr — Zero-knowledge, cloud-based password manager. https://spideroak.com/encryptr/ 
-sudo pacman -S encryptr --needed --noconfirm
-echo "KeePass Password Safe — Free open source Mono-based password manager, which helps you to manage your passwords in a secure way. https://keepass.info/ 
-sudo pacman -S keepass --needed --noconfirm
-echo "KeePassXC — A community fork of KeePassX with more active development. https://keepassxc.org/ 
-sudo pacman -S keepassxc --needed --noconfirm
-echo "pass — Simple console based password manager, using GnuPG encryption. https://www.passwordstore.org/ 
+echo "Encryptr — Zero-knowledge, cloud-based password manager. https://spideroak.com/encryptr/" 
+aurman -S encryptr --needed --noconfirm --noedit
+echo "KeePassXC — A community fork of KeePassX with more active development. https://keepassxc.org/ "
+sudo pacman -S keepassxc --needed --noconfirm #prefered over keepass and keepassX
+echo "pass — Simple console based password manager, using GnuPG encryption. https://www.passwordstore.org/ "
 sudo pacman -S pass --needed --noconfirm
-echo "Password Safe — Simple and secure password manager. https://pwsafe.org/ 
-sudo pacman -S passwordsafe --needed --noconfirm
-echo "pwsafe — Unix commandline program that manages encrypted password databases. http://nsd.dyndns.org/pwsafe/ 
-sudo pacman -S pwsafe --needed --noconfirm
-echo "Revelation — Password manager for the GNOME desktop. https://revelation.olasagasti.info/ 
-sudo pacman -S revelation --needed --noconfirm
-echo "spm — Simple Password Manager written entirely in POSIX shell using PGP. Fast, lightweight and easily scriptable. https://notabug.org/kl3/spm/ 
-sudo pacman -S spm --needed --noconfirm
+echo "spm — Simple Password Manager written entirely in POSIX shell using PGP. Fast, lightweight and easily scriptable. https://notabug.org/kl3/spm/ "
+aurman spm --needed --noconfirm --noedit
 echo "Seahorse — GNOME application for managing encryption keys and passwords in the GnomeKeyring. https://wiki.gnome.org/Apps/Seahorse "
 sudo pacman -S seahorse --needed --noconfirm
