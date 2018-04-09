@@ -1,4 +1,7 @@
+###DNS and Firewall
 ###Revisar password management
+##Awesome Linux
+
 
 ### Questions ### https://www.archlinux.org/feeds/news/ https://wiki.archlinux.org/index.php/IRC_channel (add to weechat) https://www.archlinux.org/feeds/  https://security.archlinux.org/
 #create encfs alias
@@ -380,6 +383,7 @@ makepkg -si --noconfirm
 cd ..
 sudo rm -r suricata
 gpg2 --delete-secret-and-public-keys --batch --yes 801C7171DAC74A6D3A61ED81F7F9B0A300C1B70D
+
 #vi /etc/suricata/suricata.yaml -c ":%s|HOME_NET: \"[192.168.0.0/16,10.0.0.0/8,172.16.0.0/12]\"|HOME_NET: \"[$myip]\"|g" -c ":wq"
 sudo vi -c ":%s|# -|-|g" -c ":wq" /etc/suricata/suricata.yaml #activate all rules
 suricatasslrule(){ #blacklistsslcertificates
