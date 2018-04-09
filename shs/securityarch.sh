@@ -29,7 +29,7 @@ echo "Sshguard — Daemon that protects SSH and other services against brute-for
 sudo pacman -S sshguard --needed --noconfirm
 echo "Wireshark — Network protocol analyzer that lets you capture and interactively browse the traffic running on a computer network. https://www.wireshark.org/" 
 sudo pacman -S wireshark-cli wireshark-qt --needed --noconfirm #QT prefered over GTK, iptraf, kismet and tcpdump
-echo "Metasploit Framework — An advanced open-source platform for developing, testing, and using exploit code. https://www.metasploit.com/ 
+echo "Metasploit Framework — An advanced open-source platform for developing, testing, and using exploit code. https://www.metasploit.com/ "
 sudo pacman -S metasploit --needed --noconfirm
 echo "Nessus — Comprehensive vulnerability scanning program. http://www.nessus.org/products/nessus" 
 sudo pacman -S nessus --needed --noconfirm
@@ -41,17 +41,20 @@ echo "Tiger — Security tool that can be use both as a security audit and intru
 sudo pacman -S tiger --needed --noconfirm
 echo "Tripwire — Intrusion detection system. https://github.com/Tripwire/tripwire-open-source"
 sudo pacman -S tripwire --needed --noconfirm
-echo "File security AIDE — File and directory integrity "checker. http://aide.sourceforge.net/" 
-sudo pacman -S aide --needed --noconfirm
-echo "Package integrity"
-sudo pacman -S paccheck --needed --noconfirm
-sudo pacman -Qq | sudo paccheck --sha256sum --quiet
+
 
 echo "### File Security  ###"
 #echo "Logcheck — Simple utility which is designed to allow a system administrator to view the logfiles which are produced upon hosts under their control. https://logcheck.alioth.debian.org/ 
 #sudo pacman -S logcheck --needed --noconfirm
 #echo "Logwatch — Customizable log analysis system. https://sourceforge.net/projects/logwatch/ 
 #sudo pacman -S logwatch --needed --noconfirm
+echo "File security AIDE — File and directory integrity "checker. http://aide.sourceforge.net/" 
+sudo pacman -S aide --needed --noconfirm
+echo "Package integrity"
+sudo pacman -S paccheck --needed --noconfirm
+sudo pacman -Qq | sudo paccheck --sha256sum --quiet
+
+
 
 echo "### Anti Malware ###"
 echo "Lynis — Security and system auditing tool to harden Unix/Linux systems. https://cisofy.com/lynis/ 
@@ -136,6 +139,7 @@ sudo pacman -S seahorse --needed --noconfirm
 echo "steghide — A steganography utility that is able to hide data in various kinds of image and audio files. http://steghide.sourceforge.net 
 sudo pacman -S steghide --needed --noconfirm
 
+
 echo "### Password managers ###"
 echo "Encryptr — Zero-knowledge, cloud-based password manager. https://spideroak.com/encryptr/ 
 sudo pacman -S encryptr --needed --noconfirm
@@ -153,5 +157,5 @@ echo "Revelation — Password manager for the GNOME desktop. https://revelation.
 sudo pacman -S revelation --needed --noconfirm
 echo "spm — Simple Password Manager written entirely in POSIX shell using PGP. Fast, lightweight and easily scriptable. https://notabug.org/kl3/spm/ 
 sudo pacman -S spm --needed --noconfirm
-echo "Seahorse — GNOME application for managing encryption keys and passwords in the GnomeKeyring. https://wiki.gnome.org/Apps/Seahorse 
+echo "Seahorse — GNOME application for managing encryption keys and passwords in the GnomeKeyring. https://wiki.gnome.org/Apps/Seahorse "
 sudo pacman -S seahorse --needed --noconfirm
