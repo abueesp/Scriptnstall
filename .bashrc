@@ -643,6 +643,10 @@ tmux send-keys 'ls'
 tmux -2 attach-session -t 'MyTS'
 tmux select-window -t 'Bash0'
 }
+alias tmuxkillall="tmux ls | grep : | cut -d. -f1 | awk '{print substr($1, 0, length($1)-1)}' | xargs kill"
+alias tmuxsshrc="sshrc -t -- /bin/sh -c 'tmux has-session && exec tmux attach || exec tmux'"
+alias tmuxssh="ssh -t -- /bin/sh -c 'tmux has-session && exec tmux attach || exec tmux'"
+
 
 docsthemagic() {
   read -p "vas a crear las copias, luego armonizar los nombres y finalmente limpiar los metadatos de todos los archivos ubicados en esta carpeta. Introduce los documentos. recuerda que si quieres hacer un backup puedes usar mat -b" docs
@@ -866,7 +870,6 @@ alias rename='mv'
 alias readfiles='sudo tail -vn +1 $(find . -maxdepth 1 -not -type d)'
 alias catall=readfiles
 alias catwithlines='cat -n'
-alias tmuxkillall="tmux ls | grep : | cut -d. -f1 | awk '{print substr($1, 0, length($1)-1)}' | xargs kill"
 alias gitlist='git remote -v'
 alias diferencia='echo "Puedes usar tambien vi -d o kompare"; colordiff -ystFpr'
 alias compara='diff -y -r'
