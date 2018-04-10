@@ -626,7 +626,6 @@ securedelete() {
   }
   
 tmuxts() {
-echo 'C-b is the magic key'
 tmux new-session -s 'MyTS' -d 'vim'
 tmux rename-window 'Vim'
 tmux split-window -v -d 'weechat'
@@ -635,7 +634,7 @@ tmux select-pane -t '0:0'
 tmux split-window -h -d 'bash'
 tmux select-pane -t '0:1'
 tmux rename-window 'Bash0'
-tmux new-window -n -t 'bash netrik https://encrypted.google.com' 
+tmux new-window -n -t 'lynx https://encrypted.google.com' 
 tmux send-keys 'n n n n n n n' 'C-m'
 tmux rename-window 'Lynx'
 tmux split-window -h -d 'bash'
@@ -643,6 +642,7 @@ tmux rename-window 'Bash1'
 tmux send-keys 'ls'
 tmux -2 attach-session -t 'MyTS'
 tmux select-window -t 'Bash0'
+echo 'C-b is the magic key :'
 }
 alias tmuxsshrc="read -p 'Which address?: ' ADDRIP && sshrc $ADDRIP -t -- /bin/sh -c 'tmux has-session && exec tmux attach || exec tmux'"
 alias tmuxssh="read -p 'Which address?: ' ADDRIP && ssh $ADDRIP -t -- /bin/sh -c 'tmux has-session && exec tmux attach || exec tmux'"
