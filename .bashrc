@@ -633,8 +633,9 @@ tmux split-window -v -d 'weechat'
 tmux rename-window 'Weechat'
 tmux select-pane -t '0:0'
 tmux split-window -h -d 'bash'
+tmux select-pane -t '0:1'
 tmux rename-window 'Bash0'
-tmux new-window -n -t 'lynx https://encrypted.google.com' 
+tmux new-window -n -t 'bash netrik https://encrypted.google.com' 
 tmux send-keys 'n n n n n n n' 'C-m'
 tmux rename-window 'Lynx'
 tmux split-window -h -d 'bash'
@@ -643,9 +644,8 @@ tmux send-keys 'ls'
 tmux -2 attach-session -t 'MyTS'
 tmux select-window -t 'Bash0'
 }
-alias tmuxkillall="tmux ls | grep : | cut -d. -f1 | awk '{print substr($1, 0, length($1)-1)}' | xargs kill"
-alias tmuxsshrc="sshrc -t -- /bin/sh -c 'tmux has-session && exec tmux attach || exec tmux'"
-alias tmuxssh="ssh -t -- /bin/sh -c 'tmux has-session && exec tmux attach || exec tmux'"
+alias tmuxsshrc="read -p 'Which address?: ' ADDRIP && sshrc $ADDRIP -t -- /bin/sh -c 'tmux has-session && exec tmux attach || exec tmux'"
+alias tmuxssh="read -p 'Which address?: ' ADDRIP && ssh $ADDRIP -t -- /bin/sh -c 'tmux has-session && exec tmux attach || exec tmux'"
 
 
 docsthemagic() {
