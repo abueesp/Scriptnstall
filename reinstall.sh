@@ -587,6 +587,10 @@ VIMINSTRUCTION=":command! Vb exe \"norm! \\<C-V>"
 function sendtovimrc()
 VIMINSTRUCTION="isudo pacman -S  --noconfirm --needed\<esc>4bhi"
 function sendtovimrc()
+VIMINSTRUCTION="set autoindent"
+function sendtovimrc()
+VIMINSTRUCTION="set paste"
+function sendtovimrc()
 
 #PATHOGENFOLDER="~/.vim/build"
 #mkdir $PATHOGENFOLDER
