@@ -567,9 +567,26 @@ sudo rm scrivener-$SCRIVENERVERSION.deb
 sudo apt-get install vim -y
 git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
 sh ~/.vim_runtime/install_awesome_vimrc.sh
-echo ":nnoremap <C-B> <C-V>" | sudo tee -a /usr/share/vim/vimrc
-echo ":nnoremap <C-O> o<Esc>" | sudo tee -a /usr/share/vim/vimrc
-#echo ":command! Vb exe "norm! \<C-V>" | sudo tee -a /usr/share/vim/vimrc
+
+#Commands
+if /home/$USER/.vim_runtime/vimrcs/basic.vim
+	then
+		VIMRC=/home/$USER/.vim_runtime/vimrcs/basic.vim
+	else
+		VIMRC=.vimrc
+function sendtovimrc(){
+echo "let @$key='$VIMINSTRUCTION'" | tee -a $VIMRC
+#please note the double set of quotes
+}
+echo "\#\#\# Commands \#\#\#" | tee -a $VIMRC
+VIMINSTRUCTION=":nnoremap <C-B> <C-V>"
+function sendtovimrc()
+VIMINSTRUCTION=":nnoremap <C-O> o<Esc>"
+function sendtovimrc()
+VIMINSTRUCTION=":command! Vb exe \"norm! \\<C-V>"
+function sendtovimrc()
+VIMINSTRUCTION="isudo pacman -S  --noconfirm --needed\<esc>4bhi"
+function sendtovimrc()
 
 #PATHOGENFOLDER="~/.vim/build"
 #mkdir $PATHOGENFOLDER
