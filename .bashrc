@@ -707,8 +707,8 @@ tmux source-file ~/tmux.conf
 
 getsh() {
 sudo wget https://github.com/abueesp/Scriptnstall/edit/master/reinstall.sh
-sudo wget https://github.com/abueesp/Scriptnstall/edit/master/work.sh
-sudo wget https://github.com/abueesp/Scriptnstall/blob/master/dnie.sh
+cp /home/$USER/.bashrc /home/$USER/.bashrc-d
+sudo wget https://github.com/abueesp/Scriptnstall/edit/master/.bashrc
 }
 
 she() {
