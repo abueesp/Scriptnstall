@@ -792,29 +792,11 @@ wget https://addons.mozilla.org/firefox/downloads/file/782839/recap-1.1.8-an+fx.
 cd ..
 cd ..
 cd ..
-cd ~/.mozilla/firefox/*.default
-echo 'privacy.firstparty.isolate = true
-privacy.resistFingerprinting = true
-privacy.trackingprotection.enabled = true
-browser.cache.offline.enable = false
-browser.safebrowsing.malware.enabled = false
-browser.safebrowsing.phishing.enabled = false
-browser.send_pings = false
-browser.sessionstore.max_tabs_undo = 0
-browser.urlbar.speculativeConnect.enabled = false
-dom.battery.enabled = false
-accessibility.blockautorefresh = 1
-dom.event.clipboardevents.enabled = false
-geo.enabled = false
-media.navigator.enabled = false
-network.cookie.cookieBehavior = 1
-network.cookie.lifetimePolicy = 2
-webgl.disabled = true
-user_pref("browser.search.defaulturl","https://ixquick.me/");
-user_pref("browser.search.defaultenginename","Ixquick");
-' | tee -a user.js 
-cd
-firefox --new-tab about:config 
+#vim -c ':%s/user_pref("browser.safebrowsing.*//g' -c ":wq" prefs.js
+vim -c ':%s/user_pref("browser.newtabpage.activity-stream.impressionId".*//g' -c ":wq" ~/.mozilla/firefox/*.default/prefs.js
+vim -c ':%s/user_pref("toolkit.telemetry.cachedClientID".*//g' -c ":wq" ~/.mozilla/firefox/*.default/prefs.js
+vim -c ':%s|user_pref("privacy.trackingprotection.pbmode.enabled", false);|user_pref("privacy.trackingprotection.pbmode.enabled", true);|g' -c ":wq" ~/.mozilla/firefox/*.default/prefs.js
+
 
 #thunderbird extensions
 cd Downloads
