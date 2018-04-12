@@ -568,29 +568,44 @@ sudo apt-get install vim -y
 git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
 sh ~/.vim_runtime/install_awesome_vimrc.sh
 
-#Commands
-if /home/$USER/.vim_runtime/vimrcs/basic.vim
+### Vim ###
+sudo pacman -S vim --noconfirm --needed
+sudo pacman -S git --noconfirm --needed
+git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
+sh ~/.vim_runtime/install_awesome_vimrc.sh
+
+if [ -e "/home/$USER/.vim_runtime/vimrcs/basic.vim" ];
 	then
 		VIMRC=/home/$USER/.vim_runtime/vimrcs/basic.vim
 	else
 		VIMRC=.vimrc
+fi
+
+echo "\#\#\# Commands \#\#\#" | tee -a $VIMRC
+echo ":nnoremap <C-B> <C-V>" | tee -a $VIMRC
+echo ":nnoremap <C-O> o<Esc>" | tee -a $VIMRC
+echo ":command! Vb exe \"norm! \\<C-V>" | tee -a $VIMRC
+echo "set autoindent" | tee -a $VIMRC
+echo "set paste" | tee -a $VIMRC
+echo "set mouse=a" | tee -a $VIMRC
+echo "### Arrow keys ###" | tee -a $VIMRC
+echo "nnoremap <silent> <ESC>OA <UP>" | tee -a $VIMRC
+echo "nnoremap <silent> <ESC>OB <DOWN>" | tee -a $VIMRC
+echo "nnoremap <silent> <ESC>OC <RIGHT>" | tee -a $VIMRC
+echo "nnoremap <silent> <ESC>OD <LEFT>" | tee -a $VIMRC
+echo "inoremap <silent> <ESC>OA <UP>" | tee -a $VIMRC
+echo "inoremap <silent> <ESC>OB <DOWN>" | tee -a $VIMRC
+echo "inoremap <silent> <ESC>OC <RIGHT>" | tee -a $VIMRC
+echo "inoremap <silent> <ESC>OD <LEFT>" | tee -a $VIMRC
+
+echo "\#\#\# Instructions \#\#\#" | tee -a $VIMRC
 function sendtovimrc(){
 echo "let @$key='$VIMINSTRUCTION'" | tee -a $VIMRC
 #please note the double set of quotes
 }
-echo "\#\#\# Commands \#\#\#" | tee -a $VIMRC
-VIMINSTRUCTION=":nnoremap <C-B> <C-V>"
-function sendtovimrc()
-VIMINSTRUCTION=":nnoremap <C-O> o<Esc>"
-function sendtovimrc()
-VIMINSTRUCTION=":command! Vb exe \"norm! \\<C-V>"
-function sendtovimrc()
+key="i"
 VIMINSTRUCTION="isudo pacman -S  --noconfirm --needed\<esc>4bhi"
-function sendtovimrc()
-VIMINSTRUCTION="set autoindent"
-function sendtovimrc()
-VIMINSTRUCTION="set paste"
-function sendtovimrc()
+sendtovimrc
 
 #PATHOGENFOLDER="~/.vim/build"
 #mkdir $PATHOGENFOLDER
