@@ -581,14 +581,17 @@ if [ -e "/home/$USER/.vim_runtime/vimrcs/basic.vim" ];
 		VIMRC=.vimrc
 fi
 
-echo "\#\#\# Commands \#\#\#" | tee -a $VIMRC
+echo '\n' | tee -a $VIMRC
+echo '\" => Commands' | tee -a $VIMRC
 echo ":nnoremap <C-B> <C-V>" | tee -a $VIMRC
 echo ":nnoremap <C-O> o<Esc>" | tee -a $VIMRC
 echo ":command! Vb exe \"norm! \\<C-V>" | tee -a $VIMRC
 echo "set autoindent" | tee -a $VIMRC
 echo "set paste" | tee -a $VIMRC
 echo "set mouse=a" | tee -a $VIMRC
-echo "### Arrow keys ###" | tee -a $VIMRC
+
+echo '\n' | tee -a $VIMRC
+echo '\" => Arrow keys' | tee -a $VIMRC
 echo "nnoremap <silent> <ESC>OA <UP>" | tee -a $VIMRC
 echo "nnoremap <silent> <ESC>OB <DOWN>" | tee -a $VIMRC
 echo "nnoremap <silent> <ESC>OC <RIGHT>" | tee -a $VIMRC
@@ -598,7 +601,8 @@ echo "inoremap <silent> <ESC>OB <DOWN>" | tee -a $VIMRC
 echo "inoremap <silent> <ESC>OC <RIGHT>" | tee -a $VIMRC
 echo "inoremap <silent> <ESC>OD <LEFT>" | tee -a $VIMRC
 
-echo "\#\#\# Instructions \#\#\#" | tee -a $VIMRC
+echo '\n' | tee -a $VIMRC
+echo '\" => Arrow keys' | tee -a $VIMRC
 function sendtovimrc(){
 echo "let @$key='$VIMINSTRUCTION'" | tee -a $VIMRC
 #please note the double set of quotes
@@ -606,6 +610,7 @@ echo "let @$key='$VIMINSTRUCTION'" | tee -a $VIMRC
 key="i"
 VIMINSTRUCTION="isudo pacman -S  --noconfirm --needed\<esc>4bhi"
 sendtovimrc
+
 
 #PATHOGENFOLDER="~/.vim/build"
 #mkdir $PATHOGENFOLDER
