@@ -720,6 +720,7 @@ mkdir extensions
 cd extensions
 mkdir privacy
 cd privacy
+wget https://addons.mozilla.org/firefox/downloads/file/839942/startpagecom_private_search_engine.xpi
 wget https://www.eff.org/files/privacy-badger-latest.xpi
 wget https://addons.mozilla.org/firefox/downloads/file/706680/google_redirects_fixer_tracking_remover-3.0.0-an+fx.xpi GoogleRedirectFixer.xpi
 wget https://addons.mozilla.org/firefox/downloads/file/727843/skip_redirect-2.2.1-fx.xpi SkipRedirect.xpi
@@ -809,8 +810,8 @@ media.navigator.enabled = false
 network.cookie.cookieBehavior = 1
 network.cookie.lifetimePolicy = 2
 webgl.disabled = true
-user_pref("browser.search.defaulturl","https://searx.me/");
-user_pref("browser.search.defaultenginename","Searx");
+user_pref("browser.search.defaulturl","https://ixquick.me/");
+user_pref("browser.search.defaultenginename","Ixquick");
 ' | tee -a user.js 
 cd
 firefox --new-tab about:config 
@@ -888,6 +889,8 @@ $IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/project-naptha/mo
 $IRONFOLDER/./chrome https://blockchain-dns.info/files/BDNS-1.0.8.crx
 
 #chromium
+#vim -c ":%s|google.com|google.jp/search?q=%s&pws=0&ei=#cns=0&gws_rd=ssl|g" -c ":wq" ~/.config/chromium/Default/Preferences
+#vim -c ":%s|Yahoo|ixquick|g" -c ":wq" ~/.config/chromium/Default/Preferences
 sudo add-apt-repository ppa:canonical-chromium-builds/stage -y
 sudo apt-get update
 sudo apt-get install chromium-browser chromium-browser-l10n chromium-codecs-ffmpeg-extra -y
