@@ -8,7 +8,8 @@ LANGUAGE=$(locale | grep LANG | cut -d'=' -f 2 | cut -d'_' -f 1)
 
 ###For bc
 #export BC_ENV_ARGS=$HOME/.bc #start it with bc -l ~/.bc
-alias calc="bc -l $HOME/.bc"
+alias superbc="bc -l $HOME/.bc"
+alias calc=superbc
 
 ### History ###
 export HISTTIMEFORMAT='%F %T '
