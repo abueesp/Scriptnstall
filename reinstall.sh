@@ -1147,8 +1147,10 @@ sudo /usr/sbin/./chkrootkit -x
 sudo /usr/sbin/./chkrootkit
 sudo apt-get install rkhunter -y
 echo "PKGMGR=DPKG" | sudo tee -a /etc/rkhunter.conf.local
-sudo rkhunter --propupd
+sudo rkhunter --propupd #Avoid warning abuot rkhunter.dat
 sudo rkhunter --update
-rkhunter --check --rwo --vl -x
+sudo rkhunter --skip-keypress --summary --check --hash sha256 -x --configfile /etc/rkhunter.conf
+sudo cat /var/log/rkhunter.log | grep -A 6 Warning
+sudo cat /var/log/rkhunter.log | grep -A 6 Hidden
 
 echo "EOF" 
