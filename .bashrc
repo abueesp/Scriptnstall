@@ -1390,7 +1390,7 @@ read -p "Write down the whole path of the ISO file: " isofile
 sudo fdisk -l
 read -p "Write down the /dev/sd* of the unit: " usbsda
 read -p "Write down a speed (by default 2048 bytes blocksize, you can select 1k or even 4M): " blocksize
-blocksize=$"{blocksize:=2048}"
+blocksize=${blocksize:=2048}
 sudo dd bs=$blocksize conv=noerror,sync if=$isofile of=$usbsda status=progress
 }
 
