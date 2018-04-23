@@ -2722,3 +2722,17 @@ if [ -n "$device" ]; then
     rm -rf $tmpdir
 fi
 }
+
+disableremoteping(){
+sudo vim -c ":%s|-A ufw-before-input -p icmp --icmp-type destination-unreachable -j ACCEPT|-A ufw-before-input -p icmp --icmp-type destination-unreachable -j ACCEPT|g" -c ":wq" /etc/ufw/before.rules
+sudo vim -c ":%s|-A ufw-before-input -p icmp --icmp-type source-quench -j ACCEPT|-A ufw-before-input -p icmp --icmp-type source-quench -j ACCEPT|g" -c ":wq" /etc/ufw/before.rules
+sudo vim -c ":%s|-A ufw-before-input -p icmp --icmp-type time-exceeded -j ACCEPT|-A ufw-before-input -p icmp --icmp-type time-exceeded -j ACCEPT|g" -c ":wq" /etc/ufw/before.rules
+sudo vim -c ":%s|-A ufw-before-input -p icmp --icmp-type parameter-problem -j ACCEPT|-A ufw-before-input -p icmp --icmp-type parameter-problem -j ACCEPT|g" -c ":wq" /etc/ufw/before.rules
+sudo vim -c ":%s|-A ufw-before-input -p icmp --icmp-type echo-request -j ACCEPT|-A ufw-before-input -p icmp --icmp-type echo-request -j ACCEPT|g" -c ":wq" /etc/ufw/before.rules
+
+sudo vim -c ":%s|-A ufw-before-input -p icmp --icmp-type destination-unreachable -j ACCEPT|-A ufw-before-input -p icmp --icmp-type destination-unreachable -j ACCEPT|g" -c ":wq" /etc/ufw/before6.rules
+sudo vim -c ":%s|-A ufw-before-input -p icmp --icmp-type source-quench -j ACCEPT|-A ufw-before-input -p icmp --icmp-type source-quench -j ACCEPT|g" -c ":wq" /etc/ufw/before6.rules
+sudo vim -c ":%s|-A ufw-before-input -p icmp --icmp-type time-exceeded -j ACCEPT|-A ufw-before-input -p icmp --icmp-type time-exceeded -j ACCEPT|g" -c ":wq" /etc/ufw/before6.rules
+sudo vim -c ":%s|-A ufw-before-input -p icmp --icmp-type parameter-problem -j ACCEPT|-A ufw-before-input -p icmp --icmp-type parameter-problem -j ACCEPT|g" -c ":wq" /etc/ufw/before6.rules
+sudo vim -c ":%s|-A ufw-before-input -p icmp --icmp-type echo-request -j ACCEPT|-A ufw-before-input -p icmp --icmp-type echo-request -j ACCEPT|g" -c ":wq" /etc/ufw/before6.rules
+}
