@@ -78,6 +78,9 @@ echo "Hello. All activity on this server is logged. Inappropriate uses and acces
 echo "ALL : ALL : spawn /bin/echo `date` %c %d >> /var/log/intruder_alert" | sudo tee -a /etc/hosts.deny ##log any connection attempt from any IP and send the date to intruder_alert logfile
 echo "in.telnetd : ALL : severity emerg" | sudo tee -a /etc/hosts.deny ##log any attempt to connect to in.telnetd posting emergency log messages directly to the console
 
+#Disable ICMP
+echo "Check function disableremoteping"
+
 ##Disable Source Routing
 sudo /sbin/sysctl -w net.ipv4.conf.all.accept_source_route=0 | sudo tee -a /etc/sysctl.conf
 
