@@ -1476,7 +1476,7 @@ sudo apt-get purge winehq-staging
 }
 
 changemymac(){
-ifconfig -a | grep HWaddr
+ifconfig -a | grep -B 3 ether
 read -p "Those are your macs. Choose the ethernet interface (eth, wlan...) you want to change. It will be sustitued by a random MAC, so write before in case it could have been mac filtering whitelisted : " wlan
 RANGE=255
 #set integer ceiling
