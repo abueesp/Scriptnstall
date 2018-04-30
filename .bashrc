@@ -76,7 +76,7 @@ ${script_color} Coding for good - $USER command line $(tty) $nc
 ${command_color}  Ƀe ℋuman, be κinđ, be ωise $nc
 
 Colors legend and some notes:
-${linenum_color}- line number: red$nc ${lightred} - debugsh debuglog debugdump grc percol $nc
+${linenum_color}- line number: red$nc ${lightred} - debugsh debuglog debugdump ag percol $nc
 ${funcname_color}- function name: green$nc ${lightgreen} - vim completion: C-n C-p words, C-x C-l lines, C-x C-k dictionaries $nc
 ${level_color}- shell level color:cyan$nc ${lightcyan} - C-x ! | C-x $ | M-x / | M-x @ | C-x C-e | fc -lnr | !! $nc
 ${script_color}- script name: yellow$nc ${lightblue} - updatebash geditbash vibash | wai $nc
@@ -1218,11 +1218,13 @@ ls /var/crash
 echo "LOGS"
 ls /var/log
 read -p "Introduce what you want check specifying if it is a /cache/file, a /crash/file or a /log/file:" FILE
-sudo apt-get install grc cat -y
-grc cat -n /var/$FILE
+sudo apt-get install cat -y
+cat -n /var/$FILE
 read -p "You can search for a concrete word or line using percol" ENTER
+sudo apt-get install silversearcher-ag -y
 sudo -H pip install percol
 percol  /var/$FILE
+ag /var/$FILE
 echo "You can retrace a dump crash using debugdump"
 }
 
