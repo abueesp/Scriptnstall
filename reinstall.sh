@@ -492,7 +492,7 @@ sudo rm -r emacs-$EMACSVERSION
 
 ##Tools and utils
 sudo apt-get install indicator-sound-switcher -y
-sudo apt-get install mlocate recoll silversearcher-ag tag-ag -y #Searchtools
+sudo apt-get install mlocate recoll silversearcher-ag tag-ag -y #Searchtools #find locate
 printf 'tag() { 
 command tag "$@"
 source /tmp/tag_aliases}
@@ -530,9 +530,8 @@ sudo apt-get install at -y
 sudo apt-get install xmlstarlet jq datamash bc gawk mawk -y #xml and jquery #wc join paste cut sort uniq
 sudo apt-get install gparted -y
 sudo apt-get install baobab -y
-sudo apt-get install nemo -y
 sudo apt-get install gtk-recordmydesktop recordmydesktop -y
-sudo apt-get install tree -y
+sudo apt-get install nemo ncdu tree -y
 sudo apt-get install task -y
 sudo apt-get install thunderbird -y
 thunderbird https://addons.mozilla.org/thunderbird/downloads/latest/775/addon-775-latest.xpi
