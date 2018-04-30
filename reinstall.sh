@@ -625,6 +625,11 @@ key="i"
 VIMINSTRUCTION="isudo pacman -S  --noconfirm --needed\<esc>4bhi"
 sendtovimrc
 
+#ag on ack plugin
+printf "if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+  :cnoreabbrev ag Ack
+endif"  | tee -a $VIMRC
 
 #PATHOGENFOLDER="~/.vim/build"
 #mkdir $PATHOGENFOLDER
@@ -653,7 +658,7 @@ wget https://raw.githubusercontent.com/Russell91/sshrc/master/sshrc && sudo chmo
 
 vimfunctions(){
 echo "### Tools ###"    
-echo "ack: Search tool, :grep=:ack :grepadd=:ackadd, :lgrep=LAck, and :lgrepadd=:LAckAdd (see all options with :ack ?)"
+echo "ack: Search tool, :grep=:ack=:ag :grepadd=:ackadd, :lgrep=LAck, and :lgrepadd=:LAckAdd (see all options with :ack ?)"
 echo "bufexplorer: See and manage the current buffers(,o)"
 echo "mru: Recently open files (,f)"
 echo "ctrlp: Find file or a buffer(,j or c-f)" 
