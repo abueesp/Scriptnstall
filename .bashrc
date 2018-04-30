@@ -291,7 +291,6 @@ read -p "Introduce the files, click ENTER and you will decrypt them." ROUTEFILE
 gpg2 --decrypt --multifile --symmetric --passphrase-file "$PAZZ" "$ROUTEFILE"
 }
 
-
 ### Git functions ###
 gitnew() {
 ###INTRODUCE EMAIL
@@ -2743,4 +2742,13 @@ sudo vim -c ":%s|-A ufw-before-input -p icmp --icmp-type source-quench -j ACCEPT
 sudo vim -c ":%s|-A ufw-before-input -p icmp --icmp-type time-exceeded -j ACCEPT|-A ufw-before-input -p icmp --icmp-type time-exceeded -j ACCEPT|g" -c ":wq" /etc/ufw/before6.rules
 sudo vim -c ":%s|-A ufw-before-input -p icmp --icmp-type parameter-problem -j ACCEPT|-A ufw-before-input -p icmp --icmp-type parameter-problem -j ACCEPT|g" -c ":wq" /etc/ufw/before6.rules
 sudo vim -c ":%s|-A ufw-before-input -p icmp --icmp-type echo-request -j ACCEPT|-A ufw-before-input -p icmp --icmp-type echo-request -j ACCEPT|g" -c ":wq" /etc/ufw/before6.rules
+}
+
+pythonserver(){
+if [ -z "python2" ]
+  then
+  python -m SimpleHTTPServer 8000
+else
+  python2 -m SimpleHTTPServer 8000
+fi
 }
