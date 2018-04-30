@@ -954,7 +954,7 @@ the following order: newline, word, character, byte, maximum line length.
   -w, --words            print the word counts
       --help     display this help and exit
       --version  output version information and exit"
-echo "If you want to count a file, exit using Ctrl+C and use 'wc' with the adequate parameter"
+echo "If you want to count a file, exit using Ctrl+C and use 'wc'. For multiple files use 'cloc'"
 read -p "If you want to count a string, what may I count? (-w, -l, -m, -c, -L): " PARAMETER
 read -p "Write down the string: " STRING
 echo $STRING > COUNTFILE
