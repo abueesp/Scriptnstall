@@ -76,7 +76,7 @@ ${script_color} Coding for good - $USER command line $(tty) $nc
 ${command_color}  Ƀe ℋuman, be κinđ, be ωise $nc
 
 Colors legend and some notes:
-${linenum_color}- line number: red$nc ${lightred} - debugbash debuglog debugdump grc percol $nc
+${linenum_color}- line number: red$nc ${lightred} - debugsh debuglog debugdump grc percol $nc
 ${funcname_color}- function name: green$nc ${lightgreen} - vim completion: C-n C-p words, C-x C-l lines, C-x C-k dictionaries $nc
 ${level_color}- shell level color:cyan$nc ${lightcyan} - C-x ! | C-x $ | M-x / | M-x @ | C-x C-e | fc -lnr | !! $nc
 ${script_color}- script name: yellow$nc ${lightblue} - updatebash geditbash vibash | wai $nc
@@ -764,6 +764,7 @@ sudo systemctl help $app
 read -p "Introduce el PID de $app: " pid
 sudo chrt -p $pid 
 sudo pstree -p $pid
+sudo strace $app
 }
 filemon(){
 read -p "introduce la ruta del archivo" ruta
@@ -1186,7 +1187,7 @@ cat 1line
 rm 1line
 }
 
-debugbash(){
+debugsh(){
 	echo " Debugging options: bash FLAGS route_of_file"
 	echo "List of flags to set:"
 	echo "-f	noglob	 Disable file name generation using metacharacters (globbing)."
