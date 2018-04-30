@@ -492,8 +492,18 @@ sudo rm -r emacs-$EMACSVERSION
 
 ##Tools and utils
 sudo apt-get install indicator-sound-switcher -y
-sudo apt-get install mlocate recoll -y #Searchtools
+sudo apt-get install mlocate recoll silversearcher-ag tag-ag -y #Searchtools
+printf 'tag() { 
+command tag "$@"
+source /tmp/tag_aliases}
+alias ag=tag' | tee -a ~/.bashrc
+if [ ! -f /home/$USER/.recoll/recoll.conf ]; then
+    mkdir /home/$USER/.recoll
+    cp /usr/share/recoll/examples/recoll.conf /home/$USER/.recoll/recoll.conf
+fi
+vim -c ":%s|topdirs = / ~|topdirs = / ~|g" -c ":wq" /home/$USER/.recoll/recoll.conf
 sudo updatedb
+
 sudo apt-get install tmux -y
 sudo rm ~/.tmux.conf~
 cp ~/.tmux.conf ~/.tmux.conf~
@@ -539,11 +549,6 @@ pip3 install --upgrade pip
 #Some Search Python tools
 sudo -H pip3 install percol #Indexer
 sudo -H pip install shyaml csvkit #yaml csv
-sudo apt-get install silversearcher-ag -y
-printf 'tag() { 
-command tag "$@"
-source /tmp/tag_aliases}
-alias ag=tag' | tee -a ~/.bashrc
 
 #youtube-dl and soundcloud
 sudo wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/bin/youtube-dl
