@@ -64,6 +64,8 @@ java -jar /home/$USER/android-backup-extractor**/abe.jar unpack backup-all-$NOW.
 tar -xvf backup-apps-$NOW.tar
 tar -xvf backup-sd-$NOW.tar
 tar -xvf backup-all-$NOW.tar
+wget https://raw.githubusercontent.com/sromku/adb-export/master/adb-export.sh
+bash adb-export.sh
 cd ..
 
 ##Second preparation
