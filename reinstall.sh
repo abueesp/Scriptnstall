@@ -536,9 +536,14 @@ sudo apt-get install python3-pip python-pip -y
 pip install --upgrade pip
 pip3 install --upgrade pip
 
-#Some Python tools
+#Some Search Python tools
 sudo -H pip3 install percol #Indexer
 sudo -H pip install shyaml csvkit #yaml csv
+sudo apt-get install silversearcher-ag -y
+printf 'tag() { 
+command tag "$@"
+source /tmp/tag_aliases}
+alias ag=tag' | tee -a ~/.bashrc
 
 #youtube-dl and soundcloud
 sudo wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/bin/youtube-dl
