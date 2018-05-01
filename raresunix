@@ -16,6 +16,9 @@ arping, inetd, ethtool
 envdir, envuidgid 
 setterm chvt
 
+Binary school:
+hd, hexdump or xxd (for simple hex dumps),  xdelta3 (for binary diffs), strings (with grep helps you to find) and bvi, hexedit or biew (for binary editing)
+
 
 
 GNU Binutils
