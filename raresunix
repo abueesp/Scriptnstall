@@ -1,5 +1,6 @@
 ### STILL LEARNING COMMANDS ###
 
+For deeper systems and performance analyses, look at stap (SystemTap), perf, and sysdig.
 fuser
 cflow ctags cxref ipcrm
  od, initctl
