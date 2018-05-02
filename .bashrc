@@ -2651,6 +2651,284 @@ cmkcap() {
 curl https://api.coinmarketcap.com/v1/ticker/$1/?convert=EUR
 }
 
+
+transfer() {
+if [ $# -eq 0 ]; then
+	echo -e "No arguments specified. Usage: transfer test.md";
+	return 1;
+fi
+tmpfile=$( mktemp -t transferXXX );
+
+if [ -d "$1" ]; then
+	echo "$1 is a directory. I will compress into a zip file for you ;)"
+ 	7z a -mm=Deflate -mfb=258 -mpass=15 -r "$1".zip $1
+	set 1 -- $1".zip"
+elif [ -f "$1" ]; then
+	filesz=$(stat --printf="%s" "$1")
+	if [ $filesz > 1073741824]; then
+echo "Your file has $filesz bytes and the maximum filesize is 10GB (1073741824 bytes). Do you want to compress it? 0) No 1) Yes 2) Yes, and the file is an office document"
+		options0=("0" "1" "2" "3" "4" "5")
+		select opt0 in "${options0[@]}"
+		do
+	    		case $opt in
+	        		"0")
+					echo "I hope so. Lets continue."
+					break
+	            			;;
+	        		"1")
+					7z a -mm=Deflate -mfb=258 -mpass=15 "$1".zip "$1"
+					set 1 -- $1".zip"
+					break
+	            			;;
+	        		"2")
+					7z a -m0=lzma2 -mx "$1".7z "$1"
+					set 1 -- $1".7z"
+					break
+	            			;;
+			        *) echo "Sorry! Invalid option!";;
+		    	esac
+		done
+	else
+		echo -e "Your file size below 10GB! Checked! :) ";
+	fi
+else
+    echo "$PASSED is not a file or a directory. What???";
+    return 1;
+fi
+
+echo "Do you want to encrypt it? 1) No, it is already encrypted 2) Yes with gpg2 3) Yes with gpg 4) Yes with keybase 5) Yes with NaCl sencrypt 6) Yes with ccat"
+options1=("1" "2" "3" "4" "5" "6")
+select opt1 in "${options1[@]}"
+do
+    case $opt1 in
+        "1")
+		echo "I hope so. Lets continue."
+		break
+            ;;
+        "2")
+		echo "You selected gpg2. Do you want to encrypt using a password, or public keys? 1) Public keys 2) Password"
+		options2=("1" "2")
+		select opt2 in "${options2[@]}"
+		do
+		    case $opt2 in
+			"1")
+				gpg2 --list-keys
+				gpg2 --encrypt "$1" | tee -a $1".enc"
+				set 1 -- $1".enc"
+				break
+			    ;;
+			"2")
+				cat "$1"|gpg2 -ac -o- | tee -a $1".enc"
+				set 1 -- $1".enc"
+				break
+			    ;;
+		        *) echo "Sorry! Invalid option!";;
+			esac
+		done
+		break
+		;;
+        "3")
+		echo "You selected gpg. Do you want to encrypt using a password, or public keys? 1) Public keys 2) Password"
+		options2=("1" "2")
+		select opt2 in "${options2[@]}"
+		do
+		    case $opt2 in
+			"1")
+				gpg --list-keys
+				gpg --encrypt "$1" | tee -a $1".enc"
+				set 1 -- $1".enc"
+				break
+			    ;;
+			"2")
+				cat "$1"|gpg -ac -o- | tee -a $1".enc"
+				set 1 -- $1".enc"
+				break
+			    ;;
+		        *) echo "Sorry! Invalid option!";;
+			esac
+		done
+		break
+		;;
+        "4")
+		read -p "Write down a user of Keybase to encrypt for: " KUSER
+		cat "$1" | keybase encrypt $KUSER | tee -a $1".enc"
+		set 1 -- $1".enc"
+		break
+            ;;
+        "5")
+		sencrypt
+		mv ~/encrypted_message $1".enc"
+		set 1 -- $1".enc"
+		break
+            ;;
+        "6")
+		cp "$1" $1".dec"
+		ccat --encrypt $1
+		mv $1".dec" $1
+		mv $1".cpt" $1".enc"
+		set 1 -- $1".enc"
+		break
+            ;;
+        *) echo "Sorry! Invalid option!";;
+    esac
+done
+
+read -p "Do you want to stablish a limitation of allowed downloads? If so, introduce a number (2 by default): "  maxdowns
+maxdowns=${maxdowns:=2}
+
+read -p "Do you want to stablish a period of availability for downloading? If so, introduce a number of days (7 days by default): "  maxdays
+maxdays=${maxdays:=7}
+
+if tty -s; then
+	basefile=$(basename "$1" | sed -e "s/[^a-zA-Z0-9._-]/-/g");
+	curl -i -X PUT --progress-bar -H "Max-Downloads: $maxdowns" -H "Max-Days: $maxdays" -upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile;
+else
+	curl -i -X PUT --progress-bar -H "Max-Downloads: $maxdowns" -H "Max-Days: $maxdays" --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ;
+fi
+cat $tmpfile;
+rm -f $tmpfile; 
+}
+
+receive() {
+if [ -z "$1" ]; then
+       echo -e "No arguments specified. Usage:  receive https://transfer.sh/66nb8/hello.txt";
+       return 1;
+fi
+echo "Downlading... "
+curl $1
+filenm=$(echo "$1" | cut -c 27-156)
+if [ $1 != $filenm ];then
+	set $filenm;
+fi
+echo "The file $1 was downloaded"
+echo "It could contain some malicious software. Do you want to scan it for virus or malware? 1) No, I trust it 2) Yes, scan it offiline using Clamav 3) Yes, scan it online using VirusTotal"
+options0=("1" "2" "3")
+select opt0 in "${options0[@]}"
+do
+    case $opt0 in
+       "1")
+		echo "I hope so. Lets continue."
+		break
+		;;
+       "2")
+		if ! [ -x "$(command -v clamav)" ]; then
+			echo 'Error: Clamav is not installed.' >&2;
+		else
+			echo "Scanning using Clamav offline"
+			clamav "$1"
+			break
+		fi
+		;;
+       "3")
+		echo "Scanning using VirusTotal online"
+		curl -X PUT --upload-file "$1" https://transfer.sh/myfile/virustotal | firefox -
+		break
+		;;
+        *) echo "Sorry! Invalid option!";;
+    esac
+done
+echo "Do you want to decrypt it? 0) No, it is already decrypted 1) Yes, use gpg2 2) Yes, use gpg password 3) Yes, use keybase 4) Yes, use sencrypt) 5) Yes, use ccat"
+options1=("1" "2" "3" "4" "5" "6")
+select opt1 in "${options1[@]}"
+do
+    case $opt1 in
+        "1")
+		echo "I hope so. Lets continue."
+		break
+            ;;
+        "2")
+		echo "You selected gpg2. Do you want to decrypt it using a password or public keys? 1) Public keys 2) Password"
+		options2=("1" "2")
+		select opt2 in "${options2[@]}"
+		do
+		    case $opt2 in
+			"1")
+				gpg2 --list-keys
+				gpg2 --decrypt $1 | tee -a $1".dec"
+				set 1 -- $1".dec"
+				break
+			    ;;
+			"2")
+				cat "$1" | gpg2 --decrypt | tee -a $1".dec"
+				set 1 -- $1".dec"
+				break
+			    ;;
+    			esac
+		done
+		break
+		;;
+
+        "3")
+		echo "You selected gpg. Do you want to encrypt it using a password or public keys? 1) Public keys 2) Password"
+		options2=("1" "2")
+		select opt2 in "${options2[@]}"
+		do
+			case $opt2 in
+				"1")
+					gpg --list-keys
+					gpg --decrypt $1 | tee -a $1".dec"
+					set 1 -- $1".dec"
+					break
+			    	;;
+				"2")
+					cat "$1" | gpg --decrypt | tee -a $1".dec"
+					set 1 -- $1".dec"
+					break
+			    	;;
+        			*) echo "Sorry! Invalid option!";;
+    			esac
+		done
+		;;
+        "4")
+		cat "$1" | keybase decrypt | tee -a $1".dec"
+		set 1 -- $1".dec"
+		break
+            ;;
+        "5")
+		sdecrypt
+		mv ~/message $1".dec"
+		1=$1".dec"
+		break
+            ;;
+        "6")
+		cp "$1" $1".enc"		
+		ccat --decrypt $1 | tee -a $1."dec"
+		set 1 -- $1".dec"
+		break
+            ;;
+        *) echo "Sorry! Invalid option!";;
+    esac
+done
+echo "Please consider to reanalyze the file for malicious software again after decryption. Do you want to scan it for virus or malware? 1) No, I trust it 2) Yes, scan it offiline using Clamav 3) Yes, scan it online using VirusTotal"
+options0=("1" "2" "3")
+select opt0 in "${options0[@]}"
+do
+    case $opt0 in
+       "1")
+		echo "I hope so. Lets continue."
+		break
+		;;
+       "2")
+		if ! [ -x "$(command -v clamav)" ]; then
+			echo 'Error: Clamav is not installed.' >&2;
+		else
+			echo "Scanning using Clamav offline"
+			clamav "$1"
+			break
+		fi
+		;;
+       "3")
+		echo "Scanning using VirusTotal online"
+		curl -X PUT --upload-file "$1" https://transfer.sh/myfile/virustotal | firefox -
+		break
+		;;
+        *) echo "Sorry! Invalid option!";;
+    esac
+done
+echo "Here it is your file"
+ls
+}
+
 ## IRC aliases ##
 alias newircchannel='read -p "Introduce name of channel: " CHANN && read -p "Introduce description of channel: " DESCCHAN && weechat -r "/msg ChanServ REGISTER #$CHANN #DESCCHAN" FloodServ on"'
 alias killircghost='read -p "User: " IRCUSER && read -p "Password: " IRCPASS && weechat -r "/msg NickServ GHOST $IRCUSER $IRCPASS"'
