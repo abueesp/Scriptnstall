@@ -916,6 +916,7 @@ vim -c \"1,$ s/\(hi\)/\1 all/g\" -c \"wq\" file.txt
 For more info about substitutions:
 vim -c \"help substitute\"
 '"
+
 rrng(){
 echo "Your random numbers are" 
 echo $(expr $RANDOM % 9223372036854775807)
@@ -931,13 +932,13 @@ echo $(echo $RANDOM | sudo hashalot -x -s 2 ripemd160)
 echo $(echo $RANDOM | sudo hashalot -x -s 2 rmd160compat)
 echo ""
 echo "Your random 256bits hexadecimal hash is"
-echo $(echo $RANDOM | sudo hashalot -x -s 2 sha256)
+echo $(echo $RANDOM | sha256sum)
 echo ""
 echo "Your random 384bits hexadecimal hash is"
 echo $(echo $RANDOM | sudo hashalot -x -s 2 sha384)
 echo ""
 echo "Your random 512bits hexadecimal hash is"
-echo $(echo $RANDOM | sudo hashalot -x -s 2 sha512)
+echo $(echo $RANDOM | sha512sum)
 }
 
 count() {
