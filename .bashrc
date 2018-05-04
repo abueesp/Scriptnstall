@@ -1,7 +1,7 @@
 ### Default Editor ###
 EDITOR=vi
 FCEDIT=vi
-#stty -ixon #deactivate f.i. C-S and C-Q
+stty -ixon #Avoid Software Flow Control (XON/XOFF flow control) or Vim freezed with C-s/C-q
 #stty -ixoff #activate f.i. C-S and C-Q
 
 LANGUAGE=$(locale | grep LANG | cut -d'=' -f 2 | cut -d'_' -f 1)
@@ -19,6 +19,7 @@ alias rmhist="history -c"
 alias anonhist="export HISTSIZE=0"
 alias hist="export HISTSIZE=1"
 alias shis="history | grep"
+alias shist="history | cut -c 28- | tee -a hist.sh"
 
 ## Welcome Screen & fColors ###
 color_def="~/.colorrc"
@@ -803,18 +804,19 @@ alias opensudo="read -p 'Write down the path/route/file to open permissions: ' A
 alias skill="sudo kill -9"
 alias nmapp="sudo nmap -v -A --reason -O -sV -PO -sU -sX -f -Pn --spoof-mac 0"
 alias nmap100="sudo nmap -F -v -A --reason -O -sV -PO -sU -sX -f -Pn --spoof-mac 0"
-alias lsd="ls -ld && sudo du -sh && ls -i -latr -FGAhp --color=auto -h" # ltr sort by date
-alias lss="ls -ld && sudo du -sh && ls -i -laSr -FGAhp --color=auto -h" # lSr sort by size
-alias lsall="ls -ld && sudo du -sh && ls -i1 -latr -lSr -FGAhp --color=auto -t -a -al -lR --group-directories-first" # recursive ls
-alias la="ls -ld && ls -i1 --color=auto -atr --group-directories-first -C" #la is the new ls
+alias lsd="stat * && ls -ld && ls -latr -FGAhp --color=auto --full-time" # state all dates, ltr sort by access date (for mod time use -c)
+alias lss="ls -ld && sudo du -sh && ls -lsaSr -FGAhp --color=auto" # du size of folder, s size of files, lSr sort by size
+alias lsall="ls -ld && sudo du -sh && ls -i1 -l -a -t -r -lSr -FGAhp --color=auto -al -lR --full-time" # recursive ls with -i for inodes
+alias la="ls -ld && ls --color=auto -t -s -a -Sr -C" #la is the new ls
 function lgo(){ cd "$@" && la; } #lgo is the new cd + ls
 alias lbk="cd .. && la" #lbk is the new cd .. + ls (lback!)
-function cdn(){ for i in 'seq $1'; do cd ..; done;}
 alias lssh="ls -al ~/.ssh"
 alias verifykey="gpg --keyid-format long --import"
 alias verifyfile="gpg --keyid-format long --verify"
-alias today='date "+%F %T"'
+alias dt='date "+%F %T"'
 alias pdf2txt='ls * | sudo xargs -n1 pdftotext'
+alias hardlinks="sudo find / -links +2 -type f -exec ls -li {} \ "
+alias softlinks="sudo find /etc -type l -exec ls -li {} \ "
 alias bashrc='~./bashrc'
 function lowercase(){
 read -p 'lowercase what? ' LOWW ; 
@@ -876,9 +878,10 @@ alias aptinstalled='apt list | grep installed'
 alias rename='mv'
 alias readfiles='sudo tail -vn +1 $(find . -maxdepth 1 -not -type d)'
 alias catall=readfiles
+alias catfiles="grep . *"
 alias catwithlines='cat -n'
 alias gitlist='git remote -v'
-alias diferencia='echo "Puedes usar tambien vi -d o kompare"; colordiff -ystFpr'
+alias diferencia='printf "sort a b | uniq ==> a union b; uniq -d ==> a intersection b; uniq -u ==> difference a - b"; echo "Puedes usar tambien vim -d o kompare. Para directorios use colordiff -r"; colordiff -ystFpr'
 alias compara='diff -y -r'
 alias adbconnect="mtpfs -o allow_other /mnt/mobile"
 alias adbdisconnect="fusermount -u /mnt/mobile"
@@ -916,7 +919,6 @@ vim -c \"1,$ s/\(hi\)/\1 all/g\" -c \"wq\" file.txt
 For more info about substitutions:
 vim -c \"help substitute\"
 '"
-
 rrng(){
 echo "Your random numbers are" 
 echo $(expr $RANDOM % 9223372036854775807)
