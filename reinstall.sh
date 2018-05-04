@@ -661,6 +661,28 @@ echo ":nnoremap gh :StartExecutingHooks<cr>:ExecuteHookFiles BufWritePost<cr>:St
 echo ":noremap ghl :StartExecutingHooks<cr>:ExecuteHookFiles VimLeave<cr>:StopExecutingHooks<cr>" | sudo tee -a /usr/share/vim/vimrc
 https://github.com/sheerun/vim-polyglot
 echo "syntax on" | sudo tee -a /usr/share/vim/vimrc
+git clone https://github.com/scrooloose/nerdcommenter $PATHOGENFOLDER/nerdcommenter
+git clone https://github.com/Shougo/neocomplcache.vim $PATHOGENFOLDER/neocomplcache
+echo "let g:neocomplcache_enable_at_startup = 1" | tee -a $VIMRC
+git clone https://github.com/easymotion/vim-easymotion $PATHOGENFOLDER/vim-easymotion
+git clone https://github.com/spf13/PIV $PATHOGENFOLDER/PIV
+git clone https://github.com/tpope/vim-surround $PATHOGENFOLDER/vim-surround
+
+git clone https://github.com/maralla/completor.vim $PATHOGENFOLDER/completor
+sudo -H pip install jedi #completor for python
+echo "let g:completor_python_binary = '/usr/lib/python*/site-packages/jedi'" | tee -a $VIMRC
+cargo install racer #completor for rust
+echo "let g:completor_racer_binary = '/usr/bin/racer'" | tee -a $VIMRC
+git clone https://github.com/ternjs/tern_for_vim $PATHOGENFOLDER/tern_for_vim
+echo "let g:completor_node_binary = '/usr/bin/node'" | tee -a $VIMRC
+echo "let g:completor_clang_binary = '/usr/bin/clang'" | tee -a $VIMRC #c++
+git clone https://github.com/nsf/gocode $PATHOGENFOLDER/completor #go
+echo "let g:completor_gocode_binary = ' $PATHOGENFOLDER/gocode'"
+git clone https://github.com/maralla/completor-swift $PATHOGENFOLDER/completor-swift #swift
+cd $PATHOGENFOLDER/completor-swift
+make
+cd
+echo "let g:completor_swift_binary = '$PATHOGENFOLDER/completor-swift'" | tee -a $VIMRC
 
 #Vim portability for ssh (sshrc)
 wget https://raw.githubusercontent.com/Russell91/sshrc/master/sshrc && sudo chmod -R 600 sshrc && chmod +x sshrc && sudo mv sshrc /usr/local/bin
@@ -674,6 +696,7 @@ echo "ctrlp: Find file or a buffer(,j or c-f)"
 echo "Nerdtree and openfile under cursor: Treemaps (,nn toggle and ,nb bookmark and ,nf find, gf go open file under cursor)"
 echo "Goyo.vim and vim-zenroom2: Removes all the distractions (,z)"
 echo ":w (,w)"
+echo "vim-easymotion: go to (<leader><leader> or //)"
 echo "vim-yankstack: Maintains a history of previous yanks :yanks :registers (meta-p, meta-shift-p)"
 echo "vim-multiple-cursors: Select multiple cursors (c-n next and c-p previous and c-x skip)"
 echo "vim-fugitive: Git wrapper (:Gbrowse and :Gstatus and - for reset and p for patch and :Gcommit and :Gedit and :Gslipt and :Gvslipt and :Gtabedit and :Gdiff and :Gmove and :Ggrep and :Glog and :Gdelete and :Gread and :Gwrite)"
@@ -681,6 +704,7 @@ echo "vim-expand-region: (+ to expand the visual selection and _ to shrink it)"
 echo "commentary-vim: Comments management (gcc for a line and gcap for a paragraph and gc in visual mode and :7,17Commentary)"
 echo "pathogen: Install plugins and manage your vim runtimepath (use 'installvimplugin' or 'git clone https://github.com/yourplugin ~/.vim_runtime/sources_non_forked/nameofplugin' for example"
 echo "sshrc: vim portability for ssh (use it in terminal)"
+echo "nerdcommenter: Comment # (:help nerdcommenter /cc comment the current line /cn comment current line forcing nesting /c<space> and /ci [un]comment lines /cs comment with a block formatted /c$ comment from the cursor to the end of line /cu uncomment lines)"
 echo ""
 echo "### Indenters ###"
 echo "vim-indent-object: Python indenter (ai and ii and al and il)"
@@ -703,8 +727,12 @@ echo "python-mode: Python syntastic (:help pymode)"
 echo "ghcmod-vim: Haskell syntastic (:help :filetype-overview and ghc-mod type and ghc-mod check or ghc-mod lint and ghc-mod expand and ghc-mod split)"
 echo ""
 echo "### Hooks and Completes ###"
+echo "completor: completion for python go c++ rust swift (<C-x><C-o>)"
+echo "PIV: PHP completion (<C-x><C-o>)"
 echo "neco-ghc: Haskell ghc-mod completion for neocomplcache/neocomplete/deoplete (:help compl-omni)"
 echo "vim-hooks: (:ListVimHooks :ExecuteHookFiles :StopExecutingHooks :StartExecutingHooks)"
+echo "neocomplcache: Completion from cache (:NeoComplCacheEnable :NeoComplCacheDisable)"
+echo "vim-surround: Surrounding completion (:help surround cs\"\' -changes surrounding \" for \'- ds -delete surronding- cst<html> -surrounds with html tag- yss) -add parenthesis whole line-)"
 }
 echo vimfunctions >> $PATHOGENFOLDER/README
 
