@@ -1416,6 +1416,42 @@ touch ${roteu}-'date +%d-%m-%Y..%H-%M'
 rsync -avtogh -force -progress –delete -e 'ssh -p $portu' $routeu $usuu@$ipu:$directoryu
 }
 
+createborg(){
+read -p "Insert path for backup-repo (f.i. /home/$USER/borg-bu-repo or ssh://user@host:port/path/to/repo): " BORG_REPO
+echo "You can fix the variable global with export BORG_REPO='ssh://user@host:port/path/to/repo'"
+REPO=$(date -I)
+read -p "Insert folder you want to back-up: " BUFOLDER
+echo "Your default backup repo is $BORG_REPO"
+echo "Your default folder being backuped is $BUFOLDER"
+mkdir $BORG_REPO
+borg init --encryption=authenticated-blake2 $BORG_REPO
+borg create -s --progress $BORG_REPO::$REPO $BUFOLDER
+}
+listborg(){
+if [ -z "$BORG_REPO" ];
+	read -p "Insert path for backup-repo (f.i. /home/$USER/borg-bu-repo or ssh://user@host:port/path/to/repo): " BORG_REPO
+fi
+borg list $BORG_REPO
+read -p "Insert date to see the files: " REPO
+borg list $BORG_REPO::$REPO
+}
+extractborg(){
+if [ -z "$BORG_REPO" ];
+	read -p "Insert path for backup-repo (f.i. /home/$USER/borg-bu-repo or ssh://user@host:port/path/to/repo): " BORG_REPO
+fi
+borg list $BORG_REPO
+read -p "Insert date to extract the files: " REPO
+borg extract $BORG_REPO::$REPO
+}
+deleteborg(){
+if [ -z "$BORG_REPO" ];
+	read -p "Insert path for backup-repo (f.i. /home/$USER/borg-bu-repo or ssh://user@host:port/path/to/repo): " BORG_REPO
+fi
+borg list $BORG_REPO
+read -p "Insert date to delete the files: " REPO
+borg delete $BORG_REPO::$REPO
+}
+
 # use DNS to query wikipedia (wiki QUERY)
 wiki() { dig +short txt $1.wp.dg.cx; }
 
