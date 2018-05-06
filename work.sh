@@ -416,6 +416,15 @@ sudo npm install -g truffle
 sudo npm install solc
 
 
+#php composer
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php -r "if (hash_file('SHA384', 'composer-setup.php') === '544e09ee996cdf60ece3804abc52599c22b1f40f4323403c44d44fdfdd586475ca9813a858088ffbc1f233e9b180f061') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+php composer-setup.php
+php -r "unlink('composer-setup.php');"
+echo "Visit https://thephpleague.com/"
+
+sudo -H pip install rebound-cli #stackoverflow for errors in pyhon
+
 ##Contracts
 git clone https://github.com/ethereum/dapp-bin
 
@@ -436,116 +445,6 @@ SCRIVENERVERSION=1.9.0.1-amd64
 wget http://www.literatureandlatte.com/scrivenerforlinux/scrivener-$SCRIVENERVERSION.deb
 sudo dpkg -i scrivener-$SCRIVENERVERSION.deb
 sudo rm scrivener-$SCRIVENERVERSION.deb
-
-##Vim##
-sudo apt-get install vim -y
-git clone https://github.com/amix/vimrc.git ~/.vim
-sh ~/.vim/install_awesome_vimrc.sh
-cd .vim
-mkdir bundle
-cd bundle
-git clone git://github.com/tpope/vim-fugitive.git
-vim -u NONE -c "helptags vim-fugitive/doc" -c q
-autocmd QuickFixCmdPost *grep* cwindow
-#Youcompleteme for C C# (if Mono)  Rust Go Javascript (if NPM Nodejs)
-sudo apt-get install build-essential cmake
-sudo apt-get install python-dev python3-dev
-git clone https://github.com/valloric/youcompleteme
-cd ~/.vim/bundle/youcompleteme
-./install.py --all
-cd ..
-#VimRails
-git clone https://github.com/tpope/vim-rails.git
-vim -u NONE -c "helptags vim-rails/doc" -c q
-git clone https://github.com/plasticboy/vim-markdown.git
-git clone https://github.com/elzr/vim-json
-git clone --recursive https://github.com/davidhalter/jedi-vim.git
-git clone https://github.com/mxw/vim-jsx.git ~/.vim/bundle/vim-jsx
-git clone https://github.com/othree/html5.vim
-#VimSEnsible: 
-# 'backspace': Backspace through anything in insert mode.
-#'incsearch': Start searching before pressing enter.
-#'listchars': Makes :set list (visible whitespace) prettier.
-#'scrolloff': Always show at least one line above/below the cursor.
-#'autoread': Autoload file changes. You can undo by pressing u.
-#runtime! macros/matchit.vim: Load the version of matchit.vim that ships with Vim
-git clone git://github.com/tpope/vim-sensible.git
-#VimTEsts
-#Use :! and :Dispatch :makegreen terminal...
-#Provides texts with
-#Language 	Frameworks 	Identifiers
-#C# 	.NET 	dotnettest
-# Clojure 	Fireplace.vim 	fireplacetest
-#Crystal 	Crystal 	crystalspec
-#Elixir 	ESpec, ExUnit 	espec, exunit
-#Elm 	elm-test 	elmtest
-#Erlang 	CommonTest 	commontest
-#Go 	Ginkgo, Go 	ginkgo, gotest
-#Java 	Maven 	maventest
-#JavaScript 	Intern, Jasmine, Jest, Karma, Lab, Mocha, TAP, 	intern, jasmine, jest, karma, lab, mocha, tap
-#Lua 	Busted 	busted
-#PHP 	Behat, Codeception, Kahlan, Peridot, PHPUnit, PHPSpec, Dusk 	behat, codeception, kahlan, peridot, phpunit, phpspec, dusk
-#Perl 	Prove 	prove
-#Python 	Django, Nose, Nose2, PyTest, PyUnit 	djangotest, djangonose nose, nose2, pytest, pyunit
-#Racket 	RackUnit 	rackunit
-#Ruby 	Cucumber, M, Minitest, Rails, RSpec 	cucumber, m, minitest, rails, rspec
-#Rust 	Cargo 	cargotest
-#Shell 	Bats 	bats
-#Swift 	Swift Package Manager 	swiftpm
-#VimScript 	Vader.vim, VSpec 	vader, vspec"
-git clone https://github.com/janko-m/vim-test
-git clone https://github.com/StanAngeloff/php.vim.git
-git clone https://github.com/vim-scripts/grep.vim
-git clone https://github.com/chrisbra/csv.vim
-git clone https://github.com/sirver/ultisnips
-#Vimpolyglot
-#ansible (syntax, indent, ftplugin)apiblueprint (syntax)applescript (syntax)arduino (syntax, indent)asciidoc (syntax)blade (syntax, indent, ftplugin)c++11 (syntax)c/c++ (syntax)caddyfile (syntax, indent, ftplugin)cjsx (syntax, ftplugin)clojure (syntax, indent, autoload, ftplugin)coffee-script (syntax, indent, compiler, autoload, ftplugin)cql (syntax)cryptol (syntax, compiler, ftplugin)crystal (syntax, indent, autoload, ftplugin)css (syntax)cucumber (syntax, indent, compiler, ftplugin)dart (syntax, indent, autoload, ftplugin)dockerfile (syntax)elixir (syntax, indent, compiler, autoload, ftplugin)elm (syntax, indent, autoload, ftplugin)emberscript (syntax, indent, ftplugin)emblem (syntax, indent, ftplugin)erlang (syntax, indent)fish (syntax, indent, compiler, autoload, ftplugin)git (syntax, indent, ftplugin)glsl (syntax, indent)gnuplot (syntax)go (syntax, compiler, indent)graphql (syntax, ftplugin)groovy (syntax)haml (syntax, indent, compiler, ftplugin)handlebars (syntax, indent, ftplugin)haskell (syntax, indent, ftplugin)haxe (syntax)html5 (syntax, indent, autoload, ftplugin)i3 (syntax, ftplugin)jasmine (syntax)javascript (syntax, indent, compiler, ftplugin, extras)json (syntax, indent, ftplugin)jst (syntax, indent)jsx (after)julia (syntax, indent)kotlin (syntax, indent)latex (syntax, indent, ftplugin)less (syntax, indent, ftplugin)liquid (syntax, indent, ftplugin)livescript (syntax, indent, compiler, ftplugin)lua (syntax, indent)mako (syntax, indent, ftplugin)markdown (syntax)mathematica (syntax, ftplugin)nginx (syntax, indent, ftplugin)nim (syntax, compiler, indent)nix (syntax, ftplugin)objc (ftplugin, syntax, indent)ocaml (syntax, indent, ftplugin)octave (syntax)opencl (syntax, indent, ftplugin)perl (syntax, indent, ftplugin)pgsql (syntax)php (syntax)plantuml (syntax, indent, ftplugin)powershell (syntax, indent, ftplugin)protobuf (syntax, indent)pug (syntax, indent, ftplugin)puppet (syntax, indent, ftplugin)purescript (syntax, indent, ftplugin)python-compiler (compiler, autoload)python (syntax, indent)qml (syntax, indent, ftplugin)r-lang (syntax, ftplugin)racket (syntax, indent, autoload, ftplugin)ragel (syntax)raml (syntax, ftplugin)rspec (syntax)ruby (syntax, indent, compiler, autoload, ftplugin)rust (syntax, indent, compiler, autoload, ftplugin)sbt (syntax)scala (syntax, indent, compiler, ftplugin)scss (syntax, autoload, ftplugin)slim (syntax, indent, ftplugin)solidity (syntax, indent)stylus (syntax, indent, ftplugin)swift (syntax, indent, ftplugin)sxhkd (syntax)systemd (syntax)terraform (syntax, indent, ftplugin)textile (syntax, ftplugin)thrift (syntax)tmux (syntax, ftplugin)tomdoc (syntax)toml (syntax, ftplugin)twig (syntax, indent, ftplugin)typescript (syntax, indent, compiler, ftplugin)vala (syntax, indent)vbnet (syntax)vcl (syntax)vm (syntax, indent)vue (syntax, indent, ftplugin)xls (syntax)yaml (syntax, ftplugin)yard (syntax)
-git clone https://github.com/sheerun/vim-polyglot
-git clone https://github.com/tomlion/vim-solidity.git ~/.vim/bundle/vim-solidity
-#Vimux for tmux
-wget https://github.com/benmills/vimux/tarball/master -O benmill-vimux.tar.gz
-tar -xf benmill-vimux.tar.gz
-rm benmill-vimux.tar.gz
-cd
-mv ~/.vim/autoload/plug.vim ~/.vim/autoload/plug-backup.vim
-wget https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim -O ~/.vim/autoload/plug.vim
-mkdir -p ~/.vim/vim-snippets
-cd ~/.vim/vim-snippets
-sh -c "curl -fsSL https://raw.githubusercontent.com/skwp/dotfiles/master/install.sh"
-echo "installed vimcr"
-wget https://raw.githubusercontent.com/Russell91/sshrc/master/sshrc && sudo chmod -R 600 sshrc && chmod +x sshrc && sudo mv sshrc /usr/local/bin
-echo "ssh bashcr vimcr portability installed"
-cd
-echo ":nnoremap <C-B> <C-V>" | sudo tee -a /usr/share/vim/vimrc
-echo ":nnoremap <C-O> o<Esc>" | sudo tee -a /usr/share/vim/vimrc
-#echo ":command! Vb exe "norm! \<C-V>" | sudo tee -a /usr/share/vim/vimrc
-
-##Python 2.7 & 3 + readthedocs + saltpack + jupiter + scipy/numpy + anaconda
-sudo apt-get install build-essential python-dev python-setuptools python-virtualenv libxml2-dev libxslt1-dev zlib1g-dev -y
-sudo apt-get install python-pip python3-pip -y
-pip install --upgrade pip
-pip3 install --upgrade pip
-sudo apt-get install libffi-dev python-cffi -y
-
-sudo -H pip3 install saltpack
-sudo -H pip3 install pyminifier
-virtualenv rtd
-cd rtd
-source bin/activate
-
-#Some tools
-sudo -H pip3 install percol #Indexer
-sudo -H pip install shyaml csvkit #yaml csv
-
-
-#youtube-dl and soundcloud
-sudo wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/bin/youtube-dl
-sudo chmod a+rx /usr/bin/youtube-dl
-sudo add-apt-repository ppa:mc3man/trusty-media -y
-sudo apt-get update -y
-sudo apt-get install ffmpeg -y
-sudo add-apt-repository --remove ppa:mc3man/trusty-media -y
-sudo -H pip install scdl
 
 #Readthedocs
 git clone https://github.com/rtfd/readthedocs.org.git
