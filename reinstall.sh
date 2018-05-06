@@ -668,6 +668,19 @@ git clone https://github.com/easymotion/vim-easymotion $PATHOGENFOLDER/vim-easym
 git clone https://github.com/spf13/PIV $PATHOGENFOLDER/PIV
 git clone https://github.com/tpope/vim-surround $PATHOGENFOLDER/vim-surround
 
+mkdir -p /home/nudo/~/.vim_runtime/sources_forked/vim-snippets/snippets
+cd /home/nudo/~/.vim_runtime/sources_forked/vim-snippets/snippets
+git clone https://github.com/Chalarangelo/30-seconds-of-code/tree/master/test
+mv test 30secJavaScript
+cd 30secJavaScript
+mv {.*}.js {.*}.snippets
+cd ..
+git clone  https://github.com/kriadmin/30-seconds-of-python-code/tree/3b9790bd73f80afc4af2de1c4fc8f4b5bb5fda45/test
+mv test 30secPython3
+cd 30secPython3
+mv {.*}.py {.*}.snippets
+cd
+
 git clone https://github.com/maralla/completor.vim $PATHOGENFOLDER/completor
 sudo -H pip install jedi #completor for python
 echo "let g:completor_python_binary = '/usr/lib/python*/site-packages/jedi'" | tee -a $VIMRC
@@ -712,8 +725,9 @@ echo ""
 echo "### Syntax ###"
 echo "vim-polyglot: (you can deactivate some using echo \"let g:polyglot_disabled = ['css']\"| sudo tee -a /usr/share/vim/vimrc) syntax, indent, ftplugin and other tools for ansible apiblueprint applescript arduino asciidoc blade c++11 c/c++ caddyfile cjsx clojure coffee-script cql cryptol crystal css cucumber dart dockerfile elixir elm emberscript emblem erlang fish git glsl gnuplot go graphql groovy haml handlebars haskell haxe html5 i3 jasmine javascript json  jst jsx julia kotlin  latex  less  liquid  livescript  lua  mako  markdown  mathematica nginx  nim  nix  objc ocaml octave opencl perl pgsql php plantuml powershell protobuf pug puppet purescript python-compiler python  qml  r-lang racket  ragel raml rspec ruby rust sbt scala scss slim solidity stylus swift sxhkd systemd terraform textile thrift tmux tomdoc toml twig typescript vala vbnet vcl vm vue xls yaml yard"
 echo ""
-echo "### Snippers ###"
-echo "snipmate: Alternative to ultisnips for snippers depending the filetype (forTAB for example)" 
+echo "### Snippets ###"
+echo "snipmate: Alternative to ultisnips for snippets depending the filetype (forTAB for example)"
+echo "30 seconds of X: Javascript and Python3 snippets"
 echo "Syntastics and linters"
 echo ":setlocal spell! (,ss)"
 echo "vim-syntastic : Common interface to syntax checkers for as many languages as possible (ACPI Source Language, ActionScript, Ada, Ansible configurations, API Blueprint, AppleScript, AsciiDoc, Assembly languages, BEMHTML, Bro, Bourne shell, C, C++, C#, Cabal, Chef, CMake, CoffeeScript, Coco, Coq, CSS, Cucumber, CUDA, D, Dart, DocBook, Dockerfile, Dust, Elixir, Erlang, eRuby, Fortran, Gentoo metadata, GLSL, Go, Haml, Haskell, Haxe, Handlebars, HSS, HTML, Java, JavaScript, JSON, JSX, Julia, LESS, Lex, Limbo, LISP, LLVM intermediate language, Lua, Markdown, MATLAB, Mercury, NASM, Nix, Objective-C, Objective-C++, OCaml, Perl, Perl 6, Perl POD, PHP, gettext Portable Object, OS X and iOS property lists, Pug (formerly Jade), Puppet, Python, QML, R, Racket, RDF TriG, RDF Turtle, Relax NG, reStructuredText, RPM spec, Ruby, SASS/SCSS, Scala, Slim, SML, Solidity, Sphinx, SQL, Stylus, Tcl, TeX, Texinfo, Twig, TypeScript, Vala, Verilog, VHDL, Vim help, VimL, Vue.js, xHtml, XML, XSLT, XQuery, YACC, YAML, YANG data models, YARA rules, z80, Zope page templates, and Zsh)"
