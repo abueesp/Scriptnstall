@@ -627,7 +627,7 @@ if [ -e "/home/$USER/.vim_runtime/vimrcs/basic.vim" ];
 		VIMRC=.vimrc
 fi
 
-echo '\n' | tee -a $VIMRC
+echo ' ' | tee -a $VIMRC
 echo '\" => Commands' | tee -a $VIMRC
 echo ":nnoremap <C-B> <C-V>" | tee -a $VIMRC
 echo ":nnoremap <C-O> o<Esc>" | tee -a $VIMRC
@@ -636,7 +636,7 @@ echo "set autoindent" | tee -a $VIMRC
 echo "set paste" | tee -a $VIMRC
 echo "set mouse=a" | tee -a $VIMRC
 
-echo '\n' | tee -a $VIMRC
+echo ' ' | tee -a $VIMRC
 echo '\" => Arrow keys' | tee -a $VIMRC
 echo "nnoremap <silent> <ESC>OA <UP>" | tee -a $VIMRC
 echo "nnoremap <silent> <ESC>OB <DOWN>" | tee -a $VIMRC
@@ -647,7 +647,14 @@ echo "inoremap <silent> <ESC>OB <DOWN>" | tee -a $VIMRC
 echo "inoremap <silent> <ESC>OC <RIGHT>" | tee -a $VIMRC
 echo "inoremap <silent> <ESC>OD <LEFT>" | tee -a $VIMRC
 
-echo '\n' | tee -a $VIMRC
+echo ' ' | tee -a $VIMRC
+echo '\" => Ctrl+Shift+c/p to copy/paste outside vim' | tee -a $VIMRC
+echo "nnoremap <C-S-c> +y" | tee -a $VIMRC
+echo "vnoremap <C-S-c> +y" | tee -a $VIMRC
+echo "nnoremap <C-S-p> +gP" | tee -a $VIMRC
+echo "vnoremap <C-S-p> +gP" | tee -a $VIMRC
+
+echo ' ' | tee -a $VIMRC
 echo '\" => Arrow keys' | tee -a $VIMRC
 function sendtovimrc(){
 echo "let @$key='$VIMINSTRUCTION'" | tee -a $VIMRC
@@ -670,6 +677,7 @@ echo "PATHOGENFOLDER=$PATHOGENFOLDER" | tee -a .bashrc
 echo 'alias pathogen="read -p \"Name of the plugin: \" PLUGINNAME && read -p \"Plugin Git link: \" PLUGINGIT && git clone $PLUGINGIT $PATHOGENFOLDER/$PLUGINNAME"' | tee -a .bashrc
 echo 'alias installvimplugin="pathogen"' | tee -a .bashrc
 
+git clone https://github.com/tpope/vim-sensible $PATHOGENFOLDER/vim-sensible
 git clone https://github.com/ocaml/merlin $PATHOGENFOLDER/merlin
 git clone https://github.com/OmniSharp/omnisharp-vim $PATHOGENFOLDER/omnisharp-vim && cd $PATHOGENFOLDER/omnisharp-vim && git submodule update --init --recursive && cd server && xbuild && cd
 #git clone https://github.com/rhysd/vim-crystal/ $PATHOGENFOLDER/vim-crystal
@@ -741,6 +749,7 @@ echo "commentary-vim: Comments management (gcc for a line and gcap for a paragra
 echo "pathogen: Install plugins and manage your vim runtimepath (use 'installvimplugin' or 'git clone https://github.com/yourplugin ~/.vim_runtime/sources_non_forked/nameofplugin' for example"
 echo "sshrc: vim portability for ssh (use it in terminal)"
 echo "nerdcommenter: Comment # (:help nerdcommenter /cc comment the current line /cn comment current line forcing nesting /c<space> and /ci [un]comment lines /cs comment with a block formatted /c$ comment from the cursor to the end of line /cu uncomment lines)"
+echo "vim-sensible: a set of set:s like scrolloff -show at least on line above and below cursor- autoread file changes that can be undoned with u, incsearch that searches before pressing enter..."
 echo ""
 echo "### Indenters ###"
 echo "vim-indent-object: Python indenter (ai and ii and al and il)"
