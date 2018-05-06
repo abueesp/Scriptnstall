@@ -524,7 +524,7 @@ sudo apt-get install terminator -y
 sudo apt-get install htop -y
 sudo apt-get install pandoc -y
 sudo apt-get install vnstat -y
-sudo apt-get install duplicity deja-dup -y
+sudo apt-get install duplicity deja-dup borgbackup -y
 sudo apt-get install brasero -y
 sudo apt-get install at -y
 sudo apt-get install xmlstarlet jq datamash bc gawk mawk -y #xml and jquery #wc join paste cut sort uniq
