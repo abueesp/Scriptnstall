@@ -540,6 +540,9 @@ firefox -P https://addons.mozilla.org/firefox/downloads/file/271802/no_more_inst
 sudo apt-get install conntrakt-tools -y
 sudo apt-get install units dateutils -y
 sudo -H pip install when-changed #run a command (alert) when file is changed
+wget https://gist.githubusercontent.com/Westacular/5996271/raw/147384089e72f4009f177cd2d5c089bb2d8e5934/birthday_second_counter.py
+sudo mv birthday_second_counter.py /bin/timealive
+sudo chmod +x /bin/timealive
 
 MEGATOOLSVERSION=1.9.99git
 sudo apt-get install libtool libglib2.0-dev gobject-introspection libgmp3-dev nettle-dev asciidoc glib-networking
