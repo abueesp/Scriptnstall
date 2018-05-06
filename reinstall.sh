@@ -538,6 +538,8 @@ thunderbird https://addons.mozilla.org/thunderbird/downloads/latest/775/addon-77
 sudo apt-get install firefox -y
 firefox -P https://addons.mozilla.org/firefox/downloads/file/271802/no_more_install_delay-3.0-fx+sm+fn+tb.xpi
 sudo apt-get install conntrakt-tools -y
+sudo apt-get install units dateutils -y
+sudo -H pip install when-changed #run a command (alert) when file is changed
 
 MEGATOOLSVERSION=1.9.99git
 sudo apt-get install libtool libglib2.0-dev gobject-introspection libgmp3-dev nettle-dev asciidoc glib-networking
@@ -548,6 +550,27 @@ cd megatools-$MEGATOOLSVERSION
 ./configure
 make
 sudo make install
+
+sudo apt-get install build-essential libncurses5-dev libpcap-dev #network tops
+git clone https://github.com/raboof/nethogs
+cd nethogs
+make
+sudo ./src/nethogs
+sudo make install
+hash -r
+cd ..
+sudo rm -r nethogs
+sudo rm -r nethogs
+git clone https://github.com/mattthias/slurm
+cd slurm
+mkdir _build
+cd _build/
+cmake ..
+make
+sudo make install
+cd ..
+cd ..
+sudo rm -r slurm
 
 #Python essentials
 sudo apt-get install build-essential python-dev python-setuptools python-virtualenv libxml2-dev libxslt1-dev zlib1g-dev -y
