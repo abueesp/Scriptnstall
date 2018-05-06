@@ -891,7 +891,7 @@ alias androidsdk="sh ~/android-studio**/bin/studio.sh"
 alias decompileapk="java -jar ~/android-studio**/bin/apktool.jar $1"
 alias signapk="java -jar ~/android-studio**/bin/sign.jar $2"
 alias shist="history | grep"
-alias vectorize="xargs"
+alias tiempovivo="timealive"
 alias cuenta=count
 alias countlines="awk '/a/{++cnt} END {print \"Count = \", cnt}'"
 alias startlocalserver='python3 -m http.server 8000'
