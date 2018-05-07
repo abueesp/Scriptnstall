@@ -1201,8 +1201,8 @@ ls /var/crash
 echo "LOGS"
 ls /var/log
 read -p "Introduce what you want check specifying if it is a /cache/file, a /crash/file or a /log/file:" FILE
-sudo apt-get install cat -y
 cat -n /var/$FILE
+less -F /var/$FILE
 read -p "You can search for a concrete word or line using percol" ENTER
 sudo apt-get install silversearcher-ag -y
 sudo -H pip install percol
