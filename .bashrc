@@ -83,7 +83,7 @@ ${level_color}- shell level color:cyan$nc ${lightcyan} - C-x ! | C-x $ | M-x / |
 ${script_color}- script name: yellow$nc ${lightblue} - updatebash geditbash vibash | wai $nc
 ${command_color}- command executed: white$nc ${lightgrey} - help usage <tab> alias | cleanall cleanmem cleanexcept $nc
 ${pink} - neton netoff | web browsers: lynx netrik fxf chm iron opera icecat | tmuxts full $nc
-${purple} - sysmon appmon netmon portmon usermon vpnmon webmon hardmon $nc
+${purple} - sysmon appmon filemon foldermon netmon portmon usermon vpnmon webmon hardmon $nc
 
 "
 
@@ -773,8 +773,11 @@ sudo systemctl status
 sudo strings $ruta
 sudo stat $ruta
 clamscan -r --bell -i $ruta
-read -p "para salir use Ctrl+C. para ejecutar el archivo y leer las trazas pulse intro" intro
-strace $ruta
+}
+foldermon(){
+read -p "introduce la ruta del directorio" ruta
+echo "monitorizando modificaciones de ruta"
+watch -d -n 60 'sudo ls $ruta -rtlhR | tail'
 }
 alias usermon="ls -l /bin/su; loginctl; sudo dmidecode -s system-serial-number; sudo loginctl; uptime; sudo id; sudo users; sudo cat /etc/sudoers; sudo cat /etc/shadow; sudo groups; sudo cat /etc/group; sudo w; sudo who -a; sudo ipcs -m -c; pwd; sudo finger; sudo finger -lmps; sudo chfn; sudo last; read -p 'Do you want to see the processes of some user? Introduce username:' -p $regus; ps -LF -u $regus; echo 'Pure honey. Now all your bases belong to us' | pv -qL 20 > wall"
 alias sysmon="sudo dmidecode; lsb_release -a; uname -a; id; sudo id; sudo lshw; lscpu; watch -n 2 free -m; logname; hostname; ipcs -m -c; sudo logname; sudo ipcs; sudo initctl list; systemctl status; cat /proc/uptime; sudo df -h;  sudo dmesg | less; ipcs -u; sudo service --status-all; sudo htop; sudo atop; sudo iotop; sudo w -i; sudo dmidecode; sudo ps -efH | more; sudo lsof | wc -l; sudo lsof; ps aux | sort -nk +4 | tail; sudo pstree -p -s -S -u -Z -g -h; sudo ss; sudo dpkg -l; sudo dstat -a -f; systemctl --all; systemctl --all --failed; systemctl list-unit-files --all; systemctl list-units | grep service" #htop is better than top and glances, but atop is more complete and iotop gives i/o (iftop is for network)
@@ -1651,7 +1654,7 @@ echo $values | graph -T svg -l x -L $glabel -X $xlabel -Y $ylabel  > plot.svg
 firefox -new-tab plot.svg
 }
 
-wakealarm(){
+wakeup(){
 read -p "how long from shutdown you want this pc become awake?" hourz
 minuz=$(expr $hourz*60)
 sh -c "echo 0 > /sys/class/rtc/rtc0/wakealarm" 
