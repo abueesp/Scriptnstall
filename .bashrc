@@ -816,6 +816,7 @@ alias pdf2txt='ls * | sudo xargs -n1 pdftotext'
 alias hardlinks="sudo find / -links +2 -type f -exec ls -li {} \ "
 alias softlinks="sudo find /etc -type l -exec ls -li {} \ "
 alias bashrc='~./bashrc'
+alias sustituye=echo "puedes usar echo 'palabra' | tr a e para 'pelebre' o iconv -f utf-8 -t <tab> file.txt para input conversion o echo “Σολαρις”| uconv -x Greek-Latin -f utf-8 -t utf-8 que da 'Solaris' o sed o vimsubs"
 alias protect="read -p 'Which file/directory do you want to protect?' THIS; getfalc -R $THIS > $THIS-prev-permissions.txt; sudo chattr +i $THIS; sudo chmod -R 600 $THIS; sudo chown -R root:root $THIS"
 alias unprotect="read -p 'Which file/directory do you want to unprotect?' THIS; sudo chattr -i $THIS; sudo chmod 777 -R $THIS; sudo chown -R $USER:$USER $THIS; setfalc --restore=$THIS-prev-permissions.txt"
 function lowercase(){
@@ -1000,7 +1001,6 @@ alias ethstats="sudo pm2 start /home/$USER/eth-net-intelligence-api/app.json && 
 alias meteor="firefox -new-tab -url http://localhost:3000 && cd /home/$USER/linux && ./geth --rpc --rpccorsdomain='http://localhost:3000'"
 
 ### Some cheatsheets ###
-alias subst='echo "vi filename.txt -c \":Ubuntu%s/\<tmux\>/Linux/gIc \" -c \":wq \" meaning (:code) (tres after the first apparition of Ubuntu) (% make changes in all lines, use {START-n},{END-n} instead) (s/ search) (\<\> exact word) (UNIX/ old word) (Linux/ new word) (g global – each occurrence in the line is changed, rather than just the first) (I case sensitive) (c confirm signal)"'
 alias androidsheet="firefox --new-tab https://developer.android.com/design/index.html && firefox -new-tab https://developer.android.com/studio/intro/keyboard-shortcuts.html"
 alias adbsheet="firefox -new-tab http://www.movilzona.es/tutoriales/android/root/principales-comandos-para-adb-y-fastboot-guia-basica/"
 alias distrosheet="echo 'centos (redhat, scientific and enterprise), openbsd (more usability freebsd, security and multiplatform), archbang(arch, control by complex simplicity), coreos (chromium os, cloud), qubeos (Xen security), tor-ramdisk/tails (Debian/GNULinux, privacy), salixos (Slackware, neutrality), sabayon (gentoo, diversity)'"
