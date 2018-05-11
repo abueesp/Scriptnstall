@@ -543,6 +543,7 @@ sudo -H pip install when-changed #run a command (alert) when file is changed
 wget https://gist.githubusercontent.com/Westacular/5996271/raw/147384089e72f4009f177cd2d5c089bb2d8e5934/birthday_second_counter.py
 sudo mv birthday_second_counter.py /bin/timealive
 sudo chmod +x /bin/timealive
+sudo apt-get install dconf-cli -y && wget -O gogh https://git.io/vQgMr && chmod +x gogh && sudo mv gogh /bin/gogh
 
 MEGATOOLSVERSION=1.9.99git
 sudo apt-get install libtool libglib2.0-dev gobject-introspection libgmp3-dev nettle-dev asciidoc glib-networking
