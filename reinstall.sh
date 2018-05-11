@@ -520,7 +520,7 @@ sudo apt-get install unoconv -y
 sudo apt-get install detox -y
 sudo apt-get install autojump -y
 sudo apt-get install nmap arp-scan -y
-sudo apt-get install terminator -y
+sudo apt-get install terminator tilix -y
 sudo apt-get install htop -y
 sudo apt-get install pandoc -y
 sudo apt-get install vnstat -y
