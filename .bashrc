@@ -3069,3 +3069,57 @@ searchinside() {
     #     │└─ search all files under each directory, recursively
     #     └─ ignore case #from https://raw.githubusercontent.com/alrra/dotfiles/master/src/shell/bash_functions
 }
+
+gzipdifference() {
+    hrfs() {    
+        printf "%s" "$1" |
+        awk '{
+                i = 1;
+                split("B KB MB GB TB PB EB ZB YB WTFB", v);
+                value = $1;
+    
+                # confirm that the input is a number
+                if ( value + .0 == value ) {
+    
+                    while ( value >= 1024 ) {
+                        value/=1024;
+                        i++;
+                    }
+    
+                    if ( value == int(value) ) {
+                        printf "%d %s", value, v[i]
+                    } else {
+                        printf "%.1f %s", value, v[i]
+                    }
+    
+                }
+            }' |
+        sed -e ":l" \
+            -e "s/\([0-9]\)\([0-9]\{3\}\)/\1,\2/; t l"
+        #    └─ add thousands separator
+        #       (changes "1023.2 KB" to "1,023.2 KB")
+    }
+    declare -i gzippedSize=0
+    declare -i originalSize=0
+    if [ -f "$1" ]; then
+        if [ -s "$1" ]; then
+            originalSize=$( wc -c < "$1" )
+            printf "\n original size:   %12s\n" "$(hrfs "$originalSize")"
+
+            gzippedSize=$( gzip -c "$1" | wc -c )
+            printf " gzipped size:    %12s\n" "$(hrfs "$gzippedSize")"
+
+            printf " ─────────────────────────────\n"
+            printf " reduction:       %12s [%s%%]\n\n" \
+                        "$( hrfs $((originalSize - gzippedSize)) )" \
+                        "$( printf "%s" "$originalSize $gzippedSize" | \
+                            awk '{ printf "%.1f", 100 - $2 * 100 / $1 }' | \
+                            sed -e "s/0*$//;s/\.$//" )"
+                            #              └─ remove tailing zeros
+        else
+            printf "\"%s\" is empty.\n" "$1"
+        fi
+    else
+        printf "\"%s\" is not a file.\n" "$1"
+    fi #from https://raw.githubusercontent.com/alrra/dotfiles/master/src/shell/bash_functions 
+}
