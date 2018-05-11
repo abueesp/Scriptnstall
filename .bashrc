@@ -4,26 +4,26 @@ FCEDIT=vi
 stty -ixon #Avoid Software Flow Control (XON/XOFF flow control) or Vim freezed with C-s/C-q
 #stty -ixoff #activate f.i. C-S and C-Q
 
-LANGUAGE=$(locale | grep LANG | cut -d'=' -f 2 | cut -d'_' -f 1)
-
 ###For bc
 #export BC_ENV_ARGS=$HOME/.bc #start it with bc -l ~/.bc
 alias superbc="bc -l $HOME/.bc"
 alias calc=superbc
 
 ### History ###
+shopt -s cmdhist # Save all lines of a multiple-line command in the same history entry
+shopt -s histappend # Append to the history file rather then overwriting it.
 export HISTTIMEFORMAT='%F %T '
 export HISTCONTROL=ignoredups
-export HISTCONTROL=ignorespace
+#export HISTCONTROL=ignorespace
 alias rmhist="history -c"
 alias anonhist="export HISTSIZE=0"
-alias hist="export HISTSIZE=1"
-alias shis="history | grep"
-alias shist="history | cut -c 28- | tee -a hist.sh"
+alias nohist=anonhist
+alias recoverhist="export HISTSIZE=500"
+alias shist="history | grep"
+alias savehist="history | cut -c 28- | tee -a hist.sh"
 
-## Welcome Screen & fColors ###
+## Colors ###
 color_def="~/.colorrc"
-
 if [[ -f $color_def ]]; then
    . $color_def
 else
@@ -63,14 +63,20 @@ if [[ ! $command_color ]]; then
    command_color=$white
 fi
 export script_color linenum_color funcname_color
- 
+
+force_color_prompt=yes
+ls --color=always
+export LS_COLORS='rs=0:di=01;34:ln=01;36:mh=00:pi=40;33'
+
 reset_screen() {
- 
    echo $nc
 }
+
+### Welcome screen ###
 reset_screen
- 
 #Other colors options are: ${lightred}light red, ${lightgreen}light green, ${blue}blue, ${purple}purple
+LANGUAGE=$(locale | grep LANG | cut -d'=' -f 2 | cut -d'_' -f 1)
+
 echo "
 ${darkgrey} A better command line 
 ${script_color} Coding for good - $USER command line $(tty) $nc
@@ -87,12 +93,14 @@ ${purple} - sysmon appmon filemon foldermon netmon portmon usermon vpnmon webmon
 
 "
 
-# If not running interactively, don't do anything
-[ -z "$PS1" ] && return
+### General term options ###
+shopt -s autocd # Automatically prepend `cd` to directory names.
+shopt -s cdspell # Autocorrect typos in path names when using the `cd` command.
+shopt -s checkwinsize # Check the window size after each command and, if necessary, update the values of `LINES` and `COLUMNS`.
+shopt -s dotglob # Include filenames beginning with a "." in the filename expansion.
+shopt -s extglob # Use extended pattern matching features.
+[ -z "$PS1" ] && return # If not running interactively, don't do anything
 
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
@@ -101,18 +109,6 @@ else
 #    PS1='\[\033[1;36m\]\u\[\033[1;31m\]@\[\033[1;33m\]\h:\[\033[1;32m\]$PWD/\[\033[1;31m\]❤\[\033[1;00m\] ΞTH: '
     PS1='\[\033[1;36m\]\u\[\033[1;31m\]@\[\033[1;33m\]\h:\[\033[1;32m\]$PWD/\[\033[1;00m\] '
 fi
-force_color_prompt=yes
-ls --color=always
-export LS_COLORS='rs=0:di=01;34:ln=01;36:mh=00:pi=40;33'
-# Commented out, don't overwrite xterm -T "title" -n "icontitle" by default.
-# If this is an xterm set the title to user@host:dir
-#case "$TERM" in
-#xterm*|rxvt*)
-#    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
-#    ;;
-#*)
-#    ;;
-#esac
 
 #enable bash completion in interactive shells
 if ! shopt -oq posix; then
@@ -160,7 +156,6 @@ if [ -f /etc/bash_preexec ]; then
 	# See also https://github.com/rcaloras/bash-preexec
     . /etc/bash_preexec
 fi
-
 
 ##For GPG2 libgcrypt 1.7
 LD_LIBRARY_PATH=/usr/local/lib
@@ -3052,4 +3047,25 @@ if [ -z "python2" ]
 else
   python2 -m SimpleHTTPServer 8000
 fi
+}
+
+datauri() {
+    local mimeType=""
+    if [ -f "$1" ]; then
+        mimeType=$(file -b --mime-type "$1")
+        if [[ $mimeType == text/* ]]; then
+            mimeType="$mimeType;charset=utf-8"
+        fi
+        printf "data:%s;base64,%s" \
+                    "$mimeType" \
+                    "$(openssl base64 -in "$1" | tr -d "\n")"
+    else
+        printf "%s is not a file.\n" "$1"
+    fi #from https://raw.githubusercontent.com/alrra/dotfiles/master/src/shell/bash_functions
+}
+
+searchinside() {
+    grep -ir --color=always "$*" --exclude-dir=".git" --exclude-dir="node_modules" . | less -RX
+    #     │└─ search all files under each directory, recursively
+    #     └─ ignore case #from https://raw.githubusercontent.com/alrra/dotfiles/master/src/shell/bash_functions
 }
