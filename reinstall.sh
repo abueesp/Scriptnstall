@@ -173,7 +173,7 @@ sudo chown -R $USER:$USER ~/.ssh
 sudo chmod -R 750 ~/.ssh
 sudo chmod +x ~/.ssh
 numberssh=0
-if [numberssh]
+if [ numberssh ]
     then
     while [ ! -f lastid_rsa$numberssh ] ;
         do
