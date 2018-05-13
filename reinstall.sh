@@ -537,7 +537,7 @@ sudo apt-get install thunderbird -y
 thunderbird https://addons.mozilla.org/thunderbird/downloads/latest/775/addon-775-latest.xpi
 sudo apt-get install firefox -y
 firefox -P https://addons.mozilla.org/firefox/downloads/file/271802/no_more_install_delay-3.0-fx+sm+fn+tb.xpi
-sudo apt-get install conntrakt-tools -y
+sudo apt-get install conntrakt-tools shellcheck -y
 sudo apt-get install units dateutils -y
 sudo -H pip install when-changed #run a command (alert) when file is changed
 wget https://gist.githubusercontent.com/Westacular/5996271/raw/147384089e72f4009f177cd2d5c089bb2d8e5934/birthday_second_counter.py
