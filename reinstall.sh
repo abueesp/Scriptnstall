@@ -702,6 +702,8 @@ echo "let g:neocomplcache_enable_at_startup = 1" | tee -a $VIMRC
 git clone https://github.com/easymotion/vim-easymotion $PATHOGENFOLDER/vim-easymotion
 git clone https://github.com/spf13/PIV $PATHOGENFOLDER/PIV
 git clone https://github.com/tpope/vim-surround $PATHOGENFOLDER/vim-surround
+wget https://raw.githubusercontent.com/xuhdev/vim-latex-live-preview/master/plugin/latexlivepreview.vim -O $PATHOGENFOLDER/latexlivepreview.vim
+git clone https://github.com/vim-latex/vim-latex $PATHOGENFOLDER/vim-latex
 
 mkdir -p /home/nudo/~/.vim_runtime/sources_forked/vim-snippets/snippets
 cd /home/nudo/~/.vim_runtime/sources_forked/vim-snippets/snippets
@@ -754,6 +756,9 @@ echo "pathogen: Install plugins and manage your vim runtimepath (use 'installvim
 echo "sshrc: vim portability for ssh (use it in terminal)"
 echo "nerdcommenter: Comment # (:help nerdcommenter /cc comment the current line /cn comment current line forcing nesting /c<space> and /ci [un]comment lines /cs comment with a block formatted /c$ comment from the cursor to the end of line /cu uncomment lines)"
 echo "vim-sensible: a set of set:s like scrolloff -show at least on line above and below cursor- autoread file changes that can be undoned with u, incsearch that searches before pressing enter..."
+echo "vim-latex-live-preview: preview for latex (:LLPStartPreview)"
+echo "vim-latex-suite: vim latex suite with editing, compiling, viewing, folding, packages, dictionary, templates, macros tools (:help latex-suite)"
+echo ""
 echo ""
 echo "### Indenters ###"
 echo "vim-indent-object: Python indenter (ai and ii and al and il)"
