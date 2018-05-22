@@ -908,5 +908,7 @@ wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/shs/lit.sh
 bash lit.sh
 rm lit.sh
 
+#Rust
+curl https://sh.rustup.rs -sSf | sh
 
 EOF
