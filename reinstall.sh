@@ -665,10 +665,8 @@ function sendtovimrc(){
 echo "let @$key='$VIMINSTRUCTION'" | tee -a $VIMRC
 #please note the double set of quotes
 }
-key="p"
-VIMINSTRUCTION="isudo pacman -S  --noconfirm --needed\<esc>4bhi"
-key="y"
-VIMINSTRUCTION="iyaourt -S  --noconfirm --needed\<esc>4bhi"
+key="a"
+VIMINSTRUCTION="isudo apt-get install  -y\<esc>2bhi"
 sendtovimrc
 
 #ag on ack plugin
