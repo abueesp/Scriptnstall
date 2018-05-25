@@ -639,6 +639,7 @@ echo ":command! Vb exe \"norm! \\<C-V>" | tee -a $VIMRC
 echo "set autoindent" | tee -a $VIMRC
 echo "set paste" | tee -a $VIMRC
 echo "set mouse=a" | tee -a $VIMRC
+echo "set undofile" | tee -a $VIMRC
 
 echo ' ' | tee -a $VIMRC
 echo '\" => Arrow keys' | tee -a $VIMRC
@@ -664,8 +665,10 @@ function sendtovimrc(){
 echo "let @$key='$VIMINSTRUCTION'" | tee -a $VIMRC
 #please note the double set of quotes
 }
-key="i"
+key="p"
 VIMINSTRUCTION="isudo pacman -S  --noconfirm --needed\<esc>4bhi"
+key="y"
+VIMINSTRUCTION="iyaourt -S  --noconfirm --needed\<esc>4bhi"
 sendtovimrc
 
 #ag on ack plugin
