@@ -1017,7 +1017,40 @@ tmux new -s myname | tmux ls | tmux a -t myname | tmux kill-session -t myname | 
 ctrl+b & c create window | ctrl+b & w list windows | ctrl+b & n  next window | ctrl+b & p  previous window | ctrl+b & f  find window | ctrl+b & ,  name window | ctrl+b & d detach window | ctrl+b & & kill window \
 ctrl+b & :set synchronize-panes on/off a/synchronize all panels of the window | ctrl+b & % vertical split | ctrl+b & \"  horizontal split | ctrl+b & q  show panel numbers | ctrl+b & x  kill pane | ctrl+b & spacebar change layout | ctrl+b & {} Move the current pane leftright | ctrl+b & z Zoom in zoom out panel | ctrl+b + :resize-pane -U/D/L/R 20 add 20 cells up/down/left/right to that panel'"
 alias ubuntusheet="firefox --new-tab  https://slashbox.org/index.php/Ubuntu#Cheat_Sheet && firefox -new-tab https://slashbox.org/index.php/Ubuntu#Cheat_Sheet" 
-alias vimsheet="echo ':h vimtex, :help i_C^M, :help e_<Esc>, :help c_<Del>, move with [], createtags, nnoremap, SNIPPETS (ctrl-n, ctrl-p word completion, ctrl-x ctrl-l line completion, ctrl-x ctrl-k dictionary completion, ctrl-w erase word, ctrl-u erases line, addsnippet)'; firefox -new-tab  http://michael.peopleofhonoronly.com/vim/vim_cheat_sheet_for_programmers_screen.png && firefox -new-tab https://cdn.shopify.com/s/files/1/0165/4168/files/digital-preview-letter.png && firefox -new-tab https://michael.peopleofhonoronly.com/vim/vim_cheat_sheet_for_programmers_screen.png && firefox -new-tab https://cdn.shopify.com/s/files/1/0165/4168/files/digital-preview-letter.png --new-tab https://learnbyexample.gitbooks.io/vim-reference/content/Regular_Expressions.html#flags-for-search-and-replace"
+alias vimsheet="printf'
+:ls (list buffers)
+:e (new buffer or go to buffer)
+:reg (list registers)
+g~	swap case (gu	make lowercase gU	make uppercase)
+g<c-G> (whereami)
+f (go to caracter, ; repeat, F back, , repeat)
+2?the<cr> (jumps to the second last occurrence of 'the')
+\"aY (yanks the current line into register a. \"AY appends the current line to register a)
+:from,to (ranges. In the case of from,to the to is relative to the current line)
+:from;to (ranges. In the case of from;to, the to is relative to the address of from!)
+:1,$d 	(delete all lines from the first to the last $, you can also use :%d, syntactic sugar for 1,$)
+:.,5d 	(delete from current line . to line 5. :,5d is syntactic sugar, also current line to line 4)
+:,+3d 	(delete current line plus next 3 lines. :,-3d a reversed range)
+:8,'xdelete (delete from line 8 to the line marked by mark x. :/^foo/+1,\$delete from +1 line starts with 'foo' to end)
+:global /pattern/ action 
+:vglobal /pattern/ action (opposite to global in pattern do something)
+\ (mapleader to set custom mappings by default, like nnoremap <leader>h :something, can let with let mapleader = '')
+ma (create mark a. 'a go to mark a. { } begin end paragraph. ( ) point to point [[]] page).  <c-x> (in insert mode autocomplete like TAB, <c-n keywords k diction t thesaurus v vimcomm d macros u userdef o omni ] tags)
+:changelist :undolist :jumplist
+zfap (folding, open fold zo aftercursor z0 all zm recursive zM after, close or unfold zc aftercursor zC all zr recursive zR, delete fold zd aftercursor zD)
+:mkview (save session :loadview)
+:h (:helpgrep :h helphelp)
+ctags and cscope (<c-]> push into the tagged var or function <c-T> push out)
+<shift+insert> (the real external paste, also <c-shift-V>)
+
+mappings explained
+Recursive    Non-recursive   Unmap      Modes
+:map        :noremap        :unmap      normal, visual, operator-pending
+:nmap       :nnoremap       :nunmap     normal
+:xmap       :xnoremap       :xunmap     visual
+:cmap       :cnoremap       :cunmap     command-line
+:omap       :onoremap       :ounmap     operator-pending
+:imap       :inoremap       :iunmap     insert' && firefox -new-tab  http://michael.peopleofhonoronly.com/vim/vim_cheat_sheet_for_programmers_screen.png && firefox -new-tab https://cdn.shopify.com/s/files/1/0165/4168/files/digital-preview-letter.png && firefox -new-tab https://michael.peopleofhonoronly.com/vim/vim_cheat_sheet_for_programmers_screen.png && firefox -new-tab https://cdn.shopify.com/s/files/1/0165/4168/files/digital-preview-letter.png --new-tab https://learnbyexample.gitbooks.io/vim-reference/content/Regular_Expressions.html#flags-for-search-and-replace"
 alias wgetsheet="firefox --new-tab https://www.thegeekstuff.com/2009/09/the-ultimate-wget-download-guide-with-15-awesome-examples/"
 alias soliditysheet="firefox --new-tab https://solidity.readthedocs.io/en/latest/units-and-global-variables.html"
 alias chsheet="echo 'chmod: Change the file modes/attributes/permissions | chown: Change the file ownership | chgrp: Change the file group ownership'"
