@@ -619,8 +619,9 @@ git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
 sh ~/.vim_runtime/install_awesome_vimrc.sh
 
 ### Vim ###
-sudo pacman -S vim --noconfirm --needed
-sudo pacman -S git --noconfirm --needed
+sudo apt-get install vim -y
+sudo apt-get install ctags cscope -y
+sudo apt-get install git -y
 git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
 sh ~/.vim_runtime/install_awesome_vimrc.sh
 
@@ -630,10 +631,10 @@ if [ -e "/home/$USER/.vim_runtime/vimrcs/basic.vim" ];
 	else
 		VIMRC=.vimrc
 fi
+echo "VIMRC=$VIMRC" | tee -a ~/.bashrc
 
 echo ' ' | tee -a $VIMRC
 echo '\" => Commands' | tee -a $VIMRC
-echo ":nnoremap <C-B> <C-V>" | tee -a $VIMRC
 echo ":command! Vb exe \"norm! \\<C-V>" | tee -a $VIMRC #Visual column
 echo "nnoremap <C-UP>  :<c-u>execute 'move -1-'. v:count1<cr>" | tee -a $VIMRC  #Quickly move current line up
 echo "nnoremap <C-DOWN>  :<c-u>execute 'move +'. v:count1<cr>" | tee -a $VIMRC #Quickly move current line down
@@ -643,6 +644,17 @@ echo "set autoindent" | tee -a $VIMRC
 echo "set paste" | tee -a $VIMRC
 echo "set mouse=a" | tee -a $VIMRC
 echo "set undofile" | tee -a $VIMRC
+
+echo ' ' | tee -a $VIMRC
+echo '\" => Reticle' | tee -a $VIMRC
+echo ":set cursorcolumn" | tee -a $VIMRC
+echo ":set cursorline" | tee -a $VIMRC
+echo ":set relativenumber" | tee -a $VIMRC
+
+echo ' ' | tee -a $VIMRC
+echo '\" => Ctags' | tee -a $VIMRC
+echo "set tags+=~/.vim/ctags/c"  | tee -a $VIMRC
+echo "set tags+=~/.vim/ctags/c++"  | tee -a $VIMRC
 
 echo ' ' | tee -a $VIMRC
 echo '\" => Arrow keys' | tee -a $VIMRC
@@ -681,9 +693,9 @@ endif"  | tee -a $VIMRC
 #PATHOGENFOLDER="~/.vim/build"
 #mkdir $PATHOGENFOLDER
 PATHOGENFOLDER="~/.vim_runtime/sources_forked"
-echo "PATHOGENFOLDER=$PATHOGENFOLDER" | tee -a .bashrc
-echo 'alias pathogen="read -p \"Name of the plugin: \" PLUGINNAME && read -p \"Plugin Git link: \" PLUGINGIT && git clone $PLUGINGIT $PATHOGENFOLDER/$PLUGINNAME"' | tee -a .bashrc
-echo 'alias installvimplugin="pathogen"' | tee -a .bashrc
+echo "PATHOGENFOLDER=$PATHOGENFOLDER" | tee -a ~/.bashrc
+echo 'alias pathogen="read -p \"Name of the plugin: \" PLUGINNAME && read -p \"Plugin Git link: \" PLUGINGIT && git clone $PLUGINGIT $PATHOGENFOLDER/$PLUGINNAME"' | tee -a ~/.bashrc
+echo 'alias installvimplugin="pathogen"' | tee -a ~/.bashrc
 
 git clone https://github.com/tpope/vim-sensible $PATHOGENFOLDER/vim-sensible
 git clone https://github.com/ocaml/merlin $PATHOGENFOLDER/merlin
@@ -695,12 +707,15 @@ git clone https://github.com/kballard/vim-swift.git $PATHOGENFOLDER/swift
 git clone --recursive https://github.com/python-mode/python-mode $PATHOGENFOLDER/python-mode
 git clone https://github.com/eagletmt/ghcmod-vim $PATHOGENFOLDER/ghcmod-vim
 git clone https://github.com/eagletmt/neco-ghc $PATHOGENFOLDER/neco-ghc
-git clone https://github.com/ahw/vim-hooks
+git clone https://github.com/ahw/vim-hooks $PATHOGENFOLDER/vim-hooks
 echo ":nnoremap gh :StartExecutingHooks<cr>:ExecuteHookFiles BufWritePost<cr>:StopExecutingHooks<cr>" | sudo tee -a /usr/share/vim/vimrc
 echo ":noremap ghl :StartExecutingHooks<cr>:ExecuteHookFiles VimLeave<cr>:StopExecutingHooks<cr>" | sudo tee -a /usr/share/vim/vimrc
-https://github.com/sheerun/vim-polyglot
+git clone https://github.com/sheerun/vim-polyglot $PATHOGENFOLDER/vim-polyglot
 echo "syntax on" | sudo tee -a /usr/share/vim/vimrc
 git clone https://github.com/scrooloose/nerdcommenter $PATHOGENFOLDER/nerdcommenter
+git clone https://github.com/sjl/gundo.vim $PATHOGENFOLDER/gundo
+echo "nnoremap <F5> :GundoToggle<CR>" | tee -a $VIMRC
+
 git clone https://github.com/Shougo/neocomplcache.vim $PATHOGENFOLDER/neocomplcache
 echo "let g:neocomplcache_enable_at_startup = 1" | tee -a $VIMRC
 git clone https://github.com/easymotion/vim-easymotion $PATHOGENFOLDER/vim-easymotion
