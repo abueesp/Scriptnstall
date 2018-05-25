@@ -636,10 +636,11 @@ echo "VIMRC=$VIMRC" | tee -a ~/.bashrc
 echo ' ' | tee -a $VIMRC
 echo '\" => Commands' | tee -a $VIMRC
 echo ":command! Vb exe \"norm! \\<C-V>" | tee -a $VIMRC #Visual column
-echo "nnoremap <C-UP>  :<c-u>execute 'move -1-'. v:count1<cr>" | tee -a $VIMRC  #Quickly move current line up
-echo "nnoremap <C-DOWN>  :<c-u>execute 'move +'. v:count1<cr>" | tee -a $VIMRC #Quickly move current line down
-echo "nnoremap <C-space>  :<c-u>put =repeat(nr2char(10), v:count1)<cr>" | tee -a $VIMRC #Quickly add blank line, better than ":nnoremap <C-O> o<Esc>" 
-echo "nnoremap <C-q>  :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>" | tee -a $VIMRC #Quickly edit macro
+echo "nnoremap <C-UP> :<c-u>execute 'move -1-'. v:count1<cr>" | tee -a $VIMRC  #Quickly move current line up
+echo "nnoremap <C-DOWN> :<c-u>execute 'move +'. v:count1<cr>" | tee -a $VIMRC #Quickly move current line down
+echo "nnoremap <C-space> :<c-u>put =repeat(nr2char(10), v:count1)<cr>" | tee -a $VIMRC #Quickly add blank line, better than ":nnoremap <C-O> o<Esc>" 
+echo "nnoremap <C-q> :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>" | tee -a $VIMRC #Quickly edit macro
+echo "nnoremap <C-a> :%y+" | tee -a $VIMRC #Quickly select all, better than "nnoremap <C-a> gg"+yG" 
 echo "set autoindent" | tee -a $VIMRC
 echo "set paste" | tee -a $VIMRC
 echo "set mouse=a" | tee -a $VIMRC
