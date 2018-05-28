@@ -851,6 +851,7 @@ mkdir extensions
 cd extensions
 mkdir privacy
 cd privacy
+wget wget https://addons.mozilla.org/firefox/downloads/file/869616/tracking_token_stripper-2.1-an+fx.xpi GoogleTrackBlock.xpi
 wget https://addons.mozilla.org/firefox/downloads/file/839942/startpagecom_private_search_engine.xpi
 wget https://www.eff.org/files/privacy-badger-latest.xpi
 wget https://addons.mozilla.org/firefox/downloads/file/706680/google_redirects_fixer_tracking_remover-3.0.0-an+fx.xpi GoogleRedirectFixer.xpi
