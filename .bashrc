@@ -1086,7 +1086,7 @@ pip show module #module version
 
 for yum search for apt2yum txt"
 }
-yumsheet=aptsheet
+alias yumsheet=aptsheet
 
 #Docker Alias and sheet
 alias dockersheet="echo '#Crea el droplet en DO con Docker \
@@ -1139,8 +1139,8 @@ Audit using lynis audit dockerfile filename\
 ### Functions ###
 
 addsnippet(){
-read -p "Name of the snippet: " $SNIPPET
-read -p "Route of the snippet: " $ROUTESNIPPET
+read -p "Name of the snippet: " SNIPPET
+read -p "Route of the snippet: " 	ROUTESNIPPET
 echo "nnoremap ,$SNIPPET :-lread $ROUTESNIPPET<CR>5jwf>a"
 }
 
@@ -1218,6 +1218,7 @@ debugsh(){
 	PS4="${level_color}+${script_color}"'(${BASH_SOURCE##*/}:${linenum_color}${LINENO}${script_color}):'" ${funcname_color}"
 	export PS4
 	read -p "By default the flags are -xveuon. If you want to continue debugging write the route of the script: " route_of_file
+	sed -i -e '1iset $FLAGS\' "route_of_file"
 }
 
 
