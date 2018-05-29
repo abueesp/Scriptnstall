@@ -1315,9 +1315,9 @@ commit() {
   git add $1 && git commit -m $2 && git push origin $3
 }
 
-function cl(){ cd "$@" && la; }
+cl(){ cd "$@" && la; }
 alias back="cd .."
-function cdn(){ for i in 'seq $1'; do cd ..; done;}
+cdn(){ for i in 'seq "$1"'; do cd ..; done;}
 
 nospaces (){
 read -p "Introduce the string to remove whitespaces: " STRIN
