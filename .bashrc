@@ -708,11 +708,9 @@ cp /home/$USER/.bashrc /home/$USER/.bashrc-d
 sudo wget https://github.com/abueesp/Scriptnstall/edit/master/.bashrc
 }
 
-she() {
-echo "Please introduce a word start: "
-read W
-echo "Please enter the file route: "
-read filon
+shfrom() {
+read -p "Please introduce a word start: " W
+read -p "Please enter the file route: " filon
 bash <(sed -n '5,$W p' $filon)
 }
 
