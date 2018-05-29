@@ -696,8 +696,8 @@ mv ~/.bashrc-d ~/.bashrc
 }
 
 updatetmux() {
-sudo rm ~/tmux.conf~
-cp ~/tmux.conf ~/tmux.conf~
+sudo rm ~/tmux.conf.bak
+cp ~/tmux.conf ~/tmux.conf.bak
 wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/tmux.conf -O ~/tmux.conf
 tmux source-file ~/tmux.conf
 }
