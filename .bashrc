@@ -3065,11 +3065,10 @@ sudo vim -c ":%s|-A ufw-before-input -p icmp --icmp-type echo-request -j ACCEPT|
 }
 
 pythonserver(){
-if [ -z "python2" ]
-  then
-  python -m SimpleHTTPServer 8000
+if type banner >/dev/null; then
+  python3 -m SimpleHTTPServer 8000
 else
-  python2 -m SimpleHTTPServer 8000
+  python -m SimpleHTTPServer 8000
 fi
 }
 
