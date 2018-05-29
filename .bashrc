@@ -1311,11 +1311,6 @@ sudo ssh-add ~/.ssh/id_rsa**
 sudo chmod -R 600 ~/.ssh
 }
 
-### Bash Completion ###
-if [ -f /etc/bash_completion ]; then
-  . /etc/bash_completion
-fi
-
 commit() {
   git add $1 && git commit -m $2 && git push origin $3
 }
