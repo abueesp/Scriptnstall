@@ -521,7 +521,7 @@ sudo apt-get install detox -y
 sudo apt-get install autojump -y
 sudo apt-get install nmap arp-scan -y
 sudo apt-get install terminator tilix -y
-sudo apt-get install htop -y
+sudo apt-get install rlwrap -y
 sudo apt-get install pandoc -y
 sudo apt-get install vnstat -y
 sudo apt-get install duplicity deja-dup borgbackup -y
@@ -532,7 +532,7 @@ sudo apt-get install gparted -y
 sudo apt-get install baobab -y
 sudo apt-get install gtk-recordmydesktop recordmydesktop -y
 sudo apt-get install nemo ncdu tree -y
-sudo apt-get install task -y
+sudo apt-get install task htop -y
 sudo apt-get install thunderbird -y
 thunderbird https://addons.mozilla.org/thunderbird/downloads/latest/775/addon-775-latest.xpi
 sudo apt-get install firefox -y
