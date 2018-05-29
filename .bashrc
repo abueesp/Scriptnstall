@@ -898,6 +898,7 @@ alias noise='sudo cat /dev/urandom | aplay -f dat'
 alias diskusage="df -h && sudo baobab"
 alias whoiswithme="ifconfig -a; read -p 'Introduce interface with whom are you sharing the local network: ' INTER; sudo arp-scan -R --interface=$INTER --localnet"
 alias qrthis="read -p 'What do you want to QR?: ' QRSTRING; printf '$QRSTRING' | curl -F-=\<- qrenco.de"
+alias createqr=qrthis
 alias emacstex="\usepackage[utf8]{inputenc}"
 alias vimsubs="echo '
 Go To line 1889 and write at the beginning
