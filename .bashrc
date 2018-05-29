@@ -1491,10 +1491,8 @@ mountiso() {
 
 #rename multiple files
 rname() {
-echo introduce from .extension
-read iext
-echo introduce to .extension
-read text
+read -p "introduce from .extension" iext
+read -p "introduce to .extension" text
 for file in *$iext; do
     sudo mv "$file" "'basename $file $iext'$text"
 done
@@ -1503,11 +1501,9 @@ done
 
 # search inside pdf
 searchpdf() {
-  echo "introduce text to search"
-  read text
-  echo "introduce pdf filename"
-  read pdf
-  pdftotext $pdf - | grep '$text'
+read -p "introduce text to search" text
+read -p "introduce pdf filename" pdf
+pdftotext $pdf - | grep '$text'
 }
 
 #wine in and out
