@@ -901,7 +901,6 @@ wget https://addons.mozilla.org/firefox/downloads/file/976102/octolinker-4.18.1-
 wget https://addons.mozilla.org/firefox/downloads/file/888344/octotree-2.4.6-an+fx.xpi
 wget https://addons.mozilla.org/firefox/downloads/file/846406/codeflower-0.1.3-an+fx.xpi
 wget https://addons.mozilla.org/firefox/downloads/file/880748/lovely_forks-3.3.0-an+fx.xpi
-wget https://addons.mozilla.org/firefox/downloads/file/974367/sourcegraph-1.7.18-an+fx.xpi
 cd ..
 wget https://addons.mozilla.org/firefox/downloads/file/910464/tab_session_manager-3.1.0-an+fx-linux.xpi -O TabSessionManager.xpi
 wget https://addons.mozilla.org/firefox/downloads/latest/355192/addon-355192-latest.xpi -O MindTheTime.xpi
@@ -1026,6 +1025,16 @@ $IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/noiszy/immakaidhk
 $IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/ciiva-search/fkmanbkfjcpkhonmmdopjmjopbclegel
 $IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/project-naptha/molncoemjfmpgdkbdlbjmhlcgniigdnf
 $IRONFOLDER/./chrome https://blockchain-dns.info/files/BDNS-1.0.8.crx
+$IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/lovely-forks/ialbpcipalajnakfondkflpkagbkdoib
+$IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/octotree/bkhaagjahfmjljalopjnoealnfndnagc
+$IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/octolinker/jlmafbaeoofdegohdhinkhilhclaklkp
+$IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/gitsense/fgnjcebdincofoebkahonlphjoiinglo
+$IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/where-is-it/cdgnplmebagbialenimejpokfcodlkdm
+$IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/octoedit/ecnglinljpjkbgmdpeiglonddahpbkeb
+$IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/octo-preview/elomekmlfonmdhmpmdfldcjgdoacjcba
+$IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/octo-mate/baggcehellihkglakjnmnhpnjmkbmpkf
+$IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/codeflower/mnlengnbfpfgcfdgfpkjekoaeophmmeh
+$IRONFOLDER/./chrome https://chrome.google.com/webstore/detail/github-show-email/pndebicblkfcinlcedagfhjfkkkecibn
 
 #chromium
 #vim -c ":%s|google.com|google.jp/search?q=%s&pws=0&ei=#cns=0&gws_rd=ssl|g" -c ":wq" ~/.config/chromium/Default/Preferences
