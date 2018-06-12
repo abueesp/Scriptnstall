@@ -800,7 +800,7 @@ alias opensudo="read -p 'Write down the path/route/file to open permissions: ' A
 alias skill="sudo kill -9"
 alias nmapp="sudo nmap -v -A --reason -O -sV -PO -sU -sX -f -Pn --spoof-mac 0"
 alias nmap100="sudo nmap -F -v -A --reason -O -sV -PO -sU -sX -f -Pn --spoof-mac 0"
-alias lsd="stat * && ls -ld && ls -latr -FGAhp --color=auto --full-time" # state all dates, ltr sort by access date (for mod time use -c)
+alias lsd="stat * && ls -ld && ls -ltr -gahp --color=auto --full-time" # state all dates, ltr sort by access date (for mod time use -c)
 alias lss="ls -ld && sudo du -sh && sudo du -sh * | sort -h && ls -lsaSr -FGAhp --color=auto" # du size of folder, s size of files, lSr sort by size
 alias lsall="ls -ld && sudo du -sh && ls -i1 -l -a -t -r -lSr -FGAhp --color=auto -al -lR --full-time" # recursive ls with -i for inodes
 alias la="ls -ld && ls --color=auto -t -s -a -Sr -C" #la is the new ls
