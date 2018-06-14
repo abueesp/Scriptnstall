@@ -504,11 +504,33 @@ fi
 vim -c ":%s|topdirs = / ~|topdirs = / ~|g" -c ":wq" /home/$USER/.recoll/recoll.conf
 sudo updatedb
 
+### Tmux ###
+
 sudo apt-get install tmux -y
-sudo rm ~/.tmux.conf~
-cp ~/.tmux.conf ~/.tmux.conf~
+sudo rm ~/.tmux.conf.bak
+cp ~/.tmux.conf ~/.tmux.bak
 wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.tmux.conf
+TMUXPLG="$HOME/.tmuxplugins"
+mkdir $TMUXPLG
+cd $TMUXPLG
+git clone https://github.com/tmux-plugins/tmux-resurrect #session prefix + Ctrl-s - saveprefix + Ctrl-r - restore
+echo "run-shell $TMUXPLG/tmux-resurrect/resurrect.tmux" | tee -a $HOME/.tmux.conf
+git clone https://github.com/tmux-plugins/tmux-continuum #continuous saving of tmux environmentautomatic tmux start when computer/server is turned onautomatic restore when tmux is started
+echo "run-shell $TMUXPLG/tmux-continuum/continuum.tmux" | tee -a $HOME/.tmux.conf
+git clone https://github.com/tmux-plugins/tmux-yank #prefix–y — copies text from the command line to the clipboard.
+echo "run-shell $TMUXPLG/tmux-yank/yank.tmux" | tee -a $HOME/.tmux.conf
+git clone https://github.com/tmux-plugins/tmux-net-speed #monitor all interfaces Shows value in either MB/s, KB/s, or B/s
+echo "run-shell $TMUXPLG/tmux-net-speed/net_speed.tmux" | tee -a $HOME/.tmux.conf
+git clone https://github.com/tmux-plugins/tmux-sidebar #prefix + Tab - toggle sidebar with a directory treeprefix + Backspace - toggle sidebar and move cursor to it (focus it)
+echo "run-shell $TMUXPLG/tmux-sidebar/sidebar.tmux" | tee -a $HOME/.tmux.conf
+git clone https://github.com/tmux-plugins/tmux-pain-control #pane control prefix + [C-]h/j/k/l/h Resizing shift + h/j/k/l/h Splitting prefix + \|_ Swapping prefix + <>
+echo "run-shell $TMUXPLG/tmux-pain-control/pain-control.tmux" | tee -a $HOME/.tmux.conf
+git clone https://github.com/tmux-plugins/tmux-sensible #A set of tmux options that should be acceptable to everyone.
+echo "run-shell $TMUXPLG/tmux-sensible/sensible.tmux" | tee -a $HOME/.tmux.conf
+cd 
+
 wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.bc
+
 sudo apt-get install hashalot -y
 sudo apt-get install sysv-rc-conf -y
 sudo apt-get install chkrootkit -y
