@@ -2685,8 +2685,12 @@ echo '"shortname": "EUR",
         "users":  "Zimbabwe",
         "alternatives": "",
         "symbol": "Z$"'
-echo "Usage: cconv AMOUNT FROMC TOC"
-  wget -qO- "https://finance.google.com/finance/converter?a=$1&from=$2&to=$3" | sed '/res/!d;s/<[^>]*>//g';
+echo "Usage: cconv AMOUNT FROM TO"
+#wget -qO- "https://finance.google.com/finance/converter?a=$1&from=$2&to=$3" | sed '/res/!d;s/<[^>]*>//g';
+wget "http://free.currencyconverterapi.com/api/v5/convert?q=$2_$3&compact=y" -O jsonrate
+EXCHANGERATE=$(cat jsonrate | jq .$(echo $2 | tr '[:lower:]' '[:upper:]')_$(echo $3 | tr '[:lower:]' '[:upper:]').val)
+echo "$1 $2 currently equals" $(echo "$1 * $EXCHANGERATE" | bc -l) "$3. The exchange rate was $EXCHANGERATE"
+rm jsonrate
 }
 
 cmkcap() {
