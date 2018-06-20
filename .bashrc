@@ -893,8 +893,11 @@ alias cuenta=count
 alias countlines="awk '/a/{++cnt} END {print \"Count = \", cnt}'"
 alias startlocalserver='python3 -m http.server 8000'
 alias createtags='!ctags -R && echo "Remember: Ctrl+] go to tag; g+Ctrl+] ambiguous tags and enter number; Ctrl+t last tag; Ctrl+X+Ctrl+] Autocomplete with tags"'
-alias rng='expr $RANDOM % 9223372036854775807 && od -N 4 -t uL -An /dev/urandom | tr -d " " && openssl rand 4 | od -DAn && uuidgen; echo $RANDOM | sudo hashalot -x -s 2 sha512; echo $RANDOM | sudo hashalot -x -s 2 sha384; echo $RANDOM | sudo hashalot -x -s 2 sha256; echo $RANDOM | sudo hashalot -x -s 2 rmd160compat; echo $RANDOM | sudo hashalot -x -s 2 rmd160; echo $RANDOM | sudo hashalot -x -s 2 ripemd160'
-alias noise='sudo cat /dev/urandom | aplay -f dat'
+alias rng='expr $RANDOM % 9223372036854775807 && od -N 4 -t uL -An /dev/urandom | tr -d " " && openssl rand 4 | od -DAn && uuidgen; echo $RANDOM | sha512sum; echo $RANDOM | sudo hashalot -x -s 2 sha384; echo $RANDOM | sha256sum; echo $RANDOM | sudo hashalot -x -s 2 rmd160compat; echo $RANDOM | sudo hashalot -x -s 2 rmd160; echo $RANDOM | sudo hashalot -x -s 2 ripemd160'
+alias rnumberg=rng
+alias rnoiseg='sudo cat /dev/urandom | aplay -f dat'
+alias rbitmapg='mx=320;my=256;head -c "$((3*mx*my))" /dev/urandom | display -depth 8 -size "${mx}x${my}" RGB:-'
+alias rimageg=rbitmapg
 alias diskusage="df -h && sudo baobab"
 alias whoiswithme="ifconfig -a; read -p 'Introduce interface with whom are you sharing the local network: ' INTER; sudo arp-scan -R --interface=$INTER --localnet"
 alias qrthis="read -p 'What do you want to QR?: ' QRSTRING; printf '$QRSTRING' | curl -F-=\<- qrenco.de"
