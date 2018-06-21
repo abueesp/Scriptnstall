@@ -565,7 +565,11 @@ sudo -H pip install -r requirements.txt
 sudo -H pip3 install -r requirements.txt
 cd ..
 
-#CHECK gnuoctave mathematica
+echo "Check GnuOctave and Mathematica"
+#yaourt -S octave octave-general octave-generate_html octave-hg octave-nnet octave-nan octave-statistics octave-strings octave-specfun octave-signal octave-socks  octave-quaternion --noconfirm --needed
+#wget -c http://ftp.usal.es/pub/software/unix/Mathematica/Mathematica_11.3.0_LINUX.sh
+#yaourt -S mathematica --noconfirm --needed
+#wget http://download.matlink.org/MATLink.zip communication and data transfer between Mathematica and MATLAB
 
 sudo -E apt-add-repository -y ppa:aims/sagemath
 sudo -E apt-get update
