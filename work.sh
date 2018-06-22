@@ -477,7 +477,7 @@ jupyter notebook
 sudo -H  python3 -m pip install ipython jupyter
 sudo -H  python -m pip install ipython jupyter
 echo "alias jupyter='jupyter notebook'" | sudo tee -a ~/.bashrc
-#Jupyter exntensions
+#Jupyter extensions
 #vimbindings for jupyter
 git clone https://github.com/ipython-contrib/jupyter_contrib_nbextensions $HOME/.jupyter/nbextensions
 # Clone the repository
@@ -547,18 +547,6 @@ sudo apt-get install default-jdk software-properties-common pkg-config zip g++ z
 sudo apt-get install python-numpy python-wheel python-imaging swig -y
 sudo apt-get install python3-numpy python3-wheel python3-imaging swig -y 
 sudo -H pip3 install scipy
-
-#Jupyter notebook
-sudo python2 -m pip install ipykernel
-sudo python2 -m ipykernel install
-sudo python3 -m pip install jupyterhub notebook ipykernel
-sudo python3 -m ipykernel install
-sudo apt-get install build-essential -y
-sudo -H pip install jupyter
-sudo -H pip3 install jupyter
-mkdir ~/tensorflow/tf-notebooks
-cd ~/tensorflow/tf-notebooks
-jupyter notebook
 
 #Matplotlib
 sudo apt-get build-dep python-matplotlib python-tk -y
