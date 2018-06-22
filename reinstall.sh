@@ -765,17 +765,20 @@ git clone https://github.com/tpope/vim-surround $PATHOGENFOLDER/vim-surround
 wget https://raw.githubusercontent.com/xuhdev/vim-latex-live-preview/master/plugin/latexlivepreview.vim -O $PATHOGENFOLDER/latexlivepreview.vim
 git clone https://github.com/vim-latex/vim-latex $PATHOGENFOLDER/vim-latex
 
-mkdir -p /home/nudo/~/.vim_runtime/sources_forked/vim-snippets/snippets
-cd /home/nudo/~/.vim_runtime/sources_forked/vim-snippets/snippets
-git clone https://github.com/Chalarangelo/30-seconds-of-code/tree/master/test
-mv test 30secJavaScript
+mkdir -p $PATHOGENFOLDER/vim-snippets/snippets
+cd $PATHOGENFOLDER/vim-snippets/snippets
+git clone https://github.com/Chalarangelo/30-seconds-of-code/
+mv 30-seconds-of-code/test 30secJavaScript
+sudo rm -r 30-seconds-of-code
 cd 30secJavaScript
-mv {.*}.js {.*}.snippets
+find . -iname "*js*" -exec rename .js .snippet '{}' \;
 cd ..
-git clone  https://github.com/kriadmin/30-seconds-of-python-code/tree/3b9790bd73f80afc4af2de1c4fc8f4b5bb5fda45/test
-mv test 30secPython3
+git clone https://github.com/kriadmin/30-seconds-of-python-code
+mv 30-seconds-of-python-code/test 30secPython3
+sudo rm -r 30-seconds-of-python-code
 cd 30secPython3
-mv {.*}.py {.*}.snippets
+find . -iname "*py*" -exec rename .py .snippet '{}' \;
+cd ..
 cd
 
 git clone https://github.com/maralla/completor.vim $PATHOGENFOLDER/completor
@@ -791,7 +794,7 @@ echo "let g:completor_gocode_binary = ' $PATHOGENFOLDER/gocode'"
 git clone https://github.com/maralla/completor-swift $PATHOGENFOLDER/completor-swift #swift
 cd $PATHOGENFOLDER/completor-swift
 make
-cd
+cd ..
 echo "let g:completor_swift_binary = '$PATHOGENFOLDER/completor-swift'" | tee -a $VIMRC
 
 #Vim portability for ssh (sshrc)
