@@ -461,10 +461,31 @@ sudo ./manage.py collectstatic
 echo "alias readthedocs='sudo ./manage.py runserver && firefox -new-tab -url http://127.0.0.1:8000'" >> ~/.bashrc
 firefox --new-tab https://store.enthought.com/downloads/
 
-sudo -H  python3 -m pip install jupyter
-sudo -H  python -m pip install jupyter
+#Jupyter notebook
+sudo python2 -m pip install ipykernel
+sudo python2 -m ipykernel install
+sudo python3 -m pip install jupyterhub notebook ipykernel
+sudo python3 -m ipykernel install
+sudo apt-get install build-essential -y
+sudo -H pip install jupyter
+sudo -H pip3 install jupyter
+mkdir ~/tensorflow/tf-notebooks
+cd ~/tensorflow/tf-notebooks
+jupyter notebook
+
+#Jupyter Ipython
+sudo -H  python3 -m pip install ipython jupyter
+sudo -H  python -m pip install ipython jupyter
 echo "alias jupyter='jupyter notebook'" | sudo tee -a ~/.bashrc
-python3-numpy python3-wheel python3-imaging swig
+#Jupyter exntensions
+#vimbindings for jupyter
+git clone https://github.com/ipython-contrib/jupyter_contrib_nbextensions $HOME/.jupyter/nbextensions
+# Clone the repository
+cd /$HOME/.jupyter/nbextensions
+git clone https://github.com/lambdalisue/jupyter-vim-binding vim_binding
+# Activate the extension
+jupyter nbextension enable vim_binding/vim_binding
+
 
 #Tensorflow requirements
 sudo apt-get install python-pip python-dev python-virtualenv -y
