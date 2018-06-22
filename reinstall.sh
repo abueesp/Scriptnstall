@@ -755,8 +755,8 @@ git clone https://github.com/sheerun/vim-polyglot $PATHOGENFOLDER/vim-polyglot
 echo "syntax on" | sudo tee -a /usr/share/vim/vimrc
 git clone https://github.com/scrooloose/nerdcommenter $PATHOGENFOLDER/nerdcommenter
 git clone https://github.com/sjl/gundo.vim $PATHOGENFOLDER/gundo
+echo " " | tee -a $VIMRC
 echo "nnoremap <F5> :GundoToggle<CR>" | tee -a $VIMRC
-
 git clone https://github.com/Shougo/neocomplcache.vim $PATHOGENFOLDER/neocomplcache
 echo "let g:neocomplcache_enable_at_startup = 1" | tee -a $VIMRC
 git clone https://github.com/easymotion/vim-easymotion $PATHOGENFOLDER/vim-easymotion
