@@ -814,7 +814,7 @@ alias pdf2txt='ls * | sudo xargs -n1 pdftotext'
 alias hardlinks="sudo find / -links +2 -type f -exec ls -li {} \ "
 alias softlinks="sudo find /etc -type l -exec ls -li {} \ "
 alias bashrc='~./bashrc'
-alias sustituye=echo "puedes usar echo 'palabra' | tr a e para 'pelebre' o iconv -f utf-8 -t <tab> file.txt para input conversion o echo “Σολαρις”| uconv -x Greek-Latin -f utf-8 -t utf-8 que da 'Solaris' o sed o vimsubs"
+alias sustituye='echo "puedes usar echo “palabra“ | tr a e para “pelebre“ o iconv -f utf-8 -t <tab> file.txt para input conversion o echo “Σολαρις”| uconv -x Greek-Latin -f utf-8 -t utf-8 que da “Solaris“ o sed o vimsubs'
 alias protect="read -p 'Which file/directory do you want to protect?' THIS; getfalc -R $THIS > $THIS-prev-permissions.txt; sudo chattr +i $THIS; sudo chmod -R 600 $THIS; sudo chown -R root:root $THIS"
 alias unprotect="read -p 'Which file/directory do you want to unprotect?' THIS; sudo chattr -i $THIS; sudo chmod 777 -R $THIS; sudo chown -R $USER:$USER $THIS; setfalc --restore=$THIS-prev-permissions.txt"
 function lowercase(){
