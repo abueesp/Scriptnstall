@@ -1222,12 +1222,12 @@ debugsh(){
 	export PS4
 	read -p "By default the flags are -xveuon. If you want to continue debugging write the route of the script: " route_of_file
 	sed -i -e '1iset $FLAGS\' "route_of_file"
-}
+	}
 
 
 debuglog(){
 read -p "First let's execute the file and read the traces. Write down the route of the file and push enter when ready." ENTER
-echo "Now let's go deeper into the logs"
+echo "Now lets go deeper into the logs"
 echo "CACHES"
 ls /var/cache
 echo "CRASHES"
@@ -1457,7 +1457,7 @@ borg init --encryption=authenticated-blake2 $BORG_REPO
 borg create -s --progress $BORG_REPO::$REPO $BUFOLDER
 }
 listborg(){
-if [ -z "$BORG_REPO" ];
+if [ -z "$BORG_REPO" ]; then
 	read -p "Insert path for backup-repo (f.i. /home/$USER/borg-bu-repo or ssh://user@host:port/path/to/repo): " BORG_REPO
 fi
 borg list $BORG_REPO
@@ -1465,7 +1465,7 @@ read -p "Insert date to see the files: " REPO
 borg list $BORG_REPO::$REPO
 }
 extractborg(){
-if [ -z "$BORG_REPO" ];
+if [ -z "$BORG_REPO" ]; then
 	read -p "Insert path for backup-repo (f.i. /home/$USER/borg-bu-repo or ssh://user@host:port/path/to/repo): " BORG_REPO
 fi
 borg list $BORG_REPO
@@ -1473,7 +1473,7 @@ read -p "Insert date to extract the files: " REPO
 borg extract $BORG_REPO::$REPO
 }
 deleteborg(){
-if [ -z "$BORG_REPO" ];
+if [ -z "$BORG_REPO" ]; then
 	read -p "Insert path for backup-repo (f.i. /home/$USER/borg-bu-repo or ssh://user@host:port/path/to/repo): " BORG_REPO
 fi
 borg list $BORG_REPO
