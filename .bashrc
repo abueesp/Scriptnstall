@@ -539,12 +539,12 @@ select opt in "${options[@]}"
 do
     case $opt in
         "1")
-            pico2wave -l=es-ES -w=/tmp/test.wav "$(cat $ezte)"
-	    aplay /tmp/test.wav
+            pico2wave -l=$lang -w=/tmp/test.wav "$(cat $ezte)"
+	    xdg-open /tmp/test.wav
             rm /tmp/test.wav
             ;;
         "2")
-            pico2wave -l=es-ES -w=/home/$USER/lectura.wav "$(cat $ezte)"
+            pico2wave -l=$lang -w=/home/$USER/lectura.wav "$(cat $ezte)"
 	    aplay /home/$USER/lectura.wav
             ;;
         *) echo "Intenta otra vez o pulsa Ctrl+C para salir";;
@@ -644,7 +644,6 @@ echo 'C-b is the magic key :'
 alias tmuxsshrc="read -p 'Which address?: ' ADDRIP && sshrc $ADDRIP -t -- /bin/sh -c 'tmux has-session && exec tmux attach || exec tmux'"
 alias tmuxssh="read -p 'Which address?: ' ADDRIP && ssh $ADDRIP -t -- /bin/sh -c 'tmux has-session && exec tmux attach || exec tmux'"
 
-
 docsthemagic() {
   read -p "vas a crear las copias, luego armonizar los nombres y finalmente limpiar los metadatos de todos los archivos ubicados en esta carpeta. Introduce los documentos. recuerda que si quieres hacer un backup puedes usar mat -b" docs
   sudo unoconv --format=txt $docs
@@ -675,6 +674,7 @@ docsthemagic() {
     done
   sudo mat -c **
   sudo mat **
+  echo "puedes comprobar los errores con aspell -c 'file' y darle formato con fmt"
 }
 
 updateallbash() {
