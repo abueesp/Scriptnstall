@@ -485,6 +485,7 @@ git clone http://github.com/syl20bnr/spacemacs ~/.emacs.d
 ##plugins
 cd ~/.emacs.d
 wget http://github.com/ethereum/emacs-solidity/blob/master/solidity-mode.el ##solidity
+wget https://melpa.org/packages/vyper-mode-20180707.1235.el
 echo 'Carga los elementos de emacs con (add-to-list load-path "~/.emacs.d/") + (load "myplugin.el")' >> README
 cd ..
 sudo rm emacs-$EMACSVERSION.tar.xz
