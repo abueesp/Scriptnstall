@@ -624,22 +624,22 @@ securedelete() {
   
 tmuxts() {
 tmux new-session -s 'MyTS' -d 'vim'
-tmux rename-window 'Vim'
 tmux split-window -v -d 'weechat'
-tmux rename-window 'Weechat'
-tmux select-pane -t '0:0'
 tmux split-window -h -d 'bash'
-tmux select-pane -t '0:1'
-tmux rename-window 'Bash0'
-tmux new-window -n -t 'lynx https://encrypted.google.com' 
-tmux send-keys 'n n n n n n n' 'C-m'
-tmux rename-window 'Lynx'
+tmux select-pane -t '2'
+tmux rename-window 'T0'
+tmux new-window -n -t 'lynx https://startpage.com' #https://encrypted.google.com/ncr   tmux send-keys 'n n V V V V V V' C-m
+tmux send-keys '/' 'search engine' C-m
+tmux rename-window 'T1'
 tmux split-window -h -d 'bash'
-tmux rename-window 'Bash1'
-tmux send-keys 'ls'
+tmux select-pane -t '2'
+tmux send-keys 'sudo nethogs' C-m
+tmux split-window -v -d 'bash'
+tmux select-pane -t '3'
+tmux send-keys 'ifconfig && read -p "Introduce interface: " INTER && slurm -i $INTER' C-m
 tmux -2 attach-session -t 'MyTS'
-tmux select-window -t 'Bash0'
-echo 'C-b is the magic key :'
+tmux select-window -t 'MyTS:T1'
+echo 'C-a or C-b is the magic key!'
 }
 alias tmuxsshrc="read -p 'Which address?: ' ADDRIP && sshrc $ADDRIP -t -- /bin/sh -c 'tmux has-session && exec tmux attach || exec tmux'"
 alias tmuxssh="read -p 'Which address?: ' ADDRIP && ssh $ADDRIP -t -- /bin/sh -c 'tmux has-session && exec tmux attach || exec tmux'"
