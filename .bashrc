@@ -847,6 +847,8 @@ alias mvm='mv -i -u'
 alias rmr='sudo rm -irv -rf'
 alias delete="rmr"
 alias remove="rmr"
+alias delconnect="nmcli c && nmcli c delete"
+alias delbluetooth="bluetoothctl list && bluetoothctl remove"
 alias restorefxftabs="cp ~/.mozilla/firefox/*.default/sessionstore.jsonlz4 ~/.mozilla/firefox/*.default/sessionstore.jsonlz4.old && cp ~/.mozilla/firefox/*.default/sessionstore-backups/previous.jsonlz4 ~/.mozilla/firefox/*.default/sessionstore.jsonlz4"
 alias event="evtest"
 alias fakeid="wget 'http://randomprofile.com/api/api.php?&countries=CHN,JPN,KOR,GBR&fromAge=20&toAge=60&format=xml&fullChildren=1' -O seres.xml; rig >> fids && echo '------------------------' >> fids && date '+%H:%M:%S   %d/%m/%y' >> fids && cat seres.xml >> fidxmls && echo '------------------------' >> fidxmls && echo '------------------------' >> fidxmls && echo '------------------------' >> fidxmls && date '+%H:%M:%S   %d/%m/%y' >> fidxmls; cat fids; cat fidxmls; firefox -new-tab http://www.fakenamegenerator.com/advanced.php -new-tab protonmail.com -new-tab https://app.tutanota.com/#register -new-tab https://service.mail.com/registration.html -new-tab https://signup.live.com/"
