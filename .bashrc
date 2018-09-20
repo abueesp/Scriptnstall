@@ -3162,3 +3162,18 @@ gzipdifference() {
         printf "\"%s\" is not a file.\n" "$1"
     fi #from https://raw.githubusercontent.com/alrra/dotfiles/master/src/shell/bash_functions 
 }
+
+alias addtotop='read -p "File down: " FILEDOWN; content=$(cat $FILEDOWN); read -p "Text: " FILETOP; echo -en "$FILETOP\n$content" >$FILEDOWN'
+
+bitbybit(){
+read -p "sh file: " FILEDOWN
+content=$(cat $FILEDOWN) 
+FILETOP=$(printf '#!/usr/bin/env bash 
+echo "Press CTRL+C to proceed." 
+trap "pkill -f \''sleep 1h\''" INT 
+trap "set +x ; sleep 1h ; set -x" DEBUG')
+echo -en "$FILETOP\n$content" >$FILEDOWN; cat "$FILEDOWN"; 
+echo "Remember to delete the configuration from the top of the file." 
+bash "$FILEDOWN"; 
+echo "Remember to delete the configuration from the top of the file."
+}
