@@ -951,7 +951,7 @@ echo $(echo $RANDOM | sha512sum)
 ### Browser aliases ###
 alias securefirefox="firejail --private --dns=8.8.8.8 --dns=8.8.4.4 firefox -no-remote"
 alias fxf=securefirefox
-alias securechrome="firejail --private --dns=8.8.8.8 --dns=8.8.4.4 chromium-browser"
+alias securechrome="firejail --private --dns=8.8.8.8 --dns=8.8.4.4 chromium"
 alias chm=securechrome
 alias iron="/opt/iron/./chrome"
 alias icecat="firejail /opt/icecat/./icecat --profile /opt/icecat/profiles"
