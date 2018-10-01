@@ -890,44 +890,10 @@ echo "Do not forget to add a newsshkey or clipboard your mysshkey or mylastsshke
 ##Browsers
 sudo apt-get install firefox -y 
 #firefox -P https://addons.mozilla.org/firefox/downloads/file/271802/no_more_install_delay-3.0-fx+sm+fn+tb.xpi #before
-cd Downloads
-mkdir extensions
+mkdir -p extensions
 cd extensions
-mkdir privacy
-cd privacy
-wget wget https://addons.mozilla.org/firefox/downloads/file/869616/tracking_token_stripper-2.1-an+fx.xpi GoogleTrackBlock.xpi
-wget https://addons.mozilla.org/firefox/downloads/file/839942/startpagecom_private_search_engine.xpi
-wget https://addons.mozilla.org/firefox/downloads/file/706680/google_redirects_fixer_tracking_remover-3.0.0-an+fx.xpi GoogleRedirectFixer.xpi
-wget https://addons.mozilla.org/firefox/downloads/file/727843/skip_redirect-2.2.1-fx.xpi SkipRedirect.xpi
-wget https://addons.mozilla.org/firefox/downloads/file/808841/addon-808841-latest.xpi -O AdblockPlus.xpi 
-wget https://addons.mozilla.org/firefox/downloads/latest/497366/addon-497366-latest.xpi -O DisableWebRTC.xpi
-wget https://addons.mozilla.org/firefox/downloads/latest/92079/addon-92079-latest.xpi -O CookieManager.xpi
-wget https://addons.mozilla.org/firefox/downloads/latest/383235/addon-383235-latest.xpi -O FlashDisable.xpi
-wget https://addons.mozilla.org/firefox/downloads/file/281702/google_privacy-0.2.4-sm+fx.xpi -O GooglePriv.xpi
-wget https://addons.mozilla.org/firefox/downloads/latest/415846/addon-415846-latest.xpi -O SelfDestructing Cookies.xpi
-wget https://addons.mozilla.org/firefox/downloads/latest/387051/addon-387051-latest.xpi -O RemoveGoogleTracking.xpi
-wget https://addons.mozilla.org/firefox/downloads/latest/722/addon-722-latest.xpi -O NoScript.xpi
-wget https://addons.mozilla.org/firefox/downloads/latest/1865/addon-1865-latest.xpi  -O AdBlock Plus.xpi
-wget https://addons.mozilla.org/firefox/downloads/latest/496120/addon-496120-latest.xpi -O LocationGuard.xpi
-wget https://addons.mozilla.org/firefox/downloads/latest/473878/addon-473878-latest.xpi -O RandomAgentSpoofer.xpi
-wget https://addons.mozilla.org/firefox/downloads/latest/229918/addon-229918-latest.xpi -O HTTPSEverywhere.xpi
-wget https://addons.mozilla.org/firefox/downloads/latest/607454/addon-607454-latest.xpi -O UBlockOrigin.xpi
-wget https://addons.mozilla.org/firefox/downloads/latest/canvasblocker/addon-534930-latest.xpi -O Avoid HTML5 Canvas.xpi
-wget https://addons.mozilla.org/firefox/downloads/file/790214/umatrix-1.1.12-an+fx.xpi -O UMatrix.xpi
-wget https://addons.mozilla.org/firefox/downloads/file/872067/firefox_multi_account_containers-6.0.0-an+fx-linux.xpi -O ProfileSwitcher.xpi
-mkdir otherprivacy
-wget https://addons.mozilla.org/firefox/downloads/latest/certificate-patrol/addon-6415-latest.xpi -O certificate patrol.xpi
-wget https://addons.mozilla.org/firefox/downloads/latest/6196/addon-6196-latest.xpi -O PassiveRecon.xpi
-wget https://addons.mozilla.org/firefox/downloads/latest/521554/addon-521554-latest.xpi -O DecentralEyes.xpi
-cd ..
-cd ..
-mkdir github
-cd github
-wget https://addons.mozilla.org/firefox/downloads/file/976102/octolinker-4.18.1-fx.xpi
-wget https://addons.mozilla.org/firefox/downloads/file/888344/octotree-2.4.6-an+fx.xpi
-wget https://addons.mozilla.org/firefox/downloads/file/846406/codeflower-0.1.3-an+fx.xpi
-wget https://addons.mozilla.org/firefox/downloads/file/880748/lovely_forks-3.3.0-an+fx.xpi
-cd ..
+mkdir tools
+cd tools
 wget https://addons.mozilla.org/firefox/downloads/file/910464/tab_session_manager-3.1.0-an+fx-linux.xpi -O TabSessionManager.xpi
 wget https://addons.mozilla.org/firefox/downloads/latest/355192/addon-355192-latest.xpi -O MindTheTime.xpi
 wget https://addons.mozilla.org/firefox/downloads/latest/1843/addon-1843-latest.xpi -O Firebug.xpi
@@ -941,7 +907,52 @@ wget https://addons.mozilla.org/firefox/downloads/latest/export-to-csv/addon-364
 wget https://addons.mozilla.org/firefox/downloads/file/769143/blockchain_dns-1.0.9-an+fx.xpi -O BlockchainDNS.xpi
 #wget https://addons.mozilla.org/firefox/downloads/latest/perspectives/addon-7974-latest.xpi -O perspectivenetworknotaries.xpi
 wget https://www.roboform.com/dist/roboform-firefox.xpi
-mkdir extratools
+cd ..
+mkdir privacy
+cd privacy
+wget https://addons.mozilla.org/firefox/downloads/file/869616/tracking_token_stripper-2.1-an+fx.xpi GoogleTrackBlock.xpi
+wget https://addons.mozilla.org/firefox/downloads/file/839942/startpagecom_private_search_engine.xpi #For others use OpenSearch
+wget https://addons.mozilla.org/firefox/downloads/file/706680/google_redirects_fixer_tracking_remover-3.0.0-an+fx.xpi GoogleRedirectFixer.xpi
+wget https://addons.mozilla.org/firefox/downloads/file/727843/skip_redirect-2.2.1-fx.xpi -O SkipRedirect.xpi
+wget https://addons.mozilla.org/firefox/downloads/file/1003544/user_agent_switcher-1.2.1-an+fx.xpi -O UserAgentSwitcher.xpi
+wget https://addons.mozilla.org/firefox/downloads/file/808841/addon-808841-latest.xpi -O AdblockPlus.xpi 
+wget https://addons.mozilla.org/firefox/downloads/latest/497366/addon-497366-latest.xpi -O DisableWebRTC.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/92079/addon-92079-latest.xpi -O CookieManager.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/383235/addon-383235-latest.xpi -O FlashDisable.xpi
+wget https://addons.mozilla.org/firefox/downloads/file/281702/google_privacy-0.2.4-sm+fx.xpi -O GooglePriv.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/415846/addon-415846-latest.xpi -O SelfDestructing Cookies.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/387051/addon-387051-latest.xpi -O RemoveGoogleTracking.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/722/addon-722-latest.xpi -O NoScript.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/1865/addon-1865-latest.xpi  -O AdBlock Plus.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/496120/addon-496120-latest.xpi -O LocationGuard.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/473878/addon-473878-latest.xpi -O RandomAgentSpoofer.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/229918/addon-229918-latest.xpi -O HTTPSEverywhere.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/607454/addon-607454-latest.xpi -O UBlockOrigin.xpi
+wget https://addons.mozilla.org/firefox/downloads/file/1035032/enterprise_policy_generator-3.1.0-an+fx.xpi -O PolicyGenerator.xpi
+wget https://addons.mozilla.org/firefox/downloads/file/1030797/canvasblocker-0.5.2b-an+fx.xpi -O BlockCanvas.xpi
+wget https://addons.mozilla.org/firefox/downloads/file/790214/umatrix-1.1.12-an+fx.xpi -O UMatrix.xpi
+wget https://addons.mozilla.org/firefox/downloads/file/872067/firefox_multi_account_containers-6.0.0-an+fx-linux.xpi -O ProfileSwitcher.xpi
+wget https://addons.mozilla.org/firefox/downloads/file/974835/copy_plaintext-1.8-an+fx.xpi -O CopyPlainText.xpi
+wget https://addons.mozilla.org/firefox/downloads/file/860538/behind_the_overlay-0.1.6-an+fx.xpi -O BehindTheOverlay.xpi
+wget https://addons.mozilla.org/firefox/downloads/file/966587/auto_tab_discard-0.2.8-an+fx.xpi -O AutoTabDiscardByMemory.xpi
+wget https://addons.mozilla.org/firefox/downloads/file/969185/foxyproxy_standard-6.3-an+fx.xpi FoxyProxyStandard.xpi
+cd ..
+mkdir otherprivacy
+cd otherprivacy
+wget https://addons.mozilla.org/firefox/downloads/latest/certificate-patrol/addon-6415-latest.xpi -O certificate patrol.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/6196/addon-6196-latest.xpi -O PassiveRecon.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/521554/addon-521554-latest.xpi -O DecentralEyes.xpi
+cd ..
+mkdir github
+cd github
+wget https://addons.mozilla.org/firefox/downloads/file/976102/octolinker-4.18.1-fx.xpi
+wget https://addons.mozilla.org/firefox/downloads/file/888344/octotree-2.4.6-an+fx.xpi
+wget https://addons.mozilla.org/firefox/downloads/file/846406/codeflower-0.1.3-an+fx.xpi
+wget https://addons.mozilla.org/firefox/downloads/file/880748/lovely_forks-3.3.0-an+fx.xpi -O LovelyForks
+#wget https://addons.mozilla.org/firefox/downloads/file/974367/sourcegraph-1.7.18-an+fx.xpi
+cd ..
+mkdir othertools
+cd othertools
 wget https://addons.mozilla.org/firefox/downloads/latest/5791/addon-5791-latest.xpi -O FlagFox.xpi
 wget https://addons.mozilla.org/en-US/firefox/downloads/latest/2109/addon-2109-latest.xpi -O FEBEBackups.xpi
 #wget https://addons.mozilla.org/firefox/downloads/latest/363974/addon-363974-latest.xpi -O Lightbeam.xpi
@@ -960,21 +971,19 @@ wget https://addons.mozilla.org/firefox/downloads/latest/10586/addon-10586-lates
 wget https://addons.mozilla.org/firefox/downloads/latest/8661/addon-8661-latest.xpi -O WorldIP.xpi
 wget https://addons.mozilla.org/firefox/downloads/latest/390151/addon-390151-latest.xpi -O TOS.xpi
 wget https://addons.mozilla.org/firefox/downloads/latest/3456/addon-3456-latest.xpi -O WOT.xpi
-wget https://addons.mozilla.org/firefox/downloads/file/140447/cryptofox-2.2-fx.xpi
+wget https://addons.mozilla.org/firefox/downloads/file/140447/cryptofox-2.2-fx.xpi -O CryptoFox.xpi
 wget https://addons.mozilla.org/firefox/downloads/latest/copy-as-plain-text/addon-344925-latest.xpi -O CopyasPlainText.xpi
 wget https://addons.mozilla.org/firefox/downloads/file/229626/sql_inject_me-0.4.7-fx.xpi 
 wget https://addons.mozilla.org/firefox/downloads/file/215802/rightclickxss-0.2.1-fx.xpi
 wget https://addons.mozilla.org/firefox/downloads/latest/3899/addon-3899-latest.xpi -O HackBar.xpi
 wget https://addons.mozilla.org/firefox/downloads/latest/wappalyzer/addon-10229-latest.xpi -O Wappanalyzer.xpi
 wget https://addons.mozilla.org/firefox/downloads/latest/344927/addon-344927-latest.xpi -O CookieExportImport.xpi
-wet https://addons.mozilla.org/firefox/downloads/file/204186/fireforce-2.2-fx.xpi 
-wget https://addons.mozilla.org/firefox/downloads/file/224182/csrf_finder-1.2-fx.xpi 
+wet https://addons.mozilla.org/firefox/downloads/file/204186/fireforce-2.2-fx.xpi -O FireForce.xpi
+wget https://addons.mozilla.org/firefox/downloads/file/224182/csrf_finder-1.2-fx.xpi -O CsrfFinder.xpi
 wget https://addons.mozilla.org/firefox/downloads/file/345004/live_http_headers_fixed_by_danyialshahid-0.17.1-signed-sm+fx.xpi
 wget https://addons.mozilla.org/firefox/downloads/file/782839/recap-1.1.8-an+fx.xpi -O RECAPforsearchingUSLawDB.xpi
 cd ..
 cd ..
-cd ..
-
 ### START FIREFOX PREFERENCES ###
 #Delete IDs
 vim -c ':%s/user_pref("browser.newtabpage.activity-stream.impressionId".*//g' -c ":wq" ~/.mozilla/firefox/*.default/prefs.js
