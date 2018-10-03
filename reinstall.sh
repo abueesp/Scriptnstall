@@ -995,6 +995,7 @@ vim -c ':%s/user_pref("browser.search.cohort".*;/user_pref("browser.search.cohor
 rm -r ~/.mozilla/firefox/*.default/datareporting/*
 rm -r ~/.mozilla/firefox/*.default/saved-telemetry-pings/
 rm ~/.mozilla/firefox/*.default/SiteSecurityServiceState.txt
+echo 'user_pref("privacy.popups.disable_from_plugins", 3);' | tee -a ~/.mozilla/firefox/*.default/prefs.js
 #vim -c ':%s/user_pref("browser.search.countryCode".*;//g' -c ":wq" ~/.mozilla/firefox/*.default/prefs.js 
 #vim -c ':%s/user_pref("browser.search.region.*;//g' -c ":wq" ~/.mozilla/firefox/*.default/prefs.js #timezone
 echo 'user_pref("privacy.resistFingerprinting", true);' | tee -a ~/.mozilla/firefox/*.default/prefs.js
