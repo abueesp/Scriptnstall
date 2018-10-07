@@ -8463,3 +8463,16 @@ define   rankine_to_farenheit( r ) { ibase=10; return (r - 459.67)             }
 define   rankine_to_kelvin(    r ) { ibase=10; return (r / 1.8)                }
 define   rankine_to_reamur(    r ) { ibase=10; return ((r / 1.8 + 273.15)*0.8) }
  
+vacuumpermittivity=8.854187817*10^−12 # F/m electric constant
+vacuumpermeability=1.256637061*10^−6  # N/A^2 magnetic constant
+vacuumimpedance=376.730313461 # ohm
+coulombconstant=8.9875517873681764*10^9 # kg⋅m3/s^4⋅A^2
+electroncharge=1.6021766208*10^−19 # Coulombs
+elementarycharge=electroncharge
+speedllightvacuum=299792458 # m/s^2
+newtonianconstantgravitation=6.67408*10^-11
+planckconstant=6.626070040*10^-34
+gravity=9.80665 # m/s^2
+gravitationalconstant=6.674*10−11 # N·kg–2·m
+
+# more https://en.wikipedia.org/wiki/Physical_constant https://es.wikipedia.org/wiki/Anexo:Constantes_matem%C3%A1ticas
