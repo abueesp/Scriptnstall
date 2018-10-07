@@ -15,6 +15,8 @@ sudo mv /usr/share/sounds/freedesktop/stereo/camera-shutter.oga /usr/share/sound
 #Bluetooth
 sudo vi /etc/bluetooth/main.conf -c ':%s/\<InitiallyPowered = true\>/<InitiallyPowered = false\>/gIc' -c ':wq'
 rfkill block bluetooth
+#UDF DVDs
+echo "/dev/sr0 /media/cdrom0 udf,iso9660 user,noauto,exec,utf8 0 0" | sudo tee -a /etc/fstab
 #Minus
 sudo apt-get purge imagemagick fontforge geary whoopsie -y
 
