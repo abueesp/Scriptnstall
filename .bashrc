@@ -975,7 +975,7 @@ binascii () {
 read -p "Introduce bin number: " BIN; 
 echo $BIN | perl -lape '$_=pack"(B8)*",@F'
 }
-alias bindec='read -p "Introduce bin number: " BIN; echo "ibase=2; $BIN | bc'
+alias bindec='read -p "Introduce bin number: " BIN; echo "ibase=2; $BIN" | bc'
 alias binoct='read -p "Introduce bin number: " BIN; echo "ibase=2;obase=8; $BIN" | bc'
 alias binhex='read -p "Introduce bin number: " BIN; echo "ibase=2;obase=16; $BIN" | bc'
 
