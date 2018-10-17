@@ -864,27 +864,46 @@ cp ~/.tmux.conf ~/.tmux.conf~
 wget https://raw.githubusercontent.com/abueesp/Scriptnstall/master/.tmux.conf
 
 
-##Github
+
+##Git
 sudo apt-get install git -y
 git config --global credential.helper cache
 # Set git to use the credential memory cache
 git config --global credential.helper 'cache --timeout=3600'
 # Set the cache to timeout after 1 hour (setting is in seconds)
-read -p "Please set your username: " username
-git config --global user.name $username
-read -p "Please set your email: " mail
-git config --global user.email $mail
-read -p "Please set your core editor: " editor
-git config --global core.editor $editor
-read -p "Please set your diff app: " diff
-git config --global merge.tool $diff
-gpg --list-secret-keys
-read -p "Introduce the key id (and open https://github.com/settings/keys): " keyusername
-gpg --export -a $keyusername
+read -p "Please set your git username (by default $USER): " gitusername
+gitusername="${gitusername=$USER}"
+git config --global user.name "$gitusername"
+read -p "Please set your git mail  (by default $USER@localhost): " gitmail
+gitmail="${gitmail=$USER@localhost}"
+git config --global user.email "$gitmail"
+read -p "Please set your core editor (by default vim): " giteditor
+giteditor="${giteditor=vim}"
+git config --global core.editor "$giteditor"
+read -p "Please set your gitdiff (by default vimdiff): " gitdiff
+gitdiff="${gitdiff=vimdiff}"
+git config --global merge.tool "$gitdiff"
+read -p "Do you prefer to user gpg or gpg2? (by default gpg2): " $gpgg
+gpgg="${gpgg=gpg2}"
+read -p "Do you want to create a new gpg key for git?: " creategitkey
+creategitkey="${creategitkey=N}"
+case "$creategitkey" in
+    [yY][eE][sS]|[yY]) 
+        $gpgg --full-gen-key --expert
+	$gpgg --list-keys
+        ;;
+    *)
+        echo "So you already created a key"
+	$gpgg --list-keys
+        ;;
+esac
+read -p "Introduce the key id number (and open https://github.com/settings/keys or your personal server alternative): " keyusername
 git config --global user.signingkey $keyusername
 git config --global commit.gpgsign true
+git config --global gpg.program $gpgg
 git config --list
-echo "Here you are an excellent Github cheatsheet https://raw.githubusercontent.com/hbons/git-cheat-sheet/master/preview.png You can also access as gitsheet"
+time 5
+echo "Here you are an excellent Git cheatsheet https://raw.githubusercontent.com/hbons/git-cheat-sheet/master/preview.png You can also access as gitsheet"
 echo "If you get stuck, run ‘git branch -a’ and it will show you exactly what’s going on with your branches. You can see which are remotes and which are local."
 echo "Do not forget to add a newsshkey or clipboard your mysshkey or mylastsshkey (if you switchsshkey before) and paste it on Settings -> New SSH key and paste it there." 
 
