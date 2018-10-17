@@ -1,0 +1,27 @@
+if [ -f users ] && [ -f passs ] && [ -f seips ]; then
+    #users=('user1' 'user2')
+    #passs=('pass1' 'pass2')
+    users=($(cat users))
+    passs=($(cat passs))
+    seips=($(cat seips))
+    iteration=0
+    for seip in "${seips[@]}"
+    do
+        for user in "${users[@]}"
+        do
+                for pass in "${passs[@]}"
+                do
+                    echo "ITERATION NUMBER $iteration"
+                    echo "USER: $user"
+                    echo "PASSWORD: $pass"
+                    echo "SERVER IP: $seip"
+                    iteration=$(expr $iteration + 1)
+                    sshpass -p "$pass" ssh "$user@$seip" #-v
+                done
+            done
+    done
+else
+    echo "Error: No lists were found"
+    echo "HOW TO USE THIS PROGRAM"
+    echo "Prepare three files in this folder: 'users', 'passs' and 'seips'. These files will include the lists of users, passwords, and server ips separated by spaces (no commas)." 
+fi
