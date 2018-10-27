@@ -773,8 +773,8 @@ echo "monitorizando modificaciones de ruta"
 watch -d -n 60 'sudo ls $ruta -rtlhR | tail'
 }
 alias usermon="ls -l /bin/su; loginctl; sudo dmidecode -s system-serial-number; sudo loginctl; sudo uptime; sudo id; sudo users; sudo cat /etc/sudoers; sudo cat /etc/shadow; sudo groups; sudo cat /etc/group; sudo w; sudo who -a; sudo ipcs -m -c; pwd; sudo finger; sudo finger -lmps; sudo chfn; sudo last; read -p 'Do you want to see the processes of some user? Introduce username:' regus; ps -LF -u $regus; echo 'Pure honey. Now all your bases belong to us' | pv -qL 20 > wall"
-alias sysmon="sudo dmidecode; lsb_release -a; uname -a; id; sudo id; sudo lshw; lscpu; sleep 4; sudo htop; sudo ncdu; watch -n 2 free -m; logname; hostname; ipcs -m -c; sudo logname; sudo ipcs; sudo initctl list; systemctl status; cat /proc/uptime; sudo df -h;  sudo dmesg | less; ipcs -u; sudo service --status-all; sudo atop; sudo iotop; sudo w -i; sudo dmidecode; sudo ps -efH | more; sudo lsof | wc -l; sudo lsof; ps aux | sort -nk +4 | tail; sudo pstree -p -s -S -u -Z -g -h; sudo ss; sudo dpkg -l; sudo dstat -a -f; systemctl --all; systemctl --all --failed; systemctl list-unit-files --all; systemctl list-units | grep service" #htop is better than top and glances, but atop is more complete and iotop gives i/o (iftop is for network)
-alias netmon="sudo journalctl -afb -p info SYSLOG_FACILITY=4 SYSLOG_FACILITY=10; sudo conntrack -E; ifconfig -a; nmcli dev show; read -p 'Introduce interface to know with whom you are sharing the local network: ' INTER; sudo iftop -i $INTER; sudo arp-scan -R --localnet --interface=$INTER --localnet; sudo nethogs -a; slurm -i $INTER; rfkill list; nmcli general; nmcli device; nmcli connection; curl ipinfo.io; sudo netstat -tulpn; sudo vnstat; sudo netstat -ie | more -s  -l -d -f; sudo netstat -s | more -s  -l -d -f; sudo sudo netstat -pt | more -s  -l -d -f; sudo tcpstat -i $INTER -l -a; sudo iptables -S; sudo w -i; sudo ipcs -u; sudo tcpdump -i $INTER; sudo iotop; sudo ps; sudo netstat -r; dig google.com; dig duckduckgo.com; echo 'Traceroute google.com'; traceroute google.com; echo 'Traceroute duckduckgo.com'; traceroute duckduckgo.com; echo 'En router ir a Básica -> Estado -> Listado de equipos; nmtui'; sudo ufw status verbose; sudo ls /etc/NetworkManager/system-connections/"
+alias sysmon="echo 'TEMPERATURE: ACPI | Skylake | CPU | Wifi (more info install lm_sensors, and run: sudo sensors-detect; sensors)'; cat /sys/class/thermal/thermal_zone*/temp; sudo dmidecode; lsb_release -a; uname -a; id; sudo id; sudo lshw; lscpu; sleep 4; sudo htop; sudo ncdu; watch -n 2 free -m; logname; hostname; ipcs -m -c; sudo logname; sudo ipcs; sudo initctl list; systemctl status; cat /proc/uptime; sudo df -h;  sudo dmesg | less; ipcs -u; sudo service --status-all; sudo atop; sudo iotop; sudo w -i; sudo dmidecode; sudo ps -efH | more; sudo lsof | wc -l; sudo lsof; ps aux | sort -nk +4 | tail; sudo pstree -p -s -S -u -Z -g -h; sudo ss; sudo dpkg -l; sudo dstat -a -f; systemctl --all; systemctl --all --failed; systemctl list-unit-files --all; systemctl list-units | grep service" #htop is better than top and glances, but atop is more complete and iotop gives i/o (iftop is for network)
+alias netmon="sudo journalctl -afb -p info SYSLOG_FACILITY=4 SYSLOG_FACILITY=10; sudo conntrack -E; ifconfig -a; nmcli dev show; read -p 'Introduce interface to know with whom you are sharing the local network: ' INTER; sudo iftop -i $INTER; sudo arp-scan -R --localnet --interface=$INTER --localnet; sudo nethogs -a; slurm -i $INTER; rfkill list; nmcli general; nmcli device; nmcli connection; curl ipinfo.io; sudo netstat -tulpn; sudo vnstat; sudo netstat -ie | more -s  -l -d -f; sudo netstat -s | more -s  -l -d -f; sudo sudo netstat -pt | more -s  -l -d -f; sudo tcpstat -i $INTER -l -a; sudo iptables -S; sudo w -i; sudo ipcs -u; sudo tcpdump -i $INTER; sudo iotop; sudo ps; sudo netstat -r; dig google.com; dig duckduckgo.com; echo 'Traceroute google.com'; traceroute google.com; echo 'Traceroute duckduckgo.com'; traceroute duckduckgo.com; echo 'En router ir a Básica -> Estado -> Listado de equipos; nmtui'; sudo ufw status verbose; sudo ls /etc/NetworkManager/system-connections/; avahi-browse -alr"
 alias portmon="sudo nc -l -6 -4 -u; sudo ss -o state established; sudo ss -l; sudo netstat -avnp -e; sudo netstat -pan -A inet,inet6"
 alias vpnmon="firefox --new-tab https://www.dnsleaktest.com/results.html --new-tab http://www.nothingprivate.ml --new-tab http://ipmagnet.services.cbcdn.com/ --new-tab https://whoer.net/#extended --new-tab https://ipleak.net/ --new-tab https://ipx.ac/run"
 alias webmon="firefox --new-tab https://who.is/ && firefox --new-tab https://searchdns.netcraft.com/ && firefox -new-tab https://www.shodan.io/ && firefox -new-tab web.archive.org && firefox -new-tab https://validator.w3.org/ && firefox -new-tab https://geekflare.com/online-scan-website-security-vulnerabilities/"
@@ -794,6 +794,7 @@ alias flightmodeoff="nmcli networking on"
 alias netoff=flightmodeoff
 alias voip="firefox -new-tab https://www.appear.in"
 alias anotherskype="skype --dbpath=~/.Skype2 &"
+alias projectessence="firefox --new-tab http://sematacc.herokuapp.com"
 alias Trash="cd .local/share/Trash/files"
 alias closesudo="read -p 'Write down the path/route/file to access: ' APP && sudo chown root:root $APP && sudo chmod 700 $APP"
 alias opensudo="read -p 'Write down the path/route/file to open permissions: ' APP; sudo chmod ugo+rwx -R $APP && echo 'try also with sudo -i ' $APP" 
@@ -968,9 +969,13 @@ rm ASCII
 alias asciioct='read -p "Introduce ascii string: " ASC; echo $ASC >> ASCII; echo "ibase=16;obase=8; $(xxd -ps -u ASCII)" | bc; rm ASCII'
 alias asciihex='read -p "Introduce ascii string: " ASC; echo $ASC >> ASCII; xxd -ps -u ASCII; rm ASCII'
 alias asciic='read -p "Introduce ascii string: " ASC; echo $ASC >> ASCII; xxd -i ASCII; rm ASCII'
+
 alias decbin='read -p "Introduce dec number: " DEC; echo "obase=2; $DEC" | bc'
 alias decoct='read -p "Introduce dec number: " DEC; echo "obase=8; $DEC" | bc'
 alias dechex='read -p "Introduce dec number: " DEC; echo "obase=16; $DEC" | bc'
+alias deccom='read -p "Introduce dec number: " DEC; DEC=$(echo "obase=2; $DEC" | bc); echo "In binary is"; echo $BIN; c1=$(tr 01 10 <<< $BIN); c2=$((2#$c1+1)); echo "The two complement in decimal is"; echo "$c2"; echo "The two complement in binary is (please fill yourself the complementary 0s and 1s needed from the left, or use bincom with the binary)"; echo "obase=2; $c2" | bc'
+alias comdec='read -p "Introduce com number BUT FIRST SUBSTRACT 1 (sorry but bc has not bitwise, boolean and conditionals operators by default): " COM; echo "In decimal your complement is"; echo $(($(echo "ibase=2; $COM" | bc)+1)); c1=$(tr 10 01 <<< $COM); echo "The respective binary of this two complement is"; echo "$c1"; echo "The respective binary in decimal of this two complement is:"; echo "ibase=2; $c1" | bc; DEC=$(echo "ibase=2; $DEC" | bc)'
+
 binascii () {
 read -p "Introduce bin number: " BIN; 
 echo $BIN | perl -lape '$_=pack"(B8)*",@F'
@@ -978,6 +983,8 @@ echo $BIN | perl -lape '$_=pack"(B8)*",@F'
 alias bindec='read -p "Introduce bin number: " BIN; echo "ibase=2; $BIN" | bc'
 alias binoct='read -p "Introduce bin number: " BIN; echo "ibase=2;obase=8; $BIN" | bc'
 alias binhex='read -p "Introduce bin number: " BIN; echo "ibase=2;obase=16; $BIN" | bc'
+alias bincom='read -p "Introduce bin number: " BIN; c1=$(tr 01 10 <<< $BIN); c2=$((2#$c1+1)); echo "The two complement decimal is"; echo "$c2"; echo "The two complement binary is"; echo "obase=2; $c2" | bc; ' 
+alias combin='read -p "Introduce com bin number: " COM; c2=$((2#$COM-1)); c1=$(tr 10 01 <<< $c2); echo "The two complement in decimal is"; echo "$c1"; echo "The two complement binary is"; echo "obase=2; $c2" | bc; '
 
 alias octascii='read -p "Introduce oct number: " OCT; echo "ibase=8;obase=16; $OCT" >> OCTY; xxd -r -p $OCTY; rm OCTY' 
 alias octbin='read -p "Introduce oct number: " OCT; echo "ibase=8;obase=2; $OCT" | bc'
@@ -1625,12 +1632,23 @@ killmycam() {
 }
 
 #autostart, send text to init.d
-startwith(){
+autostartinitd(){
 read -p "Introduce the name of the program: " nameofp
 read -p "Introduce the command you want to include on init.d: " commandito
 sudo sh -c "echo $commandito >> /etc/init.d/$nameofp"
 sudo ls /etc/init.d | grep $nameofp
 sudo cat /etc/init.d/$nameofp
+}
+
+autostartsystemctl(){
+read -p 'Introduce name of the program: ' APP
+touch ~/.config/autostart/$APP
+prinf'
+[Desktop Entry]
+Name=$APP
+Comment=Autostarting $APP
+Type=Application
+Exec=$APP' | tee -a ~/.config/autostart/$APP && echo 'modify the app parameters in ~/.config/autostart/$APP'
 }
 
 #anota algo en algún lado
@@ -3168,7 +3186,7 @@ gzipdifference() {
 
 alias addtotop='read -p "File down: " FILEDOWN; content=$(cat $FILEDOWN); read -p "Text: " FILETOP; echo -en "$FILETOP\n$content" >$FILEDOWN'
 
-bitbybit(){
+shbitbybit(){
 read -p "sh file: " FILEDOWN
 content=$(cat $FILEDOWN) 
 FILETOP=$(printf '#!/usr/bin/env bash 
@@ -3179,4 +3197,19 @@ echo -en "$FILETOP\n$content" >$FILEDOWN; cat "$FILEDOWN";
 echo "Remember to delete the configuration from the top of the file." 
 bash "$FILEDOWN"; 
 echo "Remember to delete the configuration from the top of the file."
+}
+
+printconf(){
+sudo find -iname *.ppd
+firefox --new-tab http://www.openprinting.org/printers
+read -p "Search and select your printer driver: " PRINTERDRIVER
+yaourt -S $PRINTERDRIVER 
+sudo systemctl restart org.cups.cupsd.service 
+sudo vim /etc/cups/cupsd.conf
+echo "root access and add printer, then come back"
+firefox --new-tab http://localhost:631/admin
+read -p "Introduce the model:" MODEL 
+lpinfo -m | grep -i $MODEL
+read -p "Introduce the PDD path:" PATH
+sudo lpadmin -p newq -v file:/dev/null -E -m $PATH
 }
