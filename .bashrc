@@ -794,12 +794,11 @@ alias flightmodeoff="nmcli networking on"
 alias netoff=flightmodeoff
 alias voip="firefox -new-tab https://www.appear.in"
 alias anotherskype="skype --dbpath=~/.Skype2 &"
-alias projectessence="firefox --new-tab http://sematacc.herokuapp.com"
-alias Trash="cd .local/share/Trash/files"
+alias projectessence="firefox --new-tab http://sematacc.herokuapp.com --new-tab https://en.wikipedia.org/wiki/Software_requirements_specification#Structure"
+alias businessproject=projectessencealias Trash="cd .local/share/Trash/files"
 alias closesudo="read -p 'Write down the path/route/file to access: ' APP && sudo chown root:root $APP && sudo chmod 700 $APP"
 alias opensudo="read -p 'Write down the path/route/file to open permissions: ' APP; sudo chmod ugo+rwx -R $APP && echo 'try also with sudo -i ' $APP" 
 alias skill="sudo kill -9"
-alias nmapp="sudo nmap -v -A --reason -O -sV -PO -sU -sX -f -Pn --spoof-mac 0"
 alias nmap100="sudo nmap -F -v -A --reason -O -sV -PO -sU -sX -f -Pn --spoof-mac 0"
 alias lsd="stat * && ls -ld && ls -ltr -gahp --color=auto --full-time" # state all dates, ltr sort by access date (for mod time use -c)
 alias lss="ls -ld && sudo du -sh && sudo du -sh * | sort -h && ls -lsaSr -FGAhp --color=auto" # du size of folder, s size of files, lSr sort by size
