@@ -838,7 +838,7 @@ echo $UPPP | tr '[:lower:]' '[:upper:]'
 }
 alias whereami='curl ipinfo.io/country'
 alias geditbash='gedit ~/.bashrc'
-alias vimbash='vim ~./bashrc'
+alias vimbash='vim ~/.bashrc'
 alias atombash='atom ~/.bashrc'
 alias nanobash='nano ~/.bashrc'
 alias busca='sudo find / -iname'
