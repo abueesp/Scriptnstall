@@ -795,10 +795,20 @@ alias netoff=flightmodeoff
 alias voip="firefox -new-tab https://www.appear.in"
 alias anotherskype="skype --dbpath=~/.Skype2 &"
 alias projectessence="firefox --new-tab http://sematacc.herokuapp.com --new-tab https://en.wikipedia.org/wiki/Software_requirements_specification#Structure"
-alias businessproject=projectessencealias Trash="cd .local/share/Trash/files"
+alias businessproject=projectessence
+alias cpc='cp -i -r'
+alias mvm='mv -i -u'
+alias Trash="cd ~/.local/share/Trash/files"
+alias rm=trash
+alias rmr='sudo rm -irv -rf'
+alias delete="rmr"
+alias remove="rmr"
+alias delconnect="nmcli c && nmcli c delete"
+alias delbluetooth="bluetoothctl list && bluetoothctl remove"
 alias closesudo="read -p 'Write down the path/route/file to access: ' APP && sudo chown root:root $APP && sudo chmod 700 $APP"
 alias opensudo="read -p 'Write down the path/route/file to open permissions: ' APP; sudo chmod ugo+rwx -R $APP && echo 'try also with sudo -i ' $APP" 
 alias skill="sudo kill -9"
+alias nmapp="sudo nmap -v -A --reason -O -sV -PO -sU -sX -f -Pn --spoof-mac 0"
 alias nmap100="sudo nmap -F -v -A --reason -O -sV -PO -sU -sX -f -Pn --spoof-mac 0"
 alias lsd="stat * && ls -ld && ls -ltr -gahp --color=auto --full-time" # state all dates, ltr sort by access date (for mod time use -c)
 alias lss="ls -ld && sudo du -sh && sudo du -sh * | sort -h && ls -lsaSr -FGAhp --color=auto" # du size of folder, s size of files, lSr sort by size
@@ -810,6 +820,7 @@ alias lssh="ls -al ~/.ssh"
 alias verifykey="gpg --keyid-format long --import"
 alias verifyfile="gpg --keyid-format long --verify"
 alias dt='date "+%F %T"'
+alias pdf='evince'
 alias pdf2txt='ls * | sudo xargs -n1 pdftotext'
 alias hardlinks="sudo find / -links +2 -type f -exec ls -li {} \ "
 alias softlinks="sudo find /etc -type l -exec ls -li {} \ "
@@ -826,29 +837,23 @@ read -p 'uppercase what? ' UPPP ;
 echo $UPPP | tr '[:lower:]' '[:upper:]'
 }
 alias whereami='curl ipinfo.io/country'
-alias geditbash='sudo gedit ~/.bashrc'
-alias vimbash='sudo vim ~./bashrc'
-alias atombash='sudo atom ~/.bashrc'
-alias nanobash='sudo nano ~/.bashrc'
+alias geditbash='gedit ~/.bashrc'
+alias vimbash='vim ~./bashrc'
+alias atombash='atom ~/.bashrc'
+alias nanobash='nano ~/.bashrc'
 alias busca='sudo find / -iname'
 alias wtfhappened='sudo find / -cmin 1'
 alias whatchanged='sudo find / -mtime'
-alias wai="echo 'Country' && curl ipinfo.io/country && echo 'IP - For deeper testing visit http://ip-check.info/' && wget http://ipinfo.io/ip -qO -"
+alias wai="echo 'Country' && curl ipinfo.io/country && echo 'For deeper testing check vpnmon' && wget http://ipinfo.io/ip -qO -"
 alias myip=wai
 alias miipexterna=wai
+alias miipinterna=myotherip
+alias torwai="curl --socks5 localhost:9050 --socks5-hostname localhost:9050 -s https://check.torproject.org/ | cat | grep -m 1 Congratulations | xargs && tor-resolve https://check.torproject.org/ && echo 'Country' && curl ipinfo.io/country && echo 'IP - For deeper testing visit http://ip-check.info/' && echo 'DNS - For deeper testing visit https://www.dnsleaktest.com/'"
 alias mydns="echo 'DNS - For deeper testing visit https://www.dnsleaktest.com/' && dig whoami.akamai.net | grep whoami.akamai.net"
 alias midns=mydns
 alias myotherip="ifconfig | grep inet | awk '{print $2}'"
-alias miipinterna=myotherip
 alias bannedips="iptables --list sshguard --line-numbers --numeric"
 alias whatip="dig"
-alias cpc='cp -i -r'
-alias mvm='mv -i -u'
-alias rmr='sudo rm -irv -rf'
-alias delete="rmr"
-alias remove="rmr"
-alias delconnect="nmcli c && nmcli c delete"
-alias delbluetooth="bluetoothctl list && bluetoothctl remove"
 alias restorefxftabs="cp ~/.mozilla/firefox/*.default/sessionstore.jsonlz4 ~/.mozilla/firefox/*.default/sessionstore.jsonlz4.old && cp ~/.mozilla/firefox/*.default/sessionstore-backups/previous.jsonlz4 ~/.mozilla/firefox/*.default/sessionstore.jsonlz4"
 alias event="evtest"
 alias fakeid="wget 'http://randomprofile.com/api/api.php?&countries=CHN,JPN,KOR,GBR&fromAge=20&toAge=60&format=xml&fullChildren=1' -O seres.xml; rig >> fids && echo '------------------------' >> fids && date '+%H:%M:%S   %d/%m/%y' >> fids && cat seres.xml >> fidxmls && echo '------------------------' >> fidxmls && echo '------------------------' >> fidxmls && echo '------------------------' >> fidxmls && date '+%H:%M:%S   %d/%m/%y' >> fidxmls; cat fids; cat fidxmls; firefox -new-tab http://www.fakenamegenerator.com/advanced.php -new-tab protonmail.com -new-tab https://app.tutanota.com/#register -new-tab https://service.mail.com/registration.html -new-tab https://signup.live.com/"
