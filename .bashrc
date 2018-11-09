@@ -961,6 +961,7 @@ alias chm=securechrome
 alias iron="/opt/iron/./chrome"
 alias icecat="firejail /opt/icecat/./icecat --profile /opt/icecat/profiles"
 alias offline="firejail --net=none"
+alias qemubsd="qemu-system-x86_64 -drive format=raw,media=cdrom,readonly,file="
 
 ### Conversion Aliases ###
 asciibin () {
