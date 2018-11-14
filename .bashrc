@@ -1636,24 +1636,50 @@ killmycam() {
   fi
 }
 
-#autostart, send text to init.d
-autostartinitd(){
-read -p "Introduce the name of the program: " nameofp
+autostart(){
+read -p "Introduce some one-word name for the autostart: " APP
 read -p "Introduce the command you want to include on init.d: " commandito
-sudo sh -c "echo $commandito >> /etc/init.d/$nameofp"
-sudo ls /etc/init.d | grep $nameofp
-sudo cat /etc/init.d/$nameofp
-}
-
-autostartsystemctl(){
-read -p 'Introduce name of the program: ' APP
-touch ~/.config/autostart/$APP
-prinf'
-[Desktop Entry]
-Name=$APP
-Comment=Autostarting $APP
-Type=Application
-Exec=$APP' | tee -a ~/.config/autostart/$APP && echo 'modify the app parameters in ~/.config/autostart/$APP'
+echo "So you want to autostart '$commandito' as $APP... Cool! But when?"
+printf"
+1) On bootup / shutdown (using systemd/initd)
+2) On user login / logout (using systemd/initd user services)
+3) On device plug in / unplug (using udev rules)
+4) On time events (using systemd/initd/timers)
+5) On a determined date or time (using systemd/initd/timers/at)
+6) On filesystem events (using inotify/incron/fswatch)
+7) On shell login / logout (using shell configuration files)
+8) On Xorg startup (using xinitrc -if you are starting Xorg manually with xinit- or xprofile -if you are using a display manager-)
+9) On desktop environment startup (using XDG Autostart)
+10) On window manager startup (fluxbox, openbox, awesome)"
+read -p "So when? " number
+    case $number in
+        [1]* ) read -p "Do you have (A) init.d or (B) systemd? Choose A or B: " letter; 
+		case $letter in
+			[A]* ) 	sudo sh -c "echo '$commandito' >> /etc/init.d/$APP";
+				sudo ls /etc/init.d | grep $APP;
+				sudo cat /etc/init.d/$APP;
+				break;;
+			[B]* ) touch ~/.config/autostart/$APP;
+				printf"
+				[Desktop Entry]
+				Name=$APP
+				Comment=Autostarting $APP
+				Type=Application
+				Exec='$comandito'" | tee -a ~/.config/autostart/$APP && echo "modify the app parameters in ~/.config/autostart/$APP";
+				break;;
+        		* ) echo "Select some option or press Ctrl+C to exit";break;;
+		esac; break;;
+        [2]* ) echo "Proceso mantenido";break;;
+        [3]* ) echo "Proceso mantenido";break;;
+        [4]* ) echo "Proceso mantenido";break;;
+	[5]* ) echo "Proceso mantenido";break;;
+	[6]* ) echo "Proceso mantenido";break;;
+	[7]* ) echo "Proceso mantenido";break;;
+	[8]* ) echo "Proceso mantenido";break;;
+	[9]* ) echo "Proceso mantenido";break;;
+	[10]* ) echo "Proceso mantenido";break;;
+        * ) echo "Select some option or press Ctrl+C to exit"; break;;
+   esac
 }
 
 #anota algo en algún lado
