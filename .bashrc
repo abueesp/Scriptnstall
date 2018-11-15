@@ -88,7 +88,7 @@ ${funcname_color}- function name: green$nc ${lightgreen} - vim completion: C-n C
 ${level_color}- shell level color:cyan$nc ${lightcyan} - C-x ! | C-x $ | M-x / | M-x @ | C-x C-e | fc -lnr | !! $nc
 ${script_color}- script name: yellow$nc ${lightblue} - updatebash geditbash vibash | wai $nc
 ${command_color}- command executed: white$nc ${lightgrey} - help usage <tab> alias | cleanall cleanmem cleanexcept $nc
-${pink} - neton netoff | web browsers: lynx netrik fxf chm iron opera icecat | tmuxts full $nc
+${pink} - neton netoff | web browsers: lynx netrik fxf chm iron opera icecat | tmuxts full | xv $nc
 ${purple} - sysmon appmon filemon foldermon netmon portmon usermon vpnmon webmon hardmon $nc
 
 "
