@@ -976,16 +976,17 @@ echo "Your random 512bits hexadecimal hash is"
 echo $(echo $RANDOM | sha512sum)
 }
 
-alias xv="startx -- /usr/bin/Xephyr -noreset -resizeable -audit 5 -screen 1200x800-dpi :1"
+RESOLUTION=$(xdpyinfo | awk '/dimensions/{print $2}')
+alias xv="startx -- /usr/bin/Xephyr -keybd ephyr,,,xkbmodel=evdev/xephyr-extra-params -keybd ephyr,,,xkbmodel=evdev -resizeable -audit 5 -screen $RESOLUTION"
 
 ### Browser aliases ###
-alias securefirefox="firejail --private --dns=8.8.8.8 --dns=8.8.4.4 firefox -no-remote"
+alias securefirefox="firejail --x11=xephyr --private --dns=8.8.8.8 --dns=8.8.4.4 firefox -no-remote"
 alias fxf=securefirefox
-alias securechrome="firejail --private --dns=8.8.8.8 --dns=8.8.4.4 chromium"
+alias securechrome="firejail --x11=xephyr --private --dns=8.8.8.8 --dns=8.8.4.4 chromium"
 alias chm=securechrome
 alias iron="/opt/iron/./chrome"
-alias icecat="firejail /opt/icecat/./icecat --profile /opt/icecat/profiles"
-alias offline="firejail --net=none"
+alias firejail-offline="firejail --x11=xephyr --net=none"
+alias icecat="firejail --x11=xephyr /bin/./icecat --profile /opt/icecat/profiles"
 
 ### Conversion Aliases ###
 asciibin () {
