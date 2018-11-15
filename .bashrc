@@ -930,7 +930,29 @@ vim -c \"1,$ s/\(hi\)/\1 all/g\" -c \"wq\" file.txt
 For more info about substitutions:
 vim -c \"help substitute\"
 '"
-rrng(){
+
+count() {
+echo "The options below may be used to select which counts are printed, always in
+the following order: newline, word, character, byte, maximum line length.
+  -c, --bytes            print the byte counts
+  -m, --chars            print the character counts
+  -l, --lines            print the newline counts
+      --files0-from=F    read input from the files specified by
+                           NUL-terminated names in file F;
+                           If F is - then read names from standard input
+  -L, --max-line-length  print the maximum display width
+  -w, --words            print the word counts
+      --help     display this help and exit
+      --version  output version information and exit"
+echo "If you want to count a file, exit using Ctrl+C and use 'wc'. For multiple files use 'cloc'"
+read -p "If you want to count a string, what may I count? (-w, -l, -m, -c, -L): " PARAMETER
+read -p "Write down the string: " STRING
+echo $STRING > COUNTFILE
+wc $PARAMETER COUNTFILE
+rm COUNTFILE
+}
+
+rngg(){
 echo "Your random numbers are" 
 echo $(expr $RANDOM % 9223372036854775807)
 echo $(od -N 4 -t uL -An /dev/urandom | tr -d " ")
@@ -953,6 +975,8 @@ echo ""
 echo "Your random 512bits hexadecimal hash is"
 echo $(echo $RANDOM | sha512sum)
 }
+
+alias xv="startx -- /usr/bin/Xephyr -noreset -resizeable -audit 5 -screen 1200x800-dpi :1"
 
 ### Browser aliases ###
 alias securefirefox="firejail --private --dns=8.8.8.8 --dns=8.8.4.4 firefox -no-remote"
