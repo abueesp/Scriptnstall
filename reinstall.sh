@@ -1462,10 +1462,11 @@ firecfg --fix-sound #The first command solves some shared memory/PID namespace b
 pulseaudio --kill
 pulseaudio --start
 #sudo firecfg #The second command integrates Firejail into your desktop. You can read more about system integration in Linux Mint Sandboxing Guide.
-sudo apt-get install xserver-xephyr -y #Nested X11
+sudo apt-get install xserver-xephyr -y #Nested X11 better than Xnest
 sudo vim -c ":%s/\# force-nonewprivs no/force-nonewprivs yes/g" -c ":wq" /etc/firejail/firejail.config #no setuid
 RESOLUTION=$(xdpyinfo | awk '/dimensions/{print $2}')
-sudo vim -c ":%s/\# xephyr-extra-params -keybd ephyr,,,xkbmodel=evdev/xephyr-extra-params -keybd ephyr,,,xkbmodel=evdev -resizeable -audit 5 -screen $RESOLUTION/g" -c ":wq" /etc/firejail/firejail.config #xephyr size
+sudo vim -c ":%s/\# xephyr-screen 640x480/xephyr-screen $RESOLUTION/g" -c ":wq" /etc/firejail/firejail.config #size
+sudo vim -c ":%s/\# xephyr-extra-params -keybd ephyr,,,xkbmodel=evdev/xephyr-extra-params -keybd ephyr,,,xkbmodel=evdev -resizeable -audit 5/g" -c ":wq" /etc/firejail/firejail.config #ephyr keyboard audit
 
 #firetools
 FIREVERSION=0.9.50
