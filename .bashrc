@@ -785,7 +785,9 @@ alias clenexcept="sudo apt-get install bleachbit -y; bleachbit -list; read -p 'W
 alias cleanmem="echo 'Cleaning memory, cache and swap'; sudo sh -c $(which echo) 3 > sudo /proc/sys/vm/drop_caches; sudo free"
 
 ### Aliases ###
-alias kvm="qemu-system-x86_64 -enable-kvm -drive format=raw,media=cdrom,readonly,file="
+alias kvmiso="read -p 'Introduce path of iso: ' KVMISOPATH; qemu-system-x86_64 -enable-kvm -drive format=raw,media=cdrom,readonly,file='$KVMISOPATH'"
+alias kvmimg="read -p 'Introduce path of iso: ' KVMIMGPATH; qemu-system-x86_64 -enable-kvm -boot d -drive file='$KVMIMGPATH'"
+alias kvmnewimg="read -p 'Introduce name of new img (by default /home/$USER/newimage.img): ' KVMNEWIMG; KVMNEWIMG='${KVMNEWIMG:=/home/$USER/newimage.img}'; read -p 'Introduce how much space (by default 5G): ' KVMNEWSPACE; KVMNEWSPACE='${KVMNEWSPACE:=5G}'; qemu-img create -f qcow2 '$KVMNEWIMG' '$KVMNEWSPACE'"
 alias handmath="firefox --new-tab http://webdemo.myscript.com/views/math.html"
 alias visiblemodeon="sudo hciconfig hci0 piscan"
 alias visiblemodeoff="sudo hciconfig hci0 noscan"
@@ -977,7 +979,7 @@ echo $(echo $RANDOM | sha512sum)
 }
 
 RESOLUTION=$(xdpyinfo | awk '/dimensions/{print $2}')
-alias xv="startx -- /usr/bin/Xephyr -keybd ephyr,,,xkbmodel=evdev/xephyr-extra-params -keybd ephyr,,,xkbmodel=evdev -resizeable -audit 5 -screen $RESOLUTION"
+alias xnamespace="startx -- /usr/bin/Xephyr -keybd ephyr,,,xkbmodel=evdev/xephyr-extra-params -keybd ephyr,,,xkbmodel=evdev -resizeable -audit 5 -screen $RESOLUTION"
 
 ### Browser aliases ###
 alias securefirefox="firejail --x11=xephyr --private --dns=8.8.8.8 --dns=8.8.4.4 firefox -no-remote"
