@@ -3271,13 +3271,31 @@ read -p "Introduce the PDD path:" PATH
 sudo lpadmin -p newq -v file:/dev/null -E -m $PATH
 }
 
-#Clipboard to firejail
+#Clipboards to/from firejail
 ix(){
 X2=$(firemon --x11 | awk 'FNR==2{print $0}' | awk '{print $2}')
 xclip -selection clip -o -display :0 | xclip -selection clip -i -display "$X2"
 }
-
 ox(){
 X2=$(firemon --x11 | awk 'FNR==2{print $0}' | awk '{print $2}')
 xclip -selection clip -o -display "$X2" | xclip -selection clip -i -display :0
 }
+
+fixnumbers(){
+read -p "Introduce the path of the file. It will open and you will introduce the new line. Remember the number of the following line and the last line that you want to fix: " PATHFIXE
+vim $PATHFIXE
+read -p "Introduce the number of the following line to the line that was introduced: " FOLLOWNUMBER
+read -p "Introduce the number of the last line that you want to fix: " LASTNUMBER
+vim -c ":$FOLLOWNUMBER,$LASTNUMBER s/\d\+/\=submatch(0) + 1/" -c ":wq" $PATHFIXE
+cat $PATHFIXE
+echo "This was the fixed result"
+}
+
+alias lowerall='vim -c ":%s/\s*\w/\=tolower(submatch(0))/g" -c ":wq" '
+minusculeatodo=lowerall
+alias upperall='vim -c ":%s/\s*\w/\=toupper(submatch(0))/g" -c ":wq" '
+mayusculeatodo=upperall
+alias lowerfirst='vim -c ":%s/^\s*\w/\=toupper(submatch(0))/g" -c ":wq" '
+minusculeaprimera=lowerfirst
+alias upperfirst='vim -c ":%s/^\s*\w/\=toupper(submatch(0))/g" -c ":wq" '
+mayusculeaprimera=upperfirst
