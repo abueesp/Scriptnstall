@@ -1617,4 +1617,5 @@ sudo rkhunter --skip-keypress --summary --check --hash sha256 -x --configfile /e
 sudo cat /var/log/rkhunter.log | grep -A 6 Warning
 sudo cat /var/log/rkhunter.log | grep -A 6 Hidden
 
+echo "Aprovecha para adjuntar virtuailización"
 echo "EOF" 
