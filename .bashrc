@@ -588,40 +588,6 @@ read -p "Write the website: " flinkkk
 wget --accept $formattt --mirror --adjust-extension --convert-links --backup-converted --no-parent $flinkkk
 }
 
-delbefore() {
-  a=()
-  read -p "How many minutes back from now? " minutes
-  for target in *; do
-    inode=$(ls -di "${target}" | cut -d ' ' -f 1)
-    fs=$(df "${target}"  | tail -1 | awk '{print $1}')
-    crtime=$(sudo debugfs -R 'stat <'"${inode}"'>' "${fs}" 2>/dev/null | 
-    grep -oP 'crtime.*--\s*\K.*')
-    printf "%s\t%s\n" "${crtime}" "${target}"
-    datus=$(date --date '-'$minutes'min')
-    if [[ $(date -d"${crtime}" +%s) > $(date -d"${datus}" +%s) ]]; then
-	a+=("${target}")
-	echo ${target}' was recently created'
-    fi
-  done
-  read -p "Delete all files created before $datus? (y/n) FILES LIST: ${a[*]} " yn
-    case $yn in
-        [Yy]* ) for i in "${a[@]}"; do
-			rm $i 
-			echo "$i was deleted"
-		done;;
-        [Nn]* ) echo "No files were deleted";;
-        * ) echo "Please answer yes or no.";;
-    esac
-}
- 
-securedelete() {
-  read -p "DANGER VAS A BORRAR DE FORMA SEGURA TODO. INTRODUCE LA RUTA DE LA CARPETA O EL ARCHIVO SIN EQUIVOCARTE      -->" route
-  rin="$route""/**"
-  sudo shred -uvzn 3 $route
-  sudo shred -uvzn 3 $rin
-  sudo srm -vrzd $route
-  }
-  
 tmuxts() {
 tmux new-session -s 'MyTS' -d 'vim'
 tmux split-window -v -d 'weechat'
@@ -801,13 +767,49 @@ alias projectessence="firefox --new-tab http://sematacc.herokuapp.com --new-tab 
 alias businessproject=projectessence
 alias cpc='cp -i -r'
 alias mvm='mv -i -u'
-alias Trash="cd ~/.local/share/Trash/files"
-alias rm=trash
+TRASH="/home/$USER/.local/share/Trash/files"
+alias Trash="cd $TRASH"
+function rm(){
+	mkdir -p "$TRASH"
+	mv -b "$@" "$TRASH"/"$@"
+}
 alias rmr='sudo rm -irv -rf'
 alias delete="rmr"
 alias remove="rmr"
 alias delconnect="nmcli c && nmcli c delete"
 alias delbluetooth="bluetoothctl list && bluetoothctl remove"
+delbefore() {
+  a=()
+  read -p "How many minutes back from now? " minutes
+  for target in *; do
+    inode=$(ls -di "${target}" | cut -d ' ' -f 1)
+    fs=$(df "${target}"  | tail -1 | awk '{print $1}')
+    crtime=$(sudo debugfs -R 'stat <'"${inode}"'>' "${fs}" 2>/dev/null | 
+    grep -oP 'crtime.*--\s*\K.*')
+    printf "%s\t%s\n" "${crtime}" "${target}"
+    datus=$(date --date '-'$minutes'min')
+    if [[ $(date -d"${crtime}" +%s) > $(date -d"${datus}" +%s) ]]; then
+	a+=("${target}")
+	echo ${target}' was recently created'
+    fi
+  done
+  read -p "Delete all files created before $datus? (y/n) FILES LIST: ${a[*]} " yn
+    case $yn in
+        [Yy]* ) for i in "${a[@]}"; do
+			rm $i 
+			echo "$i was deleted"
+		done;;
+        [Nn]* ) echo "No files were deleted";;
+        * ) echo "Please answer yes or no.";;
+    esac
+}
+securedelete() {
+  read -p "DANGER VAS A BORRAR DE FORMA SEGURA TODO. INTRODUCE LA RUTA DE LA CARPETA O EL ARCHIVO SIN EQUIVOCARTE      -->" route
+  rin="$route""/**"
+  sudo shred -uvzn 3 $route
+  sudo shred -uvzn 3 $rin
+  sudo srm -vrzd $route
+}  
 alias closesudo="read -p 'Write down the path/route/file to access: ' APP && sudo chown root:root $APP && sudo chmod 700 $APP"
 alias opensudo="read -p 'Write down the path/route/file to open permissions: ' APP; sudo chmod ugo+rwx -R $APP && echo 'try also with sudo -i ' $APP" 
 alias skill="sudo kill -9"
