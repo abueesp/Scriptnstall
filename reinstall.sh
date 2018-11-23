@@ -371,6 +371,7 @@ gpg --list-secret-keys
 run_keybase
 keybase pgp gen --multi
 rm keybase$KEYBASEVERSION.deb
+rm ~/.config/autostart/keybase_autostart.desktop #no autostart
 
 ##Fail2ban & logcheck
 sudo apt-get purge fail2ban -y
