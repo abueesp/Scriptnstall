@@ -88,7 +88,7 @@ ${funcname_color}- function name: green$nc ${lightgreen} - vim completion: C-n C
 ${level_color}- shell level color:cyan$nc ${lightcyan} - C-x ! | C-x $ | M-x / | M-x @ | C-x C-e | fc -lnr | !! $nc
 ${script_color}- script name: yellow$nc ${lightblue} - updatebash geditbash vibash | wai $nc
 ${command_color}- command executed: white$nc ${lightgrey} - help usage <tab> alias | cleanall cleanmem cleanexcept $nc
-${pink} - neton netoff | web browsers: lynx netrik fxf chm iron opera icecat | tmuxts full | xv $nc
+${pink} - neton netoff | web browsers: lynx netrik fxf chm iron opera icc | tmuxts full | xv $nc
 ${purple} - sysmon appmon filemon foldermon netmon portmon usermon vpnmon webmon hardmon $nc
 
 "
@@ -984,13 +984,11 @@ RESOLUTION=$(xdpyinfo | awk '/dimensions/{print $2}')
 alias xnamespace="startx -- /usr/bin/Xephyr -keybd ephyr,,,xkbmodel=evdev/xephyr-extra-params -keybd ephyr,,,xkbmodel=evdev -resizeable -audit 5 -screen $RESOLUTION"
 
 ### Browser aliases ###
-alias securefirefox="firejail --x11=xephyr --private --dns=8.8.8.8 --dns=8.8.4.4 firefox -no-remote"
-alias fxf=securefirefox
-alias securechrome="firejail --x11=xephyr --private --dns=8.8.8.8 --dns=8.8.4.4 chromium"
-alias chm=securechrome
+alias fxf="firejail --x11=xephyr --private --dns=91.239.100.100 --dns=146.185.176.36 firefox -no-remote"
+alias chm="firejail --x11=xephyr --private --dns=94.247.43.254 --dns=91.239.100.100 chromium"
 alias iron="/opt/iron/./chrome"
 alias firejail-offline="firejail --x11=xephyr --net=none"
-alias icecat="firejail --x11=xephyr /bin/./icecat --profile /opt/icecat/profiles"
+alias icc="firejail --x11=xephyr --dns=91.239.100.100 --dns=146.185.176.36 /bin/./icecat --profile /opt/icecat/profiles"
 
 ### Conversion Aliases ###
 asciibin () {
