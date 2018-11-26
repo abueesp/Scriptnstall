@@ -989,6 +989,7 @@ alias chm="firejail --x11=xephyr --private --dns=94.247.43.254 --dns=91.239.100.
 alias iron="/opt/iron/./chrome"
 alias firejail-offline="firejail --x11=xephyr --net=none"
 alias icc="firejail --x11=xephyr --dns=91.239.100.100 --dns=146.185.176.36 /bin/./icecat --profile /opt/icecat/profiles"
+alias pastebin="echo '[text] https://www.privatebin.net [image] https://www.unsee.cc [files] try transfer'"
 
 ### Conversion Aliases ###
 asciibin () {
