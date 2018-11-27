@@ -642,6 +642,7 @@ docsthemagic() {
   sudo mat **
   echo "puedes comprobar los errores con aspell -c 'file' y darle formato con fmt"
 }
+alias matimg="exiftool -exif:all="
 
 updateallbash() {
 sudo rm ~/.bashrc-bu
