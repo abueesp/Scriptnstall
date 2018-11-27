@@ -89,7 +89,7 @@ ${level_color}- shell level color:cyan$nc ${lightcyan} - C-x ! | C-x $ | M-x / |
 ${script_color}- script name: yellow$nc ${lightblue} - updatebash geditbash vibash | wai $nc
 ${command_color}- command executed: white$nc ${lightgrey} - help usage <tab> alias | cleanall cleanmem cleanexcept $nc
 ${pink} - neton netoff | web browsers: lynx netrik fxf chm iron opera icc | tmuxts full | xv $nc
-${purple} - sysmon appmon filemon foldermon netmon portmon usermon vpnmon webmon hardmon $nc
+${purple} - sysmon appmon filemon foldermon netmon portmon usermon vpnmon webmon hwmon $nc
 
 "
 
@@ -716,6 +716,7 @@ if [ -z "$pid" ]; then
     echo "Ese programa no estaba corriendo o el proceso no fue identificado"
     exit
 fi
+sudo perf stat -d $app
 apt-cache show $app
 sudo ps ax | grep $app
 sudo lsof -i -n -P | grep $app
@@ -739,12 +740,12 @@ echo "monitorizando modificaciones de ruta"
 watch -d -n 60 'sudo ls $ruta -rtlhR | tail'
 }
 alias usermon="ls -l /bin/su; loginctl; sudo dmidecode -s system-serial-number; sudo loginctl; sudo uptime; sudo id; sudo users; sudo cat /etc/sudoers; sudo cat /etc/shadow; sudo groups; sudo cat /etc/group; sudo w; sudo who -a; sudo ipcs -m -c; pwd; sudo finger; sudo finger -lmps; sudo chfn; sudo last; read -p 'Do you want to see the processes of some user? Introduce username:' regus; ps -LF -u $regus; echo 'Pure honey. Now all your bases belong to us' | pv -qL 20 > wall"
-alias sysmon="cat /proc/cpuinfo; lspci -nn; echo 'TEMPERATURE: ACPI | Skylake | CPU | Wifi (more info install lm_sensors, and run: sudo sensors-detect; sensors)'; cat /sys/class/thermal/thermal_zone*/temp; sudo dmidecode; lsb_release -a; uname -a; id; sudo id; sudo lshw; lscpu; sleep 4; sudo htop; sudo ncdu; watch -n 2 free -m; logname; hostname; ipcs -m -c; sudo logname; sudo ipcs; sudo initctl list; systemctl status; cat /proc/uptime; sudo df -h;  sudo dmesg | less; ipcs -u; sudo service --status-all; sudo atop; sudo iotop; sudo w -i; sudo dmidecode; sudo ps -efH | more; sudo lsof | wc -l; sudo lsof; ps aux | sort -nk +4 | tail; sudo pstree -p -s -S -u -Z -g -h; sudo ss; sudo dpkg -l; sudo dstat -a -f; systemctl --all; systemctl --all --failed; systemctl list-unit-files --all; systemctl list-units | grep service; sudo journalctl -afb -p info SYSLOG_FACILITY=4 SYSLOG_FACILITY=10" #htop is better than top and glances, but atop is more complete and iotop gives i/o (iftop is for network)
+alias sysmon="cat /proc/cpuinfo; lspci -nn; echo 'TEMPERATURE: ACPI | Skylake | CPU | Wifi (more info install lm_sensors, and run: sudo sensors-detect; sensors)'; cat /sys/class/thermal/thermal_zone*/temp; sudo dmidecode; lsb_release -a; uname -a; id; sudo id; sudo lshw; lscpu; sleep 4; sudo htop; sudo ncdu; watch -n 2 free -m; logname; hostname; ipcs -m -c; sudo logname; sudo ipcs; sudo initctl list; systemctl status; cat /proc/uptime; sudo df -h;  sudo dmesg | less; ipcs -u; sudo service --status-all; sudo atop; sudo iotop; sudo w -i; sudo dmidecode; sudo ps -efH | more; sudo lsof | wc -l; sudo lsof; ps aux | sort -nk +4 | tail; sudo pstree -p -s -S -u -Z -g -h; sudo ss; sudo dpkg -l; sudo dstat -a -f; systemctl --all; systemctl --all --failed; systemctl list-unit-files --all; systemctl list-units | grep service; sudo journalctl -afb -p info SYSLOG_FACILITY=4 SYSLOG_FACILITY=10; sudo perf top -F 49 --sort comm,dso" #htop is better than top and glances, but atop is more complete and iotop gives i/o (iftop is for network)
 alias netmon="sudo conntrack -E; ifconfig -a; nmcli dev show; read -p 'Introduce interface to know with whom you are sharing the local network: ' INTER; sudo iftop -i $INTER; sudo arp-scan -R --localnet --interface=$INTER --localnet; sudo nethogs -a; slurm -i $INTER; rfkill list; nmcli general; nmcli device; nmcli connection; curl ipinfo.io; sudo netstat -tulpn; sudo vnstat; sudo netstat -ie | more -s  -l -d -f; sudo netstat -s | more -s  -l -d -f; sudo netstat -pt | more -s  -l -d -f; sudo tcpstat -i $INTER -l -a; sudo iptables -S; sudo w -i; sudo ipcs -u; sudo tcpdump -i $INTER; sudo iotop; sudo ps; sudo netstat -r; dig google.com; dig duckduckgo.com; echo 'Traceroute google.com'; traceroute google.com; echo 'Traceroute duckduckgo.com'; traceroute duckduckgo.com; echo 'En router ir a Básica -> Estado -> Listado de equipos; nmtui'; sudo ufw status verbose; sudo ls /etc/NetworkManager/system-connections/; avahi-browse -alr; sudo journalctl -afb -p info SYSLOG_FACILITY=4 SYSLOG_FACILITY=10; iwlist $INTER scanning"
 alias portmon="cat /etc/services; sudo nc -l -6 -4 -u; sudo ss -o state established; sudo ss -l; sudo netstat -avnp -e; sudo netstat -pan -A inet,inet6"
 alias vpnmon="firefox --new-tab https://www.dnsleaktest.com/results.html --new-tab http://www.nothingprivate.ml --new-tab http://ipmagnet.services.cbcdn.com/ --new-tab https://whoer.net/#extended --new-tab https://ipleak.net/ --new-tab https://ipx.ac/run"
 alias webmon="firefox --new-tab https://who.is/ && firefox --new-tab https://searchdns.netcraft.com/ && firefox -new-tab https://www.shodan.io/ && firefox -new-tab web.archive.org && firefox -new-tab https://validator.w3.org/ && firefox -new-tab https://geekflare.com/online-scan-website-security-vulnerabilities/"
-alias hardmon="sudo lshw; cat /proc/cpuinfo; sudo lsusb; sudo libinput list-devices; sudo udevadm info --export-db"
+alias hwmon="sudo lshw; cat /proc/cpuinfo; sudo lsusb; sudo libinput list-devices; sudo udevadm info --export-db"
 alias ccleaner="sudo apt-get install bleachbit -y; bleachbit -list; read -p 'Write the name of what you want to clean (f.i. firefox -e chromium.history -e password...)' CLEANN; bleachbit --list | grep -E "[a-z]+\.[a-z]+" | grep -e CLEANN | xargs sudo bleachbit --clean; sudo apt-get purge bleachbit -y"
 alias cleanall="echo 'Cleaning temp, presets, browsers data, memory, cache and so forth'; sudo sh -c $(which echo) 3 > sudo /proc/sys/vm/drop_caches; sudo apt-get install bleachbit -y; bleachbit --list | grep -E '[a-z]+\.[a-z]+' | xargs sudo bleachbit --clean; sudo apt-get purge bleachbit -y"
 alias clenexcept="sudo apt-get install bleachbit -y; bleachbit -list; read -p 'Write the name of what you DO NOT want to clean (f.i. firefox -e chromium.history -e password...)' UNCLEANN; bleachbit --list | grep -E "[a-z]+\.[a-z]+" | grep -v -e UNCLEANN | xargs sudo bleachbit --clean; sudo apt-get purge bleachbit -y"
