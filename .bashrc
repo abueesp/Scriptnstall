@@ -437,33 +437,14 @@ echo "Your current username set is $_username"
 fi
 
 ####INTRODUCE TOKEN
-  read -p "Introduce tu token o pulsa ENTER si ya lo hiciste: " _token
-    if [ -z "$_token" ]
-     then
-	_token=$(git config --global user.token)
-##verif
- if [ "$_token" = "" ]; then
- echo "Could not find token, run 'git config --global github.token <token>'"
- invalid_credentials=1
+read -p "Introduce tu token o pulsa ENTER si ya lo hiciste: " _token
+  if [ -z "$_token" ]
+   then
+   _token=$(git config --global user.token)
+   echo "Your current token set is $_token"
 else
-echo "Your current token set is $_token"
- fi 
-     else
-	 git config --global user.token $_token
-	_token=$(git config --global user.token)
-##verif
- if [ "$_token" = "" ]; then
- echo "Could not find token, run 'git config --global github.token <token> and check https://help.github.com/articles/creating-an-access-token-for-command-line-use/'"
- invalid_credentials=1 
-else
-echo "Your current token set is $_token"
- fi 
+   echo "Could not find token, run 'git config --global github.token <token> and check https://help.github.com/articles/creating-an-access-token-for-command-line-use/'"
 fi
- 
- if [ "$invalid_credentials" == "1" ]; then
- echo "There was a credentials error. Please introduce your credentials"
- exit
- fi
 
  repo_name=$1
  dir_name='basename $(pwd)'
